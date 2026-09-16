@@ -158,3 +158,44 @@ EC u8 func_0809C318(u8 const * self, unsigned int tool_id)
     self += 6;
     return self[index];
 }
+
+EC bool func_0809C32C(u8 const * self)
+{
+    unsigned int result = 0;
+    int a0 = -self[7]; int b0 = -self[1]; b0 |= a0;
+    if (b0 < 0)
+    {
+        int a1 = -self[6]; int b1 = -self[0]; b1 |= a1;
+        if (b1 < 0)
+        {
+            int a2 = -self[8]; int b2 = -self[2]; b2 |= a2;
+            if (b2 < 0)
+            {
+                int a3 = -self[9]; int b3 = -self[3]; b3 |= a3;
+                if (b3 < 0)
+                {
+                    int a4 = -self[10]; int b4 = -self[4]; b4 |= a4;
+                    if (b4 < 0)
+                    {
+                        int a5 = -self[11]; int b5 = -self[5]; b5 |= a5;
+                        result = ((unsigned int)b5) >> 31;
+                    }
+                }
+            }
+        }
+    }
+    return result;
+}
+
+EC bool func_0809C38C(u8 const * self)
+{
+    unsigned int result = 0;
+    if (self[7] == 0) goto out;
+    if (self[6] == 0) goto out;
+    if (self[8] == 0) goto out;
+    if (self[9] == 0) goto out;
+    if (self[10] == 0) goto out;
+    result = ((unsigned int)-self[11]) >> 31;
+out:
+    return result;
+}
