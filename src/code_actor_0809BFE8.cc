@@ -213,3 +213,26 @@ EC void func_0809C3BC(u8 * self, unsigned int tool_id)
         count[index] = value;
     }
 }
+
+extern u8 gUnk_081036C0[];
+EC unsigned int func_0809C3E0(u8 * self, unsigned int index)
+{
+    register unsigned int result asm("r5") = 0;
+    u8 * active = self + index;
+    if (*active != 0)
+    {
+        u8 * count_base = self + 12;
+        u8 * count = count_base + index;
+        if (*count < gUnk_081036C0[index])
+            ++*count;
+        else
+        {
+            *active = result;
+            u8 * done_base = self + 6;
+            u8 * done = done_base + index;
+            *done = 1;
+            result = 1;
+        }
+    }
+    return result;
+}
