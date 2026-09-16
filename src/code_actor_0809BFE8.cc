@@ -83,3 +83,19 @@ EC void func_0809C0D4(Unk_Actor_0809BFE8 & self)
     func_0809C098(self, &unused);
     self.unk_08_0 = 100;
 }
+
+EC u8 * func_0809C144(u8 * self)
+{
+    unsigned int i = 0;
+    unsigned int zero = 0;
+    u8 * p = self;
+    do
+    {
+        p[0] = zero;
+        p[12] = zero;
+        p[6] = zero;
+        ++p;
+        ++i;
+    } while (i <= 5);
+    return self;
+}
