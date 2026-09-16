@@ -236,3 +236,53 @@ EC unsigned int func_0809C3E0(u8 * self, unsigned int index)
     }
     return result;
 }
+
+EC void func_0809C420(u8 * self, unsigned int index)
+{
+    u8 * base = self;
+    if (base[index] != 0)
+    {
+        if (index == 0 || index == 3)
+        {
+            u8 * count = base;
+            count += 12;
+            count += index;
+            *count = 0;
+        }
+    }
+}
+
+EC u8 func_0809C444(u8 * self, unsigned int tool_id)
+{
+    u8 result = 0;
+    unsigned int index = func_0809C22C(self, tool_id);
+    if (self[index] != 0)
+    {
+        if (index == 0 || index == 3)
+            result = func_0809C3E0(self, index);
+    }
+    return result;
+}
+
+EC u8 func_0809C474(u8 * self, unsigned int tool_id)
+{
+    unsigned int index = func_0809C22C(self, tool_id);
+    u8 result = 0;
+    if (self[index] != 0)
+    {
+        if (index == 1 || index == 4)
+            result = func_0809C3E0(self, index);
+        if (index == 0 || index == 3)
+            func_0809C420(self, index);
+    }
+    return result;
+}
+
+EC u8 func_0809C4B4(u8 * self, unsigned int tool_id)
+{
+    unsigned int index = func_0809C22C(self, tool_id);
+    u8 result = 0;
+    if (self[index] != 0 && (index == 5 || index == 2))
+        result = func_0809C3E0(self, index);
+    return result;
+}
