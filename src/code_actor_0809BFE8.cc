@@ -36,7 +36,7 @@ EC void func_0809C068(Unk_Actor_0809BFE8 & self, int arg_0)
     self.unk_08_0 = val;
 }
 
-EC void func_0809C098(Unk_Actor_0809BFE8 & self)
+EC void func_0809C098(Unk_Actor_0809BFE8 & self, void const *)
 {
     self.unk_0C = 0;
 }
@@ -72,3 +72,14 @@ EC void func_0809C0C8(Unk_Actor_0809BFE8 & self, u32 const * arg_1)
 }
 
 /* what follows shouldn't be hard except that to do it well I think there needs to be union/placeholder shenanigans */
+
+
+EC void func_0809C0D4(Unk_Actor_0809BFE8 & self)
+{
+    ActorLocation location(Location(MAP_NONE, 0, 0), 0);
+    u32 unused;
+
+    self.SetLocation(location);
+    func_0809C098(self, &unused);
+    self.unk_08_0 = 100;
+}

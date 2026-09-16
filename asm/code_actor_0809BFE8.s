@@ -1,61 +1,6 @@
     .INCLUDE "asm/macro.inc"
     .SYNTAX UNIFIED
 
-    thumb_func_start func_0809C0D4
-func_0809C0D4: @ 0x0809C0D4
-    push {r4, r5, r6, lr}
-    sub sp, #0x14
-    adds r5, r0, #0
-    add r1, sp, #8
-    movs r4, #0x8d
-    lsls r4, r4, #2
-    ldrh r2, [r1]
-    ldr r3, .L0809C140 @ =0xFFFFFC00
-    adds r0, r3, #0
-    ands r0, r2
-    orrs r0, r4
-    strh r0, [r1]
-    movs r6, #0
-    ldrb r4, [r1, #1]
-    movs r2, #3
-    adds r0, r2, #0
-    ands r0, r4
-    strb r0, [r1, #1]
-    ldrh r4, [r1, #2]
-    adds r0, r3, #0
-    ands r0, r4
-    strh r0, [r1, #2]
-    ldrb r0, [r1, #3]
-    ands r2, r0
-    strb r2, [r1, #3]
-    ldrh r0, [r1, #4]
-    ands r3, r0
-    strh r3, [r1, #4]
-    mov r4, sp
-    mov r0, sp
-    movs r2, #6
-    bl memcpy
-    strb r6, [r4, #6]
-    adds r0, r5, #0
-    mov r1, sp
-    bl SetLocation__5ActorRC13ActorLocation
-    add r1, sp, #0x10
-    adds r0, r5, #0
-    bl func_0809C098
-    ldrb r1, [r5, #8]
-    movs r0, #0x80
-    rsbs r0, r0, #0
-    ands r0, r1
-    movs r1, #0x64
-    orrs r0, r1
-    strb r0, [r5, #8]
-    add sp, #0x14
-    pop {r4, r5, r6}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L0809C140: .4byte 0xFFFFFC00
-
     thumb_func_start func_0809C144
 func_0809C144: @ 0x0809C144
     push {lr}
