@@ -390,3 +390,69 @@ EC bool func_0809C5F4(u32 const * self)
 {
     return *self != 0;
 }
+
+#include <string.h>
+
+EC u16 * func_080E3DB4(u16 * first, u16 * last, u16 const * value);
+EC u16 * func_080E3E28(u16 * first, u16 * last, u16 const * value);
+
+EC void func_0809C600(u32 * self, u16 value)
+{
+    register u16 * first asm("r0") = (u16 *)(self + 1);
+    register u16 * last asm("r4") = (u16 *)((u8 *)self + ((*self << 1) + 4));
+
+    if (func_080E3DB4(first, last, &value) == last)
+    {
+        register u16 * value_p asm("r2") = &value;
+        register unsigned int raw asm("r0") = *self;
+        register unsigned int count asm("r3") = raw;
+
+        if (raw <= 2)
+        {
+            register u16 * dst asm("r1") = (u16 *)((u8 *)self + ((raw << 1) + 4));
+            if (dst != 0)
+                *dst = *value_p;
+
+            register unsigned int result asm("r0") = count + 1;
+            *self = result;
+        }
+    }
+}
+
+EC void func_0809C644(u32 * self, u16 value)
+{
+    register u16 * first asm("r0") = (u16 *)(self + 1);
+    register u16 * last asm("r4") = (u16 *)((u8 *)self + ((*self << 1) + 4));
+    u16 * found = func_080E3E28(first, last, &value);
+
+    if (found != last && *self != 0)
+    {
+        u16 * end = (u16 *)((u8 *)self + ((*self << 1) + 4));
+        u16 * next = found + 1;
+
+        if (next != end)
+        {
+            asm volatile("" : "+r"(next), "+r"(end));
+            if (end != next)
+                memmove(found, next, (u8 *)end - (u8 *)next);
+        }
+
+        --*self;
+    }
+}
+
+EC bool func_0809C694(u16 const * self, u16 value)
+{
+    return self[6] == value;
+}
+
+EC void func_0809C6AC(u16 * self, u16 value)
+{
+    self[6] = value;
+}
+
+EC void func_0809C6B0(u16 * self)
+{
+    unsigned int value = 0xFFFF;
+    self[6] = value;
+}
