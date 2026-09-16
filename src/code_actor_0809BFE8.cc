@@ -368,3 +368,25 @@ store:
 done:
     return out;
 }
+
+EC void func_0809C5B4(u32 * self, unsigned int index)
+{
+    if (index <= 13)
+        *self |= 1u << (index & 31);
+}
+
+EC void func_0809C5D0(u32 * self, unsigned int index)
+{
+    if (index <= 13)
+        *self &= ~(1u << (index & 31));
+}
+
+EC void func_0809C5EC(u32 * self)
+{
+    *self = 0;
+}
+
+EC bool func_0809C5F4(u32 const * self)
+{
+    return *self != 0;
+}

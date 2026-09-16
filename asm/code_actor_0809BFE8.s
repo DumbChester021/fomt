@@ -1,58 +1,6 @@
     .INCLUDE "asm/macro.inc"
     .SYNTAX UNIFIED
 
-    thumb_func_start func_0809C5B4
-func_0809C5B4: @ 0x0809C5B4
-    push {lr}
-    adds r2, r0, #0
-    cmp r1, #0xd
-    bhi .L0809C5CA
-    movs r0, #0x1f
-    ands r0, r1
-    movs r1, #1
-    lsls r1, r0
-    ldr r0, [r2]
-    orrs r0, r1
-    str r0, [r2]
-.L0809C5CA:
-    pop {r0}
-    bx r0
-    .align 2, 0
-
-    thumb_func_start func_0809C5D0
-func_0809C5D0: @ 0x0809C5D0
-    push {lr}
-    adds r2, r0, #0
-    cmp r1, #0xd
-    bhi .L0809C5E6
-    movs r0, #0x1f
-    ands r0, r1
-    movs r1, #1
-    lsls r1, r0
-    ldr r0, [r2]
-    bics r0, r1
-    str r0, [r2]
-.L0809C5E6:
-    pop {r0}
-    bx r0
-    .align 2, 0
-
-    thumb_func_start func_0809C5EC
-func_0809C5EC: @ 0x0809C5EC
-    movs r1, #0
-    str r1, [r0]
-    bx lr
-    .align 2, 0
-
-    thumb_func_start func_0809C5F4
-func_0809C5F4: @ 0x0809C5F4
-    ldr r1, [r0]
-    rsbs r0, r1, #0
-    orrs r0, r1
-    lsrs r0, r0, #0x1f
-    bx lr
-    .align 2, 0
-
     thumb_func_start func_0809C600
 func_0809C600: @ 0x0809C600
     push {r4, r5, lr}
