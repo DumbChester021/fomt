@@ -291,3 +291,17 @@ EC void func_0809C4E4(u32 self[])
 {
     self[0] = 0;
 }
+
+EC unsigned int func_0809C4EC(u32 const * self, unsigned int index)
+{
+    unsigned int result = 0;
+    if (index <= 13)
+    {
+        unsigned int mask = 1 << (index & 31);
+        unsigned int value = *self & mask;
+        result = ((unsigned int)(-value | value)) >> 31;
+    }
+    unsigned int one = 1;
+    one ^= result;
+    return one;
+}
