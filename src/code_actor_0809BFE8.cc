@@ -286,3 +286,8 @@ EC u8 func_0809C4B4(u8 * self, unsigned int tool_id)
         result = func_0809C3E0(self, index);
     return result;
 }
+
+EC void func_0809C4E4(u32 self[])
+{
+    self[0] = 0;
+}
