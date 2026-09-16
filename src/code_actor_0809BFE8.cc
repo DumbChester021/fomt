@@ -305,3 +305,66 @@ EC unsigned int func_0809C4EC(u32 const * self, unsigned int index)
     one ^= result;
     return one;
 }
+
+extern u8 gUnk_081036D4[];
+extern u8 gUnk_08107094[];
+extern u8 gUnk_081070AC[];
+EC u32 * func_0809C510(u32 * out, u32 const * flags, unsigned int index, u8 variant)
+{
+    u8 special = variant;
+    bool enabled = false;
+    if (index <= 13)
+    {
+        unsigned int mask = 1u << (index & 31);
+        u32 value = *flags & mask;
+        enabled = ((u32)(-value | value)) >> 31;
+    }
+    register u32 data asm("r0"); register u32 x asm("r1"); register u32 y asm("r2");
+    if (enabled)
+    {
+        if (index == 13 && variant != 0)
+        {
+            u8 *entry = gUnk_081036D4;
+            entry += 156;
+            x = entry[8];
+            y = entry[9];
+            data = (u32)gUnk_081070AC;
+            goto store;
+        }
+        u8 *base = gUnk_081036D4;
+        unsigned int off = index * 12;
+        u8 *data_base = base + 4;
+        u32 *data_p = (u32 *)(data_base + off);
+        u8 *entry = base + off;
+        u32 xv = entry[8];
+        u32 yv = entry[9];
+        u32 dv = *data_p;
+        out[0] = dv;
+        out[1] = xv;
+        out[2] = yv;
+        goto done;
+    }
+    if (index == 13 && special != 0)
+    {
+        u8 *entry = gUnk_081036D4;
+        entry += 156;
+        x = entry[8];
+        y = entry[9];
+        data = (u32)gUnk_08107094;
+        goto store;
+    }
+    {
+        u8 *base = gUnk_081036D4;
+        unsigned int off = index * 12;
+        u8 *entry = base + off;
+        x = entry[8];
+        y = entry[9];
+        data = *(u32 *)entry;
+    }
+store:
+    out[0] = data;
+    out[1] = x;
+    out[2] = y;
+done:
+    return out;
+}
