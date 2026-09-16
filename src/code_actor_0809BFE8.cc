@@ -1,6 +1,7 @@
 #include "prelude.h"
 
 #include "actor.hh"
+#include "item.hh"
 
 struct Unk_Actor_0809BFE8 : Actor
 {
@@ -98,4 +99,62 @@ EC u8 * func_0809C144(u8 * self)
         ++i;
     } while (i <= 5);
     return self;
+}
+
+
+EC bool func_0809C160(u8 const *, Tool const & tool)
+{
+    switch (tool.GetId())
+    {
+        case TOOL_CURSED_SICKLE:
+        case TOOL_CURSED_HOE:
+        case TOOL_CURSED_AXE:
+        case TOOL_CURSED_HAMMER:
+        case TOOL_CURSED_WATERING_CAN:
+        case TOOL_CURSED_FISHING_ROD:
+            return true;
+        default:
+            return false;
+    }
+}
+
+EC unsigned int func_0809C22C(u8 const *, unsigned int tool_id)
+{
+    unsigned int result = 1;
+
+    switch (tool_id)
+    {
+        case TOOL_CURSED_SICKLE:
+            result = 0;
+            break;
+        case TOOL_CURSED_HOE:
+            result = 1;
+            break;
+        case TOOL_CURSED_AXE:
+            result = 2;
+            break;
+        case TOOL_CURSED_HAMMER:
+            result = 3;
+            break;
+        case TOOL_CURSED_WATERING_CAN:
+            result = 4;
+            break;
+        case TOOL_CURSED_FISHING_ROD:
+            result = 5;
+            break;
+    }
+
+    return result;
+}
+
+EC u8 func_0809C304(u8 const * self, unsigned int tool_id)
+{
+    return self[func_0809C22C(self, tool_id)];
+}
+
+EC u8 func_0809C318(u8 const * self, unsigned int tool_id)
+{
+    unsigned int index = func_0809C22C(self, tool_id);
+    self += 6;
+    return self[index];
 }
