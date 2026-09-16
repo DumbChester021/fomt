@@ -199,3 +199,17 @@ EC bool func_0809C38C(u8 const * self)
 out:
     return result;
 }
+
+EC void func_0809C3BC(u8 * self, unsigned int tool_id)
+{
+    unsigned int index = func_0809C22C(self, tool_id);
+    u8 * flag = self + index;
+    u8 value = *flag;
+    if (value == 0)
+    {
+        *flag = 1;
+        u8 * count = self;
+        count += 12;
+        count[index] = value;
+    }
+}
