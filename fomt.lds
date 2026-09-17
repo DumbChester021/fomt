@@ -72,6 +72,8 @@ SECTIONS
         asm/new_game.o(.text);
         src/hardware.o(.text);
         asm/hardware.o(.text);
+        src/key_input.o(.text);
+        asm/hardware.o(.text.after_key_input);
         src/farm.o(.text);
         src/field.o(.text);
         src/shipping_bin.o(.text);
