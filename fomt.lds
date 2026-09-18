@@ -125,6 +125,8 @@ SECTIONS
         src/harvest_sprite.o(.text);
 
         asm/code_809E804.o(.text);
+        src/character_info.o(.text);
+        asm/code_809E804.o(.text.after_character_info);
 
         src/m4a_1.o(.text);
         src/m4a.o(.text);

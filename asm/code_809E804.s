@@ -2781,38 +2781,7 @@ func_0809EEE8: @ 0x0809EEE8
 .L0809FE34: .4byte 0x00000414
 .L0809FE38: .4byte 0x00000474
 
-	thumb_func_start func_0809FE3C
-func_0809FE3C: @ 0x0809FE3C
-	push {lr}
-	movs r2, #0
-	cmp r1, #0x2a
-	bhi .L0809FE46
-	movs r2, #1
-.L0809FE46:
-	cmp r2, #0
-	bne .L0809FE54
-	ldr r0, .L0809FE50 @ =gUnk_08104108
-	b .L0809FE6C
-	.align 2, 0
-.L0809FE50: .4byte gUnk_08104108
-.L0809FE54:
-	cmp r1, #0
-	beq .L0809FE64
-	cmp r1, #0x23
-	bne .L0809FE64
-	adds r0, #4
-	bl func_0809EACC
-	b .L0809FE6C
-.L0809FE64:
-	ldr r0, .L0809FE70 @ =gUnk_08104258
-	lsls r1, r1, #3
-	adds r1, r1, r0
-	ldr r0, [r1]
-.L0809FE6C:
-	pop {r1}
-	bx r1
-	.align 2, 0
-.L0809FE70: .4byte gUnk_08104258
+	.section .text.after_character_info, "ax", %progbits
 
 	thumb_func_start func_0809FE74
 func_0809FE74: @ 0x0809FE74
