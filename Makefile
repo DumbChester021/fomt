@@ -86,7 +86,15 @@ $(shell mkdir -p $(SUBDIRS))
 compare: $(ROM)
 	sha1sum -c $(BUILD_NAME).sha1
 
-.PHONY: compare
+progress: $(ROM)
+	@perl tools/scripts/calcrom.pl $(MAP)
+	@sha1sum -c $(BUILD_NAME).sha1
+	@printf "branch: "
+	@git branch --show-current
+	@printf "head: "
+	@git log -1 --format='%h %s'
+
+.PHONY: compare progress
 
 # ROM from ELF
 %.gba: %.elf
