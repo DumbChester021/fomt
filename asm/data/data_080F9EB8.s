@@ -2170,9 +2170,15 @@ gUnk_0810411D:
 gUnk_08104122:
 	.incbin "baserom.gba", 0x104122, 0x136
 
-	.global gUnk_08104258 @CharacterNamePointers
+	.global gCharacterInfo
+	.global gUnk_08104258
+gCharacterInfo:
 gUnk_08104258:
-	.incbin "baserom.gba", 0x104258, 0x164
+	@ CharacterInfo[43]
+	.incbin "baserom.gba", 0x104258, 0x158
+
+	@ "bad_alloc"
+	.incbin "baserom.gba", 0x1043B0, 0x0C
 
 	.global gUnk_081043BC
 gUnk_081043BC:
