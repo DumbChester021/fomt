@@ -16,5 +16,8 @@ enum SaveFormatSize
 };
 
 EC unsigned int GetSaveSlotOffset(void const * save_context, unsigned int slot);
+EC unsigned int CalculateSaveChecksum(void const * data, unsigned int size);
+EC unsigned int GetSaveSlotRecordSize();
+EC unsigned int WriteSaveSlotRecord(void const * game_state, void * save_context, unsigned int slot_offset);
 
 #endif
