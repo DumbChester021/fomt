@@ -23670,7 +23670,7 @@ func_080AA6D0: @ 0x080AA6D0
 	strb r0, [r1]
 .L080AA78E:
 	ldr r0, [sp, #4]
-	bl method_0800A07C__C9FieldPlot
+	bl BlocksMovement__C9FieldPlot
 	ldr r2, [sp]
 	adds r2, r2, r5
 	mov r8, r2
@@ -100814,7 +100814,7 @@ func_080CFEA8: @ 0x080CFEA8
 	strb r0, [r1]
 .L080CFF66:
 	ldr r0, [sp]
-	bl method_0800A07C__C9FieldPlot
+	bl BlocksMovement__C9FieldPlot
 	mov r2, sb
 	adds r4, r2, r5
 	ldr r2, [r6, #0x2c]

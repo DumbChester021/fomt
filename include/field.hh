@@ -31,7 +31,7 @@ struct FieldPlot
     u32 GetUnk11() const { return unk_00_11; }
 
     u32 method_0800A014() const;
-    bool method_0800A07C() const;
+    bool BlocksMovement() const;
     u32 method_0800A0A4() const;
     void method_0800A120(int arg_1);
     void method_0800A134(int id, int arg_2);

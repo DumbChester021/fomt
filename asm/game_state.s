@@ -14211,7 +14211,7 @@ func_080171F8: @ 0x080171F8
     muls r4, r2, r4
     adds r4, r6, r4
     adds r0, r5, #0
-    bl method_0800A07C__C9FieldPlot
+    bl BlocksMovement__C9FieldPlot
     lsls r3, r4, #2
     ldr r1, [sp, #4]
     adds r3, r3, r1
