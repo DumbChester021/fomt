@@ -181,6 +181,7 @@ SECTIONS
         . = ALIGN(4); asm/data/data_080F1A80.o(.rodata);
         . = ALIGN(4); src/script_engine.o(.rodata);
         . = ALIGN(4); asm/data/data_080F9EB8.o(.rodata);
+        src/data_livestock_day_update_info.o(.rodata);
         src/data_cursed_tool_requirements.o(.rodata);
         asm/data/data_080F9EB8.o(.rodata.after_cursed_tool_requirements);
         . = ALIGN(4); src/sound_data.o(.rodata.*);
