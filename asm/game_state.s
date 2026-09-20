@@ -15352,33 +15352,7 @@ func_080179CC: @ 0x080179CC
 .L08017BF8: .4byte 0x00001058
 .L08017BFC: .4byte vtable_unk_080E61A0
 
-    thumb_func_start func_08017C00
-func_08017C00: @ 0x08017C00
-    push {lr}
-    adds r1, r0, #0
-    ldr r2, .L08017C24 @ =0x0000103C
-    adds r0, r1, r2
-    ldrb r0, [r0]
-    cmp r0, #0
-    bne .L08017C28
-    ldr r0, [r1, #4]
-    ldr r0, [r0, #4]
-    bl GetMapData
-    adds r0, #0x24
-    ldrb r0, [r0]
-    cmp r0, #0
-    bne .L08017C28
-    movs r0, #0
-    b .L08017C2A
-    .align 2, 0
-.L08017C24: .4byte 0x0000103C
-.L08017C28:
-    movs r0, #1
-.L08017C2A:
-    pop {r1}
-    bx r1
-    .align 2, 0
-
+    .section .text.after_func_08017C00, "ax", %progbits
     thumb_func_start func_08017C30
 func_08017C30: @ 0x08017C30
     push {r4, r5, r6, r7, lr}
