@@ -1,5 +1,6 @@
 #include "field.hh"
 
+#include "field_weather_data.hh"
 #include "rucksack_item.hh"
 
 // TODO: move those around
@@ -19,22 +20,6 @@ struct Unk_080E93F8
 extern Unk_080E93F8 const gUnk_080E93F8[];
 
 extern u32 const gUnk_080E8D14[][21];
-
-struct Unk_080E8CC4
-{
-    /* +00 */ u8 unk_00;
-    /* +01 */ u8 unk_01;
-    /* +02 */ u8 unk_02;
-    /* +03 */ u8 unk_03;
-    /* +04 */ u8 unk_04;
-    /* +05 */ u8 unk_05;
-    /* +06 */ u8 unk_06;
-    /* +07 */ u8 unk_07;
-};
-
-extern Unk_080E8CC4 const gUnk_080E8CC4[4][2];
-extern Unk_080E8CC4 const gUnk_080E8D04;
-extern Unk_080E8CC4 const gUnk_080E8D0C;
 
 extern u8 SHOULD_BE(const) gUnk_086D6518[];
 extern u8 SHOULD_BE(const) gUnk_086D6520[];
@@ -752,7 +737,7 @@ void FieldPlot::DayUpdate(int weather, GameDate const & date)
         {
             u32 r1 = (rand() >> 3) & 0xFF;
 
-            if (r1 < unk->unk_07)
+            if (r1 < unk->crop_loss_rate)
                 unk_00_08 = 0;
         }
         else if (GetUnk2() == 0x18)

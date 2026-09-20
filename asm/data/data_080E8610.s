@@ -175,17 +175,7 @@ gUnk_080E8C44:
 gUnk_080E8C48:
 	.incbin "baserom.gba", 0xE8C48, 0x7C
 
-	.global gUnk_080E8CC4
-gUnk_080E8CC4:
-	.incbin "baserom.gba", 0xE8CC4, 0x40
-
-	.global gUnk_080E8D04
-gUnk_080E8D04:
-	.incbin "baserom.gba", 0xE8D04, 0x8
-
-	.global gUnk_080E8D0C
-gUnk_080E8D0C:
-	.incbin "baserom.gba", 0xE8D0C, 0x8
+	.section .rodata.after_field_weather_rates, "a", %progbits
 
 	.global gUnk_080E8D14
 gUnk_080E8D14:

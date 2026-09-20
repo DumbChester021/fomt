@@ -170,6 +170,8 @@ SECTIONS
         . = ALIGN(4); asm/vtables.o(.rodata.080E7824);
 
         . = ALIGN(4); asm/data/data_080E8610.o(.rodata);
+        src/data_field_weather_rates.o(.rodata);
+        asm/data/data_080E8610.o(.rodata.after_field_weather_rates);
         src/shipping_bin.o(.rodata);
         src/record_player.o(.rodata);
         . = ALIGN(4); src/item.o(.rodata);
