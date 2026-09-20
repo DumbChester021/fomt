@@ -17199,8 +17199,9 @@ func_0802A7D8: @ 0x0802A7D8
     strb r1, [r0]
     bx lr
 
-    thumb_func_start func_0802A7E0
-func_0802A7E0: @ 0x0802A7E0
+    .section .discard.func_0802A7E0, "ax", %progbits
+    thumb_func_start func_0802A7E0_asm
+func_0802A7E0_asm: @ 0x0802A7E0
     push {r4, r5, r6, r7, lr}
     mov r7, sl
     mov r6, sb
@@ -17507,6 +17508,7 @@ func_0802A7E0: @ 0x0802A7E0
     pop {r1}
     bx r1
 
+    .section .text.after_func_0802A7E0, "ax", %progbits
     thumb_func_start func_0802AA84
 func_0802AA84: @ 0x0802AA84
     push {r4, r5, r6, r7, lr}
@@ -24757,7 +24759,7 @@ func_0802E0FC: @ 0x0802E0FC
     b .L0802EB14
 .L0802E93A:
     adds r0, r7, #0
-    bl func_0802A7E0
+    bl ClassifyHeldItemAction__12FarmerEntity
     cmp r0, #1
     beq .L0802E9E8
     cmp r0, #1

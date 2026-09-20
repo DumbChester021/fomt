@@ -103,6 +103,8 @@ SECTIONS
         src/entity.o(.text);
         src/code_entity_08020018.o(.text);
         asm/code_entities.o(.text);
+        src/farmer_entity_item_action.o(.text);
+        asm/code_entities.o(.text.after_func_0802A7E0);
         src/entity_actor.o(.text);
         asm/code_entities_080320DC.o(.text);
         src/npc_entity.o(.text);

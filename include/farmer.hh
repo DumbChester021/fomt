@@ -56,7 +56,7 @@ struct Farmer
     u32 unk_4C_07 : 8;
     u32 unk_4C_0F : 30;
     u32 unk_50_0D : 3;
-    HeldItem unk_54;  /* held item? */
+    HeldItem held_item;
     ToolStack unk_5C; /* held tool? */
     Rucksack rucksack;
 };

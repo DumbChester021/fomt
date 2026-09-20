@@ -101,7 +101,7 @@ void AActorEntity::method_08032208()
     Box box_a = UnkMapBox(GetBox());
     Box & box = box_a;
 
-    UnkMap unk = go->vfunc_34(map);
+    UnkMap unk = go->GetLocationTerrain(map);
 
     if (func_080AC070(unk, box) || !func_080AC070(unk, box.Moved(x_diff, y_diff)))
     {

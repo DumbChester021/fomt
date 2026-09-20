@@ -101,7 +101,7 @@ struct GameObject
     virtual void vfunc_28();
     virtual i32 vfunc_2C(u32 map_id); // ok: get map width
     virtual i32 vfunc_30(u32 map_id); // ok: get map height
-    virtual UnkMap vfunc_34(u32 map_id);
+    virtual UnkMap GetLocationTerrain(u32 map_id);
     virtual void vfunc_38();
     virtual void vfunc_3C();
     virtual void vfunc_40();
