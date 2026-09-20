@@ -4,7 +4,7 @@ typedef UnkMap TerrainMapView;
 
 extern "C" bool IsBoxBlockedByTerrain(TerrainMapView & terrain, Box const & box)
     asm("func_080AC070");
-extern "C" bool IsFootprintOnSpecialSurface(TerrainMapView & terrain, i32 x, i32 y)
+extern "C" bool IsFootprintOnWaterSurface(TerrainMapView & terrain, i32 x, i32 y)
     asm("func_080AC5D0");
 namespace
 {
@@ -114,7 +114,7 @@ FarmerEntity::HeldItemAction FarmerEntity::ClassifyHeldItemAction()
             switch (article.GetId())
             {
                 case ARTICLE_STONES:
-                    if (IsFootprintOnSpecialSurface(*terrain, far_x, far_y))
+                    if (IsFootprintOnWaterSurface(*terrain, far_x, far_y))
                         return FarmerEntity::HELD_ITEM_ACTION_THROW;
                     break;
 
