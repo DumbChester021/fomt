@@ -214,7 +214,7 @@ EC void func_0809C3BC(u8 * self, unsigned int tool_id)
     }
 }
 
-extern u8 gUnk_081036C0[];
+extern u8 const gUnk_081036C0[];
 EC unsigned int func_0809C3E0(u8 * self, unsigned int index)
 {
     register unsigned int result asm("r5") = 0;

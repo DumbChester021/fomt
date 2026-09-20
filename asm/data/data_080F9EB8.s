@@ -2094,9 +2094,9 @@ gUnk_08103680:
 gUnk_081036A0:
 	.incbin "baserom.gba", 0x1036A0, 0x20
 
-	.global gUnk_081036C0
-gUnk_081036C0:
-	.incbin "baserom.gba", 0x1036C0, 0x14
+	.section .rodata.after_cursed_tool_requirements, "a", %progbits
+
+	.incbin "baserom.gba", 0x1036C6, 0xE
 
 	.global gUnk_081036D4
 gUnk_081036D4:
