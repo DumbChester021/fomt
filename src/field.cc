@@ -744,7 +744,7 @@ void FieldPlot::DayUpdate(int weather, GameDate const & date)
         {
             u32 r1 = (rand() >> 3) & 0xFF;
 
-            if (r1 < unk->unk_00)
+            if (r1 < unk->lumber_decay_rate)
                 method_0800A134(0x19, 8);
         }
     }

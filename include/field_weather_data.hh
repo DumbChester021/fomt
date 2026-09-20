@@ -5,7 +5,7 @@
 
 struct Unk_080E8CC4
 {
-    /* +00 */ u8 unk_00;
+    /* +00 */ u8 lumber_decay_rate;
     /* +01 */ u8 unk_01;
     /* +02 */ u8 unk_02;
     /* +03 */ u8 unk_03;
