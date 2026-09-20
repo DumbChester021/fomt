@@ -1109,8 +1109,10 @@ func_0809CE8C: @ 0x0809CE8C
 .L0809CF2C: .4byte 0x00000626
 .L0809CF30: .4byte 0xFFFFFC0F
 
-    thumb_func_start func_0809CF34
-func_0809CF34: @ 0x0809CF34
+    .section .text.discard_func_0809CF34, "ax", %progbits
+
+    thumb_func_start func_0809CF34_asm
+func_0809CF34_asm: @ 0x0809CF34
     push {r4, r5, r6, r7, lr}
     mov r7, sl
     mov r6, sb
@@ -1405,6 +1407,8 @@ func_0809CF34: @ 0x0809CF34
     pop {r4, r5, r6, r7}
     pop {r1}
     bx r1
+
+    .section .text.after_func_0809CF34, "ax", %progbits
 
     thumb_func_start func_0809D168
 func_0809D168: @ 0x0809D168
