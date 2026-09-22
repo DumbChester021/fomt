@@ -2332,9 +2332,8 @@ gUnk_08104EE0:
 gUnk_08104EE7:
 	.incbin "baserom.gba", 0x104EE7, 0x755
 
-	.global gUnk_0810563C
-gUnk_0810563C:
-	.incbin "baserom.gba", 0x10563C, 0xCC
+	.section .rodata.after_water_regions, "a", %progbits
+	.incbin "baserom.gba", 0x1056FC, 0xC
 
 	.global gUnk_08105708
 gUnk_08105708:

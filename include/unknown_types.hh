@@ -2,6 +2,7 @@
 #define UNKNOWN_TYPES_HH
 
 #include "prelude.h"
+#include "terrain.hh"
 
 // TODO: move elsewhere
 struct UnkBarnAnimal2C
@@ -45,14 +46,6 @@ struct Box
     Box Moved(i32 x, i32 y) const { return Box(x1, y1, x2, y2, x, y); }
 };
 
-struct TerrainInfo
-{
-    // bit 0 is 1 if this is a solid tile
-    // somewhere between bit 1 and 17 is some warp info
-    // bits 17 onward (unknown end) are a interaction script ID
-    STRUCT_PAD(0x00, 0x04);
-};
-
 // NOTE: this is not used yet in code, but I'm pretty sure that's correct
 struct MapData
 {
@@ -79,13 +72,8 @@ struct UnkMapBox : public Box
     }
 };
 
-// TODO: rename
-// TODO: move elsewhere
-struct UnkMap
-{
-    /* +00 */ u16 unk_00, unk_02, unk_04, unk_06;
-    /* +08 */ u32 unk_08;
-};
+// Compatibility name for existing users of the terrain view.
+typedef TerrainMapView UnkMap;
 
 // TODO: move elsewhere
 struct GameObject

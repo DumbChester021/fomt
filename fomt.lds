@@ -190,6 +190,8 @@ SECTIONS
         src/data_livestock_day_update_info.o(.rodata);
         src/data_cursed_tool_requirements.o(.rodata);
         asm/data/data_080F9EB8.o(.rodata.after_cursed_tool_requirements);
+        src/data_water_regions.o(.rodata);
+        asm/data/data_080F9EB8.o(.rodata.after_water_regions);
         . = ALIGN(4); src/sound_data.o(.rodata.*);
         . = ALIGN(4); asm/data/data_0813B288.o(.rodata);
     } > ROM = 0xFF

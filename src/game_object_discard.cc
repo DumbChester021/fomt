@@ -2,30 +2,17 @@
 #include "smart_ptr.hh"
 #include "rucksack_item.hh"
 #include "unknown_types.hh"
-
-typedef UnkMap TerrainMapView;
-
-extern "C" bool IsFootprintOnWaterSurface(TerrainMapView & terrain, i32 x, i32 y)
-    asm("func_080AC5D0");
+#include "water_region.hh"
 
 struct SoundPlayer;
 extern "C" bool IsSoundPlayerBusy(SoundPlayer * player) asm("func_08008CD0");
 extern "C" void StartSongOnPlayer(SoundPlayer * player, int song_id) asm("func_08008B6C");
-extern "C" int ClassifyDiscardLocation(Location const & location) asm("func_080A45A8");
 extern "C" void SetOceanSmallFishBaitFlag(void * game_state) asm("func_08011458");
 extern "C" void ApplyLitteringPenalty(void * social_state, Location const & location,
                                       void * relationship_state) asm("func_080A1484");
 
 namespace
 {
-enum DiscardLocationClass
-{
-    DISCARD_LOCATION_KAPPA_LAKE = 0,
-    DISCARD_LOCATION_GODDESS_POND = 2,
-    DISCARD_LOCATION_OCEAN = 4,
-    DISCARD_LOCATION_HOT_SPRING = 6,
-};
-
 enum
 {
     EVENT_GODDESS_OFFERING = 0x23B,
@@ -177,13 +164,13 @@ u32 DiscardGameObjectView::HandleDiscardedRucksackItem(Location const & landing_
 
     play_discard_sound:
         StartSongOnPlayer(selected_player, SONG_DISCARDED_ITEM);
-        discard_location = ClassifyDiscardLocation(*landing_pointer);
+        discard_location = GetWaterRegion(*landing_pointer);
 
-        if (discard_location == DISCARD_LOCATION_GODDESS_POND)
+        if (discard_location == WATER_REGION_GODDESS_POND)
             goto discard_at_goddess_pond;
-        if (discard_location > DISCARD_LOCATION_GODDESS_POND)
+        if (discard_location > WATER_REGION_GODDESS_POND)
             goto classify_high_discard_location;
-        if (discard_location == DISCARD_LOCATION_KAPPA_LAKE)
+        if (discard_location == WATER_REGION_KAPPA_LAKE)
             goto discard_at_kappa_lake;
         goto discard_location_done;
 
@@ -192,9 +179,9 @@ u32 DiscardGameObjectView::HandleDiscardedRucksackItem(Location const & landing_
         goto play_discard_sound;
 
     classify_high_discard_location:
-        if (discard_location == DISCARD_LOCATION_OCEAN)
+        if (discard_location == WATER_REGION_OCEAN)
             goto discard_in_ocean;
-        if (discard_location == DISCARD_LOCATION_HOT_SPRING)
+        if (discard_location == WATER_REGION_HOT_SPRING)
             goto discard_in_hot_spring;
         goto discard_location_done;
 

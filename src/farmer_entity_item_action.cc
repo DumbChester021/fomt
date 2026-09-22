@@ -1,11 +1,8 @@
 #include "farmer_entity.hh"
 
-typedef UnkMap TerrainMapView;
-
 extern "C" bool IsBoxBlockedByTerrain(TerrainMapView & terrain, Box const & box)
     asm("func_080AC070");
-extern "C" bool IsFootprintOnWaterSurface(TerrainMapView & terrain, i32 x, i32 y)
-    asm("func_080AC5D0");
+
 namespace
 {
 typedef i32 (*ArticleInteractionFn)(GameObject *, Location const &, Article const &);
