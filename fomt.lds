@@ -137,6 +137,8 @@ SECTIONS
         asm/code_809E804.o(.text);
         src/character_info.o(.text);
         asm/code_809E804.o(.text.after_character_info);
+        src/map_data.o(.text);
+        asm/code_809E804.o(.text.after_get_map_data);
 
         src/m4a_1.o(.text);
         src/m4a.o(.text);

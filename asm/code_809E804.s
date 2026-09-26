@@ -11236,18 +11236,7 @@ func_080A4650: @ 0x080A4650
 	bx r1
 	.align 2, 0
 
-	thumb_func_start GetMapData
-GetMapData: @ 0x080A4698
-	adds r1, r0, #0
-	lsls r0, r1, #2
-	adds r0, r0, r1
-	lsls r0, r0, #3
-	ldr r1, .L080A46A8 @ =gUnk_08105EDC
-	adds r0, r0, r1
-	bx lr
-	.align 2, 0
-.L080A46A8: .4byte gUnk_08105EDC
-
+	.section .text.after_get_map_data, "ax", %progbits
 	thumb_func_start func_080A46AC
 func_080A46AC: @ 0x080A46AC
 	push {r4, r5, r6, r7, lr}
