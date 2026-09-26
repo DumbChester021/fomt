@@ -20942,29 +20942,7 @@ func_0801A13C: @ 0x0801A13C
 .L0801A8B8: .4byte 0xFFFFFF00
 .L0801A8BC: .4byte 0xFFFF0000
 
-    thumb_func_start func_0801A8C0
-func_0801A8C0: @ 0x0801A8C0
-    push {lr}
-    cmp r1, #5
-    bhi .L0801A8CA
-    movs r0, #3
-    b .L0801A8DC
-.L0801A8CA:
-    cmp r1, #0xb
-    bhi .L0801A8D2
-    movs r0, #0
-    b .L0801A8DC
-.L0801A8D2:
-    cmp r1, #0x11
-    bhi .L0801A8DA
-    movs r0, #1
-    b .L0801A8DC
-.L0801A8DA:
-    movs r0, #2
-.L0801A8DC:
-    pop {r1}
-    bx r1
-
+    .section .text.after_time_period, "ax", %progbits
     thumb_func_start func_0801A8E0
 func_0801A8E0: @ 0x0801A8E0
     push {r4, r5, r6, r7, lr}

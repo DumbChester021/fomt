@@ -100,6 +100,8 @@ SECTIONS
         asm/game_state.o(.text.after_save_record);
         src/code_08017C00.o(.text);
         asm/game_state.o(.text.after_func_08017C00);
+        src/code_0801A8C0.o(.text);
+        asm/game_state.o(.text.after_time_period);
         src/game_object_discard.o(.text);
         asm/game_state.o(.text.after_discarded_item);
         src/entity.o(.text);
