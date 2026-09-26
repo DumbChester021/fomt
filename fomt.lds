@@ -137,6 +137,7 @@ SECTIONS
         asm/code_809E804.o(.text);
         src/character_info.o(.text);
         asm/code_809E804.o(.text.after_character_info);
+        src/code_080A4650.o(.text);
         src/map_data.o(.text);
         asm/code_809E804.o(.text.after_get_map_data);
 

@@ -11196,46 +11196,6 @@ func_080A45A8: @ 0x080A45A8
 	bx r1
 	.align 2, 0
 
-	thumb_func_start func_080A4650
-func_080A4650: @ 0x080A4650
-	push {r4, lr}
-	lsls r0, r0, #0x18
-	lsrs r0, r0, #0x18
-	lsls r1, r1, #0x18
-	lsrs r1, r1, #0x18
-	ldr r4, .L080A4688 @ =gUnk_08105708
-	lsls r3, r3, #2
-	lsls r2, r2, #4
-	adds r3, r3, r2
-	adds r3, r3, r4
-	ldr r3, [r3]
-	lsls r2, r0, #4
-	subs r2, r2, r0
-	lsls r2, r2, #2
-	adds r2, r2, r1
-	lsls r2, r2, #0x10
-	lsrs r2, r2, #0x10
-	movs r0, #0
-	ldrh r1, [r3]
-	ldr r4, .L080A468C @ =0x0000FFFF
-.L080A4678:
-	cmp r1, r4
-	beq .L080A4690
-	cmp r1, r2
-	bhi .L080A4690
-	ldrb r0, [r3, #2]
-	adds r3, #4
-	ldrh r1, [r3]
-	b .L080A4678
-	.align 2, 0
-.L080A4688: .4byte gUnk_08105708
-.L080A468C: .4byte 0x0000FFFF
-.L080A4690:
-	pop {r4}
-	pop {r1}
-	bx r1
-	.align 2, 0
-
 	.section .text.after_get_map_data, "ax", %progbits
 	thumb_func_start func_080A46AC
 func_080A46AC: @ 0x080A46AC
