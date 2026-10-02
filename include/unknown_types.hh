@@ -2,6 +2,7 @@
 #define UNKNOWN_TYPES_HH
 
 #include "prelude.h"
+#include "sprite_animator.hh"
 #include "terrain.hh"
 
 // TODO: move elsewhere
@@ -105,11 +106,6 @@ struct GameObject
     virtual void * vfunc_68(); // TODO: return type: get map actor sprite
 
     /* +00 */ // vtable
-};
-
-struct SpriteAnimator
-{
-    /* +00 */ STRUCT_PAD(0x00, 0x14);
 };
 
 struct UnknownEntityThingBase

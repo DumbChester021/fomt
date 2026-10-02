@@ -628,10 +628,18 @@ index d063aac7..7742713a 100644
  	      && ! TEST_HARD_REG_BIT (qty_phys_copy_sugg[reg_qty[sreg]], ureg))
  	    {
 diff --git a/g++/toplev.c b/g++/toplev.c
-index f56691c5..ee6c6f7d 100644
+index f56691c5..dfa9afd0 100644
 --- a/g++/toplev.c
 +++ b/g++/toplev.c
-@@ -160,6 +160,7 @@ extern void dump_flow_info ();
+@@ -41,6 +41,7 @@ Boston, MA 02111-1307, USA.  */
+ #include "input.h"
+ #include "tree.h"
+ #include "rtl.h"
++#include "regs.h"
+ #include "flags.h"
+ #include "insn-attr.h"
+ #include "insn-codes.h"
+@@ -160,6 +161,7 @@ extern void dump_flow_info ();
  extern void dump_sched_info ();
  extern void dump_local_alloc ();
  extern void regset_release_memory ();
@@ -639,7 +647,64 @@ index f56691c5..ee6c6f7d 100644
  
  extern void print_rtl ();
  extern void print_rtl_with_bb ();
-@@ -4114,6 +4115,8 @@ rest_of_compilation (decl)
+@@ -3793,6 +3795,56 @@ rest_of_compilation (decl)
+ 					 0, rtl_dump_file));
+       TIMEVAR (cse_time, delete_trivially_dead_insns (insns, max_reg_num ()));
+ 
++/* Preserve an independent zero initialization before a deferred pointer
++   user-variable copy once dead CSE temporaries have been removed.  */
++      if (getenv ("AGBCC_HOIST_ZERO_AFTER_DEAD_COPY"))
++        {
++          rtx p;
++
++          for (p = insns; p; p = NEXT_INSN (p))
++            if (GET_CODE (p) == INSN
++                && GET_CODE (PATTERN (p)) == SET)
++              {
++                rtx copy_dest = SET_DEST (PATTERN (p));
++                rtx copy_src = SET_SRC (PATTERN (p));
++                rtx zero = next_real_insn (p);
++
++                if (GET_CODE (copy_dest) == REG
++                    && REGNO (copy_dest) >= FIRST_PSEUDO_REGISTER
++                    && REG_USERVAR_P (copy_dest)
++                    && REGNO_POINTER_FLAG (REGNO (copy_dest))
++                    && GET_MODE (copy_dest) == SImode
++                    && GET_CODE (copy_src) == REG
++                    && REGNO (copy_src) >= FIRST_PSEUDO_REGISTER
++                    && zero
++                    && GET_CODE (zero) == INSN
++                    && GET_CODE (PATTERN (zero)) == SET)
++                  {
++                    rtx zero_dest = SET_DEST (PATTERN (zero));
++                    rtx zero_src = SET_SRC (PATTERN (zero));
++                    rtx use = next_real_insn (zero);
++
++                    if (GET_CODE (zero_dest) == REG
++                        && REGNO (zero_dest) >= FIRST_PSEUDO_REGISTER
++                        && REG_USERVAR_P (zero_dest)
++                        && GET_MODE (zero_dest) == SImode
++                        && GET_CODE (zero_src) == CONST_INT
++                        && INTVAL (zero_src) == 0
++                        && ! reg_mentioned_p (zero_dest, PATTERN (p))
++                        && ! reg_mentioned_p (copy_dest, PATTERN (zero))
++                        && use
++                        && (GET_CODE (use) == INSN
++                            || GET_CODE (use) == JUMP_INSN)
++                        && reg_mentioned_p (copy_dest, PATTERN (use)))
++                      {
++                        rtx before = PREV_INSN (p);
++                        if (before)
++                          reorder_insns (zero, zero, before);
++                      }
++                  }
++              }
++        }
++
+       /* CYGNUS LOCAL law */
+       if (tem || optimize > 1)
+ 	{
+@@ -4114,6 +4166,8 @@ rest_of_compilation (decl)
  	       if (!flag_live_range)
  		 recompute_reg_usage (insns, !optimize_size);
  	       /* END CYGNUS LOCAL */

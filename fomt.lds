@@ -122,6 +122,8 @@ SECTIONS
         asm/code_0803A8A4.o(.text);
         src/script_engine.o(.text);
         asm/code_0803EE94.o(.text);
+        src/sprite_animator.o(.text);
+        asm/code_0803EE94.o(.text.after_sprite_animator);
 
         src/actor.o(.text);
         src/animal.o(.text);

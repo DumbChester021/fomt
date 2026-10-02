@@ -2,7 +2,6 @@
 
 #include <stdlib.h>
 
-extern "C" void func_0805E860(SpriteAnimator * self, u32 anim_id);
 extern "C" u32 func_08032090(void * sprite, u32 anim_id); // Sprite
 extern "C" bool func_080AC070(UnkMap & unk, Box const & box);
 
@@ -47,7 +46,7 @@ void AActorEntity::RefreshSprite(u32 sprite_anim)
 
     if (ptr != nullptr)
     {
-        func_0805E860(&ptr->sprite_animator, sprite_anim);
+        ptr->sprite_animator.SetAnimation(sprite_anim);
         ptr->unk_44 = 1;
         ptr->unk_46 = 0;
         ptr->unk_47 = 1;
@@ -162,7 +161,7 @@ EC void func_08032384(AActorEntity & self, u32 arg_1, bool arg_2)
     {
         // TODO: this may be an inlined method call?
         UnknownEntityThing * ptr = self.unk_10.Get();
-        func_0805E860(&ptr->sprite_animator_70, arg_1);
+        ptr->sprite_animator_70.SetAnimation(arg_1);
         ptr->unk_84 = 1;
         ptr->unk_86 = 0;
         ptr->unk_87 = 1;
