@@ -155,6 +155,16 @@ SECTIONS
         src/code_080A5670.o(.text);
         src/code_080A56DC.o(.text);
         asm/code_809E804.o(.text.after_func_080A56DC);
+        src/code_080A5A9C.o(.text);
+        asm/code_809E804.o(.text.after_func_080A5A9C);
+        src/code_080A5EA0.o(.text);
+        asm/code_809E804.o(.text.after_func_080A5EA0);
+        src/code_080A601C.o(.text);
+        asm/code_809E804.o(.text.after_func_080A601C);
+        src/code_080A6420.o(.text);
+        asm/code_809E804.o(.text.after_func_080A6420);
+        src/code_080A6640.o(.text);
+        asm/code_809E804.o(.text.after_func_080A6640);
         src/terrain.o(.text);
         asm/code_809E804.o(.text.after_is_footprint_on_water_surface);
 

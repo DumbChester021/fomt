@@ -12420,20 +12420,7 @@ func_080A59BC: @ 0x080A59BC
 	bx r0
 	.align 2, 0
 
-	thumb_func_start func_080A5A9C
-func_080A5A9C: @ 0x080A5A9C
-	push {lr}
-	movs r1, #0
-	adds r0, #0x8c
-	ldr r0, [r0]
-	cmp r0, #0
-	bne .L080A5AAA
-	movs r1, #1
-.L080A5AAA:
-	adds r0, r1, #0
-	pop {r1}
-	bx r1
-
+	.section .text.after_func_080A5A9C, "ax", %progbits
 	thumb_func_start func_080A5AB0
 func_080A5AB0: @ 0x080A5AB0
 	push {r4, r5, r6, r7, lr}
@@ -12971,19 +12958,7 @@ func_080A5DFC: @ 0x080A5DFC
 .L080A5E98: .4byte 0xFFFF0000
 .L080A5E9C: .4byte func_03000C2C
 
-	thumb_func_start func_080A5EA0
-func_080A5EA0: @ 0x080A5EA0
-	push {lr}
-	ldr r0, [r0, #4]
-	bl GetMapData
-	ldr r0, [r0]
-	movs r1, #0xc0
-	lsls r1, r1, #0x13
-	bl Unpack
-	pop {r0}
-	bx r0
-	.align 2, 0
-
+	.section .text.after_func_080A5EA0, "ax", %progbits
 	thumb_func_start func_080A5EB8
 func_080A5EB8: @ 0x080A5EB8
 	push {r4, r5, r6, r7, lr}
@@ -13176,13 +13151,7 @@ func_080A5F78: @ 0x080A5F78
 	.align 2, 0
 .L080A6018: .4byte 0x000003FF
 
-	thumb_func_start func_080A601C
-func_080A601C: @ 0x080A601C
-	adds r0, #0x58
-	movs r1, #0x14
-	strb r1, [r0]
-	bx lr
-
+	.section .text.after_func_080A601C, "ax", %progbits
 	thumb_func_start func_080A6024
 func_080A6024: @ 0x080A6024
 	push {r4, lr}
@@ -13724,21 +13693,7 @@ func_080A63B8: @ 0x080A63B8
 	.align 2, 0
 .L080A641C: .4byte gUnk_081070C4
 
-	thumb_func_start func_080A6420
-func_080A6420: @ 0x080A6420
-	push {lr}
-	sub sp, #4
-	ldr r0, [r0]
-	movs r1, #0
-	str r1, [sp]
-	movs r1, #1
-	movs r2, #0
-	movs r3, #0
-	bl func_0803A8A4
-	add sp, #4
-	pop {r1}
-	bx r1
-	.align 2, 0
+	.section .text.after_func_080A6420, "ax", %progbits
 .L080A643C:
 	.byte 0x70, 0xB5, 0x06, 0x1C
 	.byte 0x0C, 0x1C, 0x15, 0x1C, 0x70, 0x68, 0xFE, 0xF7, 0x27, 0xF9, 0x00, 0x8C, 0x68, 0x43, 0x24, 0x18
@@ -13978,24 +13933,7 @@ func_080A6524: @ 0x080A6524
 .L080A6638: .4byte gUnk_08107338
 .L080A663C: .4byte gUnk_08107344
 
-	thumb_func_start func_080A6640
-func_080A6640: @ 0x080A6640
-	push {r4, lr}
-	adds r4, r0, #0
-	bl func_080A5760
-	adds r1, r4, #0
-	adds r1, #0xb4
-	movs r0, #0
-	strb r0, [r1]
-	strb r0, [r1, #1]
-	adds r4, #0xb8
-	strb r0, [r4]
-	strb r0, [r4, #1]
-	pop {r4}
-	pop {r0}
-	bx r0
-	.align 2, 0
-
+	.section .text.after_func_080A6640, "ax", %progbits
 	thumb_func_start func_080A6660
 func_080A6660: @ 0x080A6660
 	push {r4, r5, r6, r7, lr}
