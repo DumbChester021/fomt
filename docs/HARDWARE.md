@@ -20,13 +20,13 @@ The owned `HardwareContext` is 0x4B0 bytes:
 | Offset | Size | Type | Proven role |
 | --- | ---: | --- | --- |
 | +0x000 | 0x24 | opaque | key-input and repeat state |
-| +0x024 | 0x10 | `DmaTransferQueue` | queued 16-byte transfer descriptors |
+| +0x024 | 0x10 | `GraphicsTransferVector` | queued 16-byte transfer descriptors |
 | +0x034 | 0x58 | `DisplayRegisterShadow` | shadow of display I/O state |
 | +0x08C | 0x404 | `OamShadow` | OAM entry/state shadow |
 | +0x490 | 0x04 | `HardwareSchedulerHandle` | scheduler interface handle |
 | +0x494 | 0x1C | `VBlankCallbackList` | persistent VBlank callback list |
 
-The internal subobjects remain opaque in the public header where their complete layouts or class contracts have not yet been reconstructed.
+The transfer container is now typed through `hardware_transfer.hh`. The remaining internal subobjects stay opaque where their complete layouts or class contracts have not yet been reconstructed.
 
 ## Accessors
 
@@ -36,9 +36,7 @@ Returns the owned `HardwareContext` pointer.
 
 ### `GetTransferQueue`, `func_08008910`
 
-Returns the transfer queue at context offset +0x24.
-
-Callers append 16-byte descriptors constructed by the transfer helpers around `func_08008F0C`. The execution path ultimately uses DMA3 registers beginning at `0x040000D4`.
+Returns the `GraphicsTransferVector` at context offset +0x24. Callers append 16-byte descriptors and the VBlank path executes them through DMA3. The descriptor and execution model are documented in `docs/HARDWARE_TRANSFER.md`.
 
 ### `GetDisplayRegisters`, `func_08008918`
 

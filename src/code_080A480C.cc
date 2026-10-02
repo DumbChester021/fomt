@@ -1,4 +1,5 @@
 #include "prelude.h"
+#include "hardware_transfer.hh"
 #include <stdlib.h>
 
 struct EffectHandle
@@ -13,24 +14,8 @@ struct GraphicsBlob
     u16 size;
 };
 
-struct GraphicsTransfer
-{
-    u32 mode;
-    void const * source;
-    void * destination;
-    u32 control;
-};
-
-struct GraphicsTransferVector
-{
-    GraphicsTransfer * begin;
-    GraphicsTransfer * end;
-    u32 unk_08;
-    GraphicsTransfer * end_of_storage;
-};
 
 EC int func_08007D4C(void *, u32);
-EC GraphicsTransfer * func_08008F0C(GraphicsTransfer *, void const *, void *, u32);
 EC GraphicsTransfer * func_080D3BC0(u32);
 
 static inline u32 const & MaxU32(u32 const & a, u32 const & b)
@@ -193,9 +178,7 @@ void EffectBase::QueueGraphicsTransfer(
 
     EffectHandle * current_handle = &handle;
     int slot = func_08007D4C(current_handle, current_handle->value);
-    GraphicsTransfer transfer;
-    func_08008F0C(
-        &transfer,
+    GraphicsTransfer transfer(
         data,
         reinterpret_cast<void *>(0x06010000 + (slot << 5)),
         size);

@@ -5,7 +5,7 @@ HardwareContext * Hardware::GetContext()
     return context;
 }
 
-DmaTransferQueue * Hardware::GetTransferQueue()
+GraphicsTransferVector * Hardware::GetTransferQueue()
 {
     return &context->transfer_queue;
 }

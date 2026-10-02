@@ -2,11 +2,7 @@
 #define HARDWARE_HH
 
 #include "prelude.h"
-
-struct DmaTransferQueue
-{
-    u8 data[0x10];
-};
+#include "hardware_transfer.hh"
 
 struct DisplayRegisterShadow
 {
@@ -31,7 +27,7 @@ struct VBlankCallbackList
 struct HardwareContext
 {
     /* +000 */ u8 input_state[0x24];
-    /* +024 */ DmaTransferQueue transfer_queue;
+    /* +024 */ GraphicsTransferVector transfer_queue;
     /* +034 */ DisplayRegisterShadow display_regs;
     /* +08C */ OamShadow oam;
     /* +490 */ HardwareSchedulerHandle scheduler;
@@ -44,7 +40,7 @@ struct Hardware
     /* +04 */ STRUCT_PAD(0x04, 0x08);
 
     HardwareContext * GetContext() asm("func_080088DC") SECTION(".text.hardware_get_context");
-    DmaTransferQueue * GetTransferQueue() asm("func_08008910") SECTION(".text.hardware_accessors");
+    GraphicsTransferVector * GetTransferQueue() asm("func_08008910") SECTION(".text.hardware_accessors");
     DisplayRegisterShadow * GetDisplayRegisters() asm("func_08008918") SECTION(".text.hardware_accessors");
     OamShadow * GetOam() asm("func_08008920") SECTION(".text.hardware_accessors");
     VBlankCallbackList * GetVBlankCallbacks() asm("func_08008940") SECTION(".text.hardware_vblank_callbacks");

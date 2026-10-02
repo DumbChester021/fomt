@@ -85,6 +85,10 @@ SECTIONS
         asm/hardware.o(.text.after_hardware_accessors);
         src/hardware_context.o(.text.hardware_vblank_callbacks);
         asm/hardware.o(.text.after_hardware_vblank_callbacks);
+        src/hardware_transfer.o(.text.hardware_transfer_setup);
+        asm/hardware.o(.text.after_hardware_transfer_setup);
+        src/hardware_transfer.o(.text.hardware_transfer_execute);
+        asm/hardware.o(.text.after_hardware_transfer_execute);
         src/key_input.o(.text);
         asm/hardware.o(.text.after_key_input);
         src/farm.o(.text);
