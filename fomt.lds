@@ -79,6 +79,12 @@ SECTIONS
         asm/new_game.o(.text);
         src/hardware.o(.text);
         asm/hardware.o(.text);
+        src/hardware_context.o(.text.hardware_get_context);
+        asm/hardware.o(.text.after_hardware_get_context);
+        src/hardware_context.o(.text.hardware_accessors);
+        asm/hardware.o(.text.after_hardware_accessors);
+        src/hardware_context.o(.text.hardware_vblank_callbacks);
+        asm/hardware.o(.text.after_hardware_vblank_callbacks);
         src/key_input.o(.text);
         asm/hardware.o(.text.after_key_input);
         src/farm.o(.text);
