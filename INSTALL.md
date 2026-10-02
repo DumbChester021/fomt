@@ -5,9 +5,11 @@
 Better instructions will come eventually.
 
 - get a `arm-none-eabi` toolchain (devkitARM probably works)
-- get [notyourav/agbcc] (or another fork of agbcc that includes agbcp) and install it into this repository. You can use the install_agbcp.sh script in the tools folder to achieve that.
+- run `tools/install_agbcp.sh`. The script checks out the pinned [notyourav/agbcc] revision required by this project, applies the tracked FoMT compatibility patch, builds the toolchain, and installs it under `tools/agbcc`.
 - get the base rom, put it in root directory as `baserom.gba`
 - `make compare`
+
+The C++ compiler compatibility patch is part of this repository so a fresh checkout can reproduce the matching build. The installed compiler files under `tools/agbcc` remain generated and are not committed.
 
 [notyourav/agbcc]: https://github.com/notyourav/agbcc
 

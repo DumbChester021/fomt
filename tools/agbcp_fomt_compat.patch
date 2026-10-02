@@ -1,0 +1,679 @@
+diff --git a/g++/combine.c b/g++/combine.c
+index ea7859b7..5228e356 100644
+--- a/g++/combine.c
++++ b/g++/combine.c
+@@ -389,6 +389,68 @@ static struct undobuf undobuf;
+ 
+ static int n_occurrences;
+ 
++/* Compatibility mode: remember pre-combine weighted reference counts for
++   pseudo-to-pseudo copies that are successfully eliminated.  */
++static int *compat_combine_copy_refs;
++static int compat_combine_copy_nregs;
++
++void
++compat_restore_combine_copy_refs ()
++{
++  int i;
++
++  if (! getenv ("AGBCC_RESTORE_COMBINE_COPY_REFS")
++      || ! compat_combine_copy_refs)
++    return;
++
++  for (i = FIRST_PSEUDO_REGISTER; i < compat_combine_copy_nregs; ++i)
++    if (compat_combine_copy_refs[i] > REG_N_REFS (i))
++      REG_N_REFS (i) = compat_combine_copy_refs[i];
++}
++
++static int integrated_return_bridge_copy_p PROTO((rtx));
++static int
++integrated_return_bridge_copy_p (insn)
++     rtx insn;
++{
++  rtx set, prev, prev_set;
++  rtx dest, src, prev_src;
++
++  if (insn == 0 || GET_CODE (insn) != INSN || ! RTX_INTEGRATED_P (insn))
++    return 0;
++
++  set = single_set (insn);
++  if (set == 0)
++    return 0;
++
++  dest = SET_DEST (set);
++  src = SET_SRC (set);
++
++
++  if (GET_CODE (dest) != REG || GET_CODE (src) != REG
++      || GET_MODE (dest) != SImode || GET_MODE (src) != SImode
++      || REGNO (dest) < FIRST_PSEUDO_REGISTER
++      || REGNO (src) < FIRST_PSEUDO_REGISTER
++      || ! REG_USERVAR_P (dest) || REG_USERVAR_P (src)
++      || REG_N_SETS (REGNO (src)) != 1)
++    return 0;
++
++  prev = prev_real_insn (insn);
++  if (prev == 0 || GET_CODE (prev) != INSN || ! RTX_INTEGRATED_P (prev))
++    return 0;
++
++  prev_set = single_set (prev);
++  if (prev_set == 0 || ! rtx_equal_p (SET_DEST (prev_set), src))
++    return 0;
++
++  prev_src = SET_SRC (prev_set);
++  return (GET_CODE (prev_src) == REG
++          && GET_MODE (prev_src) == SImode
++          && REGNO (prev_src) >= FIRST_PSEUDO_REGISTER
++          && ! REG_USERVAR_P (prev_src)
++          && REG_N_SETS (REGNO (prev_src)) == 2);
++}
++
+ static void init_reg_last_arrays	PROTO((void));
+ static void setup_incoming_promotions   PROTO((void));
+ static void set_nonzero_bits_and_sign_copies  PROTO((rtx, rtx));
+@@ -473,6 +535,19 @@ combine_instructions (f, nregs)
+   combine_successes = 0;
+   undobuf.undos = undobuf.previous_undos = 0;
+ 
++  if (compat_combine_copy_refs)
++    {
++      free (compat_combine_copy_refs);
++      compat_combine_copy_refs = 0;
++    }
++  compat_combine_copy_nregs = 0;
++  if (getenv ("AGBCC_RESTORE_COMBINE_COPY_REFS"))
++    {
++      compat_combine_copy_refs = (int *) xmalloc (nregs * sizeof (int));
++      bzero ((char *) compat_combine_copy_refs, nregs * sizeof (int));
++      compat_combine_copy_nregs = nregs;
++    }
++
+   combine_max_regno = nregs;
+ 
+   reg_nonzero_bits
+@@ -1350,6 +1425,7 @@ try_combine (i3, i2, i1)
+   /* Indicates if I2DEST or I1DEST is in I2SRC or I1_SRC.  */
+   int i2dest_in_i2src = 0, i1dest_in_i1src = 0, i2dest_in_i1src = 0;
+   int i1_feeds_i3 = 0;
++  int compat_copy_feeds_self = 0;
+   /* Notes that must be added to REG_NOTES in I3 and I2.  */
+   rtx new_i3_notes, new_i2_notes;
+   /* Notes that we substituted I3 into I2 instead of the normal case.  */
+@@ -1379,6 +1455,28 @@ try_combine (i3, i2, i1)
+ )
+     return 0;
+ 
++  if (getenv ("AGBCC_PRESERVE_INTEGRATED_RETURN_BRIDGE")
++      && (integrated_return_bridge_copy_p (i1)
++          || integrated_return_bridge_copy_p (i2)
++          || integrated_return_bridge_copy_p (i3)))
++    return 0;
++
++  if (getenv ("AGBCC_PRESERVE_USERVAR_COPIES")
++      && GET_CODE (PATTERN (i2)) == SET
++      && GET_CODE (PATTERN (i3)) == SET
++      && GET_CODE (SET_DEST (PATTERN (i3))) == REG
++      && GET_CODE (SET_SRC (PATTERN (i3))) == REG
++      && REG_USERVAR_P (SET_DEST (PATTERN (i3)))
++      && REG_USERVAR_P (SET_SRC (PATTERN (i3)))
++      && rtx_equal_p (SET_DEST (PATTERN (i2)), SET_SRC (PATTERN (i3)))
++      && next_real_insn (i3)
++      && GET_CODE (PATTERN (next_real_insn (i3))) == SET
++      && rtx_equal_p (SET_DEST (PATTERN (next_real_insn (i3))),
++		      SET_DEST (PATTERN (i3)))
++      && reg_mentioned_p (SET_DEST (PATTERN (i3)),
++			  SET_SRC (PATTERN (next_real_insn (i3)))))
++    return 0;
++
+   combine_attempts++;
+ 
+   undobuf.undos = undobuf.previous_undos = 0;
+@@ -1534,6 +1632,15 @@ try_combine (i3, i2, i1)
+   /* Record whether I2DEST is used in I2SRC and similarly for the other
+      cases.  Knowing this will help in register status updating below.  */
+   i2dest_in_i2src = reg_overlap_mentioned_p (i2dest, i2src);
++  if (getenv ("AGBCC_RESTORE_COMBINE_COPY_REFS")
++      && GET_CODE (i2dest) == REG
++      && GET_CODE (i2src) == REG
++      && REG_USERVAR_P (i2dest)
++      && REG_USERVAR_P (i2src)
++      && GET_CODE (PATTERN (i3)) == SET
++      && rtx_equal_p (SET_DEST (PATTERN (i3)), i2dest)
++      && reg_mentioned_p (i2dest, SET_SRC (PATTERN (i3))))
++    compat_copy_feeds_self = 1;
+   i1dest_in_i1src = i1 && reg_overlap_mentioned_p (i1dest, i1src);
+   i2dest_in_i1src = i1 && reg_overlap_mentioned_p (i2dest, i1src);
+ 
+@@ -2642,6 +2749,19 @@ try_combine (i3, i2, i1)
+       emit_barrier_after (i3);
+   }
+ 
++  if (getenv ("AGBCC_RESTORE_COMBINE_COPY_REFS")
++      && compat_copy_feeds_self
++      && compat_combine_copy_refs
++      && GET_CODE (i2dest) == REG
++      && GET_CODE (i2src) == REG
++      && REGNO (i2dest) >= FIRST_PSEUDO_REGISTER
++      && REGNO (i2src) >= FIRST_PSEUDO_REGISTER
++      && REGNO (i2dest) < compat_combine_copy_nregs
++      && REG_N_REFS (REGNO (i2dest))
++         > compat_combine_copy_refs[REGNO (i2dest)])
++    compat_combine_copy_refs[REGNO (i2dest)]
++      = REG_N_REFS (REGNO (i2dest));
++
+   combine_successes++;
+ 
+   /* Clear this here, so that subsequent get_last_value calls are not
+diff --git a/g++/cse.c b/g++/cse.c
+index 95b56ead..8e971cbf 100644
+--- a/g++/cse.c
++++ b/g++/cse.c
+@@ -652,6 +652,7 @@ static rtx equiv_constant	PROTO((rtx));
+ static void record_jump_equiv	PROTO((rtx, int));
+ static void record_jump_cond	PROTO((enum rtx_code, enum machine_mode,
+ 				       rtx, rtx, int));
++static int integrated_return_bridge_copy_p PROTO((rtx));
+ static void cse_insn		PROTO((rtx, rtx));
+ static int note_mem_written	PROTO((rtx));
+ static void invalidate_from_clobbers PROTO((rtx));
+@@ -6236,6 +6237,46 @@ record_jump_cond (code, mode, op0, op1, reversed_nonequality)
+ 
+ /* Data on one SET contained in the instruction.  */
+ 
++static int
++integrated_return_bridge_copy_p (insn)
++     rtx insn;
++{
++  rtx set, prev, prev_set;
++  rtx dest, src, prev_src;
++
++  if (insn == 0 || GET_CODE (insn) != INSN || ! RTX_INTEGRATED_P (insn))
++    return 0;
++
++  set = single_set (insn);
++  if (set == 0)
++    return 0;
++
++  dest = SET_DEST (set);
++  src = SET_SRC (set);
++  if (GET_CODE (dest) != REG || GET_CODE (src) != REG
++      || GET_MODE (dest) != SImode || GET_MODE (src) != SImode
++      || REGNO (dest) < FIRST_PSEUDO_REGISTER
++      || REGNO (src) < FIRST_PSEUDO_REGISTER
++      || ! REG_USERVAR_P (dest) || REG_USERVAR_P (src)
++      || REG_N_SETS (REGNO (src)) != 1)
++    return 0;
++
++  prev = prev_real_insn (insn);
++  if (prev == 0 || GET_CODE (prev) != INSN || ! RTX_INTEGRATED_P (prev))
++    return 0;
++
++  prev_set = single_set (prev);
++  if (prev_set == 0 || ! rtx_equal_p (SET_DEST (prev_set), src))
++    return 0;
++
++  prev_src = SET_SRC (prev_set);
++  return (GET_CODE (prev_src) == REG
++          && GET_MODE (prev_src) == SImode
++          && REGNO (prev_src) >= FIRST_PSEUDO_REGISTER
++          && ! REG_USERVAR_P (prev_src)
++          && REG_N_SETS (REGNO (prev_src)) == 2);
++}
++
+ struct set
+ {
+   /* The SET rtx itself.  */
+@@ -6459,7 +6500,9 @@ cse_insn (insn, libcall_insn)
+     {
+       rtx dest = SET_DEST (sets[i].rtl);
+       rtx src = SET_SRC (sets[i].rtl);
+-      rtx new = canon_reg (src, insn);
++      rtx new = ((getenv ("AGBCC_PRESERVE_INTEGRATED_RETURN_BRIDGE")
++                  && integrated_return_bridge_copy_p (insn))
++                 ? src : canon_reg (src, insn));
+       int insn_code;
+ 
+       if ((GET_CODE (new) == REG && GET_CODE (src) == REG
+@@ -6520,6 +6563,10 @@ cse_insn (insn, libcall_insn)
+       /* Set non-zero if we need to call force_const_mem on with the
+ 	 contents of src_folded before using it.  */
+       int src_folded_force_flag = 0;
++      int preserve_integrated_return_bridge
++        = (getenv ("AGBCC_PRESERVE_INTEGRATED_RETURN_BRIDGE")
++           && integrated_return_bridge_copy_p (insn));
++
+ 
+       dest = SET_DEST (sets[i].rtl);
+       src = SET_SRC (sets[i].rtl);
+@@ -6918,6 +6965,15 @@ cse_insn (insn, libcall_insn)
+ 
+         }
+ 
++      if (preserve_integrated_return_bridge)
++        {
++          src = SET_SRC (sets[i].rtl);
++          src_folded = 0;
++          src_eqv_here = 0;
++          src_related = 0;
++          elt = 0;
++        }
++
+       /* Find the cheapest valid equivalent, trying all the available
+          possibilities.  Prefer items not in the hash table to ones
+          that are when they are equal cost.  Note that we can never
+@@ -7106,9 +7162,10 @@ cse_insn (insn, libcall_insn)
+ 	      /* The result of apply_change_group can be ignored; see
+ 		 canon_reg.  */
+ 
+-	      validate_change (insn, &SET_SRC (sets[i].rtl),
+-			       canon_reg (SET_SRC (sets[i].rtl), insn),
+-			       1);
++	      if (! preserve_integrated_return_bridge)
++		validate_change (insn, &SET_SRC (sets[i].rtl),
++				 canon_reg (SET_SRC (sets[i].rtl), insn),
++				 1);
+ 	      apply_change_group ();
+ 	      break;
+ 	    }
+@@ -7785,6 +7842,8 @@ cse_insn (insn, libcall_insn)
+      Also do not do this if we are operating on a copy of INSN.  */
+ 
+   if (n_sets == 1 && sets[0].rtl && GET_CODE (SET_DEST (sets[0].rtl)) == REG
++      && ! (getenv ("AGBCC_PRESERVE_INTEGRATED_RETURN_BRIDGE")
++            && integrated_return_bridge_copy_p (insn))
+       && NEXT_INSN (PREV_INSN (insn)) == insn
+       && GET_CODE (SET_SRC (sets[0].rtl)) == REG
+       && REGNO (SET_SRC (sets[0].rtl)) >= FIRST_PSEUDO_REGISTER
+@@ -7797,7 +7856,17 @@ cse_insn (insn, libcall_insn)
+ 	prev = PREV_INSN (prev);
+ 
+       if (prev && GET_CODE (prev) == INSN && GET_CODE (PATTERN (prev)) == SET
+-	  && SET_DEST (PATTERN (prev)) == SET_SRC (sets[0].rtl))
++	  && SET_DEST (PATTERN (prev)) == SET_SRC (sets[0].rtl)
++	  && ! ((getenv ("AGBCC_PRESERVE_USERVAR_COPIES")
++		 && REG_USERVAR_P (SET_DEST (sets[0].rtl))
++		 && REG_USERVAR_P (SET_SRC (sets[0].rtl))
++		 && next_real_insn (insn)
++		 && GET_CODE (PATTERN (next_real_insn (insn))) == SET
++		 && rtx_equal_p (SET_DEST (PATTERN (next_real_insn (insn))),
++				 SET_DEST (sets[0].rtl)))
++		|| (getenv ("AGBCC_PRESERVE_LITERAL_POOL_COPY")
++		    && GET_CODE (SET_SRC (PATTERN (prev))) == MEM
++		    && GET_CODE (XEXP (SET_SRC (PATTERN (prev)), 0)) == SYMBOL_REF)))
+ 	{
+ 	  rtx dest = SET_DEST (sets[0].rtl);
+ 	  rtx note = find_reg_note (prev, REG_EQUIV, NULL_RTX);
+@@ -8702,6 +8771,97 @@ cse_main (f, nregs, after_loop, file)
+ #endif
+     }
+ 
++  /* Compatibility mode: keep an independent literal-address load close
++     to the halfword load feeding a shift-pair bitfield extraction.  */
++  if (after_loop && getenv ("AGBCC_CSE_HOIST_LITERAL_AFTER_BITFIELD_LOAD"))
++    {
++      rtx p;
++      rtx field_load = NULL_RTX;
++      rtx literal_load = NULL_RTX;
++
++      for (p = f; p; p = NEXT_INSN (p))
++        {
++          if (field_load
++              && (GET_CODE (p) == CODE_LABEL
++                  || GET_CODE (p) == JUMP_INSN
++                  || GET_CODE (p) == CALL_INSN
++                  || GET_CODE (p) == BARRIER))
++            {
++              field_load = NULL_RTX;
++              literal_load = NULL_RTX;
++              continue;
++            }
++
++          if (GET_CODE (p) == INSN && GET_CODE (PATTERN (p)) == SET)
++            {
++              rtx dest = SET_DEST (PATTERN (p));
++              rtx src = SET_SRC (PATTERN (p));
++
++              if (! field_load
++                  && GET_CODE (dest) == REG
++                  && GET_MODE (dest) == HImode
++                  && GET_CODE (src) == MEM
++                  && GET_MODE (src) == HImode)
++                {
++                  rtx left = next_real_insn (p);
++                  rtx right = left ? next_real_insn (left) : NULL_RTX;
++
++                  if (left && right
++                      && GET_CODE (PATTERN (left)) == SET
++                      && GET_CODE (PATTERN (right)) == SET
++                      && GET_CODE (SET_SRC (PATTERN (left))) == ASHIFT
++                      && GET_CODE (SET_SRC (PATTERN (right))) == LSHIFTRT
++                      && GET_CODE (XEXP (SET_SRC (PATTERN (left)), 1)) == CONST_INT
++                      && GET_CODE (XEXP (SET_SRC (PATTERN (right)), 1)) == CONST_INT
++                      && INTVAL (XEXP (SET_SRC (PATTERN (left)), 1))
++                         == INTVAL (XEXP (SET_SRC (PATTERN (right)), 1))
++                      && reg_mentioned_p (dest, SET_SRC (PATTERN (left)))
++                      && rtx_equal_p (XEXP (SET_SRC (PATTERN (right)), 0),
++                                      SET_DEST (PATTERN (left))))
++                    field_load = p;
++                }
++
++              if (field_load
++                  && ! literal_load
++                  && GET_CODE (dest) == REG
++                  && REGNO (dest) >= FIRST_PSEUDO_REGISTER
++                  && GET_MODE (dest) == SImode
++                  && GET_CODE (src) == MEM
++                  && ! MEM_VOLATILE_P (src)
++                  && GET_CODE (XEXP (src, 0)) == SYMBOL_REF)
++                {
++                  rtx note = find_reg_note (p, REG_EQUAL, NULL_RTX);
++
++                  if (note && GET_CODE (XEXP (note, 0)) == SYMBOL_REF)
++                    {
++                      rtx q;
++                      int safe = 1;
++
++                      for (q = NEXT_INSN (field_load); q && q != p;
++                           q = NEXT_INSN (q))
++                        if ((GET_CODE (q) == INSN
++                             || GET_CODE (q) == JUMP_INSN
++                             || GET_CODE (q) == CALL_INSN)
++                            && reg_mentioned_p (dest, PATTERN (q)))
++                          {
++                            safe = 0;
++                            break;
++                          }
++
++                      if (safe)
++                        {
++                          literal_load = p;
++                          break;
++                        }
++                    }
++                }
++            }
++        }
++
++      if (field_load && literal_load)
++        reorder_insns (literal_load, literal_load, field_load);
++    }
++
+   /* Tell refers_to_mem_p that qty_const info is not available.  */
+   qty_const = 0;
+ 
+diff --git a/g++/flow.c b/g++/flow.c
+index a9dc2720..1085bced 100644
+--- a/g++/flow.c
++++ b/g++/flow.c
+@@ -2479,7 +2479,16 @@ mark_set_1 (needed, dead, x, insn, significant)
+ 		 elsewhere, but we want the count to include the insn
+ 		 where the reg is set, and the normal counting mechanism
+ 		 would not count it.  */
+-	      REG_LIVE_LENGTH (regno)++;
++	      if (! (getenv ("AGBCC_NO_CONST_STEP_SELF_MOD_SET_LIVE")
++		     && GET_CODE (SET_SRC (x)) == PLUS
++		     && ((GET_CODE (XEXP (SET_SRC (x), 0)) == REG
++			  && REGNO (XEXP (SET_SRC (x), 0)) == regno
++			  && GET_CODE (XEXP (SET_SRC (x), 1)) == CONST_INT)
++			 || (GET_CODE (XEXP (SET_SRC (x), 1)) == REG
++			     && REGNO (XEXP (SET_SRC (x), 1)) == regno
++			     && GET_CODE (XEXP (SET_SRC (x), 0)) == CONST_INT))
++		     && (! insn || ! FIND_REG_INC_NOTE (insn, reg))))
++		REG_LIVE_LENGTH (regno)++;
+ 	    }
+ 
+ 	  if (! some_not_needed)
+diff --git a/g++/local-alloc.c b/g++/local-alloc.c
+index d063aac7..7742713a 100644
+--- a/g++/local-alloc.c
++++ b/g++/local-alloc.c
+@@ -190,6 +190,10 @@ static int *reg_next_in_qty;
+ 
+ static int *reg_qty;
+ 
++/* Compatibility mode: quantities born from an immediate hard-register
++   call result copy.  */
++static char *qty_call_result_copy;
++
+ /* The offset (in words) of register N within its quantity.
+    This can be nonzero if register N is SImode, and has been tied
+    to a subreg of a DImode register.  */
+@@ -237,6 +241,7 @@ static rtx *reg_equiv_replacement;
+ /* Used for communication between update_equiv_regs and no_equiv.  */
+ static rtx *reg_equiv_init_insns;
+ 
++static int integrated_return_bridge_copy_p PROTO((rtx));
+ static void alloc_qty		PROTO((int, enum machine_mode, int, int));
+ static void validate_equiv_mem_from_store PROTO((rtx, rtx));
+ static int validate_equiv_mem	PROTO((rtx, rtx, rtx));
+@@ -263,6 +268,46 @@ static void post_mark_life	PROTO((int, enum machine_mode, int, int, int));
+ static int no_conflict_p	PROTO((rtx, rtx, rtx));
+ static int requires_inout	PROTO((char *));
+ 
++static int
++integrated_return_bridge_copy_p (insn)
++     rtx insn;
++{
++  rtx set, prev, prev_set;
++  rtx dest, src, prev_src;
++
++  if (insn == 0 || GET_CODE (insn) != INSN || ! RTX_INTEGRATED_P (insn))
++    return 0;
++
++  set = single_set (insn);
++  if (set == 0)
++    return 0;
++
++  dest = SET_DEST (set);
++  src = SET_SRC (set);
++  if (GET_CODE (dest) != REG || GET_CODE (src) != REG
++      || GET_MODE (dest) != SImode || GET_MODE (src) != SImode
++      || REGNO (dest) < FIRST_PSEUDO_REGISTER
++      || REGNO (src) < FIRST_PSEUDO_REGISTER
++      || ! REG_USERVAR_P (dest) || REG_USERVAR_P (src)
++      || REG_N_SETS (REGNO (src)) != 1)
++    return 0;
++
++  prev = prev_real_insn (insn);
++  if (prev == 0 || GET_CODE (prev) != INSN || ! RTX_INTEGRATED_P (prev))
++    return 0;
++
++  prev_set = single_set (prev);
++  if (prev_set == 0 || ! rtx_equal_p (SET_DEST (prev_set), src))
++    return 0;
++
++  prev_src = SET_SRC (prev_set);
++  return (GET_CODE (prev_src) == REG
++          && GET_MODE (prev_src) == SImode
++          && REGNO (prev_src) >= FIRST_PSEUDO_REGISTER
++          && ! REG_USERVAR_P (prev_src)
++          && REG_N_SETS (REGNO (prev_src)) == 2);
++}
++
+ /* Allocate a new quantity (new within current basic block)
+    for register number REGNO which is born at index BIRTH
+    within the block.  MODE and SIZE are info on reg REGNO.  */
+@@ -336,6 +381,7 @@ local_alloc ()
+     = (enum reg_class *) alloca (max_qty * sizeof (enum reg_class));
+   qty_n_refs = (int *) alloca (max_qty * sizeof (int));
+   qty_changes_size = (char *) alloca (max_qty * sizeof (char));
++  qty_call_result_copy = (char *) alloca (max_qty * sizeof (char));
+ 
+   reg_qty = (int *) xmalloc (max_regno * sizeof (int));
+   reg_offset = (char *) xmalloc (max_regno * sizeof (char));
+@@ -386,6 +432,7 @@ local_alloc ()
+ 	      qty_phys_num_copy_sugg[i] = 0;
+ 	      CLEAR_HARD_REG_SET (qty_phys_sugg[i]);
+ 	      qty_phys_num_sugg[i] = 0;
++	      qty_call_result_copy[i] = 0;
+ 	    }
+ 	}
+       else
+@@ -397,6 +444,7 @@ local_alloc ()
+ 	  CLEAR (qty_phys_num_copy_sugg);
+ 	  CLEAR (qty_phys_sugg);
+ 	  CLEAR (qty_phys_num_sugg);
++	  CLEAR (qty_call_result_copy);
+ 	}
+ 
+       next_qty = 0;
+@@ -1289,6 +1337,29 @@ block_alloc (b)
+       insn = NEXT_INSN (insn);
+     }
+ 
++  if (getenv ("AGBCC_PRESERVE_INTEGRATED_RETURN_BRIDGE"))
++    {
++      rtx p;
++
++      for (p = BLOCK_HEAD (b); p; p = NEXT_INSN (p))
++        {
++          if (integrated_return_bridge_copy_p (p))
++            {
++              rtx set = single_set (p);
++              int regno = REGNO (SET_SRC (set));
++
++
++              if (reg_qty[regno] >= 0
++                  && REG_N_CALLS_CROSSED (REGNO (SET_DEST (set))) > 0)
++                qty_n_calls_crossed[reg_qty[regno]]
++                  = MAX (qty_n_calls_crossed[reg_qty[regno]], 1);
++            }
++
++          if (p == BLOCK_END (b))
++            break;
++        }
++    }
++
+   /* Now every register that is local to this basic block
+      should have been given a quantity, or else -1 meaning ignore it.
+      Every quantity should have a known birth and death.  
+@@ -1335,10 +1406,17 @@ block_alloc (b)
+      this seems acceptable in local allocation (unlike global allocation).  */
+   for (i = 0; i < next_qty; i++)
+     {
++      int alloc_death;
++
+       q = qty_order[i];
++      alloc_death = qty_death[q];
++      if (getenv ("AGBCC_EXTEND_CALL_RESULT_LIFETIME")
++	  && qty_call_result_copy[q])
++	alloc_death = MIN (insn_number * 2 + 1, qty_death[q] + 3);
++
+       if (qty_phys_num_sugg[q] != 0 || qty_phys_num_copy_sugg[q] != 0)
+ 	qty_phys_reg[q] = find_free_reg (qty_min_class[q], qty_mode[q], q,
+-					 0, 1, qty_birth[q], qty_death[q]);
++					 0, 1, qty_birth[q], alloc_death);
+       else
+ 	qty_phys_reg[q] = -1;
+     }
+@@ -1386,7 +1464,14 @@ block_alloc (b)
+ 
+   for (i = 0; i < next_qty; i++)
+     {
++      int alloc_death;
++
+       q = qty_order[i];
++      alloc_death = qty_death[q];
++      if (getenv ("AGBCC_EXTEND_CALL_RESULT_LIFETIME")
++	  && qty_call_result_copy[q])
++	alloc_death = MIN (insn_number * 2 + 1, qty_death[q] + 3);
++
+       if (qty_phys_reg[q] < 0)
+ 	{
+ #ifdef INSN_SCHEDULING
+@@ -1436,7 +1521,7 @@ block_alloc (b)
+ #endif
+ 	      qty_phys_reg[q] = find_free_reg (qty_min_class[q], 
+ 					       qty_mode[q], q, 0, 0,
+-					       qty_birth[q], qty_death[q]);
++					       qty_birth[q], alloc_death);
+ 	      if (qty_phys_reg[q] >= 0)
+ 		continue;
+ 	    }
+@@ -1454,7 +1539,7 @@ block_alloc (b)
+ 	  if (qty_alternate_class[q] != NO_REGS)
+ 	    qty_phys_reg[q] = find_free_reg (qty_alternate_class[q],
+ 					     qty_mode[q], q, 0, 0,
+-					     qty_birth[q], qty_death[q]);
++					     qty_birth[q], alloc_death);
+ 	}
+     }
+ 
+@@ -1668,6 +1753,27 @@ combine_regs (usedreg, setreg, may_save_copy, insn_number, insn, already_dead)
+ 
+       if (reg_qty[sreg] >= 0)
+ 	{
++	  rtx prev_call_result = prev_nonnote_insn (insn);
++	  rtx next_call_result_use = next_nonnote_insn (insn);
++	  rtx next_call_result_set
++	    = next_call_result_use ? single_set (next_call_result_use) : 0;
++
++	  if (may_save_copy
++	      && prev_call_result
++	      && GET_CODE (prev_call_result) == CALL_INSN
++	      && RTX_INTEGRATED_P (prev_call_result)
++	      && RTX_INTEGRATED_P (insn)
++	      && next_call_result_use
++	      && RTX_INTEGRATED_P (next_call_result_use)
++	      && GET_MODE (setreg) == SImode
++	      && REG_N_REFS (sreg) == 2
++	      && REG_N_DEATHS (sreg) == 1
++	      && next_call_result_set
++	      && GET_CODE (SET_DEST (next_call_result_set)) == MEM
++	      && GET_MODE (SET_DEST (next_call_result_set)) == SImode
++	      && rtx_equal_p (SET_SRC (next_call_result_set), setreg))
++	    qty_call_result_copy[reg_qty[sreg]] = 1;
++
+ 	  if (may_save_copy
+ 	      && ! TEST_HARD_REG_BIT (qty_phys_copy_sugg[reg_qty[sreg]], ureg))
+ 	    {
+diff --git a/g++/toplev.c b/g++/toplev.c
+index f56691c5..ee6c6f7d 100644
+--- a/g++/toplev.c
++++ b/g++/toplev.c
+@@ -160,6 +160,7 @@ extern void dump_flow_info ();
+ extern void dump_sched_info ();
+ extern void dump_local_alloc ();
+ extern void regset_release_memory ();
++extern void compat_restore_combine_copy_refs ();
+ 
+ extern void print_rtl ();
+ extern void print_rtl_with_bb ();
+@@ -4114,6 +4115,8 @@ rest_of_compilation (decl)
+ 	       if (!flag_live_range)
+ 		 recompute_reg_usage (insns, !optimize_size);
+ 	       /* END CYGNUS LOCAL */
++	       if (getenv ("AGBCC_RESTORE_COMBINE_COPY_REFS"))
++		 compat_restore_combine_copy_refs ();
+ 	       regclass (insns, max_reg_num ());
+ 	       local_alloc ();
+ 	     });
+diff --git a/g++/calls.c b/g++/calls.c
+index 4c01729..3bab55d 100644
+--- a/g++/calls.c
++++ b/g++/calls.c
+@@ -2011,7 +2011,11 @@ expand_call (exp, target, ignore)
+ 	  use_reg (&call_fusage, struct_value_rtx);
+     }
+ 
+-  funexp = prepare_call_address (funexp, fndecl, &call_fusage, reg_parm_seen);
++  if (! (getenv ("AGBCC_DELAY_CONST_INDIRECT_CALL_ADDRESS")
++         && fndecl == 0
++         && reg_parm_seen
++         && GET_CODE (funexp) == CONST_INT))
++    funexp = prepare_call_address (funexp, fndecl, &call_fusage, reg_parm_seen);
+ 
+   /* Now do the register loads required for any wholly-register parms or any
+      parms which are passed both on the stack and in a register.  Their
+@@ -2084,6 +2088,11 @@ expand_call (exp, target, ignore)
+ 	}
+     }
+ 
++  if (getenv ("AGBCC_DELAY_CONST_INDIRECT_CALL_ADDRESS")
++      && fndecl == 0
++      && reg_parm_seen
++      && GET_CODE (funexp) == CONST_INT)
++    funexp = prepare_call_address (funexp, fndecl, &call_fusage, reg_parm_seen);
+   /* Perform postincrements before actually calling the function.  */
+   emit_queue ();
+ 

@@ -14,6 +14,11 @@ gCgb3Vol = 0x08139CEC;
 gClockTable = 0x08139CFC;
 gXcmdTable = 0x08139D30;
 
+__vt_7UnkPoly = vtable_unk_080E82D8;
+__13UnkHandleBase = func_08007874;
+_._13UnkHandleBase = func_080079E8;
+func_080A47B4 = _._7UnkPoly;
+
 MEMORY
 {
     EWRAM (w!x) : ORIGIN = 0x02000000, LENGTH = 256K
@@ -139,9 +144,19 @@ SECTIONS
         asm/code_809E804.o(.text);
         src/character_info.o(.text);
         asm/code_809E804.o(.text.after_character_info);
+        src/water_region.o(.text);
         src/code_080A4650.o(.text);
         src/map_data.o(.text);
-        asm/code_809E804.o(.text.after_get_map_data);
+        src/code_080A46AC.o(.text);
+        src/code_080A480C.o(.text);
+        src/code_080A4A4C.o(.text);
+        src/code_080A4A94.o(.text);
+        asm/code_809E804.o(.text.after_func_080A4BEC);
+        src/code_080A5670.o(.text);
+        src/code_080A56DC.o(.text);
+        asm/code_809E804.o(.text.after_func_080A56DC);
+        src/terrain.o(.text);
+        asm/code_809E804.o(.text.after_is_footprint_on_water_surface);
 
         src/m4a_1.o(.text);
         src/m4a.o(.text);
