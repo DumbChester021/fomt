@@ -1,4 +1,5 @@
 #include "prelude.h"
+#include "intrusive_callback_list.hh"
 #include <new>
 
 EC u8 vtable_unk_080E82E4[];
@@ -36,18 +37,14 @@ struct UnkColor_080A4A94
     u8 pad;
 };
 
-struct UnkNode_080A4A94
+struct UnkNode_080A4A94 : IntrusiveCallbackNode
 {
     void Init()
     {
-        prev = 0;
+        pprev = 0;
         next = 0;
         vtable = vtable_unk_080E830C;
     }
-
-    void * prev;
-    void * next;
-    void * vtable;
 };
 
 struct Unk_080A4A94
@@ -123,8 +120,6 @@ Unk_080A4A94::Unk_080A4A94()
 }
 
 
-EC void func_080098AC(UnkNode_080A4A94 *, u32);
-
 void DestroyUnk_080A4A94(Unk_080A4A94 * self, u32 flags) asm("func_080A4B6C");
 
 void DestroyUnk_080A4A94(Unk_080A4A94 * self, u32 flags)
@@ -146,7 +141,7 @@ void DestroyUnk_080A4A94(Unk_080A4A94 * self, u32 flags)
             delete[] self->small_buffers[i];
     }
 
-    func_080098AC(&self->node, 2);
+    DestroyIntrusiveCallbackNode(&self->node, 2);
 
     if ((flags & 1) != 0)
         ::operator delete(self);

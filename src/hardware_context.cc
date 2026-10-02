@@ -20,7 +20,7 @@ OamShadow * Hardware::GetOam()
     return &context->oam;
 }
 
-VBlankCallbackList * Hardware::GetVBlankCallbacks()
+IntrusiveCallbackList * Hardware::GetVBlankCallbacks()
 {
     return &context->vblank_callbacks;
 }

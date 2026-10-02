@@ -24,9 +24,9 @@ The owned `HardwareContext` is 0x4B0 bytes:
 | +0x034 | 0x58 | `DisplayRegisterShadow` | shadow of display I/O state |
 | +0x08C | 0x404 | `OamShadow` | OAM entry/state shadow |
 | +0x490 | 0x04 | `HardwareSchedulerHandle` | scheduler interface handle |
-| +0x494 | 0x1C | `VBlankCallbackList` | persistent VBlank callback list |
+| +0x494 | 0x1C | `IntrusiveCallbackList` | persistent callback list used by the VBlank update path |
 
-The transfer container is now typed through `hardware_transfer.hh`. The remaining internal subobjects stay opaque where their complete layouts or class contracts have not yet been reconstructed.
+The transfer container and callback list are now typed through `hardware_transfer.hh` and `intrusive_callback_list.hh`. The remaining internal subobjects stay opaque where their complete layouts or class contracts have not yet been reconstructed.
 
 ## Accessors
 
@@ -52,7 +52,7 @@ Returns the OAM shadow at +0x8C.
 
 ### `GetVBlankCallbacks`, `func_08008940`
 
-Returns the persistent VBlank callback list at +0x494.
+Returns the persistent `IntrusiveCallbackList` at +0x494. Its generic list architecture is documented in `docs/INTRUSIVE_CALLBACK_LIST.md`.
 
 ## VBlank update path
 

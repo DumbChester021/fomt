@@ -3806,55 +3806,11 @@ func_08009864: @ 0x08009864
     .byte 0x10, 0xBC, 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00, 0x10, 0xB5, 0x04, 0x1C, 0xFF, 0xF7, 0x82, 0xFF
     .byte 0x20, 0x1C, 0xFF, 0xF7, 0xC7, 0xFF, 0x10, 0xBC, 0x01, 0xBC, 0x00, 0x47
 
-    thumb_func_start func_080098AC
-func_080098AC: @ 0x080098AC
-    push {lr}
-    adds r3, r0, #0
-    ldr r0, .L080098D4 @ =vtable_unk_080E5BE8
-    str r0, [r3, #8]
-    ldr r2, [r3]
-    cmp r2, #0
-    beq .L080098C2
-    ldr r0, [r3, #4]
-    str r0, [r2]
-    ldr r0, [r3, #4]
-    str r2, [r0]
-.L080098C2:
-    movs r0, #1
-    ands r0, r1
-    cmp r0, #0
-    beq .L080098D0
-    adds r0, r3, #0
-    bl __builtin_delete
-.L080098D0:
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L080098D4: .4byte vtable_unk_080E5BE8
+    .section .text.after_intrusive_callback_node_destroy, "ax", %progbits
 .L080098D8:
     .byte 0x01, 0x20, 0x70, 0x47
 
-    thumb_func_start func_080098DC
-func_080098DC: @ 0x080098DC
-    push {r4, r5, lr}
-    adds r4, r0, #0
-    adds r5, r1, #0
-    ldr r0, .L08009904 @ =vtable_unk_080E5BB4
-    str r0, [r4, #8]
-    adds r0, r4, #0
-    bl func_08009984
-    adds r0, r4, #0
-    adds r0, #0x10
-    movs r1, #2
-    bl func_080098AC
-    adds r0, r4, #0
-    adds r1, r5, #0
-    bl func_080098AC
-    pop {r4, r5}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L08009904: .4byte vtable_unk_080E5BB4
+    .section .text.after_intrusive_callback_list_destroy, "ax", %progbits
 
     thumb_func_start func_08009908
 func_08009908: @ 0x08009908
@@ -3887,74 +3843,13 @@ func_08009908: @ 0x08009908
     pop {r1}
     bx r1
 
-    thumb_func_start func_08009940
-func_08009940: @ 0x08009940
-    push {lr}
-    adds r3, r0, #0
-    ldr r2, [r1]
-    cmp r2, #0
-    beq .L08009952
-    ldr r0, [r1, #4]
-    str r0, [r2]
-    ldr r0, [r1, #4]
-    str r2, [r0]
-.L08009952:
-    ldr r0, [r3, #0x10]
-    str r1, [r0]
-    str r0, [r1]
-    adds r0, r3, #0
-    adds r0, #0x10
-    str r0, [r1, #4]
-    adds r0, r1, #4
-    str r0, [r3, #0x10]
-    pop {r0}
-    bx r0
+    .section .text.after_intrusive_callback_list_append, "ax", %progbits
     .align 2, 0
 
-    thumb_func_start func_08009968
-func_08009968: @ 0x08009968
-    push {lr}
-    ldr r2, [r1]
-    cmp r2, #0
-    beq .L0800997E
-    ldr r0, [r1, #4]
-    str r0, [r2]
-    ldr r0, [r1, #4]
-    str r2, [r0]
-    movs r0, #0
-    str r0, [r1]
-    str r0, [r1, #4]
-.L0800997E:
-    pop {r0}
-    bx r0
+    .section .text.after_intrusive_callback_list_remove, "ax", %progbits
     .align 2, 0
 
-    thumb_func_start func_08009984
-func_08009984: @ 0x08009984
-    push {r4, lr}
-    adds r2, r0, #0
-    ldr r1, [r2, #0xc]
-    adds r3, r2, #0
-    adds r3, #0x10
-    cmp r1, r3
-    beq .L080099A0
-    movs r4, #0
-.L08009994:
-    adds r0, r1, #0
-    ldr r1, [r1, #4]
-    str r4, [r0]
-    str r4, [r0, #4]
-    cmp r1, r3
-    bne .L08009994
-.L080099A0:
-    adds r0, r2, #0
-    adds r0, #0x10
-    str r0, [r2, #0xc]
-    subs r0, #4
-    str r0, [r2, #0x10]
-    pop {r4}
-    pop {r0}
-    bx r0
+    .section .text.after_intrusive_callback_list_clear, "ax", %progbits
 
     thumb_func_start func_080099B0
 func_080099B0: @ 0x080099B0

@@ -91,6 +91,16 @@ SECTIONS
         asm/hardware.o(.text.after_hardware_transfer_execute);
         src/key_input.o(.text);
         asm/hardware.o(.text.after_key_input);
+        src/intrusive_callback_list.o(.text.intrusive_callback_node_destroy);
+        asm/hardware.o(.text.after_intrusive_callback_node_destroy);
+        src/intrusive_callback_list.o(.text.intrusive_callback_list_destroy);
+        asm/hardware.o(.text.after_intrusive_callback_list_destroy);
+        src/intrusive_callback_list.o(.text.intrusive_callback_list_append);
+        asm/hardware.o(.text.after_intrusive_callback_list_append);
+        src/intrusive_callback_list.o(.text.intrusive_callback_list_remove);
+        asm/hardware.o(.text.after_intrusive_callback_list_remove);
+        src/intrusive_callback_list.o(.text.intrusive_callback_list_clear);
+        asm/hardware.o(.text.after_intrusive_callback_list_clear);
         src/farm.o(.text);
         src/field.o(.text);
         src/shipping_bin.o(.text);
