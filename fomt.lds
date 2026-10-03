@@ -225,6 +225,15 @@ SECTIONS
         asm/code_linkonce.o(.text.code_080D3BC0);
         *(.gnu.linkonce.t.__as__6AnimalRC6Animal);
         asm/code_linkonce.o(.text.code_080D68C0);
+        src/resource_handle.o(.text.resource_subtree_fill_all);
+        asm/code_linkonce.o(.text.after_resource_subtree_fill_all);
+        src/resource_handle.o(.text.resource_subtree_clear_all);
+        asm/code_linkonce.o(.text.after_resource_subtree_clear_all);
+        src/resource_handle.o(.text.resource_subtree_fill);
+        asm/code_linkonce.o(.text.after_resource_subtree_fill);
+        src/resource_handle.o(.text.resource_subtree_clear);
+        asm/code_linkonce.o(.text.after_resource_subtree_clear);
+        src/resource_handle.o(.text.resource_subtree_free);
         src/resource_handle.o(.text.resource_child_free);
         src/resource_handle.o(.text.resource_entry_pool_init);
         asm/code_linkonce.o(.text.after_resource_entry_pool_init);

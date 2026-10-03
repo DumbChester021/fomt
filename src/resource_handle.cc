@@ -274,10 +274,10 @@ EC void func_08007EC8(ResourceBlock<10> * blocks)
 
 EC void func_08007EE8(ResourceBlock<10> *, u32, u32) SECTION(".text.resource_block_ranges");
 EC void func_08007F84(ResourceBlock<10> *, u32, u32) SECTION(".text.resource_block_ranges");
-EC void func_080D7118(ResourceBlock<9> *, u32, u32);
-EC void func_080D734C(ResourceBlock<9> *, u32, u32);
+EC void func_080D7118(ResourceBlock<9> *, u32, u32) SECTION(".text.resource_subtree_fill");
+EC void func_080D734C(ResourceBlock<9> *, u32, u32) SECTION(".text.resource_subtree_clear");
 EC void func_080D76C0(ResourceBlock<9> *, u32, u32) SECTION(".text.resource_child_free");
-EC void func_080D7678(ResourceBlock<8> *, u32, u32);
+EC void func_080D7678(ResourceBlock<8> *, u32, u32) SECTION(".text.resource_subtree_free");
 
 EC void func_08007EE8(ResourceBlock<10> * blocks, u32 start, u32 size)
 {
@@ -344,6 +344,97 @@ EC void func_080080A0(ResourceBlock<10> * blocks, u32 start, u32 order)
     }
     else if (order == 10)
         func_08007EC8(blocks);
+}
+
+EC void func_080D6EAC(ResourceBlock<7> *);
+EC void func_080D6ECC(ResourceBlock<8> *) SECTION(".text.resource_subtree_fill_all");
+EC void func_080D6F1C(ResourceBlock<7> *);
+EC void func_080D6F3C(ResourceBlock<8> *) SECTION(".text.resource_subtree_clear_all");
+EC void func_080D7094(ResourceBlock<8> *, u32, u32);
+EC void func_080D72C4(ResourceBlock<8> *, u32, u32);
+EC void func_080D7634(ResourceBlock<7> *, u32, u32);
+
+EC void func_080D6ECC(ResourceBlock<8> * blocks)
+{
+    func_080D6EAC(&blocks->children[0]);
+    func_080D6EAC(&blocks->children[1]);
+    blocks->full = 1;
+    blocks->empty = 0;
+}
+
+EC void func_080D6F3C(ResourceBlock<8> * blocks)
+{
+    func_080D6F1C(&blocks->children[1]);
+    func_080D6F1C(&blocks->children[0]);
+    blocks->full = 0;
+    blocks->empty = 1;
+}
+
+EC void func_080D7118(ResourceBlock<9> * blocks, u32 start, u32 size)
+{
+    if (start < 512 && size != 0)
+    {
+        if (start == 0 && size >= 512)
+            func_080D6EEC(blocks);
+        else
+        {
+            if (start < 256)
+            {
+                u32 left_size = min(size, 256 - start);
+                func_080D7094(&blocks->children[0], start, left_size);
+            }
+            const u32 half = ResourceBlock<9>::HalfSize;
+            u32 end = start + size;
+            if (end > half)
+            {
+                u32 offset = start >= half ? start - half : 0;
+                u32 remaining = end - half;
+                remaining -= offset;
+                func_080D7094(&blocks->children[1], offset, remaining);
+            }
+            blocks->full = blocks->children[0].IsFull() && blocks->children[1].IsFull();
+            blocks->empty = 0;
+        }
+    }
+}
+
+EC void func_080D734C(ResourceBlock<9> * blocks, u32 start, u32 size)
+{
+    if (start < 512 && size != 0)
+    {
+        if (start == 0 && size >= 512)
+            func_080D6F5C(blocks);
+        else
+        {
+            if (start < 256)
+                func_080D72C4(&blocks->children[0], start, min(size, 256 - start));
+            const u32 half = ResourceBlock<9>::HalfSize;
+            u32 end = start + size;
+            if (end > half)
+            {
+                u32 offset = start >= half ? start - half : 0;
+                u32 remaining = end - half;
+                remaining -= offset;
+                func_080D72C4(&blocks->children[1], offset, remaining);
+            }
+            blocks->full = 0;
+            blocks->empty = blocks->children[0].IsEmpty() && blocks->children[1].IsEmpty();
+        }
+    }
+}
+
+EC void func_080D7678(ResourceBlock<8> * blocks, u32 start, u32 order)
+{
+    if (order < 8)
+    {
+        ResourceBlock<7> * child = start & 128
+            ? &blocks->children[1] : &blocks->children[0];
+        func_080D7634(child, start, order);
+        blocks->full = 0;
+        blocks->empty = blocks->children[0].IsEmpty() && blocks->children[1].IsEmpty();
+    }
+    else if (order == 8)
+        func_080D6F3C(blocks);
 }
 
 EC void func_080D76C0(ResourceBlock<9> * blocks, u32 start, u32 order)

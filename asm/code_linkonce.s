@@ -6415,22 +6415,7 @@ func_080D6EAC: @ 0x080D6EAC
 	pop {r0}
 	bx r0
 
-	thumb_func_start func_080D6ECC
-func_080D6ECC: @ 0x080D6ECC
-	push {r4, lr}
-	adds r4, r0, #0
-	adds r0, r4, #4
-	bl func_080D6EAC
-	adds r0, r4, #0
-	adds r0, #0x20
-	bl func_080D6EAC
-	movs r1, #0
-	movs r0, #1
-	strb r0, [r4]
-	strb r1, [r4, #1]
-	pop {r4}
-	pop {r0}
-	bx r0
+	.section ".text.after_resource_subtree_fill_all", "ax", %progbits
 
 	thumb_func_start func_080D6EEC
 func_080D6EEC: @ 0x080D6EEC
@@ -6477,22 +6462,7 @@ func_080D6F1C: @ 0x080D6F1C
 	bx r0
 	.align 2, 0
 
-	thumb_func_start func_080D6F3C
-func_080D6F3C: @ 0x080D6F3C
-	push {r4, lr}
-	adds r4, r0, #0
-	adds r0, #0x20
-	bl func_080D6F1C
-	adds r0, r4, #4
-	bl func_080D6F1C
-	movs r0, #0
-	strb r0, [r4]
-	movs r0, #1
-	strb r0, [r4, #1]
-	pop {r4}
-	pop {r0}
-	bx r0
-	.align 2, 0
+	.section ".text.after_resource_subtree_clear_all", "ax", %progbits
 
 	thumb_func_start func_080D6F5C
 func_080D6F5C: @ 0x080D6F5C
@@ -6742,85 +6712,7 @@ func_080D7094: @ 0x080D7094
 	pop {r0}
 	bx r0
 
-	thumb_func_start func_080D7118
-func_080D7118: @ 0x080D7118
-	push {r4, r5, lr}
-	sub sp, #8
-	adds r5, r0, #0
-	adds r4, r1, #0
-	str r2, [sp]
-	ldr r1, .L080D7140 @ =0x000001FF
-	cmp r4, r1
-	bhi .L080D71A0
-	adds r0, r2, #0
-	cmp r0, #0
-	beq .L080D71A0
-	cmp r4, #0
-	bne .L080D7144
-	cmp r0, r1
-	bls .L080D7144
-	adds r0, r5, #0
-	bl func_080D6EEC
-	b .L080D71A0
-	.align 2, 0
-.L080D7140: .4byte 0x000001FF
-.L080D7144:
-	cmp r4, #0xff
-	bhi .L080D7166
-	movs r0, #0x80
-	lsls r0, r0, #1
-	subs r0, r0, r4
-	str r0, [sp, #4]
-	add r3, sp, #4
-	ldr r1, [sp]
-	mov r2, sp
-	cmp r1, r0
-	bls .L080D715C
-	adds r2, r3, #0
-.L080D715C:
-	ldr r2, [r2]
-	adds r0, r5, #4
-	adds r1, r4, #0
-	bl func_080D7094
-.L080D7166:
-	ldr r0, [sp]
-	adds r2, r4, r0
-	movs r0, #0x80
-	lsls r0, r0, #1
-	cmp r2, r0
-	bls .L080D7188
-	movs r1, #0
-	cmp r4, #0xff
-	bls .L080D717C
-	ldr r3, .L080D71A8 @ =0xFFFFFF00
-	adds r1, r4, r3
-.L080D717C:
-	subs r2, r2, r0
-	subs r2, r2, r1
-	adds r0, r5, #0
-	adds r0, #0x40
-	bl func_080D7094
-.L080D7188:
-	movs r1, #0
-	ldrb r0, [r5, #4]
-	cmp r0, #0
-	beq .L080D719A
-	adds r0, r5, #0
-	adds r0, #0x40
-	ldrb r0, [r0]
-	rsbs r0, r0, #0
-	lsrs r1, r0, #0x1f
-.L080D719A:
-	movs r0, #0
-	strb r1, [r5]
-	strb r0, [r5, #1]
-.L080D71A0:
-	add sp, #8
-	pop {r4, r5}
-	pop {r0}
-	bx r0
-	.align 2, 0
-.L080D71A8: .4byte 0xFFFFFF00
+	.section ".text.after_resource_subtree_fill", "ax", %progbits
 
 	thumb_func_start func_080D71AC
 func_080D71AC: @ 0x080D71AC
@@ -7055,86 +6947,7 @@ func_080D72C4: @ 0x080D72C4
 	bx r0
 	.align 2, 0
 
-	thumb_func_start func_080D734C
-func_080D734C: @ 0x080D734C
-	push {r4, r5, r6, lr}
-	sub sp, #8
-	adds r5, r0, #0
-	adds r4, r1, #0
-	str r2, [sp]
-	ldr r1, .L080D7374 @ =0x000001FF
-	cmp r4, r1
-	bhi .L080D73D6
-	adds r0, r2, #0
-	cmp r0, #0
-	beq .L080D73D6
-	cmp r4, #0
-	bne .L080D7378
-	cmp r0, r1
-	bls .L080D7378
-	adds r0, r5, #0
-	bl func_080D6F5C
-	b .L080D73D6
-	.align 2, 0
-.L080D7374: .4byte 0x000001FF
-.L080D7378:
-	adds r6, r5, #4
-	cmp r4, #0xff
-	bhi .L080D739C
-	movs r0, #0x80
-	lsls r0, r0, #1
-	subs r0, r0, r4
-	str r0, [sp, #4]
-	add r3, sp, #4
-	ldr r1, [sp]
-	mov r2, sp
-	cmp r1, r0
-	bls .L080D7392
-	adds r2, r3, #0
-.L080D7392:
-	ldr r2, [r2]
-	adds r0, r6, #0
-	adds r1, r4, #0
-	bl func_080D72C4
-.L080D739C:
-	ldr r0, [sp]
-	adds r2, r4, r0
-	movs r0, #0x80
-	lsls r0, r0, #1
-	cmp r2, r0
-	bls .L080D73BE
-	movs r1, #0
-	cmp r4, #0xff
-	bls .L080D73B2
-	ldr r3, .L080D73E0 @ =0xFFFFFF00
-	adds r1, r4, r3
-.L080D73B2:
-	subs r2, r2, r0
-	subs r2, r2, r1
-	adds r0, r5, #0
-	adds r0, #0x40
-	bl func_080D72C4
-.L080D73BE:
-	movs r0, #0
-	strb r0, [r5]
-	movs r1, #0
-	ldrb r0, [r6, #1]
-	cmp r0, #0
-	beq .L080D73D4
-	adds r0, r5, #0
-	adds r0, #0x40
-	ldrb r0, [r0, #1]
-	rsbs r0, r0, #0
-	lsrs r1, r0, #0x1f
-.L080D73D4:
-	strb r1, [r5, #1]
-.L080D73D6:
-	add sp, #8
-	pop {r4, r5, r6}
-	pop {r0}
-	bx r0
-	.align 2, 0
-.L080D73E0: .4byte 0xFFFFFF00
+	.section ".text.after_resource_subtree_clear", "ax", %progbits
 
 	thumb_func_start func_080D73E4
 func_080D73E4: @ 0x080D73E4
@@ -7509,47 +7322,6 @@ func_080D7634: @ 0x080D7634
 	adds r0, r4, #0
 	bl func_080D6F1C
 .L080D7672:
-	pop {r4, r5}
-	pop {r0}
-	bx r0
-
-	thumb_func_start func_080D7678
-func_080D7678: @ 0x080D7678
-	push {r4, r5, lr}
-	adds r4, r0, #0
-	cmp r2, #7
-	bhi .L080D76B0
-	movs r0, #0x80
-	ands r0, r1
-	adds r5, r4, #4
-	adds r3, r5, #0
-	cmp r0, #0
-	beq .L080D7690
-	adds r3, r4, #0
-	adds r3, #0x20
-.L080D7690:
-	adds r0, r3, #0
-	bl func_080D7634
-	movs r0, #0
-	strb r0, [r4]
-	movs r1, #0
-	ldrb r0, [r5, #1]
-	cmp r0, #0
-	beq .L080D76AC
-	adds r0, r4, #0
-	adds r0, #0x20
-	ldrb r0, [r0, #1]
-	rsbs r0, r0, #0
-	lsrs r1, r0, #0x1f
-.L080D76AC:
-	strb r1, [r4, #1]
-	b .L080D76BA
-.L080D76B0:
-	cmp r2, #8
-	bne .L080D76BA
-	adds r0, r4, #0
-	bl func_080D6F3C
-.L080D76BA:
 	pop {r4, r5}
 	pop {r0}
 	bx r0
