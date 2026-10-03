@@ -2963,57 +2963,7 @@ func_080A03A4: @ 0x080A03A4
 	strb r2, [r0, #3]
 	bx lr
 
-	thumb_func_start func_080A03B8
-func_080A03B8: @ 0x080A03B8
-	push {r4, r5, r6, lr}
-	sub sp, #8
-	adds r6, r0, #0
-	adds r0, r1, #0
-	adds r1, r2, #0
-	bl func_080A0030
-	adds r1, r0, #0
-	cmp r1, #0
-	beq .L080A03D4
-	adds r0, r6, #0
-	bl GetLocation__C3Npc
-	b .L080A040E
-.L080A03D4:
-	mov r1, sp
-	movs r4, #2
-	ldrh r2, [r1]
-	ldr r3, .L080A0418 @ =0xFFFFFC00
-	adds r0, r3, #0
-	ands r0, r2
-	orrs r0, r4
-	strh r0, [r1]
-	movs r5, #0
-	ldrb r4, [r1, #1]
-	movs r2, #3
-	adds r0, r2, #0
-	ands r0, r4
-	strb r0, [r1, #1]
-	ldrh r4, [r1, #2]
-	adds r0, r3, #0
-	ands r0, r4
-	strh r0, [r1, #2]
-	ldrb r0, [r1, #3]
-	ands r2, r0
-	strb r2, [r1, #3]
-	ldrh r0, [r1, #4]
-	ands r3, r0
-	strh r3, [r1, #4]
-	adds r0, r6, #0
-	movs r2, #6
-	bl memcpy
-	strb r5, [r6, #6]
-.L080A040E:
-	adds r0, r6, #0
-	add sp, #8
-	pop {r4, r5, r6}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.L080A0418: .4byte 0xFFFFFC00
+    .section .text.after_character_location, "ax", %progbits
 
 	thumb_func_start func_080A041C
 func_080A041C: @ 0x080A041C

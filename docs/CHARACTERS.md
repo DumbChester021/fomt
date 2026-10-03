@@ -1,33 +1,246 @@
-# Character name lookup
+# Character identity, state, and lifecycle
 
-`GetCharacterName` is a byte-matching reconstruction of the original helper at
-0x0809FE3C. The original `func_0809FE3C` symbol remains as an alias for
-assembly callers.
+This page describes the original US FoMT architecture recovered from source,
+assembly, and the matching ROM. An editable character registry or save
+extension has not been implemented.
 
-The retail character-name range is 0 through 42. IDs outside that range return
-the empty string at `gUnk_08104108`. Most valid IDs read a name pointer from
-the 43-entry table at `gUnk_08104258`; each entry is eight bytes, containing a
-name pointer followed by a second word whose semantics remain unresolved.
+## Recovered identity interface
 
-ID 35 is the only dynamic-name exception. It resolves the conditional child
-object in social state and returns that object's mutable name at offset 0x14.
-ID 0 uses the ordinary table path and its retail name pointer also targets the
-empty string.
+[character_info.hh](../include/character_info.hh) and
+[character_info.cc](../src/character_info.cc), together with
+[character_location.cc](../src/character_location.cc), expose four matching helpers.
+Their original assembly symbols remain aliases.
 
-## Expansion boundary
+| Helper | Retail range | Behavior |
+| --- | --- | --- |
+| `GetCharacterName` / `func_0809FE3C` | 0x0809FE3C..0x0809FE73 | Table name, special child name, or empty string |
+| `GetCharacterBirthday` / `func_0809FE74` | 0x0809FE74..0x080A002F | Packed birthday, six collision alternatives, or child date |
+| `GetCharacterNpc` / `func_080A0030` | 0x080A0030..0x080A01F7 | Pointer to a persistent social record, or null |
+| `GetCharacterLocation` / `func_080A03B8` | 0x080A03B8..0x080A041B | Persistent location, or map 2 / (0,0) / facing 0 |
 
-Appending text alone cannot add a character. Retail code validates IDs against
-the fixed maximum of 42, and a complete added character also needs persistent
-state, schedule insertion, runtime entity construction, scripts, and resources.
-The separately documented save-slot extension tail can hold mod-owned persistent
-state without changing the retail `GameState` payload.
+The name/birthday domain is **0..42 inclusive**, with 43 table records.
+`gCharacterInfo` and `gUnk_08104258` identify the same ROM table at 0x08104258.
+The table is currently a bounded 0x158-byte `.incbin` in
+[data_080F9EB8.s](../asm/data/data_080F9EB8.s), viewed through a typed header;
+it has not been converted to an editable C++ initializer.
 
-This interface exposes the current name boundary without changing behavior or
-claiming that the unresolved table word has a known meaning. Optional character
-expansion should remain separate from the matching baseline.
+| Entry offset | Size | Meaning |
+| --- | ---: | --- |
+| +0x00 | 4 | Name pointer |
+| +0x04 | 1 | Ordinary birthday: season in bits 0..1, one-based day in bits 2..6 |
+| +0x05 | 1 | Alternate birthday in the same encoding |
+| +0x06 | 2 | Padding; zero in all 43 retail entries |
+
+The second word is therefore partly decoded, rather than wholly unknown.
+`GameDate.day` is zero-based: the helper subtracts one from the stored day and
+applies the retail modulo behavior when it exceeds 29. Keep that unsigned
+behavior when matching, including zero-filled entries.
+
+For IDs 3, 12, 19, 21, 25, and 31, the alternate birthday is selected when the
+ordinary birthday matches the supplied player date. ID 35 reads the mutable
+child name/date from the social-state child object at +0x004. ID 0 follows the
+ordinary table path and has an empty name. An ID greater than 42 returns an
+empty name and a birthday with Spring/encoded day 15 (calendar day 16).
+`GetCharacterNpc` returns null for ID 0 or an out-of-range ID; for ID 35 its
+child resolver can also return null when the child is absent.
+
+## Retail roster and persistent offsets
+
+Offsets below are relative to the social block at **GameState+0x1CD4**.
+Stored birthdays are ROM metadata, shown with one-based days; this table does
+not independently establish every character's canonical birthday. In
+particular, the repeated Spring 19 values for special residents must not be
+interpreted as proof of a gameplay birthday. `Lu` is the literal retail table
+label. Child values are dynamic despite its zero-filled table entry.
+
+| ID | Retail name / identity | Social offset | Stored birthday |
+| ---: | --- | --- | --- |
+| 0 | Empty-name entry | None | Zero-filled |
+| 1 | Lillia | 0x70 | Spring 19 |
+| 2 | Rick | 0x84 | Fall 27 |
+| 3 | Popuri | 0x98 | Summer 3 |
+| 4 | Barley | 0xb0 | Spring 17 |
+| 5 | May | 0xc4 | Winter 26 |
+| 6 | Saibara | 0xd8 | Spring 11 |
+| 7 | Gray | 0xf0 | Winter 6 |
+| 8 | Duke | 0x104 | Winter 15 |
+| 9 | Manna | 0x118 | Fall 11 |
+| 10 | Basil | 0x12c | Summer 11 |
+| 11 | Anna | 0x140 | Fall 23 |
+| 12 | Mary | 0x154 | Winter 20 |
+| 13 | Thomas | 0x16c | Summer 25 |
+| 14 | Harris | 0x180 | Summer 4 |
+| 15 | Ellen | 0x194 | Winter 13 |
+| 16 | Stu | 0x1a8 | Fall 5 |
+| 17 | Jeff | 0x1bc | Winter 29 |
+| 18 | Sasha | 0x1d0 | Spring 30 |
+| 19 | Karen | 0x1e4 | Fall 15 |
+| 20 | Doctor | 0x1fc | Fall 19 |
+| 21 | Elli | 0x210 | Spring 16 |
+| 22 | Carter | 0x228 | Fall 20 |
+| 23 | Cliff | 0x23c | Summer 6 |
+| 24 | Doug | 0x250 | Winter 11 |
+| 25 | Ann | 0x264 | Summer 17 |
+| 26 | Kai | 0x27c | Summer 22 |
+| 27 | Gotz | 0x290 | Fall 2 |
+| 28 | Zack | 0x2a8 | Summer 29 |
+| 29 | Won | 0x2bc | Winter 19 |
+| 30 | Gourmet | 0x2d0 | Spring 19 |
+| 31 | H. Goddess | 0x2e4 | Spring 8 |
+| 32 | Kappa | 0x2fc | Spring 19 |
+| 33 | Lou | 0x310 | Spring 19 |
+| 34 | Lu | 0x328 | Spring 19 |
+| 35 | Child (dynamic name) | 0x4 | Dynamic |
+| 36 | Staid | 0x33c | Spring 15 |
+| 37 | Nappy | 0x360 | Winter 22 |
+| 38 | Bold | 0x384 | Spring 4 |
+| 39 | Chef | 0x3a8 | Fall 14 |
+| 40 | Aqua | 0x3cc | Spring 26 |
+| 41 | Hoggy | 0x3f0 | Fall 10 |
+| 42 | Timid | 0x414 | Summer 16 |
+
+The fixed social block spans **0x478 bytes**, ending at GameState+0x214B;
+the next subsystem starts at +0x214C. It contains heterogeneous records and
+other social state. It is not a flat `Npc[43]` array, and gaps are not proven
+free extension space. Preserve these offsets and the 0x34F4-byte retail
+[save payload](SAVE_FORMAT.md).
+
+[Npc](../include/npc.hh) is 0x14 bytes and stores an 8-byte `ActorLocation`,
+8-bit friendship, five-bit days-since-spoken, conversation/gift/met flags,
+three five-bit schedule/path/point cursors, a ten-bit cursor field, and
+16-bit fields at +0x10 and +0x12 (animation). Its constructor starts friendship
+at 50 and animation at `NO_ANIM` (0xFFFF). `AddFriendship` clamps to 0..255;
+not every setter performs that clamp. Daily update resets conversation/gift
+flags and applies the existing decay rules.
+
+[Bachelorette](../include/bachelorette.hh) extends that record to 0x18 bytes
+with love and event progress. [HarvestSprite](../include/harvest_sprite.hh)
+is 0x24 bytes with task/minigame state. Child storage has additional special
+state. None is a vacant ordinary-NPC slot.
+
+## Daily scheduling
+
+[schedule_info.hh](../include/schedule_info.hh) defines the selector,
+schedule arrays, timed entries, paths, and two path-point formats. Times are
+minutes relative to 6 AM. Maps occupy ten bits in the location/path formats;
+facing and path-point representation have their own fields. Persistent
+schedule/path/point cursors occupy five bits each, so a wider metadata count
+alone does not make indices greater than 31 safe. `func_0803D688` indexes the
+selected schedule without checking `num_schedules`; selectors must return a
+valid index into their own descriptor.
+
+The matching helpers in [character_schedule.cc](../src/character_schedule.cc)
+retain their original callable aliases:
+
+- `ApplyNpcSchedule` / `func_0803D688` selects a descriptor's schedule, sets the initial location
+  (or `MAP_NONE` for an unusable selection), and resets the persistent cursors.
+- `InitializeCharacterSchedules` / `func_0803D7E4` applies **31 unconditional pairs**, for IDs 1..29, 33, and
+  34, followed by **one conditional child pair** for ID 35. There are 32
+  applications in total. This count is unrelated to the number of identities
+  or concrete runtime entity classes.
+- `func_08010F54` in [game_state.s](../asm/game_state.s) invokes registration
+  during day update after the existing social-state update.
+
+`ApplyNpcSchedule` calls the selector with the supplied context and uses the
+first timed entry's path. A null schedule array, selected schedule, entry array
+or path, or a zero entry count, selects `MAP_NONE` at (0,0), facing 0. Otherwise
+the path supplies starting map, signed x/y and facing. After `Npc::SetLocation`,
+the selected index is stored with five-bit truncation; the other two five-bit
+cursors and the ten-bit field are reset to zero. Selection indexes the array
+before truncation. No descriptor-count validation is added. Daily initialization
+uses the fixed social offsets above and its original conditional-child helper
+at 0x080A0A04.
+
+[data_schedules.cc](../src/data_schedules.cc) contains one experimental
+schedule definition (`ScheduleInfo_Unk_080F1A80`, used by Rick), not the full
+roster. [dump_schedule.py](../tools/scripts/dump_schedule.py) exports ROM
+schedules to JSON; [schedule_to_c.py](../tools/scripts/schedule_to_c.py)
+generates definitions. Signed coordinates and exact round-trip fidelity must
+be checked before treating these tools as an authoring pipeline.
+
+## Runtime entities and render objects
+
+Persistent `Npc`, runtime `ANpcEntity`, and `UnknownEntityThing` are distinct
+objects. [entity_npc.hh](../include/entity_npc.hh) exposes the shared
+`ANpcEntity` declaration and its concrete `LilliaEntity` subclass. In
+[npc_entity.cc](../src/npc_entity.cc), `ANpcEntity` references its
+persistent `Npc`; construction restores location/animation/cursors and
+destruction writes them back. Some movement/schedule methods in this C++ unit
+still contain naked assembly. A custom record must outlive its runtime entity.
+
+The base and Lillia entities are both **0x48 bytes**; Lillia adds no storage.
+The shared fields following the actor base are:
+
+| Offset | Field / proven use |
+| --- | --- |
+| +0x30 | Persistent `Npc *` |
+| +0x34 | Opaque context forwarded to schedule selection |
+| +0x38 | Schedule descriptor pointer |
+| +0x3C..+0x3E | Schedule, path and path-point indices |
+| +0x3F | Byte state; detailed meaning remains unresolved |
+| +0x40 | Restored ten-bit persistent field in a 16-bit runtime field |
+| +0x42 | Default argument, overridden by nonzero `Npc::unk_10` |
+| +0x44, +0x46 | Animation bases supplied during construction |
+
+The actual entity creation route is `func_0801A8E0` in
+[game_state.s](../asm/game_state.s). It accesses an indexed pointer slot at
+owner+0x008+4*selector, releases an existing object, then uses a 94-entry
+jump table for selectors 0..93. Its surrounding initialization iterates
+0..99. Raw code at **0x0801FD00** is an unchecked lookup of that same pointer
+array. Character IDs and entity selectors overlap for the original residents
+but are different domains: **entity selector 43 is already occupied**.
+Increasing `CHARACTER_COUNT` cannot resize or register these objects.
+
+A fully traced ordinary example is Lillia:
+
+| Step | Retail evidence |
+| --- | --- |
+| Select entity 1 | Factory jump table at 0x0801A924 points to 0x0801AEE4 |
+| Allocate NPC entity | Branch allocates **0x48** bytes and passes persistent state at GameState+0x1D44 (= social+0x070) |
+| Construct NPC | `LilliaEntity::LilliaEntity` / `func_08035AFC` calls `ANpcEntity` with schedule `gUnk_080F280C`, animation bases 0x25F/0x263, and default argument 0x3E2 |
+| Install concrete vtable | `vtable_unk_080E7198` |
+| Attach rendering | `AEntity::vfunc_10` calls entity virtual slot +0x30 only when the actor is on the current map |
+| Allocate effect | `LilliaEntity::vfunc_30` / `func_08035B38` at slot +0x30 which allocates **0x8C** bytes and calls the recovered effect constructor at 0x080324BC |
+
+The constructor and effect factory are matching C++ in
+[entity_lillia.cc](../src/entity_lillia.cc). The effect constructor receives
+`this, 4, 0x1B, 1, 0, 0, false`; resource meanings not established by the shared
+interface remain unnamed. The existing retail vtable stays in
+[vtables.s](../asm/vtables.s), with the normal C++ vtable symbol aliased by the
+linker. The map-dependent attachment is readable in [entity.cc](../src/entity.cc).
+
+**Entity virtual +0x30 creates an effect, not the NPC entity.**
+`GameObject` virtual +0x30 has yet another meaning: map height, declared in
+[unknown_types.hh](../include/unknown_types.hh). The call at this slot inside
+`func_0802CDCC` belongs to movement/map bounds, not NPC creation. Do not use
+slot numbers without identifying the receiver type.
+
+## Other fixed consumers and open boundaries
+
+`GetCharacterLocation` wraps persistent lookup and returns an `ActorLocation`
+by value. Its null-record fallback is map 2, x=0, y=0, facing=0; it does not
+create or register an NPC.
+`func_080A0518` scans IDs 1..42 for friendship while excluding a hard-coded
+subset. `func_080A041C` and `func_080A0490` explicitly inspect the six existing
+bachelorettes. These routines remain in
+[code_809E804.s](../asm/code_809E804.s). Widening the name helper alone would
+leave these behaviors unchanged.
+
+Dialogue needs both script bytecode and an interaction/trigger route. Graphics
+need compatible animation/frame providers, palettes, tile/OAM resources, and
+display assets. The added-NPC registry, native ID routing, asset authoring,
+save extension, romance integration, and runtime capacity are still design or
+research work.
 
 ## Matching validation
 
-The linker places `src/character_info.cc` between the two sections of
-`asm/code_809E804.s`, preserving `GetCharacterName` at 0x0809FE3C and the next
-retail function at 0x0809FE74. Run `make compare` after changing this interface.
+The linker keeps the original identity helpers and location helper at their
+retail positions, the two scheduling helpers at 0x0803D688..0x0803DA23, and
+Lillia's pair at 0x08035AFC..0x08035B63. Following assembly boundaries and
+all original callable aliases remain unchanged. The shared header introduces
+no duplicate vtable; existing `ANpcEntity` code remains byte-identical.
+
+Run `make compare` and `sha1sum -c fomt.sha1` after source/data/interface
+changes. Both forced full-ROM builds verified the five-function support unit
+with the tracked compiler. The unit adds 1,128 linked source bytes; documentation
+updates do not change the ROM or count as new source reconstruction.

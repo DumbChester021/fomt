@@ -49,4 +49,9 @@ struct ScheduleInfo
     Schedule const * const * schedules;
 };
 
+struct Npc;
+
+EC void ApplyNpcSchedule(Npc * npc, ScheduleInfo const * info, void const * context);
+EC void InitializeCharacterSchedules(void * social_state, void const * context);
+
 #endif // SCHEDULE_INFO_HH

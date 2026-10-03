@@ -21,6 +21,9 @@ func_080A47B4 = _._7UnkPoly;
 __vt_18UnknownEntityThing = vtable_unk_080E68B4;
 __vt_22UnknownEntityThingBase = vtable_unk_080E65E0;
 _._18UnknownEntityThing = func_080DC8F8;
+__vt_12LilliaEntity = vtable_unk_080E7198;
+func_08035AFC = __12LilliaEntityP10GameObjectP3NpcUi;
+func_08035B38 = vfunc_30__12LilliaEntity;
 
 MEMORY
 {
@@ -155,8 +158,12 @@ SECTIONS
         asm/code_entities_080320DC.o(.text.after_func_08032690);
         src/npc_entity.o(.text);
         asm/code_entities_08034CEC.o(.text);
+        src/entity_lillia.o(.text);
+        asm/code_entities_08034CEC.o(.text.after_lillia_entity);
 
         asm/code_0803A8A4.o(.text);
+        src/character_schedule.o(.text);
+        asm/code_0803A8A4.o(.text.after_character_schedules);
         src/script_engine.o(.text);
         asm/code_0803EE94.o(.text);
         src/sprite_animator.o(.text);
@@ -183,6 +190,8 @@ SECTIONS
         asm/code_809E804.o(.text);
         src/character_info.o(.text);
         asm/code_809E804.o(.text.after_character_info);
+        src/character_location.o(.text);
+        asm/code_809E804.o(.text.after_character_location);
         src/water_region.o(.text);
         src/code_080A4650.o(.text);
         src/map_data.o(.text);

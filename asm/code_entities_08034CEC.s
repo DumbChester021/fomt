@@ -1024,56 +1024,7 @@ func_08035AE0: @ 0x08035AE0
     pop {r1}
     bx r1
 
-    thumb_func_start func_08035AFC
-func_08035AFC: @ 0x08035AFC
-    push {r4, lr}
-    sub sp, #0x10
-    adds r4, r0, #0
-    ldr r0, .L08035B28 @ =gUnk_080F280C
-    str r0, [sp]
-    ldr r0, .L08035B2C @ =0x0000025F
-    str r0, [sp, #4]
-    adds r0, #4
-    str r0, [sp, #8]
-    ldr r0, .L08035B30 @ =0x000003E2
-    str r0, [sp, #0xc]
-    adds r0, r4, #0
-    bl __10ANpcEntityP10GameObjectP3NpcUiPCvUiUiUi
-    ldr r0, .L08035B34 @ =vtable_unk_080E7198
-    str r0, [r4, #0x14]
-    adds r0, r4, #0
-    add sp, #0x10
-    pop {r4}
-    pop {r1}
-    bx r1
-    .align 2, 0
-.L08035B28: .4byte gUnk_080F280C
-.L08035B2C: .4byte 0x0000025F
-.L08035B30: .4byte 0x000003E2
-.L08035B34: .4byte vtable_unk_080E7198
-
-    thumb_func_start func_08035B38
-func_08035B38: @ 0x08035B38
-    push {r4, lr}
-    sub sp, #0x10
-    adds r4, r0, #0
-    movs r0, #0x8c
-    bl __builtin_new
-    movs r1, #1
-    str r1, [sp]
-    movs r1, #0
-    str r1, [sp, #4]
-    str r1, [sp, #8]
-    add r2, sp, #0xc
-    strb r1, [r2]
-    adds r1, r4, #0
-    movs r2, #4
-    movs r3, #0x1b
-    bl func_080324BC
-    add sp, #0x10
-    pop {r4}
-    pop {r1}
-    bx r1
+    .section .text.after_lillia_entity, "ax", %progbits
 
     thumb_func_start func_08035B64
 func_08035B64: @ 0x08035B64

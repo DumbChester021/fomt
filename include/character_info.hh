@@ -5,6 +5,7 @@
 #include "unknown_types.hh"
 
 struct Npc;
+struct ActorLocation;
 
 enum CharacterId
 {
@@ -40,5 +41,7 @@ struct CharacterInfo
 EC char const * GetCharacterName(void const * social_state, unsigned int character_id);
 EC GameDate GetCharacterBirthday(void const * social_state, unsigned int character_id, GameDate const & player_date);
 EC Npc * GetCharacterNpc(void * social_state, unsigned int character_id);
+
+EC ActorLocation GetCharacterLocation(void * social_state, unsigned int character_id);
 
 #endif
