@@ -25948,26 +25948,6 @@ func_0801FB7C: @ 0x0801FB7C
 
     .section .text.after_entity_lookups, "ax", %progbits
 
-    thumb_func_start func_0801FD0C
-func_0801FD0C: @ 0x0801FD0C
-    push {r4, lr}
-    adds r0, #8
-    lsls r1, r1, #2
-    adds r4, r0, r1
-    ldr r1, [r4]
-    cmp r1, #0
-    beq .L0801FD2A
-    ldr r0, [r1, #0x14]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-    movs r0, #0
-    str r0, [r4]
-.L0801FD2A:
-    pop {r4}
-    pop {r0}
-    bx r0
 .L0801FD30:
     .byte 0x01, 0x49, 0x40, 0x18, 0x00, 0x68, 0x70, 0x47, 0x24, 0x10, 0x00, 0x00
 

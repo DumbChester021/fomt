@@ -24,6 +24,7 @@ _._18UnknownEntityThing = func_080DC8F8;
 __vt_12LilliaEntity = vtable_unk_080E7198;
 func_08035AFC = __12LilliaEntityP10GameObjectP3NpcUi;
 func_08035B38 = vfunc_30__12LilliaEntity;
+func_0801FD0C = vfunc_3C__10GameObjectUi;
 gUnk_08104258 = gCharacterInfo;
 
 MEMORY
