@@ -1,9 +1,9 @@
 #include "prelude.h"
 #include "hardware_transfer.hh"
 #include "entity_effect.hh"
+#include "resource_handle.hh"
 #include <stdlib.h>
 
-EC int func_08007D4C(void *, u32);
 EC GraphicsTransfer * func_080D3BC0(u32);
 
 static inline u32 const & MaxU32(u32 const & a, u32 const & b)

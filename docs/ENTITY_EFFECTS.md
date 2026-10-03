@@ -39,8 +39,10 @@ accesses now use the containing effect objects and preserve those offsets.
 
 `EffectBase` holds a game-object pointer at +0x00, an eight-byte handle at +0x04,
 two halfwords at +0x0C/+0x0E, a count at +0x10, sixteen byte values at +0x14, and
-a vtable pointer at +0x24. The complete meanings of the handle's first word and
-the two halfwords remain unresolved.
+a vtable pointer at +0x24. The handle contains a client word and a packed allocation ID; its client word
+and the two halfwords remain unresolved. See [resource handles](RESOURCE_HANDLES.md)
+for allocation starts, reference counts, generation validation, and the shared
+manager lifetime.
 
 ## Construction and updates
 

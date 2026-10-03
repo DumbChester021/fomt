@@ -1,4 +1,5 @@
 #include "prelude.h"
+#include "resource_handle.hh"
 #include <string.h>
 
 #pragma interface
@@ -13,34 +14,6 @@ struct UnkProviderVTable
 struct UnkProvider
 {
     UnkProviderVTable * vtable;
-};
-
-EC u32 func_08007B54(void *, u32);
-EC int func_08007D4C(void *);
-EC void func_08007C28(void *, u32);
-
-struct UnkHandleBase
-{
-    u32 unk_00;
-
-    UnkHandleBase();
-    ~UnkHandleBase();
-};
-
-struct UnkHandle : public UnkHandleBase
-{
-    u32 value;
-
-    UnkHandle(u32 arg)
-        : UnkHandleBase(),
-          value(func_08007B54(this, arg))
-    {
-    }
-
-    ~UnkHandle()
-    {
-        func_08007C28(this, value);
-    }
 };
 
 struct UnkPoly
@@ -65,7 +38,7 @@ UnkPoly::UnkPoly(
     : provider(provider_arg),
       handle(value)
 {
-    unk_0C = func_08007D4C(&handle);
+    unk_0C = handle.GetStart();
 
     volatile u8 zero = 0;
     count = 0;
@@ -94,7 +67,7 @@ UnkPoly::UnkPoly(UnkProvider * provider_arg, u32 value, u32 arg)
     : provider(provider_arg),
       handle(value)
 {
-    unk_0C = func_08007D4C(&handle);
+    unk_0C = handle.GetStart();
 
     u32 one = 1;
     volatile u8 zero = 0;
