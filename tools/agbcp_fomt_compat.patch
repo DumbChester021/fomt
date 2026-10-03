@@ -1,5 +1,50 @@
+diff --git a/g++/calls.c b/g++/calls.c
+index 4c01729c..184ba5c7 100644
+--- a/g++/calls.c
++++ b/g++/calls.c
+@@ -2011,7 +2011,19 @@ expand_call (exp, target, ignore)
+ 	  use_reg (&call_fusage, struct_value_rtx);
+     }
+ 
+-  funexp = prepare_call_address (funexp, fndecl, &call_fusage, reg_parm_seen);
++  if (! ((getenv ("AGBCC_DELAY_CONST_INDIRECT_CALL_ADDRESS")
++          && fndecl == 0
++          && reg_parm_seen
++          && GET_CODE (funexp) == CONST_INT)
++         || (getenv ("AGBCC_DELAY_MULTI_INDIRECT_CALL_ADDRESS")
++             && fndecl == 0
++             && reg_parm_seen
++             && num_actuals > 2
++             && current_function_decl
++             && DECL_INLINE (current_function_decl)
++             && GET_CODE (funexp) != CONST_INT
++             && GET_CODE (funexp) != SYMBOL_REF)))
++    funexp = prepare_call_address (funexp, fndecl, &call_fusage, reg_parm_seen);
+ 
+   /* Now do the register loads required for any wholly-register parms or any
+      parms which are passed both on the stack and in a register.  Their
+@@ -2084,6 +2096,19 @@ expand_call (exp, target, ignore)
+ 	}
+     }
+ 
++  if ((getenv ("AGBCC_DELAY_CONST_INDIRECT_CALL_ADDRESS")
++       && fndecl == 0
++       && reg_parm_seen
++       && GET_CODE (funexp) == CONST_INT)
++      || (getenv ("AGBCC_DELAY_MULTI_INDIRECT_CALL_ADDRESS")
++          && fndecl == 0
++          && reg_parm_seen
++          && num_actuals > 2
++          && current_function_decl
++          && DECL_INLINE (current_function_decl)
++          && GET_CODE (funexp) != CONST_INT
++          && GET_CODE (funexp) != SYMBOL_REF))
++    funexp = prepare_call_address (funexp, fndecl, &call_fusage, reg_parm_seen);
+   /* Perform postincrements before actually calling the function.  */
+   emit_queue ();
+ 
 diff --git a/g++/combine.c b/g++/combine.c
-index ea7859b7..5228e356 100644
+index ea7859b7..1656f161 100644
 --- a/g++/combine.c
 +++ b/g++/combine.c
 @@ -389,6 +389,68 @@ static struct undobuf undobuf;
@@ -165,7 +210,7 @@ index ea7859b7..5228e356 100644
  
    /* Clear this here, so that subsequent get_last_value calls are not
 diff --git a/g++/cse.c b/g++/cse.c
-index 95b56ead..8e971cbf 100644
+index 95b56ead..1fdbf3e6 100644
 --- a/g++/cse.c
 +++ b/g++/cse.c
 @@ -652,6 +652,7 @@ static rtx equiv_constant	PROTO((rtx));
@@ -424,7 +469,7 @@ index a9dc2720..1085bced 100644
  
  	  if (! some_not_needed)
 diff --git a/g++/local-alloc.c b/g++/local-alloc.c
-index d063aac7..7742713a 100644
+index d063aac7..aa9b130c 100644
 --- a/g++/local-alloc.c
 +++ b/g++/local-alloc.c
 @@ -190,6 +190,10 @@ static int *reg_next_in_qty;
@@ -713,32 +758,3 @@ index f56691c5..dfa9afd0 100644
  	       regclass (insns, max_reg_num ());
  	       local_alloc ();
  	     });
-diff --git a/g++/calls.c b/g++/calls.c
-index 4c01729..3bab55d 100644
---- a/g++/calls.c
-+++ b/g++/calls.c
-@@ -2011,7 +2011,11 @@ expand_call (exp, target, ignore)
- 	  use_reg (&call_fusage, struct_value_rtx);
-     }
- 
--  funexp = prepare_call_address (funexp, fndecl, &call_fusage, reg_parm_seen);
-+  if (! (getenv ("AGBCC_DELAY_CONST_INDIRECT_CALL_ADDRESS")
-+         && fndecl == 0
-+         && reg_parm_seen
-+         && GET_CODE (funexp) == CONST_INT))
-+    funexp = prepare_call_address (funexp, fndecl, &call_fusage, reg_parm_seen);
- 
-   /* Now do the register loads required for any wholly-register parms or any
-      parms which are passed both on the stack and in a register.  Their
-@@ -2084,6 +2088,11 @@ expand_call (exp, target, ignore)
- 	}
-     }
- 
-+  if (getenv ("AGBCC_DELAY_CONST_INDIRECT_CALL_ADDRESS")
-+      && fndecl == 0
-+      && reg_parm_seen
-+      && GET_CODE (funexp) == CONST_INT)
-+    funexp = prepare_call_address (funexp, fndecl, &call_fusage, reg_parm_seen);
-   /* Perform postincrements before actually calling the function.  */
-   emit_queue ();
- 

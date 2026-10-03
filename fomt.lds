@@ -136,6 +136,8 @@ SECTIONS
         asm/code_entities.o(.text.after_func_0802A7E0);
         src/entity_actor.o(.text);
         asm/code_entities_080320DC.o(.text);
+        src/code_entity_08032690.o(.text);
+        asm/code_entities_080320DC.o(.text.after_func_08032690);
         src/npc_entity.o(.text);
         asm/code_entities_08034CEC.o(.text);
 
