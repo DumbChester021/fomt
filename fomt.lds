@@ -90,7 +90,10 @@ SECTIONS
         src/resource_handle.o(.text.resource_handle_ops);
         asm/hardware.o(.text.after_resource_handle_ops);
         src/resource_handle.o(.text.resource_block_reset);
+        src/resource_handle.o(.text.resource_block_ranges);
         asm/hardware.o(.text.after_resource_block_reset);
+        src/resource_handle.o(.text.resource_block_free);
+        asm/hardware.o(.text.after_resource_block_free);
         src/hardware_context.o(.text.hardware_get_context);
         asm/hardware.o(.text.after_hardware_get_context);
         src/hardware_context.o(.text.hardware_accessors);
@@ -222,6 +225,9 @@ SECTIONS
         asm/code_linkonce.o(.text.code_080D3BC0);
         *(.gnu.linkonce.t.__as__6AnimalRC6Animal);
         asm/code_linkonce.o(.text.code_080D68C0);
+        src/resource_handle.o(.text.resource_child_free);
+        src/resource_handle.o(.text.resource_entry_pool_init);
+        asm/code_linkonce.o(.text.after_resource_entry_pool_init);
         *(.gnu.linkonce.t.__as__5SheepRC5Sheep);
         *(.gnu.linkonce.t.__as__3CowRC3Cow);
         *(.gnu.linkonce.t.__as__9LivestockRC9Livestock);

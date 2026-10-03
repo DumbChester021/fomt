@@ -7554,69 +7554,7 @@ func_080D7678: @ 0x080D7678
 	pop {r0}
 	bx r0
 
-	thumb_func_start func_080D76C0
-func_080D76C0: @ 0x080D76C0
-	push {r4, r5, lr}
-	adds r4, r0, #0
-	cmp r2, #8
-	bhi .L080D76FA
-	movs r0, #0x80
-	lsls r0, r0, #1
-	ands r0, r1
-	adds r5, r4, #4
-	adds r3, r5, #0
-	cmp r0, #0
-	beq .L080D76DA
-	adds r3, r4, #0
-	adds r3, #0x40
-.L080D76DA:
-	adds r0, r3, #0
-	bl func_080D7678
-	movs r0, #0
-	strb r0, [r4]
-	movs r1, #0
-	ldrb r0, [r5, #1]
-	cmp r0, #0
-	beq .L080D76F6
-	adds r0, r4, #0
-	adds r0, #0x40
-	ldrb r0, [r0, #1]
-	rsbs r0, r0, #0
-	lsrs r1, r0, #0x1f
-.L080D76F6:
-	strb r1, [r4, #1]
-	b .L080D7704
-.L080D76FA:
-	cmp r2, #9
-	bne .L080D7704
-	adds r0, r4, #0
-	bl func_080D6F5C
-.L080D7704:
-	pop {r4, r5}
-	pop {r0}
-	bx r0
-	.align 2, 0
-
-	thumb_func_start func_080D770C
-func_080D770C: @ 0x080D770C
-	push {lr}
-	adds r3, r0, #0
-	lsls r1, r1, #3
-	subs r1, #8
-	adds r1, r3, r1
-	str r2, [r1]
-	cmp r1, r3
-	beq .L080D7726
-.L080D771C:
-	adds r0, r1, #0
-	subs r1, #8
-	str r0, [r1]
-	cmp r1, r3
-	bne .L080D771C
-.L080D7726:
-	adds r0, r1, #0
-	pop {r1}
-	bx r1
+	.section ".text.after_resource_entry_pool_init"
 
 	thumb_func_start func_080D772C
 func_080D772C: @ 0x080D772C

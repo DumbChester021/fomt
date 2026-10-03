@@ -1,5 +1,6 @@
 #include "resource_handle.hh"
 #include "utility/bit_array.hh"
+#include <algorithm>
 #include <new>
 
 union ResourceEntry
@@ -24,7 +25,7 @@ union ResourceEntry
     }
 };
 
-EC ResourceEntry * func_080D770C(ResourceEntry *, u32, ResourceEntry *);
+EC ResourceEntry * func_080D770C(ResourceEntry *, u32, ResourceEntry *) SECTION(".text.resource_entry_pool_init");
 
 struct ResourceEntryPool
 {
@@ -59,6 +60,9 @@ struct ResourceBlock
     ResourceBlock<Order - 1> children[2];
 
     ResourceBlock() : full(0), empty(1) {}
+    u8 IsFull() const { return full; }
+    u8 IsEmpty() const { return empty; }
+    enum { HalfSize = 1 << (Order - 1) };
 };
 
 template <>
@@ -93,7 +97,7 @@ struct ResourceManager
 };
 
 EC ResourceManager * gUnk_03000408;
-EC void func_080080A0(ResourceBlock<10> *, u32, u32);
+EC void func_080080A0(ResourceBlock<10> *, u32, u32) SECTION(".text.resource_block_free");
 
 static inline bool ValidResourceStart(u32 const & value)
 {
@@ -266,4 +270,104 @@ EC void func_08007EC8(ResourceBlock<10> * blocks)
     func_080D6F5C(&blocks->children[0]);
     blocks->full = 0;
     blocks->empty = 1;
+}
+
+EC void func_08007EE8(ResourceBlock<10> *, u32, u32) SECTION(".text.resource_block_ranges");
+EC void func_08007F84(ResourceBlock<10> *, u32, u32) SECTION(".text.resource_block_ranges");
+EC void func_080D7118(ResourceBlock<9> *, u32, u32);
+EC void func_080D734C(ResourceBlock<9> *, u32, u32);
+EC void func_080D76C0(ResourceBlock<9> *, u32, u32) SECTION(".text.resource_child_free");
+EC void func_080D7678(ResourceBlock<8> *, u32, u32);
+
+EC void func_08007EE8(ResourceBlock<10> * blocks, u32 start, u32 size)
+{
+    if (start < 1024 && size != 0)
+    {
+        if (start == 0 && size >= 1024)
+            func_08007EA8(blocks);
+        else
+        {
+            if (start < 512)
+            {
+                u32 left_size = min(size, 512 - start);
+                func_080D7118(&blocks->children[0], start, left_size);
+            }
+            const u32 half = ResourceBlock<10>::HalfSize;
+            u32 end = start + size;
+            if (end > half)
+            {
+                u32 offset = start >= half ? start - half : 0;
+                u32 remaining = end - half;
+                remaining -= offset;
+                func_080D7118(&blocks->children[1], offset, remaining);
+            }
+            blocks->full = blocks->children[0].IsFull() && blocks->children[1].IsFull();
+            blocks->empty = 0;
+        }
+    }
+}
+
+EC void func_08007F84(ResourceBlock<10> * blocks, u32 start, u32 size)
+{
+    if (start < 1024 && size != 0)
+    {
+        if (start == 0 && size >= 1024)
+            func_08007EC8(blocks);
+        else
+        {
+            if (start < 512)
+                func_080D734C(&blocks->children[0], start, min(size, 512 - start));
+            const u32 half = ResourceBlock<10>::HalfSize;
+            u32 end = start + size;
+            if (end > half)
+            {
+                u32 offset = start >= half ? start - half : 0;
+                u32 remaining = end - half;
+                remaining -= offset;
+                func_080D734C(&blocks->children[1], offset, remaining);
+            }
+            blocks->full = 0;
+            blocks->empty = blocks->children[0].IsEmpty() && blocks->children[1].IsEmpty();
+        }
+    }
+}
+
+EC void func_080080A0(ResourceBlock<10> * blocks, u32 start, u32 order)
+{
+    if (order < 10)
+    {
+        ResourceBlock<9> * child = start & 512
+            ? &blocks->children[1] : &blocks->children[0];
+        func_080D76C0(child, start, order);
+        blocks->full = 0;
+        blocks->empty = blocks->children[0].IsEmpty() && blocks->children[1].IsEmpty();
+    }
+    else if (order == 10)
+        func_08007EC8(blocks);
+}
+
+EC void func_080D76C0(ResourceBlock<9> * blocks, u32 start, u32 order)
+{
+    if (order < 9)
+    {
+        ResourceBlock<8> * child = start & 256
+            ? &blocks->children[1] : &blocks->children[0];
+        func_080D7678(child, start, order);
+        blocks->full = 0;
+        blocks->empty = blocks->children[0].IsEmpty() && blocks->children[1].IsEmpty();
+    }
+    else if (order == 9)
+        func_080D6F5C(blocks);
+}
+
+EC ResourceEntry * func_080D770C(ResourceEntry * entries, u32 count, ResourceEntry * tail)
+{
+    ResourceEntry * entry = entries + (count - 1);
+    entry->next = tail;
+    while (entry != entries)
+    {
+        ResourceEntry * next = entry--;
+        entry->next = next;
+    }
+    return entry;
 }
