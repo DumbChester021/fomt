@@ -24,6 +24,7 @@ _._18UnknownEntityThing = func_080DC8F8;
 __vt_12LilliaEntity = vtable_unk_080E7198;
 func_08035AFC = __12LilliaEntityP10GameObjectP3NpcUi;
 func_08035B38 = vfunc_30__12LilliaEntity;
+gUnk_08104258 = gCharacterInfo;
 
 MEMORY
 {
@@ -284,6 +285,8 @@ SECTIONS
         src/data_livestock_day_update_info.o(.rodata);
         src/data_cursed_tool_requirements.o(.rodata);
         asm/data/data_080F9EB8.o(.rodata.after_cursed_tool_requirements);
+        src/data_character_info.o(.rodata);
+        asm/data/data_080F9EB8.o(.rodata.after_character_info);
         src/data_water_regions.o(.rodata);
         asm/data/data_080F9EB8.o(.rodata.after_water_regions);
         . = ALIGN(4); src/sound_data.o(.rodata.*);

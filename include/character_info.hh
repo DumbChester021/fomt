@@ -38,6 +38,8 @@ struct CharacterInfo
     STRUCT_PAD(0x06, 0x08);
 };
 
+EC CharacterInfo const gCharacterInfo[CHARACTER_COUNT];
+
 EC char const * GetCharacterName(void const * social_state, unsigned int character_id);
 EC GameDate GetCharacterBirthday(void const * social_state, unsigned int character_id, GameDate const & player_date);
 EC Npc * GetCharacterNpc(void * social_state, unsigned int character_id);

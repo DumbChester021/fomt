@@ -20,9 +20,13 @@ Their original assembly symbols remain aliases.
 
 The name/birthday domain is **0..42 inclusive**, with 43 table records.
 `gCharacterInfo` and `gUnk_08104258` identify the same ROM table at 0x08104258.
-The table is currently a bounded 0x158-byte `.incbin` in
-[data_080F9EB8.s](../asm/data/data_080F9EB8.s), viewed through a typed header;
-it has not been converted to an editable C++ initializer.
+The complete 0x158-byte table is an editable C++ initializer in
+[data_character_info.cc](../src/data_character_info.cc), exposed as
+`gCharacterInfo[CHARACTER_COUNT]` by the shared header. Its 43 entries preserve
+all original name pointers, packed birthdays, zero padding and index meanings.
+The legacy `gUnk_08104258` name remains a linker alias. Name strings remain in
+the original bounded pool in [data_080F9EB8.s](../asm/data/data_080F9EB8.s);
+this table recovery does not relocate or replace them.
 
 | Entry offset | Size | Meaning |
 | --- | ---: | --- |
@@ -244,3 +248,12 @@ Run `make compare` and `sha1sum -c fomt.sha1` after source/data/interface
 changes. Both forced full-ROM builds verified the five-function support unit
 with the tracked compiler. The unit adds 1,128 linked source bytes; documentation
 updates do not change the ROM or count as new source reconstruction.
+
+The readonly character table occupies exactly 0x08104258..0x081043AF. Its
+following `bad_alloc` data starts at 0x081043B0, and the next named block stays
+at 0x081043BC. The table uses its own minimal translation unit, between the
+original assembly data sections, so unrelated constants cannot alter its size.
+Layout and full-ROM checks preserve one-byte birthday fields, eight-byte
+records, all 43 entries and the original identity-helper code. Recovering
+344 data bytes does not increase the executable-code percentage or extend the
+accepted identity range.

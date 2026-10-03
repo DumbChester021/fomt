@@ -2158,12 +2158,7 @@ gUnk_0810411D:
 gUnk_08104122:
 	.incbin "baserom.gba", 0x104122, 0x136
 
-	.global gCharacterInfo
-	.global gUnk_08104258
-gCharacterInfo:
-gUnk_08104258:
-	@ CharacterInfo[43]
-	.incbin "baserom.gba", 0x104258, 0x158
+	.section .rodata.after_character_info, "a", %progbits
 
 	@ "bad_alloc"
 	.incbin "baserom.gba", 0x1043B0, 0x0C
