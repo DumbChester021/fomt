@@ -76,6 +76,8 @@ struct UnkMapBox : public Box
 // Compatibility name for existing users of the terrain view.
 typedef TerrainMapView UnkMap;
 
+struct AEntity;
+
 // TODO: move elsewhere
 struct GameObject
 {
@@ -91,10 +93,10 @@ struct GameObject
     virtual i32 vfunc_2C(u32 map_id); // ok: get map width
     virtual i32 vfunc_30(u32 map_id); // ok: get map height
     virtual UnkMap GetLocationTerrain(u32 map_id);
-    virtual void vfunc_38();
-    virtual void vfunc_3C();
-    virtual void vfunc_40();
-    virtual void vfunc_44();
+    virtual void vfunc_38(u32 entity_selector);
+    virtual void vfunc_3C(u32 entity_selector);
+    virtual AEntity * vfunc_40(u32 entity_selector);
+    virtual AEntity * vfunc_44(u32 entity_selector);
     virtual void vfunc_48();
     virtual void vfunc_4C();
     virtual void vfunc_50();

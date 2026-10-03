@@ -148,6 +148,8 @@ SECTIONS
         asm/game_state.o(.text.after_time_period);
         src/game_object_discard.o(.text);
         asm/game_state.o(.text.after_discarded_item);
+        src/game_object_entity_lookup.o(.text);
+        asm/game_state.o(.text.after_entity_lookups);
         src/entity.o(.text);
         src/code_entity_08020018.o(.text);
         asm/code_entities.o(.text);
