@@ -24,13 +24,14 @@ struct UnkHandleBase
 {
     /* +00 */ u32 unk_00;
 
-    UnkHandleBase();
+    UnkHandleBase() SECTION(".text.resource_handle_ctor");
     ~UnkHandleBase() SECTION(".text.resource_handle_dtor");
-    u32 Acquire(u32) asm("func_08007B54");
+    u32 Acquire(u32) asm("func_08007B54") SECTION(".text.resource_handle_acquire");
     void Release(u32) asm("func_08007C28") SECTION(".text.resource_handle_ops");
     u32 Retain(u32) asm("func_08007CD8") SECTION(".text.resource_handle_ops");
     int GetStart(u32) asm("func_08007D4C") SECTION(".text.resource_handle_ops");
     u32 GetOrder(u32) asm("func_08007DB8") SECTION(".text.resource_handle_ops");
+    u32 GetReferences(u32) asm("func_08007E24") SECTION(".text.resource_handle_ops");
 };
 
 EC u32 func_08007B54(void *, u32);

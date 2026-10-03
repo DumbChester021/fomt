@@ -57,7 +57,8 @@ through 6 have full/empty bytes and two children; order 5 is a 32-bit
 occupancy word. The corresponding sizes are 0xFC, 0x7C, 0x3C, 0x1C, 0x0C,
 and 4 bytes. Allocation orders 0 through 10 request `1 << order` units.
 The reservation routine invalidates overlapping entries and updates the
-reserved interval. These allocator and reservation methods remain assembly.
+reserved interval. Reservation, block allocation/release, and subtree helpers
+remain assembly. The root fill and clear routines are recovered in source.
 
 The client constructor lazily allocates the manager and increments its
 client count. It does not write the client's first word. It also does not
@@ -72,11 +73,16 @@ object. The resource-owning `UnkHandle` releases its resource first.
 
 | Entry | Method | Behavior |
 | --- | --- | --- |
+| `08007874` | `UnkHandleBase` constructor | lazily constructs the manager and increments clients |
 | `080079E8` | `UnkHandleBase` destructor | decrements clients; deletes the manager at zero; honors destructor flags |
+| `08007B54` | `Acquire(order)` | allocates a block and entry; returns a packed value, or zero |
 | `08007C28` | `Release(value)` | validates; decrements references; returns the block and entry at zero |
 | `08007CD8` | `Retain(value)` | validates; increments references; returns the original value on success |
 | `08007D4C` | `GetStart(value)` | validates; returns start, or -1 |
 | `08007DB8` | `GetOrder(value)` | validates; returns order, or 11 |
+| `08007E24` | `GetReferences(value)` | validates; returns references, or zero |
+| `08007EA8` | root fill | fills both children, then marks the root full and nonempty |
+| `08007EC8` | root clear | clears both children, then marks the root empty and nonfull |
 
 `Retain` rejects reference-count overflow: it restores the previous count and
 returns zero. Invalid handles also return zero. `Release` ignores invalid
@@ -84,10 +90,14 @@ handles. Releasing the last reference frees the allocation, clears the entry
 generation and occupancy bit, returns the entry to the pool, and decrements
 the active-entry count.
 
-Construction at `08007874` and acquisition at `08007B54` remain assembly.
 Acquisition allocates a block before taking an entry, rolls the block back
 when the pool is empty, and sets the entry reference count to one. Its
 generation counter increments and wraps 65535 to one.
+
+Manager construction initializes occupancy, the entry free list, the block
+tree, active/client counts, and the reserved interval. Root fill visits child
+zero before child one; root clear visits child one before child zero. Both
+update the root flags after their subtree calls.
 
 The effect constructors in `src/code_080A46AC.cc` use the shared handle type
 and its inline `GetStart()` forwarding method. The forwarding method passes
@@ -99,11 +109,20 @@ and [hardware transfers](HARDWARE_TRANSFER.md) for the upload queue.
 
 ## Retail integration
 
-`src/resource_handle.cc` contains the destructor at
-`080079E8..08007A27` and the four consecutive resource operations at
-`08007C28..08007E23`. The order query's last two bytes are section alignment.
-The constructor, acquisition, copy-constructor island, and surrounding
-assembly retain their retail positions.
+`src/resource_handle.cc` owns these retail ranges:
+
+| Range | Source boundary |
+| --- | --- |
+| `08007874..080079CF` | client construction and inlined manager construction |
+| `080079E8..08007A27` | client destruction |
+| `08007B54..08007C27` | acquisition |
+| `08007C28..08007E8B` | release, retain, and three queries |
+| `08007EA8..08007EE7` | root fill and clear |
+
+Acquisition, the order and reference queries, and root clear each have two
+ordinary alignment bytes after their function bodies. The raw copy-constructor
+island at `080079D0..080079E7`, reservation at `08007A28..08007B53`, and tiny
+query helpers at `08007E8C..08007EA7` retain their assembly positions.
 
 Use the pinned compiler installed by `tools/install_agbcp.sh` and validate
 with `make -B -j4 compare`. The required ROM is 8,388,608 bytes with SHA1

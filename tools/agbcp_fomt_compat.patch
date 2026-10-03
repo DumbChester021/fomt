@@ -549,6 +549,26 @@ index a9dc2720..1085bced 100644
  	    }
  
  	  if (! some_not_needed)
+diff --git a/g++/global.c b/g++/global.c
+index 03b7288c..acc56131 100644
+--- a/g++/global.c
++++ b/g++/global.c
+@@ -821,6 +821,15 @@ allocno_compare (v1p, v2p)
+   if (pri2 - pri1)
+     return pri2 - pri1;
+ 
++  /* Prefer pointer registers when allocation priorities are equal.  */
++  if (getenv ("AGBCC_PREFER_POINTER_ALLOC_TIE"))
++    {
++      int ptr1 = REGNO_POINTER_FLAG (allocno_reg[v1]) != 0;
++      int ptr2 = REGNO_POINTER_FLAG (allocno_reg[v2]) != 0;
++      if (ptr1 != ptr2)
++        return ptr2 - ptr1;
++    }
++
+   /* If regs are equally good, sort by allocno,
+      so that the results of qsort leave nothing to chance.  */
+   return v1 - v2;
 diff --git a/g++/local-alloc.c b/g++/local-alloc.c
 index d063aac7..aa9b130c 100644
 --- a/g++/local-alloc.c
@@ -754,7 +774,7 @@ index d063aac7..aa9b130c 100644
  	      && ! TEST_HARD_REG_BIT (qty_phys_copy_sugg[reg_qty[sreg]], ureg))
  	    {
 diff --git a/g++/toplev.c b/g++/toplev.c
-index f56691c5..dfa9afd0 100644
+index f56691c5..2ff98fd6 100644
 --- a/g++/toplev.c
 +++ b/g++/toplev.c
 @@ -41,6 +41,7 @@ Boston, MA 02111-1307, USA.  */
@@ -839,3 +859,17 @@ index f56691c5..dfa9afd0 100644
  	       regclass (insns, max_reg_num ());
  	       local_alloc ();
  	     });
+@@ -4240,6 +4294,13 @@ rest_of_compilation (decl)
+ 
+   if (optimize > 0)
+     {
++      /* Retry jump threading after reload has removed intervening copies.  */
++      if (flag_thread_jumps && getenv ("AGBCC_THREAD_JUMPS_AFTER_RELOAD"))
++        {
++          TIMEVAR (jump_time, reg_scan (insns, max_reg_num (), 0));
++          TIMEVAR (jump_time, thread_jumps (insns, max_reg_num (), 0));
++        }
++
+       TIMEVAR (jump_time, jump_optimize (insns, JUMP_CROSS_JUMP,
+ 					 JUMP_NOOP_MOVES,
+ 					 !JUMP_AFTER_REGSCAN));

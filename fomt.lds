@@ -15,7 +15,7 @@ gClockTable = 0x08139CFC;
 gXcmdTable = 0x08139D30;
 
 __vt_7UnkPoly = vtable_unk_080E82D8;
-__13UnkHandleBase = func_08007874;
+func_08007874 = __13UnkHandleBase;
 func_080079E8 = _._13UnkHandleBase;
 func_080A47B4 = _._7UnkPoly;
 __vt_18UnknownEntityThing = vtable_unk_080E68B4;
@@ -82,10 +82,15 @@ SECTIONS
         asm/new_game.o(.text);
         src/hardware.o(.text);
         asm/hardware.o(.text);
+        src/resource_handle.o(.text.resource_handle_ctor);
+        asm/hardware.o(.text.after_resource_handle_ctor);
         src/resource_handle.o(.text.resource_handle_dtor);
         asm/hardware.o(.text.after_resource_handle_dtor);
+        src/resource_handle.o(.text.resource_handle_acquire);
         src/resource_handle.o(.text.resource_handle_ops);
         asm/hardware.o(.text.after_resource_handle_ops);
+        src/resource_handle.o(.text.resource_block_reset);
+        asm/hardware.o(.text.after_resource_block_reset);
         src/hardware_context.o(.text.hardware_get_context);
         asm/hardware.o(.text.after_hardware_get_context);
         src/hardware_context.o(.text.hardware_accessors);
