@@ -18,6 +18,9 @@ __vt_7UnkPoly = vtable_unk_080E82D8;
 __13UnkHandleBase = func_08007874;
 _._13UnkHandleBase = func_080079E8;
 func_080A47B4 = _._7UnkPoly;
+__vt_18UnknownEntityThing = vtable_unk_080E68B4;
+__vt_22UnknownEntityThingBase = vtable_unk_080E65E0;
+_._18UnknownEntityThing = func_080DC8F8;
 
 MEMORY
 {
@@ -136,7 +139,7 @@ SECTIONS
         asm/code_entities.o(.text.after_func_0802A7E0);
         src/entity_actor.o(.text);
         asm/code_entities_080320DC.o(.text);
-        src/code_entity_08032690.o(.text);
+        src/entity_effect.o(.text);
         asm/code_entities_080320DC.o(.text.after_func_08032690);
         src/npc_entity.o(.text);
         asm/code_entities_08034CEC.o(.text);
@@ -218,6 +221,8 @@ SECTIONS
         *(.gnu.linkonce.t.push_back__t8FixedVec2Z9ToolStackUl8G9ToolStack);
         *(.gnu.linkonce.t.push_front__t8FixedVec2Z9ToolStackUl8G9ToolStack);
         asm/code_linkonce.o(.text.code_080D7CFC);
+        src/entity_effect_dtor.o(.text);
+        asm/code_linkonce.o(.text.after_func_080DC8F8);
         *(.gnu.linkonce.t.__lower_bound__H4ZPC12JumpTableEntZiZ28ScriptJumpTableSearchCompareZl_X01T0RCX11X21PX31_X01);
         asm/code_linkonce.o(.text.code_080E0EF0);
 
@@ -226,6 +231,8 @@ SECTIONS
         . = ALIGN(4); asm/vtables.o(.rodata);
         *(.gnu.linkonce.d.__vt_7AEntity);
         . = ALIGN(4); asm/vtables.o(.rodata.080E6284);
+        src/entity_effect_vtable.o(.rodata);
+        asm/vtables.o(.rodata.after_vtable_unk_080E68B4);
         *(.gnu.linkonce.d.__vt_13AScriptEngine);
         . = ALIGN(4); asm/vtables.o(.rodata.080E7824);
 

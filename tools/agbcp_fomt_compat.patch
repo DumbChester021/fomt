@@ -210,7 +210,7 @@ index ea7859b7..1656f161 100644
  
    /* Clear this here, so that subsequent get_last_value calls are not
 diff --git a/g++/cse.c b/g++/cse.c
-index 95b56ead..1fdbf3e6 100644
+index 95b56ead..4b317b53 100644
 --- a/g++/cse.c
 +++ b/g++/cse.c
 @@ -652,6 +652,7 @@ static rtx equiv_constant	PROTO((rtx));
@@ -221,7 +221,63 @@ index 95b56ead..1fdbf3e6 100644
  static void cse_insn		PROTO((rtx, rtx));
  static int note_mem_written	PROTO((rtx));
  static void invalidate_from_clobbers PROTO((rtx));
-@@ -6236,6 +6237,46 @@ record_jump_cond (code, mode, op0, op1, reversed_nonequality)
+@@ -2574,6 +2575,43 @@ cse_rtx_varies_p (x)
+   return rtx_varies_p (x);
+ }
+ 
++/* Recognize a zero quantity headed by a source variable with more than
++   one assignment.  Compiler temporaries can share the same head.  */
++
++static int
++multiset_uservar_zero_quantity_p (x)
++     rtx x;
++{
++  int regno, qty, first;
++  rtx value;
++
++  if (GET_CODE (x) != REG || GET_MODE (x) != SImode)
++    return 0;
++
++  regno = REGNO (x);
++  if (! REGNO_QTY_VALID_P (regno))
++    return 0;
++
++  qty = reg_qty[regno];
++  first = qty_first_reg[qty];
++  value = qty_const[qty];
++  return (first >= FIRST_PSEUDO_REGISTER
++          && REG_USERVAR_P (regno_reg_rtx[first])
++          && REG_N_SETS (first) > 1
++          && value != 0 && GET_CODE (value) == CONST_INT
++          && INTVAL (value) == 0);
++}
++
++/* Recognize the low byte of such a quantity.  */
++
++static int
++multiset_uservar_narrow_zero_p (x)
++     rtx x;
++{
++  return (x != 0 && GET_CODE (x) == SUBREG && GET_MODE (x) == QImode
++          && multiset_uservar_zero_quantity_p (SUBREG_REG (x)));
++}
++
+ /* Canonicalize an expression:
+    replace each register reference inside it
+    with the "oldest" equivalent register.
+@@ -2597,6 +2635,11 @@ canon_reg (x, insn)
+   if (x == 0)
+     return x;
+ 
++  if (getenv ("AGBCC_PRESERVE_INTEGRATED_NARROW_ZERO")
++      && insn != 0 && RTX_INTEGRATED_P (insn)
++      && multiset_uservar_narrow_zero_p (x))
++    return x;
++
+   code = GET_CODE (x);
+   switch (code)
+     {
+@@ -6236,6 +6279,46 @@ record_jump_cond (code, mode, op0, op1, reversed_nonequality)
  
  /* Data on one SET contained in the instruction.  */
  
@@ -268,7 +324,7 @@ index 95b56ead..1fdbf3e6 100644
  struct set
  {
    /* The SET rtx itself.  */
-@@ -6459,7 +6500,9 @@ cse_insn (insn, libcall_insn)
+@@ -6459,7 +6542,9 @@ cse_insn (insn, libcall_insn)
      {
        rtx dest = SET_DEST (sets[i].rtl);
        rtx src = SET_SRC (sets[i].rtl);
@@ -279,7 +335,7 @@ index 95b56ead..1fdbf3e6 100644
        int insn_code;
  
        if ((GET_CODE (new) == REG && GET_CODE (src) == REG
-@@ -6520,6 +6563,10 @@ cse_insn (insn, libcall_insn)
+@@ -6520,6 +6605,10 @@ cse_insn (insn, libcall_insn)
        /* Set non-zero if we need to call force_const_mem on with the
  	 contents of src_folded before using it.  */
        int src_folded_force_flag = 0;
@@ -290,7 +346,19 @@ index 95b56ead..1fdbf3e6 100644
  
        dest = SET_DEST (sets[i].rtl);
        src = SET_SRC (sets[i].rtl);
-@@ -6918,6 +6965,15 @@ cse_insn (insn, libcall_insn)
+@@ -6765,6 +6854,11 @@ cse_insn (insn, libcall_insn)
+ 		   const_elt; const_elt = const_elt->next_same_value)
+ 		if (GET_CODE (const_elt->exp) == REG)
+ 		  {
++		    if (getenv ("AGBCC_PRESERVE_INTEGRATED_NARROW_ZERO")
++			&& mode == QImode && RTX_INTEGRATED_P (insn)
++			&& INTVAL (src_const) == 0
++			&& multiset_uservar_zero_quantity_p (const_elt->exp))
++		      continue;
+ 		    src_related = gen_lowpart_if_possible (mode,
+ 							   const_elt->exp);
+ 		    break;
+@@ -6918,6 +7012,15 @@ cse_insn (insn, libcall_insn)
  
          }
  
@@ -306,7 +374,20 @@ index 95b56ead..1fdbf3e6 100644
        /* Find the cheapest valid equivalent, trying all the available
           possibilities.  Prefer items not in the hash table to ones
           that are when they are equal cost.  Note that we can never
-@@ -7106,9 +7162,10 @@ cse_insn (insn, libcall_insn)
+@@ -7090,6 +7193,12 @@ cse_insn (insn, libcall_insn)
+ 		   && modified_between_p (trial, insn, libcall_insn))
+ 	    continue;
+ 
++	  else if (getenv ("AGBCC_PRESERVE_INTEGRATED_NARROW_ZERO")
++		   && RTX_INTEGRATED_P (insn)
++		   && multiset_uservar_narrow_zero_p (trial)
++		   && ! rtx_equal_p (old_src, trial))
++	    continue;
++
+ 	  /* Look for a substitution that makes a valid insn.  */
+           else if (validate_change (insn, &SET_SRC (sets[i].rtl), trial, 0))
+ 	    {
+@@ -7106,9 +7215,10 @@ cse_insn (insn, libcall_insn)
  	      /* The result of apply_change_group can be ignored; see
  		 canon_reg.  */
  
@@ -320,7 +401,7 @@ index 95b56ead..1fdbf3e6 100644
  	      apply_change_group ();
  	      break;
  	    }
-@@ -7785,6 +7842,8 @@ cse_insn (insn, libcall_insn)
+@@ -7785,6 +7895,8 @@ cse_insn (insn, libcall_insn)
       Also do not do this if we are operating on a copy of INSN.  */
  
    if (n_sets == 1 && sets[0].rtl && GET_CODE (SET_DEST (sets[0].rtl)) == REG
@@ -329,7 +410,7 @@ index 95b56ead..1fdbf3e6 100644
        && NEXT_INSN (PREV_INSN (insn)) == insn
        && GET_CODE (SET_SRC (sets[0].rtl)) == REG
        && REGNO (SET_SRC (sets[0].rtl)) >= FIRST_PSEUDO_REGISTER
-@@ -7797,7 +7856,17 @@ cse_insn (insn, libcall_insn)
+@@ -7797,7 +7909,17 @@ cse_insn (insn, libcall_insn)
  	prev = PREV_INSN (prev);
  
        if (prev && GET_CODE (prev) == INSN && GET_CODE (PATTERN (prev)) == SET
@@ -348,7 +429,7 @@ index 95b56ead..1fdbf3e6 100644
  	{
  	  rtx dest = SET_DEST (sets[0].rtl);
  	  rtx note = find_reg_note (prev, REG_EQUIV, NULL_RTX);
-@@ -8702,6 +8771,97 @@ cse_main (f, nregs, after_loop, file)
+@@ -8702,6 +8824,97 @@ cse_main (f, nregs, after_loop, file)
  #endif
      }
  

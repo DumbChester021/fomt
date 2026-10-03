@@ -108,40 +108,7 @@ struct GameObject
     /* +00 */ // vtable
 };
 
-struct UnknownEntityThingBase
-{
-    virtual ~UnknownEntityThingBase();
-    virtual void vfunc_0C();
-    virtual void vfunc_10(u32 dummy);
-
-    /* +00 */ int * dummy;
-    /* +04 */ // vtable
-};
-
-// TODO: move elsewheres
-struct UnknownEntityThing : public UnknownEntityThingBase
-{
-    /* +08 */ STRUCT_PAD(0x08, 0x30);
-    /* +30 */ SpriteAnimator sprite_animator;
-    /* +44 */ u8 unk_44;
-    /* +45 */ u8 unk_45;
-    /* +46 */ u8 unk_46;
-    /* +47 */ u8 unk_47;
-
-    // TODO: these may be in a different/derived class
-
-    /* +48 */ STRUCT_PAD(0x48, 0x70);
-
-    /* +70 */ SpriteAnimator sprite_animator_70;
-    /* +84 */ u8 unk_84;
-    /* +85 */ STRUCT_PAD(0x85, 0x86);
-    /* +86 */ u8 unk_86;
-    /* +87 */ u8 unk_87;
-    /* +88 */ u8 unk_88;
-    /* +89 */ STRUCT_PAD(0x89, 0x8A);
-    /* +8A */ u8 unk_8A_0 : 2;
-    /* +8A */ u8 unk_8A_2 : 6;
-};
+#include "entity_effect.hh"
 
 enum Season
 {

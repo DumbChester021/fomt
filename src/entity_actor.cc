@@ -46,10 +46,10 @@ void AActorEntity::RefreshSprite(u32 sprite_anim)
 
     if (ptr != nullptr)
     {
-        ptr->sprite_animator.SetAnimation(sprite_anim);
-        ptr->unk_44 = 1;
-        ptr->unk_46 = 0;
-        ptr->unk_47 = 1;
+        ptr->effect_08.animator.SetAnimation(sprite_anim);
+        ptr->effect_08.active = 1;
+        ptr->effect_08.unk_3E = 0;
+        ptr->effect_08.reset_update = 1;
     }
 
     unk_24 = func_08032090(game_object->vfunc_68(), sprite_anim);
@@ -161,11 +161,11 @@ EC void func_08032384(AActorEntity & self, u32 arg_1, bool arg_2)
     {
         // TODO: this may be an inlined method call?
         UnknownEntityThing * ptr = self.unk_10.Get();
-        ptr->sprite_animator_70.SetAnimation(arg_1);
-        ptr->unk_84 = 1;
-        ptr->unk_86 = 0;
-        ptr->unk_87 = 1;
-        ptr->unk_8A_0 = arg_2 ? 2 : 1;
+        ptr->effect_48.animator.SetAnimation(arg_1);
+        ptr->effect_48.active = 1;
+        ptr->effect_48.unk_3E = 0;
+        ptr->effect_48.reset_update = 1;
+        ptr->state_8A.fields.mode = arg_2 ? 2 : 1;
     }
 }
 
@@ -173,7 +173,7 @@ EC void func_080323C8(AActorEntity & self)
 {
     if (self.unk_10.Get() != nullptr)
     {
-        self.unk_10->unk_8A_0 = 0;
+        self.unk_10->state_8A.fields.mode = 0;
     }
 }
 
@@ -181,7 +181,7 @@ EC void func_080323E0(AActorEntity & self, u32 arg_1)
 {
     if (self.unk_10.Get() != nullptr)
     {
-        self.unk_10->unk_88 = arg_1;
+        self.unk_10->state_88 = arg_1;
     }
 }
 
@@ -189,7 +189,7 @@ EC void func_080323F0(AActorEntity & self, u32 arg_1)
 {
     if (self.unk_10.Get() != nullptr)
     {
-        self.unk_10->unk_8A_2 = arg_1;
+        self.unk_10->state_8A.fields.value = arg_1;
     }
 }
 

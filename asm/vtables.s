@@ -483,9 +483,7 @@ vtable_unk_080E6864:
 __vt_12AActorEntity:
 	.incbin "baserom.gba", 0xE6878, 0x3C
 
-	.global vtable_unk_080E68B4
-vtable_unk_080E68B4:
-	.incbin "baserom.gba", 0xE68B4, 0x14
+	.section .rodata.after_vtable_unk_080E68B4, "a", %progbits
 
 	.global vtable_unk_080E68C8
 vtable_unk_080E68C8:

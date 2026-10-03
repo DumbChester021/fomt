@@ -1,19 +1,7 @@
 #include "prelude.h"
 #include "hardware_transfer.hh"
+#include "entity_effect.hh"
 #include <stdlib.h>
-
-struct EffectHandle
-{
-    u32 unk_00;
-    u32 value;
-};
-
-struct GraphicsBlob
-{
-    void const * data;
-    u16 size;
-};
-
 
 EC int func_08007D4C(void *, u32);
 EC GraphicsTransfer * func_080D3BC0(u32);
@@ -147,21 +135,6 @@ struct EffectGameObjectVtable
 struct EffectGameObjectView
 {
     EffectGameObjectVtable * vtable;
-};
-
-struct EffectBase
-{
-    void * game_object;
-    EffectHandle handle;
-    u16 unk_0C;
-    u16 unk_0E;
-    u32 count;
-    u8 values[16];
-    void * vtable;
-
-    void QueueGraphicsTransfer(GraphicsTransferVector *, GraphicsBlob const *)
-        asm("func_080A480C");
-    void QueueGraphicsChunks(GraphicsBlob const *, u8) asm("func_080A4944");
 };
 
 void EffectBase::QueueGraphicsTransfer(
