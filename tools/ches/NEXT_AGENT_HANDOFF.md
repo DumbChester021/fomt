@@ -1,6 +1,6 @@
 # Current FoMT continuation - October 6, 2026
 
-## CURRENT CHECKPOINT - 0x080399C0 production-exact; next target 0x080398A4
+## CURRENT CHECKPOINT - 0x080398A4 scratch-exact; combined production proof next
 
 - Active public retail branch is now **`main`**, local branch tracks `ches/main`, and the former `Live-temp` branch has been deleted both remotely and locally after containment proof. Historical `ches-dev` remains provenance only; custom behavior remains on the separate custom-game worktree/branch.
 - Migration commit: `d34efc5adaad56ce92a41bb354d1882847355438` (`consolidate public decomp documentation on main`). Push `sh_muwzf02b_fea9156d` fast-forwarded `ches/main`; independent verification `sh_muwzf82g_d1c9e8fc` showed remote `main` at the exact same hash.
@@ -23,17 +23,26 @@
 
 ### Exact next action
 
-Retail `func_080399C0` is now production source-owned as `Entity398A4::~Entity398A4`, exact **0x70 / 0**.
+Retail `func_080399C0` remains production source-owned as `Entity398A4::~Entity398A4`, exact **0x70 / 0**. Production metrics remain **70,472 / 940,036 = 7.4967%** because no production code was promoted this research turn.
 
-Production proof:
-- `make -B -j4 compare` execution `sh_mux5eybl_9b938ee0` -> **`fomt.gba: OK`**;
-- SHA execution `sh_mux5fpg4_966284bb` -> **`a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`**;
-- `make progress` execution `sh_mux5frt0_24b0e574` -> **70,472 / 940,036 = 7.4967%** code;
-- inventory execution `sh_mux5fzgk_16fcdf26` -> **2,341** linked asm functions and **869,564** canonical asm bytes.
+Adjacent constructor `func_080398A4`, retail `0x080398A4..0x080399C0` (**0x11C**), is now **scratch-exact**.
 
-The exact destructor proves the adjacent owner layout: `AActorEntity` base, `Actor *` at +0x34, five owning `SmartPtr` slots at +0x38..+0x48, word at +0x4C, trailing word at +0x50, and vtable `0x080E74DC`.
+Saved candidates:
+- `candidate-ctor-398a4-v1.cc`: **0x11C actual / 2 differing linked bytes**, execution `sh_mux7ylp5_8c9cfaa6`. Only mismatch: candidate loaded strategy virtual at vtable +0x14 while retail uses +0x0C.
+- `candidate-ctor-398a4-v2.cc`: **0x11C / 0**, execution `sh_mux7zw37_d4a0cefd`. Reducing the strategy interface to two virtual methods puts the selector at +0x0C and closes the function exactly.
 
-**Next target:** `func_080398A4`, retail `0x080398A4..0x080399C0` (**0x11C**). This is the constructor for the same owner and remains assembly-owned. There is no matching closed-path/failure entry for it. Start with a natural constructor using the proven members and the five strategy constructions visible in retail; compare the whole 0x11C immediately. Do not reopen parked `39E98` or other register-allocation islands first.
+Exact constructor facts:
+- `Entity398A4` actually derives from `Entity_080E6554`, not directly from `AActorEntity`;
+- `Entity_080E6554` contributes the +0x30 bool and already has exact constructor symbol `func_08020038` / `__15Entity_080E6554P10GameObjectRC13ActorLocationUi`;
+- constructor signature is `Entity398A4(GameObject *, Actor *)`;
+- natural base initializer is `Entity_080E6554(game_object, Actor(*actor).location, 0x9C7)`, explaining the retail stack Actor copy;
+- derived +0x34 is the `Actor *`;
+- +0x38..+0x48 is a five-element owning SmartPtr array, default-zeroed by generated constructors;
+- the five concrete strategy objects are each 4 bytes and use retail vtables `74CC, 74BC, 74AC, 749C, 748C`;
+- each strategy vtable is 0x10 bytes, consistent with two metadata words plus two virtual methods; the second method at +0x0C returns the mode/state value;
+- post-selection code exactly feeds `func_08039D5C` into `func_08020080`, selects animation through `func_08039D4C`, stores mode at +0x4C, and saves facing at +0x50.
+
+**Exact next action on Continue:** create an isolated production splice from clean `8941681`. Change the production owner hierarchy to `Entity398A4 : Entity_080E6554`, add the exact constructor and two-method strategy types/vtable aliases, remove assembly `398A4`, and link the constructor at `0x080398A4`. Then verify **both constructor and existing destructor seams plus full `make -B -j4 compare`/SHA1**. This combined proof is required because correcting the base hierarchy could affect generated destructor code even though the standalone constructor is exact. Promote to `main` only if the full ROM remains exact. Do not reopen parked `39E98` first.
 
 For fresh-conversation automation, do **not** resend a handoff merely because a browser/send command reports an error or omits a reply. Inspect the actual target tab first and confirm whether the user message appeared or a turn started. The previous failure mode produced a real 54-tool-call turn despite a misleading return.
 

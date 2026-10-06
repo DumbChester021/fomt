@@ -78,18 +78,23 @@ Earlier exact helpers in this same strategy/controller run include `39134`, `391
 
 ## Exact next action
 
-`func_080399C0` is now integrated as exact source on `main`: **0x70 / 0**, with the full retail ROM still matching.
+`func_080399C0` is integrated as exact source on `main`: **0x70 / 0**, with the full retail ROM still matching.
 
-The integration proves the owner class shape used by the adjacent constructor:
+Adjacent constructor `func_080398A4`, retail `0x080398A4..0x080399C0` (**0x11C**), is now also **scratch-exact 0x11C / 0** in `candidate-ctor-398a4-v2.cc`.
 
-- base: `AActorEntity`;
+The constructor corrects the owner hierarchy and strategy interface:
+
+- actual base: `Entity_080E6554`, itself derived from `AActorEntity`; its +0x30 bool explains the derived +0x34 member boundary;
+- constructor signature: `Entity398A4(GameObject *, Actor *)`;
+- base construction: `Entity_080E6554(game_object, Actor(*actor).location, 0x9C7)`;
 - +0x34: `Actor * actor_34`;
-- +0x38..+0x48: five owning `SmartPtr` strategy slots;
-- +0x4C: mode/state word;
-- +0x50: trailing word;
-- generated vtable symbol maps to retail `0x080E74DC`.
+- +0x38..+0x48: five default-zeroed owning `SmartPtr` strategy slots;
+- each concrete strategy is a 4-byte polymorphic object with a 0x10-byte vtable, meaning two metadata words plus two virtual methods;
+- +0x4C: selected mode/state word;
+- +0x50: saved facing;
+- generated owner vtable maps to retail `0x080E74DC`.
 
-Continue **`func_080398A4`**, retail range `0x080398A4..0x080399C0` (**0x11C**). It is the constructor for this now-proven owner layout and remains assembly-owned. There is no closed/failure entry for this constructor, so use the recovered class members plus its five strategy initializations as the next natural source probe. Keep `39E98` and the other documented codegen-only islands parked.
+**Next:** prove the constructor plus the already-exact destructor together in an isolated production splice, because changing the production base hierarchy from direct `AActorEntity` to `Entity_080E6554` must preserve the exact destructor. If the full ROM remains exact, promote `398A4`, rerun progress/inventory/docs, and publish the code checkpoint. Keep `39E98` and the other documented codegen-only islands parked.
 
 ## Parked nearby frontiers
 
