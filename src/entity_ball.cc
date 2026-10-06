@@ -3,6 +3,7 @@
 
 EC bool func_08020460(AActorEntity *);
 EC void func_08038374(BallEntity *, i32, i32, u32, u32);
+EC void func_08038110(BallEntity *);
 
 
 BallEntity::BallEntity(GameObject * game_object, Location & location)
@@ -50,4 +51,33 @@ Box BallEntity::GetBox() const
 i32 BallEntity::GetFlightHeight() const
 {
     return flight_pos_q16 >> 16;
+}
+
+BallEntity::~BallEntity()
+{
+    *location_ref = GetLocation();
+}
+
+void BallEntity::vfunc_18()
+{
+    if (unk_10.Get() != nullptr)
+        unk_10->vfunc_0C();
+
+    func_08038110(this);
+}
+
+void BallEntity::vfunc_2C(u32 dummy)
+{
+    AEntity::vfunc_2C(dummy);
+    func_08038110(this);
+}
+
+UnknownEntityThing * BallEntity::vfunc_30()
+{
+    return reinterpret_cast<UnknownEntityThing *>(new BallVisualController(this));
+}
+
+void BallVisualController::vfunc_0C()
+{
+    effect.Update();
 }

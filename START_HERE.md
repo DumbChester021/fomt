@@ -2,26 +2,26 @@
 
 ## Current NPC/entity family frontier - October 6, 2026
 
-The throughput strategy has now produced several exact family passes. The resident-NPC and neutral location-bound actor work remains exact, and the rank-11 entity region has now yielded a proven thrown `BallEntity` (`vtable_unk_080E73B4`, selector `0x4B`). `include/entity_ball.hh` / `src/entity_ball.cc` own its exact 0x70 constructor plus `Launch`, `IsActive`, virtual `GetBox`, and `GetFlightHeight`, totaling **188 retail bytes**. The retail SHA1 remains unchanged.
+The throughput strategy has now produced several exact family passes. The resident-NPC and neutral location-bound actor work remains exact, and the proven thrown `BallEntity` (`vtable_unk_080E73B4`, selector `0x4B`) now owns its constructor, destructor, four pre-existing small methods, both mover wrappers, the +0x30 visual/controller factory, and the controller update method. `include/entity_ball.hh` / `src/entity_ball.cc` now replace **396 retail bytes** in this coherent family. The retail SHA1 remains unchanged.
 
 ## Current throughput inventory - October 6, 2026
 
-`tools/ches/build_decomp_inventory.py` generates the machine-readable remaining-function database (`tools/ches/decomp_inventory.json`) and ranked human queue (`tools/ches/DECOMP_QUEUE.md`). After the BallEntity integration the linker-backed inventory is **2,375 linked assembly functions / 870,980 asm code bytes**, with inferred function ranges covering **869,904 bytes = 99.8765%** and **1,076 unattributed asm bytes**. The raw rank-1 region begins with the deliberately parked save-loader area, so do not treat score alone as execution order. The `UnkEntity37008` location-bound actor island is bounded at documented compiler-sensitive frontiers. The next coherent continuation is the proven thrown Ball family: destructor `0x08038098`, wrappers `0x08038300/20/34`, then the visual/controller family beginning at `0x0803853C`; the remaining `0x08038374..0x0803A8A4` entity region is queue rank **19**. Defer the large `0x08038110` mover until the smaller class surface is sourced.
+`tools/ches/build_decomp_inventory.py` generates the machine-readable remaining-function database (`tools/ches/decomp_inventory.json`) and ranked human queue (`tools/ches/DECOMP_QUEUE.md`). After the latest Ball integration the linker-backed inventory is **2,370 linked assembly functions / 870,772 asm code bytes**, with inferred function ranges covering **869,696 bytes = 99.8764%** and **1,076 unattributed asm bytes**. The raw rank-1 region begins with the deliberately parked save-loader area, so do not treat score alone as execution order. The `UnkEntity37008` compiler-sensitive islands remain bounded. Continue the Ball visual/controller family: constructor `0x0803853C` is already exact-size at 0x44 with only 8 linked bytes differing in four argument-setup instructions, while `BallVisualController::vfunc_0C` at `0x08038580` is now exact source. Prefer the remaining controller/adjacent Ball helpers before the large `0x08038110` mover.
 
 ## Current project status
 
 - `make progress` tracks reconstruction across code and non-code ROM bytes instead of reporting only executable code.
-- Current **code reconstruction** is **69,056 / 940,036 = 7.3461%**.
+- Current **code reconstruction** is **69,264 / 940,036 = 7.3682%**.
 - Current **data/assets reconstruction** is **75,334 / 6,777,404 = 1.1115%**:
   - 31,110 bytes are linked typed/source non-code data;
   - 44,224 bytes are editable generated packed-sprite graphics/palettes;
   - the generated packed-sprite total is 33,664 graphics bytes + 10,560 palette bytes;
   - 396 mixed source-owned `.rom_header` bytes count only toward overall reconstruction.
-- Current **overall meaningful-ROM reconstruction** is **144,786 / 7,717,440 = 1.8761%**. Final ROM padding is excluded from this denominator.
+- Current **overall meaningful-ROM reconstruction** is **144,994 / 7,717,440 = 1.8788%**. Final ROM padding is excluded from this denominator.
 - PRET-style ROM-space reporting remains **671,168 bytes = 655.44 KiB = 8.0009% contiguous tail free space**.
 - Asset/data progress is conservative: an opaque `.incbin` does not count merely because it was identified or extracted; editable project-side source must regenerate the retail bytes exactly.
 - Progress implementation: `tools/scripts/calcprogress.py`, `tools/progress_manifest.json`, and `docs/ASSET_DECOMPILATION.md`.
-- The current retail priority is **whole-game throughput by coherent TU/type/similarity family**. Regenerate the inventory after meaningful integrations, use family/class evidence to choose a coherent region, prove representative source shapes in scratch, then promote only byte-exact batches. The packed bank remains **416 / 493 semantically owned animations (405 / 450 simple + 11 / 43 multi-frame)** with 77 IDs open, but those IDs are now a by-product lane rather than the main work queue. Existing provider/consumer closures and static family evidence remain authoritative and should not be rediscovered without new evidence.
+- The current retail priority is **whole-game throughput by coherent TU/type/similarity family**. Regenerate the inventory after meaningful integrations, use family/class evidence to choose a coherent region, prove representative source shapes in scratch, then promote only byte-exact batches. The Ball pass has now source-owned the small class surface plus controller update; continue its visual/controller/adjacent helper family without reopening solved provenance, and defer `func_08038110` until those smaller anchors are exhausted. The packed bank remains **416 / 493 semantically owned animations (405 / 450 simple + 11 / 43 multi-frame)** with 77 IDs open, but those IDs are a by-product lane rather than the main work queue.
 - Raw binary relocation does not count as progress. Retail SHA1 remains the final authority.
 
 
@@ -37,7 +37,7 @@ The throughput strategy has now produced several exact family passes. The reside
 - Across all 493 animations in this bank, **450 are simple one-frame/one-part/one-palette** and **43 are multi-frame**. The remaining hard frames are ordinary multi-part OAM sprites; sampled part tile offsets exactly partition their graphics blobs, so no new codec is indicated. All 347 named item icons are in the simple class.
 - Detailed authority: `tools/ches/checkpoints/item-icon-assets-2026-10-05/README.md`.
 - **Item-lane status:** the cooking UI is the first completed table-driven family. `func_080989DC` / `func_08098CE8` consume `gCookingUtensilIconIds` through `gUnk_086678A0`; eight exact PNGs now live under `assets/item_icons/cooking/`: Knife 265, Frying Pan 204, Pot 346, Mixer 64, Whisk 472, Rolling Pin 313, Oven 327, Seasoning Set 400. Retail availability bits and the special `Seasoning Set` label prove the mapping. `func_08092A70` remains parked at `0x260 / 3` and `func_080CAC7C` remains parked at `0x8C / 52`; this item lane is parked behind the current whole-game Ball/entity throughput work.
-- Current validated baseline remains `fomt.gba: OK`: **69,056 code bytes / 75,334 data-asset bytes / 144,786 overall meaningful-ROM bytes**, **671,168 bytes free**.
+- Current validated baseline remains `fomt.gba: OK`: **69,264 code bytes / 75,334 data-asset bytes / 144,994 overall meaningful-ROM bytes**, **671,168 bytes free**.
 
 
 ## Historical item icon provider checkpoint - October 5, 2026 (superseded)

@@ -1,12 +1,13 @@
 # Ches Session Status — FOMT decomp
 
-## CURRENT SNAPSHOT - 7.3461%; BallEntity exact class anchors - October 6, 2026
+## CURRENT SNAPSHOT - 7.3682%; Ball virtual/controller surface exact - October 6, 2026
 
-- Active branch `Live-temp`; exact Ball code checkpoint pushed at `4773f24f2adac663f26946fd310935ce971cddda`. This final conversation-transfer pass is documentation-only.
-- Exact Ball source now owns constructor + four methods, **188 retail bytes**, under `entity_ball.*`; architecture in `docs/ENTITY_BALL.md`.
-- Progress: **69,056 / 940,036 = 7.3461% code**, **870,980 asm bytes**, **75,334 data/assets**, **144,786 meaningful-ROM bytes = 1.8761%**, **671,168 bytes free**. `fomt.gba: OK`.
-- Constructor proves writable `Location&` back-reference +0x18 and the current field layout through resource ID +0x28.
-- Next: Ball destructor `0x08038098`, wrappers `0x08038300/20/34`, then visual/controller class `0x0803853C`; leave `0x08038110` until those smaller anchors are sourced.
+- Active branch `Live-temp`; continued from pushed handoff `0c0e10870abf130113ceeb207fe20f22f9a092e6`.
+- Ball family source now owns **396 retail bytes** total; this checkpoint adds **208 exact bytes**: destructor `0x08038098`, wrappers `0x08038300/20`, factory `0x08038334`, and controller update `0x08038580`.
+- Progress: **69,264 / 940,036 = 7.3682% code**, **870,772 asm bytes**, **75,334 data/assets**, **144,994 meaningful-ROM bytes = 1.8788%**, **671,168 bytes free**. `fomt.gba: OK`.
+- Regenerated inventory: **2,370 linked asm functions**, **869,696 / 870,772 inferred range bytes = 99.8764%**, **1,076 unattributed bytes**.
+- Proven controller is 0x48 bytes = 8-byte helper base + 0x40 `EntityEffect`; constructor `0x0803853C` is exact-size 0x44 with only 8 linked bytes differing in four argument-setup instructions, while update `0x08038580` is exact source.
+- Next: continue `0x080385B0` and adjacent Ball helpers `0x08038374/398/4FC`; bound the constructor-order mismatch instead of syntax roulette; keep `0x08038110` deferred.
 
 ## SUPERSEDED SNAPSHOT - 7.3261%; location-bound actor island bounded - October 6, 2026
 

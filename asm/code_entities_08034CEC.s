@@ -3353,47 +3353,6 @@ func_08037F7C: @ 0x08037F7C
 
     .section .text.after_ball_ctor, "ax", %progbits
 
-    thumb_func_start func_08038098
-func_08038098: @ 0x08038098
-    push {r4, r5, r6, lr}
-    sub sp, #8
-    adds r5, r0, #0
-    adds r6, r1, #0
-    ldr r0, .L080380E4 @ =vtable_unk_080E73B4
-    str r0, [r5, #0x14]
-    ldr r4, [r5, #0x18]
-    mov r0, sp
-    adds r1, r5, #0
-    bl GetLocation__C7AEntity
-    adds r0, r4, #0
-    mov r1, sp
-    movs r2, #6
-    bl memcpy
-    ldr r0, .L080380E8 @ =__vt_7AEntity
-    str r0, [r5, #0x14]
-    ldr r1, [r5, #0x10]
-    cmp r1, #0
-    beq .L080380CE
-    ldr r0, [r1, #4]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-.L080380CE:
-    movs r0, #1
-    ands r0, r6
-    cmp r0, #0
-    beq .L080380DC
-    adds r0, r5, #0
-    bl __builtin_delete
-.L080380DC:
-    add sp, #8
-    pop {r4, r5, r6}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L080380E4: .4byte vtable_unk_080E73B4
-.L080380E8: .4byte __vt_7AEntity
 
     .section .text.after_ball_run1, "ax", %progbits
 
@@ -3658,48 +3617,6 @@ func_08038110: @ 0x08038110
     pop {r0}
     bx r0
 
-    thumb_func_start func_08038300
-func_08038300: @ 0x08038300
-    push {r4, lr}
-    adds r4, r0, #0
-    ldr r2, [r4, #0x10]
-    cmp r2, #0
-    beq .L08038314
-    ldr r0, [r2, #4]
-    ldr r1, [r0, #0xc]
-    adds r0, r2, #0
-    bl _call_via_r1
-.L08038314:
-    adds r0, r4, #0
-    bl func_08038110
-    pop {r4}
-    pop {r0}
-    bx r0
-
-    thumb_func_start func_08038320
-func_08038320: @ 0x08038320
-    push {r4, lr}
-    adds r4, r0, #0
-    bl vfunc_2C__7AEntityUi
-    adds r0, r4, #0
-    bl func_08038110
-    pop {r4}
-    pop {r0}
-    bx r0
-
-    thumb_func_start func_08038334
-func_08038334: @ 0x08038334
-    push {r4, lr}
-    adds r4, r0, #0
-    movs r0, #0x48
-    bl __builtin_new
-    adds r1, r4, #0
-    bl func_0803853C
-    pop {r4}
-    pop {r1}
-    bx r1
-    .align 2, 0
-
     .section .text.after_ball_run2, "ax", %progbits
 
     thumb_func_start func_08038374
@@ -3919,34 +3836,7 @@ func_0803853C: @ 0x0803853C
     .align 2, 0
 .L0803857C: .4byte vtable_unk_080E73E8
 
-    thumb_func_start func_08038580
-func_08038580: @ 0x08038580
-    push {r4, lr}
-    adds r4, r0, #0
-    adds r1, r4, #0
-    adds r1, #0x47
-    ldrb r0, [r1]
-    cmp r0, #0
-    bne .L080385A4
-    adds r0, r4, #0
-    adds r0, #0x30
-    bl func_0805E8F0
-    lsls r0, r0, #0x1e
-    cmp r0, #0
-    bge .L080385A8
-    adds r1, r4, #0
-    adds r1, #0x44
-    movs r0, #1
-    b .L080385A6
-.L080385A4:
-    movs r0, #0
-.L080385A6:
-    strb r0, [r1]
-.L080385A8:
-    pop {r4}
-    pop {r0}
-    bx r0
-    .align 2, 0
+    .section .text.after_ball_controller_update, "ax", %progbits
 
     thumb_func_start func_080385B0
 func_080385B0: @ 0x080385B0

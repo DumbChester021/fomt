@@ -347,11 +347,15 @@ SECTIONS
         src/entity_unk_08037008.o(.text.entity_locbound_run8);
         asm/code_entities_08034CEC.o(.text.after_entity_locbound_run8);
         src/entity_ball.o(.text.ball_ctor);
+        src/entity_ball.o(.text.ball_dtor);
         asm/code_entities_08034CEC.o(.text.after_ball_ctor);
         src/entity_ball.o(.text.ball_run1);
         asm/code_entities_08034CEC.o(.text.after_ball_run1);
+        src/entity_ball.o(.text.ball_run3);
         src/entity_ball.o(.text.ball_run2);
         asm/code_entities_08034CEC.o(.text.after_ball_run2);
+        src/entity_ball.o(.text.ball_controller_update);
+        asm/code_entities_08034CEC.o(.text.after_ball_controller_update);
 
         asm/code_0803A8A4.o(.text);
         src/character_schedule.o(.text);
