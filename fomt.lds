@@ -165,6 +165,7 @@ func_08038108 = IsActive__C10BallEntity;
 func_0803834C = GetBox__C10BallEntity;
 func_0803836C = GetFlightHeight__C10BallEntity;
 __vt_11Entity38740 = vtable_unk_080E7380;
+__vt_11Entity398A4 = vtable_unk_080E74DC;
 func_08038740 = __11Entity38740P10GameObjectPv;
 func_080387A0 = vfunc_30__11Entity38740;
 func_080387B8 = MethodB8__11Entity38740;
@@ -396,6 +397,7 @@ SECTIONS
         asm/code_entities_08034CEC.o(.text.after_entity396f4);
         src/entity_unk_08038740.o(.text.entity398a0_two);
         asm/code_entities_08034CEC.o(.text.after_entity398a0);
+        src/entity_unk_08038740.o(.text.entity399c0_dtor);
         src/entity_unk_08038740.o(.text.entity39a30_factory);
         asm/code_entities_08034CEC.o(.text.after_entity39a30);
         src/entity_unk_08038740.o(.text.entity39a5c_noop);

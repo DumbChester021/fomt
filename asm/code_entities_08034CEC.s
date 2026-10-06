@@ -6052,63 +6052,6 @@ func_080398A4: @ 0x080398A4
 .L080399B8: .4byte vtable_unk_080E749C
 .L080399BC: .4byte vtable_unk_080E748C
 
-    thumb_func_start func_080399C0
-func_080399C0: @ 0x080399C0
-    push {r4, r5, r6, r7, lr}
-    sub sp, #8
-    adds r5, r0, #0
-    adds r7, r1, #0
-    ldr r0, .L08039A28 @ =vtable_unk_080E74DC
-    str r0, [r5, #0x14]
-    ldr r4, [r5, #0x34]
-    mov r0, sp
-    adds r1, r5, #0
-    bl GetLocation__C12AActorEntity
-    adds r0, r4, #0
-    mov r1, sp
-    bl SetLocation__5ActorRC13ActorLocation
-    adds r0, r5, #0
-    adds r0, #0x38
-    cmp r0, #0
-    beq .L080399FC
-    adds r4, r5, #0
-    adds r4, #0x4c
-    cmp r0, r4
-    beq .L080399FC
-    adds r6, r0, #0
-.L080399F0:
-    subs r4, #4
-    ldr r0, [r4]
-    bl __builtin_delete
-    cmp r6, r4
-    bne .L080399F0
-.L080399FC:
-    ldr r0, .L08039A2C @ =__vt_7AEntity
-    str r0, [r5, #0x14]
-    ldr r1, [r5, #0x10]
-    cmp r1, #0
-    beq .L08039A12
-    ldr r0, [r1, #4]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-.L08039A12:
-    movs r0, #1
-    ands r0, r7
-    cmp r0, #0
-    beq .L08039A20
-    adds r0, r5, #0
-    bl __builtin_delete
-.L08039A20:
-    add sp, #8
-    pop {r4, r5, r6, r7}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L08039A28: .4byte vtable_unk_080E74DC
-.L08039A2C: .4byte __vt_7AEntity
-
     .section .text.after_entity39a30, "ax", %progbits
     .section .text.after_entity39a5c, "ax", %progbits
     thumb_func_start func_08039A60

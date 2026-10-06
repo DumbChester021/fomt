@@ -1,4 +1,5 @@
 #include "entity.hh"
+#include "entity_actor.hh"
 #include "entity_effect.hh"
 
 #pragma interface
@@ -50,6 +51,18 @@ struct EntityStrategyOwnerView
     u8 pad_00[0x34];
     EntityStrategyStateView * state_34;
     void * strategies_38[5];
+};
+
+struct Entity398A4 : public AActorEntity
+{
+    Entity398A4(GameObject *, ActorLocation const &, u32, u32);
+    virtual ~Entity398A4() SECTION(".text.entity399c0_dtor");
+
+    u32 unk_30;
+    Actor * actor_34;
+    SmartPtr<u8> strategies_38[5];
+    u32 mode_4C;
+    u32 unk_50;
 };
 
 struct EntityStrategyMode4Bits
@@ -163,6 +176,13 @@ void func_08038EB8(Entity38740Controller * self)
 bool func_080390D0(Entity38740Controller * self)
 {
     return self->collection_10 != 0;
+}
+
+Entity398A4::~Entity398A4()
+{
+    Actor * actor = actor_34;
+    ActorLocation location = GetLocation();
+    actor->SetLocation(location);
 }
 u32 func_08039134(
     GameObject * game_object,

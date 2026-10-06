@@ -5,9 +5,9 @@ Region/TU hints and scores are heuristics, not claims about original source-file
 
 ## Inventory summary
 
-- remaining linked assembly functions: **2,342**
-- canonical linked assembly code: **869,676 bytes**
-- bytes covered by inferred function ranges: **868,512** (**99.8662%** of linked asm code)
+- remaining linked assembly functions: **2,341**
+- canonical linked assembly code: **869,564 bytes**
+- bytes covered by inferred function ranges: **868,400** (**99.8661%** of linked asm code)
 - assembly code not assigned to a function range: **1,164 bytes**
 - asm definitions present in source but not linked as asm code: **2**
 - coarse TU/region hints: **148**
@@ -186,7 +186,7 @@ Region/TU hints and scores are heuristics, not claims about original source-file
 | 53 | func_080A5BD8 | 141.5 | 232 | 15 | 1 | 1 | 1 | asm/code_809E804.s:11918 |
 | 54 | func_080CBAF0 | 141.2 | 740 | 11 | 1 | 1 | 1 | asm/code_809E804.s:89786 |
 | 55 | func_08088688 | 138.5 | 1304 | 2 | 1 | 1 | 18 | asm/code_0803EE94.s:143371 |
-| 56 | func_08039F90 | 138.2 | 436 | 12 | 1 | 1 | 5 | asm/code_entities_08034CEC.s:6571 |
+| 56 | func_08039F90 | 138.2 | 436 | 12 | 1 | 1 | 5 | asm/code_entities_08034CEC.s:6514 |
 | 57 | func_080AC070 | 138.2 | 180 | 14 | 3 | 1 | 0 | asm/code_809E804.s:24991 |
 | 58 | func_0807EF90 | 138.0 | 1520 | 1 | 1 | 1 | 15 | asm/code_0803EE94.s:125725 |
 | 59 | func_0808AC28 | 137.2 | 1348 | 2 | 1 | 1 | 16 | asm/code_0803EE94.s:147729 |

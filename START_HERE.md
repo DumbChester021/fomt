@@ -32,7 +32,7 @@ Intentional gameplay/QoL/content changes remain isolated in the separate `custom
 
 ## Current verified retail state
 
-Latest exact code checkpoint before this documentation/publication refresh: `bf45d1405c67000a7aa023726a885c6c87216dfd` (`decompile mode4 setup and effect helpers`).
+Latest exact source integration in this checkpoint: `Entity398A4::~Entity398A4` replacing retail `func_080399C0` (0x70 / 112 bytes).
 
 Retail ROM:
 
@@ -43,13 +43,13 @@ Retail ROM:
 
 Current exact reconstruction:
 
-- code: **70,360 / 940,036 = 7.4848%**
-- assembly remaining: **869,676 bytes**
-- remaining linked assembly functions: **2,342**
-- inferred function ranges: **868,512 / 869,676 = 99.8662%**
+- code: **70,472 / 940,036 = 7.4967%**
+- assembly remaining: **869,564 bytes**
+- remaining linked assembly functions: **2,341**
+- inferred function ranges: **868,400 / 869,564 = 99.8661%**
 - unattributed assembly: **1,164 bytes**
 - data/assets: **75,334 / 6,777,404 = 1.1115%**
-- overall meaningful ROM: **146,090 / 7,717,440 = 1.8930%**
+- overall meaningful ROM: **146,202 / 7,717,440 = 1.8944%**
 - contiguous tail free space: **671,168 bytes = 655.44 KiB**
 
 Use `make progress` after meaningful exact integrations.
@@ -78,24 +78,18 @@ Earlier exact helpers in this same strategy/controller run include `39134`, `391
 
 ## Exact next action
 
-`func_080399C0` is now **scratch-exact and isolated-full-ROM proven**.
+`func_080399C0` is now integrated as exact source on `main`: **0x70 / 0**, with the full retail ROM still matching.
 
-Saved exact candidate:
+The integration proves the owner class shape used by the adjacent constructor:
 
-`tools/ches/checkpoints/entity-08038740-2026-10-06/candidate-dtor-399c0-v2.cc`
+- base: `AActorEntity`;
+- +0x34: `Actor * actor_34`;
+- +0x38..+0x48: five owning `SmartPtr` strategy slots;
+- +0x4C: mode/state word;
+- +0x50: trailing word;
+- generated vtable symbol maps to retail `0x080E74DC`.
 
-The key type correction is that owner +0x38..+0x48 is a five-element owning `SmartPtr` array, not a raw pointer array. Natural C++ member destruction generates the retail reverse-delete loop and its begin-null check exactly. The destructor body itself only saves `actor_34`, obtains the current `ActorLocation`, and writes it back to that actor.
-
-Exact target proof: **0x70 / 0 differing linked bytes**.
-
-Detached integration proof at `/tmp/fomt-399c0-integration` also passes `make -B -j4 compare` with **`fomt.gba: OK`** and SHA1 **`a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`**. The linked seam is exact:
-
-- `func_080398A4` at `0x080398A4`;
-- `Entity398A4::~Entity398A4` at `0x080399C0`, size 0x70;
-- `func_08039A30` at `0x08039A30`;
-- generated `__vt_11Entity398A4` aliased to retail `0x080E74DC`.
-
-**Next:** promote the already-proven three-file splice from the detached worktree into `main` (`src/entity_unk_08038740.cc`, `asm/code_entities_08034CEC.s`, `fomt.lds`), then run the production compare/SHA1/progress/inventory/diff/documentation gates and publish the exact checkpoint.
+Continue **`func_080398A4`**, retail range `0x080398A4..0x080399C0` (**0x11C**). It is the constructor for this now-proven owner layout and remains assembly-owned. There is no closed/failure entry for this constructor, so use the recovered class members plus its five strategy initializations as the next natural source probe. Keep `39E98` and the other documented codegen-only islands parked.
 
 ## Parked nearby frontiers
 

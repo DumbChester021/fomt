@@ -1,14 +1,14 @@
 # Current FoMT continuation - October 6, 2026
 
-## CURRENT CHECKPOINT - public main migration complete; exact next target 0x080399C0
+## CURRENT CHECKPOINT - 0x080399C0 production-exact; next target 0x080398A4
 
 - Active public retail branch is now **`main`**, local branch tracks `ches/main`, and the former `Live-temp` branch has been deleted both remotely and locally after containment proof. Historical `ches-dev` remains provenance only; custom behavior remains on the separate custom-game worktree/branch.
 - Migration commit: `d34efc5adaad56ce92a41bb354d1882847355438` (`consolidate public decomp documentation on main`). Push `sh_muwzf02b_fea9156d` fast-forwarded `ches/main`; independent verification `sh_muwzf82g_d1c9e8fc` showed remote `main` at the exact same hash.
 - Before deletion, containment proof `sh_muwzg277_3954e956` showed local `main` and `Live-temp` both contained the full checkpoint and remote `main=d34efc5`, `Live-temp=bf45d14`. Remote deletion `sh_muwzg9tx_7a7d161b` succeeded; follow-up `sh_muwzgjmr_c4bbebf4` showed only remote `main`. Local deletion/upstream correction `sh_muwzgp9p_66615fdc` left clean `main...ches/main`.
 - Forced publication verification `sh_muwze013_1fa7bcd5`: `git diff --check` PASS, `make -B -j4 compare` -> **`fomt.gba: OK`**, SHA1 `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`, progress **70,360 / 940,036 = 7.4848% code** and **146,090 / 7,717,440 = 1.8930% meaningful ROM**.
-- Latest exact code family remains the 332-byte mode-4/factory/destructor batch from `bf45d1405c67000a7aa023726a885c6c87216dfd` (`decompile mode4 setup and effect helpers`).
-- Full retail gate is exact: `make -B -j4 compare` -> **`fomt.gba: OK`**; SHA1 `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
-- Current progress: **70,360 / 940,036 = 7.4848% code**, **869,676 asm bytes** remain; **2,342 linked asm functions**; inferred ranges **868,512 / 869,676 = 99.8662%**; unattributed asm **1,164 bytes**. Data/assets remain **75,334 / 6,777,404 = 1.1115%**; meaningful ROM is **146,090 / 7,717,440 = 1.8930%**; free tail **671,168 bytes**.
+- Latest exact promotion replaces retail `func_080399C0` with natural `Entity398A4::~Entity398A4`, adding **112 source-owned code bytes** after the earlier 332-byte mode-4/factory/destructor batch.
+- Production gate `sh_mux5eybl_9b938ee0`: `make -B -j4 compare` -> **`fomt.gba: OK`**; SHA1 `sh_mux5fpg4_966284bb` -> `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
+- Current progress: **70,472 / 940,036 = 7.4967% code**, **869,564 asm bytes** remain; **2,341 linked asm functions**; inferred ranges **868,400 / 869,564 = 99.8661%**; unattributed asm **1,164 bytes**. Data/assets remain **75,334 / 6,777,404 = 1.1115%**; meaningful ROM is **146,202 / 7,717,440 = 1.8944%**; free tail **671,168 bytes**.
 - Latest exact family added **332 retail bytes**:
   - `func_08039DA8`: 0x70 / 0;
   - `func_08039E18`: 0x70 / 0;
@@ -23,37 +23,17 @@
 
 ### Exact next action
 
-`func_080399C0`, retail `0x080399C0..0x08039A30` (0x70), is now **exact in scratch and proven exact in an isolated full-ROM splice**.
+Retail `func_080399C0` is now production source-owned as `Entity398A4::~Entity398A4`, exact **0x70 / 0**.
 
-Saved exact source:
-`tools/ches/checkpoints/entity-08038740-2026-10-06/candidate-dtor-399c0-v2.cc`
+Production proof:
+- `make -B -j4 compare` execution `sh_mux5eybl_9b938ee0` -> **`fomt.gba: OK`**;
+- SHA execution `sh_mux5fpg4_966284bb` -> **`a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`**;
+- `make progress` execution `sh_mux5frt0_24b0e574` -> **70,472 / 940,036 = 7.4967%** code;
+- inventory execution `sh_mux5fzgk_16fcdf26` -> **2,341** linked asm functions and **869,564** canonical asm bytes.
 
-Breakthrough:
-- owner +0x38..+0x48 is naturally `SmartPtr<u8> strategies_38[5]` (the concrete strategy type remains unnamed);
-- compiler-generated destruction of that five-element owning array reproduces retail's reverse delete loop, begin-null check, register allocation, and 0x70 size;
-- destructor body is only:
-  1. save `Actor * actor = actor_34`;
-  2. `ActorLocation location = GetLocation()`;
-  3. `actor->SetLocation(location)`;
-- base `AEntity` destruction then owns +0x10 teardown and destructor flags.
+The exact destructor proves the adjacent owner layout: `AActorEntity` base, `Actor *` at +0x34, five owning `SmartPtr` slots at +0x38..+0x48, word at +0x4C, trailing word at +0x50, and vtable `0x080E74DC`.
 
-Exact single-function result: **0x70 / 0 differing linked bytes**.
-
-Isolated integration worktree: `/tmp/fomt-399c0-integration`.
-Tracked compiler install execution `sh_mux3gwl5_798f6641` finished exit 0. Full isolated gate `sh_mux3k6ry_07a29f0b`: `make -B -j4 compare` -> **`fomt.gba: OK`**. SHA proof `sh_mux3kma6_2d943f64`: **`a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`**. Symbol proof `sh_mux3l1d1_602ac656`:
-- `080398a4 T func_080398A4`;
-- `080399c0 00000070 T _._11Entity398A4`;
-- `08039a30 0000002c T func_08039A30`;
-- `080e74dc T __vt_11Entity398A4`.
-
-The isolated production splice is exactly three files:
-1. `src/entity_unk_08038740.cc`: include `entity_actor.hh`; add neutral `Entity398A4 : public AActorEntity` with fields `u32 unk_30`, `Actor * actor_34`, `SmartPtr<u8> strategies_38[5]`, `u32 mode_4C`, `u32 unk_50`; place its destructor in `.text.entity399c0_dtor`; use the three-line natural body above.
-2. `fomt.lds`: add `__vt_11Entity398A4 = vtable_unk_080E74DC;` and link `src/entity_unk_08038740.o(.text.entity399c0_dtor)` immediately after `asm/code_entities_08034CEC.o(.text.after_entity398a0)` and before `.text.entity39a30_factory`.
-3. `asm/code_entities_08034CEC.s`: delete the old `func_080399C0` body and its two literals, leaving constructor `398A4` in assembly.
-
-Production `main` is still clean at the published checkpoint; no source splice has been promoted yet.
-
-**Exact next action on Continue:** apply those same three proven edits to `main`, run `make -B -j4 compare`, SHA1, `make progress`, regenerate inventory/queue, verify seams and `git diff --check`, update canonical docs, then commit/push the exact checkpoint. Do not reopen parked `39E98` allocator tuning first.
+**Next target:** `func_080398A4`, retail `0x080398A4..0x080399C0` (**0x11C**). This is the constructor for the same owner and remains assembly-owned. There is no matching closed-path/failure entry for it. Start with a natural constructor using the proven members and the five strategy constructions visible in retail; compare the whole 0x11C immediately. Do not reopen parked `39E98` or other register-allocation islands first.
 
 For fresh-conversation automation, do **not** resend a handoff merely because a browser/send command reports an error or omits a reply. Inspect the actual target tab first and confirm whether the user message appeared or a turn started. The previous failure mode produced a real 54-tool-call turn despite a misleading return.
 
