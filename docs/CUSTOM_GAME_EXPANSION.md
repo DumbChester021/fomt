@@ -7,7 +7,7 @@ The custom-game goal is unchanged: make future added content safe and source-
 level, but do not let one expansion lane dictate the retail work queue when a
 higher-leverage TU/type cluster can unlock more of the game.
 
-Retail reconstruction remains byte-exact on `ches-dev`; custom behavior remains
+Retail reconstruction remains byte-exact on `main`; custom behavior remains
 in the separate custom-game worktree. Save/persistence stays a later lane and
 `func_08011650` research remains preserved.
 

@@ -1,9 +1,9 @@
 # FoMT Matching Decomp Notes
 
-## Active scope — October 6, 2026
+## Active scope - October 6, 2026
 
-The active goal is now **throughput-first whole-game retail decompilation**.
-Preserve the byte-identical US retail ROM on `ches-dev`, keep custom behavior in
+The active goal is **throughput-first whole-game retail decompilation**.
+Preserve the byte-identical US retail ROM on `main`, keep custom behavior in
 the separate custom-game worktree, and prioritize inferred translation units,
 structural/type clusters, repeated function families, shared class/data
 ownership, and recoverable bytes per effort.
@@ -12,31 +12,27 @@ The legacy save loader `func_08011650` remains paused, with its experiments and
 exact continuation preserved. Other documented compiler-sensitive islands stay
 parked unless new structural evidence materially changes their leverage.
 
-The next tooling layer is a unified remaining-function/TU database with call/xref
-information, similarity clustering, vtable/class/global ownership, status and
-difficulty evidence, followed by a ranked coherent-unit queue. Runtime analysis
-should evolve into deterministic savestate/scripted coverage and indirect-call
-collection rather than manual resource hunting.
+The unified remaining-function inventory/ranked queue is operational. Runtime
+analysis should evolve into deterministic savestate/scripted coverage and
+indirect-call collection rather than manual resource hunting.
 
 Custom behavior still belongs only in the separate custom-game worktree.
 
-
 ## CURRENT DECOMP NOTE POLICY
 
-Use `docs/DECOMP_PLAYBOOK.md` for the durable process and `START_HERE.md` for live state. This file keeps subsystem/function evidence and matching lessons.
+Use `docs/DECOMP_PLAYBOOK.md` for the durable process and `START_HERE.md` for
+live state. This file keeps subsystem/function evidence and matching lessons.
 
 Current retail state:
-- Production `ches-dev` and `ches/ches-dev` remain at `9078f368c02d861f7cd71685e1f9dd1d95c7c384` (`9078f36 decompile game object entity teardown`). The active exact working branch is `Live-temp`.
-- Current exact worktree progress is **69,056 / 940,036 = 7.3461% source** and **870,980 assembly bytes**. Data/assets reconstruction is **75,334 / 6,777,404 = 1.1115%** and overall meaningful-ROM reconstruction is **144,786 / 7,717,440 = 1.8761%**. `make progress` reports `fomt.gba: OK`; retail SHA1 remains `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
-- Shared NPC identity/location/schedule/Lillia support and the exact 43-entry metadata table remain complete. `src/game_object_entity_lookup.cc` owns the two native indexed entity lookups and entity teardown.
-- Legacy loader `func_08011650` remains paused with matching research preserved under `tools/ches/checkpoints/save-loader-08011650-2026-10-04/`.
-- Packed-bank ownership remains **416 / 493 animations: 405 / 450 simple and 11 / 43 multi-frame**. Water Splash 425 / 0x1A9 proves generic multi-frame authoring, and Dog Ball 21..48 contributes 10 additional owned multi-frame animations.
-- Recent exact families also include the six Fish Kings, five menu-special presentation icons, and the complete Dog Ball visual range.
-- All 22 explicit `gUnk_086678A0` provider-constructor sites and the documented common packed-consumer lanes are accounted for. `func_080CE184` and `func_0800F258` are closed false leads; Mary actor-animation overlaps and OnCall-320 resource IDs are also closed evidence.
-- The remaining **77 packed animations** are now a parked open list, not the active decompilation queue. Preserve family evidence for 173..180, 413..420, 54..57, 160/161 and other documented IDs, but resolve them as owning TUs/scenes/events/tables are reconstructed.
-- `func_08092A70` remains behavior-complete and parked at exact size `0x260 / 3 differing linked bytes`; `func_080455D8`, `func_080CAC7C` / `func_080CAD18`, and `func_08092940` remain parked at their documented compiler-sensitive boundaries.
+- Active public retail branch: `main`; the former `Live-temp` line is retired. Historical `ches-dev` commits remain provenance only.
+- Current exact progress: **70,360 / 940,036 = 7.4848% source** and **869,676 assembly bytes**. Data/assets reconstruction is **75,334 / 6,777,404 = 1.1115%** and overall meaningful-ROM reconstruction is **146,090 / 7,717,440 = 1.8930%**. `make progress` reports `fomt.gba: OK`; retail SHA1 remains `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
+- Remaining linked assembly functions: **2,342**; inferred function ranges cover **868,512 / 869,676 = 99.8662%**, with **1,164 unattributed bytes**.
+- Shared NPC identity/location/schedule support, all resident constructors, GameObject entity lookup/teardown, and the exact 43-entry metadata table remain complete.
+- Packed-bank ownership remains **416 / 493 animations: 405 / 450 simple and 11 / 43 multi-frame**. The remaining 77 are a parked by-product lane.
+- `func_08092A70`, `func_080455D8`, `func_080CAC7C` / `func_080CAD18`, `func_08092940`, and the documented Entity38740/Ball codegen islands remain parked at their recorded frontiers.
 - Authoritative compiler remains the tracked 13-rule compatibility path, patch SHA256 `aa7cc6df0efbd066e9c33deb887731e1d0210babfaeba4c9b64f3e8bc35c4256`.
-- The throughput inventory/ranked queue is operational and current. The active coherent unit is the proven thrown `BallEntity`: constructor plus four small methods are exact source; next target its destructor, wrappers, and visual/controller family before the large `func_08038110` mover. The opening-farm savestate/watchpoint work remains seed infrastructure for later scripted runtime coverage, not the primary queue.
+- The current coherent unit is the Entity38740 neighborhood. `39DA8`, `39E18`, `39A30`, and `39F50` are exact; `39E98` is behavior-complete/exact-size but parked. The exact next target is destructor `func_080399C0`, using the saved scratch candidate and declaration fixes documented in the handoff.
+- The opening-farm savestate/watchpoint work remains seed infrastructure for later scripted runtime coverage, not the primary queue.
 
 Naming rule:
 Use semantic names when evidence is strong. If identity remains unresolved, an honest address-derived name is acceptable for an otherwise fully exact retail contribution. Do not invent a semantic name merely to eliminate `func_*` or `unk_*`.
@@ -52,7 +48,7 @@ Recent reusable lessons:
 - tiny C++ objects may have larger alignment than their meaningful byte fields;
 - exact per-function bytes still require exact full-ROM integration and trusted toolchain provenance.
 
-Private working notes for the local `ches-dev` branch. This file is intentionally not part of contribution commits.
+Project working notes for the public `main` decompilation line. Historical research chronology remains here, but upstream pull-request diffs should stay focused on contribution-facing files.
 
 ## October 4, 2026 — character table and narrowed enablement scope
 

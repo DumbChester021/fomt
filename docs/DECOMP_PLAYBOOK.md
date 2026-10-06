@@ -1,6 +1,6 @@
 # FoMT Retail Decompilation Playbook
 
-This is a private local engineering document for zero-context continuation. It is not an upstream contribution file.
+This is a project engineering document for zero-context continuation. It is carried on the public fork but is not intended as upstream pull-request content.
 
 ## Purpose
 
@@ -8,7 +8,7 @@ This playbook records the durable process, proven rules, anti-patterns, toolchai
 
 The project has two goals that support each other but must remain separate:
 
-1. Retail decompilation on `ches-dev`: recover the original US GBA game into readable source while preserving a byte-identical retail ROM.
+1. Retail decompilation on `main`: recover the original US GBA game into readable source while preserving a byte-identical retail ROM.
 2. Custom-game/QoL/custom-character work in the separate custom-game worktree: make intentional gameplay improvements and added content after the relevant retail behavior is understood.
 
 Never mix custom behavior into a retail-matching contribution.
@@ -55,7 +55,7 @@ A retail unit is complete only when all of these are true:
 8. Progress and symbol boundaries are verified.
 9. Relevant docs, success evidence, failures, and reusable lessons are updated.
 10. Contribution-only diff is reviewed and clean.
-11. Under the standing user authorization, exact retail work is committed and pushed to `ches-dev`.
+11. Under the standing user authorization, exact retail work and durable checkpoints are committed and pushed to `ches/main`.
 
 If any of these gates fail, the unit is still research, not completed work.
 
@@ -73,7 +73,7 @@ pages together. Mark the previous continuation deferred and preserve its evidenc
 For custom characters, use `docs/CHARACTERS.md`, `docs/CUSTOM_CHARACTERS.md` and
 `docs/SAVE_FORMAT.md`. Track a full gameplay/persistence path for the first
 prototype, then apply the ordinary exact-ROM gates to every retail recovery.
-Docs-only checkpoints verify changed paths, links and preservation of code/build inputs; rerun full builds when actual build inputs change. Every durable checkpoint on `Live-temp`, including docs/research checkpoints, is then committed and pushed to `ches/Live-temp` after diff verification. This checkpoint history is separate from exact retail contribution commits to `ches-dev`.
+Docs-only checkpoints verify changed paths, links and preservation of code/build inputs; rerun full builds when actual build inputs change. Every durable checkpoint is committed and pushed to `ches/main` after diff verification. The former `Live-temp` publication branch is retired; `main` now carries the public retail reconstruction and its durable coordination history.
 
 ## Standard decompilation workflow
 
@@ -235,7 +235,7 @@ Review:
 
 Use project-style commit messages.
 
-Push `ches-dev`, then verify the remote tip with `git ls-remote`.
+Push `main` to `ches/main`, then verify the remote tip with `git ls-remote`.
 
 ## Current compiler/toolchain truth
 
@@ -342,7 +342,7 @@ Rule: diagnose the first divergence before rewriting exact source.
 - Do not copy a stale generated `tools/agbcc` as a reproducibility shortcut.
 - Do not remove more assembly than the proven source range.
 - Do not stage private docs/research in retail contribution commits.
-- Do not mix custom-game/QoL behavior into `ches-dev`.
+- Do not mix custom-game/QoL behavior into retail `main`.
 - Do not discard a difficult candidate when switching targets. Preserve its evidence and exact next hypothesis.
 
 ## Target-selection strategy
@@ -443,9 +443,9 @@ Do not wait for a scheduled checkpoint to make essential state durable. After a 
 - toolchain/compiler state if changed;
 - exact next experiment or command.
 
-The periodic checkpoint is a consolidation and publication boundary, not permission to leave previous calls undocumented. At each durable checkpoint, update the canonical state, verify the checkpoint diff, commit on `Live-temp`, and push to `ches/Live-temp`. If the push cannot complete, record the exact local HEAD and failure before stopping.
+The periodic checkpoint is a consolidation and publication boundary, not permission to leave previous calls undocumented. At each durable checkpoint, update the canonical state, verify the checkpoint diff, commit on `main`, and push to `ches/main`. If the push cannot complete, record the exact local HEAD and failure before stopping.
 
-The standard is strict: a zero-context model should be able to inspect the project or the published `ches/Live-temp` checkpoint after any completed safe step and continue without asking what happened in chat.
+The standard is strict: a zero-context model should be able to inspect the project or the published `ches/main` checkpoint after any completed safe step and continue without asking what happened in chat.
 
 ### Dedicated subsystem architecture docs
 
@@ -470,7 +470,7 @@ When a batch materially recovers a subsystem architecture, the batch is not full
 
 ## Current strategic direction
 
-SpriteAnimator, hardware ownership, DMA/transfer infrastructure, intrusive lists, entity/effect lifecycle, shared-resource functions, NPC support, typed character metadata, native GameObject entity lookup/teardown, character/social resolvers, article interaction, MoneyState, typed shop catalogs, and the packed animation-provider pipeline are recovered at their documented scopes. Production HEAD remains `9078f36`; the active exact `Live-temp` worktree is **69,056 / 940,036 = 7.3461% source**, with **75,334 data/asset bytes** and **144,786 overall meaningful-ROM bytes** reconstructed while the retail ROM remains exact. The legacy save loader, `func_080455D8`, `func_08092A70`, `func_080CAC7C` / `func_080CAD18`, and `func_08092940` are parked. The packed sprite bank remains **416 / 493 semantically owned**, with 77 IDs open, but sprite-family provenance is no longer the primary queue. The throughput pipeline is live: the remaining-function database/ranked queue and resident-NPC class map regenerate from the current build; all 35 resident constructors are source-owned, only Child +0x30 remains assembly, the adjacent `UnkEntity37008` hierarchy is bounded, and the thrown `BallEntity` constructor plus four methods are now exact source. Continue the Ball destructor/wrappers/controller family before its large mover, then re-rank. Preserve the opening-farm savestate and prior watchpoint work as the seed for later scripted runtime coverage. The handoff owns exact active commands/artifacts; the priority map owns target selection.
+SpriteAnimator, hardware ownership, DMA/transfer infrastructure, intrusive lists, entity/effect lifecycle, shared-resource functions, NPC support, typed character metadata, native GameObject entity lookup/teardown, character/social resolvers, article interaction, MoneyState, typed shop catalogs, and the packed animation-provider pipeline are recovered at their documented scopes. The active public retail branch is `main`, with **70,360 / 940,036 = 7.4848% source**, **75,334 data/asset bytes**, and **146,090 overall meaningful-ROM bytes** reconstructed while the retail ROM remains exact. The legacy save loader and documented compiler-sensitive islands remain parked. The packed sprite bank remains **416 / 493 semantically owned**, with 77 IDs open, but sprite-family provenance is no longer the primary queue. The throughput pipeline is live: the remaining-function database/ranked queue and resident-NPC class map regenerate from the current build; the Ball and adjacent Entity38740 strategy/controller family have advanced substantially. The exact next target is `func_080399C0`; `func_08039E98` is behavior-complete and exact-size in scratch but parked on register allocation. Preserve the opening-farm savestate and prior watchpoint work as seed infrastructure for later scripted runtime coverage. The handoff owns exact active commands/artifacts; the priority map owns target selection.
 
 Preserved renderer candidates remain:
 - `func_080A5CC0`: expected 0x54, v1 actual 0x58, 72 differing linked bytes;

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Build a machine-readable inventory and ranked queue for remaining FoMT assembly.
 
-This is private decompilation infrastructure for the Live-temp working branch.
+This is project decompilation infrastructure for the active main branch.
 It derives evidence from the current repository and fomt.elf. Inferred regions
 and scores are heuristics, not claims about original source-file boundaries.
 """

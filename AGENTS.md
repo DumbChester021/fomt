@@ -2,13 +2,13 @@
 
 Read this file before changing the repository. It records the standing goals and working rules for this local project. For decompilation or matching work, also read `/mnt/data/Ches/codex-bridge-home/skills/decompilation/SKILL.md`; that reusable skill owns the generic reverse-engineering workflow. Then read `START_HERE.md` for authoritative live state, `docs/DECOMP_PLAYBOOK.md` for the FoMT-specific process and proven lessons, `docs/DECOMP_PRIORITY_MAP.md` for leverage-first target selection, and `tools/ches/NEXT_AGENT_HANDOFF.md` for the exact next work. `tools/ches/SESSION_STATUS.md` keeps the current snapshot plus chronology. For Call238/compiler-sensitive work, `tools/ches/checkpoints/call238/EXPERIMENT_INDEX.md` and `FAILURES_AND_CLOSED_PATHS.md` are mandatory anti-rediscovery reading before any new experiment.
 
-This is a private local coordination file. Do not include it in upstream or retail-decomp contribution commits unless the user explicitly requests that.
+This is a project coordination file carried on the public fork. Do not include agent/research coordination material in an upstream pull request unless the user explicitly requests that.
 
 ## The two-track mission
 
 This work has two connected but strictly separated tracks.
 
-1. **Retail-accurate decompilation (`ches-dev`)**
+1. **Retail-accurate decompilation (`main`)**
    - Reconstruct the original US Harvest Moon: Friends of Mineral Town GBA program as readable, editable source while retaining a byte-identical ROM. The long-term target is 100% of meaningfully decompilable game logic in project-native source, primarily readable C++, with understood binary data recovered into typed source where practical. Low-level C/assembly should remain only where fidelity or the original runtime boundary genuinely requires it.
    - Do not merely translate enough code to compile. Understand the assembly, ABI, callers, callees, layouts, ownership, state changes, and gameplay purpose.
    - Decompile the coherent code and data encountered during an investigation instead of leaving understood dependencies needlessly generic. Keep the scope reviewable and verify every integrated boundary.
@@ -26,7 +26,7 @@ These tracks support each other: retail reconstruction explains the game well en
 
 The active goal is now **throughput-first whole-game retail decompilation**, while
 continuing to improve the runtime/data boundaries needed by the separate
-custom-game branch. Preserve the byte-identical US retail ROM on `ches-dev`.
+custom-game branch. Preserve the byte-identical US retail ROM on `main`.
 Custom behavior still belongs only in the separate custom-game worktree.
 
 The project has already paid for substantial shared infrastructure: hardware,
@@ -55,7 +55,7 @@ resource family at a time.
 - Recover vtables, constructors/destructors, globals, fixed-stride tables, and
   other shared ownership boundaries early when they unlock many callers.
 - Keep exact matching as the production gate. A semantically reconstructed but
-  nonmatching function may be preserved as private research/understood work,
+  nonmatching function may be preserved as research/understood work,
   but must not replace retail assembly in production `src/` unless an explicit
   supported NONMATCHING convention is deliberately adopted later.
 - Park compiler-sensitive functions once their remaining delta is codegen or
@@ -112,7 +112,7 @@ exact matched-source percentage.
 - Treat the original authors' code, repository organization, toolchain, style, naming conventions, and review expectations as authoritative evidence. Match established local style instead of rewriting code to personal or AI preferences.
 - Preserve copyright, licenses, attribution, commit history, and existing documentation. Do not imply that reconstructed code is the original source or claim the original authors' work as ours.
 - AI assistance is a local implementation detail, not a reason to add branding, generated-by notices, promotional language, or unsolicited commentary to contribution files.
-- Keep contribution commits narrow, technically justified, and easy for a human maintainer to audit. For retail reconstruction on `ches-dev`, the user gives standing authorization to save, commit, and push a coherent unit once BOTH gates are satisfied: (1) the reconstructed code/data boundary is 100% retail-exact at the target, and (2) the integrated/full-ROM build is 100% retail-exact with the expected SHA1. Before committing, update all relevant durable documentation in detail, review the exact contribution diff, run the normal verification gates, and keep private research/checkpoint files out of the contribution commit. Do not open pull requests, contact maintainers, publish private research, push incomplete/mismatching work, or push custom-game changes without separate authorization.
+- Keep retail reconstruction commits narrow, technically justified, and easy for a human maintainer to audit. On `main`, the user gives standing authorization to save, commit, and push a coherent unit once BOTH gates are satisfied: (1) the reconstructed code/data boundary is 100% retail-exact at the target, and (2) the integrated/full-ROM build is 100% retail-exact with the expected SHA1. Before committing, update all relevant durable documentation, review the exact diff, and run the normal verification gates. Do not open pull requests, contact upstream maintainers, push incomplete/mismatching production source, or push custom-game behavior onto `main` without separate authorization.
 - Assume maintainers may not want AI-generated contributions. Respect that boundary through restraint, transparency when disclosure is required, careful verification, and faithful adherence to their workflow.
 
 ## Upstream-native contribution quality
@@ -129,7 +129,7 @@ exact matched-source percentage.
 - Establish behavior from retail assembly and data first. Check callers, callees, ABI, signedness, layouts, ownership, and side effects before naming or implementation.
 - Use the smallest credible source reconstruction. Investigate natural expression shape, lifetime, control flow, and types before considering compiler-sensitive tricks.
 - Do not use padding, arbitrary volatile operations, inline assembly, fixed-register locals, or compiler modifications to force a match.
-- Never place an unfinished candidate in `src/`; the build automatically compiles source files there. Keep experiments in the current private checkpoint directory or `/tmp`.
+- Never place an unfinished candidate in `src/`; the build automatically compiles source files there. Keep experiments in the current research checkpoint directory or `/tmp`.
 - Prefer meaningful semantic names backed by multiple pieces of evidence. Distinguish proven facts, strong inferences, and open hypotheses in notes.
 - When a coherent exact function or data boundary is integrated, remove only its corresponding assembly/linker range and verify the complete ROM.
 
@@ -137,8 +137,8 @@ exact matched-source percentage.
 
 - After meaningful integrated changes, run the exact project build/compare path and check the actual exit status and output. The "100% compiling retail" gate is not satisfied by a one-off local binary or unsaved toolchain mutation: a clean/fresh checkout must have a documented, saved, reproducible path to the same exact build using committed project/toolchain inputs or an already-established reproducible dependency.
 - Verify the ROM is still 8,388,608 bytes with the expected SHA1, inspect progress, run `git diff --check`, and review the index and contribution diff explicitly.
-- Retail contribution commits to `ches-dev` remain exact-only: stage only coherent contribution files after both exactness gates pass, and keep private research/checkpoint files out of those contribution commits.
-- **Checkpoint publication rule:** every durable Ches checkpoint on the active `Live-temp` branch must be committed and pushed to `ches/Live-temp` after canonical docs/artifacts are updated and the checkpoint diff is verified. These checkpoint commits may include private coordination/research/docs intended for `Live-temp`; they are distinct from contribution commits to `ches-dev`. Do not leave a completed checkpoint only local unless push is genuinely blocked, in which case record the failure and exact local HEAD in the handoff.
+- Retail production source on `main` remains exact-only: promote only coherent source/data boundaries after both exactness gates pass. Behavior-complete but nonmatching candidates stay under `tools/ches/checkpoints/` instead of replacing assembly.
+- **Checkpoint publication rule:** every durable project checkpoint is committed and pushed to `ches/main` after canonical docs/artifacts are updated and the checkpoint diff is verified. The former `Live-temp` branch is retired. Do not leave a completed checkpoint only local unless push is genuinely blocked, in which case record the failure and exact local HEAD in the handoff.
 
 ## Documentation and anti-rediscovery discipline
 
@@ -149,12 +149,12 @@ exact matched-source percentage.
 - **Treat every run as if it may be the last run before the conversation hits its limit.** Do not postpone essential documentation until an end-of-turn cleanup. At every meaningful safe boundary, save current candidates/artifacts and update any canonical file whose answer changed, so an abrupt conversation end still leaves a zero-context agent with a complete continuation path.
 - Save a verified coherent unit **before** stopping, switching conversations/models, context compaction, or starting a risky new direction. A fresh no-context agent should be able to recover the current state from files alone.
 - Stable architecture is not the same thing as transient research. When a coherent subsystem/type/file format becomes materially understood, create or update a dedicated contribution-facing subsystem document under `docs/` when that knowledge will help humans or future decomp work. Existing examples are `docs/KEY_INPUT.md`, `docs/SAVE_FORMAT.md`, and `docs/CHARACTERS.md`.
-- Dedicated subsystem docs should hold proven interfaces, layouts, invariants, boundaries, validation requirements, and explicitly unresolved semantics. Candidate versions, mismatch counts, failed compiler/source probes, and agent-only rationale stay in private handoffs/checkpoints.
-- Do not turn upstream-facing source or subsystem docs into research notebooks. Private rationale, experiment logs, agent instructions, and extensive provenance belong in private docs/checkpoints; contribution code/comments should remain concise and native to the original project.
+- Dedicated subsystem docs should hold proven interfaces, layouts, invariants, boundaries, validation requirements, and explicitly unresolved semantics. Candidate versions, mismatch counts, failed compiler/source probes, and agent-oriented rationale stay in research handoffs/checkpoints.
+- Do not turn upstream-facing source or subsystem docs into research notebooks. Research rationale, experiment logs, agent instructions, and extensive provenance belong in coordination docs/checkpoints; contribution code/comments should remain concise and native to the original project.
 
 ## Worktree and safety rules
 
-- Inspect `git status` and recent history before editing. The working tree intentionally contains private modified/untracked files. Never reset, clean, stash, checkout over, or destroy them.
+- Inspect `git status` and recent history before editing. Preserve any intentional local modified/untracked files that appear. Never reset, clean, stash, checkout over, or destroy them merely to obtain a clean tree.
 - Preserve `README.md`, `AGENTS.md`, `START_HERE.md`, `docs/DECOMP_PLAYBOOK.md`, `docs/DECOMP_PRIORITY_MAP.md`, `docs/DECOMP_NOTES.md`, `docs/FOMT_COMPILER_RESEARCH.md`, `docs/REPO_MAP.md`, `tools/ches/`, and any character-date experiments unless the user explicitly changes their status.
 - Keep the retail repo and custom-game worktree separate. Recheck the active branch/worktree before every commit or behavioral change.
 - When staging explicit paths through `shell_exec`, keep `git add -- path1 path2 ...` on one shell command line or use valid shell continuations. A bare newline after `git add --` executes following path lines as commands. If a staging wrapper fails, inspect the index and working-file hashes before retrying; never assume what was staged or mutated.
@@ -183,7 +183,7 @@ The documentation is deliberately layered. Do not make a fresh agent infer curre
 
 Documentation is part of completion, not optional bookkeeping. For each exact function/batch record what was tried, exact measured results, why failed variants failed, what is proven, what remains inferred, what should not be repeated, reusable process lessons, integration/full-ROM proof, progress, commit/push evidence, and the exact next action.
 
-A no-context agent must be able to answer from files alone: project goals, current state, exact ROM status, progress, compiler authority, latest commit, active targets, saved candidate state, failed paths, validation commands, commit rules, private files, and next step.
+A no-context agent must be able to answer from files alone: project goals, current state, exact ROM status, progress, compiler authority, latest commit, active targets, saved candidate state, failed paths, validation commands, commit rules, local-only files if any, and next step.
 
 ## Start every continuation here
 
@@ -200,4 +200,4 @@ A no-context agent must be able to answer from files alone: project goals, curre
 
 The live dashboard/current snapshot and newest evidence supersede older chronological handoff history.
 
-Standing work-unit rule: use the ranked TU/type/similarity-cluster queue rather than a fixed function count. At every mandatory Ches safety checkpoint or other durable checkpoint, update canonical state, verify the checkpoint diff, commit it on `Live-temp`, and push to `ches/Live-temp` before ending the turn.
+Standing work-unit rule: use the ranked TU/type/similarity-cluster queue rather than a fixed function count. At every mandatory Ches safety checkpoint or other durable checkpoint, update canonical state, verify the checkpoint diff, commit it on `main`, and push to `ches/main` before ending the turn.

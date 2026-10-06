@@ -1,48 +1,150 @@
-# Friends of Mineral Town
+# Harvest Moon: Friends of Mineral Town (GBA) Decompilation
 
-This is a decompilation of the 2003 GBA game "Harvest Moon: Friends of Mineral Town" (US).
+This repository is a matching decompilation of the US release of **Harvest Moon: Friends of Mineral Town** for the Game Boy Advance.
 
-> New to this repository? Start with **[START_HERE.md](./START_HERE.md)** for a plain-English map of the folders, game systems, build flow, and recommended reading order.
+The goal is to reconstruct the retail game as readable, maintainable source and editable data while continuing to build the exact original ROM byte-for-byte. Intentional gameplay changes live separately from the retail-matching project.
 
-It builds the following ROM:
+This fork builds on the original work in [StanHash/fomt](https://github.com/StanHash/fomt). Reconstructed source is not the original commercial source code.
 
-* **[fomt.gba]** `sha1: a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`
+## Current status
 
-[fomt.gba]: https://datomatic.no-intro.org/index.php?page=show_record&s=23&n=1249
+The active public retail-decompilation branch is **`main`**.
 
-## Setting up
+The matching build currently reproduces:
 
-See [INSTALL.md](./INSTALL.md).
+- ROM: `fomt.gba`
+- Size: **8,388,608 bytes**
+- SHA1: **`a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`**
+- Full verification: **`fomt.gba: OK`**
 
-## Reconstruction progress
+Current exact reconstruction metrics:
 
-Run `make progress` for separate code, data/assets, overall meaningful-ROM, and
-PRET-style contiguous tail free-space metrics. Asset progress counts only bytes
-that are actually regenerated from editable project-side sources; opaque copied
-`.incbin` data does not count. Asset reconstruction also pairs promotion with
-the runtime code that owns, interprets, loads, or renders the resource rather
-than harvesting anonymous assets for percentage alone. See
-[`docs/ASSET_DECOMPILATION.md`](./docs/ASSET_DECOMPILATION.md).
+| Metric | Current |
+| --- | ---: |
+| Code | **70,360 / 940,036 bytes (7.4848%)** |
+| Assembly remaining | **869,676 bytes** |
+| Data/assets | **75,334 / 6,777,404 bytes (1.1115%)** |
+| Overall meaningful ROM | **146,090 / 7,717,440 bytes (1.8930%)** |
+| Contiguous ROM tail free space | **671,168 bytes (655.44 KiB)** |
 
-## Editable item graphics
+Run `make progress` for the live report.
 
-The retail Tool/Food/Article icon set is available as indexed PNG source under
-`assets/item_icons/`. The normal build recompiles those assets into the packed
-GBA sprite bank while preserving the matching retail ROM. See
-[`assets/item_icons/README.md`](./assets/item_icons/README.md) for the
-round-trip and editing workflow.
+Asset/data progress is intentionally conservative. A byte counts only when editable project-side source regenerates the retail byte exactly; moving opaque ROM data into another binary blob does not count.
+
+## What is already reconstructed
+
+The project contains readable matching source across many game and engine boundaries, including:
+
+- key input and hardware access;
+- DMA/graphics-transfer infrastructure;
+- intrusive callback lists;
+- resource handles and allocation support;
+- `SpriteAnimator` and packed animation-provider parsing;
+- shared entity/effect lifecycle code;
+- character identity, social-state, location and schedule helpers;
+- all 35 resident-NPC constructors and most resident effect factories;
+- GameObject entity lookup/teardown;
+- money and shop-catalog infrastructure;
+- item/article interaction paths;
+- the thrown Ball entity and a substantial adjacent entity/controller strategy family;
+- typed and editable retail data such as character metadata and shop catalogs.
+
+The packed item/UI animation bank also has an exact editable pipeline. All 347 retail Tool/Food/Article icons are PNG build inputs, with additional code-proven special families recovered as their runtime owners were identified.
+
+## Current decompilation focus
+
+Work is throughput-first and organized by coherent translation unit, type, vtable, or repeated machine-code family rather than by a fixed function count.
+
+The current entity-family frontier is `func_080399C0` at `0x080399C0..0x08039A30`. Its behavior is already understood; the saved first source probe failed only on two C++ declaration issues. The adjacent `func_08039E98` constructor is behavior-complete and exact-size in scratch but remains assembly because its remaining differences are register/lifetime allocation.
+
+Compiler-sensitive functions that are behavior-complete are parked rather than blocking whole-game progress. The canonical continuation is always in [tools/ches/NEXT_AGENT_HANDOFF.md](tools/ches/NEXT_AGENT_HANDOFF.md).
+
+## Build requirements
+
+You need:
+
+- an ARM `arm-none-eabi` toolchain;
+- Python 3;
+- Pillow;
+- a legally obtained US FoMT base ROM named `baserom.gba`.
+
+Install the pinned FoMT compatibility compiler:
+
+```sh
+tools/install_agbcp.sh
+```
+
+Then build and compare:
+
+```sh
+make -B -j4 compare
+```
+
+A successful matching build ends with:
+
+```text
+fomt.gba: OK
+```
+
+For the full setup notes, see [INSTALL.md](INSTALL.md).
+
+**The retail ROM is not distributed by this repository.**
+
+## Project layout
+
+```text
+src/                 readable reconstructed source
+include/             shared types and interfaces
+asm/                 retail code/data not yet reconstructed
+data/                source-owned data definitions
+assets/              editable generated assets
+docs/                architecture, progress and decompilation documentation
+tools/               build and analysis tooling
+tools/ches/          decompilation inventory, queue and durable research handoff
+fomt.lds             linker map and exact ROM ordering
+```
+
+## Documentation
+
+Start here:
+
+- [START_HERE.md](START_HERE.md) - current zero-context dashboard and exact next action
+- [INSTALL.md](INSTALL.md) - reproducible build setup
+- [docs/PROGRESS.md](docs/PROGRESS.md) - current reconstruction metrics and milestones
+- [docs/REPO_MAP.md](docs/REPO_MAP.md) - repository and subsystem orientation
+- [docs/DECOMP_PLAYBOOK.md](docs/DECOMP_PLAYBOOK.md) - matching workflow and validation rules
+- [docs/DECOMP_PRIORITY_MAP.md](docs/DECOMP_PRIORITY_MAP.md) - throughput-first target strategy
+- [docs/ASSET_DECOMPILATION.md](docs/ASSET_DECOMPILATION.md) - asset/data counting and authoring policy
+
+Stable subsystem documentation includes [CHARACTERS.md](docs/CHARACTERS.md), [ENTITY_BALL.md](docs/ENTITY_BALL.md), [ENTITY_EFFECTS.md](docs/ENTITY_EFFECTS.md), [HARDWARE.md](docs/HARDWARE.md), [HARDWARE_TRANSFER.md](docs/HARDWARE_TRANSFER.md), [INTRUSIVE_CALLBACK_LIST.md](docs/INTRUSIVE_CALLBACK_LIST.md), [KEY_INPUT.md](docs/KEY_INPUT.md), [RESOURCE_HANDLES.md](docs/RESOURCE_HANDLES.md), [SAVE_FORMAT.md](docs/SAVE_FORMAT.md), and [SPRITE_ANIMATOR.md](docs/SPRITE_ANIMATOR.md).
+
+## Branch policy
+
+- **`main`**: active public byte-exact retail reconstruction and durable project checkpoints.
+- **`custom-game`**: separate intentional QoL/content work. Retail matching and custom behavior must not be mixed.
+- **`ches-dev`**: retained historical exact-contribution line from earlier project phases.
+
+Every source/data promotion on `main` must preserve the retail ROM exactly. Research candidates that are behaviorally understood but nonmatching stay in the research/checkpoint area instead of replacing assembly.
 
 ## Contributing
 
-Please do. Feel free to yell at me if you need naming/style/formatting guidelines.
+Matching contributions should be small, evidence-backed, and consistent with the surrounding project style.
 
-If you're looking for things that need to be done, check out [TODO.md](./TODO.md).
+Before considering a retail reconstruction complete:
 
-## Contact
+1. prove the intended behavior and ABI from retail evidence;
+2. match the exact target bytes;
+3. integrate only the corresponding source/assembly/linker boundary;
+4. run the full ROM comparison;
+5. verify the expected SHA1;
+6. update the documentation and progress state affected by the change.
 
-You can find me over at the [Fire Emblem Universe Discord](https://feuniverse.us/t/feu-discord-server/1480?u=stanh) under the handle `nat_776`. I also lurk other places such as the pret Discord.
+Avoid speculative semantic names, unrelated refactors, artificial register-forcing tricks, or custom behavior inside retail-matching work.
 
-See also my other stuff:
+## Upstream and related work
 
-* [**StanHash/FOMT-DOC**](https://github.com/StanHash/FOMT-DOC), my old documentation of this game's internals.
-* [**StanHash/fe6**](https://github.com/StanHash/fe6), a decompilation of Fire Emblem: The Binding Blade (JP)
+- [StanHash/fomt](https://github.com/StanHash/fomt) - upstream decompilation project
+- [StanHash/FOMT-DOC](https://github.com/StanHash/FOMT-DOC) - earlier reverse-engineering documentation
+- [StanHash/mary](https://github.com/StanHash/mary) - FoMT/MFoMT event-script compiler/decompiler
+
+The original upstream README/contact history remains available in the repository history.

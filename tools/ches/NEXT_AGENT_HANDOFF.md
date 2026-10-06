@@ -1,33 +1,39 @@
-# Current FoMT continuation — October 6, 2026
+# Current FoMT continuation - October 6, 2026
 
-## CURRENT CHECKPOINT - paired mode-4 setup exact; effect factory/destructor exact; constructor bounded - October 6, 2026
+## CURRENT CHECKPOINT - documentation audit complete locally; public-main migration still pending
 
-- Continued from pushed checkpoint `f154aef` on `Live-temp`.
-- Promoted **332 exact retail range bytes** this turn:
-  - `func_08039DA8`: **0x70 / 0**.
-  - `func_08039E18`: **0x70 / 0**.
-  - `func_08039A30`: **0x2C / 0**.
-  - `func_08039F50`: **0x40 / 0**.
-- The paired 0x70 setup helpers matched on the **first natural packed-bitfield source**. Their mode-4 state word is now proven:
-  - low 16-bit timer = `func_080AB788(0x78) + 0xF0`;
-  - 7-bit sub-counter = `0x3C`;
-  - target-kind bit = 0 in `39DA8`, 1 in `39E18`;
-  - top-byte facing timer = 0.
-  - Both refuse to run while state mode is 1, set mode 4 through `func_0809C0C8`, call `func_08032384(owner,2,false)`, then `func_080200C4(owner,0xAA)`; energy decrement is 15 for `39DA8`, 4 for `39E18`.
-- `func_08039A30` is the typed natural factory `new UnknownEntityThing(owner, 2, 0x1B, 0, 8, 0, false)`; first candidate matched exactly.
-- `func_08039F50` destructor matched exactly from the natural ownership model: reset vtable 76BC, virtual-destroy optional child at +0x48 with flag 3, release embedded effect at +8 through `func_080A47B4(...,2)`, conditionally free self.
-- Full production gate passes: `make -B -j4 compare` -> **`fomt.gba: OK`**, retail SHA1 unchanged.
-- Current progress: **70,360 / 940,036 = 7.4848% code**, **869,676 asm bytes** remain; **2,342 unresolved linked asm functions**; inferred ranges **868,512 / 869,676 = 99.8662%**; unattributed asm **1,164 bytes**. Data/assets remain **75,334 / 6,777,404 = 1.1115%**; meaningful ROM is **146,090 / 7,717,440 = 1.8930%**; free tail remains **671,168 bytes**.
-- `func_08039E98` constructor is behavior-complete and parked on register lifetime:
-  - v1 fake 4-byte provider result: **0xB2 / 172**.
-  - v2 `candidate-ctor-39e98-v2.cc`: **exact-size 0xB8 / 109**, strongest.
-  - Key type proof: provider virtual +0x0C returns the real **8-byte `SpriteAnimation`** temporary; its first frame sprite id is passed through provider virtual +0x10 into the optional 0x4C child. This recovers retail's 0x14 stack frame and r8/r9 saves. Remaining mismatch is register assignment/lifetime, not unknown behavior.
-- `func_080399C0` is the next clean destructor target. First scratch `candidate-dtor-399c0-v1.cc` did **not compile**, so there is no match result yet. Diagnostic is purely source declaration shape:
-  - derived scratch class used `AActorEntity` without declaring a constructor, but the base has only non-default constructors;
-  - scratch incorrectly redeclared `__vt_7AEntity`; the existing declaration is `AEntity::__vt_7AEntity`.
-  - Retail semantics are already visible: copy current `ActorLocation` into actor state +0x34, delete the five strategy pointers +0x38..+0x48 in reverse, restore AEntity vtable, virtual-destroy SmartPtr target +0x10 with flag 3, conditionally free self.
-- Existing parked strategy updates `39204`, `39310`, `3955C`, `39708` and controller islands `38820`/`38EE0` remain closed unless new original-type/compiler evidence appears.
-- **Exact next action on Continue:** fix only the two declaration issues in `candidate-dtor-399c0-v1.cc` (declare a derived constructor or use a raw overlay; use existing `AEntity::__vt_7AEntity` instead of redeclaring it), compare retail `0x080399C0..0x08039A30` (0x70), then promote if exact/near-exact. Do not reopen `39E98` allocator tuning first.
+- **IMPORTANT operational state:** the documentation/publication audit has been written to the working tree, but the mandatory Ches turn checkpoint fired before commit/push/branch deletion. The repository is still checked out on `Live-temp`; the documentation changes are intentionally dirty/uncommitted. `ches/main` has **not yet** been advanced and `Live-temp` has **not yet** been deleted. Do not assume the branch migration already happened.
+- Verified branch topology before editing: old `ches/main` tip `b8471ae065744869f64283473ed68372f82321c9` is an ancestor of exact code checkpoint `bf45d1405c67000a7aa023726a885c6c87216dfd`; the latter is **75 commits ahead / 0 behind**, so the eventual public-main update is a normal fast-forward with no force required.
+- Intended final policy after the pending publication step: active public retail branch **`main`**; former `Live-temp` retired/deleted; historical `ches-dev` retained as provenance; custom behavior remains on separate custom-game worktree/branch.
+- Latest exact code checkpoint before the documentation/publication consolidation: `bf45d1405c67000a7aa023726a885c6c87216dfd` (`decompile mode4 setup and effect helpers`).
+- Full retail gate is exact: `make -B -j4 compare` -> **`fomt.gba: OK`**; SHA1 `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
+- Current progress: **70,360 / 940,036 = 7.4848% code**, **869,676 asm bytes** remain; **2,342 linked asm functions**; inferred ranges **868,512 / 869,676 = 99.8662%**; unattributed asm **1,164 bytes**. Data/assets remain **75,334 / 6,777,404 = 1.1115%**; meaningful ROM is **146,090 / 7,717,440 = 1.8930%**; free tail **671,168 bytes**.
+- Latest exact family added **332 retail bytes**:
+  - `func_08039DA8`: 0x70 / 0;
+  - `func_08039E18`: 0x70 / 0;
+  - `func_08039A30`: 0x2C / 0;
+  - `func_08039F50`: 0x40 / 0.
+- The paired 0x70 setup helpers prove mode-4 packed state: low 16-bit timer = `func_080AB788(0x78)+0xF0`; 7-bit sub-counter = 0x3C; target-kind bit differs 0/1; top-byte facing timer = 0. Both set mode 4 through `func_0809C0C8`, call `func_08032384(owner,2,false)`, then `func_080200C4(owner,0xAA)`; energy decrement is 15 for `39DA8` and 4 for `39E18`.
+- `func_08039A30` is exact typed source: `new UnknownEntityThing(owner, 2, 0x1B, 0, 8, 0, false)`.
+- `func_08039F50` is exact: reset vtable 76BC, virtual-destroy optional child +0x48 with flags 3, release embedded effect +8 through `func_080A47B4(...,2)`, conditionally free self.
+- `func_08039E98` is behavior-complete and parked. Best source `candidate-ctor-39e98-v2.cc` is **exact-size 0xB8 / 109**. Real provider virtual +0x0C returns the project’s **8-byte `SpriteAnimation`** temporary, recovering the retail 0x14 frame and r8/r9 save set. Remaining delta is register/lifetime allocation.
+- Existing parked strategy/controller islands `39204`, `39310`, `3955C`, `39708`, `38820`, `38EE0`, and Ball mover `38110` remain closed unless new original-type/compiler evidence appears.
+- Root/public documentation was fully audited for current-state drift. `README.md` is now the public project front door; `START_HERE.md`, `docs/PROGRESS.md`, branch policy, current metrics, priority docs, asset docs, character/custom docs, compiler header, repo map, and build-inventory description were aligned to the public `main` workflow. Historical commit/result records remain historical rather than being rewritten.
+
+### Exact next action
+
+Continue **`func_080399C0`**, retail `0x080399C0..0x08039A30` (0x70).
+
+Saved scratch:
+`tools/ches/checkpoints/entity-08038740-2026-10-06/candidate-dtor-399c0-v1.cc`
+
+The first attempt did **not compile**, so there is no match result yet. Fix only these two declaration issues:
+1. the scratch derived type used `AActorEntity` without declaring a constructor even though the base has no default constructor; declare a suitable scratch constructor or use a raw ABI overlay;
+2. remove the duplicate `__vt_7AEntity` declaration and use the existing `AEntity::__vt_7AEntity`.
+
+Retail semantics are already visible: copy current `ActorLocation` into actor state +0x34; delete the five strategy pointers +0x38..+0x48 in reverse; restore the AEntity vtable; virtual-destroy the +0x10 owned target with flags 3; conditionally free self. Compare the 0x70 range, then promote only if exact.
+
+For fresh-conversation automation, do **not** resend a handoff merely because a browser/send command reports an error or omits a reply. Inspect the actual target tab first and confirm whether the user message appeared or a turn started. The previous failure mode produced a real 54-tool-call turn despite a misleading return.
 
 ## SUPERSEDED CHECKPOINT - location-bound actor island behavior-complete; move into rank-11 entity region - October 6, 2026
 

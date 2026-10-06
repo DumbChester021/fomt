@@ -1,13 +1,13 @@
 # FoMT Repository Map
 
-## Active scope — October 6, 2026
+## Active scope - October 6, 2026
 
 The active retail goal is **throughput-first whole-game decompilation**. Preserve
-the byte-identical US ROM on `ches-dev`, keep custom behavior separate, and use
-the already-recovered shared infrastructure to unlock large coherent portions of
-the remaining assembly.
+the byte-identical US ROM on public branch `main`, keep custom behavior
+separate, and use the already-recovered shared infrastructure to unlock large
+coherent portions of the remaining assembly.
 
-The normal work unit is now an inferred original translation unit or coherent
+The normal work unit is an inferred original translation unit or coherent
 structural/type/similarity cluster. Target selection comes from the unified
 function/TU inventory, similarity and class/data ownership maps, and a ranked
 queue that balances bytes, downstream leverage, type readiness, coherence, and
@@ -15,44 +15,48 @@ known compiler difficulty.
 
 Save-loader exact matching and the documented compiler-sensitive islands remain
 parked unless new evidence raises their leverage. Runtime savestate/watchpoint
-work is preserved as the seed for scripted coverage/indirect-call collection,
-not as the primary target queue. Custom behavior still belongs only in the
-separate custom-game worktree.
+work is preserved as seed infrastructure for scripted coverage/indirect-call
+collection, not as the primary target queue. Custom behavior belongs only in
+the separate custom-game worktree.
 
-
-This is a practical map of the current reconstruction, not a claim that every subsystem is fully understood.
+This is a practical map of the current reconstruction, not a claim that every
+subsystem is fully understood.
 
 ## Current reconstruction snapshot - October 6, 2026
 
-Authoritative live state is in `START_HERE.md`; this section keeps the repository map aligned with it.
+Authoritative live state is in `START_HERE.md`.
 
-- Production `ches-dev` remains at `9078f368c02d861f7cd71685e1f9dd1d95c7c384` (`9078f36 decompile game object entity teardown`); the active exact working branch is `Live-temp`, which carries the private throughput/decomp checkpoint series.
-- Current code reconstruction is **69,056 / 940,036 = 7.3461%** with **870,980 assembly bytes = 92.6739%**.
-- Current data/assets reconstruction is **75,334 / 6,777,404 = 1.1115%**; overall meaningful-ROM reconstruction is **144,786 / 7,717,440 = 1.8761%**.
-- Current contiguous tail free space is **671,168 bytes = 655.44 KiB = 8.0009%** of the 8 MiB ROM. `make progress` reports all four metrics plus `fomt.gba: OK`.
-- Retail SHA1 remains `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
-- Authoritative compiler path is the tracked `tools/install_agbcp.sh` + `tools/agbcp_fomt_compat.patch` SHA-256 `aa7cc6df0efbd066e9c33deb887731e1d0210babfaeba4c9b64f3e8bc35c4256`.
+- Active public retail branch: **`main`**. The former `Live-temp` series is retired; `ches-dev` remains historical.
+- Code reconstruction: **70,360 / 940,036 = 7.4848%**; **869,676 assembly bytes** remain.
+- Remaining linked asm functions: **2,342**; inferred ranges cover **868,512 / 869,676 = 99.8662%**, with **1,164 unattributed bytes**.
+- Data/assets: **75,334 / 6,777,404 = 1.1115%**.
+- Overall meaningful-ROM reconstruction: **146,090 / 7,717,440 = 1.8930%**.
+- Contiguous tail free space: **671,168 bytes = 655.44 KiB**.
+- Retail SHA1: `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`; full compare remains **`fomt.gba: OK`**.
+- Authoritative compiler path is the tracked `tools/install_agbcp.sh` plus `tools/agbcp_fomt_compat.patch`, SHA-256 `aa7cc6df0efbd066e9c33deb887731e1d0210babfaeba4c9b64f3e8bc35c4256`.
 - Hardware, intrusive callback-list, DMA/transfer, entity-effect, resource-handle, SpriteAnimator/provider, NPC/social, item/economy, and GameObject lookup/teardown boundaries provide the current shared type foundation.
-- The active strategy is **whole-game throughput by inferred TU/type/similarity cluster**. The unified inventory/queue and resident-NPC factory/vtable/class map are live. All 35 resident constructors are source-owned, only Child +0x30 remains assembly, the `UnkEntity37008` hierarchy is bounded at documented compiler-sensitive frontiers, and the thrown `BallEntity` now owns its exact constructor plus four small methods in source. Re-rank after meaningful integrations and prefer structural continuity over raw score when a high-ranked region contains a deliberately parked target. The packed bank remains **416 / 493 semantically owned animations**, with its remaining 77 IDs as a parked by-product lane.
-- Recent 0x080Axxxx source conversions include:
-  - `src/code_080A46AC.cc`
-  - `src/code_080A480C.cc`
-  - `src/code_080A4A4C.cc`
-  - `src/code_080A4A94.cc`
-  - `src/code_080A5670.cc`
-  - `src/code_080A56DC.cc`
-  - `src/code_080A5A9C.cc`
-  - `src/code_080A5EA0.cc`
-  - `src/code_080A601C.cc`
-  - `src/code_080A6420.cc`
-  - `src/code_080A6640.cc`
-- `src/water_region.cc` and `src/terrain.cc` contain exact compiler-sensitive source conversions backed by the tracked compatibility toolchain.
-- Shared entity effects are readable in `include/entity_effect.hh`, `src/entity_effect.cc`, `src/entity_effect_dtor.cc`, and `src/entity_effect_vtable.cc`; existing actor callers and graphics helpers use the shared layout.
-- The neutral location-bound actor hierarchy reconstructed around retail `0x08037008` is documented in `docs/ENTITY_08037008.md` and implemented in `include/entity_unk_08037008.hh` / `src/entity_unk_08037008.cc`.
-- The selector-`0x4B` thrown Ball entity is documented in `docs/ENTITY_BALL.md` and implemented incrementally in `include/entity_ball.hh` / `src/entity_ball.cc`; its constructor and four small methods are exact source while destructor, movement, and visual/controller methods remain assembly.
-- Shared resource handles are readable in `include/resource_handle.hh`, `src/resource_handle.cc`, and `docs/RESOURCE_HANDLES.md`; effect callers share the corrected lookup ABI. Twenty functions are exact, including construction/acquisition, queries, root/order8 full resets, root/order9 partial ranges, release through order8 and entry initialization. Thirteen saved compiler behaviors reproduce the complete ROM.
-- Full workflow and do/don't rules are in `docs/DECOMP_PLAYBOOK.md`.
-- Custom-game/QoL/custom-character work remains separate from retail reconstruction.
+- All 35 resident constructors are source-owned. IDs 1..34 also have source-owned +0x30 factories; Child +0x30 remains assembly.
+- The neutral location-bound actor hierarchy and thrown Ball family are bounded at documented scopes.
+- The adjacent Entity38740 controller/strategy neighborhood now owns numerous exact helpers, including nearest-entity selection, region testing, strategy selectors, mode-4 setup, table/mask helpers, the `UnknownEntityThing` factory, and the exact `39F50` destructor.
+- `func_08039E98` is behavior-complete and exact-size in scratch at 0xB8 / 109 but parked on register allocation.
+- The exact next target is `func_080399C0`; its saved first scratch attempt failed only on two declaration issues documented in the handoff.
+- The packed bank remains **416 / 493 semantically owned animations**, with the remaining 77 IDs as a parked by-product lane.
+
+Recent readable source in this region includes:
+- `include/entity_unk_08037008.hh` / `src/entity_unk_08037008.cc`;
+- `include/entity_ball.hh` / `src/entity_ball.cc`;
+- `src/entity_unk_08038740.cc`.
+
+Shared entity effects are readable in `include/entity_effect.hh`,
+`src/entity_effect.cc`, `src/entity_effect_dtor.cc`, and
+`src/entity_effect_vtable.cc`.
+
+Shared resource handles are readable in `include/resource_handle.hh`,
+`src/resource_handle.cc`, and `docs/RESOURCE_HANDLES.md`.
+
+Full workflow and do/don't rules are in `docs/DECOMP_PLAYBOOK.md`.
+Custom-game/QoL/custom-character work remains separate from retail
+reconstruction.
 
 ## Active custom-character support
 
@@ -84,7 +88,7 @@ under `assets/item_icons/`. `tools/packed_sprite_bank.py` rebuilds the
 0x30080-byte bank exactly. The cooking UI owns `gCookingUtensilIconIds`, mapping
 Knife=265, Frying Pan=204, Pot=346, Mixer=64, Whisk=472, Rolling Pin=313,
 Oven=327, and Seasoning Set=400. `func_08092A70` remains parked at `0x260 / 3`.
-That item/tool lane is currently parked behind the whole-game throughput queue. The immediate continuation is the proven thrown Ball family: destructor `0x08038098`, wrappers `0x08038300/20/34`, then its 0x48-byte visual/controller family. Product-count growth remains deferred because `ShippingBin::product_stats[NUM_PRODUCTS]` is embedded in persistent state.
+That item/tool lane remains behind the whole-game throughput queue. The current retail continuation is the adjacent Entity38740 destructor `func_080399C0`, as documented in `START_HERE.md` and the canonical handoff. Product-count growth remains deferred because `ShippingBin::product_stats[NUM_PRODUCTS]` is embedded in persistent state.
 
 Legacy loader `func_08011650` remains paused. Crop/field semantics,
 dialogue/event registration, and character portrait/display assets remain later
@@ -109,7 +113,7 @@ Tracked subsystem/domain references currently include:
 - `docs/ASSET_DECOMPILATION.md`: authoritative asset/data counting rules, current asset byte ownership, free-space reporting, and code-coupled asset roadmap.
 - `assets/item_icons/README.md`: editable retail item-icon asset workflow, exact bank rebuild commands, sharing rules, and current conversion boundary.
 
-Private/local decomp coordination documents include `START_HERE.md`, `docs/DECOMP_PLAYBOOK.md`, `docs/DECOMP_PRIORITY_MAP.md`, `docs/DECOMP_NOTES.md`, `docs/FOMT_COMPILER_RESEARCH.md`, and `tools/ches/`.
+Project decompilation coordination documents include `START_HERE.md`, `docs/DECOMP_PLAYBOOK.md`, `docs/DECOMP_PRIORITY_MAP.md`, `docs/DECOMP_NOTES.md`, `docs/FOMT_COMPILER_RESEARCH.md`, and `tools/ches/`.
 
 Continue the tracked subsystem-doc pattern when a shared type or domain becomes materially understood. These architecture pages should contain durable human-facing facts, while transient candidate/version/compiler research stays in private checkpoints.
 

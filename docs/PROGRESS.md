@@ -1,81 +1,107 @@
 # Decompilation and expansion progress
 
-Run `make progress` for the current reconstruction totals, retail ROM check,
-branch, commit, and PRET-style free-space report.
+Run `make progress` for the live reconstruction totals, retail-ROM comparison, branch/commit information, and PRET-style free-space report.
 
-The project now keeps **three separate reconstruction metrics** instead of
-forcing code, data and graphics into one misleading percentage:
+## Current verified snapshot
 
-1. **Code reconstruction** — the original executable-code metric from linked
-   `.text` / linkonce text sections.
-2. **Data/assets reconstruction** — ROM-resident bytes outside that code metric
-   which are actually regenerated from typed source or editable asset sources.
-3. **Overall meaningful-ROM reconstruction** — reconstructed code plus
-   reconstructed data/assets divided by the linked ROM before final padding.
+Active public retail branch: **`main`**
 
-Merely understanding, naming, documenting, or copying an `.incbin` does **not**
-increase the asset/data metric. Asset bytes count only when an editable source
-such as PNG data actually regenerates those retail bytes.
+Retail verification:
 
-Production `ches-dev` remains at `9078f36` (`decompile game object entity teardown`). The active exact `Live-temp` branch carries the private throughput/decomp checkpoints through the October 6 thrown BallEntity integration. Current worktree totals are:
+- `make -B -j4 compare` -> **`fomt.gba: OK`**
+- ROM size: **8,388,608 bytes**
+- SHA1: **`a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`**
+
+Current reconstruction:
 
 ```text
 Code reconstruction
-  69056 / 940036 bytes (7.3461%)
-  870980 bytes remain in asm
+  70360 / 940036 bytes (7.4848%)
+  869676 bytes remain in asm
 
 Data/assets reconstruction
   75334 / 6777404 bytes (1.1115%)
   31110 bytes from typed/source non-code data
   44224 bytes from editable generated assets
-    semantically owned packed-sprite graphics and palettes:
-    44224 bytes (33664 graphics + 10560 palette)
+    33664 graphics bytes
+    10560 palette bytes
   396 additional source-owned ROM-header bytes count only toward overall
 
 Overall meaningful-ROM reconstruction
-  144786 / 7717440 bytes (1.8761%)
-  final ROM padding is excluded from this reconstruction denominator
+  146090 / 7717440 bytes (1.8930%)
+  final ROM padding is excluded from this denominator
 
 ROM space
   7717440 / 8388608 bytes used (91.9991%)
   671168 bytes free (655.44 KiB, 8.0009%) contiguous tail space
-
-fomt.gba: OK
 ```
 
-The retail SHA1 remains `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
+The code inventory currently reports **2,342 linked assembly functions**, **868,512 bytes** covered by inferred function ranges, and **1,164 unattributed assembly bytes**.
 
-The free-space number is the contiguous final ROM tail from the end of linked
-content to the current 8 MiB ROM size. It intentionally does not claim internal
-holes as available space.
+## What the metrics mean
 
-## Reconstruction milestones
+The project keeps separate dimensions rather than combining unlike work into one inflated percentage:
 
-| Area | Current state | Next useful boundary |
-| --- | --- | --- |
-| Matching build | Retail SHA1 reproduced | Keep every promoted retail contribution byte-identical |
-| Throughput tooling | Unified remaining-function inventory, ranked region queue, similarity clusters, and resident-NPC factory/vtable/class map are live and regenerate from the current build | Keep the inventory fresh after integrations; deepen TU/type ownership only where it improves the next ranked coherent unit |
-| Input | Polling and new-press helpers are matching C++ | Extend only for a concrete control or scripted-runtime need |
-| Save data | Matching checksum/record writer and slot geometry; each slot has a proven unused 0xAF0-byte tail; retail loader behavior is bounded and exact-match research is preserved | **Paused** until persistence becomes a blocking dependency |
-| Characters/entities | Exact 43-entry metadata, identity/location/schedules, complete 94-selector factory map, native lookup/teardown/social routing, all 35 resident constructors, +0x30 source for IDs 1..34, Child +0x3C, the bounded neutral location-bound actor hierarchy, and the thrown BallEntity constructor plus four exact methods | Continue the Ball destructor/wrappers/controller family before the large mover; Child +0x30 and documented compiler-sensitive actor islands remain parked. Custom work still needs runtime registration and seventh-candidate policy |
-| Scenes and dialogue | Event bytecode can be inspected with Mary and substantial script evidence exists | Rank native trigger/dispatch/event TUs; use scripted runtime coverage to classify scene/event code and indirect targets |
-| Items and tools | Core tables/wrappers, GameObject article paths, MoneyState, six typed shop catalogs, exact description helpers, proven 40-index shop stock, exact packed animation-provider parsing, and all 347 Tool/Food/Article icons as editable PNG inputs | Use these recovered types as leverage inside higher-ranked item/menu/shop TUs; avoid product-count growth because persistent layout depends on `NUM_PRODUCTS` |
-| Crops and field | Field/FieldPlot structure and many methods are source, but crop-state semantics remain partly opaque | Rank coherent field/crop/tool TUs and recover planting/growth/harvest transitions as clusters rather than isolated functions |
-| Maps | Logical-to-physical map resolution and TerrainInfo layout are researched | Fold map/tileset consumers, tables, and runtime coverage into the TU/data-ownership queue; promote editable structures only when byte-exact and semantically owned |
-| Graphics | Shared animator/effect/provider support is source; packed-bank ownership is **416 / 493 = 405 / 450 simple + 11 / 43 multi-frame** and the build regenerates all promoted families exactly | The remaining **77** IDs are parked as a by-product lane. Resolve them while decompiling owning scenes/events/TUs; do not manually hunt them as the main queue |
-| Sound and music | M4A runtime is partly source, but the song payload remains baserom-backed | Treat audio as a coherent subsystem/TU/data project and rank it against other clusters rather than mining individual assets |
-| Runtime analysis | Durable opening-farm mGBA savestate exists; prior selective watchpoint work is preserved | Build deterministic savestate + scripted-input coverage/indirect-call/RAM-diff scenarios; watchpoints answer focused questions only |
+1. **Code reconstruction** counts linked executable source replacing retail assembly.
+2. **Data/assets reconstruction** counts non-code ROM bytes regenerated from editable typed data or asset sources.
+3. **Overall meaningful-ROM reconstruction** combines reconstructed code and data/assets against linked ROM content before final padding.
 
-Exact reconstruction is now **69,056 / 940,036 source bytes = 7.3461%**,
-**75,334 data/asset bytes**, and **144,786 overall meaningful-ROM bytes** at the
-current verified baseline. The latest BallEntity pass added **188 exact source bytes** while preserving the retail ROM.
+Understanding or documenting an opaque `.incbin` does not count as asset/data reconstruction. Editable project-side source must regenerate the retail bytes exactly.
 
-A future semantic/understood metric should be reported separately from exact
-matched source. Production source remains exact-only unless the project later
-adopts an explicit supported NONMATCHING convention.
+## Recent exact milestones
 
-Milestone claims should link back to exact source, assembly, ROM data, or tool
-output. Matching status proves binary preservation; it does not by itself prove
-a semantic name or mechanic. Current scope is throughput-first whole-game retail
-decompilation, with custom-game readiness as a major downstream benefit and
-save-loader exact matching still paused.
+The current Entity38740 strategy/controller run substantially expanded the readable entity family.
+
+The latest exact batch added **332 retail bytes**:
+
+- `func_08039DA8`: 0x70
+- `func_08039E18`: 0x70
+- `func_08039A30`: 0x2C
+- `func_08039F50`: 0x40
+
+The broader recent family also promoted exact nearest-entity selection, coordinate-region tests, strategy selectors, state helpers, table/mask lookups, and strategy-pointer selection.
+
+Other major recovered areas include:
+
+| Area | Current state |
+| --- | --- |
+| Build/toolchain | Reproducible pinned FoMT compatibility compiler and exact retail build |
+| Input/hardware | Key input, Hardware context accessors, DMA/transfer queue, VBlank infrastructure |
+| Containers/resources | Intrusive callback list and substantial resource-handle/allocation logic |
+| Animation/effects | SpriteAnimator, packed provider parsing, EntityEffect lifecycle |
+| Characters | 43-entry character metadata, identity/social/location/schedule helpers, all 35 resident constructors |
+| Entity system | GameObject indexed lookup/teardown, Ball entity, substantial adjacent strategy/controller family |
+| Economy/items | MoneyState, typed shop catalogs, article interaction paths |
+| Editable graphics | 347 retail Tool/Food/Article icons plus code-proven special families |
+| Save format | Exact checksum/writer/slot geometry; loader research bounded and parked |
+
+## Current frontier
+
+The exact next code target is `func_080399C0` at `0x080399C0..0x08039A30` (0x70).
+
+Its first saved candidate did not compile only because of two C++ declaration issues. Its retail destructor behavior is already understood. See `START_HERE.md` and `tools/ches/NEXT_AGENT_HANDOFF.md` for the exact resume steps.
+
+The adjacent `func_08039E98` constructor is behavior-complete and exact-size in scratch at **0xB8 / 109 differing linked bytes**; it is parked on register/lifetime allocation.
+
+## Asset status
+
+The packed item/UI bank contains 493 animations:
+
+- **416 semantically owned**
+- **405 / 450 simple**
+- **11 / 43 multi-frame**
+- **77 unowned**
+
+The remaining IDs are not a standalone percentage-hunting queue. They are resolved when their consuming scenes, events, tables, or entity systems are reconstructed.
+
+See `docs/ASSET_DECOMPILATION.md`.
+
+## Custom-game track
+
+Intentional QoL/content work remains separate on the `custom-game` branch/worktree.
+
+Retail `main` remains byte-exact. Product-count growth and custom persistence remain deferred because they affect serialized state layout.
+
+## Free space
+
+The reported **671,168 bytes** are the contiguous final tail after linked content in the 8 MiB retail image. Internal holes are not counted unless independently proven safe.

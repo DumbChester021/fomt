@@ -4,7 +4,7 @@
 
 The retail project now uses **throughput-first whole-game decompilation** rather
 than making character expansion the primary queue. Preserve the byte-identical
-US retail ROM on `ches-dev`; custom behavior remains only in the separate
+US retail ROM on `main`; custom behavior remains only in the separate
 custom-game worktree.
 
 Character work still benefits directly from the new TU/cluster pipeline:
@@ -103,7 +103,7 @@ The first coherent five-function unit is complete in the retail worktree:
 All five are readable, byte-exact C++ under the tracked compiler. Both forced
 full-ROM builds passed, including shared-class/vtable ownership and source
 seams. They add 0x468 (1,128) linked source bytes. Existing `ANpcEntity` source
-is unchanged. These interfaces are available on `ches-dev`; they have not been
+is unchanged. These interfaces are available on retail `main`; they have not been
 merged into the older custom-game source. This recovery does not yet implement
 an added NPC.
 
@@ -114,9 +114,9 @@ the native GameObject entity lookups and teardown. The exact October 5 worktree
 adds the early 0x1C0-byte social resolver block to `src/character_info.cc`, the
 later 0x36C-byte NPC/bachelorette/Harvest-Sprite resolver block to
 `src/character_social.cc`, and `func_08045584` to `src/heart_event_days.cc`.
-Current executable progress is **69,056 / 940,036 = 7.3461%** and the retail
-ROM remains exact. Production HEAD is still `9078f36`; the active `Live-temp`
-checkpoint series, including the BallEntity pass, is committed and pushed separately from production.
+Current executable progress is **70,360 / 940,036 = 7.4848%** and the retail
+ROM remains exact. The active public retail line is `main`; the former
+`Live-temp` series has been folded into it, while `ches-dev` remains historical.
 
 The complete `func_0801A8E0` factory has also been mapped without pretending
 its unresolved families are semantically named: 94 selectors lead to 58 unique

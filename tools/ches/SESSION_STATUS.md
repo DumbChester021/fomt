@@ -1,15 +1,15 @@
 # Ches Session Status — FOMT decomp
 
-## CURRENT SNAPSHOT - 7.4848%; mode-4 setup/factory/destructor exact - October 6, 2026
+## CURRENT SNAPSHOT - 7.4848%; documentation audit saved, public-main migration pending - October 6, 2026
 
-- Active branch `Live-temp`; continued from pushed checkpoint `f154aef`.
-- Added **332 exact retail range bytes**: `39DA8` 0x70/0, `39E18` 0x70/0, `39A30` 0x2C/0, `39F50` 0x40/0. Full ROM remains **`fomt.gba: OK`**.
+- Mandatory turn checkpoint interrupted the publication sequence after the documentation rewrite. Current checkout is still `Live-temp` with intentional uncommitted documentation changes. `ches/main` has not yet been advanced and `Live-temp` has not yet been deleted. The next turn must verify the dirty diff, rerun the retail gate, commit the documentation consolidation, fast-forward `ches/main`, verify the remote tip, switch local `main` to it, then delete `Live-temp` only after proof that `main` contains the checkpoint.
+- Latest exact code checkpoint before the documentation consolidation is `bf45d14`.
+- Latest exact batch added **332 retail range bytes**: `39DA8` 0x70/0, `39E18` 0x70/0, `39A30` 0x2C/0, `39F50` 0x40/0. Full ROM remains **`fomt.gba: OK`**.
 - Progress: **70,360 / 940,036 = 7.4848% code**, **869,676 asm bytes**, **75,334 data/assets**, **146,090 meaningful-ROM bytes = 1.8930%**, **671,168 bytes free**.
 - Inventory: **2,342 linked asm functions**, **868,512 / 869,676 inferred range bytes = 99.8662%**, **1,164 unattributed bytes**.
-- Mode-4 packed state is proven: timer u16, 7-bit sub-counter, target-kind bit, facing-timer byte. Pair `39DA8/39E18` matched first try.
-- `39A30` typed `UnknownEntityThing` factory and `39F50` child/effect destructor matched first try.
-- `39E98` constructor is behavior-complete at **exact-size 0xB8 / 109** in `candidate-ctor-39e98-v2.cc`; real 8-byte `SpriteAnimation` temporary recovered retail frame/high-register shape. Park on register allocation.
-- Next: fix the two declaration-only compile errors in `candidate-dtor-399c0-v1.cc`, compare `399C0` retail 0x70, then promote if productive.
+- `39E98` constructor is behavior-complete at **exact-size 0xB8 / 109** in `candidate-ctor-39e98-v2.cc`; real 8-byte `SpriteAnimation` temporary recovers the retail frame/high-register shape. Park on register allocation.
+- Public docs were audited and current-state branch/metric/frontier drift was corrected; genuine historical records below remain historical.
+- Next: fix the two declaration-only compile errors in `candidate-dtor-399c0-v1.cc`, compare `399C0` retail 0x70, then promote if exact.
 
 ## SUPERSEDED SNAPSHOT - 7.3261%; location-bound actor island bounded - October 6, 2026
 

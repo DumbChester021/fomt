@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Rank unresolved FoMT assembly functions by decompilation leverage.
 
-This is a private local analysis helper. It is intentionally heuristic: call
+This is a project analysis helper. It is intentionally heuristic: call
 fan-out is evidence for architectural value, not a substitute for human review.
 
 Metrics:

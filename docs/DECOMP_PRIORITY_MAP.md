@@ -1,31 +1,32 @@
 # FoMT Decompilation Priority Map
 
-## Active scope — October 6, 2026
+## Active scope - October 6, 2026
 
 The active goal is **throughput-first whole-game retail decompilation**.
-Preserve the byte-identical US retail ROM on `ches-dev`, keep custom behavior
-in the separate custom-game worktree, and prioritize coherent reconstruction
-that maximizes useful source and downstream understanding.
+Preserve the byte-identical US retail ROM on public branch `main`, keep custom
+behavior in the separate custom-game worktree, and prioritize coherent
+reconstruction that maximizes useful source and downstream understanding.
 
 The project already has strong foundational types and APIs. The next phase is to
 exploit them across the remaining assembly instead of making an individual
 resource family the main queue.
 
-Current exact worktree:
-- code: **69,056 / 940,036 = 7.3461%**;
-- assembly remaining: **870,980 bytes**;
+Current exact `main` state:
+- code: **70,360 / 940,036 = 7.4848%**;
+- assembly remaining: **869,676 bytes**;
+- remaining linked assembly functions: **2,342**;
 - data/assets: **75,334 / 6,777,404 = 1.1115%**;
-- overall meaningful ROM: **144,786 / 7,717,440 = 1.8761%**;
+- overall meaningful ROM: **146,090 / 7,717,440 = 1.8930%**;
 - packed bank: **416 / 493 semantically owned animations**;
-- retail ROM remains exact.
+- retail ROM remains exact at SHA1 `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
 
 The legacy save loader `func_08011650`, `func_080455D8`,
 `func_08092A70`, `func_080CAC7C` / `func_080CAD18`, and
 `func_08092940` remain parked unless new structural evidence raises their
 leverage.
 
-This is a private local roadmap for zero-context continuation. It is not an
-upstream contribution file.
+This is the project roadmap for zero-context continuation on the public fork.
+It is not intended as upstream pull-request content.
 
 ## Why this exists
 

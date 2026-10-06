@@ -1,46 +1,88 @@
-# Installation
+# Building the FoMT decompilation
 
-## New instructions
+This repository targets the US Game Boy Advance release of **Harvest Moon: Friends of Mineral Town** and verifies the generated ROM against the retail SHA1.
 
-Better instructions will come eventually.
+The retail ROM is not distributed with the project. Supply your own legally obtained copy.
 
-- get a `arm-none-eabi` toolchain (devkitARM probably works)
-- install Python 3 and Pillow. For example, use your distro's `python3-pil` package or `python3 -m pip install Pillow`.
-- run `tools/install_agbcp.sh`. The script checks out the pinned [notyourav/agbcc] revision required by this project, applies the tracked FoMT compatibility patch, builds the toolchain, and installs it under `tools/agbcc`.
-- get the base rom, put it in root directory as `baserom.gba`
-- `make compare`
+## Requirements
 
-The C++ compiler compatibility patch is part of this repository so a fresh checkout can reproduce the matching build. The installed compiler files under `tools/agbcc` remain generated and are not committed.
+Install:
 
-The normal build also runs `tools/packed_sprite_bank.py` to rebuild the packed
-item-icon bank from `assets/item_icons/`. Pillow is therefore a build
-dependency, not only an optional graphics-inspection tool.
+- Git
+- Python 3
+- Pillow
+- an ARM `arm-none-eabi` binutils/toolchain environment
 
-[notyourav/agbcc]: https://github.com/notyourav/agbcc
+On Debian/Ubuntu, Pillow can normally be installed from the distribution package or with Python packaging tools, for example:
 
-## Old instructions
+```sh
+python3 -m pip install Pillow
+```
 
-Install the devkitARM toolchain of devkitPro as per [the instructions on their wiki](https://devkitpro.org/wiki/devkitPro_pacman).
+A devkitARM installation is also suitable for the surrounding ARM/GBA tools.
 
-Inside the included MSYS2 environment run:
+## 1. Provide the base ROM
 
-    pacman -S gcc git
+Place the US retail ROM in the repository root as:
 
-To set up the repository:
+```text
+baserom.gba
+```
 
-	git clone https://github.com/not-alons/hmfomt
-	git clone https://github.com/pret/agbcc
+The expected retail ROM is 8,388,608 bytes and has SHA1:
 
-	cd ./agbcc
-	./build.sh
-	./install.sh ../hmfomt
+```text
+a2fc3574f0a65a4fcf7682fb274b9d7eebdef963
+```
 
-	cd ../hmfomt
+## 2. Install the pinned matching compiler
 
-Place a .gba ROM of Harvest Moon: Friends of Mineral Town (USA) in your hmfomt folder and rename it to "baserom".
+Run:
 
-To build **hmfomt.gba** and confirm it matches the official ROM image:
+```sh
+tools/install_agbcp.sh
+```
 
-	make compare
+The installer checks out the pinned `notyourav/agbcc` revision, applies the tracked FoMT compatibility patch, builds it, and installs the generated compiler under `tools/agbcc`.
 
-If an OK is returned, then the installation went smoothly.
+The tracked compatibility patch is part of this repository. Generated compiler binaries are not committed.
+
+## 3. Build and verify
+
+Run the authoritative forced comparison:
+
+```sh
+make -B -j4 compare
+```
+
+A successful matching build ends with:
+
+```text
+fomt.gba: OK
+```
+
+You can independently check the generated ROM with:
+
+```sh
+sha1sum fomt.gba
+```
+
+## 4. View reconstruction progress
+
+Run:
+
+```sh
+make progress
+```
+
+This reports code reconstruction, editable data/assets, overall meaningful-ROM reconstruction, and contiguous tail free space.
+
+## Asset build dependency
+
+The normal build runs `tools/packed_sprite_bank.py` to regenerate the packed item/UI sprite bank from editable sources under `assets/item_icons/`. Pillow is therefore a normal build dependency, not just an optional inspection tool.
+
+## Troubleshooting
+
+If source that was previously exact suddenly moves by a few bytes across unrelated functions, verify compiler provenance before changing source. Re-run `tools/install_agbcp.sh` rather than copying a generated `tools/agbcc` directory from another worktree.
+
+For project-specific validation and matching rules, see [docs/DECOMP_PLAYBOOK.md](docs/DECOMP_PLAYBOOK.md).
