@@ -1,13 +1,13 @@
 # Ches Session Status — FOMT decomp
 
-## CURRENT SNAPSHOT - 7.3789%; Ball dog-play helpers exact, small surface bounded - October 6, 2026
+## CURRENT SNAPSHOT - 7.3857%; Ball mover bounded, adjacent wrappers exact - October 6, 2026
 
-- Active branch `Live-temp`; continued from pushed checkpoint `7eff5d9`.
-- Added **100 exact Ball bytes**: `func_08038374` (0x22 body + align) and `func_080384FC` (0x3E body + align). Ball family source total is now **496 retail bytes**.
-- Progress: **69,364 / 940,036 = 7.3789% code**, **870,672 asm bytes**, **75,334 data/assets**, **145,094 meaningful-ROM bytes = 1.8801%**, **671,168 bytes free**. `fomt.gba: OK`.
-- Regenerated inventory: **2,368 linked asm functions**, **869,596 / 870,672 inferred range bytes = 99.8764%**, **1,076 unattributed bytes**.
-- Bounded seams: `0x08038398` = **0x164 exact size / 21 diff**, pure r5/r6 allocation after reproducing retail switch span; `0x0803853C` = **0x44 / 8 diff** argument-load order; `0x080385B0` behavior-recovered at **0x18C vs 0x190** with remaining register/lifetime codegen differences.
-- Next: move to Ball mover `func_08038110`; use existing documented terrain/landing/dog-play semantics and do not reopen the bounded smaller seams without new structural evidence.
+- Active branch `Live-temp`; continued from pushed checkpoint `adcdb7d`.
+- Added **64 exact bytes** in new `src/entity_unk_08038740.cc`: `0x080387B8`, `0x080387C8`, `0x080387EC`, `0x080387FC`, each 0x10/0. Full ROM remains `fomt.gba: OK`.
+- Progress: **69,428 / 940,036 = 7.3857% code**, **870,608 asm bytes**, **75,334 data/assets**, **145,158 meaningful-ROM bytes = 1.8809%**, **671,168 bytes free**.
+- Inventory: **2,364 linked asm functions**, **869,532 / 870,608 inferred range bytes = 99.8764%**, **1,076 unattributed bytes**.
+- Ball mover `0x08038110` is behavior-complete but parked: strongest natural v3 has exact 68-byte stack frame and correct `UnkMapBox` temporary but is 0x1C2 vs 0x1F0 and never acquires retail r8; terrain-pointer v4 worsened to 0x1BE/483 and still no r8.
+- Next: stay in adjacent `vtable_unk_080E7380` family, target constructor `0x08038740` and factory `0x080387A0`, then controller `0x08038820`.
 
 ## SUPERSEDED SNAPSHOT - 7.3261%; location-bound actor island bounded - October 6, 2026
 

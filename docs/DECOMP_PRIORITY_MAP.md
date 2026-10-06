@@ -52,9 +52,9 @@ but its score is no longer an execution order.
 
 ## Current priority: work the live queue and preserve family-level leverage
 
-The throughput pipeline is operational: `tools/ches/build_decomp_inventory.py` produces the remaining-function database and ranked queue. The latest Ball pass adds **100 exact retail bytes** from `func_08038374` and `func_080384FC`, bringing the coherent thrown-Ball family to **496 source-owned bytes**. The smaller class/controller surface is now either exact or bounded by documented compiler-sensitive seams.
+The throughput pipeline is operational. The Ball family remains at **496 source-owned exact bytes**; its 0x1F0 mover is behavior-complete but parked after a strongest natural candidate reached the exact 68-byte frame yet failed to reproduce retail's r8 lifetime. The immediate adjacent `vtable_unk_080E7380` family has now yielded **64 exact retail bytes** from four controller-forwarding wrappers.
 
-The raw queue still begins with deliberately parked work such as the save loader, so score is not execution order. Ball continuity now points to the large mover `func_08038110`: constructor `0x0803853C` is bounded at 0x44/8 diff, resource mapper `0x08038398` at exact-size 0x164/21 diff with a pure register swap, and renderer `0x080385B0` at 0x18C vs 0x190 after behavior-complete reconstruction. Do not syntax-roulette those smaller seams. Use the already-documented terrain, landing and dog-play semantics to reconstruct `func_08038110`, then re-rank after the next exact integration.
+The raw queue still begins with deliberately parked work such as the save loader, so score is not execution order. Continue structural continuity in the adjacent `0x08038740` family: constructor and +0x30 factory are the next small targets, followed by controller constructor `0x08038820`. The boolean wrappers `0x080387D8/0x0803880C` are exact-size branch-layout seams. Keep `func_08038110` parked unless new lifetime/compiler evidence explains retail's extra r8 pressure.
 
 ### 1. Keep the function/TU inventory current
 

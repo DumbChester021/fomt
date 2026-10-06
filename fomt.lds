@@ -164,6 +164,10 @@ func_080380EC = Launch__10BallEntityUi;
 func_08038108 = IsActive__C10BallEntity;
 func_0803834C = GetBox__C10BallEntity;
 func_0803836C = GetFlightHeight__C10BallEntity;
+func_080387B8 = MethodB8__11Entity38740;
+func_080387C8 = MethodC8__11Entity38740;
+func_080387EC = MethodEC__11Entity38740;
+func_080387FC = MethodFC__11Entity38740;
 func_0801FD0C = vfunc_3C__10GameObjectUi;
 gUnk_08104258 = gCharacterInfo;
 
@@ -359,6 +363,12 @@ SECTIONS
         asm/code_entities_08034CEC.o(.text.after_ball_reset_dog_play);
         src/entity_ball.o(.text.ball_controller_update);
         asm/code_entities_08034CEC.o(.text.after_ball_controller_update);
+        src/entity_unk_08038740.o(.text.entity38740_b8);
+        src/entity_unk_08038740.o(.text.entity38740_c8);
+        asm/code_entities_08034CEC.o(.text.after_entity38740_c8);
+        src/entity_unk_08038740.o(.text.entity38740_ec);
+        src/entity_unk_08038740.o(.text.entity38740_fc);
+        asm/code_entities_08034CEC.o(.text.after_entity38740_fc);
 
         asm/code_0803A8A4.o(.text);
         src/character_schedule.o(.text);

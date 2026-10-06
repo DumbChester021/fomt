@@ -4046,27 +4046,7 @@ func_080387A0: @ 0x080387A0
     bx r1
     .align 2, 0
 
-    thumb_func_start func_080387B8
-func_080387B8: @ 0x080387B8
-    push {lr}
-    ldr r0, [r0, #0x10]
-    cmp r0, #0
-    beq .L080387C4
-    bl func_08038DF0
-.L080387C4:
-    pop {r0}
-    bx r0
-
-    thumb_func_start func_080387C8
-func_080387C8: @ 0x080387C8
-    push {lr}
-    ldr r0, [r0, #0x10]
-    cmp r0, #0
-    beq .L080387D4
-    bl func_08038E90
-.L080387D4:
-    pop {r0}
-    bx r0
+    .section .text.after_entity38740_c8, "ax", %progbits
 
     thumb_func_start func_080387D8
 func_080387D8: @ 0x080387D8
@@ -4082,27 +4062,7 @@ func_080387D8: @ 0x080387D8
     pop {r1}
     bx r1
 
-    thumb_func_start func_080387EC
-func_080387EC: @ 0x080387EC
-    push {lr}
-    ldr r0, [r0, #0x10]
-    cmp r0, #0
-    beq .L080387F8
-    bl func_08038EB8
-.L080387F8:
-    pop {r0}
-    bx r0
-
-    thumb_func_start func_080387FC
-func_080387FC: @ 0x080387FC
-    push {lr}
-    ldr r0, [r0, #0x10]
-    cmp r0, #0
-    beq .L08038808
-    bl func_08038EE0
-.L08038808:
-    pop {r0}
-    bx r0
+    .section .text.after_entity38740_fc, "ax", %progbits
 
     thumb_func_start func_0803880C
 func_0803880C: @ 0x0803880C
