@@ -149,6 +149,14 @@ __vt_13UnkEntity7218 = vtable_unk_080E7218;
 func_080379D8 = vfunc_30__13UnkEntity7218;
 func_08037A04 = vfunc_3C__13UnkEntity7218;
 func_08037A38 = GetAnim__13UnkEntity7218Ui;
+func_08037618 = GetAnim__13UnkEntity72E4Ui;
+func_08037628 = GetSpeed__13UnkEntity72E4Ui;
+func_080377C4 = GetAnim__13UnkEntity72A0Ui;
+func_080377D4 = GetSpeed__13UnkEntity72A0Ui;
+func_080378FC = GetSpeed__13UnkEntity725CUi;
+func_08037A48 = GetSpeed__13UnkEntity7218Ui;
+func_08037BB8 = __13UnkEntity7218P10GameObjectR13ActorLocation;
+func_08037BE0 = __13UnkEntity725CP10GameObjectR13ActorLocation;
 func_0801FD0C = vfunc_3C__10GameObjectUi;
 gUnk_08104258 = gCharacterInfo;
 
@@ -317,12 +325,18 @@ SECTIONS
         asm/code_entities_08034CEC.o(.text.after_entity_locbound_run2);
         src/entity_unk_08037008.o(.text.entity_locbound_run3);
         asm/code_entities_08034CEC.o(.text.after_entity_locbound_run3);
+        src/entity_unk_08037008.o(.text.entity_locbound_run3b);
+        asm/code_entities_08034CEC.o(.text.after_entity_locbound_run3b);
         src/entity_unk_08037008.o(.text.entity_locbound_run4);
         asm/code_entities_08034CEC.o(.text.after_entity_locbound_run4);
+        src/entity_unk_08037008.o(.text.entity_locbound_run4b);
+        asm/code_entities_08034CEC.o(.text.after_entity_locbound_run4b);
         src/entity_unk_08037008.o(.text.entity_locbound_run5);
         asm/code_entities_08034CEC.o(.text.after_entity_locbound_run5);
         src/entity_unk_08037008.o(.text.entity_locbound_run6);
         asm/code_entities_08034CEC.o(.text.after_entity_locbound_run6);
+        src/entity_unk_08037008.o(.text.entity_locbound_run8);
+        asm/code_entities_08034CEC.o(.text.after_entity_locbound_run8);
 
         asm/code_0803A8A4.o(.text);
         src/character_schedule.o(.text);

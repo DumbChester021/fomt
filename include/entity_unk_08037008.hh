@@ -27,42 +27,48 @@ struct UnkEntity37008 : public AActorEntity
 
 struct UnkEntity72E4 : public UnkEntity37008
 {
-    UnkEntity72E4(GameObject *, ActorLocation &, u32, u32);
+    UnkEntity72E4(GameObject *, ActorLocation &, u32);
     virtual UnknownEntityThing * vfunc_30() SECTION(".text.entity_locbound_run3");
     virtual void vfunc_3C();
     virtual u32 vfunc_40();
+    u32 GetAnim(u32 index) SECTION(".text.entity_locbound_run3b");
+    u32 GetSpeed(u32 index) SECTION(".text.entity_locbound_run3b");
 
-    /* +44 */ u8 unk_44;
+    /* +44 */ u8 unk_44 : 2;
 };
 
 struct UnkEntity72A0 : public UnkEntity37008
 {
-    UnkEntity72A0(GameObject *, ActorLocation &, u32, u32);
+    UnkEntity72A0(GameObject *, ActorLocation &, u32);
     virtual UnknownEntityThing * vfunc_30() SECTION(".text.entity_locbound_run4");
     virtual void vfunc_3C();
     virtual u32 vfunc_40();
+    u32 GetAnim(u32 index) SECTION(".text.entity_locbound_run4b");
+    u32 GetSpeed(u32 index) SECTION(".text.entity_locbound_run4b");
 
-    /* +44 */ u8 unk_44;
+    /* +44 */ u8 unk_44 : 2;
 };
 
 struct UnkEntity725C : public UnkEntity37008
 {
-    UnkEntity725C(GameObject *, ActorLocation &, u32, u32);
+    UnkEntity725C(GameObject *, ActorLocation &) SECTION(".text.entity_locbound_run8");
     virtual UnknownEntityThing * vfunc_30() SECTION(".text.entity_locbound_run5");
     virtual void vfunc_3C() SECTION(".text.entity_locbound_run5");
     virtual u32 vfunc_40();
     u32 GetAnim(u32 index) SECTION(".text.entity_locbound_run5");
+    u32 GetSpeed(u32 index) SECTION(".text.entity_locbound_run5");
 
     /* +44 */ u8 unk_44;
 };
 
 struct UnkEntity7218 : public UnkEntity37008
 {
-    UnkEntity7218(GameObject *, ActorLocation &, u32, u32);
+    UnkEntity7218(GameObject *, ActorLocation &) SECTION(".text.entity_locbound_run8");
     virtual UnknownEntityThing * vfunc_30() SECTION(".text.entity_locbound_run6");
     virtual void vfunc_3C() SECTION(".text.entity_locbound_run6");
     virtual u32 vfunc_40();
     u32 GetAnim(u32 index) SECTION(".text.entity_locbound_run6");
+    u32 GetSpeed(u32 index) SECTION(".text.entity_locbound_run6");
 
     /* +44 */ u8 unk_44;
 };

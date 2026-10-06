@@ -1,5 +1,29 @@
 # Current FoMT continuation — October 6, 2026
 
+## CURRENT CHECKPOINT - helper layer + two concrete constructors exact - October 6, 2026
+
+- Continued from pushed exact checkpoint `eb59192ca17f4bc4330bc2a9824a98fa8b7d98a6`.
+- Production-integrated **264 additional exact source bytes**, raising code reconstruction to **68,856 / 940,036 = 7.3248%** with **871,180 asm bytes** remaining. Overall meaningful-ROM reconstruction is **144,586 / 7,717,440 = 1.8735%**; data/assets **75,334** and tail free space **671,168** are unchanged.
+- Full gate still passes: `make compare` -> **`fomt.gba: OK`**, SHA1 `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
+- Newly source-owned exact methods: `UnkEntity72E4::GetAnim/GetSpeed` (`0x08037618/28`), `UnkEntity72A0::GetAnim/GetSpeed` (`0x080377C4/D4`), `UnkEntity725C::GetSpeed` (`0x080378FC`), `UnkEntity7218::GetSpeed` (`0x08037A48`). The speed bodies match naturally; trailing 2-byte section alignment accounts for retail slot sizes where applicable.
+- Newly source-owned constructors: `UnkEntity7218(GameObject*, ActorLocation&)` at **`0x08037BB8`, 0x28/0 diff** and `UnkEntity725C(GameObject*, ActorLocation&)` at **`0x08037BE0`, 0x28/0 diff**. These were previously anonymous bytes inside the old `func_08037B80` inventory range.
+- Previously anonymous variant constructors are now explicit assembly boundaries: `func_08037C08` (72A0, 0x60 bytes) and `func_08037C68` (72E4, 0x5C bytes). Both source probes are **exact-size** and semantically recovered but differ in temporary-Box/register allocation. They are parked rather than syntax-rouletted.
+- The natural `new Concrete(...)` probes for factory wrappers `0x08037A5C..0x08037BB7` did not inline under the current scratch source shape, so those wrappers remain assembly. Do not infer missing behavior from that mismatch; constructors/class layout are proven.
+- `docs/ENTITY_08037008.md` now records the helper layer, constructor signatures, Q16 speed values, and the parked variant-constructor frontier.
+- Regenerated inventory summary:
+- remaining linked assembly functions: **2,381**
+- canonical linked assembly code: **871,180 bytes**
+- bytes covered by inferred function ranges: **870,132** (**99.8797%** of linked asm code)
+- assembly code not assigned to a function range: **1,048 bytes**
+- asm definitions present in source but not linked as asm code: **2**
+- coarse TU/region hints: **134**
+- repeated opcode-shape clusters: **190**
+- functions in repeated opcode-shape clusters: **887**
+- exact normalized-body clusters: **181**
+- explicitly parked functions: **6**
+- First remaining entity-region queue line after regeneration: `| 11 | asm/code_entities_08034CEC.s:08037C08-0803A8A4 | 13908.0 | 78 | 11420 | 11420 | 0 | 23 | 33 | 7 |`
+- **Exact next action on Continue:** continue this hierarchy without reopening solved helpers. Inspect the four factory wrappers `0x08037A5C..0x08037BB7` as explicit allocation+construction functions and the remaining +0x40/+0x3C virtuals (`0x08037494`, `0x08037568`, `0x0803763C`, `0x08037714`, `0x080377E8`, `0x08037958`). Use the now-source-owned GetAnim/GetSpeed helpers as type/behavior anchors. Park `0x08037C08/68` unless a structural source-shape clue appears.
+
 ## CURRENT CHECKPOINT - resident specials + location-bound actor methods integrated exact - October 6, 2026
 
 - Started from clean pushed checkpoint `82450e7a357db5f7a05ac76456a12cb2ec9842d4` and production-integrated the scratch-proven Lou/Child and adjacent `UnkEntity37008` family.

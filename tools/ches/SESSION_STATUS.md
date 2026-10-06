@@ -1,5 +1,14 @@
 # Ches Session Status — FOMT decomp
 
+## CURRENT SNAPSHOT - 7.3248%; helper layer and two concrete constructors exact - October 6, 2026
+
+- Base pushed checkpoint entering this pass: `eb59192`.
+- Current exact progress: **68,856 / 940,036 = 7.3248% code**, **871,180 asm bytes**, **75,334 data/assets**, **144,586 overall meaningful-ROM bytes = 1.8735%**, **671,168 bytes free**.
+- Full ROM compare and retail SHA1 still pass.
+- Added exact sibling GetAnim/GetSpeed helpers plus exact 7218/725C constructors at `0x08037BB8/0x08037BE0`.
+- 72A0/72E4 variant constructors at `0x08037C08/0x08037C68` are understood exact-size source candidates but remain assembly due register-allocation mismatch.
+- Next: factory wrappers `0x08037A5C..0x08037BB7` and remaining +0x40/+0x3C methods; use recovered helper methods as anchors.
+
 ## CURRENT SNAPSHOT - 7.2967%; resident specials and location-bound actor source exact - October 6, 2026
 
 - Active branch: `Live-temp`; start checkpoint for this integration was pushed `82450e7`.

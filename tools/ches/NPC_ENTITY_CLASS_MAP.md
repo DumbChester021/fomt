@@ -39,12 +39,12 @@ Selectors 1..35 are proven by the retail factory table and decoded constructor c
 | 32 | Kappa | __11KappaEntityP10GameObjectP3NpcUi | - | __vt_11KappaEntity | vfunc_30__11KappaEntity | source | source | func_08034F00 |
 | 33 | Lou | __9LouEntityP10GameObjectP3NpcUi | gUnk_080F6B10 | __vt_9LouEntity | vfunc_30__9LouEntity | source | source | func_08034F00 |
 | 34 | Lu | __8LuEntityP10GameObjectP3NpcUi | gUnk_080F4974 | __vt_8LuEntity | vfunc_30__8LuEntity | source | source | func_08034F00 |
-| 35 | Child | __11ChildEntityP10GameObjectP3NpcUi | gUnk_080F29C0 | __vt_11ChildEntity | func_08036F0C | source | shape0111 | vfunc_3C__11ChildEntityUi |
+| 35 | Child | __11ChildEntityP10GameObjectP3NpcUi | gUnk_080F29C0 | __vt_11ChildEntity | func_08036F0C | source | shape0041 | vfunc_3C__11ChildEntityUi |
 
 ## Family leverage
 
 Constructor shape counts among IDs 2..35: source=34.
 
-+0x30 virtual shape counts among IDs 2..35: source=33, shape0111=1.
++0x30 virtual shape counts among IDs 2..35: source=33, shape0041=1.
 
 Rick is the first exact representative: its 0x38-byte constructor and 0x2C-byte +0x30 virtual both match retail with zero differing linked bytes using the Lillia source shape.

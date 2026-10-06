@@ -21,8 +21,8 @@ Production `ches-dev` remains at `9078f36` (`decompile game object entity teardo
 
 ```text
 Code reconstruction
-  68592 / 940036 bytes (7.2967%)
-  871444 bytes remain in asm
+  68856 / 940036 bytes (7.3248%)
+  871180 bytes remain in asm
 
 Data/assets reconstruction
   75334 / 6777404 bytes (1.1115%)
@@ -33,7 +33,7 @@ Data/assets reconstruction
   396 additional source-owned ROM-header bytes count only toward overall
 
 Overall meaningful-ROM reconstruction
-  144322 / 7717440 bytes (1.8701%)
+  144586 / 7717440 bytes (1.8735%)
   final ROM padding is excluded from this reconstruction denominator
 
 ROM space
@@ -67,7 +67,7 @@ holes as available space.
 | Runtime analysis | Durable opening-farm mGBA savestate exists; prior selective watchpoint work is preserved | Build deterministic savestate + scripted-input coverage/indirect-call/RAM-diff scenarios; watchpoints answer focused questions only |
 
 Exact reconstruction is now **68,592 / 940,036 source bytes = 7.2967%**,
-**75,334 data/asset bytes**, and **144,322 overall meaningful-ROM bytes** at the
+**75,334 data/asset bytes**, and **144,586 overall meaningful-ROM bytes** at the
 current verified baseline. The strategy change does not alter these numbers.
 
 A future semantic/understood metric should be reported separately from exact

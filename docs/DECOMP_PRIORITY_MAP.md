@@ -12,10 +12,10 @@ exploit them across the remaining assembly instead of making an individual
 resource family the main queue.
 
 Current exact worktree:
-- code: **68,592 / 940,036 = 7.2967%**;
-- assembly remaining: **871,444 bytes**;
+- code: **68,856 / 940,036 = 7.3248%**;
+- assembly remaining: **871,180 bytes**;
 - data/assets: **75,334 / 6,777,404 = 1.1115%**;
-- overall meaningful ROM: **144,322 / 7,717,440 = 1.8701%**;
+- overall meaningful ROM: **144,586 / 7,717,440 = 1.8735%**;
 - packed bank: **416 / 493 semantically owned animations**;
 - retail ROM remains exact.
 
@@ -54,7 +54,7 @@ but its score is no longer an execution order.
 
 The throughput pipeline is operational: `tools/ches/build_decomp_inventory.py` produces the remaining-function database and ranked queue, while `tools/ches/map_npc_entity_classes.py` provides a proven factory/vtable/class map for the resident NPC family. The latest production pass leaves all 35 resident constructors in source, only Child +0x30 in assembly, and promotes the first exact methods of the adjacent location-bound actor hierarchy.
 
-The raw queue currently ranks `asm/game_state.s:08011650-0801468C` first, but that region begins with the deliberately parked save loader and must **not** be reopened merely because of the heuristic score. After the latest exact integration, the strongest immediate structural-continuity target is queue rank 5, `asm/code_entities_08034CEC.s:08037A48-0803A8A4`. It continues the same recovered actor/entity neighborhood, so work it while class/vtable/type reuse remains strong, then re-rank.
+The raw queue currently ranks `asm/game_state.s:08011650-0801468C` first, but that region begins with the deliberately parked save loader and must **not** be reopened merely because of the heuristic score. After the latest exact integration, the strongest immediate structural-continuity target is queue rank 5, `asm/code_entities_08034CEC.s:08037A5C-0803A8A4`. It continues the same recovered actor/entity neighborhood, so work it while class/vtable/type reuse remains strong, then re-rank.
 
 ### 1. Keep the function/TU inventory current
 
