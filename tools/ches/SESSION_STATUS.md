@@ -1,6 +1,14 @@
 # Ches Session Status — FOMT decomp
 
-## CURRENT SNAPSHOT - 7.3261%; concrete sizes corrected and SetBox exact - October 6, 2026
+## CURRENT SNAPSHOT - 7.3261%; location-bound actor island bounded - October 6, 2026
+
+- Active branch `Live-temp`; base pushed checkpoint `ec62cc9`; exact ROM unchanged.
+- Full +0x40 family is behavior-complete and exact-size, each with the same 6-byte weighted-index register-order mismatch.
+- 72E4/72A0 +0x3C schedule methods are behavior-complete with packed year/date/hour and weekday gating, but remain assembly due register allocation.
+- No production code promotion in this checkpoint; metrics remain **68,868 / 940,036 = 7.3261%**, **871,168 asm bytes**, **144,598 meaningful-ROM bytes**, **671,168 bytes free**.
+- Next: queue-rank-11 entity region after the parked `0x08037C08/68` constructors, beginning around `0x08037CC4`.
+
+## SUPERSEDED SNAPSHOT - 7.3261%; concrete sizes corrected and SetBox exact - October 6, 2026
 
 - Active branch `Live-temp`; base checkpoint `da790aa`.
 - Exact progress: **68,868 / 940,036 = 7.3261% code**, **871,168 asm bytes**, **75,334 data/assets**, **144,598 meaningful-ROM bytes = 1.8737%**, **671,168 bytes free**. Retail SHA1 still exact.

@@ -6,7 +6,7 @@ The throughput strategy has now produced several exact family passes. `include/e
 
 ## Current throughput inventory - October 6, 2026
 
-`tools/ches/build_decomp_inventory.py` generates the machine-readable remaining-function database (`tools/ches/decomp_inventory.json`) and ranked human queue (`tools/ches/DECOMP_QUEUE.md`). After the latest entity integration the linker-backed inventory is **2,380 linked assembly functions / 871,168 asm code bytes**, with inferred function ranges covering **870,092 bytes = 99.8765%**. The raw rank-1 region begins with the deliberately parked save-loader area, so do not treat score alone as execution order. The current local continuity work is the small factory/virtual regions around `0x08037494..0x08037BB7`; the next large contiguous entity region begins at `0x08037C08` and is queue rank **11**.
+`tools/ches/build_decomp_inventory.py` generates the machine-readable remaining-function database (`tools/ches/decomp_inventory.json`) and ranked human queue (`tools/ches/DECOMP_QUEUE.md`). After the latest entity integration the linker-backed inventory is **2,380 linked assembly functions / 871,168 asm code bytes**, with inferred function ranges covering **870,092 bytes = 99.8765%**. The raw rank-1 region begins with the deliberately parked save-loader area, so do not treat score alone as execution order. The small `0x08037494..0x08037BB7` location-bound actor island is now bounded at documented compiler-sensitive frontiers; throughput continues in queue rank **11**, `0x08037C08..0x0803A8A4`, skipping the parked variant constructors and starting at the next coherent boundary around `0x08037CC4`.
 
 ## Current project status
 

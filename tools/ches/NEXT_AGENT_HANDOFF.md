@@ -1,6 +1,14 @@
 # Current FoMT continuation — October 6, 2026
 
-## CURRENT CHECKPOINT - class-size correction + SetBox exact; factory/+0x40 frontier bounded - October 6, 2026
+## CURRENT CHECKPOINT - location-bound actor island behavior-complete; move into rank-11 entity region - October 6, 2026
+
+- Continued from pushed exact checkpoint `ec62cc90ea87e85447f4d004b4a6337cb553c643`; no production code bytes changed in this research checkpoint, so exact progress remains **68,868 / 940,036 = 7.3261%** and `fomt.gba: OK`.
+- Completed the remaining +0x40 family reconstruction. Scratch member probes: 72E4 `0x08037494` **0xA8 exact size / 6 diff**, 72A0 `0x0803763C` **0xA8 / 6**, 725C `0x080377E8` **0xA4 / 6**, 7218 `0x08037958` **0x80 / 6**. All four differ in exactly the same three instructions after `func_080AB82C`: retail forms the row pointer before preserving the index; the compatibility compiler preserves the index first. Everything else matches. Treat the four as one parked compiler-sensitive family.
+- Recovered the 72E4/72A0 +0x3C schedule semantics at `0x08037568` / `0x08037714`: GameObject virtual +0x144 returns a schedule-state view; packed bytes +8/+9/+10 encode 3-bit year, season/day, and 5-bit hour. Active window is 06:00-15:59. Weekday is `(day + season*30 + (year+6)*120) % 7`; 72E4 rejects weekday 0, 72A0 rejects weekday 1; both also require state word +0x00 == 0. Success builds an `ActorLocation` from the +0x44 variant (`func_080A17A0` / `func_080A1890`), sets location, and refreshes animation zero; failure moves to `MAP_NONE`. Packed-field scratch source reproduces the byte loads/bit extraction/range/modulo logic, but the full methods remain nonmatching because retail carries a different register allocation including an `r8` save/restore. Park them.
+- Updated `docs/ENTITY_08037008.md`, `START_HERE.md`, `TODO.md`, and `docs/DECOMP_PRIORITY_MAP.md` so fresh agents do not reopen these bounded islands.
+- **Exact next action on Continue:** enter queue rank 11 `asm/code_entities_08034CEC.s:08037C08-0803A8A4`. Skip parked variant constructors `0x08037C08/0x08037C68`; inspect from `0x08037CC4` onward for the next vtable/constructor/repeated-method family, scratch-prove one representative, then batch exact siblings.
+
+## SUPERSEDED CHECKPOINT - class-size correction + SetBox exact; factory/+0x40 frontier bounded - October 6, 2026
 
 - Continued from pushed documentation checkpoint `da790aaccfae1eda365d2a040aa1a061831a93ff`.
 - Corrected the concrete hierarchy layout from retail allocation evidence: **7218 and 725C are 0x44 bytes**; only 72A0/72E4 are 0x48 and carry the +0x44 2-bit variant. Removing the erroneous 7218/725C tail field preserves the exact ROM.
