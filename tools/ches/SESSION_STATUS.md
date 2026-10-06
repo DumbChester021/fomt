@@ -1,5 +1,15 @@
 # Ches Session Status — FOMT decomp
 
+## CURRENT SNAPSHOT - Lou exact; Child bounded; location-bound actor base recovered - October 6, 2026
+
+- Clean start from pushed `ad6300d`; no production code/linker/assembly mutations in this research checkpoint.
+- Lou constructor + +0x30 are scratch-exact: **0x3C + 0x2C = 0x68 bytes**.
+- Child constructor is **0x44/0**; Child +0x3C is an exact 0x1A body + 2-byte alignment. Child +0x30 semantics are recovered but parked at a source-lifetime/codegen mismatch; `0x08036F68` is Child +0x18, not destructor.
+- New neutral `UnkEntity37008` hierarchy proven from vtables 0x080E7328/72E4/72A0/725C/7218. Base has `ActorLocation*` +0x30, embedded `Box` +0x34, u16 +3C/+3E, bool +40, pure virtual +3C/+40.
+- Base exact proofs: ctor **0x40/0**, dtor **0x50/0**, +0x34 getter **0x4/0**, +0x14 **0x14/0**; +0x10 and `GetBox` bodies are exact with only 2-byte alignment pads. GetBox is 14x14 centered at `(x,y-2)`.
+- Four concrete +0x30 effect factories solved (three 0x2C exact, one 0x2E exact body + 2-byte align); two `u16` table-backed GetAnim helpers are **0x10/0** each. One simple +0x3C body is exact + alignment; its sibling differs only by scratch Thumb thunk placement.
+- Next: production-integrate this proven family with exact section interleaving, verify full ROM, regenerate inventory/progress/maps/docs, commit/push, then continue +0x40/+0x3C siblings.
+
 ## CURRENT SNAPSHOT - 64 resident NPC methods exact in production - October 6, 2026
 
 - New exact source: `include/entity_resident_npcs.hh` + `src/entity_resident_npcs.cc`, **64 methods / 3,296 bytes** across nine retail-positioned source runs.
