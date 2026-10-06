@@ -1,6 +1,16 @@
 # Ches Session Status — FOMT decomp
 
-## CURRENT SNAPSHOT - 7.3248%; helper layer and two concrete constructors exact - October 6, 2026
+## CURRENT SNAPSHOT - 7.3261%; concrete sizes corrected and SetBox exact - October 6, 2026
+
+- Active branch `Live-temp`; base checkpoint `da790aa`.
+- Exact progress: **68,868 / 940,036 = 7.3261% code**, **871,168 asm bytes**, **75,334 data/assets**, **144,598 meaningful-ROM bytes = 1.8737%**, **671,168 bytes free**. Retail SHA1 still exact.
+- `UnkEntity37008::SetBox` is new exact source at `0x08037244`.
+- Retail allocation proves 7218/725C size 0x44; 72A0/72E4 size 0x48 with the +0x44 2-bit variant.
+- 7218/725C simple factory wrappers scratch-match 0x38/0 when ctors inline, but standalone constructor emission still needs a natural source arrangement.
+- 7218 +0x40 is understood and parked at exact-size 6-byte register-order mismatch.
+- Next: scratch the two location-reset +0x3C siblings, then propagate the weighted +0x40 source model across the other concrete classes.
+
+## SUPERSEDED SNAPSHOT - 7.3248%; helper layer and two concrete constructors exact - October 6, 2026
 
 - Base pushed checkpoint entering this pass: `eb59192`.
 - Current exact progress: **68,856 / 940,036 = 7.3248% code**, **871,180 asm bytes**, **75,334 data/assets**, **144,586 overall meaningful-ROM bytes = 1.8735%**, **671,168 bytes free**.

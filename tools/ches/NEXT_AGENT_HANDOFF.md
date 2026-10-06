@@ -1,6 +1,19 @@
 # Current FoMT continuation — October 6, 2026
 
-## CURRENT CHECKPOINT - helper layer + two concrete constructors exact - October 6, 2026
+## CURRENT CHECKPOINT - class-size correction + SetBox exact; factory/+0x40 frontier bounded - October 6, 2026
+
+- Continued from pushed documentation checkpoint `da790aaccfae1eda365d2a040aa1a061831a93ff`.
+- Corrected the concrete hierarchy layout from retail allocation evidence: **7218 and 725C are 0x44 bytes**; only 72A0/72E4 are 0x48 and carry the +0x44 2-bit variant. Removing the erroneous 7218/725C tail field preserves the exact ROM.
+- Promoted `UnkEntity37008::SetBox(Box const&)` at `0x08037244`: exact 0x0A source body plus normal 2-byte section alignment. Full `make compare` remains **`fomt.gba: OK`**.
+- Current code reconstruction is **68,868 / 940,036 = 7.3261%**, **871,168 asm bytes** remain, data/assets **75,334**, overall meaningful ROM **144,598 / 7,717,440 = 1.8737%**, free tail **671,168**.
+- Regenerated inventory: **2,380 linked asm functions / 871,168 canonical asm bytes / 870,092 function-range bytes = 99.8765% / 1,076 unattributed bytes / 135 regions / 189 repeated shape clusters / 885 participating functions / 181 exact normalized clusters**.
+- 7218/725C simple factory wrappers `0x08037B80` / `0x08037B48` are now scratch **0x38 / 0 diff** when their constructors are visible as inline definitions. Standalone exact constructor copies at `0x08037BB8/0x08037BE0` have **no direct BL callers**. Do not production-promote the wrappers by manually duplicating ctor logic; first reproduce the original dual inline/out-of-line emission naturally or find stronger compiler/source evidence.
+- 7218 +0x40 `0x08037958` is behavior-recovered. Best realistic member source is **0x80 exact size / 6 differing bytes**, only the three-instruction weighted-index preservation order after `func_080AB82C`; all later action-duration/facing/speed/animation code matches. Park it rather than syntax roulette.
+- `func_08037098` motion-from-facing semantics are understood but first natural source shapes are nonmatching; parked for now.
+- `docs/ENTITY_08037008.md` is updated with the corrected concrete sizes, SetBox, factory proof, and +0x40 behavior/matching status.
+- **Exact next action on Continue:** use the recovered GameObject time accessor/action-row type to scratch-reconstruct the two location-reset +0x3C siblings `0x08037568` / `0x08037714`, then test the remaining 72E4/72A0/725C +0x40 family from the proven 7218 source model. Prefer another exact family gain over revisiting the 6-byte 7218 register-order island.
+
+## SUPERSEDED CHECKPOINT - helper layer + two concrete constructors exact - October 6, 2026
 
 - Continued from pushed exact checkpoint `eb59192ca17f4bc4330bc2a9824a98fa8b7d98a6`.
 - Production-integrated **264 additional exact source bytes**, raising code reconstruction to **68,856 / 940,036 = 7.3248%** with **871,180 asm bytes** remaining. Overall meaningful-ROM reconstruction is **144,586 / 7,717,440 = 1.8735%**; data/assets **75,334** and tail free space **671,168** are unchanged.

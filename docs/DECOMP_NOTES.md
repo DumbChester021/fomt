@@ -27,7 +27,7 @@ Use `docs/DECOMP_PLAYBOOK.md` for the durable process and `START_HERE.md` for li
 
 Current retail state:
 - Production `ches-dev` and `ches/ches-dev` remain at `9078f368c02d861f7cd71685e1f9dd1d95c7c384` (`9078f36 decompile game object entity teardown`). The active exact working branch is `Live-temp`.
-- Current exact worktree progress is **68,856 / 940,036 = 7.3248% source** and **871,180 assembly bytes**. Data/assets reconstruction is **75,334 / 6,777,404 = 1.1115%** and overall meaningful-ROM reconstruction is **144,586 / 7,717,440 = 1.8735%**. `make progress` reports `fomt.gba: OK`; retail SHA1 remains `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
+- Current exact worktree progress is **68,868 / 940,036 = 7.3261% source** and **871,168 assembly bytes**. Data/assets reconstruction is **75,334 / 6,777,404 = 1.1115%** and overall meaningful-ROM reconstruction is **144,598 / 7,717,440 = 1.8737%**. `make progress` reports `fomt.gba: OK`; retail SHA1 remains `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
 - Shared NPC identity/location/schedule/Lillia support and the exact 43-entry metadata table remain complete. `src/game_object_entity_lookup.cc` owns the two native indexed entity lookups and entity teardown.
 - Legacy loader `func_08011650` remains paused with matching research preserved under `tools/ches/checkpoints/save-loader-08011650-2026-10-04/`.
 - Packed-bank ownership remains **416 / 493 animations: 405 / 450 simple and 11 / 43 multi-frame**. Water Splash 425 / 0x1A9 proves generic multi-frame authoring, and Dog Ball 21..48 contributes 10 additional owned multi-frame animations.

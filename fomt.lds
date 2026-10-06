@@ -132,6 +132,7 @@ func_08036EF0 = vfunc_3C__11ChildEntityUi;
 __vt_14UnkEntity37008 = vtable_unk_080E7328;
 func_08037008 = __14UnkEntity37008P10GameObjectR13ActorLocationUiUi;
 func_08037048 = _._14UnkEntity37008;
+func_08037244 = SetBox__14UnkEntity37008RC3Box;
 func_08037430 = vfunc_34__14UnkEntity37008;
 func_08037434 = vfunc_10__14UnkEntity37008;
 func_0803745C = vfunc_14__14UnkEntity37008;
@@ -321,6 +322,8 @@ SECTIONS
         asm/code_entities_08034CEC.o(.text.after_npc_special_run2);
         src/entity_unk_08037008.o(.text.entity_locbound_run1);
         asm/code_entities_08034CEC.o(.text.after_entity_locbound_run1);
+        src/entity_unk_08037008.o(.text.entity_locbound_run1b);
+        asm/code_entities_08034CEC.o(.text.after_entity_locbound_run1b);
         src/entity_unk_08037008.o(.text.entity_locbound_run2);
         asm/code_entities_08034CEC.o(.text.after_entity_locbound_run2);
         src/entity_unk_08037008.o(.text.entity_locbound_run3);

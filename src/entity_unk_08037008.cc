@@ -24,6 +24,11 @@ UnkEntity37008::~UnkEntity37008()
     *location_ref = GetLocation();
 }
 
+void UnkEntity37008::SetBox(Box const & box)
+{
+    unk_34 = box;
+}
+
 u32 UnkEntity37008::vfunc_34()
 {
     return unk_3C;

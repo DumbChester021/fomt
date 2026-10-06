@@ -15,6 +15,7 @@ struct UnkEntity37008 : public AActorEntity
     virtual void vfunc_10() SECTION(".text.entity_locbound_run2");
     virtual void vfunc_14() SECTION(".text.entity_locbound_run2");
     virtual u32 vfunc_34() SECTION(".text.entity_locbound_run2");
+    void SetBox(Box const & box) SECTION(".text.entity_locbound_run1b");
     virtual void vfunc_3C() = 0;
     virtual u32 vfunc_40() = 0;
 
@@ -57,8 +58,6 @@ struct UnkEntity725C : public UnkEntity37008
     virtual u32 vfunc_40();
     u32 GetAnim(u32 index) SECTION(".text.entity_locbound_run5");
     u32 GetSpeed(u32 index) SECTION(".text.entity_locbound_run5");
-
-    /* +44 */ u8 unk_44;
 };
 
 struct UnkEntity7218 : public UnkEntity37008
@@ -69,8 +68,6 @@ struct UnkEntity7218 : public UnkEntity37008
     virtual u32 vfunc_40();
     u32 GetAnim(u32 index) SECTION(".text.entity_locbound_run6");
     u32 GetSpeed(u32 index) SECTION(".text.entity_locbound_run6");
-
-    /* +44 */ u8 unk_44;
 };
 
 #endif // ENTITY_UNK_08037008_HH

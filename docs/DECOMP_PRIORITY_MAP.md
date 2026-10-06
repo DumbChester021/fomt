@@ -12,10 +12,10 @@ exploit them across the remaining assembly instead of making an individual
 resource family the main queue.
 
 Current exact worktree:
-- code: **68,856 / 940,036 = 7.3248%**;
-- assembly remaining: **871,180 bytes**;
+- code: **68,868 / 940,036 = 7.3261%**;
+- assembly remaining: **871,168 bytes**;
 - data/assets: **75,334 / 6,777,404 = 1.1115%**;
-- overall meaningful ROM: **144,586 / 7,717,440 = 1.8735%**;
+- overall meaningful ROM: **144,598 / 7,717,440 = 1.8737%**;
 - packed bank: **416 / 493 semantically owned animations**;
 - retail ROM remains exact.
 

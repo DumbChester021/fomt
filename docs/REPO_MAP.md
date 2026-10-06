@@ -27,8 +27,8 @@ This is a practical map of the current reconstruction, not a claim that every su
 Authoritative live state is in `START_HERE.md`; this section keeps the repository map aligned with it.
 
 - Production `ches-dev` remains at `9078f368c02d861f7cd71685e1f9dd1d95c7c384` (`9078f36 decompile game object entity teardown`); the active exact working branch is `Live-temp`, which carries the private throughput/decomp checkpoint series.
-- Current code reconstruction is **68,856 / 940,036 = 7.3248%** with **871,180 assembly bytes = 92.6752%**.
-- Current data/assets reconstruction is **75,334 / 6,777,404 = 1.1115%**; overall meaningful-ROM reconstruction is **144,586 / 7,717,440 = 1.8735%**.
+- Current code reconstruction is **68,868 / 940,036 = 7.3261%** with **871,168 assembly bytes = 92.6739%**.
+- Current data/assets reconstruction is **75,334 / 6,777,404 = 1.1115%**; overall meaningful-ROM reconstruction is **144,598 / 7,717,440 = 1.8737%**.
 - Current contiguous tail free space is **671,168 bytes = 655.44 KiB = 8.0009%** of the 8 MiB ROM. `make progress` reports all four metrics plus `fomt.gba: OK`.
 - Retail SHA1 remains `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
 - Authoritative compiler path is the tracked `tools/install_agbcp.sh` + `tools/agbcp_fomt_compat.patch` SHA-256 `aa7cc6df0efbd066e9c33deb887731e1d0210babfaeba4c9b64f3e8bc35c4256`.
