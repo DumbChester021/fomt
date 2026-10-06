@@ -1,5 +1,19 @@
 # Current FoMT continuation — October 6, 2026
 
+## CURRENT CHECKPOINT - 64 resident NPC methods integrated exact; Lou/Child next - October 6, 2026
+
+- The throughput-family strategy produced its first large production promotion: **32 resident NPC constructors + 32 virtual +0x30 effect factories = 64 exact C++ methods / 3,296 code bytes** in `include/entity_resident_npcs.hh` and `src/entity_resident_npcs.cc`.
+- Scratch proof was exhaustive before production mutation: one generated realistic polymorphic TU compared all 64 symbols individually and returned **64 passed / 0 failed**. The shape0024 methods generate 0x2E-byte bodies plus the retail 2-byte section-alignment pad.
+- Production layout is exact through **nine source/assembly interleave runs** from `0x08035B64` through `0x08036DC3`. The eight bounded untouched assembly gaps have exact sizes `D0, D0, D0, D0, 60, E0, 68, 98`; the ninth assembly section resumes at Lou `0x08036DC4`.
+- `#pragma interface` is required in `include/entity_resident_npcs.hh`; without it the compiler emits weak concrete vtables/destructors. This was caught before linking, corrected, and the final object contains only the intended source methods plus unresolved references to retail vtables.
+- `fomt.lds` now aliases all 32 concrete source vtables to their original retail `vtable_unk_*` addresses and preserves all 64 legacy `func_08...` names as aliases to the readable C++ symbols.
+- Full production verification: `make compare` -> **`fomt.gba: OK`**, retail SHA1 unchanged. `make progress` -> **67,832 / 940,036 = 7.2159% code**, **872,204 asm bytes remain**, **75,334 data/assets**, **143,562 / 7,717,440 = 1.8602% overall**, free tail **671,168 bytes**.
+- The regenerated inventory is **2,399 linked asm functions / 872,204 canonical asm bytes / 871,156 function-range bytes = 99.8798% coverage / 1,048 unattributed bytes / 192 repeated shape clusters / 898 participating functions / 183 exact normalized clusters**.
+- `tools/ches/map_npc_entity_classes.py` was upgraded to merge assembly and source constructor metadata and source vtable aliases. Regenerated `NPC_ENTITY_CLASS_MAP.md/json` now shows IDs **1..32 and 34** source-owned for constructor/+0x30; **Lou 33 and Child 35** remain assembly/unlabeled special cases.
+- Current raw queue rank 1 is `asm/game_state.s:08011650-0801468C`, but it begins with the deliberately parked save-loader frontier. **Do not reopen it from score alone.** Structural-continuity target is queue rank 2: `asm/code_entities_08034CEC.s:08036DC4-08039E18`, starting with Lou/Child and adjacent entity families.
+- Current docs synchronized: `START_HERE.md`, `TODO.md`, `docs/PROGRESS.md`, `docs/REPO_MAP.md`, `docs/CHARACTERS.md`, `docs/DECOMP_PRIORITY_MAP.md`, `docs/DECOMP_PLAYBOOK.md`, `docs/DECOMP_NOTES.md`, `docs/FOMT_COMPILER_RESEARCH.md`, `docs/CUSTOM_CHARACTERS.md`, `docs/ASSET_DECOMPILATION.md`, plus regenerated inventory/class-map artifacts.
+- **Exact next action on Continue:** inspect Lou `0x08036DC4` and Child `0x08036E2C` together with their raw +0x30/+0x3C vtable targets, recover their extra fields/behavior honestly, then classify the remainder of `0x08036DC4..0x08039E18` against factory selectors 36..42 and neighboring vtables. Promote another coherent family only after scratch 0-diff proof.
+
 ## CURRENT CHECKPOINT - resident NPC class map proven; Rick representative exact - October 6, 2026
 
 - Added `tools/ches/map_npc_entity_classes.py`, generating `tools/ches/npc_entity_class_map.json` and `tools/ches/NPC_ENTITY_CLASS_MAP.md` from retail factory-table bytes, decoded Thumb BL calls, constructor schedule/vtable literals, the recovered character table, raw retail vtable words, ELF symbols, and the current similarity inventory.

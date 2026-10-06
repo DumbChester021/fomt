@@ -6,45 +6,45 @@ Selectors 1..35 are proven by the retail factory table and decoded constructor c
 | ID | Character | Constructor | Schedule | Vtable | +30 virtual | Constructor shape | +30 shape | +3C override |
 | ---: | --- | --- | --- | --- | --- | --- | --- | --- |
 | 1 | Lillia | __12LilliaEntityP10GameObjectP3NpcUi | gUnk_080F280C | __vt_12LilliaEntity | vfunc_30__12LilliaEntity | source | source | func_08034F00 |
-| 2 | Rick | func_08035B64 | ScheduleInfo_Unk_080F1A80 | vtable_unk_080E7158 | func_08035B9C | shape0033 | shape0005 | func_08034F00 |
-| 3 | Popuri | func_08035BC8 | gUnk_080F1FC0 | vtable_unk_080E7118 | func_08035CD4 | shape0007 | shape0026 | func_08035CB8 |
-| 4 | Barley | func_08035D04 | gUnk_080F8678 | vtable_unk_080E70D8 | func_08035D40 | shape0007 | shape0024 | func_08034F00 |
-| 5 | May | func_08035D70 | gUnk_080F81BC | vtable_unk_080E7098 | func_08035DAC | shape0007 | shape0117 | func_08034F00 |
-| 6 | Saibara | func_08035DD8 | gUnk_080F77FC | vtable_unk_080E7058 | func_08035E14 | shape0007 | shape0005 | func_08034F00 |
-| 7 | Gray | func_08035E40 | gUnk_080F7294 | vtable_unk_080E7018 | func_08035E7C | shape0007 | shape0024 | func_08034F00 |
-| 8 | Duke | func_08035EAC | gUnk_080F6370 | vtable_unk_080E6FD8 | func_08035EE4 | solo | shape0005 | func_08034F00 |
-| 9 | Manna | func_08035F10 | gUnk_080F66C4 | vtable_unk_080E6F98 | func_08035F48 | solo | shape0005 | func_08034F00 |
-| 10 | Basil | func_08035F74 | gUnk_080F49C0 | vtable_unk_080E6F58 | func_08035FB0 | shape0007 | shape0024 | func_08034F00 |
-| 11 | Anna | func_08035FE0 | gUnk_080F5540 | vtable_unk_080E6F18 | func_0803601C | shape0007 | shape0005 | func_08034F00 |
-| 12 | Mary | func_08036048 | gUnk_080F4D74 | vtable_unk_080E6ED8 | func_08036154 | shape0007 | shape0026 | func_08036138 |
-| 13 | Thomas | func_08036184 | gUnk_080F59CC | vtable_unk_080E6E98 | func_080361C0 | shape0007 | shape0005 | func_08034F00 |
-| 14 | Harris | func_080361EC | gUnk_080F6B4C | vtable_unk_080E6E58 | func_08036228 | shape0007 | shape0024 | func_08034F00 |
-| 15 | Ellen | func_08036258 | gUnk_080F33B8 | vtable_unk_080E6E18 | func_08036290 | solo | shape0024 | func_08034F00 |
-| 16 | Stu | func_080362C0 | gUnk_080F61FC | vtable_unk_080E6DD8 | func_080362FC | shape0007 | shape0117 | func_08034F00 |
-| 17 | Jeff | func_08036328 | gUnk_080F3408 | vtable_unk_080E6D98 | func_08036364 | shape0007 | shape0005 | func_08034F00 |
-| 18 | Sasha | func_08036390 | gUnk_080F3FD8 | vtable_unk_080E6D58 | func_080363CC | shape0007 | shape0005 | func_08034F00 |
-| 19 | Karen | func_080363F8 | gUnk_080F35E4 | vtable_unk_080E6D18 | func_08036500 | shape0033 | shape0026 | func_080364E4 |
-| 20 | Doctor | func_08036530 | gUnk_080F3010 | vtable_unk_080E6CD8 | func_08036564 | shape0118 | shape0005 | func_08034F00 |
-| 21 | Elli | func_08036590 | gUnk_080F5D94 | vtable_unk_080E6C98 | func_0803669C | shape0007 | shape0026 | func_08036680 |
-| 22 | Carter | func_080366CC | gUnk_080F6DE8 | vtable_unk_080E6C58 | func_08036704 | shape0033 | shape0005 | func_08034F00 |
-| 23 | Cliff | func_08036730 | gUnk_080F2AF8 | vtable_unk_080E6C18 | func_080367C8 | shape0033 | shape0026 | func_080367AC |
-| 24 | Doug | func_080367F8 | gUnk_080F42F0 | vtable_unk_080E6BD8 | func_08036834 | shape0007 | shape0005 | func_08034F00 |
-| 25 | Ann | func_080368C4 | gUnk_080F43DC | vtable_unk_080E6B58 | func_080369E0 | shape0007 | shape0026 | func_080369C4 |
-| 26 | Kai | func_08036A10 | gUnk_080F6FF8 | vtable_unk_080E6B18 | func_08036A4C | shape0007 | shape0005 | func_08034F00 |
-| 27 | Gotz | func_08036A78 | gUnk_080F7B40 | vtable_unk_080E6AD8 | func_08036B1C | shape0007 | shape0026 | func_08036B00 |
-| 28 | Zack | func_08036B4C | gUnk_080F2DC0 | vtable_unk_080E6A98 | func_08036B80 | shape0118 | shape0024 | func_08036BF8 |
-| 29 | Won | func_08036C48 | gUnk_080F597C | vtable_unk_080E6A58 | func_08036C80 | shape0033 | shape0005 | func_08034F00 |
-| 30 | Gourmet | func_08036CAC | - | vtable_unk_080E6A18 | func_08036CDC | shape0119 | shape0024 | func_08034F00 |
-| 31 | H. Goddess | func_08036D0C | - | vtable_unk_080E69D8 | func_08036D3C | shape0119 | shape0005 | func_08034F00 |
-| 32 | Kappa | func_08036D68 | - | vtable_unk_080E6998 | func_08036D98 | solo | shape0005 | func_08034F00 |
-| 33 | Lou | func_08036DC4 | gUnk_080F6B10 | vtable_unk_080E6958 | 0x08036E00 | shape0007 | unlabeled | func_08034F00 |
-| 34 | Lu | func_08036860 | gUnk_080F4974 | vtable_unk_080E6B98 | func_08036898 | shape0033 | shape0005 | func_08034F00 |
+| 2 | Rick | __10RickEntityP10GameObjectP3NpcUi | ScheduleInfo_Unk_080F1A80 | __vt_10RickEntity | vfunc_30__10RickEntity | source | source | func_08034F00 |
+| 3 | Popuri | __12PopuriEntityP10GameObjectP3NpcUi | gUnk_080F1FC0 | __vt_12PopuriEntity | vfunc_30__12PopuriEntity | source | source | func_08035CB8 |
+| 4 | Barley | __12BarleyEntityP10GameObjectP3NpcUi | gUnk_080F8678 | __vt_12BarleyEntity | vfunc_30__12BarleyEntity | source | source | func_08034F00 |
+| 5 | May | __9MayEntityP10GameObjectP3NpcUi | gUnk_080F81BC | __vt_9MayEntity | vfunc_30__9MayEntity | source | source | func_08034F00 |
+| 6 | Saibara | __13SaibaraEntityP10GameObjectP3NpcUi | gUnk_080F77FC | __vt_13SaibaraEntity | vfunc_30__13SaibaraEntity | source | source | func_08034F00 |
+| 7 | Gray | __10GrayEntityP10GameObjectP3NpcUi | gUnk_080F7294 | __vt_10GrayEntity | vfunc_30__10GrayEntity | source | source | func_08034F00 |
+| 8 | Duke | __10DukeEntityP10GameObjectP3NpcUi | gUnk_080F6370 | __vt_10DukeEntity | vfunc_30__10DukeEntity | source | source | func_08034F00 |
+| 9 | Manna | __11MannaEntityP10GameObjectP3NpcUi | gUnk_080F66C4 | __vt_11MannaEntity | vfunc_30__11MannaEntity | source | source | func_08034F00 |
+| 10 | Basil | __11BasilEntityP10GameObjectP3NpcUi | gUnk_080F49C0 | __vt_11BasilEntity | vfunc_30__11BasilEntity | source | source | func_08034F00 |
+| 11 | Anna | __10AnnaEntityP10GameObjectP3NpcUi | gUnk_080F5540 | __vt_10AnnaEntity | vfunc_30__10AnnaEntity | source | source | func_08034F00 |
+| 12 | Mary | __10MaryEntityP10GameObjectP3NpcUi | gUnk_080F4D74 | __vt_10MaryEntity | vfunc_30__10MaryEntity | source | source | func_08036138 |
+| 13 | Thomas | __12ThomasEntityP10GameObjectP3NpcUi | gUnk_080F59CC | __vt_12ThomasEntity | vfunc_30__12ThomasEntity | source | source | func_08034F00 |
+| 14 | Harris | __12HarrisEntityP10GameObjectP3NpcUi | gUnk_080F6B4C | __vt_12HarrisEntity | vfunc_30__12HarrisEntity | source | source | func_08034F00 |
+| 15 | Ellen | __11EllenEntityP10GameObjectP3NpcUi | gUnk_080F33B8 | __vt_11EllenEntity | vfunc_30__11EllenEntity | source | source | func_08034F00 |
+| 16 | Stu | __9StuEntityP10GameObjectP3NpcUi | gUnk_080F61FC | __vt_9StuEntity | vfunc_30__9StuEntity | source | source | func_08034F00 |
+| 17 | Jeff | __10JeffEntityP10GameObjectP3NpcUi | gUnk_080F3408 | __vt_10JeffEntity | vfunc_30__10JeffEntity | source | source | func_08034F00 |
+| 18 | Sasha | __11SashaEntityP10GameObjectP3NpcUi | gUnk_080F3FD8 | __vt_11SashaEntity | vfunc_30__11SashaEntity | source | source | func_08034F00 |
+| 19 | Karen | __11KarenEntityP10GameObjectP3NpcUi | gUnk_080F35E4 | __vt_11KarenEntity | vfunc_30__11KarenEntity | source | source | func_080364E4 |
+| 20 | Doctor | __12DoctorEntityP10GameObjectP3NpcUi | gUnk_080F3010 | __vt_12DoctorEntity | vfunc_30__12DoctorEntity | source | source | func_08034F00 |
+| 21 | Elli | __10ElliEntityP10GameObjectP3NpcUi | gUnk_080F5D94 | __vt_10ElliEntity | vfunc_30__10ElliEntity | source | source | func_08036680 |
+| 22 | Carter | __12CarterEntityP10GameObjectP3NpcUi | gUnk_080F6DE8 | __vt_12CarterEntity | vfunc_30__12CarterEntity | source | source | func_08034F00 |
+| 23 | Cliff | __11CliffEntityP10GameObjectP3NpcUi | gUnk_080F2AF8 | __vt_11CliffEntity | vfunc_30__11CliffEntity | source | source | func_080367AC |
+| 24 | Doug | __10DougEntityP10GameObjectP3NpcUi | gUnk_080F42F0 | __vt_10DougEntity | vfunc_30__10DougEntity | source | source | func_08034F00 |
+| 25 | Ann | __9AnnEntityP10GameObjectP3NpcUi | gUnk_080F43DC | __vt_9AnnEntity | vfunc_30__9AnnEntity | source | source | func_080369C4 |
+| 26 | Kai | __9KaiEntityP10GameObjectP3NpcUi | gUnk_080F6FF8 | __vt_9KaiEntity | vfunc_30__9KaiEntity | source | source | func_08034F00 |
+| 27 | Gotz | __10GotzEntityP10GameObjectP3NpcUi | gUnk_080F7B40 | __vt_10GotzEntity | vfunc_30__10GotzEntity | source | source | func_08036B00 |
+| 28 | Zack | __10ZackEntityP10GameObjectP3NpcUi | gUnk_080F2DC0 | __vt_10ZackEntity | vfunc_30__10ZackEntity | source | source | func_08036BF8 |
+| 29 | Won | __9WonEntityP10GameObjectP3NpcUi | gUnk_080F597C | __vt_9WonEntity | vfunc_30__9WonEntity | source | source | func_08034F00 |
+| 30 | Gourmet | __13GourmetEntityP10GameObjectP3NpcUi | - | __vt_13GourmetEntity | vfunc_30__13GourmetEntity | source | source | func_08034F00 |
+| 31 | H. Goddess | __20HarvestGoddessEntityP10GameObjectP3NpcUi | - | __vt_20HarvestGoddessEntity | vfunc_30__20HarvestGoddessEntity | source | source | func_08034F00 |
+| 32 | Kappa | __11KappaEntityP10GameObjectP3NpcUi | - | __vt_11KappaEntity | vfunc_30__11KappaEntity | source | source | func_08034F00 |
+| 33 | Lou | func_08036DC4 | gUnk_080F6B10 | vtable_unk_080E6958 | 0x08036E00 | solo | unlabeled | func_08034F00 |
+| 34 | Lu | __8LuEntityP10GameObjectP3NpcUi | gUnk_080F4974 | __vt_8LuEntity | vfunc_30__8LuEntity | source | source | func_08034F00 |
 | 35 | Child | func_08036E2C | gUnk_080F29C0 | vtable_unk_080E6918 | 0x08036F0C | solo | unlabeled | 0x08036EF0 |
 
 ## Family leverage
 
-Constructor shape counts among IDs 2..35: shape0007=19, shape0033=6, solo=5, shape0118=2, shape0119=2.
+Constructor shape counts among IDs 2..35: source=32, solo=2.
 
-+0x30 virtual shape counts among IDs 2..35: shape0005=16, shape0026=7, shape0024=7, shape0117=2, unlabeled=2.
++0x30 virtual shape counts among IDs 2..35: source=32, unlabeled=2.
 
 Rick is the first exact representative: its 0x38-byte constructor and 0x2C-byte +0x30 virtual both match retail with zero differing linked bytes using the Lillia source shape.

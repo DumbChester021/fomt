@@ -12,10 +12,10 @@ exploit them across the remaining assembly instead of making an individual
 resource family the main queue.
 
 Current exact worktree:
-- code: **64,536 / 940,036 = 6.8653%**;
-- assembly remaining: **875,500 bytes**;
+- code: **67,832 / 940,036 = 7.2159%**;
+- assembly remaining: **872,204 bytes**;
 - data/assets: **75,334 / 6,777,404 = 1.1115%**;
-- overall meaningful ROM: **140,266 / 7,717,440 = 1.8175%**;
+- overall meaningful ROM: **143,562 / 7,717,440 = 1.8602%**;
 - packed bank: **416 / 493 semantically owned animations**;
 - retail ROM remains exact.
 
@@ -50,21 +50,15 @@ The old direct-call leverage analyzer remains useful input:
 
 but its score is no longer an execution order.
 
-## Current priority: build the throughput queue, then work the top coherent units
+## Current priority: work the live queue and preserve family-level leverage
 
-### 1. Complete the function/TU inventory
+The throughput pipeline is now operational: `tools/ches/build_decomp_inventory.py` produces the remaining-function database and ranked queue, while `tools/ches/map_npc_entity_classes.py` provides a proven factory/vtable/class map for the resident NPC family. The first production use of that pipeline promoted 64 resident methods / 3,296 bytes in one exact batch.
 
-Generate one authoritative machine-readable inventory for all remaining
-assembly. Reuse existing map/call-graph/progress tooling instead of rediscovering
-symbols.
+The raw queue currently ranks `asm/game_state.s:08011650-0801468C` first, but that region begins with the deliberately parked save loader and must **not** be reopened merely because of the heuristic score. The strongest immediate structural-continuity target is rank 2, `asm/code_entities_08034CEC.s:08036DC4-08039E18`, beginning with the special Lou/Child classes and continuing through adjacent entity families. Work it while class/vtable/type reuse remains strong, then re-rank.
 
-Infer likely original translation-unit boundaries from:
-- linked address/section locality;
-- padding and literal-pool seams;
-- static rodata/data referenced primarily by one local region;
-- internal-call locality versus cross-module calls;
-- vtable and constructor/destructor groupings;
-- linker/object boundaries already exposed by the build.
+### 1. Keep the function/TU inventory current
+
+Regenerate the inventory and class maps after meaningful exact integrations. Treat address/section locality, padding/literal seams, call locality, vtables, constructor/destructor groupings, data ownership and known failure history as ranking inputs rather than independent goals.
 
 ### 2. Cluster repeated machine-code families
 

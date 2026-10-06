@@ -1,5 +1,15 @@
 # Ches Session Status — FOMT decomp
 
+## CURRENT SNAPSHOT - 64 resident NPC methods exact in production - October 6, 2026
+
+- New exact source: `include/entity_resident_npcs.hh` + `src/entity_resident_npcs.cc`, **64 methods / 3,296 bytes** across nine retail-positioned source runs.
+- Resident selector/class state: IDs 1..32 and 34 have source constructor/+0x30 pairs; Lou 33 and Child 35 remain special assembly cases.
+- Full ROM: **`fomt.gba: OK`**, retail SHA1 unchanged.
+- Progress: **67,832 / 940,036 = 7.2159% code**, **872,204 asm bytes**, **75,334 data/assets**, **143,562 overall meaningful-ROM bytes = 1.8602%**, **671,168 bytes free**.
+- Inventory after integration: **2,399 linked asm functions**, **872,204 canonical asm bytes**, **192 repeated shape clusters / 898 participating functions**, **183 exact normalized clusters**.
+- The raw rank-1 save region contains the parked loader; next structural-continuity work is `asm/code_entities_08034CEC.s:08036DC4-08039E18`, beginning Lou/Child.
+- Next: recover Lou/Child special layout/virtuals, classify adjacent entity families, scratch-prove a coherent next batch, then integrate exact-only and regenerate queue/docs.
+
 ## CURRENT SNAPSHOT - resident NPC selector/vtable map proven; Rick exact representative - October 6, 2026
 
 - `tools/ches/map_npc_entity_classes.py` now generates the durable 35-character selector -> constructor -> schedule -> vtable -> virtual-method map in `tools/ches/npc_entity_class_map.json` and `tools/ches/NPC_ENTITY_CLASS_MAP.md`.

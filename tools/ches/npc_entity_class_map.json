@@ -127,10 +127,10 @@
       "character_id": 2,
       "character_name": "Rick",
       "factory_stub": "0x0801AF04",
-      "constructor": "func_08035B64",
+      "constructor": "__10RickEntityP10GameObjectP3NpcUi",
       "constructor_address": "0x08035B64",
       "schedule": "ScheduleInfo_Unk_080F1A80",
-      "vtable": "vtable_unk_080E7158",
+      "vtable": "__vt_10RickEntity",
       "vtable_address": "0x080E7158",
       "destructor": {
         "raw": "0x080DCB35",
@@ -140,17 +140,17 @@
       "vfunc_30": {
         "raw": "0x08035B9D",
         "address": "0x08035B9C",
-        "symbol": "func_08035B9C"
+        "symbol": "vfunc_30__10RickEntity"
       },
       "vfunc_3C": {
         "raw": "0x08034F01",
         "address": "0x08034F00",
         "symbol": "func_08034F00"
       },
-      "constructor_shape": "shape0033",
-      "constructor_size": 56,
-      "vfunc_30_shape": "shape0005",
-      "vfunc_30_size": 44,
+      "constructor_shape": "source",
+      "constructor_size": 60,
+      "vfunc_30_shape": "source",
+      "vfunc_30_size": null,
       "vtable_slots": [
         {
           "raw": "0x00000000",
@@ -215,7 +215,7 @@
         {
           "raw": "0x08035B9D",
           "address": "0x08035B9C",
-          "symbol": "func_08035B9C"
+          "symbol": "vfunc_30__10RickEntity"
         },
         {
           "raw": "0x08034EE1",
@@ -238,10 +238,10 @@
       "character_id": 3,
       "character_name": "Popuri",
       "factory_stub": "0x0801AF24",
-      "constructor": "func_08035BC8",
+      "constructor": "__12PopuriEntityP10GameObjectP3NpcUi",
       "constructor_address": "0x08035BC8",
       "schedule": "gUnk_080F1FC0",
-      "vtable": "vtable_unk_080E7118",
+      "vtable": "__vt_12PopuriEntity",
       "vtable_address": "0x080E7118",
       "destructor": {
         "raw": "0x080DCB29",
@@ -251,17 +251,17 @@
       "vfunc_30": {
         "raw": "0x08035CD5",
         "address": "0x08035CD4",
-        "symbol": "func_08035CD4"
+        "symbol": "vfunc_30__12PopuriEntity"
       },
       "vfunc_3C": {
         "raw": "0x08035CB9",
         "address": "0x08035CB8",
         "symbol": "func_08035CB8"
       },
-      "constructor_shape": "shape0007",
+      "constructor_shape": "source",
       "constructor_size": 60,
-      "vfunc_30_shape": "shape0026",
-      "vfunc_30_size": 48,
+      "vfunc_30_shape": "source",
+      "vfunc_30_size": null,
       "vtable_slots": [
         {
           "raw": "0x00000000",
@@ -326,7 +326,7 @@
         {
           "raw": "0x08035CD5",
           "address": "0x08035CD4",
-          "symbol": "func_08035CD4"
+          "symbol": "vfunc_30__12PopuriEntity"
         },
         {
           "raw": "0x08034EE1",
@@ -349,10 +349,10 @@
       "character_id": 4,
       "character_name": "Barley",
       "factory_stub": "0x0801AF44",
-      "constructor": "func_08035D04",
+      "constructor": "__12BarleyEntityP10GameObjectP3NpcUi",
       "constructor_address": "0x08035D04",
       "schedule": "gUnk_080F8678",
-      "vtable": "vtable_unk_080E70D8",
+      "vtable": "__vt_12BarleyEntity",
       "vtable_address": "0x080E70D8",
       "destructor": {
         "raw": "0x080DCB1D",
@@ -362,17 +362,17 @@
       "vfunc_30": {
         "raw": "0x08035D41",
         "address": "0x08035D40",
-        "symbol": "func_08035D40"
+        "symbol": "vfunc_30__12BarleyEntity"
       },
       "vfunc_3C": {
         "raw": "0x08034F01",
         "address": "0x08034F00",
         "symbol": "func_08034F00"
       },
-      "constructor_shape": "shape0007",
+      "constructor_shape": "source",
       "constructor_size": 60,
-      "vfunc_30_shape": "shape0024",
-      "vfunc_30_size": 48,
+      "vfunc_30_shape": "source",
+      "vfunc_30_size": null,
       "vtable_slots": [
         {
           "raw": "0x00000000",
@@ -437,7 +437,7 @@
         {
           "raw": "0x08035D41",
           "address": "0x08035D40",
-          "symbol": "func_08035D40"
+          "symbol": "vfunc_30__12BarleyEntity"
         },
         {
           "raw": "0x08034EE1",
@@ -460,10 +460,10 @@
       "character_id": 5,
       "character_name": "May",
       "factory_stub": "0x0801AF64",
-      "constructor": "func_08035D70",
+      "constructor": "__9MayEntityP10GameObjectP3NpcUi",
       "constructor_address": "0x08035D70",
       "schedule": "gUnk_080F81BC",
-      "vtable": "vtable_unk_080E7098",
+      "vtable": "__vt_9MayEntity",
       "vtable_address": "0x080E7098",
       "destructor": {
         "raw": "0x080DCB11",
@@ -473,17 +473,17 @@
       "vfunc_30": {
         "raw": "0x08035DAD",
         "address": "0x08035DAC",
-        "symbol": "func_08035DAC"
+        "symbol": "vfunc_30__9MayEntity"
       },
       "vfunc_3C": {
         "raw": "0x08034F01",
         "address": "0x08034F00",
         "symbol": "func_08034F00"
       },
-      "constructor_shape": "shape0007",
+      "constructor_shape": "source",
       "constructor_size": 60,
-      "vfunc_30_shape": "shape0117",
-      "vfunc_30_size": 44,
+      "vfunc_30_shape": "source",
+      "vfunc_30_size": null,
       "vtable_slots": [
         {
           "raw": "0x00000000",
@@ -548,7 +548,7 @@
         {
           "raw": "0x08035DAD",
           "address": "0x08035DAC",
-          "symbol": "func_08035DAC"
+          "symbol": "vfunc_30__9MayEntity"
         },
         {
           "raw": "0x08034EE1",
@@ -571,10 +571,10 @@
       "character_id": 6,
       "character_name": "Saibara",
       "factory_stub": "0x0801AF84",
-      "constructor": "func_08035DD8",
+      "constructor": "__13SaibaraEntityP10GameObjectP3NpcUi",
       "constructor_address": "0x08035DD8",
       "schedule": "gUnk_080F77FC",
-      "vtable": "vtable_unk_080E7058",
+      "vtable": "__vt_13SaibaraEntity",
       "vtable_address": "0x080E7058",
       "destructor": {
         "raw": "0x080DCB05",
@@ -584,17 +584,17 @@
       "vfunc_30": {
         "raw": "0x08035E15",
         "address": "0x08035E14",
-        "symbol": "func_08035E14"
+        "symbol": "vfunc_30__13SaibaraEntity"
       },
       "vfunc_3C": {
         "raw": "0x08034F01",
         "address": "0x08034F00",
         "symbol": "func_08034F00"
       },
-      "constructor_shape": "shape0007",
+      "constructor_shape": "source",
       "constructor_size": 60,
-      "vfunc_30_shape": "shape0005",
-      "vfunc_30_size": 44,
+      "vfunc_30_shape": "source",
+      "vfunc_30_size": null,
       "vtable_slots": [
         {
           "raw": "0x00000000",
@@ -659,7 +659,7 @@
         {
           "raw": "0x08035E15",
           "address": "0x08035E14",
-          "symbol": "func_08035E14"
+          "symbol": "vfunc_30__13SaibaraEntity"
         },
         {
           "raw": "0x08034EE1",
@@ -682,10 +682,10 @@
       "character_id": 7,
       "character_name": "Gray",
       "factory_stub": "0x0801AFA4",
-      "constructor": "func_08035E40",
+      "constructor": "__10GrayEntityP10GameObjectP3NpcUi",
       "constructor_address": "0x08035E40",
       "schedule": "gUnk_080F7294",
-      "vtable": "vtable_unk_080E7018",
+      "vtable": "__vt_10GrayEntity",
       "vtable_address": "0x080E7018",
       "destructor": {
         "raw": "0x080DCAF9",
@@ -695,17 +695,17 @@
       "vfunc_30": {
         "raw": "0x08035E7D",
         "address": "0x08035E7C",
-        "symbol": "func_08035E7C"
+        "symbol": "vfunc_30__10GrayEntity"
       },
       "vfunc_3C": {
         "raw": "0x08034F01",
         "address": "0x08034F00",
         "symbol": "func_08034F00"
       },
-      "constructor_shape": "shape0007",
+      "constructor_shape": "source",
       "constructor_size": 60,
-      "vfunc_30_shape": "shape0024",
-      "vfunc_30_size": 48,
+      "vfunc_30_shape": "source",
+      "vfunc_30_size": null,
       "vtable_slots": [
         {
           "raw": "0x00000000",
@@ -770,7 +770,7 @@
         {
           "raw": "0x08035E7D",
           "address": "0x08035E7C",
-          "symbol": "func_08035E7C"
+          "symbol": "vfunc_30__10GrayEntity"
         },
         {
           "raw": "0x08034EE1",
@@ -793,10 +793,10 @@
       "character_id": 8,
       "character_name": "Duke",
       "factory_stub": "0x0801AFC4",
-      "constructor": "func_08035EAC",
+      "constructor": "__10DukeEntityP10GameObjectP3NpcUi",
       "constructor_address": "0x08035EAC",
       "schedule": "gUnk_080F6370",
-      "vtable": "vtable_unk_080E6FD8",
+      "vtable": "__vt_10DukeEntity",
       "vtable_address": "0x080E6FD8",
       "destructor": {
         "raw": "0x080DCAED",
@@ -806,17 +806,17 @@
       "vfunc_30": {
         "raw": "0x08035EE5",
         "address": "0x08035EE4",
-        "symbol": "func_08035EE4"
+        "symbol": "vfunc_30__10DukeEntity"
       },
       "vfunc_3C": {
         "raw": "0x08034F01",
         "address": "0x08034F00",
         "symbol": "func_08034F00"
       },
-      "constructor_shape": null,
-      "constructor_size": 56,
-      "vfunc_30_shape": "shape0005",
-      "vfunc_30_size": 44,
+      "constructor_shape": "source",
+      "constructor_size": 60,
+      "vfunc_30_shape": "source",
+      "vfunc_30_size": null,
       "vtable_slots": [
         {
           "raw": "0x00000000",
@@ -881,7 +881,7 @@
         {
           "raw": "0x08035EE5",
           "address": "0x08035EE4",
-          "symbol": "func_08035EE4"
+          "symbol": "vfunc_30__10DukeEntity"
         },
         {
           "raw": "0x08034EE1",
@@ -904,10 +904,10 @@
       "character_id": 9,
       "character_name": "Manna",
       "factory_stub": "0x0801AFE4",
-      "constructor": "func_08035F10",
+      "constructor": "__11MannaEntityP10GameObjectP3NpcUi",
       "constructor_address": "0x08035F10",
       "schedule": "gUnk_080F66C4",
-      "vtable": "vtable_unk_080E6F98",
+      "vtable": "__vt_11MannaEntity",
       "vtable_address": "0x080E6F98",
       "destructor": {
         "raw": "0x080DCAE1",
@@ -917,17 +917,17 @@
       "vfunc_30": {
         "raw": "0x08035F49",
         "address": "0x08035F48",
-        "symbol": "func_08035F48"
+        "symbol": "vfunc_30__11MannaEntity"
       },
       "vfunc_3C": {
         "raw": "0x08034F01",
         "address": "0x08034F00",
         "symbol": "func_08034F00"
       },
-      "constructor_shape": null,
-      "constructor_size": 56,
-      "vfunc_30_shape": "shape0005",
-      "vfunc_30_size": 44,
+      "constructor_shape": "source",
+      "constructor_size": 60,
+      "vfunc_30_shape": "source",
+      "vfunc_30_size": null,
       "vtable_slots": [
         {
           "raw": "0x00000000",
@@ -992,7 +992,7 @@
         {
           "raw": "0x08035F49",
           "address": "0x08035F48",
-          "symbol": "func_08035F48"
+          "symbol": "vfunc_30__11MannaEntity"
         },
         {
           "raw": "0x08034EE1",
@@ -1015,10 +1015,10 @@
       "character_id": 10,
       "character_name": "Basil",
       "factory_stub": "0x0801B004",
-      "constructor": "func_08035F74",
+      "constructor": "__11BasilEntityP10GameObjectP3NpcUi",
       "constructor_address": "0x08035F74",
       "schedule": "gUnk_080F49C0",
-      "vtable": "vtable_unk_080E6F58",
+      "vtable": "__vt_11BasilEntity",
       "vtable_address": "0x080E6F58",
       "destructor": {
         "raw": "0x080DCAD5",
@@ -1028,17 +1028,17 @@
       "vfunc_30": {
         "raw": "0x08035FB1",
         "address": "0x08035FB0",
-        "symbol": "func_08035FB0"
+        "symbol": "vfunc_30__11BasilEntity"
       },
       "vfunc_3C": {
         "raw": "0x08034F01",
         "address": "0x08034F00",
         "symbol": "func_08034F00"
       },
-      "constructor_shape": "shape0007",
+      "constructor_shape": "source",
       "constructor_size": 60,
-      "vfunc_30_shape": "shape0024",
-      "vfunc_30_size": 48,
+      "vfunc_30_shape": "source",
+      "vfunc_30_size": null,
       "vtable_slots": [
         {
           "raw": "0x00000000",
@@ -1103,7 +1103,7 @@
         {
           "raw": "0x08035FB1",
           "address": "0x08035FB0",
-          "symbol": "func_08035FB0"
+          "symbol": "vfunc_30__11BasilEntity"
         },
         {
           "raw": "0x08034EE1",
@@ -1126,10 +1126,10 @@
       "character_id": 11,
       "character_name": "Anna",
       "factory_stub": "0x0801B024",
-      "constructor": "func_08035FE0",
+      "constructor": "__10AnnaEntityP10GameObjectP3NpcUi",
       "constructor_address": "0x08035FE0",
       "schedule": "gUnk_080F5540",
-      "vtable": "vtable_unk_080E6F18",
+      "vtable": "__vt_10AnnaEntity",
       "vtable_address": "0x080E6F18",
       "destructor": {
         "raw": "0x080DCAC9",
@@ -1139,17 +1139,17 @@
       "vfunc_30": {
         "raw": "0x0803601D",
         "address": "0x0803601C",
-        "symbol": "func_0803601C"
+        "symbol": "vfunc_30__10AnnaEntity"
       },
       "vfunc_3C": {
         "raw": "0x08034F01",
         "address": "0x08034F00",
         "symbol": "func_08034F00"
       },
-      "constructor_shape": "shape0007",
+      "constructor_shape": "source",
       "constructor_size": 60,
-      "vfunc_30_shape": "shape0005",
-      "vfunc_30_size": 44,
+      "vfunc_30_shape": "source",
+      "vfunc_30_size": null,
       "vtable_slots": [
         {
           "raw": "0x00000000",
@@ -1214,7 +1214,7 @@
         {
           "raw": "0x0803601D",
           "address": "0x0803601C",
-          "symbol": "func_0803601C"
+          "symbol": "vfunc_30__10AnnaEntity"
         },
         {
           "raw": "0x08034EE1",
@@ -1237,10 +1237,10 @@
       "character_id": 12,
       "character_name": "Mary",
       "factory_stub": "0x0801B044",
-      "constructor": "func_08036048",
+      "constructor": "__10MaryEntityP10GameObjectP3NpcUi",
       "constructor_address": "0x08036048",
       "schedule": "gUnk_080F4D74",
-      "vtable": "vtable_unk_080E6ED8",
+      "vtable": "__vt_10MaryEntity",
       "vtable_address": "0x080E6ED8",
       "destructor": {
         "raw": "0x080DCABD",
@@ -1250,17 +1250,17 @@
       "vfunc_30": {
         "raw": "0x08036155",
         "address": "0x08036154",
-        "symbol": "func_08036154"
+        "symbol": "vfunc_30__10MaryEntity"
       },
       "vfunc_3C": {
         "raw": "0x08036139",
         "address": "0x08036138",
         "symbol": "func_08036138"
       },
-      "constructor_shape": "shape0007",
+      "constructor_shape": "source",
       "constructor_size": 60,
-      "vfunc_30_shape": "shape0026",
-      "vfunc_30_size": 48,
+      "vfunc_30_shape": "source",
+      "vfunc_30_size": null,
       "vtable_slots": [
         {
           "raw": "0x00000000",
@@ -1325,7 +1325,7 @@
         {
           "raw": "0x08036155",
           "address": "0x08036154",
-          "symbol": "func_08036154"
+          "symbol": "vfunc_30__10MaryEntity"
         },
         {
           "raw": "0x08034EE1",
@@ -1348,10 +1348,10 @@
       "character_id": 13,
       "character_name": "Thomas",
       "factory_stub": "0x0801B064",
-      "constructor": "func_08036184",
+      "constructor": "__12ThomasEntityP10GameObjectP3NpcUi",
       "constructor_address": "0x08036184",
       "schedule": "gUnk_080F59CC",
-      "vtable": "vtable_unk_080E6E98",
+      "vtable": "__vt_12ThomasEntity",
       "vtable_address": "0x080E6E98",
       "destructor": {
         "raw": "0x080DCAB1",
@@ -1361,17 +1361,17 @@
       "vfunc_30": {
         "raw": "0x080361C1",
         "address": "0x080361C0",
-        "symbol": "func_080361C0"
+        "symbol": "vfunc_30__12ThomasEntity"
       },
       "vfunc_3C": {
         "raw": "0x08034F01",
         "address": "0x08034F00",
         "symbol": "func_08034F00"
       },
-      "constructor_shape": "shape0007",
+      "constructor_shape": "source",
       "constructor_size": 60,
-      "vfunc_30_shape": "shape0005",
-      "vfunc_30_size": 44,
+      "vfunc_30_shape": "source",
+      "vfunc_30_size": null,
       "vtable_slots": [
         {
           "raw": "0x00000000",
@@ -1436,7 +1436,7 @@
         {
           "raw": "0x080361C1",
           "address": "0x080361C0",
-          "symbol": "func_080361C0"
+          "symbol": "vfunc_30__12ThomasEntity"
         },
         {
           "raw": "0x08034EE1",
@@ -1459,10 +1459,10 @@
       "character_id": 14,
       "character_name": "Harris",
       "factory_stub": "0x0801B084",
-      "constructor": "func_080361EC",
+      "constructor": "__12HarrisEntityP10GameObjectP3NpcUi",
       "constructor_address": "0x080361EC",
       "schedule": "gUnk_080F6B4C",
-      "vtable": "vtable_unk_080E6E58",
+      "vtable": "__vt_12HarrisEntity",
       "vtable_address": "0x080E6E58",
       "destructor": {
         "raw": "0x080DCAA5",
@@ -1472,17 +1472,17 @@
       "vfunc_30": {
         "raw": "0x08036229",
         "address": "0x08036228",
-        "symbol": "func_08036228"
+        "symbol": "vfunc_30__12HarrisEntity"
       },
       "vfunc_3C": {
         "raw": "0x08034F01",
         "address": "0x08034F00",
         "symbol": "func_08034F00"
       },
-      "constructor_shape": "shape0007",
+      "constructor_shape": "source",
       "constructor_size": 60,
-      "vfunc_30_shape": "shape0024",
-      "vfunc_30_size": 48,
+      "vfunc_30_shape": "source",
+      "vfunc_30_size": null,
       "vtable_slots": [
         {
           "raw": "0x00000000",
@@ -1547,7 +1547,7 @@
         {
           "raw": "0x08036229",
           "address": "0x08036228",
-          "symbol": "func_08036228"
+          "symbol": "vfunc_30__12HarrisEntity"
         },
         {
           "raw": "0x08034EE1",
@@ -1570,10 +1570,10 @@
       "character_id": 15,
       "character_name": "Ellen",
       "factory_stub": "0x0801B0A4",
-      "constructor": "func_08036258",
+      "constructor": "__11EllenEntityP10GameObjectP3NpcUi",
       "constructor_address": "0x08036258",
       "schedule": "gUnk_080F33B8",
-      "vtable": "vtable_unk_080E6E18",
+      "vtable": "__vt_11EllenEntity",
       "vtable_address": "0x080E6E18",
       "destructor": {
         "raw": "0x080DCA99",
@@ -1583,17 +1583,17 @@
       "vfunc_30": {
         "raw": "0x08036291",
         "address": "0x08036290",
-        "symbol": "func_08036290"
+        "symbol": "vfunc_30__11EllenEntity"
       },
       "vfunc_3C": {
         "raw": "0x08034F01",
         "address": "0x08034F00",
         "symbol": "func_08034F00"
       },
-      "constructor_shape": null,
-      "constructor_size": 56,
-      "vfunc_30_shape": "shape0024",
-      "vfunc_30_size": 48,
+      "constructor_shape": "source",
+      "constructor_size": 60,
+      "vfunc_30_shape": "source",
+      "vfunc_30_size": null,
       "vtable_slots": [
         {
           "raw": "0x00000000",
@@ -1658,7 +1658,7 @@
         {
           "raw": "0x08036291",
           "address": "0x08036290",
-          "symbol": "func_08036290"
+          "symbol": "vfunc_30__11EllenEntity"
         },
         {
           "raw": "0x08034EE1",
@@ -1681,10 +1681,10 @@
       "character_id": 16,
       "character_name": "Stu",
       "factory_stub": "0x0801B0C4",
-      "constructor": "func_080362C0",
+      "constructor": "__9StuEntityP10GameObjectP3NpcUi",
       "constructor_address": "0x080362C0",
       "schedule": "gUnk_080F61FC",
-      "vtable": "vtable_unk_080E6DD8",
+      "vtable": "__vt_9StuEntity",
       "vtable_address": "0x080E6DD8",
       "destructor": {
         "raw": "0x080DCA8D",
@@ -1694,17 +1694,17 @@
       "vfunc_30": {
         "raw": "0x080362FD",
         "address": "0x080362FC",
-        "symbol": "func_080362FC"
+        "symbol": "vfunc_30__9StuEntity"
       },
       "vfunc_3C": {
         "raw": "0x08034F01",
         "address": "0x08034F00",
         "symbol": "func_08034F00"
       },
-      "constructor_shape": "shape0007",
+      "constructor_shape": "source",
       "constructor_size": 60,
-      "vfunc_30_shape": "shape0117",
-      "vfunc_30_size": 44,
+      "vfunc_30_shape": "source",
+      "vfunc_30_size": null,
       "vtable_slots": [
         {
           "raw": "0x00000000",
@@ -1769,7 +1769,7 @@
         {
           "raw": "0x080362FD",
           "address": "0x080362FC",
-          "symbol": "func_080362FC"
+          "symbol": "vfunc_30__9StuEntity"
         },
         {
           "raw": "0x08034EE1",
@@ -1792,10 +1792,10 @@
       "character_id": 17,
       "character_name": "Jeff",
       "factory_stub": "0x0801B0E4",
-      "constructor": "func_08036328",
+      "constructor": "__10JeffEntityP10GameObjectP3NpcUi",
       "constructor_address": "0x08036328",
       "schedule": "gUnk_080F3408",
-      "vtable": "vtable_unk_080E6D98",
+      "vtable": "__vt_10JeffEntity",
       "vtable_address": "0x080E6D98",
       "destructor": {
         "raw": "0x080DCA81",
@@ -1805,17 +1805,17 @@
       "vfunc_30": {
         "raw": "0x08036365",
         "address": "0x08036364",
-        "symbol": "func_08036364"
+        "symbol": "vfunc_30__10JeffEntity"
       },
       "vfunc_3C": {
         "raw": "0x08034F01",
         "address": "0x08034F00",
         "symbol": "func_08034F00"
       },
-      "constructor_shape": "shape0007",
+      "constructor_shape": "source",
       "constructor_size": 60,
-      "vfunc_30_shape": "shape0005",
-      "vfunc_30_size": 44,
+      "vfunc_30_shape": "source",
+      "vfunc_30_size": null,
       "vtable_slots": [
         {
           "raw": "0x00000000",
@@ -1880,7 +1880,7 @@
         {
           "raw": "0x08036365",
           "address": "0x08036364",
-          "symbol": "func_08036364"
+          "symbol": "vfunc_30__10JeffEntity"
         },
         {
           "raw": "0x08034EE1",
@@ -1903,10 +1903,10 @@
       "character_id": 18,
       "character_name": "Sasha",
       "factory_stub": "0x0801B104",
-      "constructor": "func_08036390",
+      "constructor": "__11SashaEntityP10GameObjectP3NpcUi",
       "constructor_address": "0x08036390",
       "schedule": "gUnk_080F3FD8",
-      "vtable": "vtable_unk_080E6D58",
+      "vtable": "__vt_11SashaEntity",
       "vtable_address": "0x080E6D58",
       "destructor": {
         "raw": "0x080DCA75",
@@ -1916,17 +1916,17 @@
       "vfunc_30": {
         "raw": "0x080363CD",
         "address": "0x080363CC",
-        "symbol": "func_080363CC"
+        "symbol": "vfunc_30__11SashaEntity"
       },
       "vfunc_3C": {
         "raw": "0x08034F01",
         "address": "0x08034F00",
         "symbol": "func_08034F00"
       },
-      "constructor_shape": "shape0007",
+      "constructor_shape": "source",
       "constructor_size": 60,
-      "vfunc_30_shape": "shape0005",
-      "vfunc_30_size": 44,
+      "vfunc_30_shape": "source",
+      "vfunc_30_size": null,
       "vtable_slots": [
         {
           "raw": "0x00000000",
@@ -1991,7 +1991,7 @@
         {
           "raw": "0x080363CD",
           "address": "0x080363CC",
-          "symbol": "func_080363CC"
+          "symbol": "vfunc_30__11SashaEntity"
         },
         {
           "raw": "0x08034EE1",
@@ -2014,10 +2014,10 @@
       "character_id": 19,
       "character_name": "Karen",
       "factory_stub": "0x0801B124",
-      "constructor": "func_080363F8",
+      "constructor": "__11KarenEntityP10GameObjectP3NpcUi",
       "constructor_address": "0x080363F8",
       "schedule": "gUnk_080F35E4",
-      "vtable": "vtable_unk_080E6D18",
+      "vtable": "__vt_11KarenEntity",
       "vtable_address": "0x080E6D18",
       "destructor": {
         "raw": "0x080DCA69",
@@ -2027,17 +2027,17 @@
       "vfunc_30": {
         "raw": "0x08036501",
         "address": "0x08036500",
-        "symbol": "func_08036500"
+        "symbol": "vfunc_30__11KarenEntity"
       },
       "vfunc_3C": {
         "raw": "0x080364E5",
         "address": "0x080364E4",
         "symbol": "func_080364E4"
       },
-      "constructor_shape": "shape0033",
-      "constructor_size": 56,
-      "vfunc_30_shape": "shape0026",
-      "vfunc_30_size": 48,
+      "constructor_shape": "source",
+      "constructor_size": 60,
+      "vfunc_30_shape": "source",
+      "vfunc_30_size": null,
       "vtable_slots": [
         {
           "raw": "0x00000000",
@@ -2102,7 +2102,7 @@
         {
           "raw": "0x08036501",
           "address": "0x08036500",
-          "symbol": "func_08036500"
+          "symbol": "vfunc_30__11KarenEntity"
         },
         {
           "raw": "0x08034EE1",
@@ -2125,10 +2125,10 @@
       "character_id": 20,
       "character_name": "Doctor",
       "factory_stub": "0x0801B144",
-      "constructor": "func_08036530",
+      "constructor": "__12DoctorEntityP10GameObjectP3NpcUi",
       "constructor_address": "0x08036530",
       "schedule": "gUnk_080F3010",
-      "vtable": "vtable_unk_080E6CD8",
+      "vtable": "__vt_12DoctorEntity",
       "vtable_address": "0x080E6CD8",
       "destructor": {
         "raw": "0x080DCA5D",
@@ -2138,17 +2138,17 @@
       "vfunc_30": {
         "raw": "0x08036565",
         "address": "0x08036564",
-        "symbol": "func_08036564"
+        "symbol": "vfunc_30__12DoctorEntity"
       },
       "vfunc_3C": {
         "raw": "0x08034F01",
         "address": "0x08034F00",
         "symbol": "func_08034F00"
       },
-      "constructor_shape": "shape0118",
-      "constructor_size": 52,
-      "vfunc_30_shape": "shape0005",
-      "vfunc_30_size": 44,
+      "constructor_shape": "source",
+      "constructor_size": 60,
+      "vfunc_30_shape": "source",
+      "vfunc_30_size": null,
       "vtable_slots": [
         {
           "raw": "0x00000000",
@@ -2213,7 +2213,7 @@
         {
           "raw": "0x08036565",
           "address": "0x08036564",
-          "symbol": "func_08036564"
+          "symbol": "vfunc_30__12DoctorEntity"
         },
         {
           "raw": "0x08034EE1",
@@ -2236,10 +2236,10 @@
       "character_id": 21,
       "character_name": "Elli",
       "factory_stub": "0x0801B164",
-      "constructor": "func_08036590",
+      "constructor": "__10ElliEntityP10GameObjectP3NpcUi",
       "constructor_address": "0x08036590",
       "schedule": "gUnk_080F5D94",
-      "vtable": "vtable_unk_080E6C98",
+      "vtable": "__vt_10ElliEntity",
       "vtable_address": "0x080E6C98",
       "destructor": {
         "raw": "0x080DCA51",
@@ -2249,17 +2249,17 @@
       "vfunc_30": {
         "raw": "0x0803669D",
         "address": "0x0803669C",
-        "symbol": "func_0803669C"
+        "symbol": "vfunc_30__10ElliEntity"
       },
       "vfunc_3C": {
         "raw": "0x08036681",
         "address": "0x08036680",
         "symbol": "func_08036680"
       },
-      "constructor_shape": "shape0007",
+      "constructor_shape": "source",
       "constructor_size": 60,
-      "vfunc_30_shape": "shape0026",
-      "vfunc_30_size": 48,
+      "vfunc_30_shape": "source",
+      "vfunc_30_size": null,
       "vtable_slots": [
         {
           "raw": "0x00000000",
@@ -2324,7 +2324,7 @@
         {
           "raw": "0x0803669D",
           "address": "0x0803669C",
-          "symbol": "func_0803669C"
+          "symbol": "vfunc_30__10ElliEntity"
         },
         {
           "raw": "0x08034EE1",
@@ -2347,10 +2347,10 @@
       "character_id": 22,
       "character_name": "Carter",
       "factory_stub": "0x0801B184",
-      "constructor": "func_080366CC",
+      "constructor": "__12CarterEntityP10GameObjectP3NpcUi",
       "constructor_address": "0x080366CC",
       "schedule": "gUnk_080F6DE8",
-      "vtable": "vtable_unk_080E6C58",
+      "vtable": "__vt_12CarterEntity",
       "vtable_address": "0x080E6C58",
       "destructor": {
         "raw": "0x080DCA45",
@@ -2360,17 +2360,17 @@
       "vfunc_30": {
         "raw": "0x08036705",
         "address": "0x08036704",
-        "symbol": "func_08036704"
+        "symbol": "vfunc_30__12CarterEntity"
       },
       "vfunc_3C": {
         "raw": "0x08034F01",
         "address": "0x08034F00",
         "symbol": "func_08034F00"
       },
-      "constructor_shape": "shape0033",
-      "constructor_size": 56,
-      "vfunc_30_shape": "shape0005",
-      "vfunc_30_size": 44,
+      "constructor_shape": "source",
+      "constructor_size": 60,
+      "vfunc_30_shape": "source",
+      "vfunc_30_size": null,
       "vtable_slots": [
         {
           "raw": "0x00000000",
@@ -2435,7 +2435,7 @@
         {
           "raw": "0x08036705",
           "address": "0x08036704",
-          "symbol": "func_08036704"
+          "symbol": "vfunc_30__12CarterEntity"
         },
         {
           "raw": "0x08034EE1",
@@ -2458,10 +2458,10 @@
       "character_id": 23,
       "character_name": "Cliff",
       "factory_stub": "0x0801B1A4",
-      "constructor": "func_08036730",
+      "constructor": "__11CliffEntityP10GameObjectP3NpcUi",
       "constructor_address": "0x08036730",
       "schedule": "gUnk_080F2AF8",
-      "vtable": "vtable_unk_080E6C18",
+      "vtable": "__vt_11CliffEntity",
       "vtable_address": "0x080E6C18",
       "destructor": {
         "raw": "0x080DCA39",
@@ -2471,17 +2471,17 @@
       "vfunc_30": {
         "raw": "0x080367C9",
         "address": "0x080367C8",
-        "symbol": "func_080367C8"
+        "symbol": "vfunc_30__11CliffEntity"
       },
       "vfunc_3C": {
         "raw": "0x080367AD",
         "address": "0x080367AC",
         "symbol": "func_080367AC"
       },
-      "constructor_shape": "shape0033",
-      "constructor_size": 56,
-      "vfunc_30_shape": "shape0026",
-      "vfunc_30_size": 48,
+      "constructor_shape": "source",
+      "constructor_size": 60,
+      "vfunc_30_shape": "source",
+      "vfunc_30_size": null,
       "vtable_slots": [
         {
           "raw": "0x00000000",
@@ -2546,7 +2546,7 @@
         {
           "raw": "0x080367C9",
           "address": "0x080367C8",
-          "symbol": "func_080367C8"
+          "symbol": "vfunc_30__11CliffEntity"
         },
         {
           "raw": "0x08034EE1",
@@ -2569,10 +2569,10 @@
       "character_id": 24,
       "character_name": "Doug",
       "factory_stub": "0x0801B1C4",
-      "constructor": "func_080367F8",
+      "constructor": "__10DougEntityP10GameObjectP3NpcUi",
       "constructor_address": "0x080367F8",
       "schedule": "gUnk_080F42F0",
-      "vtable": "vtable_unk_080E6BD8",
+      "vtable": "__vt_10DougEntity",
       "vtable_address": "0x080E6BD8",
       "destructor": {
         "raw": "0x080DCA2D",
@@ -2582,17 +2582,17 @@
       "vfunc_30": {
         "raw": "0x08036835",
         "address": "0x08036834",
-        "symbol": "func_08036834"
+        "symbol": "vfunc_30__10DougEntity"
       },
       "vfunc_3C": {
         "raw": "0x08034F01",
         "address": "0x08034F00",
         "symbol": "func_08034F00"
       },
-      "constructor_shape": "shape0007",
+      "constructor_shape": "source",
       "constructor_size": 60,
-      "vfunc_30_shape": "shape0005",
-      "vfunc_30_size": 44,
+      "vfunc_30_shape": "source",
+      "vfunc_30_size": null,
       "vtable_slots": [
         {
           "raw": "0x00000000",
@@ -2657,7 +2657,7 @@
         {
           "raw": "0x08036835",
           "address": "0x08036834",
-          "symbol": "func_08036834"
+          "symbol": "vfunc_30__10DougEntity"
         },
         {
           "raw": "0x08034EE1",
@@ -2680,10 +2680,10 @@
       "character_id": 25,
       "character_name": "Ann",
       "factory_stub": "0x0801B1E4",
-      "constructor": "func_080368C4",
+      "constructor": "__9AnnEntityP10GameObjectP3NpcUi",
       "constructor_address": "0x080368C4",
       "schedule": "gUnk_080F43DC",
-      "vtable": "vtable_unk_080E6B58",
+      "vtable": "__vt_9AnnEntity",
       "vtable_address": "0x080E6B58",
       "destructor": {
         "raw": "0x080DCA15",
@@ -2693,17 +2693,17 @@
       "vfunc_30": {
         "raw": "0x080369E1",
         "address": "0x080369E0",
-        "symbol": "func_080369E0"
+        "symbol": "vfunc_30__9AnnEntity"
       },
       "vfunc_3C": {
         "raw": "0x080369C5",
         "address": "0x080369C4",
         "symbol": "func_080369C4"
       },
-      "constructor_shape": "shape0007",
+      "constructor_shape": "source",
       "constructor_size": 60,
-      "vfunc_30_shape": "shape0026",
-      "vfunc_30_size": 48,
+      "vfunc_30_shape": "source",
+      "vfunc_30_size": null,
       "vtable_slots": [
         {
           "raw": "0x00000000",
@@ -2768,7 +2768,7 @@
         {
           "raw": "0x080369E1",
           "address": "0x080369E0",
-          "symbol": "func_080369E0"
+          "symbol": "vfunc_30__9AnnEntity"
         },
         {
           "raw": "0x08034EE1",
@@ -2791,10 +2791,10 @@
       "character_id": 26,
       "character_name": "Kai",
       "factory_stub": "0x0801B204",
-      "constructor": "func_08036A10",
+      "constructor": "__9KaiEntityP10GameObjectP3NpcUi",
       "constructor_address": "0x08036A10",
       "schedule": "gUnk_080F6FF8",
-      "vtable": "vtable_unk_080E6B18",
+      "vtable": "__vt_9KaiEntity",
       "vtable_address": "0x080E6B18",
       "destructor": {
         "raw": "0x080DCA09",
@@ -2804,17 +2804,17 @@
       "vfunc_30": {
         "raw": "0x08036A4D",
         "address": "0x08036A4C",
-        "symbol": "func_08036A4C"
+        "symbol": "vfunc_30__9KaiEntity"
       },
       "vfunc_3C": {
         "raw": "0x08034F01",
         "address": "0x08034F00",
         "symbol": "func_08034F00"
       },
-      "constructor_shape": "shape0007",
+      "constructor_shape": "source",
       "constructor_size": 60,
-      "vfunc_30_shape": "shape0005",
-      "vfunc_30_size": 44,
+      "vfunc_30_shape": "source",
+      "vfunc_30_size": null,
       "vtable_slots": [
         {
           "raw": "0x00000000",
@@ -2879,7 +2879,7 @@
         {
           "raw": "0x08036A4D",
           "address": "0x08036A4C",
-          "symbol": "func_08036A4C"
+          "symbol": "vfunc_30__9KaiEntity"
         },
         {
           "raw": "0x08034EE1",
@@ -2902,10 +2902,10 @@
       "character_id": 27,
       "character_name": "Gotz",
       "factory_stub": "0x0801B224",
-      "constructor": "func_08036A78",
+      "constructor": "__10GotzEntityP10GameObjectP3NpcUi",
       "constructor_address": "0x08036A78",
       "schedule": "gUnk_080F7B40",
-      "vtable": "vtable_unk_080E6AD8",
+      "vtable": "__vt_10GotzEntity",
       "vtable_address": "0x080E6AD8",
       "destructor": {
         "raw": "0x080DC9FD",
@@ -2915,17 +2915,17 @@
       "vfunc_30": {
         "raw": "0x08036B1D",
         "address": "0x08036B1C",
-        "symbol": "func_08036B1C"
+        "symbol": "vfunc_30__10GotzEntity"
       },
       "vfunc_3C": {
         "raw": "0x08036B01",
         "address": "0x08036B00",
         "symbol": "func_08036B00"
       },
-      "constructor_shape": "shape0007",
+      "constructor_shape": "source",
       "constructor_size": 60,
-      "vfunc_30_shape": "shape0026",
-      "vfunc_30_size": 48,
+      "vfunc_30_shape": "source",
+      "vfunc_30_size": null,
       "vtable_slots": [
         {
           "raw": "0x00000000",
@@ -2990,7 +2990,7 @@
         {
           "raw": "0x08036B1D",
           "address": "0x08036B1C",
-          "symbol": "func_08036B1C"
+          "symbol": "vfunc_30__10GotzEntity"
         },
         {
           "raw": "0x08034EE1",
@@ -3013,10 +3013,10 @@
       "character_id": 28,
       "character_name": "Zack",
       "factory_stub": "0x0801B244",
-      "constructor": "func_08036B4C",
+      "constructor": "__10ZackEntityP10GameObjectP3NpcUi",
       "constructor_address": "0x08036B4C",
       "schedule": "gUnk_080F2DC0",
-      "vtable": "vtable_unk_080E6A98",
+      "vtable": "__vt_10ZackEntity",
       "vtable_address": "0x080E6A98",
       "destructor": {
         "raw": "0x080DC9F1",
@@ -3026,17 +3026,17 @@
       "vfunc_30": {
         "raw": "0x08036B81",
         "address": "0x08036B80",
-        "symbol": "func_08036B80"
+        "symbol": "vfunc_30__10ZackEntity"
       },
       "vfunc_3C": {
         "raw": "0x08036BF9",
         "address": "0x08036BF8",
         "symbol": "func_08036BF8"
       },
-      "constructor_shape": "shape0118",
-      "constructor_size": 52,
-      "vfunc_30_shape": "shape0024",
-      "vfunc_30_size": 48,
+      "constructor_shape": "source",
+      "constructor_size": 60,
+      "vfunc_30_shape": "source",
+      "vfunc_30_size": null,
       "vtable_slots": [
         {
           "raw": "0x00000000",
@@ -3101,7 +3101,7 @@
         {
           "raw": "0x08036B81",
           "address": "0x08036B80",
-          "symbol": "func_08036B80"
+          "symbol": "vfunc_30__10ZackEntity"
         },
         {
           "raw": "0x08034EE1",
@@ -3124,10 +3124,10 @@
       "character_id": 29,
       "character_name": "Won",
       "factory_stub": "0x0801B264",
-      "constructor": "func_08036C48",
+      "constructor": "__9WonEntityP10GameObjectP3NpcUi",
       "constructor_address": "0x08036C48",
       "schedule": "gUnk_080F597C",
-      "vtable": "vtable_unk_080E6A58",
+      "vtable": "__vt_9WonEntity",
       "vtable_address": "0x080E6A58",
       "destructor": {
         "raw": "0x080DC9E5",
@@ -3137,17 +3137,17 @@
       "vfunc_30": {
         "raw": "0x08036C81",
         "address": "0x08036C80",
-        "symbol": "func_08036C80"
+        "symbol": "vfunc_30__9WonEntity"
       },
       "vfunc_3C": {
         "raw": "0x08034F01",
         "address": "0x08034F00",
         "symbol": "func_08034F00"
       },
-      "constructor_shape": "shape0033",
-      "constructor_size": 56,
-      "vfunc_30_shape": "shape0005",
-      "vfunc_30_size": 44,
+      "constructor_shape": "source",
+      "constructor_size": 60,
+      "vfunc_30_shape": "source",
+      "vfunc_30_size": null,
       "vtable_slots": [
         {
           "raw": "0x00000000",
@@ -3212,7 +3212,7 @@
         {
           "raw": "0x08036C81",
           "address": "0x08036C80",
-          "symbol": "func_08036C80"
+          "symbol": "vfunc_30__9WonEntity"
         },
         {
           "raw": "0x08034EE1",
@@ -3235,10 +3235,10 @@
       "character_id": 30,
       "character_name": "Gourmet",
       "factory_stub": "0x0801B284",
-      "constructor": "func_08036CAC",
+      "constructor": "__13GourmetEntityP10GameObjectP3NpcUi",
       "constructor_address": "0x08036CAC",
       "schedule": null,
-      "vtable": "vtable_unk_080E6A18",
+      "vtable": "__vt_13GourmetEntity",
       "vtable_address": "0x080E6A18",
       "destructor": {
         "raw": "0x080DC9D9",
@@ -3248,17 +3248,17 @@
       "vfunc_30": {
         "raw": "0x08036CDD",
         "address": "0x08036CDC",
-        "symbol": "func_08036CDC"
+        "symbol": "vfunc_30__13GourmetEntity"
       },
       "vfunc_3C": {
         "raw": "0x08034F01",
         "address": "0x08034F00",
         "symbol": "func_08034F00"
       },
-      "constructor_shape": "shape0119",
-      "constructor_size": 48,
-      "vfunc_30_shape": "shape0024",
-      "vfunc_30_size": 48,
+      "constructor_shape": "source",
+      "constructor_size": 60,
+      "vfunc_30_shape": "source",
+      "vfunc_30_size": null,
       "vtable_slots": [
         {
           "raw": "0x00000000",
@@ -3323,7 +3323,7 @@
         {
           "raw": "0x08036CDD",
           "address": "0x08036CDC",
-          "symbol": "func_08036CDC"
+          "symbol": "vfunc_30__13GourmetEntity"
         },
         {
           "raw": "0x08034EE1",
@@ -3346,10 +3346,10 @@
       "character_id": 31,
       "character_name": "H. Goddess",
       "factory_stub": "0x0801B2A4",
-      "constructor": "func_08036D0C",
+      "constructor": "__20HarvestGoddessEntityP10GameObjectP3NpcUi",
       "constructor_address": "0x08036D0C",
       "schedule": null,
-      "vtable": "vtable_unk_080E69D8",
+      "vtable": "__vt_20HarvestGoddessEntity",
       "vtable_address": "0x080E69D8",
       "destructor": {
         "raw": "0x080DC9CD",
@@ -3359,17 +3359,17 @@
       "vfunc_30": {
         "raw": "0x08036D3D",
         "address": "0x08036D3C",
-        "symbol": "func_08036D3C"
+        "symbol": "vfunc_30__20HarvestGoddessEntity"
       },
       "vfunc_3C": {
         "raw": "0x08034F01",
         "address": "0x08034F00",
         "symbol": "func_08034F00"
       },
-      "constructor_shape": "shape0119",
-      "constructor_size": 48,
-      "vfunc_30_shape": "shape0005",
-      "vfunc_30_size": 44,
+      "constructor_shape": "source",
+      "constructor_size": 60,
+      "vfunc_30_shape": "source",
+      "vfunc_30_size": null,
       "vtable_slots": [
         {
           "raw": "0x00000000",
@@ -3434,7 +3434,7 @@
         {
           "raw": "0x08036D3D",
           "address": "0x08036D3C",
-          "symbol": "func_08036D3C"
+          "symbol": "vfunc_30__20HarvestGoddessEntity"
         },
         {
           "raw": "0x08034EE1",
@@ -3457,10 +3457,10 @@
       "character_id": 32,
       "character_name": "Kappa",
       "factory_stub": "0x0801B2C4",
-      "constructor": "func_08036D68",
+      "constructor": "__11KappaEntityP10GameObjectP3NpcUi",
       "constructor_address": "0x08036D68",
       "schedule": null,
-      "vtable": "vtable_unk_080E6998",
+      "vtable": "__vt_11KappaEntity",
       "vtable_address": "0x080E6998",
       "destructor": {
         "raw": "0x080DC9C1",
@@ -3470,17 +3470,17 @@
       "vfunc_30": {
         "raw": "0x08036D99",
         "address": "0x08036D98",
-        "symbol": "func_08036D98"
+        "symbol": "vfunc_30__11KappaEntity"
       },
       "vfunc_3C": {
         "raw": "0x08034F01",
         "address": "0x08034F00",
         "symbol": "func_08034F00"
       },
-      "constructor_shape": null,
-      "constructor_size": 48,
-      "vfunc_30_shape": "shape0005",
-      "vfunc_30_size": 44,
+      "constructor_shape": "source",
+      "constructor_size": 60,
+      "vfunc_30_shape": "source",
+      "vfunc_30_size": null,
       "vtable_slots": [
         {
           "raw": "0x00000000",
@@ -3545,7 +3545,7 @@
         {
           "raw": "0x08036D99",
           "address": "0x08036D98",
-          "symbol": "func_08036D98"
+          "symbol": "vfunc_30__11KappaEntity"
         },
         {
           "raw": "0x08034EE1",
@@ -3588,7 +3588,7 @@
         "address": "0x08034F00",
         "symbol": "func_08034F00"
       },
-      "constructor_shape": "shape0007",
+      "constructor_shape": null,
       "constructor_size": 104,
       "vfunc_30_shape": "unlabeled",
       "vfunc_30_size": null,
@@ -3679,10 +3679,10 @@
       "character_id": 34,
       "character_name": "Lu",
       "factory_stub": "0x0801B304",
-      "constructor": "func_08036860",
+      "constructor": "__8LuEntityP10GameObjectP3NpcUi",
       "constructor_address": "0x08036860",
       "schedule": "gUnk_080F4974",
-      "vtable": "vtable_unk_080E6B98",
+      "vtable": "__vt_8LuEntity",
       "vtable_address": "0x080E6B98",
       "destructor": {
         "raw": "0x080DCA21",
@@ -3692,17 +3692,17 @@
       "vfunc_30": {
         "raw": "0x08036899",
         "address": "0x08036898",
-        "symbol": "func_08036898"
+        "symbol": "vfunc_30__8LuEntity"
       },
       "vfunc_3C": {
         "raw": "0x08034F01",
         "address": "0x08034F00",
         "symbol": "func_08034F00"
       },
-      "constructor_shape": "shape0033",
-      "constructor_size": 56,
-      "vfunc_30_shape": "shape0005",
-      "vfunc_30_size": 44,
+      "constructor_shape": "source",
+      "constructor_size": 60,
+      "vfunc_30_shape": "source",
+      "vfunc_30_size": null,
       "vtable_slots": [
         {
           "raw": "0x00000000",
@@ -3767,7 +3767,7 @@
         {
           "raw": "0x08036899",
           "address": "0x08036898",
-          "symbol": "func_08036898"
+          "symbol": "vfunc_30__8LuEntity"
         },
         {
           "raw": "0x08034EE1",

@@ -5,21 +5,11 @@
 - stop treating the remaining **77 packed-sprite animations** as the primary
   work queue. Preserve the open list and current family evidence, but resolve
   those IDs as a by-product of decompiling their owning systems;
-- build a complete machine-readable inventory of the remaining assembly:
-  function address/size, callers/callees, data/global xrefs, inferred TU and
-  subsystem, vtable/class links, similarity cluster, exact/understood status,
-  and compiler-difficulty evidence;
-- infer original translation-unit boundaries from address/section locality,
-  padding/literal pools, local static data, call locality, vtables, and
-  constructor/destructor groupings;
-- normalize remaining assembly and cluster similar functions. Prioritize
-  repeated families where one exact source/type oracle can unlock many sibling
-  functions;
-- build a global vtable/class/constructor/destructor and data-ownership map, then
-  feed those facts back into the function inventory;
-- score and rank coherent TUs/clusters by recoverable bytes, downstream unlock
-  value, type readiness, subsystem coherence, and estimated matching
-  difficulty. Re-rank after meaningful integrations;
+- keep `tools/ches/decomp_inventory.json` / `DECOMP_QUEUE.md` regenerated after meaningful exact integrations; the unified remaining-function inventory, similarity clustering, and first class-map pipeline are already live;
+- continue enriching TU/type/vtable/data ownership only when it improves the next coherent target rather than treating classification as an end in itself;
+- use the resident-NPC integration as the model family workflow: prove one representative, parameterize siblings, batch scratch-compare, then promote only the exact family;
+- current structural-continuity target: `asm/code_entities_08034CEC.s:08036DC4-08039E18`, starting with Lou/Child. The raw queue's rank-1 save region contains the deliberately parked loader and is not an instruction to reopen it;
+- re-rank after the Lou/Child/adjacent-entity pass or whenever a meaningful integration changes the inventory;
 - use the ranked queue rather than a fixed five-function batch size. Complete as
   much of one coherent TU/cluster as remains high-throughput, parking individual
   compiler-sensitive islands with preserved candidates/evidence;

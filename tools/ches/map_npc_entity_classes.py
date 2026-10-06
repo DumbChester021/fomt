@@ -100,6 +100,42 @@ def parse_constructor_metadata():
     return metadata
 
 
+def parse_source_constructor_metadata():
+    path = ROOT / "src/entity_resident_npcs.cc"
+    if not path.exists():
+        return {}
+
+    lines = path.read_text().splitlines()
+    metadata = {}
+    for index, line in enumerate(lines[:-1]):
+        match = re.match(
+            r"^([A-Za-z_][A-Za-z0-9_]*Entity)::\1\(GameObject \* game_object, Npc \* npc, u32 context\)$",
+            line,
+        )
+        if not match:
+            continue
+
+        class_name = match.group(1)
+        initializer = lines[index + 1].strip()
+        prefix = ": ANpcEntity("
+        if not initializer.startswith(prefix) or not initializer.endswith(")"):
+            continue
+
+        args = [part.strip() for part in initializer[len(prefix):-1].split(",")]
+        if len(args) != 7:
+            continue
+
+        schedule_expr = args[3]
+        schedule = None if schedule_expr == "0" else schedule_expr.lstrip("&")
+        constructor = f"__{len(class_name)}{class_name}P10GameObjectP3NpcUi"
+        metadata[constructor] = {
+            "schedule": schedule,
+            "vtable": f"__vt_{len(class_name)}{class_name}",
+        }
+
+    return metadata
+
+
 def parse_vtable_addresses(addr_by_name):
     result = {}
     lines = (ROOT / "asm/vtables.s").read_text().splitlines()
@@ -113,6 +149,14 @@ def parse_vtable_addresses(addr_by_name):
             result[name] = int(explicit, 16)
         elif name in addr_by_name:
             result[name] = addr_by_name[name]
+
+    # Source-owned concrete classes use linker aliases such as
+    # __vt_10RickEntity = vtable_unk_080E7158.  nm exposes those aliases at
+    # the retail vtable address, so retain them in the same lookup.
+    for name, address in addr_by_name.items():
+        if name.startswith("__vt_"):
+            result.setdefault(name, address)
+
     return result
 
 
@@ -154,11 +198,11 @@ def build():
     by_addr, addr_by_name = load_symbols()
     characters = load_character_names()
     ctor_meta = parse_constructor_metadata()
+    ctor_meta.update(parse_source_constructor_metadata())
     vtable_addresses = parse_vtable_addresses(addr_by_name)
     inventory = load_inventory()
 
-    # Lillia is already exact source and therefore absent from the remaining asm
-    # constructor parser.
+    # Lillia lives in its own exact source TU.
     lillia_constructor = "__12LilliaEntityP10GameObjectP3NpcUi"
     ctor_meta[lillia_constructor] = {
         "schedule": "gUnk_080F280C",
@@ -208,6 +252,9 @@ def build():
         vfunc30_symbol = by_addr.get(vfunc30_pointer)
         ctor_inventory = inventory.get(constructor)
         vfunc_inventory = inventory.get(vfunc30_symbol)
+        vfunc_source_owned = bool(
+            vfunc30_symbol and vfunc30_symbol.startswith("vfunc_30__")
+        )
 
         rows.append({
             "character_id": selector,
@@ -230,7 +277,7 @@ def build():
             "vfunc_30_shape": (
                 vfunc_inventory.get("shape_cluster")
                 if vfunc_inventory
-                else ("source" if selector == 1 else "unlabeled")
+                else ("source" if vfunc_source_owned else "unlabeled")
             ),
             "vfunc_30_size": (
                 vfunc_inventory.get("size")

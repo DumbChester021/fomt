@@ -167,9 +167,7 @@ be checked before treating these tools as an authoring pipeline.
 ## Runtime entities and render objects
 
 Persistent `Npc`, runtime `ANpcEntity`, and `UnknownEntityThing` are distinct
-objects. [entity_npc.hh](../include/entity_npc.hh) exposes the shared
-`ANpcEntity` declaration and its concrete `LilliaEntity` subclass. In
-[npc_entity.cc](../src/npc_entity.cc), `ANpcEntity` references its
+objects. [entity_npc.hh](../include/entity_npc.hh) exposes the shared `ANpcEntity` declaration and `LilliaEntity`; [entity_resident_npcs.hh](../include/entity_resident_npcs.hh) declares the exact concrete resident classes for Rick through Kappa plus Lu. [entity_resident_npcs.cc](../src/entity_resident_npcs.cc) owns their constructors and virtual +0x30 effect factories. Lou and Child remain the two special resident classes whose constructor/+0x30 layer is still assembly. In [npc_entity.cc](../src/npc_entity.cc), `ANpcEntity` references its
 persistent `Npc`; construction restores location/animation/cursors and
 destruction writes them back. Some movement/schedule methods in this C++ unit
 still contain naked assembly. A custom record must outlive its runtime entity.
@@ -219,12 +217,7 @@ A fully traced ordinary example is Lillia:
 | Attach rendering | `AEntity::vfunc_10` calls entity virtual slot +0x30 only when the actor is on the current map |
 | Allocate effect | `LilliaEntity::vfunc_30` / `func_08035B38` at slot +0x30 which allocates **0x8C** bytes and calls the recovered effect constructor at 0x080324BC |
 
-The constructor and effect factory are matching C++ in
-[entity_lillia.cc](../src/entity_lillia.cc). The effect constructor receives
-`this, 4, 0x1B, 1, 0, 0, false`; resource meanings not established by the shared
-interface remain unnamed. The existing retail vtable stays in
-[vtables.s](../asm/vtables.s), with the normal C++ vtable symbol aliased by the
-linker. The map-dependent attachment is readable in [entity.cc](../src/entity.cc).
+The Lillia constructor/effect factory are matching C++ in [entity_lillia.cc](../src/entity_lillia.cc). The same recovered class pattern was generalized across 32 additional residents in [entity_resident_npcs.cc](../src/entity_resident_npcs.cc): **64 methods / 3,296 bytes** are exact source, split into nine linker-interleaved source runs around seven character-specific helper blocks and Zack's local helper block. All original resident vtables remain in [vtables.s](../asm/vtables.s) and are exposed to C++ through linker aliases; legacy `func_08...` names are preserved as aliases too. The generated `tools/ches/NPC_ENTITY_CLASS_MAP.md` proves selector, character, schedule, vtable, +0x30 and +0x3C relationships for IDs 1..35. The map-dependent attachment remains readable in [entity.cc](../src/entity.cc).
 
 **Entity virtual +0x30 creates an effect, not the NPC entity.**
 `GameObject` virtual +0x30 has yet another meaning: map height, declared in
@@ -262,15 +255,10 @@ the phased plan and acceptance criteria.
 
 ## Matching validation
 
-The linker keeps the original identity helpers and location helper at their
-retail positions, the two scheduling helpers at 0x0803D688..0x0803DA23, and
-Lillia's pair at 0x08035AFC..0x08035B63. The October 5 resolver splits preserve
-the original addresses for `080A01F8..080A03B7` and `080A06B0..080A0A1B`;
-`func_08045584` is likewise sourced at its retail address. Following assembly
-boundaries and callable aliases remain unchanged.
+The linker keeps the original identity/location and scheduling helpers at their retail positions, Lillia's pair at 0x08035AFC..0x08035B63, and the 64 resident methods at their original addresses through nine source/assembly interleave seams from 0x08035B64 through 0x08036DC3. The October 5 resolver splits preserve `080A01F8..080A03B7` and `080A06B0..080A0A1B`; `func_08045584` remains sourced at its retail address. Legacy callable names for the promoted resident methods are linker aliases, so existing address-derived references remain valid.
 
 Run `make compare` and `sha1sum -c fomt.sha1` after source/data/interface
-changes. The current exact worktree reports **64,536 / 940,036 = 6.8653%**
+changes. The current exact worktree reports **67,832 / 940,036 = 7.2159%**
 source with the retail SHA1 unchanged. Documentation updates do not change the
 ROM or count as new source reconstruction.
 

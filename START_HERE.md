@@ -2,31 +2,26 @@
 
 ## Current NPC family frontier - October 6, 2026
 
-The throughput inventory has now resolved the top NPC/entity region into a proven 35-character factory/vtable map. `tools/ches/map_npc_entity_classes.py` generates `tools/ches/npc_entity_class_map.json` and `tools/ches/NPC_ENTITY_CLASS_MAP.md`; selectors 1..35 are directly tied to characters, constructors, schedules, vtables and virtual slots. Rick is the first new exact representative: its 0x38-byte constructor and 0x2C-byte +0x30 virtual both reproduce retail with zero differing linked bytes using the already-proven Lillia source shape. The next work is family-scale scratch matching across the repeated constructor/+0x30 clusters before exact-only integration.
+The throughput strategy has produced its first large exact family integration. `include/entity_resident_npcs.hh` and `src/entity_resident_npcs.cc` now own **32 resident NPC constructors plus 32 virtual +0x30 effect factories**, interleaved through nine exact source sections with the still-assembly character helpers. This promotes **3,296 code bytes** at once while preserving the retail SHA1. Together with Lillia, character IDs **1..32 and 34** now have source-owned constructor/+0x30 pairs; **Lou (33) and Child (35)** remain the special resident cases in assembly. `tools/ches/map_npc_entity_classes.py` remains reproducible across the mixed source/assembly state and proves the full selector 1..35 map.
 
 ## Current throughput inventory - October 6, 2026
 
-`tools/ches/build_decomp_inventory.py` now generates the machine-readable remaining-function database (`tools/ches/decomp_inventory.json`) and ranked human queue (`tools/ches/DECOMP_QUEUE.md`). Current linker-backed totals are 2,463 linked assembly functions across 875,500 asm code bytes; inferred function ranges cover 874,452 bytes (99.8803%). The first ranked coherent target is `asm/code_entities_08034CEC.s:08035B64-08038DF0`: 157 functions / 12,940 bytes, with 107 functions in repeated opcode families. It follows the exact-source `LilliaEntity` implementation and sits beside a dense run of NPC/entity vtables, so the next work is class/vtable/factory mapping followed by family-level reconstruction.
+`tools/ches/build_decomp_inventory.py` generates the machine-readable remaining-function database (`tools/ches/decomp_inventory.json`) and ranked human queue (`tools/ches/DECOMP_QUEUE.md`). After the resident-NPC integration the linker-backed inventory is **2,399 linked assembly functions / 872,204 asm code bytes**, with inferred function ranges covering **871,156 bytes = 99.8798%**. The raw rank-1 region begins with the deliberately parked save-loader area, so do not treat score alone as execution order. The strongest immediate continuity target is the rank-2 entity region `asm/code_entities_08034CEC.s:08036DC4-08039E18`, beginning at Lou/Child and continuing through related entity families.
 
 ## Current project status
 
 - `make progress` tracks reconstruction across code and non-code ROM bytes instead of reporting only executable code.
-- Current **code reconstruction** is **64,536 / 940,036 = 6.8653%**.
+- Current **code reconstruction** is **67,832 / 940,036 = 7.2159%**.
 - Current **data/assets reconstruction** is **75,334 / 6,777,404 = 1.1115%**:
   - 31,110 bytes are linked typed/source non-code data;
   - 44,224 bytes are editable generated packed-sprite graphics/palettes;
   - the generated packed-sprite total is 33,664 graphics bytes + 10,560 palette bytes;
   - 396 mixed source-owned `.rom_header` bytes count only toward overall reconstruction.
-- Current **overall meaningful-ROM reconstruction** is **140,266 / 7,717,440 = 1.8175%**. Final ROM padding is excluded from this denominator.
+- Current **overall meaningful-ROM reconstruction** is **143,562 / 7,717,440 = 1.8602%**. Final ROM padding is excluded from this denominator.
 - PRET-style ROM-space reporting remains **671,168 bytes = 655.44 KiB = 8.0009% contiguous tail free space**.
 - Asset/data progress is conservative: an opaque `.incbin` does not count merely because it was identified or extracted; editable project-side source must regenerate the retail bytes exactly.
 - Progress implementation: `tools/scripts/calcprogress.py`, `tools/progress_manifest.json`, and `docs/ASSET_DECOMPILATION.md`.
-- The current retail priority is **code-coupled asset reconstruction**:
-  1. identify the runtime owner/consumer before promoting an unowned resource;
-  2. the packed bank now has **416 semantically owned animations: 405 / 450 simple and 11 / 43 multi-frame**; **45 simple and 32 multi-frame animations remain unowned**;
-  3. completed non-core families include Water Splash 425 / 0x1A9, six Fish Kings, five menu-special presentation icons, and Dog Ball 21..48; Dog Ball contributes 28 animations / 53 frames, including 10 multi-frame animations;
-  4. the 416-entry manifest rebuilds the complete 196,736-byte packed bank exactly and `make -j4 compare` remains **`fomt.gba: OK`**;
-  5. common packed-consumer lanes and all 22 explicit `gUnk_086678A0` provider constructors are now accounted for. `func_080CE184` is only grid/slot arithmetic and `func_0800F258` is `GetHeldArticle`; both are false sprite leads. Keep compiler-sensitive frontiers parked and continue resource-family provenance on 173..180, 413..420, 54..57, and 160/161.
+- The current retail priority is **whole-game throughput by coherent TU/type/similarity family**. Regenerate the inventory after meaningful integrations, use family/class evidence to choose a coherent region, prove representative source shapes in scratch, then promote only byte-exact batches. The packed bank remains **416 / 493 semantically owned animations (405 / 450 simple + 11 / 43 multi-frame)** with 77 IDs open, but those IDs are now a by-product lane rather than the main work queue. Existing provider/consumer closures and static family evidence remain authoritative and should not be rediscovered without new evidence.
 - Raw binary relocation does not count as progress. Retail SHA1 remains the final authority.
 
 
@@ -42,7 +37,7 @@ The throughput inventory has now resolved the top NPC/entity region into a prove
 - Across all 493 animations in this bank, **450 are simple one-frame/one-part/one-palette** and **43 are multi-frame**. The remaining hard frames are ordinary multi-part OAM sprites; sampled part tile offsets exactly partition their graphics blobs, so no new codec is indicated. All 347 named item icons are in the simple class.
 - Detailed authority: `tools/ches/checkpoints/item-icon-assets-2026-10-05/README.md`.
 - **Current follow-up:** the cooking UI is the first completed table-driven family. `func_080989DC` / `func_08098CE8` consume `gCookingUtensilIconIds` through `gUnk_086678A0`; eight exact PNGs now live under `assets/item_icons/cooking/`: Knife 265, Frying Pan 204, Pot 346, Mixer 64, Whisk 472, Rolling Pin 313, Oven 327, Seasoning Set 400. Retail availability bits and the special `Seasoning Set` label prove the mapping. `func_08092A70` remains parked at `0x260 / 3` and `func_080CAC7C` remains parked at `0x8C / 52`.
-- Current validated baseline remains `fomt.gba: OK`: **64,536 code bytes / 75,334 data-asset bytes / 140,266 overall meaningful-ROM bytes**, **671,168 bytes free**.
+- Current validated baseline remains `fomt.gba: OK`: **67,832 code bytes / 75,334 data-asset bytes / 143,562 overall meaningful-ROM bytes**, **671,168 bytes free**.
 
 
 ## Historical item icon provider checkpoint - October 5, 2026 (superseded)
@@ -258,32 +253,15 @@ Contribution saved as `56f343454bcb98d2712b9043b8c5d410cb22cc98` (`56f3434 decom
 
 Contribution saved as `565529c3e521db9eaaf75e0a75253ce9d68044de` (`565529c decompile character location, schedules and Lillia entity`), committed, pushed to `ches/ches-dev` and independently remote-verified. Index empty.
 
-### Latest exact worktree: lifecycle, item/shop, provider and asset integration
+### Active exact `Live-temp` throughput checkpoint
 
-- Production HEAD is **`9078f368c02d861f7cd71685e1f9dd1d95c7c384`**
-  (`9078f36 decompile game object entity teardown`), following `579c16c`
-  (`decompile game object entity lookup`). `ches/ches-dev` is at the same HEAD.
-- The uncommitted exact worktree now includes the October 5 character/social
-  resolvers, article-interaction pair, MoneyState core, typed shop catalogs,
-  packed sprite-animation provider, Rucksack renderer/wrapping source, and PNG
-  item-asset pipeline. Current code progress is
-  **64,536 / 940,036 = 6.8653%** source and
-  **875,500 / 940,036 = 93.1347%** assembly.
-- The packed bank now has **349 editable indexed PNG inputs**: all 347 retail
-  Tool/Food/Article icons plus Wrapped Present (352) and Basket (53). Rebuilding
-  them regenerates the complete 0x30080-byte packed item bank byte-for-byte, and
-  a forced `make -B -j4 compare` still reports `fomt.gba: OK`.
-- Active scratch frontier: `func_08092A70` wrapping eligibility is fully
-  understood; v8 is exact size 0x260 with only 3 differing linked bytes. Pass
-  dumps localize those bytes to final `jump2` cross-jump branch orientation,
-  not game semantics or ordinary thread-jumps. See the active checkpoint and
-  `docs/FOMT_COMPILER_RESEARCH.md` before experimenting.
-- The full factory `0x0801A8E0..0x0801B497` remains mapped: all 94 selectors and
-  58 unique targets are classified. Selectors 1..34 are resident character IDs,
-  35 is the child, 36..42 are Harvest Sprites, and 43 is occupied.
-- Legacy loader `func_08011650` is still **paused**. Its behavior, experiments,
-  failure ledger, and the audited custom-extension design remain preserved.
-  Resume persistence only when a runtime/content feature actually needs it.
+- Production `ches-dev` remains at `9078f368c02d861f7cd71685e1f9dd1d95c7c384`; private exact decompilation continues on `Live-temp` with durable pushed checkpoints.
+- Current exact progress is **67,832 / 940,036 = 7.2159% source** and **872,204 / 940,036 = 92.7841% assembly**. Data/assets remain **75,334 bytes** and overall meaningful-ROM reconstruction is **143,562 / 7,717,440 = 1.8602%**.
+- The unified inventory/queue is live at `tools/ches/decomp_inventory.json` / `tools/ches/DECOMP_QUEUE.md`: **2,399 linked asm functions**, **872,204 canonical asm bytes**, **192 repeated opcode-shape clusters**, and **898 functions participating in repeated clusters** after the resident-NPC batch.
+- `include/entity_resident_npcs.hh` + `src/entity_resident_npcs.cc` now reconstruct 32 resident constructors and 32 virtual +0x30 effect factories exactly. Nine source sections interleave around untouched assembly helpers; all old `func_08...` symbols remain linker aliases. Lou and Child remain the two special resident cases.
+- The full factory `0x0801A8E0..0x0801B497` remains mapped as 94 selectors / 58 unique targets. Selectors 1..34 are resident character IDs, 35 is Child, 36..42 are Harvest Sprites, and 43 is occupied.
+- Raw queue rank 1 contains the deliberately parked save loader. Continue instead with the structurally continuous entity region `0x08036DC4..0x08039E18` while Lou/Child/class-family leverage remains high, then regenerate and re-rank.
+- Legacy loader `func_08011650` and the other documented compiler-sensitive islands remain parked unless new structural evidence changes their leverage.
 
 ## Authoritative compiler/build path
 

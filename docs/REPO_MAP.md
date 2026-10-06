@@ -26,14 +26,14 @@ This is a practical map of the current reconstruction, not a claim that every su
 
 Authoritative live state is in `START_HERE.md`; this section keeps the repository map aligned with it.
 
-- Production `ches-dev` remains at `9078f368c02d861f7cd71685e1f9dd1d95c7c384` (`9078f36 decompile game object entity teardown`); the active exact working branch is `Live-temp`. The current asset/decomp worktree is exact but not yet committed.
-- Current code reconstruction is **64,536 / 940,036 = 6.8653%** with **875,500 assembly bytes = 93.1347%**.
-- Current data/assets reconstruction is **75,334 / 6,777,404 = 1.1115%**; overall meaningful-ROM reconstruction is **140,266 / 7,717,440 = 1.8175%**.
+- Production `ches-dev` remains at `9078f368c02d861f7cd71685e1f9dd1d95c7c384` (`9078f36 decompile game object entity teardown`); the active exact working branch is `Live-temp`, which carries the private throughput/decomp checkpoint series.
+- Current code reconstruction is **67,832 / 940,036 = 7.2159%** with **872,204 assembly bytes = 92.7841%**.
+- Current data/assets reconstruction is **75,334 / 6,777,404 = 1.1115%**; overall meaningful-ROM reconstruction is **143,562 / 7,717,440 = 1.8602%**.
 - Current contiguous tail free space is **671,168 bytes = 655.44 KiB = 8.0009%** of the 8 MiB ROM. `make progress` reports all four metrics plus `fomt.gba: OK`.
 - Retail SHA1 remains `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
 - Authoritative compiler path is the tracked `tools/install_agbcp.sh` + `tools/agbcp_fomt_compat.patch` SHA-256 `aa7cc6df0efbd066e9c33deb887731e1d0210babfaeba4c9b64f3e8bc35c4256`.
 - Hardware, intrusive callback-list, DMA/transfer, entity-effect, resource-handle, SpriteAnimator/provider, NPC/social, item/economy, and GameObject lookup/teardown boundaries provide the current shared type foundation.
-- The active strategy is now **whole-game throughput by inferred TU/type/similarity cluster**. Build the unified remaining-function inventory, infer TU/data ownership, cluster repeated assembly, map vtables/classes, score coherent units, and then work the ranked queue. The packed bank remains **416 / 493 semantically owned animations**, but its remaining 77 IDs are a parked by-product lane rather than the active frontier.
+- The active strategy is **whole-game throughput by inferred TU/type/similarity cluster**. The unified inventory/queue and resident-NPC factory/vtable/class map are now live; the first family-scale result promoted 64 methods / 3,296 code bytes exactly. Re-rank after meaningful integrations and prefer structural continuity over raw score when a high-ranked region contains a deliberately parked target. The packed bank remains **416 / 493 semantically owned animations**, with its remaining 77 IDs as a parked by-product lane.
 - Recent 0x080Axxxx source conversions include:
   - `src/code_080A46AC.cc`
   - `src/code_080A480C.cc`
@@ -57,9 +57,7 @@ Authoritative live state is in `START_HERE.md`; this section keeps the repositor
 The initial research is complete, and its five-function retail support unit is
 now exact: shared NPC class declarations, character location, schedule
 application/daily initialization, and Lillia entity/effect creation. Files are
-`include/entity_npc.hh`, `src/character_location.cc`,
-`src/character_schedule.cc` and `src/entity_lillia.cc`. Stable architecture is
-in `docs/CHARACTERS.md`; design/stages in `docs/CUSTOM_CHARACTERS.md`.
+`include/entity_npc.hh`, `include/entity_resident_npcs.hh`, `src/character_location.cc`, `src/character_schedule.cc`, `src/entity_lillia.cc`, and `src/entity_resident_npcs.cc`. Resident IDs 2..32 and 34 now have exact constructor/+0x30 source pairs; Lou and Child remain special assembly cases. Stable architecture is in `docs/CHARACTERS.md`; design/stages in `docs/CUSTOM_CHARACTERS.md`.
 
 `src/data_character_info.cc` contains the exact 43-entry readonly table; its
 344 data bytes preserve aliases/name pointers and add 0 executable bytes.
@@ -187,6 +185,7 @@ src/entity_actor.cc
 src/actor.cc
 src/npc_entity.cc
 src/entity_lillia.cc
+src/entity_resident_npcs.cc
 src/game_object_entity_lookup.cc
 src/npc.cc
 ```

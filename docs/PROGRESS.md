@@ -17,15 +17,12 @@ Merely understanding, naming, documenting, or copying an `.incbin` does **not**
 increase the asset/data metric. Asset bytes count only when an editable source
 such as PNG data actually regenerates those retail bytes.
 
-HEAD remains `9078f36` (`decompile game object entity teardown`), following
-`579c16c` (`decompile game object entity lookup`). The October 5
-character/social, item/shop, provider and asset-pipeline work is exact but not
-yet committed. Current worktree totals are:
+Production `ches-dev` remains at `9078f36` (`decompile game object entity teardown`). The active exact `Live-temp` branch carries the private throughput/decomp checkpoints, including the October 6 resident-NPC family integration. Current worktree totals are:
 
 ```text
 Code reconstruction
-  64536 / 940036 bytes (6.8653%)
-  875500 bytes remain in asm
+  67832 / 940036 bytes (7.2159%)
+  872204 bytes remain in asm
 
 Data/assets reconstruction
   75334 / 6777404 bytes (1.1115%)
@@ -36,7 +33,7 @@ Data/assets reconstruction
   396 additional source-owned ROM-header bytes count only toward overall
 
 Overall meaningful-ROM reconstruction
-  140266 / 7717440 bytes (1.8175%)
+  143562 / 7717440 bytes (1.8602%)
   final ROM padding is excluded from this reconstruction denominator
 
 ROM space
@@ -57,10 +54,10 @@ holes as available space.
 | Area | Current state | Next useful boundary |
 | --- | --- | --- |
 | Matching build | Retail SHA1 reproduced | Keep every promoted retail contribution byte-identical |
-| Throughput tooling | Existing call-graph/leverage tooling and detailed handoffs/checkpoints exist | Build the unified remaining-function/TU database, TU inference, similarity clusters, class/vtable/global ownership map, then rank coherent units |
+| Throughput tooling | Unified remaining-function inventory, ranked region queue, similarity clusters, and resident-NPC factory/vtable/class map are live and regenerate from the current build | Keep the inventory fresh after integrations; deepen TU/type ownership only where it improves the next ranked coherent unit |
 | Input | Polling and new-press helpers are matching C++ | Extend only for a concrete control or scripted-runtime need |
 | Save data | Matching checksum/record writer and slot geometry; each slot has a proven unused 0xAF0-byte tail; retail loader behavior is bounded and exact-match research is preserved | **Paused** until persistence becomes a blocking dependency |
-| Characters | Exact 43-entry metadata, identity/location/schedule/Lillia support, native GameObject lookup/teardown, complete 94-selector factory map, both NPC/bachelorette/Harvest-Sprite resolver blocks, native social-call routing, and `func_08045584` | Let the ranked TU/cluster queue drive further character code; eventual custom work still needs runtime registration and seventh-candidate policy |
+| Characters | Exact 43-entry metadata, identity/location/schedules, complete 94-selector factory map, native lookup/teardown/social routing, Lillia, and source-owned resident constructor/+0x30 pairs for IDs 2..32 and 34 (64 new exact methods / 3,296 bytes) | Resolve the special Lou/Child resident cases and continue the adjacent entity family only while structural reuse remains high; custom work still needs runtime registration and seventh-candidate policy |
 | Scenes and dialogue | Event bytecode can be inspected with Mary and substantial script evidence exists | Rank native trigger/dispatch/event TUs; use scripted runtime coverage to classify scene/event code and indirect targets |
 | Items and tools | Core tables/wrappers, GameObject article paths, MoneyState, six typed shop catalogs, exact description helpers, proven 40-index shop stock, exact packed animation-provider parsing, and all 347 Tool/Food/Article icons as editable PNG inputs | Use these recovered types as leverage inside higher-ranked item/menu/shop TUs; avoid product-count growth because persistent layout depends on `NUM_PRODUCTS` |
 | Crops and field | Field/FieldPlot structure and many methods are source, but crop-state semantics remain partly opaque | Rank coherent field/crop/tool TUs and recover planting/growth/harvest transitions as clusters rather than isolated functions |
@@ -69,8 +66,8 @@ holes as available space.
 | Sound and music | M4A runtime is partly source, but the song payload remains baserom-backed | Treat audio as a coherent subsystem/TU/data project and rank it against other clusters rather than mining individual assets |
 | Runtime analysis | Durable opening-farm mGBA savestate exists; prior selective watchpoint work is preserved | Build deterministic savestate + scripted-input coverage/indirect-call/RAM-diff scenarios; watchpoints answer focused questions only |
 
-Exact reconstruction remains **64,536 / 940,036 source bytes = 6.8653%**,
-**75,334 data/asset bytes**, and **140,266 overall meaningful-ROM bytes** at the
+Exact reconstruction remains **67,832 / 940,036 source bytes = 7.2159%**,
+**75,334 data/asset bytes**, and **143,562 overall meaningful-ROM bytes** at the
 current verified baseline. The strategy change does not alter these numbers.
 
 A future semantic/understood metric should be reported separately from exact
