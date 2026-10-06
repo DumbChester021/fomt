@@ -1,14 +1,14 @@
 # Ches Session Status — FOMT decomp
 
-## CURRENT SNAPSHOT - 7.4125%; controller helpers exact, constructor bounded - October 6, 2026
+## CURRENT SNAPSHOT - 7.4125%; 0x08038EE0 bounded, pivoting to 0x08039134 - October 6, 2026
 
-- Active branch `Live-temp`; current pushed checkpoint `ef1c1d4` is synchronized to `ches/Live-temp`; this batch continued from `830c1c8`.
-- Added **92 exact bytes**: `0x08038E90` (0x10/0), `0x08038EA0` (0x16 exact body + align), `0x08038EB8` (0x28/0), and `0x080390D0` (0x0A exact body + align). Full ROM remains `fomt.gba: OK`.
-- Progress: **69,680 / 940,036 = 7.4125% code**, **870,356 asm bytes**, **75,334 data/assets**, **145,410 meaningful-ROM bytes = 1.8842%**, **671,168 bytes free**.
-- Inventory: **2,356 linked asm functions**, **869,192 / 870,356 inferred range bytes = 99.8663%**, **1,164 unattributed bytes**. The +88 unattributed bytes are the pre-existing raw `0x080390DC..0x08039134` blob newly exposed after correcting the old 0x64 `func_080390D0` span.
-- `func_08038820` is behavior-complete and exact-size in `candidate-controller-ctor-v2.cc`: **0x108 / 0x108, 183 diff**. v3 shrank to 0x102/199; SmartPtr v4 worsened to 0x122/263. Park constructor pending new lifetime/compiler evidence.
-- Controller ownership is now typed in `src/entity_unk_08038740.cc`: +08/+0C effect pointers, +10 0x40-stride collection, +14 0x50-stride collection.
-- Next: reconstruct `func_08038EE0` (0x1F0) as the +0x10 five-entry collection builder/replacer; pivot to `0x08039134` if compiler-sensitive.
+- Active branch `Live-temp`; research started from pushed docs checkpoint `0f2babe`. No new production-exact bytes in this pass.
+- `func_08038EE0` is behavior-complete: allocates a 0x14C collection containing count + five 0x40-byte DiscardEffect slots + five state bytes, builds resource IDs [2,1,1,0,0], and replaces controller +0x10 with virtual destruction of the old entries.
+- Best candidate `candidate-controller-ee0-v2.cc`: **0x1F0 retail / 0x1EC candidate / 127 linked-byte diffs**. Main remaining cause is long-lived register allocation, not missing semantics.
+- Rejected/closed: shared-block v1 0x140/441; v2tail 0x1EC/129; v3 0x1EC/142; inline collection ctor v4b 0x124/461; project `FixedVec` semantics do not match append behavior.
+- `func_08038820` remains parked independently at exact-size 0x108/183.
+- Progress unchanged: **69,680 / 940,036 = 7.4125% code**, **870,356 asm bytes**, **75,334 data/assets**, **145,410 meaningful-ROM bytes = 1.8842%**, **671,168 bytes free**.
+- Next: `func_08039134` (0x8C, four callers). Recover caller contract and scratch-match it before expanding farther in the controller family.
 
 ## SUPERSEDED SNAPSHOT - 7.3261%; location-bound actor island bounded - October 6, 2026
 

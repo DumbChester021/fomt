@@ -54,7 +54,7 @@ but its score is no longer an execution order.
 
 The throughput pipeline is operational. The Ball family remains parked at its documented mover seam. The adjacent `vtable_unk_080E7380` family now owns **316 exact retail bytes** in source: 224 bytes of entity surface plus 92 bytes of controller helpers. Controller constructor `0x08038820` is behavior-complete and exact-size but bounded by register-lifetime codegen.
 
-The raw queue still begins with deliberately parked work, so score is not execution order. Structural continuity now points to `func_08038EE0` (0x1F0), the controller +0x10 five-entry/0x40-stride collection builder and replacer. Its helper calls and destruction pattern are already visible. If exact matching stalls, pivot to `func_08039134` (0x8C, four callers). Do not reopen `0x08038820` without new compiler/lifetime evidence.
+The raw queue still begins with deliberately parked work, so score is not execution order. `func_08038EE0` is now behavior-complete and parked at best 0x1EC/127 versus retail 0x1F0 after recovering its 0x14C five-entry DiscardEffect collection. Structural continuity therefore moves to `func_08039134` (0x8C, four callers). Recover its caller/type contract first, scratch-prove the natural source, then use it as an oracle for nearby callers/siblings. Do not reopen `0x08038820` or `0x08038EE0` without new compiler/lifetime evidence.
 
 ### 1. Keep the function/TU inventory current
 

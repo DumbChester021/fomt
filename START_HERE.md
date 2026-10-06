@@ -2,11 +2,11 @@
 
 ## Current NPC/entity family frontier - October 6, 2026
 
-The throughput strategy continues to produce exact family passes. **Current retail checkpoint: `Live-temp` @ `ef1c1d4`**, pushed to `ches/Live-temp`, with `fomt.gba: OK`. The adjacent `vtable_unk_080E7380` entity/controller family now owns **316 exact retail bytes** in `src/entity_unk_08038740.cc`: the 224-byte entity small surface plus 92 bytes of controller helpers. Controller constructor `0x08038820` is behavior-complete and exact-size in scratch but parked on register-lifetime codegen. The retail SHA1 remains unchanged.
+The throughput strategy continues to produce exact family passes. The latest production-exact controller integration is `ef1c1d4`; documentation was refreshed at `0f2babe`, both on `Live-temp`. The adjacent `vtable_unk_080E7380` entity/controller family owns **316 exact retail bytes** in `src/entity_unk_08038740.cc`. Controller constructor `0x08038820` and +0x10 collection builder `0x08038EE0` are now behavior-complete private research but parked on compiler/register-lifetime codegen. Retail SHA1 remains unchanged.
 
 ## Current throughput inventory - October 6, 2026
 
-`tools/ches/build_decomp_inventory.py` generates the machine-readable remaining-function database and ranked queue. After the controller-helper integration the linker-backed inventory is **2,356 linked assembly functions / 870,356 asm code bytes**, with inferred function ranges covering **869,192 bytes = 99.8663%** and **1,164 unattributed asm bytes**. The extra 88 unattributed bytes are the already-existing raw block at `0x080390DC..0x08039134`, exposed when the old misleading `func_080390D0` 0x64 range was split correctly. Continue with controller +0x10 collection builder `0x08038EE0`; keep the exact-size constructor parked.
+`tools/ches/build_decomp_inventory.py` currently reports **2,356 linked assembly functions / 870,356 asm code bytes**, with inferred function ranges covering **869,192 bytes = 99.8663%** and **1,164 unattributed asm bytes**. `func_08038EE0` has now been bounded at best **0x1EC / 127** against retail 0x1F0 after its full 0x14C collection semantics were recovered; the next structural target is `func_08039134` (0x8C, four callers). Keep `0x08038820` and `0x08038EE0` parked unless new type/compiler evidence appears.
 
 ## Current project status
 
@@ -21,7 +21,7 @@ The throughput strategy continues to produce exact family passes. **Current reta
 - PRET-style ROM-space reporting remains **671,168 bytes = 655.44 KiB = 8.0009% contiguous tail free space**.
 - Asset/data progress is conservative: an opaque `.incbin` does not count merely because it was identified or extracted; editable project-side source must regenerate the retail bytes exactly.
 - Progress implementation: `tools/scripts/calcprogress.py`, `tools/progress_manifest.json`, and `docs/ASSET_DECOMPILATION.md`.
-- The current retail priority is **whole-game throughput by coherent TU/type/similarity family**. `Entity38740` plus its newly promoted controller helpers now account for **316 exact bytes**. `func_08038820` is behavior-complete and exact-size but parked on register lifetimes. Next target `func_08038EE0` (0x1F0), which builds/replaces the controller +0x10 five-entry 0x40-stride collection; pivot to `0x08039134` if that large helper becomes compiler-sensitive.
+- The current retail priority is **whole-game throughput by coherent TU/type/similarity family**. `Entity38740` plus exact controller helpers account for **316 exact bytes**. `func_08038820` is parked at exact-size 0x108/183; `func_08038EE0` is behavior-complete at best 0x1EC/127 versus retail 0x1F0. Continue with `func_08039134` (0x8C, four callers), using its callers to recover the natural argument/type contract before scratch matching.
 - Raw binary relocation does not count as progress. Retail SHA1 remains the final authority.
 
 
