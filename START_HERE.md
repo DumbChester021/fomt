@@ -2,11 +2,11 @@
 
 ## Current NPC/entity family frontier - October 6, 2026
 
-The throughput strategy has now produced two exact family integrations. `include/entity_resident_npcs.hh` and `src/entity_resident_npcs.cc` own **all 35 resident constructors** and the +0x30 effect factory for IDs **1..34**; only Child's +0x30 virtual remains assembly. Lou's constructor/+0x30 and Child's constructor/+0x3C are now exact source. The adjacent neutral hierarchy in `include/entity_unk_08037008.hh` / `src/entity_unk_08037008.cc` additionally reconstructs a location-backed `AActorEntity` subclass plus exact base methods, four concrete +0x30 factories, and two concrete animation/update pairs. The retail SHA1 remains unchanged.
+The throughput strategy has now produced several exact family passes. `include/entity_resident_npcs.hh` and `src/entity_resident_npcs.cc` own **all 35 resident constructors** and the +0x30 effect factory for IDs **1..34**; only Child's +0x30 virtual remains assembly. Lou's constructor/+0x30 and Child's constructor/+0x3C are now exact source. The adjacent neutral hierarchy in `include/entity_unk_08037008.hh` / `src/entity_unk_08037008.cc` additionally reconstructs a location-backed `AActorEntity` subclass plus exact base methods, four concrete +0x30 factories, and two concrete animation/update pairs. The retail SHA1 remains unchanged.
 
 ## Current throughput inventory - October 6, 2026
 
-`tools/ches/build_decomp_inventory.py` generates the machine-readable remaining-function database (`tools/ches/decomp_inventory.json`) and ranked human queue (`tools/ches/DECOMP_QUEUE.md`). After the latest entity integration the linker-backed inventory is **2,385 linked assembly functions / 871,444 asm code bytes**, with inferred function ranges covering **870,396 bytes = 99.8797%**. The raw rank-1 region begins with the deliberately parked save-loader area, so do not treat score alone as execution order. The strongest immediate structural-continuity target is now queue rank 5, `asm/code_entities_08034CEC.s:08037A5C-0803A8A4`, continuing the same actor/entity neighborhood.
+`tools/ches/build_decomp_inventory.py` generates the machine-readable remaining-function database (`tools/ches/decomp_inventory.json`) and ranked human queue (`tools/ches/DECOMP_QUEUE.md`). After the latest entity integration the linker-backed inventory is **2,381 linked assembly functions / 871,180 asm code bytes**, with inferred function ranges covering **870,132 bytes = 99.8797%**. The raw rank-1 region begins with the deliberately parked save-loader area, so do not treat score alone as execution order. The current local continuity work is the small factory/virtual regions around `0x08037494..0x08037BB7`; the next large contiguous entity region begins at `0x08037C08` and is queue rank **11**.
 
 ## Current project status
 
@@ -37,7 +37,7 @@ The throughput strategy has now produced two exact family integrations. `include
 - Across all 493 animations in this bank, **450 are simple one-frame/one-part/one-palette** and **43 are multi-frame**. The remaining hard frames are ordinary multi-part OAM sprites; sampled part tile offsets exactly partition their graphics blobs, so no new codec is indicated. All 347 named item icons are in the simple class.
 - Detailed authority: `tools/ches/checkpoints/item-icon-assets-2026-10-05/README.md`.
 - **Current follow-up:** the cooking UI is the first completed table-driven family. `func_080989DC` / `func_08098CE8` consume `gCookingUtensilIconIds` through `gUnk_086678A0`; eight exact PNGs now live under `assets/item_icons/cooking/`: Knife 265, Frying Pan 204, Pot 346, Mixer 64, Whisk 472, Rolling Pin 313, Oven 327, Seasoning Set 400. Retail availability bits and the special `Seasoning Set` label prove the mapping. `func_08092A70` remains parked at `0x260 / 3` and `func_080CAC7C` remains parked at `0x8C / 52`.
-- Current validated baseline remains `fomt.gba: OK`: **68,592 code bytes / 75,334 data-asset bytes / 144,586 overall meaningful-ROM bytes**, **671,168 bytes free**.
+- Current validated baseline remains `fomt.gba: OK`: **68,856 code bytes / 75,334 data-asset bytes / 144,586 overall meaningful-ROM bytes**, **671,168 bytes free**.
 
 
 ## Historical item icon provider checkpoint - October 5, 2026 (superseded)
@@ -257,10 +257,10 @@ Contribution saved as `565529c3e521db9eaaf75e0a75253ce9d68044de` (`565529c decom
 
 - Production `ches-dev` remains at `9078f368c02d861f7cd71685e1f9dd1d95c7c384`; private exact decompilation continues on `Live-temp` with durable pushed checkpoints.
 - Current exact progress is **68,856 / 940,036 = 7.3248% source** and **871,180 / 940,036 = 92.6752% assembly**. Data/assets remain **75,334 bytes** and overall meaningful-ROM reconstruction is **144,586 / 7,717,440 = 1.8735%**.
-- The unified inventory/queue is live at `tools/ches/decomp_inventory.json` / `tools/ches/DECOMP_QUEUE.md`: **2,385 linked asm functions**, **871,444 canonical asm bytes**, **191 repeated opcode-shape clusters**, and **891 functions participating in repeated clusters** after the latest entity batch.
-- `include/entity_resident_npcs.hh` + `src/entity_resident_npcs.cc` now reconstruct all 35 resident constructors exactly. IDs 1..34 also have source-owned +0x30 factories; Child's +0x30 remains assembly while Child's +0x3C override is source. `include/entity_unk_08037008.hh` + `src/entity_unk_08037008.cc` own the newly recovered location-bound actor base and the exact concrete methods promoted through `0x08037A47`.
+- The unified inventory/queue is live at `tools/ches/decomp_inventory.json` / `tools/ches/DECOMP_QUEUE.md`: **2,381 linked asm functions**, **871,180 canonical asm bytes**, **190 repeated opcode-shape clusters**, and **887 functions participating in repeated clusters** after the latest entity batch.
+- `include/entity_resident_npcs.hh` + `src/entity_resident_npcs.cc` now reconstruct all 35 resident constructors exactly. IDs 1..34 also have source-owned +0x30 factories; Child's +0x30 remains assembly while Child's +0x3C override is source. `include/entity_unk_08037008.hh` + `src/entity_unk_08037008.cc` own the newly recovered location-bound actor base, exact sibling animation/speed helpers, and exact 7218/725C constructors through `0x08037BE0`; variant constructors at `0x08037C08/68` remain parked exact-size assembly candidates.
 - The full factory `0x0801A8E0..0x0801B497` remains mapped as 94 selectors / 58 unique targets. Selectors 1..34 are resident character IDs, 35 is Child, 36..42 are Harvest Sprites, and 43 is occupied.
-- Raw queue rank 1 contains the deliberately parked save loader. Continue instead with queue rank 5, the structurally continuous entity region `0x08037A5C..0x0803A8A4`, while the current class/vtable leverage remains high, then regenerate and re-rank.
+- Raw queue rank 1 contains the deliberately parked save loader. Continue first with the still-coherent small entity regions around the remaining +0x40/+0x3C methods and factory wrappers `0x08037A5C..0x08037BB7`; the regenerated large entity region `0x08037C08..0x0803A8A4` is queue rank **11**. Re-rank after the next exact integration.
 - Legacy loader `func_08011650` and the other documented compiler-sensitive islands remain parked unless new structural evidence changes their leverage.
 
 ## Authoritative compiler/build path

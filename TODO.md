@@ -8,7 +8,7 @@
 - keep `tools/ches/decomp_inventory.json` / `DECOMP_QUEUE.md` regenerated after meaningful exact integrations; the unified remaining-function inventory, similarity clustering, and first class-map pipeline are already live;
 - continue enriching TU/type/vtable/data ownership only when it improves the next coherent target rather than treating classification as an end in itself;
 - use the resident-NPC integration as the model family workflow: prove one representative, parameterize siblings, batch scratch-compare, then promote only the exact family;
-- current structural-continuity target: queue rank 5, `asm/code_entities_08034CEC.s:08037A5C-0803A8A4`. Continue the recovered location-bound actor/concrete-class neighborhood while vtable/type reuse remains high. The raw queue's rank-1 save region contains the deliberately parked loader and is not an instruction to reopen it;
+- current structural-continuity target: finish the small location-bound actor regions first: remaining +0x40/+0x3C virtuals and factory wrappers `0x08037A5C..0x08037BB7`. The next large contiguous region starts at `0x08037C08` and is queue rank **11**. The raw queue's rank-1 save region contains the deliberately parked loader and is not an instruction to reopen it;
 - Child's +0x30 virtual at `0x08036F0C` remains understood but nonmatching assembly. Do not block throughput on it; return only if new structural/compiler evidence appears;
 - re-rank after the next adjacent-entity integration or whenever a meaningful integration changes the inventory;
 - use the ranked queue rather than a fixed five-function batch size. Complete as

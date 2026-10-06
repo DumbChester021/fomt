@@ -66,7 +66,7 @@ holes as available space.
 | Sound and music | M4A runtime is partly source, but the song payload remains baserom-backed | Treat audio as a coherent subsystem/TU/data project and rank it against other clusters rather than mining individual assets |
 | Runtime analysis | Durable opening-farm mGBA savestate exists; prior selective watchpoint work is preserved | Build deterministic savestate + scripted-input coverage/indirect-call/RAM-diff scenarios; watchpoints answer focused questions only |
 
-Exact reconstruction is now **68,592 / 940,036 source bytes = 7.2967%**,
+Exact reconstruction is now **68,856 / 940,036 source bytes = 7.3248%**,
 **75,334 data/asset bytes**, and **144,586 overall meaningful-ROM bytes** at the
 current verified baseline. The strategy change does not alter these numbers.
 

@@ -24,7 +24,7 @@
 - First remaining entity-region queue line after regeneration: `| 11 | asm/code_entities_08034CEC.s:08037C08-0803A8A4 | 13908.0 | 78 | 11420 | 11420 | 0 | 23 | 33 | 7 |`
 - **Exact next action on Continue:** continue this hierarchy without reopening solved helpers. Inspect the four factory wrappers `0x08037A5C..0x08037BB7` as explicit allocation+construction functions and the remaining +0x40/+0x3C virtuals (`0x08037494`, `0x08037568`, `0x0803763C`, `0x08037714`, `0x080377E8`, `0x08037958`). Use the now-source-owned GetAnim/GetSpeed helpers as type/behavior anchors. Park `0x08037C08/68` unless a structural source-shape clue appears.
 
-## CURRENT CHECKPOINT - resident specials + location-bound actor methods integrated exact - October 6, 2026
+## SUPERSEDED CHECKPOINT - resident specials + location-bound actor methods integrated exact - October 6, 2026
 
 - Started from clean pushed checkpoint `82450e7a357db5f7a05ac76456a12cb2ec9842d4` and production-integrated the scratch-proven Lou/Child and adjacent `UnkEntity37008` family.
 - **Full ROM gate passed on the first production splice:** `make compare` -> `fomt.gba: OK`; ROM size **8,388,608**; SHA1 **`a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`**.
@@ -38,7 +38,7 @@
 - Raw queue rank 1 is still the parked save-loader region. The strongest structural-continuity target is now queue **rank 5**, `asm/code_entities_08034CEC.s:08037A48-0803A8A4` (**81 funcs / 11,868 bytes**), continuing the same actor/entity neighborhood.
 - **Exact next action on Continue:** inspect `0x08037A48` onward as a coherent class/factory family. First prioritize the remaining +0x40/+0x3C siblings (`0x08037494`, `0x0803763C`, `0x080377E8`, `0x08037958`, helpers `0x08037618/28`, `0x080377C4/D4`, `0x080378FC`, `0x08037A48`) and concrete factory/constructor run `0x08037A5C..0x08037CC4`. Scratch-prove repeated source shapes, integrate exact-only, then regenerate queue/progress.
 
-## CURRENT CHECKPOINT - Lou solved; Child bounded; adjacent actor family class model proven - October 6, 2026
+## SUPERSEDED CHECKPOINT - Lou solved; Child bounded; adjacent actor family class model proven - October 6, 2026
 
 - Started from clean pushed `Live-temp` checkpoint `ad6300da19ea0e0f73b6f3cae7b4f9d723301a31` and continued queue rank 2 `asm/code_entities_08034CEC.s:08036DC4-08039E18`.
 - **Lou is fully solved in scratch.** `func_08036DC4` is `LouEntity::LouEntity(GameObject*, Npc*, u32)` using schedule `gUnk_080F6B10`, animation IDs `0x8D8/0x8DC`, default `0x3FE`, vtable `0x080E6958`: **0x3C / 0 diff**. Raw +0x30 body `0x08036E00..0x08036E2C` is `new UnknownEntityThing(this, 4, 0x1B, 1, 0, 0, false)`: **0x2C / 0 diff**.
@@ -57,7 +57,7 @@
 - Region inventory remains 102 functions / 12,372 bytes before production integration. No repository production source/linker/assembly was changed in this research turn; only this durable handoff/status checkpoint is being committed.
 - **Exact next action on Continue:** integrate the already-proven exact bodies as one coherent source family with precise section/linker interleaving: Lou pair, Child constructor and +0x3C body (leave Child helper/+0x30/+0x18 assembly), `UnkEntity37008` ctor/dtor/GetBox/+0x10/+0x14/+0x34, four concrete +0x30 factories, two exact GetAnim helpers, and simple +0x3C bodies where full-ROM placement verifies exact. Run `make compare`; if exact, regenerate inventory/class map/progress, update relevant architecture docs, checkpoint commit/push. Then continue the same family’s +0x40 and remaining +0x3C methods.
 
-## CURRENT CHECKPOINT - 64 resident NPC methods integrated exact; Lou/Child next - October 6, 2026
+## SUPERSEDED CHECKPOINT - 64 resident NPC methods integrated exact; Lou/Child next - October 6, 2026
 
 - The throughput-family strategy produced its first large production promotion: **32 resident NPC constructors + 32 virtual +0x30 effect factories = 64 exact C++ methods / 3,296 code bytes** in `include/entity_resident_npcs.hh` and `src/entity_resident_npcs.cc`.
 - Scratch proof was exhaustive before production mutation: one generated realistic polymorphic TU compared all 64 symbols individually and returned **64 passed / 0 failed**. The shape0024 methods generate 0x2E-byte bodies plus the retail 2-byte section-alignment pad.
@@ -71,7 +71,7 @@
 - Current docs synchronized: `START_HERE.md`, `TODO.md`, `docs/PROGRESS.md`, `docs/REPO_MAP.md`, `docs/CHARACTERS.md`, `docs/DECOMP_PRIORITY_MAP.md`, `docs/DECOMP_PLAYBOOK.md`, `docs/DECOMP_NOTES.md`, `docs/FOMT_COMPILER_RESEARCH.md`, `docs/CUSTOM_CHARACTERS.md`, `docs/ASSET_DECOMPILATION.md`, plus regenerated inventory/class-map artifacts.
 - **Exact next action on Continue:** inspect Lou `0x08036DC4` and Child `0x08036E2C` together with their raw +0x30/+0x3C vtable targets, recover their extra fields/behavior honestly, then classify the remainder of `0x08036DC4..0x08039E18` against factory selectors 36..42 and neighboring vtables. Promote another coherent family only after scratch 0-diff proof.
 
-## CURRENT CHECKPOINT - resident NPC class map proven; Rick representative exact - October 6, 2026
+## SUPERSEDED CHECKPOINT - resident NPC class map proven; Rick representative exact - October 6, 2026
 
 - Added `tools/ches/map_npc_entity_classes.py`, generating `tools/ches/npc_entity_class_map.json` and `tools/ches/NPC_ENTITY_CLASS_MAP.md` from retail factory-table bytes, decoded Thumb BL calls, constructor schedule/vtable literals, the recovered character table, raw retail vtable words, ELF symbols, and the current similarity inventory.
 - Factory selectors **1..35 are now directly proven** to map to the resident characters Lillia through Child. The non-obvious tail is confirmed: selector 30 Gourmet -> `func_08036CAC`, 31 H. Goddess -> `func_08036D0C`, 32 Kappa -> `func_08036D68`, 33 Lou -> `func_08036DC4`, 34 Lu -> `func_08036860`, 35 Child -> `func_08036E2C`.
@@ -81,7 +81,7 @@
 - The prior inventory checkpoint `74d84b42496cb0c5ee2948d7a8ae111a0a3175dd` is already published on `ches/Live-temp`.
 - **Exact next action on Continue:** use the proven selector/class/vtable map to parameterize and scratch-compare the remaining members of Rick's constructor family and +0x30 family, then expand to the other three dominant +0x30 shapes. Once a coherent family batch is 0-diff, integrate it exact-only, run full-ROM compare/SHA1/progress, update docs, and publish the next `Live-temp` checkpoint.
 
-## CURRENT CHECKPOINT - remaining-function inventory built; NPC/entity cluster ranks first - October 6, 2026
+## SUPERSEDED CHECKPOINT - remaining-function inventory built; NPC/entity cluster ranks first - October 6, 2026
 
 - Published strategy checkpoint `e68144f7055fc4896b49cc31429f90c64fef3be1` to `ches/Live-temp` before beginning this analysis.
 - Added `tools/ches/build_decomp_inventory.py`, generating `tools/ches/decomp_inventory.json` plus human-readable `tools/ches/DECOMP_QUEUE.md` from current assembly, linker map, ELF symbols, direct calls, global/data refs, normalized instruction shapes, and coarse source/asm locality.
@@ -93,7 +93,7 @@
 - A malformed intermediate patch to the inventory script was caught **before execution** after shifted line numbers caused edits to land in the wrong blocks. The affected build/report section was replaced cleanly; `python3 -m py_compile tools/ches/build_decomp_inventory.py` passes and the corrected generator completed successfully.
 - **Exact next action on Continue:** map the `08035B64..08038DF0` functions to the consecutive vtables and the entity factory selectors/character IDs, identify the first sibling class/family boundary, then reconstruct one representative repeated family and propagate the proven source shape across its siblings. Do not fall back to manual sprite tracing or isolated function roulette.
 
-## CURRENT CHECKPOINT - whole-game throughput pivot adopted - October 6, 2026
+## SUPERSEDED CHECKPOINT - whole-game throughput pivot adopted - October 6, 2026
 
 - The user requested an external strategy audit specifically to challenge whether individual packed-sprite tracing was the fastest route to decompiling FoMT. The core recommendation is adopted: optimize for total coherent decompilation throughput and reusable understanding, not for resolving the last sprite IDs first.
 - Before changing documentation, the current project charter, start-here, roadmap/playbook, subsystem docs, progress/repo maps, TODO, handoff/status, and supporting asset/custom-game documentation were read/reconciled. Historical checkpoints remain evidence, not current authority.
@@ -110,7 +110,7 @@
 - Active branch is `Live-temp`; remote tracking branch is `ches/Live-temp`. **Standing checkpoint rule as of October 6, 2026:** every durable checkpoint must be committed on `Live-temp` and pushed to `ches/Live-temp` after canonical docs/artifacts and diff verification are complete. This is separate from exact retail contribution pushes to `ches-dev`.
 - **Exact next action on Continue:** publish this documentation/strategy checkpoint to `ches/Live-temp`, then build the first version of the remaining-function database from existing repository/map/call-graph evidence, derive TU guesses and similarity clusters, score/rank coherent units, and select the top decompilation target. Do not resume manual sprite-ID tracing first.
 
-## CURRENT CHECKPOINT - Dog Ball 21..48 + five menu-special icons promoted exactly - October 6, 2026
+## SUPERSEDED CHECKPOINT - Dog Ball 21..48 + five menu-special icons promoted exactly - October 6, 2026
 
 - Five code/text-proven menu-special packed animations are canonical under `assets/item_icons/menu_special/`: **Water 461, Box Lunch 401, Milk 290, Spaghetti 422, Snow-cone 247**.
 - Their ownership comes from `func_0807EF90` / `func_08081BBC` and presentation tables `gUnk_080FE2D8` / `gUnk_080FEB60`. Special rows bypass ordinary Food description/icon lookup and use direct packed IDs plus custom retail text.
@@ -129,7 +129,7 @@
 - **Exact next action:** continue code-backed packed-provider tracing for the remaining **32 multi-frame IDs**: 54,55,56,57,60,62,77,160,161,173,174,175,176,177,178,179,180,211,279,325,392,413,414,415,416,417,418,419,420,429,434,470. Prefer proven `func_080A4A00`/GameObject +0x64 effect lanes and table-derived resource selectors; do not return to literal hunting because no remaining multi-frame ID is passed raw to GetAnimation.
 
 
-## CURRENT CHECKPOINT - Six Fish Kings promoted exactly - October 6, 2026
+## SUPERSEDED CHECKPOINT - Six Fish Kings promoted exactly - October 6, 2026
 
 - `func_080713B8` constructs the packed `gUnk_086678A0` provider and uses exact helper `func_0809CE30` for final collection indices `0x35..0x3A`.
 - Exact mapping: `0x35 -> 252`, `0x36 -> 249`, `0x37 -> 254`, `0x38 -> 253`, `0x39 -> 250`, `0x3A -> 251`.
@@ -146,7 +146,7 @@
 - **Exact next action:** within `func_080722DC`, trace uses/aliases/copies of the concrete packed-provider object at `sp+0x48` after `0x080730EC`, then identify values passed through its vtable +0x0C `GetAnimation` or into SpriteAnimator initialization. Intersect only those values with the 42 unowned multi-frame IDs. Do not grep `[sp+0x2D0]` as if it were a persistent object.
 
 
-## CURRENT CHECKPOINT - Water Splash 425 promoted exactly; multi-frame authoring proven - October 6, 2026
+## SUPERSEDED CHECKPOINT - Water Splash 425 promoted exactly; multi-frame authoring proven - October 6, 2026
 
 - Animation **425 / 0x1A9 WATER_SPLASH** is now promoted under `assets/item_icons/effects/water_splash/` as a `packed-animation-v1` bundle.
 - Exact code proof: `src/game_object_discard.cc` defines `EFFECT_WATER_SPLASH = 0x1A9` and constructs it on the `IsFootprintOnWaterSurface` discard path; historical Ball/generic-discard traces independently use the same fixed resource on water-surface landings.
@@ -160,7 +160,7 @@
 - Active branch remains `Live-temp`, HEAD `9078f36`. Preserve the intentional dirty worktree; do not commit/push this checkpoint as a `ches-dev` contribution from `Live-temp`.
 - **Exact next action:** rank the remaining 42 unowned multi-frame animations against known `EntityEffect` / `func_080A4A00` effect/UI call sites and state tables, then trace the strongest code-backed family to its concrete `gUnk_086678A0` provider before promotion. Run the multi-frame census as separate safe read/shell calls, not inside `parallel_run` (that wrapper rejects `shell_exec`). Exclude already-closed Tool/Food/Article, cooking, Wrapped Present, Basket, Money Bag, overnight forage, Water Splash, and direct-literal false leads 21/4/7.
 
-## CURRENT CHECKPOINT - 18 overnight forage/map assets promoted exactly - October 6, 2026
+## SUPERSEDED CHECKPOINT - 18 overnight forage/map assets promoted exactly - October 6, 2026
 
 - Exported all 18 code-proven 00:00-05:59 variants under `assets/item_icons/overnight/` and appended them to `assets/item_icons/manifest.json`.
 - Manifest now owns **376 simple animations**; **74 simple animations remain unowned**.
@@ -171,7 +171,7 @@
 - Active branch is `Live-temp`, HEAD `9078f36`. Preserve the intentional dirty worktree; do not commit/push this checkpoint as a `ches-dev` contribution from `Live-temp`.
 - **Exact next action:** resume indirect/table-driven ownership tracing for the remaining 74 simple animations. Start from `gUnk_086678A0` provider-bearing objects/subobjects not already closed as Tool/Food/Article, cooking, Wrapped Present, Basket, Money Bag, or overnight forage. Prefer table/state-derived IDs and promote only code-proven semantic families.
 
-## CURRENT CHECKPOINT - 18 overnight forage/map variants proven - October 5, 2026
+## SUPERSEDED CHECKPOINT - 18 overnight forage/map variants proven - October 5, 2026
 
 - The post-Money-Bag indirect-owner pass found a real packed-bank family in `func_080A95A4`, vtable `vtable_unk_080E831C` slot +0x24. The method constructs a temporary `PackedSpriteAnimationProvider` from `gUnk_086678A0` and renders selected animations into the map/world graphics path.
 - `func_0801A13C` calls exact hour classifier `func_0801A8C0` and passes that result into `func_080A5D14`. Exact classifier semantics: hours 06-11 -> mode 0, 12-17 -> mode 1, 18-23 -> mode 2, **00-05 -> mode 3**.
@@ -202,7 +202,7 @@
 - **Exact next action:** export the 18 mode-3 IDs above as editable PNG/JSON sources under a clearly named overnight/map-forage family, add them to the packed-bank manifest with semantic tags tied to their paired item names, rebuild the packed bank, run full `make -j4 compare`, measure unique graphics/palette-byte gain, then update counts/docs. Because graphics are shared with the already-owned daytime/item entry, expect most or all new unique coverage to come from the darker palettes/layout metadata rather than new pixel graphics.
 
 
-## CURRENT CHECKPOINT - Money Bag 106 recovered; direct literal lane exhausted - October 5, 2026
+## SUPERSEDED CHECKPOINT - Money Bag 106 recovered; direct literal lane exhausted - October 5, 2026
 
 - Animation **106** is now proven to use the packed item/UI bank. Main GameObject vtable `vtable_unk_080E5EC4` slot +0x64 is `0x0801FC60`, which returns `this + 0xDE4`; prior exact constructor research proves `func_080AC674` initializes that embedded provider with `func_0805E6CC(..., gUnk_086678A0)`.
 - Semantic ownership is code-backed: `func_08025B64` case 2 computes `rand % 16 + 5`, calls `func_0802771C`, and `func_0802771C` credits that **5-20 G** through exact `MoneyState` credit `func_0809ABD8` before switching the secondary effect animator to ID 106. Neighboring dispatcher cases award the six cursed tools, Teleport Stone, and mine Food/Article rewards. ID 106 is therefore the mine **Money Bag** reward visual.
@@ -214,7 +214,7 @@
 - **Exact next action:** trace indirect/table-driven ownership. Enumerate objects/subobjects constructed from `gUnk_086678A0` (including GameObject +0xDE4 and UI provider members), then follow methods that derive animation IDs from state/tables before provider lookup/render. Exclude known Tool/Food/Article `GetIconId()`, cooking, Wrapped Present, Basket, and Money Bag paths. Promote only when the owning code proves semantics.
 
 
-## CURRENT CHECKPOINT - animation 106 provider chain narrowed - October 5, 2026
+## SUPERSEDED CHECKPOINT - animation 106 provider chain narrowed - October 5, 2026
 
 - `func_0802771C` initializes animation **106** with `SpriteAnimator::Init` on the actor's `UnknownEntityThing` effect path. The provider is not a literal in this function.
 - Exact pointer chain at `0802771C`: `AEntity::unk_10.Get()` -> `UnknownEntityThing::owner` -> `AActorEntity::game_object` -> `GameObject` virtual slot **+0x64**; the return value is passed as the `SpriteAnimationProvider *` for ID 106.
@@ -224,7 +224,7 @@
 - **Exact next action:** resolve the producer of the `GameObject *` passed as arg1 into `func_08024974`/`func_0802B908`, including raw `.byte`/indirect factory paths if needed. Once its concrete vtable is known, inspect raw vtable slot +0x64 and follow that function to the returned provider. Only if that provider is `gUnk_086678A0` should animation 106 re-enter the packed UI asset promotion path.
 
 
-## CURRENT CHECKPOINT - cooking seasoning path closed; animation 106 next - October 5, 2026
+## SUPERSEDED CHECKPOINT - cooking seasoning path closed; animation 106 next - October 5, 2026
 
 - The cooking seasoning question is now closed from code, not appearance. `func_08098CE8` renders exactly the eight top-level packed-bank icons. Its later five-row loop indexes the fixed 11-byte names Sugar, Salt, Vinegar, Soy Sauce, and Miso; `func_08099144` toggles those as selection bits 7..11. No `gUnk_086678A0` lookup occurs for those five rows. Therefore **Seasoning Set=400 is the only seasoning packed-sprite asset; Sugar/Salt/Vinegar/Soy Sauce/Miso are text/state-only entries in this UI**.
 - Proven cooking data was promoted from opaque incbins to explicit semantic source while preserving old aliases: `gCookingOptionCount`, `gCookingSeasoningSetName`, `gCookingUtensilsTitle`, `gCookingElementsTitle`, `gCookingUseWhatTitle`, `gCookingUiTextRows`, `gCookingOptionNames`, and `gCookingElementNames` in `asm/data/data_080F9EB8.s`.
@@ -234,7 +234,7 @@
 - **Exact next action:** trace the provider supplied to `func_0805E850` in `func_0802771C` for animation **106**. If it resolves to `gUnk_086678A0`, identify the entity/subsystem owner and promote animation 106 only after semantic proof. If not, continue provider tracing for IDs 4 and 7. Do not reopen animation 21 or `func_08092A70`.
 
 
-## CURRENT CHECKPOINT - cooking utensil table recovered - October 5, 2026
+## SUPERSEDED CHECKPOINT - cooking utensil table recovered - October 5, 2026
 
 - Direct render-helper tracing found no new unowned simple literal IDs in ordinary item UI paths; those use runtime Tool/Food/Article icon IDs. Animation 21 is a closed false lead because its animator uses `gUnk_0874F34C`, not `gUnk_086678A0`.
 - The first true table-driven packed-bank family is retail `0x08100AC2`, now aliased as `gCookingUtensilIconIds`. `func_080989DC` and `func_08098CE8` index it and render through `gUnk_086678A0`.

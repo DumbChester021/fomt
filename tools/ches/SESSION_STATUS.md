@@ -9,7 +9,7 @@
 - 72A0/72E4 variant constructors at `0x08037C08/0x08037C68` are understood exact-size source candidates but remain assembly due register-allocation mismatch.
 - Next: factory wrappers `0x08037A5C..0x08037BB7` and remaining +0x40/+0x3C methods; use recovered helper methods as anchors.
 
-## CURRENT SNAPSHOT - 7.2967%; resident specials and location-bound actor source exact - October 6, 2026
+## SUPERSEDED SNAPSHOT - 7.2967%; resident specials and location-bound actor source exact - October 6, 2026
 
 - Active branch: `Live-temp`; start checkpoint for this integration was pushed `82450e7`.
 - Full retail verification after integration: `make compare` -> **`fomt.gba: OK`**, SHA1 `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
@@ -20,7 +20,7 @@
 - Inventory: **2,385 linked asm functions**, **871,444 canonical asm bytes**, **191 repeated shape clusters / 891 participating functions**, **182 exact normalized clusters**.
 - Next structural-continuity work: queue rank 5 `asm/code_entities_08034CEC.s:08037A48-0803A8A4`, focusing first on remaining +0x40/+0x3C sibling methods and concrete constructors/factories. Raw rank-1 save loader remains parked.
 
-## CURRENT SNAPSHOT - Lou exact; Child bounded; location-bound actor base recovered - October 6, 2026
+## SUPERSEDED SNAPSHOT - Lou exact; Child bounded; location-bound actor base recovered - October 6, 2026
 
 - Clean start from pushed `ad6300d`; no production code/linker/assembly mutations in this research checkpoint.
 - Lou constructor + +0x30 are scratch-exact: **0x3C + 0x2C = 0x68 bytes**.
@@ -30,7 +30,7 @@
 - Four concrete +0x30 effect factories solved (three 0x2C exact, one 0x2E exact body + 2-byte align); two `u16` table-backed GetAnim helpers are **0x10/0** each. One simple +0x3C body is exact + alignment; its sibling differs only by scratch Thumb thunk placement.
 - Next: production-integrate this proven family with exact section interleaving, verify full ROM, regenerate inventory/progress/maps/docs, commit/push, then continue +0x40/+0x3C siblings.
 
-## CURRENT SNAPSHOT - 64 resident NPC methods exact in production - October 6, 2026
+## SUPERSEDED SNAPSHOT - 64 resident NPC methods exact in production - October 6, 2026
 
 - New exact source: `include/entity_resident_npcs.hh` + `src/entity_resident_npcs.cc`, **64 methods / 3,296 bytes** across nine retail-positioned source runs.
 - Resident selector/class state: IDs 1..32 and 34 have source constructor/+0x30 pairs; Lou 33 and Child 35 remain special assembly cases.
@@ -40,7 +40,7 @@
 - The raw rank-1 save region contains the parked loader; next structural-continuity work is `asm/code_entities_08034CEC.s:08036DC4-08039E18`, beginning Lou/Child.
 - Next: recover Lou/Child special layout/virtuals, classify adjacent entity families, scratch-prove a coherent next batch, then integrate exact-only and regenerate queue/docs.
 
-## CURRENT SNAPSHOT - resident NPC selector/vtable map proven; Rick exact representative - October 6, 2026
+## SUPERSEDED SNAPSHOT - resident NPC selector/vtable map proven; Rick exact representative - October 6, 2026
 
 - `tools/ches/map_npc_entity_classes.py` now generates the durable 35-character selector -> constructor -> schedule -> vtable -> virtual-method map in `tools/ches/npc_entity_class_map.json` and `tools/ches/NPC_ENTITY_CLASS_MAP.md`.
 - Selectors 1..35 are proven directly from the retail jump table and decoded Thumb constructor calls. All corresponding 0x40-byte vtables are decoded from baserom and joined to current symbols/similarity families.
@@ -48,7 +48,7 @@
 - Rick representative proof: constructor **0x38/0 diff** and +0x30 virtual **0x2C/0 diff** on the first Lillia-shaped scratch source attempts. Production source remains unchanged.
 - Next: mass scratch-match Rick-family siblings, then the other dominant +0x30 families; integrate only after exact family proof.
 
-## CURRENT SNAPSHOT - function inventory live; sibling NPC/entity region is first ranked target - October 6, 2026
+## SUPERSEDED SNAPSHOT - function inventory live; sibling NPC/entity region is first ranked target - October 6, 2026
 
 - Strategy checkpoint `e68144f7055fc4896b49cc31429f90c64fef3be1` is published on `ches/Live-temp`.
 - New durable analysis: `tools/ches/build_decomp_inventory.py` -> `tools/ches/decomp_inventory.json` + `tools/ches/DECOMP_QUEUE.md`.
@@ -56,7 +56,7 @@
 - Top coherent target: `asm/code_entities_08034CEC.s:08035B64-08038DF0`, **157 functions / 12,940 bytes**, **107 repeated-family functions**. It begins directly after exact-source LilliaEntity and is adjacent to the dense NPC/entity vtable sequence, making sibling-class recovery the leading hypothesis.
 - Next: map this region against vtables + entity factory selectors, establish class boundaries/names where evidence supports them, then reconstruct a representative repeated family and propagate the proven shape.
 
-## CURRENT SNAPSHOT - whole-game throughput pivot adopted - October 6, 2026
+## SUPERSEDED SNAPSHOT - whole-game throughput pivot adopted - October 6, 2026
 
 - Strategy changed from individual packed-sprite provenance to **throughput-first whole-game decompilation**.
 - Exact state is unchanged: **64,536 / 940,036 = 6.8653% source**, **75,334 data/asset bytes**, **140,266 overall meaningful-ROM bytes**, retail ROM still exact at the prior verified baseline.
