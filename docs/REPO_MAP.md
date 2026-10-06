@@ -27,8 +27,8 @@ This is a practical map of the current reconstruction, not a claim that every su
 Authoritative live state is in `START_HERE.md`; this section keeps the repository map aligned with it.
 
 - Production `ches-dev` remains at `9078f368c02d861f7cd71685e1f9dd1d95c7c384` (`9078f36 decompile game object entity teardown`); the active exact working branch is `Live-temp`, which carries the private throughput/decomp checkpoint series.
-- Current code reconstruction is **68,868 / 940,036 = 7.3261%** with **871,168 assembly bytes = 92.6739%**.
-- Current data/assets reconstruction is **75,334 / 6,777,404 = 1.1115%**; overall meaningful-ROM reconstruction is **144,598 / 7,717,440 = 1.8737%**.
+- Current code reconstruction is **69,056 / 940,036 = 7.3461%** with **870,980 assembly bytes = 92.6739%**.
+- Current data/assets reconstruction is **75,334 / 6,777,404 = 1.1115%**; overall meaningful-ROM reconstruction is **144,786 / 7,717,440 = 1.8761%**.
 - Current contiguous tail free space is **671,168 bytes = 655.44 KiB = 8.0009%** of the 8 MiB ROM. `make progress` reports all four metrics plus `fomt.gba: OK`.
 - Retail SHA1 remains `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
 - Authoritative compiler path is the tracked `tools/install_agbcp.sh` + `tools/agbcp_fomt_compat.patch` SHA-256 `aa7cc6df0efbd066e9c33deb887731e1d0210babfaeba4c9b64f3e8bc35c4256`.
@@ -49,6 +49,7 @@ Authoritative live state is in `START_HERE.md`; this section keeps the repositor
 - `src/water_region.cc` and `src/terrain.cc` contain exact compiler-sensitive source conversions backed by the tracked compatibility toolchain.
 - Shared entity effects are readable in `include/entity_effect.hh`, `src/entity_effect.cc`, `src/entity_effect_dtor.cc`, and `src/entity_effect_vtable.cc`; existing actor callers and graphics helpers use the shared layout.
 - The neutral location-bound actor hierarchy reconstructed around retail `0x08037008` is documented in `docs/ENTITY_08037008.md` and implemented in `include/entity_unk_08037008.hh` / `src/entity_unk_08037008.cc`.
+- The selector-`0x4B` thrown Ball entity is documented in `docs/ENTITY_BALL.md` and implemented incrementally in `include/entity_ball.hh` / `src/entity_ball.cc`; its constructor and four small methods are exact source while destructor, movement, and visual/controller methods remain assembly.
 - Shared resource handles are readable in `include/resource_handle.hh`, `src/resource_handle.cc`, and `docs/RESOURCE_HANDLES.md`; effect callers share the corrected lookup ABI. Twenty functions are exact, including construction/acquisition, queries, root/order8 full resets, root/order9 partial ranges, release through order8 and entry initialization. Thirteen saved compiler behaviors reproduce the complete ROM.
 - Full workflow and do/don't rules are in `docs/DECOMP_PLAYBOOK.md`.
 - Custom-game/QoL/custom-character work remains separate from retail reconstruction.

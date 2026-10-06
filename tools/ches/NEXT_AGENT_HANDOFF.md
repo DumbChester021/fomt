@@ -1,6 +1,19 @@
 # Current FoMT continuation — October 6, 2026
 
-## CURRENT CHECKPOINT - location-bound actor island behavior-complete; move into rank-11 entity region - October 6, 2026
+## CURRENT CHECKPOINT - thrown BallEntity constructor + four methods exact - October 6, 2026
+
+- Continued from pushed checkpoint `fe2335f88ba16137eeae942923c0a7c72b685a42` into queue-rank-11 entity code.
+- Reused prior selector/item/terrain evidence instead of rediscovering identity: `vtable_unk_080E73B4`, selector `0x4B`, is the thrown Ball entity; `ARTICLE_BALL` is `0x35`; entity `+0x28` is packed animation/resource state, initially `0x31`.
+- Added `include/entity_ball.hh`, `src/entity_ball.cc`, and `docs/ENTITY_BALL.md`. `#pragma interface` preserves the retail vtable in assembly; linker aliases preserve legacy `func_08...` names.
+- Exact source: `BallEntity(GameObject*, Location&)` `0x08038028` **0x70/0 diff**; `Launch` `0x080380EC` exact 0x1A body + align; `IsActive` `0x08038108` exact 0x06 + align; virtual `GetBox` `0x0803834C` **0x20/0 diff**; `GetFlightHeight` `0x0803836C` exact 0x06 + align. Total source gain this pass: **188 bytes**.
+- Constructor signature correction: there is no third location pointer argument. The writable `Location&` passed to `AEntity` is also stored at +0x18; destructor `0x08038098` copies the final six-byte location back through it.
+- Proven layout anchors: +0x1C Q16 flight accumulator, +0x20 Q16 flight speed/state, +0x24 launch state, +0x25 active, +0x26 dog-play state, +0x28 packed resource ID.
+- Constructor bootstrap: queries selector `0x2B`; if it resolves to a same-map actor and `func_08020460` is true, forwards that actor's Q16 position, animation, and facing into `func_08038374`.
+- Full production gate passes: `make compare` -> **`fomt.gba: OK`**. Current code reconstruction **69,056 / 940,036 = 7.3461%**, **870,980 asm bytes** remain; data/assets **75,334**; meaningful ROM **144,786 / 7,717,440 = 1.8761%**; free tail **671,168**.
+- Regenerated remaining-function inventory/queue after the exact integration; use those generated artifacts for current counts/ranks.
+- **Exact next action on Continue:** stay inside the Ball family. Scratch-match destructor `0x08038098`, virtual wrappers `0x08038300` / `0x08038320`, +0x30 factory `0x08038334`, then the 0x48-byte visual/controller class beginning at `0x0803853C`. Prefer these smaller coherent wins before reconstructing the 0x1F0-byte mover `0x08038110`.
+
+## SUPERSEDED CHECKPOINT - location-bound actor island behavior-complete; move into rank-11 entity region - October 6, 2026
 
 - Continued from pushed exact checkpoint `ec62cc90ea87e85447f4d004b4a6337cb553c643`; no production code bytes changed in this research checkpoint, so exact progress remains **68,868 / 940,036 = 7.3261%** and `fomt.gba: OK`.
 - Completed the remaining +0x40 family reconstruction. Scratch member probes: 72E4 `0x08037494` **0xA8 exact size / 6 diff**, 72A0 `0x0803763C` **0xA8 / 6**, 725C `0x080377E8` **0xA4 / 6**, 7218 `0x08037958` **0x80 / 6**. All four differ in exactly the same three instructions after `func_080AB82C`: retail forms the row pointer before preserving the index; the compatibility compiler preserves the index first. Everything else matches. Treat the four as one parked compiler-sensitive family.

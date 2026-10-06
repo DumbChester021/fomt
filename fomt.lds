@@ -158,6 +158,12 @@ func_080378FC = GetSpeed__13UnkEntity725CUi;
 func_08037A48 = GetSpeed__13UnkEntity7218Ui;
 func_08037BB8 = __13UnkEntity7218P10GameObjectR13ActorLocation;
 func_08037BE0 = __13UnkEntity725CP10GameObjectR13ActorLocation;
+__vt_10BallEntity = vtable_unk_080E73B4;
+func_08038028 = __10BallEntityP10GameObjectR8Location;
+func_080380EC = Launch__10BallEntityUi;
+func_08038108 = IsActive__C10BallEntity;
+func_0803834C = GetBox__C10BallEntity;
+func_0803836C = GetFlightHeight__C10BallEntity;
 func_0801FD0C = vfunc_3C__10GameObjectUi;
 gUnk_08104258 = gCharacterInfo;
 
@@ -340,6 +346,12 @@ SECTIONS
         asm/code_entities_08034CEC.o(.text.after_entity_locbound_run6);
         src/entity_unk_08037008.o(.text.entity_locbound_run8);
         asm/code_entities_08034CEC.o(.text.after_entity_locbound_run8);
+        src/entity_ball.o(.text.ball_ctor);
+        asm/code_entities_08034CEC.o(.text.after_ball_ctor);
+        src/entity_ball.o(.text.ball_run1);
+        asm/code_entities_08034CEC.o(.text.after_ball_run1);
+        src/entity_ball.o(.text.ball_run2);
+        asm/code_entities_08034CEC.o(.text.after_ball_run2);
 
         asm/code_0803A8A4.o(.text);
         src/character_schedule.o(.text);

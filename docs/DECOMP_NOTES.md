@@ -27,7 +27,7 @@ Use `docs/DECOMP_PLAYBOOK.md` for the durable process and `START_HERE.md` for li
 
 Current retail state:
 - Production `ches-dev` and `ches/ches-dev` remain at `9078f368c02d861f7cd71685e1f9dd1d95c7c384` (`9078f36 decompile game object entity teardown`). The active exact working branch is `Live-temp`.
-- Current exact worktree progress is **68,868 / 940,036 = 7.3261% source** and **871,168 assembly bytes**. Data/assets reconstruction is **75,334 / 6,777,404 = 1.1115%** and overall meaningful-ROM reconstruction is **144,598 / 7,717,440 = 1.8737%**. `make progress` reports `fomt.gba: OK`; retail SHA1 remains `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
+- Current exact worktree progress is **69,056 / 940,036 = 7.3461% source** and **870,980 assembly bytes**. Data/assets reconstruction is **75,334 / 6,777,404 = 1.1115%** and overall meaningful-ROM reconstruction is **144,786 / 7,717,440 = 1.8761%**. `make progress` reports `fomt.gba: OK`; retail SHA1 remains `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
 - Shared NPC identity/location/schedule/Lillia support and the exact 43-entry metadata table remain complete. `src/game_object_entity_lookup.cc` owns the two native indexed entity lookups and entity teardown.
 - Legacy loader `func_08011650` remains paused with matching research preserved under `tools/ches/checkpoints/save-loader-08011650-2026-10-04/`.
 - Packed-bank ownership remains **416 / 493 animations: 405 / 450 simple and 11 / 43 multi-frame**. Water Splash 425 / 0x1A9 proves generic multi-frame authoring, and Dog Ball 21..48 contributes 10 additional owned multi-frame animations.
@@ -1006,6 +1006,10 @@ The `func_08038110` mover is strongly tied to the dog-play thrown-object path: s
 For the Dog Ball, bit-1 terrain is not rejected by directional collision, and the landing logic explicitly distinguishes descriptor bit 1: after terrain lookup, `func_08038110` tests bit 1 and invokes its game-object callback with a different argument than the non-bit-1 path. The exact behavior is **terrain that blocks ordinary movers but has special thrown-Ball traversal/landing behavior**. Water is strongly supported by geometry and location-dependent behavior; fishing classifier overlap does not establish a direct descriptor test.
 
 The event payload channels remain separate: descriptor bits 2..16 are movement-contact script IDs, while bits 17..31 are front-tile newly-pressed A-button interaction script IDs. Bit 1 is not part of either script payload.
+
+### BallEntity source integration - October 6, 2026
+
+The previously proven selector-`0x4B` thrown Ball family now has matching C++ class anchors in `include/entity_ball.hh` / `src/entity_ball.cc`. `BallEntity(GameObject*, Location&)` at `0x08038028` is **0x70 / 0 diff** and proves the writable location back-reference at +0x18. `Launch` / `IsActive` / virtual `GetBox` / `GetFlightHeight` are also exact at retail addresses. This pass adds **188 exact source bytes**, reaching **69,056 / 940,036 = 7.3461%** code reconstruction. The large `func_08038110` landing/movement semantics documented below are unchanged and remain assembly.
 
 ### Thrown Ball and TerrainInfo bit 1
 

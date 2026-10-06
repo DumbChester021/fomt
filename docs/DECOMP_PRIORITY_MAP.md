@@ -12,10 +12,10 @@ exploit them across the remaining assembly instead of making an individual
 resource family the main queue.
 
 Current exact worktree:
-- code: **68,868 / 940,036 = 7.3261%**;
+- code: **69,056 / 940,036 = 7.3461%**;
 - assembly remaining: **871,168 bytes**;
 - data/assets: **75,334 / 6,777,404 = 1.1115%**;
-- overall meaningful ROM: **144,598 / 7,717,440 = 1.8737%**;
+- overall meaningful ROM: **144,786 / 7,717,440 = 1.8761%**;
 - packed bank: **416 / 493 semantically owned animations**;
 - retail ROM remains exact.
 
@@ -54,7 +54,7 @@ but its score is no longer an execution order.
 
 The throughput pipeline is operational: `tools/ches/build_decomp_inventory.py` produces the remaining-function database and ranked queue, while `tools/ches/map_npc_entity_classes.py` provides a proven factory/vtable/class map for the resident NPC family. The latest production pass leaves all 35 resident constructors in source, only Child +0x30 in assembly, and promotes the first exact methods of the adjacent location-bound actor hierarchy.
 
-The raw queue currently ranks `asm/game_state.s:08011650-0801468C` first, but that region begins with the deliberately parked save loader and must **not** be reopened merely because of the heuristic score. The recovered `UnkEntity37008` island is now bounded: the remaining +0x40/+0x3C methods are behavior-complete at small documented register-allocation mismatches, and two simple factory wrappers are scratch exact but await natural constructor emission. Do not spend further throughput on syntax roulette there. The active structural-continuity target is queue rank **11**, `asm/code_entities_08034CEC.s:08037C08-0803A8A4`; skip the already-parked variant constructors at `0x08037C08/0x08037C68` and begin from the next coherent boundary around `0x08037CC4`. Re-rank after the next exact family integration.
+The raw queue currently ranks `asm/game_state.s:08011650-0801468C` first, but that region begins with the deliberately parked save loader and must **not** be reopened merely because of the heuristic score. The recovered `UnkEntity37008` island remains bounded. Queue rank 11 has now produced the exact thrown `BallEntity` constructor plus four small methods (**188 retail bytes**) at `0x08038028`, `0x080380EC`, `0x08038108`, `0x0803834C`, and `0x0803836C`. Continue that coherent family first: destructor `0x08038098`, virtual wrappers `0x08038300/20/34`, and the 0x48-byte visual/controller family beginning at `0x0803853C`. Defer the 0x1F0-byte `func_08038110` mover until the smaller class surface is sourced, then re-rank.
 
 ### 1. Keep the function/TU inventory current
 

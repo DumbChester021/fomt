@@ -1,6 +1,14 @@
 # Ches Session Status — FOMT decomp
 
-## CURRENT SNAPSHOT - 7.3261%; location-bound actor island bounded - October 6, 2026
+## CURRENT SNAPSHOT - 7.3461%; BallEntity exact class anchors - October 6, 2026
+
+- Active branch `Live-temp`; base pushed checkpoint `fe2335f`.
+- Exact Ball source now owns constructor + four methods, **188 retail bytes**, under `entity_ball.*`; architecture in `docs/ENTITY_BALL.md`.
+- Progress: **69,056 / 940,036 = 7.3461% code**, **870,980 asm bytes**, **75,334 data/assets**, **144,786 meaningful-ROM bytes = 1.8761%**, **671,168 bytes free**. `fomt.gba: OK`.
+- Constructor proves writable `Location&` back-reference +0x18 and the current field layout through resource ID +0x28.
+- Next: Ball destructor `0x08038098`, wrappers `0x08038300/20/34`, then visual/controller class `0x0803853C`; leave `0x08038110` until those smaller anchors are sourced.
+
+## SUPERSEDED SNAPSHOT - 7.3261%; location-bound actor island bounded - October 6, 2026
 
 - Active branch `Live-temp`; base pushed checkpoint `ec62cc9`; exact ROM unchanged.
 - Full +0x40 family is behavior-complete and exact-size, each with the same 6-byte weighted-index register-order mismatch.

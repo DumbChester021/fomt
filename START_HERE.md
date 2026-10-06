@@ -2,22 +2,22 @@
 
 ## Current NPC/entity family frontier - October 6, 2026
 
-The throughput strategy has now produced several exact family passes. `include/entity_resident_npcs.hh` and `src/entity_resident_npcs.cc` own **all 35 resident constructors** and the +0x30 effect factory for IDs **1..34**; only Child's +0x30 virtual remains assembly. Lou's constructor/+0x30 and Child's constructor/+0x3C are now exact source. The adjacent neutral hierarchy in `include/entity_unk_08037008.hh` / `src/entity_unk_08037008.cc` additionally reconstructs a location-backed `AActorEntity` subclass plus exact base methods, four concrete +0x30 factories, and two concrete animation/update pairs. The retail SHA1 remains unchanged.
+The throughput strategy has now produced several exact family passes. The resident-NPC and neutral location-bound actor work remains exact, and the rank-11 entity region has now yielded a proven thrown `BallEntity` (`vtable_unk_080E73B4`, selector `0x4B`). `include/entity_ball.hh` / `src/entity_ball.cc` own its exact 0x70 constructor plus `Launch`, `IsActive`, virtual `GetBox`, and `GetFlightHeight`, totaling **188 retail bytes**. The retail SHA1 remains unchanged.
 
 ## Current throughput inventory - October 6, 2026
 
-`tools/ches/build_decomp_inventory.py` generates the machine-readable remaining-function database (`tools/ches/decomp_inventory.json`) and ranked human queue (`tools/ches/DECOMP_QUEUE.md`). After the latest entity integration the linker-backed inventory is **2,380 linked assembly functions / 871,168 asm code bytes**, with inferred function ranges covering **870,092 bytes = 99.8765%**. The raw rank-1 region begins with the deliberately parked save-loader area, so do not treat score alone as execution order. The small `0x08037494..0x08037BB7` location-bound actor island is now bounded at documented compiler-sensitive frontiers; throughput continues in queue rank **11**, `0x08037C08..0x0803A8A4`, skipping the parked variant constructors and starting at the next coherent boundary around `0x08037CC4`.
+`tools/ches/build_decomp_inventory.py` generates the machine-readable remaining-function database (`tools/ches/decomp_inventory.json`) and ranked human queue (`tools/ches/DECOMP_QUEUE.md`). After the latest entity integration the linker-backed inventory is **2,375 linked assembly functions / 870,980 asm code bytes**, with inferred function ranges covering **870,092 bytes = 99.8765%**. The raw rank-1 region begins with the deliberately parked save-loader area, so do not treat score alone as execution order. The small `0x08037494..0x08037BB7` location-bound actor island is now bounded at documented compiler-sensitive frontiers; throughput continues in queue rank **11**, `0x08037C08..0x0803A8A4`, skipping the parked variant constructors and starting at the next coherent boundary around `0x08037CC4`.
 
 ## Current project status
 
 - `make progress` tracks reconstruction across code and non-code ROM bytes instead of reporting only executable code.
-- Current **code reconstruction** is **68,868 / 940,036 = 7.3261%**.
+- Current **code reconstruction** is **69,056 / 940,036 = 7.3461%**.
 - Current **data/assets reconstruction** is **75,334 / 6,777,404 = 1.1115%**:
   - 31,110 bytes are linked typed/source non-code data;
   - 44,224 bytes are editable generated packed-sprite graphics/palettes;
   - the generated packed-sprite total is 33,664 graphics bytes + 10,560 palette bytes;
   - 396 mixed source-owned `.rom_header` bytes count only toward overall reconstruction.
-- Current **overall meaningful-ROM reconstruction** is **144,598 / 7,717,440 = 1.8737%**. Final ROM padding is excluded from this denominator.
+- Current **overall meaningful-ROM reconstruction** is **144,786 / 7,717,440 = 1.8761%**. Final ROM padding is excluded from this denominator.
 - PRET-style ROM-space reporting remains **671,168 bytes = 655.44 KiB = 8.0009% contiguous tail free space**.
 - Asset/data progress is conservative: an opaque `.incbin` does not count merely because it was identified or extracted; editable project-side source must regenerate the retail bytes exactly.
 - Progress implementation: `tools/scripts/calcprogress.py`, `tools/progress_manifest.json`, and `docs/ASSET_DECOMPILATION.md`.
@@ -37,7 +37,7 @@ The throughput strategy has now produced several exact family passes. `include/e
 - Across all 493 animations in this bank, **450 are simple one-frame/one-part/one-palette** and **43 are multi-frame**. The remaining hard frames are ordinary multi-part OAM sprites; sampled part tile offsets exactly partition their graphics blobs, so no new codec is indicated. All 347 named item icons are in the simple class.
 - Detailed authority: `tools/ches/checkpoints/item-icon-assets-2026-10-05/README.md`.
 - **Current follow-up:** the cooking UI is the first completed table-driven family. `func_080989DC` / `func_08098CE8` consume `gCookingUtensilIconIds` through `gUnk_086678A0`; eight exact PNGs now live under `assets/item_icons/cooking/`: Knife 265, Frying Pan 204, Pot 346, Mixer 64, Whisk 472, Rolling Pin 313, Oven 327, Seasoning Set 400. Retail availability bits and the special `Seasoning Set` label prove the mapping. `func_08092A70` remains parked at `0x260 / 3` and `func_080CAC7C` remains parked at `0x8C / 52`.
-- Current validated baseline remains `fomt.gba: OK`: **68,868 code bytes / 75,334 data-asset bytes / 144,598 overall meaningful-ROM bytes**, **671,168 bytes free**.
+- Current validated baseline remains `fomt.gba: OK`: **68,868 code bytes / 75,334 data-asset bytes / 144,786 overall meaningful-ROM bytes**, **671,168 bytes free**.
 
 
 ## Historical item icon provider checkpoint - October 5, 2026 (superseded)
