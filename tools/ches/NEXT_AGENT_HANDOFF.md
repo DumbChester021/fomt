@@ -23,22 +23,37 @@
 
 ### Exact next action
 
-Continue **`func_080399C0`**, retail `0x080399C0..0x08039A30` (0x70).
+`func_080399C0`, retail `0x080399C0..0x08039A30` (0x70), is now **exact in scratch and proven exact in an isolated full-ROM splice**.
 
-Saved scratch:
-`tools/ches/checkpoints/entity-08038740-2026-10-06/candidate-dtor-399c0-v1.cc`
+Saved exact source:
+`tools/ches/checkpoints/entity-08038740-2026-10-06/candidate-dtor-399c0-v2.cc`
 
-The two declaration-only blockers are now fixed in that saved candidate. Important compiler syntax detail: removing the duplicate global `__vt_7AEntity` declaration and using the already-visible unqualified `__vt_7AEntity` compiles; spelling it as `AEntity::__vt_7AEntity` is rejected by this old compiler as “not a member” even though its earlier redeclaration diagnostic describes the generated external that way.
+Breakthrough:
+- owner +0x38..+0x48 is naturally `SmartPtr<u8> strategies_38[5]` (the concrete strategy type remains unnamed);
+- compiler-generated destruction of that five-element owning array reproduces retail's reverse delete loop, begin-null check, register allocation, and 0x70 size;
+- destructor body is only:
+  1. save `Actor * actor = actor_34`;
+  2. `ActorLocation location = GetLocation()`;
+  3. `actor->SetLocation(location)`;
+- base `AEntity` destruction then owns +0x10 teardown and destructor flags.
 
-Measured result after the declaration fix: **expected 0x70, actual 0x68, 102 differing linked bytes** (`match/e399c0-v1-fixed2.*`). Behavior remains closed, but source shape is not yet exact.
+Exact single-function result: **0x70 / 0 differing linked bytes**.
 
-First divergence clues are strong and local:
-- retail loads `actor_34` into r4 **before** `GetLocation`, then keeps `self` in r5; v1 delays the actor load until after `GetLocation` and therefore keeps `self` in r6;
-- retail preserves a null check on the computed inline strategy-array begin pointer (`self+0x38`) before reverse deletion; the direct v1 array loop folds that check away, accounting for the 8-byte size deficit together with different register/lifetime choices.
+Isolated integration worktree: `/tmp/fomt-399c0-integration`.
+Tracked compiler install execution `sh_mux3gwl5_798f6641` finished exit 0. Full isolated gate `sh_mux3k6ry_07a29f0b`: `make -B -j4 compare` -> **`fomt.gba: OK`**. SHA proof `sh_mux3kma6_2d943f64`: **`a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`**. Symbol proof `sh_mux3l1d1_602ac656`:
+- `080398a4 T func_080398A4`;
+- `080399c0 00000070 T _._11Entity398A4`;
+- `08039a30 0000002c T func_08039A30`;
+- `080e74dc T __vt_11Entity398A4`.
 
-Retail semantics are unchanged: copy current `ActorLocation` into actor state +0x34; delete the five strategy pointers +0x38..+0x48 in reverse; restore the AEntity vtable; virtual-destroy the +0x10 owned target with flags 3; conditionally free self.
+The isolated production splice is exactly three files:
+1. `src/entity_unk_08038740.cc`: include `entity_actor.hh`; add neutral `Entity398A4 : public AActorEntity` with fields `u32 unk_30`, `Actor * actor_34`, `SmartPtr<u8> strategies_38[5]`, `u32 mode_4C`, `u32 unk_50`; place its destructor in `.text.entity399c0_dtor`; use the three-line natural body above.
+2. `fomt.lds`: add `__vt_11Entity398A4 = vtable_unk_080E74DC;` and link `src/entity_unk_08038740.o(.text.entity399c0_dtor)` immediately after `asm/code_entities_08034CEC.o(.text.after_entity398a0)` and before `.text.entity39a30_factory`.
+3. `asm/code_entities_08034CEC.s`: delete the old `func_080399C0` body and its two literals, leaving constructor `398A4` in assembly.
 
-**Next command/source experiment:** create a v2 natural-source probe that hoists `Actor * actor = self->actor_34` before `GetLocation`, then reproduce the reverse-delete range through a believable helper/container source shape that retains the begin-null check. Do not use volatile/register forcing/asm. Compare the same 0x70 range immediately; promote only if exact.
+Production `main` is still clean at the published checkpoint; no source splice has been promoted yet.
+
+**Exact next action on Continue:** apply those same three proven edits to `main`, run `make -B -j4 compare`, SHA1, `make progress`, regenerate inventory/queue, verify seams and `git diff --check`, update canonical docs, then commit/push the exact checkpoint. Do not reopen parked `39E98` allocator tuning first.
 
 For fresh-conversation automation, do **not** resend a handoff merely because a browser/send command reports an error or omits a reply. Inspect the actual target tab first and confirm whether the user message appeared or a turn started. The previous failure mode produced a real 54-tool-call turn despite a misleading return.
 

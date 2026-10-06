@@ -9,7 +9,7 @@
 - Inventory: **2,342 linked asm functions**, **868,512 / 869,676 inferred range bytes = 99.8662%**, **1,164 unattributed bytes**.
 - `39E98` constructor is behavior-complete at **exact-size 0xB8 / 109** in `candidate-ctor-39e98-v2.cc`; real 8-byte `SpriteAnimation` temporary recovers the retail frame/high-register shape. Park on register allocation.
 - Public docs were audited and current-state branch/metric/frontier drift was corrected; genuine historical records below remain historical.
-- `399C0` declaration blockers are fixed in `candidate-dtor-399c0-v1.cc`; it now compares **0x68 actual vs 0x70 retail / 102 differing linked bytes**. Retail preloads `actor_34` before `GetLocation` and retains a begin-null check for the inline +0x38..+0x4C reverse-delete range; v1 does neither. Next: v2 should hoist the actor pointer and recover a natural helper/container shape that preserves that null check, then recompare 0x70.
+- `399C0` is now **0x70 / 0 exact** in `candidate-dtor-399c0-v2.cc`. The five +0x38..+0x48 strategy owners are naturally a `SmartPtr[5]`; compiler-generated member teardown exactly reproduces the retail reverse-delete/null-check sequence. Detached splice `/tmp/fomt-399c0-integration` passes full `make -B -j4 compare`, retail SHA1, and exact seams (`398A4` -> destructor `399C0` size 0x70 -> `39A30`). Production `main` remains clean. Next: promote the already-proven three-file splice, run all production gates, regenerate metrics/inventory, document, commit, and push.
 
 ## SUPERSEDED SNAPSHOT - 7.3261%; location-bound actor island bounded - October 6, 2026
 

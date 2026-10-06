@@ -78,26 +78,24 @@ Earlier exact helpers in this same strategy/controller run include `39134`, `391
 
 ## Exact next action
 
-Continue **`func_080399C0`**, retail range `0x080399C0..0x08039A30` (0x70).
+`func_080399C0` is now **scratch-exact and isolated-full-ROM proven**.
 
-Saved first probe:
+Saved exact candidate:
 
-`tools/ches/checkpoints/entity-08038740-2026-10-06/candidate-dtor-399c0-v1.cc`
+`tools/ches/checkpoints/entity-08038740-2026-10-06/candidate-dtor-399c0-v2.cc`
 
-It did not reach comparison because of two declaration-only compile issues:
+The key type correction is that owner +0x38..+0x48 is a five-element owning `SmartPtr` array, not a raw pointer array. Natural C++ member destruction generates the retail reverse-delete loop and its begin-null check exactly. The destructor body itself only saves `actor_34`, obtains the current `ActorLocation`, and writes it back to that actor.
 
-1. the scratch derived type used `AActorEntity` without declaring a constructor, but that base has no default constructor;
-2. the scratch redeclared `__vt_7AEntity`; use the existing `AEntity::__vt_7AEntity` declaration instead.
+Exact target proof: **0x70 / 0 differing linked bytes**.
 
-Retail behavior is already visible:
+Detached integration proof at `/tmp/fomt-399c0-integration` also passes `make -B -j4 compare` with **`fomt.gba: OK`** and SHA1 **`a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`**. The linked seam is exact:
 
-- copy current `ActorLocation` back into actor state at +0x34;
-- delete five strategy pointers at +0x38..+0x48 in reverse;
-- restore the `AEntity` vtable;
-- virtual-destroy the +0x10 owned/SmartPtr target with flags 3;
-- conditionally delete self from destructor flags.
+- `func_080398A4` at `0x080398A4`;
+- `Entity398A4::~Entity398A4` at `0x080399C0`, size 0x70;
+- `func_08039A30` at `0x08039A30`;
+- generated `__vt_11Entity398A4` aliased to retail `0x080E74DC`.
 
-Fix only those declaration issues, compare the 0x70 range, and promote it only if byte-exact.
+**Next:** promote the already-proven three-file splice from the detached worktree into `main` (`src/entity_unk_08038740.cc`, `asm/code_entities_08034CEC.s`, `fomt.lds`), then run the production compare/SHA1/progress/inventory/diff/documentation gates and publish the exact checkpoint.
 
 ## Parked nearby frontiers
 
