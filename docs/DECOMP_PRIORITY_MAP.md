@@ -54,7 +54,7 @@ but its score is no longer an execution order.
 
 The throughput pipeline is operational. The Ball family remains parked at its documented mover seam. The adjacent `vtable_unk_080E7380` family now owns **316 exact retail bytes** in source: 224 bytes of entity surface plus 92 bytes of controller helpers. Controller constructor `0x08038820` is behavior-complete and exact-size but bounded by register-lifetime codegen.
 
-The raw queue still begins with deliberately parked work, so score is not execution order. The full five-slot Entity38740 strategy interface is now mapped, exact selector/helper source has been promoted through `0x08039D98`/`0x08039E8C`, and the large update methods `39204`, `39310`, `3955C`, and `39708` are behavior-complete parked source-lifetime frontiers. Structural continuity now moves to paired 0x70 setup helpers `39DA8` and `39E18`; do not reopen the parked large updates or earlier controller islands without new evidence.
+The raw queue still begins with deliberately parked work, so score is not execution order. The full five-slot Entity38740 strategy interface is mapped; paired mode-4 setup helpers `39DA8/39E18`, factory `39A30`, and destructor `39F50` are now exact. Constructor `39E98` is behavior-complete at exact-size 0xB8/109 with the real SpriteAnimation temporary recovered, so it is parked on register allocation. Structural continuity moves to destructor `399C0`; its first scratch only failed to compile because of two declaration issues, so fix those before broader searching.
 
 ### 1. Keep the function/TU inventory current
 

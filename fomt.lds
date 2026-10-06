@@ -396,15 +396,22 @@ SECTIONS
         asm/code_entities_08034CEC.o(.text.after_entity396f4);
         src/entity_unk_08038740.o(.text.entity398a0_two);
         asm/code_entities_08034CEC.o(.text.after_entity398a0);
+        src/entity_unk_08038740.o(.text.entity39a30_factory);
+        asm/code_entities_08034CEC.o(.text.after_entity39a30);
         src/entity_unk_08038740.o(.text.entity39a5c_noop);
         asm/code_entities_08034CEC.o(.text.after_entity39a5c);
         src/entity_unk_08038740.o(.text.entity39d4c_table);
         src/entity_unk_08038740.o(.text.entity39d5c_mask);
         src/entity_unk_08038740.o(.text.entity39d98_mode);
         asm/code_entities_08034CEC.o(.text.after_entity39d98);
+        src/entity_unk_08038740.o(.text.entity39da8_setup);
+        src/entity_unk_08038740.o(.text.entity39e18_setup);
+        asm/code_entities_08034CEC.o(.text.after_entity39e18);
         src/entity_unk_08038740.o(.text.entity39e88_two);
         src/entity_unk_08038740.o(.text.entity39e8c_strategy);
         asm/code_entities_08034CEC.o(.text.after_entity39e8c);
+        src/entity_unk_08038740.o(.text.entity39f50_dtor);
+        asm/code_entities_08034CEC.o(.text.after_entity39f50);
 
         asm/code_0803A8A4.o(.text);
         src/character_schedule.o(.text);

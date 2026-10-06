@@ -1,4 +1,5 @@
 #include "entity.hh"
+#include "entity_effect.hh"
 
 #pragma interface
 
@@ -51,6 +52,36 @@ struct EntityStrategyOwnerView
     void * strategies_38[5];
 };
 
+struct EntityStrategyMode4Bits
+{
+    u32 timer : 16;
+    u32 sub_counter : 7;
+    u32 target_kind : 1;
+    u32 facing_timer : 8;
+};
+
+struct Entity39F50Child;
+
+struct Entity39F50ChildVTable
+{
+    void * unk_00[2];
+    void (*destroy)(Entity39F50Child *, u32);
+};
+
+struct Entity39F50Child
+{
+    u8 pad_00[0x24];
+    Entity39F50ChildVTable * vtable_24;
+};
+
+struct Entity39F50Owner
+{
+    u8 pad_00[8];
+    u8 effect_08[0x40];
+    Entity39F50Child * child_48;
+    void * vtable_4C;
+};
+
 struct Entity38740 : public AEntity
 {
     Entity38740(GameObject *, void *) SECTION(".text.entity38740_ctor");
@@ -83,10 +114,20 @@ EC u32 func_080398A0() SECTION(".text.entity398a0_two");
 EC u32 func_08039E88() SECTION(".text.entity39e88_two");
 EC void * func_08039E8C(EntityStrategyOwnerView *) SECTION(".text.entity39e8c_strategy");
 EC u16 gUnk_080F16AE[];
+EC UnknownEntityThing * func_08039A30(AActorEntity *) SECTION(".text.entity39a30_factory");
 EC void func_08039A5C() SECTION(".text.entity39a5c_noop");
 EC u32 func_08039D4C(void *, u32) SECTION(".text.entity39d4c_table");
 EC u32 func_08039D5C(void *, u32) SECTION(".text.entity39d5c_mask");
 EC bool func_08039D98(EntityStrategyOwnerView *) SECTION(".text.entity39d98_mode");
+EC u32 func_080AB788(u32);
+EC void func_0809C0C8(EntityStrategyStateView &, u32 const *);
+EC void func_0809C068(EntityStrategyStateView &, int);
+EC void func_08032384(EntityStrategyOwnerView &, u32, bool);
+EC void func_080200C4(EntityStrategyOwnerView *, u32);
+EC void func_08039DA8(EntityStrategyOwnerView *) SECTION(".text.entity39da8_setup");
+EC void func_08039E18(EntityStrategyOwnerView *) SECTION(".text.entity39e18_setup");
+EC void * vtable_unk_080E76BC[];
+EC void func_08039F50(Entity39F50Owner *, u32) SECTION(".text.entity39f50_dtor");
 void func_08038E90(Entity38740Controller * self)
 {
     u8 * effect = self->effect_0C;
@@ -215,6 +256,11 @@ void * func_08039E8C(EntityStrategyOwnerView * owner)
     return *reinterpret_cast<void **>(base + 0x38);
 }
 
+UnknownEntityThing * func_08039A30(AActorEntity * owner)
+{
+    return new UnknownEntityThing(owner, 2, 0x1B, 0, 8, 0, false);
+}
+
 void func_08039A5C()
 {
 }
@@ -250,6 +296,58 @@ u32 func_08039D5C(void *, u32 mode)
 bool func_08039D98(EntityStrategyOwnerView * owner)
 {
     return owner->state_34->mode_0C != 4;
+}
+
+void func_08039DA8(EntityStrategyOwnerView * owner)
+{
+    if (owner->state_34->mode_0C == 1)
+        return;
+
+    EntityStrategyMode4Bits next;
+    next.timer = func_080AB788(0x78) + 0xF0;
+    next.sub_counter = 0x3C;
+    next.target_kind = 0;
+    next.facing_timer = 0;
+
+    func_0809C0C8(
+        *owner->state_34,
+        reinterpret_cast<u32 const *>(&next));
+    func_0809C068(*owner->state_34, 0xF);
+    func_08032384(*owner, 2, false);
+    func_080200C4(owner, 0xAA);
+}
+
+void func_08039E18(EntityStrategyOwnerView * owner)
+{
+    if (owner->state_34->mode_0C == 1)
+        return;
+
+    EntityStrategyMode4Bits next;
+    next.timer = func_080AB788(0x78) + 0xF0;
+    next.sub_counter = 0x3C;
+    next.target_kind = 1;
+    next.facing_timer = 0;
+
+    func_0809C0C8(
+        *owner->state_34,
+        reinterpret_cast<u32 const *>(&next));
+    func_0809C068(*owner->state_34, 4);
+    func_08032384(*owner, 2, false);
+    func_080200C4(owner, 0xAA);
+}
+
+void func_08039F50(Entity39F50Owner * self, u32 flags)
+{
+    self->vtable_4C = vtable_unk_080E76BC;
+
+    Entity39F50Child * child = self->child_48;
+    if (child != 0)
+        child->vtable_24->destroy(child, 3);
+
+    func_080A47B4(self->effect_08, 2);
+
+    if ((flags & 1) != 0)
+        delete reinterpret_cast<u8 *>(self);
 }
 
 Entity38740::Entity38740(GameObject * game_object, void * state)

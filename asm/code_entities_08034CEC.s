@@ -6109,29 +6109,7 @@ func_080399C0: @ 0x080399C0
 .L08039A28: .4byte vtable_unk_080E74DC
 .L08039A2C: .4byte __vt_7AEntity
 
-    thumb_func_start func_08039A30
-func_08039A30: @ 0x08039A30
-    push {r4, lr}
-    sub sp, #0x10
-    adds r4, r0, #0
-    movs r0, #0x8c
-    bl __builtin_new
-    movs r2, #0
-    str r2, [sp]
-    movs r1, #8
-    str r1, [sp, #4]
-    str r2, [sp, #8]
-    add r1, sp, #0xc
-    strb r2, [r1]
-    adds r1, r4, #0
-    movs r2, #2
-    movs r3, #0x1b
-    bl func_080324BC
-    add sp, #0x10
-    pop {r4}
-    pop {r1}
-    bx r1
-
+    .section .text.after_entity39a30, "ax", %progbits
     .section .text.after_entity39a5c, "ax", %progbits
     thumb_func_start func_08039A60
 func_08039A60: @ 0x08039A60
@@ -6500,109 +6478,7 @@ func_08039A60: @ 0x08039A60
     bx r0
 
     .section .text.after_entity39d98, "ax", %progbits
-    thumb_func_start func_08039DA8
-func_08039DA8: @ 0x08039DA8
-    push {r4, lr}
-    sub sp, #4
-    adds r4, r0, #0
-    ldr r0, [r4, #0x34]
-    ldr r0, [r0, #0xc]
-    cmp r0, #1
-    beq .L08039E00
-    movs r0, #0x78
-    bl func_080AB788
-    adds r0, #0xf0
-    lsls r0, r0, #0x10
-    lsrs r0, r0, #0x10
-    ldr r2, .L08039E08 @ =0xFFFF0000
-    ldr r1, [sp]
-    ands r1, r2
-    orrs r1, r0
-    ldr r0, .L08039E0C @ =0xFF80FFFF
-    ands r1, r0
-    movs r0, #0xf0
-    lsls r0, r0, #0xe
-    orrs r1, r0
-    ldr r0, .L08039E10 @ =0xFF7FFFFF
-    ands r1, r0
-    ldr r0, .L08039E14 @ =0x00FFFFFF
-    ands r1, r0
-    str r1, [sp]
-    ldr r0, [r4, #0x34]
-    mov r1, sp
-    bl func_0809C0C8
-    ldr r0, [r4, #0x34]
-    movs r1, #0xf
-    bl func_0809C068
-    adds r0, r4, #0
-    movs r1, #2
-    movs r2, #0
-    bl func_08032384
-    adds r0, r4, #0
-    movs r1, #0xaa
-    bl func_080200C4
-.L08039E00:
-    add sp, #4
-    pop {r4}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L08039E08: .4byte 0xFFFF0000
-.L08039E0C: .4byte 0xFF80FFFF
-.L08039E10: .4byte 0xFF7FFFFF
-.L08039E14: .4byte 0x00FFFFFF
-
-    thumb_func_start func_08039E18
-func_08039E18: @ 0x08039E18
-    push {r4, lr}
-    sub sp, #4
-    adds r4, r0, #0
-    ldr r0, [r4, #0x34]
-    ldr r0, [r0, #0xc]
-    cmp r0, #1
-    beq .L08039E72
-    movs r0, #0x78
-    bl func_080AB788
-    adds r0, #0xf0
-    lsls r0, r0, #0x10
-    lsrs r0, r0, #0x10
-    ldr r2, .L08039E7C @ =0xFFFF0000
-    ldr r1, [sp]
-    ands r1, r2
-    orrs r1, r0
-    ldr r0, .L08039E80 @ =0xFF80FFFF
-    ands r1, r0
-    movs r0, #0xf0
-    lsls r0, r0, #0xe
-    orrs r1, r0
-    movs r0, #0x80
-    lsls r0, r0, #0x10
-    orrs r1, r0
-    ldr r0, .L08039E84 @ =0x00FFFFFF
-    ands r1, r0
-    str r1, [sp]
-    ldr r0, [r4, #0x34]
-    mov r1, sp
-    bl func_0809C0C8
-    ldr r0, [r4, #0x34]
-    movs r1, #4
-    bl func_0809C068
-    adds r0, r4, #0
-    movs r1, #2
-    movs r2, #0
-    bl func_08032384
-    adds r0, r4, #0
-    movs r1, #0xaa
-    bl func_080200C4
-.L08039E72:
-    add sp, #4
-    pop {r4}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L08039E7C: .4byte 0xFFFF0000
-.L08039E80: .4byte 0xFF80FFFF
-.L08039E84: .4byte 0x00FFFFFF
+    .section .text.after_entity39e18, "ax", %progbits
     .section .text.after_entity39e8c, "ax", %progbits
     thumb_func_start func_08039E98
 func_08039E98: @ 0x08039E98
@@ -6691,39 +6567,7 @@ func_08039E98: @ 0x08039E98
     pop {r1}
     bx r1
 
-    thumb_func_start func_08039F50
-func_08039F50: @ 0x08039F50
-    push {r4, r5, lr}
-    adds r4, r0, #0
-    adds r5, r1, #0
-    ldr r0, .L08039F8C @ =vtable_unk_080E76BC
-    str r0, [r4, #0x4c]
-    ldr r1, [r4, #0x48]
-    cmp r1, #0
-    beq .L08039F6C
-    ldr r0, [r1, #0x24]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-.L08039F6C:
-    adds r0, r4, #0
-    adds r0, #8
-    movs r1, #2
-    bl func_080A47B4
-    movs r0, #1
-    ands r0, r5
-    cmp r0, #0
-    beq .L08039F84
-    adds r0, r4, #0
-    bl __builtin_delete
-.L08039F84:
-    pop {r4, r5}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L08039F8C: .4byte vtable_unk_080E76BC
-
+    .section .text.after_entity39f50, "ax", %progbits
     thumb_func_start func_08039F90
 func_08039F90: @ 0x08039F90
     push {r4, r5, r6, r7, lr}

@@ -2,26 +2,26 @@
 
 ## Current NPC/entity family frontier - October 6, 2026
 
-The current `Live-temp` working checkpoint builds on pushed `324911e` and adds **140 exact retail range bytes** from the mapped five-mode strategy machine and nearby helpers. The full ROM remains `fomt.gba: OK`. All five 4-byte strategy slots are now identified, the exact strategy selector is in source, and the three large remaining update methods are behavior-complete with preserved scratch frontiers rather than open semantic mysteries.
+The current `Live-temp` working checkpoint builds on pushed `f154aef` and adds **332 exact retail range bytes**: paired mode-4 setup helpers `39DA8/39E18`, typed `UnknownEntityThing` factory `39A30`, and effect-owner destructor `39F50`. The full ROM remains `fomt.gba: OK`. The adjacent `39E98` constructor is behavior-complete and exact-size, parked only on register allocation.
 
 ## Current throughput inventory - October 6, 2026
 
-`tools/ches/build_decomp_inventory.py` now reports **2,346 linked assembly functions / 870,008 asm code bytes**, with inferred function ranges covering **868,844 bytes = 99.8662%** and **1,164 unattributed asm bytes**. This turn promoted exact `3930C`, `396F4`, `398A0`, `39E88`, `39E8C`, `39A5C`, `39D4C`, `39D5C`, and `39D98`. The large strategy updates `39204`, `39310`, `3955C`, and `39708` are bounded on source lifetime/register allocation and should remain parked absent new type/compiler evidence.
+`tools/ches/build_decomp_inventory.py` now reports **2,342 linked assembly functions / 869,676 asm code bytes**, with inferred function ranges covering **868,512 bytes = 99.8662%** and **1,164 unattributed asm bytes**. Exact source now owns the paired mode-4 state setup, the local effect factory, and destructor. `39E98` is exact-size 0xB8/109 with its real 8-byte `SpriteAnimation` temporary recovered; next structural target is destructor `399C0`.
 
 ## Current project status
 
 - `make progress` tracks reconstruction across code and non-code ROM bytes instead of reporting only executable code.
-- Current **code reconstruction** is **70,028 / 940,036 = 7.4495%**.
+- Current **code reconstruction** is **70,360 / 940,036 = 7.4848%**.
 - Current **data/assets reconstruction** is **75,334 / 6,777,404 = 1.1115%**:
   - 31,110 bytes are linked typed/source non-code data;
   - 44,224 bytes are editable generated packed-sprite graphics/palettes;
   - the generated packed-sprite total is 33,664 graphics bytes + 10,560 palette bytes;
   - 396 mixed source-owned `.rom_header` bytes count only toward overall reconstruction.
-- Current **overall meaningful-ROM reconstruction** is **145,758 / 7,717,440 = 1.8887%**. Final ROM padding is excluded from this denominator.
+- Current **overall meaningful-ROM reconstruction** is **146,090 / 7,717,440 = 1.8930%**. Final ROM padding is excluded from this denominator.
 - PRET-style ROM-space reporting remains **671,168 bytes = 655.44 KiB = 8.0009% contiguous tail free space**.
 - Asset/data progress is conservative: an opaque `.incbin` does not count merely because it was identified or extracted; editable project-side source must regenerate the retail bytes exactly.
 - Progress implementation: `tools/scripts/calcprogress.py`, `tools/progress_manifest.json`, and `docs/ASSET_DECOMPILATION.md`.
-- The current retail priority is **whole-game throughput by coherent TU/type/similarity family**. The five-mode Entity38740 strategy machine is now mapped and its small selectors/helpers are exact. Do not tune the parked large updates. Continue with paired 0x70 setup helpers `func_08039DA8` and `func_08039E18`, which share one mode-4 packed-state construction shape.
+- The current retail priority is **whole-game throughput by coherent TU/type/similarity family**. Continue with `func_080399C0`: its first scratch attempt only failed on two declaration issues (non-default AActorEntity base construction and duplicate `__vt_7AEntity` declaration), not on semantics. Fix those, compare the 0x70 destructor, and leave exact-size `39E98` parked unless new allocator/type evidence appears.
 - Raw binary relocation does not count as progress. Retail SHA1 remains the final authority.
 
 

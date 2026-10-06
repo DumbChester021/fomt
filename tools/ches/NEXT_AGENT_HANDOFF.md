@@ -1,33 +1,33 @@
 # Current FoMT continuation — October 6, 2026
 
-## CURRENT CHECKPOINT - five-mode strategy machine mapped; +140 exact bytes; large updates bounded - October 6, 2026
+## CURRENT CHECKPOINT - paired mode-4 setup exact; effect factory/destructor exact; constructor bounded - October 6, 2026
 
-- Continued from pushed checkpoint `324911e` on `Live-temp`.
-- Promoted **140 exact retail range bytes** this turn:
-  - `func_0803930C`: **0x04 / 0**, returns true.
-  - `func_080396F4`: **0x14 / 0**, returns 3 when state byte +0x12 is nonzero, else 0.
-  - `func_080398A0`: **0x04 / 0**, returns 2.
-  - `func_08039E88`: **0x04 / 0**, returns 2.
-  - `func_08039E8C`: **0x0C / 0**, returns owner strategy pointer at +0x38 indexed by state mode +0x0C.
-  - `func_08039A5C`: exact **0x02 body + 2-byte retail alignment**, empty hook.
-  - `func_08039D4C`: **0x10 / 0**, u16 lookup from `gUnk_080F16AE[index]`.
-  - `func_08039D5C`: exact **0x3A body + 2-byte retail alignment** from the natural explicit five-case switch; mode 1 -> 0x8000, mode 2 -> 0x10000, all others -> 0.
-  - `func_08039D98`: **0x10 / 0**, returns whether state mode is not 4.
+- Continued from pushed checkpoint `f154aef` on `Live-temp`.
+- Promoted **332 exact retail range bytes** this turn:
+  - `func_08039DA8`: **0x70 / 0**.
+  - `func_08039E18`: **0x70 / 0**.
+  - `func_08039A30`: **0x2C / 0**.
+  - `func_08039F50`: **0x40 / 0**.
+- The paired 0x70 setup helpers matched on the **first natural packed-bitfield source**. Their mode-4 state word is now proven:
+  - low 16-bit timer = `func_080AB788(0x78) + 0xF0`;
+  - 7-bit sub-counter = `0x3C`;
+  - target-kind bit = 0 in `39DA8`, 1 in `39E18`;
+  - top-byte facing timer = 0.
+  - Both refuse to run while state mode is 1, set mode 4 through `func_0809C0C8`, call `func_08032384(owner,2,false)`, then `func_080200C4(owner,0xAA)`; energy decrement is 15 for `39DA8`, 4 for `39E18`.
+- `func_08039A30` is the typed natural factory `new UnknownEntityThing(owner, 2, 0x1B, 0, 8, 0, false)`; first candidate matched exactly.
+- `func_08039F50` destructor matched exactly from the natural ownership model: reset vtable 76BC, virtual-destroy optional child at +0x48 with flag 3, release embedded effect at +8 through `func_080A47B4(...,2)`, conditionally free self.
 - Full production gate passes: `make -B -j4 compare` -> **`fomt.gba: OK`**, retail SHA1 unchanged.
-- Current progress: **70,028 / 940,036 = 7.4495% code**, **870,008 asm bytes** remain; **2,346 unresolved linked asm functions**; inferred ranges **868,844 / 870,008 = 99.8662%**; unattributed asm **1,164 bytes**. Data/assets remain **75,334 / 6,777,404 = 1.1115%**; meaningful ROM is **145,758 / 7,717,440 = 1.8887%**; free tail remains **671,168 bytes**.
-- The five 4-byte strategy objects installed by `func_080398A4` are now mapped:
-  - slot 0 / vtable 74CC: +08 `391FC` no-op, +0C `39200` returns 0.
-  - slot 1 / vtable 74BC: +08 `39204`, +0C `3930C` returns 1.
-  - slot 2 / vtable 74AC: +08 `39310`, +0C `39E88` returns 2.
-  - slot 3 / vtable 749C: +08 `3955C`, +0C `396F4` returns 0 or 3 from state flag.
-  - slot 4 / vtable 748C: +08 `39708`, +0C `398A0` returns 2.
-  - exact `39E8C` selects `owner->strategies_38[state->mode_0C]`.
-- Large strategy update frontiers are behavior-complete and parked:
-  - `39310` retail 0x24C: v1 **0x218/542** missed the previous-waypoint check; v2 `candidate-strategy-39310-v2.cc` is strongest at **0x248/505** and closes behavior; v3 shared-epilogue shape regressed to **0x238/540**. Mode 2 chases a same-map active target, tracks timer/retry count/last waypoint/target id, recalculates facing early when the actor reaches the stored waypoint, and transitions/reacquires through the existing mode setters.
-  - `3955C` retail 0x198: v1 `candidate-strategy-3955c-v1.cc` **0x194/383** is behavior-complete; v2b separate raw-state/mode lifetime improves diffs to **0x19E/362** but overshoots size. Mode 3 handles countdown/flag, near-target virtual +0x80 interaction, subtracts 4 state energy, then chooses the next mode.
-  - `39708` retail 0x198: v1b `candidate-strategy-39708-v1.cc` is **exact-size 0x198/290**, strongest; v2 packed-lifetime experiment regressed to **0x194/342**. Mode 4 contains timer + 7-bit subcounter + target-kind bit + facing timer, follows entity 0 or 0x2B, updates facing through `func_080ABE58`, then falls back through `func_080323C8` and next-mode selection.
-- Existing parked `39204` (0x110/210 best), `38820` (0x108/183), and `38EE0` (0x1EC/127) remain closed; do not reopen any parked strategy/controller without new original-type/compiler evidence.
-- **Exact next action on Continue:** reconstruct the adjacent paired setup helpers `func_08039DA8` and `func_08039E18`. Both retail ranges are exactly **0x70**, share the same mode-4 packed-state construction and owner setup, and differ mainly in target-kind bit and energy decrement (15 vs 4). Scratch one natural packed-state representative, then batch the sibling if it matches.
+- Current progress: **70,360 / 940,036 = 7.4848% code**, **869,676 asm bytes** remain; **2,342 unresolved linked asm functions**; inferred ranges **868,512 / 869,676 = 99.8662%**; unattributed asm **1,164 bytes**. Data/assets remain **75,334 / 6,777,404 = 1.1115%**; meaningful ROM is **146,090 / 7,717,440 = 1.8930%**; free tail remains **671,168 bytes**.
+- `func_08039E98` constructor is behavior-complete and parked on register lifetime:
+  - v1 fake 4-byte provider result: **0xB2 / 172**.
+  - v2 `candidate-ctor-39e98-v2.cc`: **exact-size 0xB8 / 109**, strongest.
+  - Key type proof: provider virtual +0x0C returns the real **8-byte `SpriteAnimation`** temporary; its first frame sprite id is passed through provider virtual +0x10 into the optional 0x4C child. This recovers retail's 0x14 stack frame and r8/r9 saves. Remaining mismatch is register assignment/lifetime, not unknown behavior.
+- `func_080399C0` is the next clean destructor target. First scratch `candidate-dtor-399c0-v1.cc` did **not compile**, so there is no match result yet. Diagnostic is purely source declaration shape:
+  - derived scratch class used `AActorEntity` without declaring a constructor, but the base has only non-default constructors;
+  - scratch incorrectly redeclared `__vt_7AEntity`; the existing declaration is `AEntity::__vt_7AEntity`.
+  - Retail semantics are already visible: copy current `ActorLocation` into actor state +0x34, delete the five strategy pointers +0x38..+0x48 in reverse, restore AEntity vtable, virtual-destroy SmartPtr target +0x10 with flag 3, conditionally free self.
+- Existing parked strategy updates `39204`, `39310`, `3955C`, `39708` and controller islands `38820`/`38EE0` remain closed unless new original-type/compiler evidence appears.
+- **Exact next action on Continue:** fix only the two declaration issues in `candidate-dtor-399c0-v1.cc` (declare a derived constructor or use a raw overlay; use existing `AEntity::__vt_7AEntity` instead of redeclaring it), compare retail `0x080399C0..0x08039A30` (0x70), then promote if exact/near-exact. Do not reopen `39E98` allocator tuning first.
 
 ## SUPERSEDED CHECKPOINT - location-bound actor island behavior-complete; move into rank-11 entity region - October 6, 2026
 

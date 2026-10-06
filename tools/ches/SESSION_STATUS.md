@@ -1,14 +1,15 @@
 # Ches Session Status — FOMT decomp
 
-## CURRENT SNAPSHOT - 7.4495%; five-mode strategy machine mapped, +140 exact bytes - October 6, 2026
+## CURRENT SNAPSHOT - 7.4848%; mode-4 setup/factory/destructor exact - October 6, 2026
 
-- Active branch `Live-temp`; continued from pushed checkpoint `324911e`.
-- Added **140 exact retail range bytes** across `3930C`, `396F4`, `398A0`, `39E88`, `39E8C`, `39A5C`, `39D4C`, `39D5C`, and `39D98`. Full ROM remains **`fomt.gba: OK`**.
-- Progress: **70,028 / 940,036 = 7.4495% code**, **870,008 asm bytes**, **75,334 data/assets**, **145,758 meaningful-ROM bytes = 1.8887%**, **671,168 bytes free**.
-- Inventory: **2,346 linked asm functions**, **868,844 / 870,008 inferred range bytes = 99.8662%**, **1,164 unattributed bytes**.
-- Five strategy slots are mapped end-to-end, including exact selector `39E8C`. Large updates are behavior-complete but compiler/lifetime-sensitive: `39204` 0x110/210, `39310` 0x248/505, `3955C` 0x194/383 (v2b 0x19E/362), `39708` exact-size 0x198/290.
-- Existing parked `38820` and `38EE0` remain closed.
-- Next: paired 0x70 helpers `39DA8` and `39E18`, which construct mode-4 packed state and differ primarily in target-kind bit and energy decrement.
+- Active branch `Live-temp`; continued from pushed checkpoint `f154aef`.
+- Added **332 exact retail range bytes**: `39DA8` 0x70/0, `39E18` 0x70/0, `39A30` 0x2C/0, `39F50` 0x40/0. Full ROM remains **`fomt.gba: OK`**.
+- Progress: **70,360 / 940,036 = 7.4848% code**, **869,676 asm bytes**, **75,334 data/assets**, **146,090 meaningful-ROM bytes = 1.8930%**, **671,168 bytes free**.
+- Inventory: **2,342 linked asm functions**, **868,512 / 869,676 inferred range bytes = 99.8662%**, **1,164 unattributed bytes**.
+- Mode-4 packed state is proven: timer u16, 7-bit sub-counter, target-kind bit, facing-timer byte. Pair `39DA8/39E18` matched first try.
+- `39A30` typed `UnknownEntityThing` factory and `39F50` child/effect destructor matched first try.
+- `39E98` constructor is behavior-complete at **exact-size 0xB8 / 109** in `candidate-ctor-39e98-v2.cc`; real 8-byte `SpriteAnimation` temporary recovered retail frame/high-register shape. Park on register allocation.
+- Next: fix the two declaration-only compile errors in `candidate-dtor-399c0-v1.cc`, compare `399C0` retail 0x70, then promote if productive.
 
 ## SUPERSEDED SNAPSHOT - 7.3261%; location-bound actor island bounded - October 6, 2026
 
