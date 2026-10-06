@@ -95,4 +95,79 @@ The integrated class and its typed entity call sites must preserve the retail RO
 
 `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`
 
-Because `SpriteAnimator::Update` depends on the FoMT compatibility compiler's pointer-only post-dead ordering behavior, exact validation must use the repository's tracked compatibility compiler path once that behavior is installed there.
+Because `SpriteAnimator::Update` depends on the FoMT compatibility compiler's pointer-only post-dead ordering behavior, exact validation must use the repository's tracked `tools/install_agbcp.sh` compatibility path. That behavior is already part of the current tracked patch and installer.
+
+
+## Packed provider / item icon bank - October 5, 2026
+
+The provider immediately before `SpriteAnimator` is now partly source-recovered.
+`func_0805E6CC` parses seven sequential packed pools and `func_0805E760`
+performs the exact animation lookup. For the item icon bank `gUnk_086678A0`,
+the counts are **493, 500, 101, 1624, 342, 0, 532**.
+
+The item-asset round trip now proves the important pool roles:
+- pool 0: 493 animation-index entries `{u16 frame_count, u16 first_frame}`;
+- pool 1: 500 16-byte sprite descriptors;
+- pool 2: 101 eight-byte GBA OBJ/OAM layout records;
+- pool 3: 4bpp OBJ tile graphics in 32-byte tile units;
+- pool 4: 16-color BGR555 palettes in 32-byte units;
+- pool 5: unused by this bank (count 0);
+- pool 6: 532 `SpriteAnimationFrame {u16 sprite_id, u16 duration}` records.
+
+Retail item icon IDs reach 492, and animation 492 reaches frame 531 and sprite
+descriptor 499, so the top of the animation/frame/descriptor namespaces is
+fully occupied. New unique item art requires extending the packed bank; existing
+icon IDs may be reused or edited without changing the provider.
+
+`func_0805E790`, the sprite-descriptor lookup, is structurally understood but
+remains assembly. Its best natural candidate is two bytes short in symbol size
+and differs only in the middle evaluation/register schedule; an explicit-local
+rewrite regressed and should not be repeated without new evidence.
+
+## Item icon PNG round trip - October 5, 2026
+
+The packed item/UI sprite bank is now an active source-asset pipeline rather
+than a view-only reverse-engineering result.
+
+`tools/packed_sprite_bank.py` exports every retail Tool/Food/Article icon to an
+indexed 4bpp-compatible PNG plus JSON metadata under `assets/item_icons/`.
+Coverage is 81 Tool + 171 Food + 95 Article icons plus two semantically
+recovered special/item-state animations: wrapped present at 352 and Basket at
+53 = **349 editable PNG assets**.
+
+All 349 promoted animations use one frame, one OBJ part and one 16-color
+palette. Their PNGs rebuild the complete `0x30080`-byte packed bank
+byte-for-byte. The
+normal Makefile generates `build/assets/item_icon_bank.bin` from the manifest,
+and `asm/data/data_0813B288.s` includes that generated bank. A forced
+`make -B -j4 compare` preserves the retail ROM SHA1.
+
+Retail sharing is preserved explicitly. The 347 icons use 347 unique sprite
+descriptors but only 232 unique graphics spans and 302 unique palette spans.
+The builder checks all shared bytes and rejects conflicting PNG edits instead of
+using last-write-wins behavior.
+
+Across the whole 493-animation bank, 450 animations already fit the simple
+one-frame/one-part/one-palette exporter. The remaining 43 are multi-frame.
+Their harder frames are ordinary multi-part OAM sprites, not a new compression
+or color format: sampled descriptors partition the graphics blob exactly through
+each part's OAM tile offset and shape.
+
+The current project policy is **not** to export the remaining bank anonymously.
+Of the 450 simple animations, **349 are now semantically owned and 101 remain
+unowned**. Animation 53 is the Basket held-item icon proven by exact
+`func_08092754`; animation 352 is the wrapped-present state icon proven by the
+wrapping renderer/mutation paths.
+For each non-item family, trace the runtime owner/consumer first, recover the
+relevant provider/rendering types, then add the simple or multi-frame/multi-part
+authoring support required by that coherent family.
+
+Animation 352 is the first completed paired target. The Rucksack renderer and
+held-item renderer replace the ordinary item icon with `0x160` whenever the
+item's wrapped flag is set, while `func_08092CD0` calls the wrapping mutation
+and redraws the chosen slot. The editable asset is
+`assets/item_icons/special/wrapped_present.png`; it contributes 128 newly
+owned graphics bytes and reuses an already-owned 32-byte palette.
+
+The authoritative checkpoint is
+`tools/ches/checkpoints/item-icon-assets-2026-10-05/README.md`.

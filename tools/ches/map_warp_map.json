@@ -1,0 +1,1089 @@
+{
+  "batch": 16,
+  "call": 230,
+  "domain": "warp/map transitions",
+  "rules": [
+    "Assume experienced maintainers are skeptical of AI-assisted work: earn trust with small, conventional, reproducible, byte-matched contributions; avoid generated noise, speculative naming, and promotional AI language. Do not misrepresent authorship or required disclosure.",
+    "Expansion-first priority: enable new characters, scenes/events, maps, dialogue, sounds/music, and graphics through matching source, editable data, verified interfaces, and useful tools. Generic cleanup/input work is secondary unless it removes a concrete content-expansion obstacle. Keep new-content changes separate from the byte-perfect baseline.",
+    "Do not equate actor/NPC schedule locations with player scene transitions without call-path proof.",
+    "Do not name numeric map IDs from string proximity alone.",
+    "Prefer script-facing action/query paths and authoritative Location packing helpers.",
+    "Top priority: minimize guessing. Cross-check proposed gameplay interpretations against documented original GBA FOMT mechanics before semantic naming or publication; distinguish other versions and remakes.",
+    "Record consulted source URLs and specific supporting claims. Separate exact ROM/data-flow evidence, documented gameplay, and hypotheses; investigate disagreements and preserve uncertainty.",
+    "ROM equivalence verifies binary preservation, not semantic correctness. Online gameplay descriptions do not independently prove internal pointer provenance."
+  ],
+  "status": "Call220 checkpoint passed on 2026-09-18. Key-input contribution is committed at 1adbd71. Character ID35 is proven to be the player's child. Retail save slots have a proven-unused 0xAF0-byte tail at relative 0x34FC..0x3FEB, suitable for versioned mod extension data. Next: expose matching save-format boundaries for persistent character expansion.",
+  "save_extension_tail_call219": {
+    "slot_base": "0x28 + slot * 0x3FEC",
+    "legacy_record": "relative 0x0000..0x34FB: u32 payload size, 0x34F4-byte GameState payload, u32 additive checksum",
+    "unused_tail": "relative 0x34FC..0x3FEB, size 0xAF0",
+    "audit": "8 proxy writes, 9 proxy reads, 3 slot-base callers, 4 low-level SRAM call branches, no raw SRAM bypass found",
+    "modding_use": "separately versioned extension record for added resident state without changing retail payload/checksum",
+    "caveat": "coordinate allocation with other hacks that may use the same tail",
+    "evidence": "tools/ches/checkpoints/call220/save-tail-audit.md"
+  },
+  "fishing_input_provenance_call170": {
+    "result": "Exact input provenance; proposed direct TerrainInfo connection rejected.",
+    "owner": "0xF8-byte scene implementation allocated by func_08011DC4 and stored at handle+4; func_08014AF8 installs GameObject at implementation+0xA8.",
+    "run_path": "handle vtable_unk_080E5E64 +0x0C -> func_08012028 -> sub_080D8178(r1=implementation).",
+    "run_frame": "S denotes sub_080D8178 local SP after its 0x590-byte allocation; sl=owner; [S+0x564]=owner+0xA8.",
+    "dispatch": "0x080DAB0C calls [GameObject.vtable+0x0C]=func_08017C30 with r1=S+0x4C0 and [S+0x4C0]=S+0x10.",
+    "wrapper_copy": "func_08017C30 copies *arg2 into local wrapper word+0, adds update byte+4, then dispatches entity vtable+0x18 at 0x0801805A.",
+    "player_slot": "vtable_unk_080E6658 +0x18 contains ROM Thumb pointer 0x08024CD1.",
+    "fishing_pointer": "func_08024CD0 forwards wrapper.word0; func_0802F0EC r4=S+0x10 unless actor+0xC5 nulls it.",
+    "producer": "S+0x10 initialized by func_080091A4 and updated at 0x080D8FEA by func_08009268 -> func_08009190 -> func_08009158 -> func_0800912C.",
+    "halfword_plus4": "current_keys & ~previous_keys; current_keys=0x03FF & ~KEYINPUT read from 0x04000130.",
+    "mask2": "KEY_B, newly pressed; not TerrainInfo bit1.",
+    "online_crosscheck": "Consulted https://fogu.com/hm4/farm/fishing.htm on 2026-09-17. Original FOMT guide describes B-button casting and pressing B at the bite indicator to reel in; corroborates state-31 gameplay, not internal pointer layout or TerrainInfo semantics. See call170/online-crosscheck.md.",
+    "evidence": "tools/ches/checkpoints/call170/fishing-input-proof.md",
+    "verification": "make compare, ROM SHA1, JSON parsing, and git diff --check passed; staged index empty; ches-dev HEAD 8c52b9f. See call170/verification.log.",
+    "terrain_status": "Collision and Ball-discard behavior exact; water/special-surface interpretation strongly supported independently, not proven by these fishing input masks."
+  },
+  "location_representation": {
+    "Location": {
+      "size_semantics": "packed/align2 structure with 10-bit map id and signed 16-bit x/y",
+      "fields": {
+        "map": "10 bits",
+        "x": "i16",
+        "y": "i16"
+      },
+      "map_none": "0x234"
+    },
+    "ActorLocation": {
+      "extends": "Location",
+      "extra": "u8 facing at +0x06"
+    },
+    "Farmer": {
+      "location_field": "Farmer::location",
+      "getter": "func_0800E924",
+      "setter": "func_0800EB34"
+    }
+  },
+  "open_questions": [
+    "Map exact logical Location IDs to semantic place names with authoritative evidence.",
+    "Decode TerrainInfo warp bits and the transition consumer that converts a stepped-on warp into destination Location.",
+    "Determine the exact meaning/range of logical map IDs 0x34..0x233 and how func_0803A8A4 groups dynamic farm/mine/location variants.",
+    "Trace the direct Farmer setter to distinguish stored-location mutation from active scene transition."
+  ],
+  "map_data_table": {
+    "symbol": "gUnk_08105EDC",
+    "getter": "GetMapData @ 0x080A4698",
+    "record_size": "0x28",
+    "blob_size": "0xA50",
+    "physical_record_count": 66,
+    "physical_resource_indices": "0x00..0x41",
+    "blob_end": "0x0810692C",
+    "index_formula": "gUnk_08105EDC + resource_index * 0x28",
+    "guardrail": "Do not call arbitrary logical Location IDs physical MapData indices; traced engine paths use func_0803A8A4 to resolve variants.",
+    "logical_location_count": 564,
+    "logical_ids": "0x000..0x233",
+    "map_none": "0x234 logical sentinel",
+    "resolver": "func_0803A8A4"
+  },
+  "farmer_forced_location_candidate": {
+    "observed_setter": "func_0800EB34",
+    "constructed_location": {
+      "map_id": 7,
+      "x": 4,
+      "y": 1,
+      "facing": 0
+    },
+    "status": "numeric destination proven; semantic map name and whether this is a full scene transition remain pending caller-path proof",
+    "context": "The map=7,x=4,y=1,facing=0 write occurs inside sub_08082F50 forge transaction flow after material removal/money debit; treat it as a special forced relocation until broader scene-transition calls prove otherwise."
+  },
+  "map_data_fields_proven": {
+    "+0x20": "u16 width in tiles; traced GameObject width helper returns this * 8 pixels",
+    "+0x22": "u16 height in tiles; traced GameObject height helper returns this * 8 pixels",
+    "+0x24": "bool is_interior per existing structure declaration; across all 66 actual records value is strictly 0 or 1",
+    "+0x18": "TerrainInfo pointer per existing structure declaration; selected for non-current target-map setup in func_0801A054",
+    "+0x1C": "terrain_map pointer per existing structure declaration; selected for non-current target-map setup in func_0801A054"
+  },
+  "correction_call5": {
+    "supersedes_call4_record_count": true,
+    "error": "Call4 incorrectly treated bytes after the 0xA50-byte gUnk_08105EDC blob as additional 0x28-byte MapData records.",
+    "correct_physical_table": "gUnk_08105EDC is exactly 0xA50 bytes = 66 * 0x28-byte MapData records, physical resource indices 0x00..0x41.",
+    "logical_vs_physical": "Location/logical map IDs have a wider domain (helpers explicitly accept <=0x233), but func_0803A8A4 resolves logical map/state combinations to the compact physical MapData resource indices before GetMapData is used in the traced GameObject paths.",
+    "map_none": "0x234 remains the Location sentinel, but it is NOT established by table-end geometry."
+  },
+  "terrain_warp_trace": {
+    "starting_point": "MapData +0x18 TerrainInfo pointer, +0x1C terrain_map byte-index map",
+    "known_layout_hint": "TerrainInfo is 4 bytes; existing header comment says bit0=solid, some bits 1..16/17 contain warp info, upper bits contain interaction script ID. This comment remains a hypothesis until the exact masks are re-proven from consumers.",
+    "goal": "identify exact lookup helper and masks that extract collision, warp destination/index, and interaction script fields",
+    "call7_focus": "Decode 0x080A44xx-0x080A46xx map/tile accessor cluster, especially func_080A4650 observed in func_0801A13C, and connect coordinate lookup to packed TerrainInfo descriptor bits.",
+    "rom_population_evidence": "Across actual terrain tables, descriptor values visibly separate bit0, a low/middle packed field, and an upper packed field; exact semantics await accessor-consumer proof.",
+    "correction_call8": "func_080A4650 is not a TerrainInfo accessor. It performs an independent table lookup through gUnk_08105708 using tile-coordinate-derived and caller-supplied indices, returning a byte classification stored at GameObject/GameState-side +0x104C in traced callers.",
+    "strong_mask_lead": "Entity code contains repeated mask 0x0001FFFC, exactly bits 2..16 of a 32-bit word; Call9 traces these consumers before assigning semantic names.",
+    "descriptor_partition_proven": "Retail TerrainInfo descriptor population separates bit0, rare standalone bit1, bits2..16 (mask 0x0001FFFC), and bits17..31. Across 446 unique descriptors, no descriptor has both bits2..16 and bits17..31 nonzero.",
+    "mask_consumers": "func_08024CD0 and func_0802AEA4 contain direct 0x0001FFFC tests in movement/entity logic. Call10 records exact dataflow needed to decide whether this field is warp/transition metadata.",
+    "func_080A4650_status": "excluded from TerrainInfo path; independent gUnk_08105708 lookup.",
+    "payload_extractors": "bits2..16 are extracted as (descriptor >> 2) & 0x7FFF in func_08024CD0; bits17..31 are extracted as descriptor >> 17 in func_0802D59C. Both are passed through the same virtual slot +0x140 on the owning game object.",
+    "status_call11": "identifying shared +0x140 virtual consumer to assign payload semantics",
+    "shared_consumer_candidate": "The +0x140 virtual slot used by both TerrainInfo payload classes is annotated at func_08024CD0 as func_0801D9A8; Call12 traces this target and compares its IDs with known event/script invocations.",
+    "status_call12": "proving whether descriptor payload IDs are script/event IDs and separating trigger conditions",
+    "dispatcher_path": "Both descriptor payload classes call GameState virtual +0x140; the concrete GameState vtable entry is func_0801D9A8, which forwards to func_08012B24 on the object at GameState+0x1054. Call13 identifies the lower resolver and backing index/table semantics.",
+    "status_call13": "tracing func_08012B24 to mechanically prove first payload word is a retail script/event index",
+    "script_engine_anchor": "GameState+0x1054 is used through the ScriptEngine-related resolver family; Call14 narrows func_08012B24 and ScriptEngine::LoadById to prove the payload-ID interpretation without relying on numeric-range coincidence.",
+    "status_call14": "narrow resolver proof: func_08012B24 -> script engine load/dispatch path",
+    "correction_call15": "Supersedes Call13/14 wording that treated GameState+0x1054 or func_08012B24 as a ScriptEngine resolver. func_0801D9A8 dereferences GameState+0x1054 but func_08012B24 ignores its r0 argument and enqueues the caller-provided 8-byte record into global request queues.",
+    "request_queue_geometry": {
+      "mode0": {
+        "count_offset": "0x378",
+        "records_offset": "0x37C",
+        "capacity": 2,
+        "stride": 8
+      },
+      "mode1": {
+        "count_offset": "0x38C",
+        "records_offset": "0x390",
+        "capacity": 40,
+        "stride": 8
+      },
+      "mode2": {
+        "count_offset": "0x4D0",
+        "records_offset": "0x4D4",
+        "capacity": 1,
+        "stride": 8
+      }
+    },
+    "terrain_record_shape": "Both traced TerrainInfo paths construct {extracted_payload, 0} and invoke the GameState virtual queue method with mode 0.",
+    "status_call15": "trace queue consumer to ScriptEngine::LoadById; determine whether record word0 is event script id and word1 is load context/argument",
+    "request_identity_proven": "The global queue consumer pops an 8-byte request and calls ScriptEngine::LoadById(word0, word1). Therefore TerrainInfo extracted payloads passed as {payload,0} are proven retail event-script IDs loaded with arg_r2/context 0.",
+    "request_queue_consumer": "sub_080D8178/code_linkonce central scene/game loop consumer; it drains queued records before LoadById on the global ScriptEngine at *gUnk_0300040C + 8.",
+    "status_call16": "classify bits2..16 vs bits17..31 by trigger condition and identify action/callable that performs player map transition",
+    "status_call17": "extract exact trigger predicates for descriptor bits2..16 and bits17..31; map terrain script IDs to callable path that writes Farmer ActorLocation",
+    "descriptor_script_fields": {
+      "bits_2_16": {
+        "mask": "0x0001FFFC",
+        "extract": "(word >> 2) & 0x7FFF",
+        "loader_request": "{script_id, 0}",
+        "consumer": "func_08024CD0"
+      },
+      "bits_17_31": {
+        "mask_high_half": "0xFFFE",
+        "extract": "(word >> 17) & 0x7FFF",
+        "loader_request": "{script_id, 0}",
+        "consumer": "func_0802D59C"
+      }
+    },
+    "status_call18": "classify caller semantics of the two terrain script channels and map dispatcher case containing direct Farmer ActorLocation setter",
+    "forge_setter_correction": "The map=7,x=4,y=1 direct Farmer::location write is in sub_08082F50 (forge transaction/state machine), not func_0803F8DC script callable dispatcher; do not treat it as generic warp architecture.",
+    "direct_farmer_location_setter_count": 2,
+    "status_call19": "trace the second Farmer::location setter and live AEntity/AActorEntity map/location mutation paths used by normal gameplay transitions",
+    "proven_at_call20": {
+      "farmer_location_setter_callsites": 2,
+      "forge_direct_setter": "sub_08082F50 constructs ActorLocation(map=7,x=4,y=1,facing=0) and writes Farmer::location; this is forge transaction/state logic, not generic script dispatch.",
+      "player_entity_constructor": "func_0802B908 obtains Farmer::location via func_0800E924 and constructs an AActorEntity-derived object with that ActorLocation, then installs vtable_unk_080E676C.",
+      "runtime_to_save_sync": "The other func_0800EB34 call reads GetLocation__C12AActorEntity from the live actor object and copies it into the Farmer object referenced by entity field +0x38. Exact containing symbol/callers are recorded from Call20 source extraction.",
+      "terrain_low_channel": "descriptor bits2..16 -> script id ((word>>2)&0x7FFF) -> queue {id,0} mode0 -> ScriptEngine::LoadById.",
+      "terrain_high_channel": "descriptor bits17..31 -> script id ((word>>17)&0x7FFF) -> queue {id,0} mode0 -> ScriptEngine::LoadById.",
+      "important_nonclaim": "No generic warp destination is encoded directly in TerrainInfo by current proof. The proven packed fields are event-script IDs; any warp destination must be supplied by script/action logic or another structure."
+    },
+    "status_call20": "checkpoint: player saved ActorLocation seeds live player actor; a runtime sync path copies live AActorEntity location back to Farmer; next trace script/action transition that mutates live actor map/location.",
+    "player_location_sync": {
+      "routine": "func_08024A80",
+      "direction": "live AActorEntity -> Farmer::location",
+      "mechanism": "GetLocation__C12AActorEntity then func_0800EB34 on entity field +0x38 Farmer pointer"
+    },
+    "scripted_location_candidates": [
+      "func_08016FA4",
+      "func_080D7F9C"
+    ],
+    "status_call21": "trace paired SetLocation routines and their callers/virtual ownership to identify ordinary scripted player warp action",
+    "generic_live_location_primitive": {
+      "routine": "func_08016FA4",
+      "proof": "directly called by func_0803F8DC script callable dispatcher; resolves selected live entity then writes destination location",
+      "destination_fields": "map is r2; x is r3; y and facing are stack arguments, packed into Location/ActorLocation before SetLocation",
+      "actor_branch": "entity selector <= 0x49 uses SetLocation__12AActorEntityRC13ActorLocation and applies facing",
+      "generic_entity_branch": "entity selector > 0x49 uses SetLocation__7AEntityUiii with map/x/y; facing is not applied through this path",
+      "post_move": "invokes entity vtable slot +0x20 after SetLocation; additional Farmer/relationship side effects depend on entity/map ranges",
+      "linkonce_twin": "func_080D7F9C is structurally equivalent and reached through wrappers such as func_08012064"
+    },
+    "status_call22": "exact dispatcher callable ID and VM argument order being pinned from narrow case block",
+    "script_callable_0x12E": {
+      "dispatcher": "func_0803F8DC case 302 / 0x12E",
+      "target": "func_08016FA4",
+      "vm_pop_order_top_to_bottom": [
+        "y",
+        "x",
+        "map",
+        "entity_selector"
+      ],
+      "source_push_order": [
+        "entity_selector",
+        "map",
+        "x",
+        "y"
+      ],
+      "facing": 0,
+      "effective_operation": "relocate selected live entity to map,x,y with facing=0 for AActorEntity branch; generic AEntity branch writes map,x,y",
+      "proof": "case .L080453E0 pops four values and passes r1=pop4,r2=pop3,r3=pop2,arg5=pop1,arg6=0"
+    },
+    "status_call23": "correlating callable 0x12E with decoded retail scripts and terrain-triggered script IDs",
+    "callable_0x12e_literal_sites": 4,
+    "status_call24": "mapping all four 0x12E sites to event-script IDs, decompiling exact arguments, and cross-referencing those IDs with TerrainInfo low/high channels and source tile coordinates",
+    "call24_correction": {
+      "callable_0x12E_scripts": [
+        5,
+        7,
+        694,
+        981
+      ],
+      "terrain_references_to_these_scripts": 0,
+      "interpretation": "0x12E is a generic cross-map entity relocation primitive used by cutscenes/state scripts, but is not directly the normal TerrainInfo-triggered warp path in retail data",
+      "examples": [
+        "scripts 5 and 7 move entity 44 to map 9 x84 y124",
+        "scripts 694 and 981 move entity 0 to map 29 x0 y0"
+      ]
+    },
+    "status_call25": "enumerating all script-visible direct and indirect map/location setters, mapping them to callable IDs, and intersecting those IDs with terrain-triggered script corpus",
+    "status_call29": "testing semantic-channel correction: representative low scripts strongly resemble relocation/door entry setup (Proc016 + SetEntityPosition), while many tiny high scripts resemble message/interact handlers; exact Proc016 and terrain consumer semantics being resolved before renaming fields",
+    "call30_checkpoint": {
+      "proven": [
+        "complete retail TerrainInfo scan yields 71 low-payload script IDs and 362 high-payload script IDs with zero intersection",
+        "low payload extraction is (descriptor >> 2) & 0x7FFF when descriptor & 0x0001FFFC is nonzero",
+        "high payload extraction is descriptor >> 17",
+        "callable 0x016 plus SetEntityPosition(0x002) is overwhelmingly enriched in low-payload scripts (70/71 in Call26 profile), supporting transition/relocation semantics"
+      ],
+      "correction": "earlier provisional low=action/high=movement naming is not accepted as final; script semantics strongly indicate low payloads carry door/exit/relocation scripts while high payloads frequently carry ordinary interaction/message scripts. Exact trigger direction still requires consumer/caller proof.",
+      "open": [
+        "exact semantic/name of callable 0x016",
+        "precise trigger condition for func_08024CD0 low payload consumer",
+        "precise trigger condition for func_0802D59C high payload consumer",
+        "bit1 meaning",
+        "destination graph extraction"
+      ]
+    },
+    "proc016_provisional_semantic": "Proc016(map,x,y) is the map/scene relocation primitive paired by retail transition scripts with SetEntityPosition(0,x,y,facing); func_080122E0 packs map/x/y into Location-shaped data and dispatches it through a virtual method, then performs global transition bookkeeping. Call31 traces exact target/consumer conditions.",
+    "status_call31": "proving low TerrainInfo payload trigger via func_08024CD0 control flow and resolving Proc016 virtual destination semantics",
+    "call31_census_correction": "Call31 temporary 218 count was invalid because that one analysis snippet omitted the w*h sanity guard and admitted malformed/non-map table interpretations. Verified complete retail census remains 71 low payload script IDs and 362 high payload script IDs.",
+    "status_call32": "resolving func_08024CD0 via its exact vtable slot/call site to prove low TerrainInfo trigger semantics; corrected 71-script destination invariant recomputed",
+    "low_corpus_corrected": {
+      "unique_scripts": 71,
+      "direct_Proc016_relocations": 69,
+      "SetEntityPosition0_scripts": 70,
+      "xy_pair_matches": 69,
+      "exceptions": {
+        "339": "facing-gated Proc038(977), not ordinary warp",
+        "400": "SetEntityPosition0 without Proc016; special transition variant to inspect"
+      }
+    },
+    "status_call33": "reconstructing raw vtable_unk_080E6658 from ROM because func_08024CD0 has no symbolic direct refs/vtable entries in asm declarations; then locating exact indirect call slot",
+    "player_vtable_slot18": {
+      "vtable": "vtable_unk_080E6658",
+      "slot": "0x18",
+      "implementation": "func_08024CD0",
+      "rom_pointer_location": "0x080E6670",
+      "proof": "raw ROM vtable pointer is 0x08024CD1; constructor func_08024974 installs vtable_unk_080E6658"
+    },
+    "status_call35": "trace exact invocation/data contract of player entity vfunc +0x18 to establish whether low TerrainInfo script channel is interaction/use, collision/front-tile, or generic per-frame proximity processing",
+    "low_trigger_semantics_call35": "func_08024CD0 is player AEntity::vfunc_18 override invoked from func_08017C30 normal entity update loop; its low TerrainInfo scan is skipped when both x_speed_q16 and y_speed_q16 are zero. Therefore low channel is movement-contact processing, not a button-only interaction callback.",
+    "status_call36": "trace func_0802F0EC state 7 and func_0802D59C high-field consumer; compare high-script corpus with low movement-contact warp corpus",
+    "high_channel_call36": {
+      "consumer": "func_0802D59C via func_0802F0EC state case 7",
+      "descriptor_mask": "0xFFFE0000 / high halfword mask 0xFFFE",
+      "script_extract": "descriptor >> 17",
+      "input_gate": "bit 0 of second halfword at update-input +4 must be set",
+      "geometry": "tests terrain tile projected in current facing direction before enqueueing {script_id,0}",
+      "retail_corpus": {
+        "unique_scripts": 362,
+        "low_overlap": 0,
+        "descriptors_with_both_channels": 0
+      },
+      "behavioral_examples": [
+        "Bucket",
+        "Straw",
+        "Tools",
+        "Water Tank",
+        "Bench",
+        "Boat",
+        "Counter",
+        "Bookshelf",
+        "Bed",
+        "locked doors"
+      ],
+      "current_semantic": "front-facing inspect/use interaction; physical key mapping under direct KEYINPUT trace at Calls 38-40",
+      "hardware_key_evidence_call40": {
+        "reader": "func_0800912C",
+        "operation": "0x03FF & ~REG_KEYINPUT, producing active-high pressed-key bits",
+        "gba_bit0": "KEY_A (tools/libsix/include/six/asm/hw/input.s)",
+        "input_state_helpers": {
+          "func_08009190": "samples new hardware state and stores new & ~old at object+4",
+          "func_08009168": "samples hardware state and copies current state to object+4"
+        },
+        "remaining_chain": "identify which helper/state variant feeds func_0802D59C update-input +4"
+      },
+      "input_edge_helpers_call44": {
+        "hardware_reader": "func_0800912C = 0x03FF & ~REG_KEYINPUT",
+        "edge_sampler": "func_08009190 stores new_pressed = current & ~previous at +4",
+        "repeat_sampler": "func_08009268 calls func_08009190 each live update, then computes repeat/edge aggregate at +8",
+        "proof_target": "link gameplay input accessor/update call to func_0802F0EC input argument +4"
+      },
+      "call45_target": "prove func_0802F0EC r1 aliases/copies live input edge field +4 and func_0802D59C tests bit0, establishing KEY_A new-press interaction trigger",
+      "call46_proof": "func_0802D59C copies input halfword+4, requires bit0, computes tile one step/facing direction from actor Location, then extracts TerrainInfo high script id and enqueues {script_id,0}; func_08024CD0 passes live update packet into func_0802F0EC",
+      "call47_target": "identify hardware input +4 semantics exactly and locate func_08024CD0/func_08025018 in actor vtables/update dispatch"
+    },
+    "low_channel_call36": {
+      "unique_scripts": 71,
+      "overlap_with_high": 0,
+      "semantic": "movement-contact script channel; exact warp edge extraction already established in prior calls"
+    },
+    "status_call38": "trace update-input +4 bit0 to hardware keypad mask and prove high TerrainInfo field is A-button/front-tile interaction script channel",
+    "call48_graph_correction": "INVALID: Call48 low_warp_graph.json/.csv iterated logical Location IDs 0..0x233 directly over gUnk_08105EDC. The physical MapData table is only 66 records (0x00..0x41); logical IDs require resolver mapping. Call48 graph artifacts must not be used and will be regenerated after resolver proof.",
+    "high_input_proof_call47": {
+      "key_sample": "func_0800912C reads REG_KEYINPUT 0x04000130 and inverts the low 10 bits into pressed=1 form",
+      "edge": "func_08009190 saves prior current keys, resamples, computes new_current & ~old_current, and stores the edge mask at input object +4",
+      "consumer": "func_08024CD0 passes its per-update packet current key word and byte +4 to func_0802F0EC; the state-7 path reaches func_0802D59C, which requires bit0 of that +4 edge mask",
+      "physical_button": "GBA keypad bit0 is A; therefore high TerrainInfo bits17..31 are front-tile A-button newly-pressed interaction script IDs"
+    },
+    "call50_checkpoint": {
+      "high_channel": "TerrainInfo bits17..31 = front-tile A-button newly-pressed event-script ID. Hardware proof: REG_KEYINPUT -> inverted pressed mask; func_08009190 stores new_current & ~previous at +4; func_0802D59C gates on +4 bit0.",
+      "low_channel": "TerrainInfo bits2..16 = movement-contact event-script ID; player low scan only occurs while movement velocity is nonzero.",
+      "call48_graph": "rejected/quarantined because logical map IDs were incorrectly used as physical gUnk_08105EDC indices",
+      "physical_mapdata": "gUnk_08105EDC = 0xA50 bytes = 66 records, resource indices 0..0x41",
+      "next": "finish func_0803A8A4 logical-location/state -> physical MapData resource mapping, then regenerate exact source-region -> script -> destination graph using Mary decompile"
+    },
+    "call51_script_correction": {
+      "script400": "does contain Proc016(308+9,160,24), gated on player facing==0; prior no-Proc016 classification came from parser not evaluating expression",
+      "script339": "only low script with no direct Proc016/SetEntityPosition0 among successfully decoded scripts; facing==0 routes via Proc038(977)"
+    }
+  },
+  "logical_to_physical_resolver": {
+    "routine": "func_0803A8A4",
+    "logical_domain": "0x000..0x233",
+    "small_ids": "0x00..0x33 use explicit switch; logical 0..8 choose paired physical resources based on arg1==3; logical 0x11 varies on arg3; 0x1D varies on arg2; 0x25 varies on stack arg5; most others are fixed",
+    "large_ids": "0x34..0x233 collapse algorithmically: normalize to v=map-0x34 for <=0x133 or v=map-0x134 above; v==0 -> resource0x38; upper-half v==9 ->0x3D; else divisible-by-5 ->0x39; else divisible-by-3 ->0x3A; else ->0x3B",
+    "guardrail": "physical MapData index is resolver output, never raw logical Location.map"
+  },
+  "low_script_decompile_artifact": "tools/ches/low_transition_scripts.json",
+  "corrected_low_graph": {
+    "json": "tools/ches/low_warp_resource_graph.json",
+    "csv": "tools/ches/low_warp_resource_graph.csv",
+    "source_axis": "physical MapData resource 0..0x41",
+    "logical_sources": "attached only via func_0803A8A4 resolver conditions; not raw table indices"
+  },
+  "low_transition_graph_final_call53": {
+    "terrain_cells": 722,
+    "connected_components": 100,
+    "unique_scripts": 71,
+    "mary_structured": 65,
+    "mary_partial_recovered": 6,
+    "direct_transition_scripts": 70,
+    "indirect_transition_scripts": 1,
+    "indirect_script": 339,
+    "indirect_via": 977,
+    "artifacts": [
+      "tools/ches/low_warp_resource_graph.json",
+      "tools/ches/low_warp_resource_graph.csv",
+      "tools/ches/low_transition_classification.json"
+    ]
+  },
+  "high_interaction_graph_call54": {
+    "json": "tools/ches/high_interaction_resource_graph.json",
+    "transition_csv": "tools/ches/high_transition_resource_graph.csv",
+    "script_decompile": "tools/ches/high_interaction_scripts.json",
+    "semantics": "front-tile A-button newly-pressed event scripts",
+    "source_axis": "physical MapData resources with func_0803A8A4 logical candidates",
+    "cell_count": 7640,
+    "unique_scripts": 362,
+    "components": 637,
+    "transition_components": 41,
+    "transition_scripts": 22,
+    "mary_structured": 359,
+    "mary_partial": 3
+  },
+  "terrain_bit1_census": "tools/ches/terrain_bit1_census.json",
+  "terrain_bit1_trace_call56": {
+    "excluded_consumers": [
+      "func_08024CD0",
+      "func_0802AEA4"
+    ],
+    "reason": "both test descriptor & 0x0001FFFC, which is bits2..16 and excludes bits0..1",
+    "census_cells": 10675,
+    "census_groups": 12,
+    "retail_words": [
+      "0x2",
+      "0x3"
+    ]
+  },
+  "terrain_bit1_trace_call59": {
+    "ranked_shortlist": [
+      "func_080171F8",
+      "func_08017C30",
+      "func_080A748C",
+      "func_0801EAA0",
+      "func_080CFEA8",
+      "func_080AA6D0",
+      "func_080AA540",
+      "func_080A5760"
+    ],
+    "method": "narrow GetMapData result to terrain pointer/descriptor low-bit dataflow; avoid unrelated function-wide bit operations"
+  },
+  "terrain_bit1_trace": {
+    "call60_checkpoint": {
+      "candidate_site_1": "asm/code_809E804.s around line 27678: loaded word tested bit0 via <<31, then bit1 via <<30 sign test",
+      "candidate_site_2": "asm/code_809E804.s around line 28084: loaded word tested bit0 via <<31",
+      "significance": "first direct independent bit1 test found; owner/provenance inspection in Call60 determines whether word is TerrainInfo descriptor",
+      "prior_exclusions": [
+        "func_08024CD0",
+        "func_0802AEA4 use mask 0x0001FFFC and exclude bits0..1"
+      ]
+    },
+    "call61_target": {
+      "func_080AC124": "tests candidate cell bit0 and bit1 as blocking conditions",
+      "func_080AC388": "tests candidate cell bit0 only as blocking condition",
+      "view_shape": {
+        "0": "dword descriptor table",
+        "4": "optional byte indirection/index map",
+        "8": "u16 width",
+        "10": "u16 height"
+      },
+      "goal": "prove this view is constructed directly from MapData terrain_info(+18), terrain_map(+1C), width(+20), height(+22)"
+    },
+    "call67": {
+      "correction": "gUnk_08105EDC contains exactly 66 physical MapData records (0x00..0x41). Call66 intentionally/accidentally iterated 0x234 logical-map count as physical records; entries 66..563 are not MapData and are discarded.",
+      "timeout_cause": "Call66 valid 66-record scan completed, but emitted every bit1 cell plus hundreds of bogus post-table records; output volume/search caused timeout rather than a census hang.",
+      "proven_descriptors": [
+        "0x00000002",
+        "0x00000003"
+      ],
+      "collision_split": "normal directional collision wrappers use func_080AC124 (bit0 OR bit1 blocks); alternate wrappers used by func_08038110 use func_080AC388 (bit0 only)"
+    },
+    "call69": {
+      "logical_maps_corrected": [
+        0,
+        1,
+        2,
+        7,
+        43,
+        48
+      ],
+      "extractor_fix": "assembly labels include inline address comments; Call69 uses prefix matching",
+      "question": "identify the concrete entity/class family whose func_08038110 movement path uses AC388 and therefore can traverse bit1-only terrain"
+    },
+    "call71": {
+      "strategy": "resolve vtable_unk_080E73E8 slots and object factory/owner references to identify the concrete AEntity-derived family that uses func_08038110",
+      "constraint": "retain only proven collision-class semantics for bit1 until concrete entity/world identity is established"
+    },
+    "call72": {
+      "call71_narrowing": "func_08038110 is update/movement for vtable_unk_080E73B4 AEntity-derived object; vtable_unk_080E73E8 is a separate 0x48-byte helper/controller associated with it",
+      "animal_evidence": "func_08038374/func_08038398 are called repeatedly from func_080204CC, an animal behavior routine containing named Dog/Affection methods; exact species/scope still being traced",
+      "goal": "resolve the GameObject selector 0x4B and class ownership to determine whether TerrainInfo bit1 is an animal-passable collision class generally or a narrower pet/livestock rule"
+    },
+    "call73": {
+      "call72_exact": "func_080204CC contains direct named calls to GetGrowthStage__C3Dog, several method_*__3Dog..., GetAdequacy__C3Pet, and GetAffection__C6Animal while repeatedly obtaining selector 0x4B object and driving func_08038374/08038398",
+      "working_scope": "dog/pet traversal is strongly evidenced; do not generalize to all animals until constructor/vtable identity is exact",
+      "next_geometry": "row-run census correlates bit1 with physical map features without assigning a label prematurely"
+    },
+    "call74": {
+      "call73_proof": "vtable_unk_080E64C8 controller owns a Dog pointer at +0x34: func_08020410 calls method_0809BB48__3Dog... on +0x34 and func_080204CC repeatedly calls GetGrowthStage__C3Dog/GetAdequacy__C3Pet/GetAffection__C6Animal on it",
+      "bit1_geometry": "bit1 forms large contiguous regions in logical maps 0,1,2,7,43,48 through resources 0E/0F,08/09,00/01,06/07,3C,3E respectively; world-feature label still pending",
+      "goal": "resolve selector 0x4B object and Dog map identity to assign a concrete bit1 world meaning only if exact evidence supports it"
+    },
+    "call76": {
+      "call75": "Dog persistent object is GameState+0x1C70; dog controller selector 0x4B path is used in state/mode 5 and is distinct from the bit1-permitted movement branch",
+      "key_branch": "func_08038110 uses bit0-only collision helpers; on a descriptor with bit1 set it resolves GameObject selector 0x2B and passes that object plus the moved entity to func_0802151C",
+      "goal": "identify exact owner/class of func_08038110 family and semantic role of selector 0x2B/func_0802151C before assigning TerrainInfo bit1 a world-facing name"
+    },
+    "call77": {
+      "call76_proof": "func_0802151C is dog-play logic: controller +0x34 is Dog*, requires adult growth stage, checks pet adequacy/proximity, invokes Dog play state, and SetHasPlayedToday__3Pet",
+      "special_entity": "vtable_unk_080E73B4 entity movement uses func_08038110, whose collision path ignores TerrainInfo bit1 while still blocking bit0; entering bit1 can invoke dog-play logic through selector 0x2B",
+      "goal": "identify the vtable_unk_080E73B4 entity by constructor/factory/lifecycle evidence before assigning TerrainInfo bit1 a gameplay name"
+    },
+    "call78": {
+      "identity_evidence": "vtable_unk_080E73B4 constructor initializes +0x28 to 0x31 (49); article table defines BALL with value/id 49 and description A dog toy; same entity is controlled by dog controller selector 0x4B and invokes adult-dog play logic",
+      "collision_behavior": "this thrown entity alone uses func_080AC388 through alternate directional wrappers, blocking descriptor bit0 but permitting descriptor bit1; landing on bit1 takes a distinct GameObject callback path",
+      "goal": "prove exact Ball spawn/use linkage and determine whether TerrainInfo bit1 is best documented as Ball/projectile-passable collision or a concrete surface such as water"
+    },
+    "call79": {
+      "transport_note": "previous requested Call79 shell.output returned a stale Call78 result; not counted as executed; Call79b instead extracted only missing sections from saved Call78 log",
+      "purpose": "resolve Ball spawn/entity linkage and TerrainInfo bit1 semantics from already-executed Call78 evidence without rerunning broad analysis"
+    },
+    "call80": {
+      "checkpoint": true,
+      "ball_identity": "func_08038110 mover is the thrown Dog Ball entity: entity family stores article id 0x31/49 = BALL, is reached through dog selector 0x4B, and dog behavior calls func_08038374/func_08038398 on it",
+      "bit1_exact_semantics": "TerrainInfo bit1 blocks normal func_080AC124-based movers but is ignored by the Dog Ball directional predicate func_080AC388; Ball landing logic explicitly branches on bit1 and invokes a distinct callback argument",
+      "surface_name_status": "unresolved; do not label bit1 as water/map-edge/etc until physical resource or named-map evidence proves it",
+      "workflow_note": "use known FoMT gameplay mechanics as semantic lookup hints, then require code-local proof before naming decompiled systems"
+    },
+    "call81": {
+      "public_gameplay_hint": "FoMT guides report that throwing the Dog Ball into water loses the ball and requires replacement; use only as semantic hypothesis until code-local callback confirms it",
+      "code_prediction": "if bit1 means water, func_08038110 bit1 landing callback should invalidate/despawn/lost-state the Dog Ball, while ordinary ground follows the dog-fetch/catch path",
+      "proof_targets": [
+        "resolve owner virtual slot +0x13C called with arg0 on bit1 landing",
+        "identify Ball item/entity constants exactly",
+        "map bit1 resources/logical IDs to named watery outdoor maps"
+      ]
+    },
+    "call82": {
+      "correction": "Call80 incorrectly treated entity +0x28 value 0x31 as article id; data/item/article.def proves ARTICLE_BALL is 0x35. Public docs corrected immediately.",
+      "safe_current_identity": "func_08038110 family is dog-play thrown-object path through selector 0x4B; exact ARTICLE_BALL spawn linkage being established from player item-use code",
+      "bit1_water_hypothesis": "still strong from gameplay behavior but remains hypothesis until the 0x35 spawn path and bit1 landing callback are closed code-locally"
+    },
+    "call83": {
+      "focus": "close CFG from ARTICLE_BALL 0x35 item-use handling to selector 0x4B launch entity, and identify GameObject virtual +0x13C landing callback semantics",
+      "known_before_call": "ARTICLE_BALL=0x35 exact; selector 0x4B entity is launched by func_080380EC in player item-use routine; func_08038110 bit1 landing passes argument 0 to GameObject virtual +0x13C while non-bit1 can enter dog-fetch helper func_0802151C",
+      "correction_retained": "entity +0x28 value 0x31 is animation/state data, not ARTICLE_BALL"
+    },
+    "call84": {
+      "focus": "extract decisive truncated Call83 CFG evidence; read complete func_08038110 landing outcomes; identify owner/world selector methods",
+      "no_replay": "Call83 was not rerun; saved output was narrowed and source functions were inspected directly"
+    },
+    "call85": {
+      "established_from_call84": "thrown selector-0x4B ball landing: null/out-of-bounds -> owner virtual +0x13C(arg=1); terrain descriptor bit1 -> owner virtual +0x13C(arg=0); ordinary non-bit1 -> selector 0x2B then func_0802151C dog-fetch path",
+      "focus": "identify concrete owner/world vtable and decode its +0x13C callback; inspect func_0802151C directly"
+    },
+    "call86": {
+      "call85_result": "func_0802151C proven adult-dog fetch/play handler; labeled-vtable scan did not identify GameObject owner table",
+      "focus": "recover concrete GameObject owner table from raw ROM pointers to selector-0x4B/0x2B handler functions, then decode slot +0x13C"
+    },
+    "call87": {
+      "call86_result": "vtable_unk_080E5EC4 is installed by func_080179CC; previous 0x080E5F8C/0x080E5F94 raw candidates are interior addresses in this larger table, not independent vtables",
+      "focus": "decode actual GameObject slots +0x38/+0x3C/+0x40/+0x13C and correlate callback with ball-loss/reset flags"
+    },
+    "call88": {
+      "call87_result": "main GameObject vtable is vtable_unk_080E5EC4; slot +0x13C points to unlabeled Thumb function 0x0801C0E0, exactly the callback invoked by thrown-ball landing classification",
+      "focus": "surgically disassemble 0x0801C0E0 and identify state fields/effects for callback argument 0 vs 1"
+    },
+    "call89": {
+      "call88_result": "GameObject virtual +0x13C at 0x0801C0E0 sets +0x10C8=1 and +0x10C9=argument; next update clears +0x10C8 then invokes virtual +0x3C with index 0x4B, whose implementation deletes GameObject object-array slot 0x4B",
+      "focus": "prove slot0x4B object identity and exact reason values supplied by special mover on bit1 vs invalid/out-of-range landing"
+    },
+    "call90": {
+      "checkpoint": true,
+      "call89_result": "GameObject slot 0x4B is directly tied to inventory Article 0x35: UI checks slot0x4B special mover active flag; if inactive it deletes slot0x4B and constructs RucksackItem(Article(0x35)). Dog controller repeatedly tracks slot0x4B.",
+      "focus": "resolve Article0x35 canonical name and exact func_08038110 callback reason truth table for terrain bit1 vs failure/out-of-bounds"
+    },
+    "call91": {
+      "call90_correction": "Article 0x35 is definitively not Frisbee; article.def places FRISBEE at 0x5E. Need resolve article 0x35 exact identity.",
+      "landing_truth_table": "At special mover flight completion, invalid/no terrain descriptor invokes owning GameObject virtual+0x13C with arg1=1; descriptor bit1 invokes same callback with arg1=0; valid descriptor without bit1 obtains slot0x2B and calls func_0802151C(slot0x2B, landing_location).",
+      "focus": "resolve Article0x35 name, identify slot0x4B as dog ball/special throwable if supported, and decode ordinary-terrain dog handler func_0802151C"
+    },
+    "call92": {
+      "call91_result": "ARTICLE_BALL is exactly article ID 0x35 (name Ball; description A dog toy). Slot0x4B is the thrown Ball entity. Normal non-bit1 landing calls dog-controller func_0802151C; for adult dog on same map and within adequacy-scaled radius this sets dog play state and SetHasPlayedToday.",
+      "landing_truth_table": "invalid/no descriptor -> GameObject callback arg=1; terrain descriptor bit1 -> callback arg=0; ordinary terrain -> dog-controller landing handler",
+      "focus": "decode arg0/arg1 callback consequences and map/location evidence to assign physical meaning to terrain bit1 without guessing"
+    },
+    "call93": {
+      "transport": "Call92 executed but returned truncated output; Call93 only extracts missing callback/reason sections from its saved log and does not rerun analysis.",
+      "known_truth_table": "thrown Ball: invalid/no terrain descriptor -> owner callback reason=1; descriptor bit1 -> owner callback reason=0; ordinary descriptor -> adult-dog proximity/play handler",
+      "goal": "determine exact reason0/reason1 consequences and whether bit1 can now be named as water/lost-ball terrain from code-local evidence"
+    },
+    "call94": {
+      "call93_result": "Ball callback processing always deletes slot0x4B and clears Farmer flag. reason=1 (invalid/out-of-bounds) stops there. reason=0 (TerrainInfo bit1) additionally runs GameState+1CCC through func_080A45A8; normally applies func_080A1484 and spawns resource/effect 0x1A9 at the recorded landing location, while return==2 triggers event/message id 0x23B instead.",
+      "inference_status": "bit1 has a distinct in-bounds surface landing effect; exact world-facing label still pending identification of helper/effect semantics.",
+      "focus": "identify func_080A45A8, func_080A1484, resource 0x1A9, sound/message 0x6D, and event 0x23B to prove or reject water semantics"
+    },
+    "call95": {
+      "transport": "Call94 executed but broad output truncated; Call95 recovers only helper/effect/sound/event sections from the saved log.",
+      "call94_clue": "resource 0x1A9 is also constructed in another GameState item-use/placement path with a similar branch, suggesting it is a reusable surface-effect resource rather than Ball-specific state.",
+      "goal": "classify func_080A45A8/080A1484 and IDs 0x1A9,0x6D,0x23B tightly enough to establish the physical meaning of TerrainInfo bit1"
+    },
+    "call96": {
+      "call95_result": "func_080A45A8 classifies a packed location against eight map+bounds records in gUnk_0810563C and returns record class (default 7). Ball bit1 landing feeds this classifier; non-class2 locations invoke func_080A1484, which subtracts friendship/love from specific NPC groups based on logical map id.",
+      "semantic_implication": "the reason0 path is tied to the game littering/social-penalty subsystem, strongly suggesting an in-bounds discard surface; exact table overlap is the next code-local proof for water.",
+      "focus": "decode the eight classifier regions and compare them geometrically with TerrainInfo bit1 cells; inspect class2 special event and generic item-throw path"
+    },
+    "call98": {
+      "call97": "executed failure before repo mutation; section-index grep found no plain heading lines and exited under set -e.",
+      "transport": "Call98 parses the already-saved Call96 log as raw text and extracts headings by substring, then independently decodes only the 8 classifier records from baserom.",
+      "focus": "recover exact classifier rectangles, bit1 overlap, and class2 special-event evidence without rerunning Call96"
+    },
+    "call100": {
+      "checkpoint": true,
+      "call99": "executed failure after producing a saved log; failure was caused by `find scripts` under set -e because this repo has no top-level scripts directory. No contribution/staged mutation occurred.",
+      "public_doc": "DECOMP_NOTES now records the exact ARTICLE_BALL/selector0x4B landing truth table, adult-dog ordinary landing handler, and reason0 littering/event behavior while deliberately leaving TerrainInfo bit1 physical material unnamed.",
+      "semantic_status": "proven: bit1 is an alternate collision class and special in-bounds thrown-Ball discard landing class; unproven: universal physical label such as water."
+    },
+    "call101": {
+      "call100_checkpoint": "ROM compare/SHA1 exact; staged index empty; public docs now conservatively document thrown-Ball bit1 landing behavior.",
+      "coordinate_scale": "collision/terrain routines quantize world coordinates in 8-pixel units (arithmetic >>3); prior 16-pixel overlap assumption is superseded.",
+      "focus": "decode event/script 0x23B (=571), identify Food id2, and classify reusable resource/effect 0x1A9 from exact generic-discard and Ball paths."
+    },
+    "call102": {
+      "call101": "Food ID 0x02 is exactly Cucumber. Generic rucksack discard routes classifier class0 + Cucumber to request/event 0x23C (script 572), while classifier class2 routes to 0x23B (script 571) independent of item. Class4 has Food 0xA0 special handling; class6 accepts Food IDs 0x0F..0x14 and creates Food 0x15.",
+      "hypothesis_only": "The class0 Cucumber special strongly resembles the known Kappa offering mechanic and class2 may be another special pond/offering region, but no terrain/material label is promoted without script/map-name evidence.",
+      "focus": "resolve scripts571/572 and logical map identities from Mary/FOMT-DOC to determine whether the discard classifier and TerrainInfo bit1 can be safely named as water-related."
+    },
+    "call103": {
+      "call102_classifier_records": [
+        {
+          "map": 0,
+          "rect": [
+            33,
+            42,
+            72,
+            68
+          ],
+          "class": 0
+        },
+        {
+          "map": 0,
+          "rect": [
+            53,
+            32,
+            125,
+            41
+          ],
+          "class": 1
+        },
+        {
+          "map": 0,
+          "rect": [
+            117,
+            42,
+            149,
+            51
+          ],
+          "class": 2
+        },
+        {
+          "map": 2,
+          "rect": [
+            0,
+            47,
+            127,
+            87
+          ],
+          "class": 3
+        },
+        {
+          "map": 1,
+          "rect": [
+            25,
+            0,
+            63,
+            73
+          ],
+          "class": 4
+        },
+        {
+          "map": 43,
+          "rect": [
+            1,
+            0,
+            28,
+            10
+          ],
+          "class": 5
+        },
+        {
+          "map": 0,
+          "rect": [
+            110,
+            56,
+            117,
+            61
+          ],
+          "class": 6
+        },
+        {
+          "map": 7,
+          "rect": [
+            32,
+            58,
+            172,
+            63
+          ],
+          "class": 3
+        }
+      ],
+      "focus": "narrow Mary/FOMT-DOC evidence for scripts571/572 and exact map0 classifier-vs-bit1 overlap."
+    },
+    "call104": {
+      "script572_identity": "EventScript 572 uses entity 32 decimal = 0x20; FOMT-DOC Entities.txt identifies entity 0x20 as Kappa?. The class0 discard branch requires Food ID2 = Cucumber before requesting script572.",
+      "script571_identity": "Partial EventScript 571 uses entity 31 decimal = 0x1F; FOMT-DOC Entities.txt identifies entity 0x1F as Harvest Goddess. Class2 discard requests script571 independent of item kind.",
+      "class6": "Food IDs 0x0F..0x14 are egg qualities and class6 replaces the discarded egg with Food 0x15, exactly Spa-Boiled Egg (description: Put an Egg in Hot Spring).",
+      "focus": "determine whether combined special-water-region behavior plus complete bit1 geometry is strong enough to name TerrainInfo bit1 as water."
+    },
+    "call105": {
+      "call104_overlap": "For logical maps 0,1,2,7,43, the known classifier rectangles cover 98.9%,100%,97.3%,100%,100% respectively of bit1 cells. Class0 is Cucumber->Kappa event; class2 is Harvest Goddess event; class6 converts eggs to Spa-Boiled Egg; all are direct water-feature semantics.",
+      "remaining": "Resolve class4/class5/class3 and logical map48/map identities; then decide whether TerrainInfo bit1 can be promoted from alternate collision class to water terrain flag.",
+      "ball_relevance": "Thrown Ball movement deliberately ignores bit1 collision, but landing on bit1 takes special cleanup/loss path rather than normal dog-play landing."
+    },
+    "call106": {
+      "goal": "prove the shared coordinate classifier is a fishing/water-body classifier by identifying the sole func_080A3E90 caller and its tool/action context.",
+      "evidence_before_call": "classifier classes already map Kappa cucumber offering, Harvest Goddess offering, and Hot Spring egg conversion; known classifier rectangles cover nearly all TerrainInfo bit1 cells on logical maps 0,1,2,7,43.",
+      "decision_rule": "If func_080A3E90 is directly part of fishing/fishing-rod logic, naming TerrainInfo bit1 as water terrain becomes supported by independent behavior, not geometry alone."
+    },
+    "call107": {
+      "call106_new_exact": "Food 0xA0 is SMALL_FISH with description Caught in ocean or river. func_080A3E90 is invoked inside a large tool-action state machine and its region-dependent result is stored in the actor/action state.",
+      "goal": "identify tool ID 0x44 and enclosing function/vtable semantics to establish whether func_080A3E90 is directly the fishing result generator.",
+      "promotion": "If tool/state identity is fishing, TerrainInfo bit1 may be documented as water terrain because the same nearly-overlapping regions drive fishing, Kappa/Goddess water offerings, Hot Spring egg conversion, and Ball water-loss handling."
+    },
+    "call108": {
+      "correction": "Call107 confirms Fishing Rod tool IDs are 0x28..0x2F. The later 0x44 comparison occurs in another branch of the same large state machine and must not be used as fishing evidence.",
+      "goal": "trace the exact state-dispatch branch containing func_080A3E90/func_080A3F4C back to active Fishing Rod IDs 0x28..0x2F or an equivalent unambiguous fishing-result path.",
+      "known": "func_080A3E90 classifies the target location and writes class-dependent result state; func_080A3F4C later consumes that state to construct a RucksackItem."
+    },
+    "call109": {
+      "call108_exact": "func_080A3F4C consumes the class produced by func_080A3E90/func_080A45A8 and constructs fishing rewards: Food 0xA0/0xA1/0xA2 are Small/Medium/Large Fish, while other outcomes construct Article rewards/garbage/treasure.",
+      "goal": "prove the enclosing action dispatch case 5 that performs func_080A3E90 is the Fishing Rod action by tracing the +0x3F dispatch byte back to tool setup.",
+      "conclusion_if_linked": "The coordinate classifier is a fishing-water-region classifier; combined with Kappa/Goddess offerings, Hot Spring egg conversion, Ball-loss behavior, and near-total geometric overlap, TerrainInfo descriptor bit1 can be safely named water terrain/surface."
+    },
+    "call110": {
+      "checkpoint": true,
+      "promotion": "TerrainInfo descriptor bit1 (0x2) is promoted from neutral alternate-collision-class to water surface. Evidence combines collision semantics, selector0x4B thrown-Ball water-loss handling, geometric overlap with the 8-region location classifier, and the classifier feeding func_080A3E90/func_080A3F4C fishing reward generation.",
+      "fishing_rewards": "func_080A3F4C produces Food 0xA0/0xA1/0xA2 (Small/Medium/Large Fish; item descriptions say caught in ocean or river) and fishing articles including Pirate Treasure, Fossil of Fish, Empty Can, Boots, and Fish Bones.",
+      "distinction": "Terrain bit1 is the water surface/collision flag. func_080A45A8 is a separate broader water-region classifier used for fishing/special location consequences; do not conflate the two tables.",
+      "ball": "ARTICLE_BALL is 0x35. Selector0x4B is the thrown Ball entity. Landing on bit1 queues callback reason0 and removes the Ball through the shared discard/special-water path; valid non-bit1 landing invokes adult-dog play/fetch handling; invalid terrain uses reason1 cleanup."
+    },
+    "call111": {
+      "goal": "close exact active-tool CFG link to action category 5 and reconcile stale public unresolved-bit1 wording after Call110 water promotion",
+      "expected_link": "tool IDs 0x28..0x2F are all Fishing Rod tiers; setup switch should route that family to +0x3F action category 5, whose runtime branch contains func_080A3E90 and later func_080A3F4C fishing reward construction.",
+      "docs": "older neutral/unknown material wording is replaced only where contradicted by the now-proven water semantics; historical evidence and collision details remain intact."
+    },
+    "call112": {
+      "call111_correction": "The GetId switch at 0x0802CCB6 maps tool IDs 0x00..0x2F to +0x41 tool/charge level 1..7. It does NOT establish +0x3F action family. Fishing IDs 0x28..0x2F mapping there is therefore level evidence only.",
+      "goal": "trace the earlier selector/switch that branches to .L0802CC3A, which writes +0x3F=5, back to the Fishing Rod family without conflating it with the +0x41 level switch.",
+      "docs": "Call111 stale-water wording cleanup remains valid independently of this CFG distinction."
+    },
+    "call113": {
+      "closed_link": "func_0802C984 resolves the equipped tool with func_0800E550, calls GetId__C4Tool, and its 0..0x50 switch sends tool IDs 0x28..0x2F (all eight Fishing Rod tiers in data/item/tool.def) to .L0802CC3A, which stores +0x3F action category 5. This is independent of the later +0x41 level switch.",
+      "goal": "trace category5 cast-target validation and determine whether fishing directly tests TerrainInfo bit1/water before func_080A3E90, or whether water-region classification is the only location gate visible in this layer."
+    },
+    "call114": {
+      "call113_result": "Fishing action category 5 definitely calls func_080A3E90 (which classifies the cast Location through func_080A45A8) and later func_080A3F4C to construct the reward. A visible pre-reward gate tests bit 1 of a halfword at [r4+4], but r4 provenance was truncated and this must not be conflated with TerrainInfo descriptor bit1 without pointer proof.",
+      "goal": "trace r4 backward from the [r4+4]&2 gate and determine exactly what structure/descriptor it references; only promote this as direct fishing-vs-water-bit proof if it resolves to TerrainInfo/collision data."
+    },
+    "call115_save": {
+      "saved_at": "2026-09-16",
+      "call114_correction": "The fishing [r4+4]&2 check is not yet proven to read TerrainInfo. The nearby r4 literal assignment belongs to a predecessor physics block that exits elsewhere; r4 at .L08030E50 is live from another predecessor edge.",
+      "resume_exactly": "Enumerate all references/predecessors to .L08030E50 and .L08030F0E, recover incoming r4 value flow, then resolve any helper/vfunc producer to its concrete data structure before naming the tested bit.",
+      "handoff": "tools/ches/SESSION_STATUS.md",
+      "preserved_logs": [
+        "tools/ches/checkpoints/call114/call113-fishing-category5.log",
+        "tools/ches/checkpoints/call114/call114-fishing-bitgate-provenance.log"
+      ]
+    },
+    "call116": {
+      "resume": "Resumed from durable Call115 checkpoint.",
+      "goal": "Enumerate every explicit/fallthrough predecessor to .L08030E50 and .L08030F0E and recover the live r4 definition on each incoming edge. The fishing [r4+4]&2 tests remain untyped until this CFG provenance is closed."
+    },
+    "call117": {
+      "call116_result": ".L08030E50 is main state-machine jump-table case 30, not a CFG successor of .L08030E18/.L08030E48. Therefore the r4 consumed by the case30 [r4+4]&2 test must be established before the state dispatch (or otherwise be a function-entry live value), not by the nearby physics literal.",
+      "goal": "trace r4 from the enclosing function entry through the main state dispatch and identify the exact object/descriptor pointer supplied to fishing states 30 and 31."
+    },
+    "call118": {
+      "call117_result": "func_0802F0EC copies its second argument r1 directly into r4 at entry; only actor+0xC5 nonzero forces r4=0. State30 and state31 therefore test bit1 of the +4 halfword of this caller-supplied pointed object. Normal caller func_08024CD0 receives its own second argument, saves it in sl, passes [sl+0] as F0EC r1, and passes byte [sl+4] as F0EC r2.",
+      "goal": "identify the concrete type and producer of func_08024CD0 second argument, then determine exact semantics/layout of the object at [input+0], especially halfword +4."
+    },
+    "call119": {
+      "call118_result": "func_0802F0EC second argument is the same caller-supplied pointer used by action-state handlers; func_08024CD0 passes [update_input+0] as this pointer and byte [update_input+4] separately as F0EC arg3.",
+      "correction_hypothesis": "The fishing [r4+4]&2 checks are input-button tests, not TerrainInfo. The same F0EC r4 is passed in state7 to func_0802D59C, already known to test +4 bit0 for the newly-pressed A-button interaction edge.",
+      "goal": "prove +4 is the new-press KEYINPUT halfword and therefore bit1 is B, closing the false fishing-to-TerrainInfo link."
+    },
+    "call119_result": {
+      "exact": true,
+      "finding": "Fishing state30/state31 [r4+4]&2 tests the newly-pressed B-button bit, not TerrainInfo bit1.",
+      "proof": [
+        "func_08024CD0 forwards [update_input+0] as func_0802F0EC arg2",
+        "func_0802F0EC keeps arg2 in r4",
+        "state7 passes same r4 to func_0802D59C which tests +4 bit0",
+        "func_08009190 computes current_keys & ~previous_keys into offset +4",
+        "GBA KEYINPUT bit0=A and bit1=B"
+      ],
+      "rejected_inference": "Do not use fishing [r4+4]&2 as evidence for TerrainInfo bit1 semantics."
+    },
+    "call120_checkpoint": {
+      "status": "mandatory checkpoint after correcting fishing input provenance",
+      "handoff": "tools/ches/SESSION_STATUS.md",
+      "preserved_log": "tools/ches/checkpoints/call120/call119-fishing-b-button-proof.log",
+      "next": "trace an independent MapData terrain descriptor bit1 consumer, preferably cast-tile validation or generic discard/special-surface handling"
+    },
+    "call121": {
+      "docs_fix": "Removed the over-strong public claim that TerrainInfo bit1 is already proven to be the water-surface flag. Public docs now distinguish strong geometric/behavioral evidence from exact code-local proof and explicitly record that fishing state &2 checks are B-button new-press input.",
+      "goal": "Census only genuine MapData/TerrainInfo-derived bit1 consumers and select an independent path capable of proving the environmental semantics."
+    },
+    "call122": {
+      "lead": "func_080AD77C calls func_080AC5D0 on a Location-derived x/y pair, inverts the boolean, stores that result, and selects either the caller-provided visual/resource or fixed resource 0x1A9 via func_080A4A00.",
+      "goal": "prove exactly what func_080AC5D0 accepts/rejects and whether the 0x1A9 branch gives TerrainInfo bit1 a specific environmental semantic or only a generic invalid/special-surface semantic."
+    },
+    "call123": {
+      "observation_from_call122": "func_080AC5D0 contains descriptor-word sign tests after <<30, i.e. direct bit1 tests. func_0801EE00 and func_080AD77C invert its result, and the false/special branch in AD77C substitutes visual resource 0x1A9.",
+      "goal": "recover exact AC5D0 polarity and identify the item/article semantics around its callers before assigning any environmental name to TerrainInfo bit1."
+    },
+    "call123_result": {
+      "exact": true,
+      "ac5d0_semantics": "Returns 1 iff the queried target rectangle is in bounds, terrain descriptor storage exists, and every sampled descriptor has bit1 set. Any tile with bit1 clear returns 0.",
+      "generic_throw": "func_0801EE00 inverts AC5D0. When AC5D0==1 it enters environmental-region handling via func_080A45A8, may apply special events/social consequences, and renders fixed resource 0x1A9 instead of the thrown item icon.",
+      "ball_correlation": "Ball reason0 path also renders fixed resource 0x1A9 after its direct TerrainInfo-bit1 landing test.",
+      "stone_gate": "ARTICLE_STONES (0x31) uniquely calls AC5D0 in placement validation; an all-bit1 target is rejected for stone placement."
+    },
+    "call124": {
+      "goal": "resolve fixed visual/resource 0x1A9 through constructors, resource metadata, sibling repos, or named assets; a splash/ripple identity would directly close TerrainInfo bit1 as water surface."
+    },
+    "call124_result": {
+      "resource_name": "not resolved from visible Call124 output; FOMT-DOC numeric 425 hits are script IDs/statistics and are not evidence about visual resource 0x1A9",
+      "closed_fact": "func_080AC5D0 is an exact all-bit1 footprint predicate; generic throw/discard substitutes fixed visual resource 0x1A9 precisely when that predicate is true, matching Ball bit1 landing cleanup."
+    },
+    "call125": {
+      "goal": "narrow the saved Call124 output and follow func_080A4A00 -> sprite/resource lookup to identify visual resource 0x1A9 without conflating unrelated decimal 425 script IDs."
+    },
+    "call125_result": {
+      "a4a00_flow": "func_080A4A00 forwards its original r2 argument into func_0805E824 as that function's r2 while using original r1 separately; fixed 0x1A9 therefore participates in sprite/animation setup.",
+      "exact_uses": "Executable literal 0x1A9 occurs in Ball bit1 landing cleanup, generic throw/discard all-bit1 branch, and func_080AD77C."
+    },
+    "call126": {
+      "goal": "Trace 0x1A9 through func_0805E824 and recover func_080AD77C semantics to determine whether 0x1A9 is specifically a water splash/ripple animation or a more generic disappearance effect."
+    },
+    "call127_result": {
+      "func_0805E824": "stores r1 provider pointer, calls provider vtable+0x0C with r2 still live/unmodified, stores returned descriptor at self+4, then reads descriptor halfword +2; r2=0x1A9 is therefore a visual/sprite selection ID passed to the provider rather than interpreted by func_0805E824 itself.",
+      "ad77c": "func_080AD77C independently computes !func_080AC5D0(...) and selects caller-supplied visual ID when false/ordinary versus fixed 0x1A9 when the all-bit1 terrain predicate is true."
+    },
+    "call128": {
+      "goal": "resolve the concrete GameObject vfunc+0x64 provider and its +0x0C lookup method so visual ID 0x1A9 can be identified from the actual resource table instead of inferred from behavior."
+    },
+    "call128_result": {
+      "main_gameobject_vfunc64": "vtable_unk_080E5EC4 slot +0x64 is raw Thumb pointer 0x0801FC61, i.e. function entry 0x0801FC60. Earlier parser failed because asm/vtables.s uses .word rather than .4byte.",
+      "usage": "func_080AD77C calls this GameObject +0x64 virtual with only this=r6 and passes its return value as func_080A4A00 provider argument."
+    },
+    "call129": {
+      "goal": "decode 0x0801FC60 to identify the returned GameObject member/provider, then locate that provider vtable and its +0x0C lookup method used by func_0805E824 visual IDs such as 0x1A9."
+    },
+    "call129_result": {
+      "gameobject_vfunc64_exact": "The main GameObject vtable +0x64 entry is Thumb 0x0801FC60. Its complete body is ldr r1, [pc,#4] / adds r0,r0,r1 / bx lr with literal 0x00000DE4, therefore it returns this + 0xDE4 exactly.",
+      "provider_identity_state": "The visual resource provider passed into func_080A4A00 / func_0805E824 is therefore an embedded GameObject subobject at +0xDE4, not a pointer loaded from a member.",
+      "next_trace": "Find initialization/construction of GameObject+0xDE4, identify the subobject vtable, resolve its +0x0C method, then decode resource ID 0x1A9."
+    },
+    "call130_checkpoint": {
+      "checkpoint_dir": "tools/ches/checkpoints/call130",
+      "preserved_call129_log": "tools/ches/checkpoints/call130/call129-provider-getter.log",
+      "next": "Trace writes/constructor calls targeting GameObject+0xDE4 and resolve provider vtable +0x0C lookup."
+    },
+    "call130_result": {
+      "rom_exact": "fomt.gba SHA1 remains a2fc3574f0a65a4fcf7682fb274b9d7eebdef963; make compare and sha1sum -c both OK.",
+      "staged_index": "EMPTY",
+      "head": "8c52b9f decompile interaction state id helpers"
+    },
+    "call131": {
+      "goal": "Locate initialization of embedded GameObject+0xDE4 provider, identify its vtable, and expose the provider +0x0C ID lookup used by func_0805E824."
+    },
+    "call132": {
+      "goal": "Identify the exact initialization/vtable assignment of the embedded GameObject visual provider at +0xDE4, using func_080175B4 calls/stores and nearby provider-family helpers."
+    },
+    "call132_result": {
+      "de4_is_live_polymorphic_subobject": "func_080175B4 computes this+0xDE4, loads its first word as a vtable pointer, calls slot +0x0C with resource/entry id, then slot +0x10 to fill the newly created entity payload.",
+      "not_initialized_in_func_080175B4": "No store to this+0xDE4 occurs in func_080175B4 before those virtual calls; initialization predates this constructor body/path.",
+      "next": "Trace callers/allocation/pre-construction chain of func_080175B4 and vtable_unk_080E6038 to locate the +0xDE4 member constructor."
+    },
+    "call133": {
+      "goal": "Trace all callers and pre-construction sequence of func_080175B4; inspect object-sized allocations and vtable_unk_080E6038 relationships for the embedded +0xDE4 provider constructor."
+    },
+    "call133_result": {
+      "sole_direct_caller": "Raw Thumb BL scan finds a single call to func_080175B4 at 0x0801FBA8 inside func_0801FB7C.",
+      "fresh_allocation": "func_0801FB7C allocates exactly 0x10CC bytes immediately before calling func_080175B4, with no intervening constructor on that allocation.",
+      "corrected_init_scope": "Therefore GameObject+0xDE4 must be initialized by func_080175B4 itself or one of its internal helper calls before the first +0xDE4 virtual dispatch; it cannot be an earlier caller-side construction.",
+      "next": "Inspect constructor helpers func_080AC674, func_0801F14C, func_0801F3E4, func_0801F2DC, func_0801F614, func_0801F77C and other pre-use calls for +0xDE4 initialization/vtable assignment."
+    },
+    "call134": {
+      "goal": "Locate exact GameObject+0xDE4 initialization inside func_080175B4 helper chain and identify provider vtable."
+    },
+    "call134_result": {
+      "post_init_helpers_ruled_out": "func_0801F14C, func_0801F2DC, func_0801F3E4, func_0801F614 and func_0801F77C do not initialize this+0xDE4.",
+      "critical_register_observation": "Immediately before func_080AC674, func_080175B4 executes stm r0!,{vtable_unk_080E5EC4}; therefore r0 is this+4 at the call. func_080AC674 is a base/subobject constructor candidate capable of initializing members including absolute this+0xDE4.",
+      "next": "Trace func_080AC674 and its callees from base pointer this+4, especially any embedded polymorphic member construction corresponding to relative +0xDE0 / absolute +0xDE4."
+    },
+    "call135": {
+      "goal": "Resolve func_080AC674 as the likely base/subobject constructor and locate the embedded provider initialization at absolute GameObject+0xDE4."
+    },
+    "call135_result": {
+      "de4_constructor_proven": "func_080175B4 passes outer this+4 to func_080AC674. Inside AC674, r5=this+4 and func_0805E6CC is called at r5+0xDE0, exactly outer this+0xDE4.",
+      "de4_initial_type": "func_0805E6CC installs vtable_unk_080E79C8 at the embedded object and initializes it from gUnk_086678A0.",
+      "important_correction": "The +0xDE4 object is no longer uninitialized or caller-inherited; its exact constructor and initial vtable are proven.",
+      "next": "Resolve vtable_unk_080E79C8 slots and the exact virtual method invoked on GameObject+0xDE4 along the fishing category-5 path; identify its returned pointer before interpreting [r4+4]&2."
+    },
+    "call136": {
+      "goal": "Resolve GameObject+0xDE4 vtable and method return type feeding fishing bit gate."
+    },
+    "call136_result": {
+      "vtable_boundary": "vtable_unk_080E79C8 spans 0x080E79C8..0x080E79DB because vtable_unk_080E79DC begins immediately after it; therefore it has five 32-bit entries only.",
+      "real_entries": {
+        "+0x00": "0",
+        "+0x04": "0",
+        "+0x08": "func_080E1984 destructor",
+        "+0x0C": "func_0805E760 indexed resource lookup returning {pointer,u16}",
+        "+0x10": "func_0805E790 larger indexed resource lookup result"
+      },
+      "correction": "Values printed by Call136 beyond +0x10 belong to neighboring vtables and must not be treated as methods of the GameObject+0xDE4 embedded object.",
+      "next": "Trace category-5 fishing control flow into .L08030E50/.L08030F0E and prove whether r4 comes from func_0805E760, func_0805E790, or another producer using the +0xDE4 resource object."
+    },
+    "call137": {
+      "goal": "Recover exact r4 producer at both fishing bit gates and connect it, if valid, to the proven GameObject+0xDE4 resource object."
+    },
+    "call137_result": {
+      "containing_function": "Both .L08030E50 and .L08030F0E are inside func_0802F0EC in asm/code_entities.s.",
+      "broad_scan_result": "The decisive r4 provenance is confined to the local fishing state region around source lines 29300-29580; broad global func_0805E760/790 scans are mostly unrelated resource consumers.",
+      "next": "Isolate every predecessor edge into both gate labels and decode the immediately preceding indirect calls/r4 assignments."
+    },
+    "call138": {
+      "goal": "Recover exact predecessor blocks and immediate r4 producer for both fishing [r4+4]&2 gates."
+    },
+    "call138_result": {
+      "critical_cfg_finding": ".L08030E50 has no local branch predecessor because it is primary jump-table case 30 of func_0802F0EC (entry listed at source line 25868).",
+      "implication": "The r4 tested at .L08030E50 is live across the state dispatcher from setup before the jump table, not produced in the immediately preceding physics block.",
+      "second_gate": ".L08030F0E is reached from case-local timing flow and reuses the same incoming r4 until r4 is repurposed later in the case.",
+      "next": "Trace r4 definition in func_0802F0EC prologue/state-dispatch setup and identify the concrete structure behind it."
+    },
+    "call139": {
+      "goal": "Prove the live r4 value at primary state case30 entry and identify its structure/producer."
+    },
+    "call139_result": {
+      "exact_r4_origin": "At func_0802F0EC entry, r4 = r1 at line 25803. No later write occurs before the primary jump-table dispatch except line 25816, which sets r4=0 only when actor byte +0xC5 was nonzero.",
+      "case30": "Primary state byte actor+0x3C == 30 jumps directly to .L08030E50, where [r4+4]&2 is tested.",
+      "normal_caller": "func_08024CD0 loads r1=[caller_r1], r2=byte[caller_r1+4], then calls func_0802F0EC(actor,r1,r2). Thus fishing-case r4 is the pointer stored at offset +0 of func_08024CD0 second-argument structure, barring the +0xC5 null override.",
+      "next": "Identify the concrete second-argument structure supplied to func_08024CD0 and determine whether its +0 pointee is a TerrainInfo descriptor or another record."
+    },
+    "call140": {
+      "type": "mandatory_checkpoint",
+      "goal": "Preserve exact ROM/index invariant and close the caller-side type of the pointer that becomes fishing r4."
+    },
+    "call140_result": {
+      "checkpoint": "ROM SHA1/compare exact and staged index empty.",
+      "output": "Call140 executed successfully but stdout was truncated; full log retained at /home/chester/.local/share/ches-local-tools/tool-output/sh_mu4sbecp_a0c93524.log.",
+      "provenance_so_far": "func_0802F0EC case30 r4 is its second argument, which func_08024CD0 obtains from [its second argument]."
+    },
+    "call141": {
+      "goal": "Read only the saved Call140 caller sections and recover the exact producer/type of func_08024CD0 second argument without rerunning Call140."
+    },
+    "call141_result": {
+      "direct_call_search": "No symbolic BL callers of func_08024CD0 were found; only the function definition/map symbol appeared.",
+      "interpretation": "func_08024CD0 is likely reached through a function pointer/vtable rather than a direct call.",
+      "next": "Locate literal Thumb pointer 0x08024CD1 in ROM/data, identify its owning table and dispatcher, then trace the dispatcher second argument."
+    },
+    "call142": {
+      "goal": "Resolve func_08024CD0 function-pointer/vtable ownership and dispatcher-side second-argument provenance."
+    },
+    "call142_result": {
+      "executed": "Call142 completed; stdout truncated because a recursive text scan included binary object files.",
+      "preserved_log": "/home/chester/.local/share/ches-local-tools/tool-output/sh_mu4scx4y_b73b43ba.log",
+      "next": "Read saved pointer-hit/vtable sections narrowly and derive the exact virtual slot/dispatcher for func_08024CD0."
+    },
+    "call143": {
+      "goal": "Recover exact func_08024CD0 vtable entry and indirect dispatcher from Call142 saved evidence, while avoiding binary-noise scans."
+    },
+    "call143_result": {
+      "pointer_hit": "The sole ROM Thumb pointer to func_08024CD0 is at 0x080E6670.",
+      "owner_correction": "0x080E6670 lies inside vtable_unk_080E6658, not vtable_unk_080E676C.",
+      "slot": "func_08024CD0 occupies vtable_unk_080E6658 + 0x18.",
+      "player_vtable_note": "func_0802B908 installs vtable_unk_080E676C on the live player actor, so the 0x6658 table belongs to a different but related entity/controller class."
+    },
+    "call144": {
+      "goal": "Identify the class/constructor owning vtable_unk_080E6658 and trace every virtual +0x18 dispatch to recover func_08024CD0 second-argument producer."
+    },
+    "call144_result": {
+      "vtable_owner": "func_08024974 calls func_0802B908, then replaces object +0x14 with vtable_unk_080E6658; this is the specialized live player-derived actor path.",
+      "slot_dispatch": "asm/game_state.s around 0x08018052 loads [object+0x14], then slot +0x18, and calls it with r0=object and r1=sb.",
+      "slot_target": "For an object using vtable_unk_080E6658, slot +0x18 is func_08024CD0.",
+      "argument_shape": "func_08024CD0 treats r1 as a structure with word at +0 and byte at +4, passing those values to func_0802F0EC."
+    },
+    "call145": {
+      "goal": "Trace sb in the exact GameState slot+0x18 dispatcher to the concrete argument structure and its producer; correlate it with the fishing case30 r4 gate."
+    },
+    "call145_result": {
+      "dispatcher_arg": "In func_08017C30, sb = sp+0x20. Immediately before entity dispatch, [sp+0x20] is loaded from *func_08017C30_second_argument and byte [sp+0x24] is copied from the local update flag at sp+0x34.",
+      "flow": "For vtable_unk_080E6658 entities, slot +0x18 calls func_08024CD0(struct); func_08024CD0 loads struct.word into r1 and struct.byte into r2 then calls func_0802F0EC. func_0802F0EC sets r4 = r1. Therefore fishing case30 r4 == *func_08017C30_second_argument.",
+      "remaining_provenance": "Identify the caller of GameObject vfunc +0x0C / func_08017C30 and the concrete pointer passed as its second argument."
+    },
+    "call146": {
+      "goal": "Trace callers of vtable_unk_080E5EC4 +0x0C (func_08017C30), recover its second argument producer, and compare that pointer directly with TerrainInfo descriptor lookup paths."
+    },
+    "call146_result": {
+      "status": "Broad slot+0x0C scan was noisy/truncated and did not yet identify the concrete GameObject update caller.",
+      "preserved_log": "/home/chester/.local/share/ches-local-tools/tool-output/sh_mu4snv8i_79f91068.log",
+      "unchanged_chain": "Fishing case30 r4 == *func_08017C30_second_argument remains established from Call145."
+    },
+    "call147": {
+      "goal": "Narrow to concrete vtable_unk_080E5EC4 construction/ownership and trace only that object's +0x0C update invocation."
+    },
+    "call147_result": {
+      "base_interface": "vtable_unk_080E5EC4 is the GameObject base interface: +0x08 func_080179CC, +0x0C func_08017C30, +0x10 func_080182C8.",
+      "derived_ctor": "func_080175B4 materializes vtable_unk_080E6038 and also initializes the vtable_unk_080E5EC4 base interface while building the larger world/game object.",
+      "next": "Trace vtable_unk_080E6038 update slots and their caller argument flow into base func_08017C30."
+    },
+    "call148": {
+      "goal": "Decode derived vtable_unk_080E6038, identify its update method(s), callers, and the second-argument flow toward base GameObject::func_08017C30."
+    },
+    "call148_result": {
+      "correction": "vtable_unk_080E6038 is not a useful GameObject update interface target: func_080175B4 stores it at object+0 then immediately overwrites object+0 with vtable_unk_080E5EC4, while E6038 ROM entries after its first unusual target are overwhelmingly 0x08000639 stubs.",
+      "factory": "func_0801FB7C allocates 0x10CC bytes, calls func_080175B4, and stores the resulting GameObject pointer through its first argument.",
+      "next": "Trace direct callers of func_0801FB7C, identify the owner field receiving the GameObject pointer, then find that field's +0x0C virtual update call and its second argument."
+    },
+    "call149": {
+      "goal": "Trace func_0801FB7C factory ownership to the concrete GameObject update dispatch and recover func_08017C30 second-argument producer."
+    },
+    "call149_result": {
+      "status": "Broad owner-dispatch scan was highly noisy and output-truncated; retained full output for narrow extraction rather than rerunning.",
+      "preserved_log": "tools/ches/checkpoints/call150/call149-factory-owner-full.log",
+      "important_known": "func_0801FB7C remains the concrete factory that allocates and returns the 0x10CC-byte GameObject built by func_080175B4."
+    },
+    "call150_checkpoint": {
+      "purpose": "Mandatory 10-call checkpoint plus clean extraction of func_0801FB7C direct caller/owner evidence.",
+      "rom_sha1": "a2fc3574f0a65a4fcf7682fb274b9d7eebdef963",
+      "staged_index": "must remain empty",
+      "evidence_dir": "tools/ches/checkpoints/call150"
+    },
+    "call150_result": {
+      "checkpoint": "make compare and sha1sum -c fomt.sha1 both passed; ROM SHA1 a2fc3574f0a65a4fcf7682fb274b9d7eebdef963; staged index empty; HEAD 8c52b9f.",
+      "factory_callers": "func_0801FB7C has exactly three direct call sites: two inside sub_080D8178 (modes r3=0 and r3=1) and one inside func_08014AF8 (r3=0).",
+      "world_state_owner": "func_08014AF8 builds the GameObject through a stack temporary and installs the resulting pointer at owner+0xA8 (r5+0xA8).",
+      "other_owner_path": "sub_080D8178 builds equivalent GameObjects and moves them through temporary stack slots before installing them into its owning structure; func_08012028 calls sub_080D8178 and stores the returned pointer through its own r4 field.",
+      "next_trace": "Resume from owner+0xA8 in the func_08014AF8 path first. Find every read/use of that field, isolate the concrete virtual dispatch that reaches vtable_unk_080E5EC4 +0x0C == func_08017C30, and recover the exact second argument. Do not broaden to generic +0x0C scans."
+    },
+    "call151_wrap": {
+      "status": "Stopped by user after Call150 checkpoint; durable state refreshed only, no contribution files staged or committed.",
+      "next_call": 152
+    }
+  },
+  "physical_mapdata_count": 66,
+  "checkpoint_call70": {
+    "physical_mapdata_count": 66,
+    "logical_map_namespace": "0x000..0x233; MAP_NONE=0x234",
+    "terrain_low_channel": "bits2..16 movement-contact event-script id via func_08024CD0",
+    "terrain_high_channel": "bits17..31 front-tile newly-pressed A interaction event-script id via func_0802D59C",
+    "terrain_bit1": {
+      "semantics": "ordinary movement collision blocks on bit0 OR bit1 through func_080AC124; alternate AEntity-derived movement family func_08038110 uses func_080AC388 and ignores bit1 while still checking bit0",
+      "world_label": "unresolved; do not call water/ledge/etc without further identity proof",
+      "physical_resources": [
+        0,
+        1,
+        6,
+        7,
+        8,
+        9,
+        14,
+        15,
+        60,
+        62
+      ],
+      "logical_maps": [
+        0,
+        1,
+        2,
+        7,
+        43,
+        48
+      ],
+      "cells": 10675,
+      "descriptor_words": [
+        "0x00000002",
+        "0x00000003"
+      ]
+    },
+    "high_interaction_graph": {
+      "cells": 7640,
+      "unique_scripts": 362,
+      "structured_mary": 359,
+      "partial_failures": 3,
+      "connected_source_components": 637,
+      "transition_components": 41,
+      "direct_transition_scripts": 22
+    },
+    "low_transition_graph": {
+      "physical_cells": 722,
+      "source_components": 100,
+      "unique_scripts": 71,
+      "direct_proc016": 70,
+      "indirect_script339_via_977": true
+    }
+  }
+}

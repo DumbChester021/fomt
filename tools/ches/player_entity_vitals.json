@@ -1,0 +1,369 @@
+{
+  "constructor": {
+    "function": "func_08024974",
+    "address": "0x08024974",
+    "installed_vtable": "vtable_unk_080E6658",
+    "vtable_address": "0x080E6658",
+    "vtable_size": "0xB0",
+    "game_state_member": "entity+0x34",
+    "farmer_member": "entity+0x38",
+    "farmer_source": "GameState+0x1BD8"
+  },
+  "vitals_virtual": {
+    "slot": "0x64",
+    "function": "func_08025068",
+    "address": "0x08025068"
+  },
+  "reaction_state_member": "entity+0xC3",
+  "reaction_states": {
+    "0x24": "stamina crosses downward to <= 50% max",
+    "0x25": "stamina crosses downward to <= 20% max",
+    "0x26": "stamina crosses downward to <= 5% max",
+    "0x27": "stamina crosses downward to 0",
+    "0x28": "queried fatigue crosses upward from <=49 to >49",
+    "0x29": "queried fatigue crosses upward from <=79 to >79",
+    "0x2A": "queried fatigue reaches exactly 100 from a non-100 prior value; wrapper returns 1"
+  },
+  "food_path": "func_0802A400 obtains Food stamina/fatigue gains and invokes entity virtual slot +0x64 with those two deltas",
+  "vtable_entries": [
+    {
+      "slot": 0,
+      "value": 0,
+      "symbol": ""
+    },
+    {
+      "slot": 4,
+      "value": 0,
+      "symbol": ""
+    },
+    {
+      "slot": 8,
+      "value": 134367873,
+      "symbol": "func_08024A80"
+    },
+    {
+      "slot": 12,
+      "value": 134368253,
+      "symbol": "func_08024BFC"
+    },
+    {
+      "slot": 16,
+      "value": 134368233,
+      "symbol": "func_08024BE8"
+    },
+    {
+      "slot": 20,
+      "value": 134348321,
+      "symbol": "vfunc_14__7AEntity"
+    },
+    {
+      "slot": 24,
+      "value": 134368465,
+      "symbol": "func_08024CD0"
+    },
+    {
+      "slot": 28,
+      "value": 134348361,
+      "symbol": "vfunc_1C__7AEntityUi"
+    },
+    {
+      "slot": 32,
+      "value": 134368341,
+      "symbol": "func_08024C54"
+    },
+    {
+      "slot": 36,
+      "value": 134368357,
+      "symbol": "func_08024C64"
+    },
+    {
+      "slot": 40,
+      "value": 134348653,
+      "symbol": "vfunc_28__C7AEntity"
+    },
+    {
+      "slot": 44,
+      "value": 134369305,
+      "symbol": "func_08025018"
+    },
+    {
+      "slot": 48,
+      "value": 134368157,
+      "symbol": "func_08024B9C"
+    },
+    {
+      "slot": 52,
+      "value": 134423737,
+      "symbol": "func_080324B8"
+    },
+    {
+      "slot": 56,
+      "value": 134425409,
+      "symbol": "func_08032A30+0x110"
+    },
+    {
+      "slot": 60,
+      "value": 134422645,
+      "symbol": "func_0803205C+0x18"
+    },
+    {
+      "slot": 64,
+      "value": 134422621,
+      "symbol": "func_0803205C"
+    },
+    {
+      "slot": 68,
+      "value": 134422613,
+      "symbol": "sub_08031E0A+0x24A"
+    },
+    {
+      "slot": 72,
+      "value": 134380541,
+      "symbol": "func_08027BFC"
+    },
+    {
+      "slot": 76,
+      "value": 134383173,
+      "symbol": "func_08028644"
+    },
+    {
+      "slot": 80,
+      "value": 134384465,
+      "symbol": "func_08028B50"
+    },
+    {
+      "slot": 84,
+      "value": 134385789,
+      "symbol": "func_0802907C"
+    },
+    {
+      "slot": 88,
+      "value": 134390785,
+      "symbol": "func_0802A400"
+    },
+    {
+      "slot": 92,
+      "value": 134385877,
+      "symbol": "func_080290D4"
+    },
+    {
+      "slot": 96,
+      "value": 134387033,
+      "symbol": "func_08029558"
+    },
+    {
+      "slot": 100,
+      "value": 134369385,
+      "symbol": "func_08025068"
+    },
+    {
+      "slot": 104,
+      "value": 134376725,
+      "symbol": "func_08026D14"
+    },
+    {
+      "slot": 108,
+      "value": 134388177,
+      "symbol": "func_080299D0"
+    },
+    {
+      "slot": 112,
+      "value": 134388205,
+      "symbol": "func_080299EC"
+    },
+    {
+      "slot": 116,
+      "value": 134389553,
+      "symbol": "func_08029F30"
+    },
+    {
+      "slot": 120,
+      "value": 134422605,
+      "symbol": "sub_08031E0A+0x242"
+    },
+    {
+      "slot": 124,
+      "value": 134374221,
+      "symbol": "func_0802634C"
+    },
+    {
+      "slot": 128,
+      "value": 134375473,
+      "symbol": "func_08026830"
+    },
+    {
+      "slot": 132,
+      "value": 134422597,
+      "symbol": "sub_08031E0A+0x23A"
+    },
+    {
+      "slot": 136,
+      "value": 134422589,
+      "symbol": "sub_08031E0A+0x232"
+    },
+    {
+      "slot": 140,
+      "value": 134422581,
+      "symbol": "sub_08031E0A+0x22A"
+    },
+    {
+      "slot": 144,
+      "value": 134422569,
+      "symbol": "sub_08031E0A+0x21E"
+    },
+    {
+      "slot": 148,
+      "value": 134422573,
+      "symbol": "sub_08031E0A+0x222"
+    },
+    {
+      "slot": 152,
+      "value": 134368417,
+      "symbol": "func_08024CA0"
+    },
+    {
+      "slot": 156,
+      "value": 134422561,
+      "symbol": "sub_08031E0A+0x216"
+    },
+    {
+      "slot": 160,
+      "value": 134422553,
+      "symbol": "sub_08031E0A+0x20E"
+    },
+    {
+      "slot": 164,
+      "value": 134368373,
+      "symbol": "func_08024C74"
+    },
+    {
+      "slot": 168,
+      "value": 134368393,
+      "symbol": "func_08024C88"
+    },
+    {
+      "slot": 172,
+      "value": 134368409,
+      "symbol": "func_08024C98"
+    }
+  ],
+  "semantic_name_status": "concrete player-facing entity is proven structurally; preserve unknown source-class name unless independent naming evidence is found",
+  "reaction_dispatch": {
+    "queued_member": "entity+0xC3",
+    "consumer": "func_0802EC00",
+    "consume_behavior": "when nonzero, copies queued reaction into entity action-state byte +0x3C, clears +0xC3, zeroes +0xA6, and invokes concrete virtual slot +0x6C before returning from that update path",
+    "player_vtable_plus_6c_pointer": "0x080299D1",
+    "fatigue_100_special": "main player update recognizes queued state 0x2A specially and uses numeric request/message id 0x2B6 before clearing +0xC3 and invoking virtual +0x6C; do not call 0x2B6 a script/event identifier without independent interface proof"
+  },
+  "main_action_switch_reaction_cases": {
+    "0x24": {
+      "handler": ".L08031AA8",
+      "start_line": 31087,
+      "calls": [],
+      "writes": [],
+      "literals": [],
+      "immediates": [
+        "0x0",
+        "0x24",
+        "0x0",
+        "0x1",
+        "0x0"
+      ]
+    },
+    "0x25": {
+      "handler": ".L08031AA8",
+      "start_line": 31087,
+      "calls": [],
+      "writes": [],
+      "literals": [],
+      "immediates": [
+        "0x0",
+        "0x24",
+        "0x0",
+        "0x1",
+        "0x0"
+      ]
+    },
+    "0x26": {
+      "handler": ".L08031AA8",
+      "start_line": 31087,
+      "calls": [],
+      "writes": [],
+      "literals": [],
+      "immediates": [
+        "0x0",
+        "0x24",
+        "0x0",
+        "0x1",
+        "0x0"
+      ]
+    },
+    "0x27": {
+      "handler": ".L08031AA8",
+      "start_line": 31087,
+      "calls": [],
+      "writes": [],
+      "literals": [],
+      "immediates": [
+        "0x0",
+        "0x24",
+        "0x0",
+        "0x1",
+        "0x0"
+      ]
+    },
+    "0x28": {
+      "handler": ".L08031AA8",
+      "start_line": 31087,
+      "calls": [],
+      "writes": [],
+      "literals": [],
+      "immediates": [
+        "0x0",
+        "0x24",
+        "0x0",
+        "0x1",
+        "0x0"
+      ]
+    },
+    "0x29": {
+      "handler": ".L08031AA8",
+      "start_line": 31087,
+      "calls": [],
+      "writes": [],
+      "literals": [],
+      "immediates": [
+        "0x0",
+        "0x24",
+        "0x0",
+        "0x1",
+        "0x0"
+      ]
+    },
+    "0x2A": {
+      "handler": ".L08031AC0",
+      "start_line": 31102,
+      "calls": [],
+      "writes": [],
+      "literals": [],
+      "immediates": [
+        "0x0",
+        "0x24",
+        "0x0",
+        "0x1",
+        "0x0"
+      ]
+    }
+  },
+  "player_vtable_plus_6c": {
+    "function": "func_080299D0",
+    "address": "0x080299D0",
+    "thumb_pointer": "0x080299D1",
+    "verified_behavior": "clears entity+0xA4 and entity+0x88, then calls SetAnim(entity, 0x192)"
+  },
+  "reaction_switch_structure": {
+    "states_0x24_through_0x29": "all dispatch to shared main-update label .L08031AA8",
+    "state_0x2A": "dispatches separately to .L08031AC0",
+    "source": "func_0802F0EC 58-case action-state table"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "batch": 11,
+  "calls_completed": 10,
+  "head_expected": "8c52b9f",
+  "contribution_code_changed": false,
+  "banked_commit": null,
+  "focus": "calendar/clock architecture and exact in-game time progression",
+  "proven": [
+    "vtable_unk_080E5EC4 +0x0C = func_08017C30",
+    "func_0800082C repeatedly invokes scene +0x0C and AgbMain calls the scene runner",
+    "game object +0x1040 stores GameState+0x10 and +0x1044 is the clock tick counter",
+    "25 eligible func_08017C30 invocations advance one game minute",
+    "GameState+0x12 packs hour bits0..4 and minute bits5..10",
+    "minute/hour/day/season rollovers are 60/24/30/4",
+    "GameState+0x11 packs season bits0..1 and day bits2..6",
+    "clock advancement has gameplay/map/entity gates"
+  ],
+  "not_proven": "eligible Run invocation equals one video frame/VBlank; no direct synchronization edge was found in func_08017C30",
+  "private_artifacts": [
+    "tools/ches/calendar_clock_map.json",
+    "tools/ches/batch11_checkpoint.json",
+    "docs/DECOMP_NOTES.md"
+  ],
+  "transport_note": "the Call6 retry executed but exited early under set -e; subsequent calls used current source/binary directly and did not depend on its missing output"
+}

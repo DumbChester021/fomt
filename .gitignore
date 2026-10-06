@@ -8,3 +8,9 @@
 *.sav
 
 build/
+
+# Live-temp/public research snapshot hygiene
+tools/__pycache__/
+tools/ches/__pycache__/
+tools/ches/function-match-artifacts/
+tools/ches/checkpoints/

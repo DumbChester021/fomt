@@ -1,0 +1,446 @@
+{
+  "batch": 15,
+  "call": 10,
+  "topic": "progression and event gates",
+  "status": "architecture inventory",
+  "known_script_interfaces": {
+    "query_callable_0x03D": "pops selector, calls func_0804590C(selector), pushes result",
+    "action_callable_0x03E": "pops companion value and action selector, calls func_08048FFC",
+    "query_selector_range": "0x000..0x24D (590 selectors)",
+    "guardrail": "selectors are script API IDs; do not equate a selector with a persistent flag until its dataflow proves that relationship"
+  },
+  "goals": [
+    "identify generic persistent event/progression flag storage and accessor semantics",
+    "map high-value selectors to concrete gates such as upgrades, relationship milestones, festivals, recipes, or story state only with binary proof",
+    "distinguish derived conditions from raw flags/counters",
+    "record script call sites so modders can change requirements without guessing"
+  ],
+  "guardrails": [
+    "keep func_/gUnk_ names when semantics remain uncertain",
+    "separate script-facing selector IDs from GameState offsets and bit indices",
+    "do not infer event meaning from text proximity alone",
+    "whole-ROM exactness is mandatory for any contribution code"
+  ],
+  "relationship_event_architecture": {
+    "storage_anchor": "GameState +0x1CD4 is passed into relationship/Bachelorette lookup helpers; exact per-character layout is traced in dedicated methods rather than inferred from raw offsets",
+    "completed_player_event_gate": "func_08045584(..., mode=0) resolves a Bachelorette; only when GetPlayerEventCount()==5 does it return GetDaysSincePlayerEvent_bugged(); otherwise 0",
+    "completed_rival_event_gate": "func_08045584(..., mode!=0) resolves a Bachelorette; only when GetRivalEventCount()==4 does it return GetDaysSinceRivalEvent(); otherwise 0",
+    "semantic_caution": "the helper exposes completion-count/day-since state; do not yet equate every script selector using it with a specific named heart event until selector and character arguments are decoded",
+    "selector_status": "selectors listed here are binary-proven to route through relationship helpers; character/event-name meaning remains separate until script arguments and lookup indices are decoded",
+    "selector_mapping_method": "corrected Call4 CFG walk: follow local unconditional/conditional branches from each unique switch entry to shared relationship helper blocks; Call3 direct-block result was a false negative",
+    "bachelorette_persistent_fields": {
+      "source": "include/bachelorette.hh + src/bachelorette.cc; object is serialized because the enclosing GameState image is saved verbatim",
+      "fields": "record exact declarations/method semantics from source; base-class-relative byte offsets must respect historical compiler ABI and are not invented here",
+      "player_event_completion_count": 5,
+      "rival_event_completion_count": 4
+    },
+    "call4_cfg_warning": "Call4 CFG walk over-approximated because it followed physical fallthrough after shared-result/return machinery; its 79-selector list is superseded and must not be used as semantic evidence.",
+    "bachelorette_actor_ids": [
+      "0x03",
+      "0x0C",
+      "0x13",
+      "0x15",
+      "0x19",
+      "0x1F"
+    ],
+    "completed_event_day_selectors": {
+      "player": {
+        "0x36": "actor 0x13",
+        "0x37": "actor 0x03",
+        "0x38": "actor 0x0C",
+        "0x39": "actor 0x15",
+        "0x3A": "actor 0x19",
+        "0x3B": "actor 0x1F"
+      },
+      "rival": {
+        "0x3C": "actor 0x13",
+        "0x3D": "actor 0x03",
+        "0x3E": "actor 0x0C",
+        "0x3F": "actor 0x15",
+        "0x40": "actor 0x19"
+      },
+      "meaning": "func_08045584 returns days-since only when player event count == 5 or rival event count == 4 respectively; otherwise 0"
+    },
+    "event_count_gate_helper": {
+      "function": "func_080455D8",
+      "return_1": "interaction/state bit queried through func_0809C694 is already set",
+      "return_2": "resolved Bachelorette event count is >= requested threshold",
+      "return_0": "neither condition is met or character lookup fails",
+      "mode": "fifth argument byte 0 selects player-event count; nonzero selects rival-event count"
+    },
+    "threshold_selector_families": {
+      "player": {
+        "actor_0x13": [
+          "0x46",
+          "0x47",
+          "0x49",
+          "0x4A",
+          "0x4B",
+          "0x4C"
+        ],
+        "actor_0x03": [
+          "0x4E",
+          "0x4F",
+          "0x50",
+          "0x52",
+          "0x54",
+          "0x55"
+        ],
+        "actor_0x19": [
+          "0x57",
+          "0x58",
+          "0x5A",
+          "0x5C",
+          "0x5E",
+          "0x5F"
+        ],
+        "actor_0x0C": [
+          "0x61",
+          "0x62",
+          "0x64",
+          "0x65",
+          "0x66",
+          "0x67"
+        ],
+        "actor_0x15": [
+          "0x69",
+          "0x6A",
+          "0x6B",
+          "0x6D",
+          "0x6E",
+          "0x6F"
+        ],
+        "actor_0x1F": [
+          "0x172",
+          "0x173"
+        ]
+      },
+      "rival": {
+        "actor_0x13": [
+          "0x71",
+          "0x72",
+          "0x73",
+          "0x74",
+          "0x75",
+          "0x76",
+          "0x77"
+        ],
+        "actor_0x03": [
+          "0x7A",
+          "0x7B",
+          "0x7C",
+          "0x7D",
+          "0x7E",
+          "0x7F"
+        ],
+        "actor_0x19": [
+          "0x82",
+          "0x83",
+          "0x84",
+          "0x85",
+          "0x86",
+          "0x87"
+        ],
+        "actor_0x0C": [
+          "0x8A",
+          "0x8B",
+          "0x8C",
+          "0x8D",
+          "0x8E",
+          "0x8F"
+        ],
+        "actor_0x15": [
+          "0x92",
+          "0x93",
+          "0x94",
+          "0x95",
+          "0x96",
+          "0x97"
+        ]
+      },
+      "status": "family membership is direct switch-entry evidence; exact threshold per selector is verified from shared destinations in Call5 output"
+    },
+    "relationship_object_lookup": {
+      "actor_0x03": "GameState relationship block +0x98",
+      "actor_0x0C": "GameState relationship block +0x154",
+      "actor_0x13": "GameState relationship block +0x1E4",
+      "actor_0x15": "GameState relationship block +0x210",
+      "actor_0x19": "GameState relationship block +0x264",
+      "actor_0x1F": "GameState relationship block +0x2E4",
+      "basis": "func_080A0878 and func_080A01F8 switch on actor ID and return the corresponding Bachelorette object pointer"
+    },
+    "actor_name_status": "Names must be attached only if constructor/table evidence in Call6 proves them; otherwise retain numeric actor IDs.",
+    "threshold_semantics": {
+      "player": {
+        "actor_0x13": {
+          "0x46": 1,
+          "0x47": 2,
+          "0x49": 3,
+          "0x4A": 4,
+          "0x4B": 5,
+          "0x4C": 6
+        },
+        "actor_0x03": {
+          "0x4E": 1,
+          "0x4F": 2,
+          "0x50": 3,
+          "0x52": 4,
+          "0x54": 5,
+          "0x55": 6
+        },
+        "actor_0x19": {
+          "0x57": 1,
+          "0x58": 2,
+          "0x5A": 3,
+          "0x5C": 4,
+          "0x5E": 5,
+          "0x5F": 6
+        },
+        "actor_0x0C": {
+          "0x61": 1,
+          "0x62": 2,
+          "0x64": 3,
+          "0x65": 4,
+          "0x66": 5,
+          "0x67": 6
+        },
+        "actor_0x15": {
+          "0x69": 1,
+          "0x6A": 2,
+          "0x6B": 3,
+          "0x6D": 4,
+          "0x6E": 5,
+          "0x6F": 6
+        },
+        "actor_0x1F": {
+          "0x172": 5,
+          "0x173": 6
+        }
+      },
+      "rival": {
+        "actor_0x13": {
+          "0x71": 1,
+          "0x72": 2,
+          "0x73": 3,
+          "0x74": 4,
+          "0x75": 5,
+          "0x76": 5,
+          "0x77": 5
+        },
+        "actor_0x03": {
+          "0x7A": 1,
+          "0x7B": 2,
+          "0x7C": 3,
+          "0x7D": 4,
+          "0x7E": 5,
+          "0x7F": 5
+        },
+        "actor_0x19": {
+          "0x82": 1,
+          "0x83": 2,
+          "0x84": 3,
+          "0x85": 4,
+          "0x86": 5,
+          "0x87": 5
+        },
+        "actor_0x0C": {
+          "0x8A": 1,
+          "0x8B": 2,
+          "0x8C": 3,
+          "0x8D": 4,
+          "0x8E": 5,
+          "0x8F": 5
+        },
+        "actor_0x15": {
+          "0x92": 1,
+          "0x93": 2,
+          "0x94": 3,
+          "0x95": 4,
+          "0x96": 5,
+          "0x97": 5
+        }
+      },
+      "important": "Bachelorette::RivalEventUpdate increments while rival_events < 5, so rival_events can reach 5. Therefore rival threshold-5 selectors are reachable through the raw counter. Bachelorette::PlayerEventUpdate analogously permits player_events to reach 6.",
+      "counter_maxima": {
+        "player_events": 6,
+        "rival_events": 5,
+        "proof": "src/bachelorette.cc: PlayerEventUpdate increments if <6; RivalEventUpdate increments if <5"
+      }
+    },
+    "name_mapping_evidence": {
+      "character_name_region": "ROM around 0x08104138 contains contiguous NPC names and immediately precedes actor-indexed gUnk_08104258 at 0x08104258",
+      "actor_table": "gUnk_08104258 is indexed as actor_id * 8 by func_0809FE74",
+      "status": "Call8 inspects fixed-width/name lookup structure before assigning names to actor IDs; do not infer mapping from mere adjacency."
+    },
+    "bachelorette_actor_names": {
+      "actor_0x03": "Popuri",
+      "actor_0x0C": "Mary",
+      "actor_0x13": "Karen",
+      "actor_0x15": "Elli",
+      "actor_0x19": "Ann",
+      "actor_0x1F": "H. Goddess"
+    },
+    "named_threshold_semantics": {
+      "player": {
+        "Karen": {
+          "actor_id": "0x13",
+          "selectors": {
+            "0x46": 1,
+            "0x47": 2,
+            "0x49": 3,
+            "0x4A": 4,
+            "0x4B": 5,
+            "0x4C": 6
+          }
+        },
+        "Popuri": {
+          "actor_id": "0x03",
+          "selectors": {
+            "0x4E": 1,
+            "0x4F": 2,
+            "0x50": 3,
+            "0x52": 4,
+            "0x54": 5,
+            "0x55": 6
+          }
+        },
+        "Ann": {
+          "actor_id": "0x19",
+          "selectors": {
+            "0x57": 1,
+            "0x58": 2,
+            "0x5A": 3,
+            "0x5C": 4,
+            "0x5E": 5,
+            "0x5F": 6
+          }
+        },
+        "Mary": {
+          "actor_id": "0x0C",
+          "selectors": {
+            "0x61": 1,
+            "0x62": 2,
+            "0x64": 3,
+            "0x65": 4,
+            "0x66": 5,
+            "0x67": 6
+          }
+        },
+        "Elli": {
+          "actor_id": "0x15",
+          "selectors": {
+            "0x69": 1,
+            "0x6A": 2,
+            "0x6B": 3,
+            "0x6D": 4,
+            "0x6E": 5,
+            "0x6F": 6
+          }
+        },
+        "H. Goddess": {
+          "actor_id": "0x1F",
+          "selectors": {
+            "0x172": 5,
+            "0x173": 6
+          }
+        }
+      },
+      "rival": {
+        "Karen": {
+          "actor_id": "0x13",
+          "selectors": {
+            "0x71": 1,
+            "0x72": 2,
+            "0x73": 3,
+            "0x74": 4,
+            "0x75": 5,
+            "0x76": 5,
+            "0x77": 5
+          }
+        },
+        "Popuri": {
+          "actor_id": "0x03",
+          "selectors": {
+            "0x7A": 1,
+            "0x7B": 2,
+            "0x7C": 3,
+            "0x7D": 4,
+            "0x7E": 5,
+            "0x7F": 5
+          }
+        },
+        "Ann": {
+          "actor_id": "0x19",
+          "selectors": {
+            "0x82": 1,
+            "0x83": 2,
+            "0x84": 3,
+            "0x85": 4,
+            "0x86": 5,
+            "0x87": 5
+          }
+        },
+        "Mary": {
+          "actor_id": "0x0C",
+          "selectors": {
+            "0x8A": 1,
+            "0x8B": 2,
+            "0x8C": 3,
+            "0x8D": 4,
+            "0x8E": 5,
+            "0x8F": 5
+          }
+        },
+        "Elli": {
+          "actor_id": "0x15",
+          "selectors": {
+            "0x92": 1,
+            "0x93": 2,
+            "0x94": 3,
+            "0x95": 4,
+            "0x96": 5,
+            "0x97": 5
+          }
+        }
+      }
+    },
+    "query_helpers": {
+      "func_08045584": {
+        "meaning": "returns an elapsed-days field only at one specific event-count stage, otherwise 0",
+        "player_path": "requires player event count == 5, then returns GetDaysSincePlayerEvent_bugged(); that method actually returns days_since_rival_event",
+        "rival_path": "requires rival event count == 4, then returns GetDaysSinceRivalEvent()",
+        "important": "these are stage-specific checks, not terminal/max-count checks: player_events can reach 6 and rival_events can reach 5",
+        "selector_families": "query selectors 0x36..0x40 select the five normal heroines and player/rival side; Harvest Goddess has no rival family in this block"
+      },
+      "func_080455D8": {
+        "meaning": "tri-state event-threshold gate tied to an interaction/state bit",
+        "returns": {
+          "1": "interaction/state bit already set",
+          "2": "bit clear and selected player/rival event count >= threshold",
+          "0": "otherwise or actor lookup failed"
+        },
+        "important": "rival threshold-5 selectors are reachable because RivalEventUpdate permits rival_events to reach 5; return 1 from the interaction/state bit remains distinct from return 2 for a satisfied numeric threshold"
+      }
+    },
+    "character_name_pointer_proof": {
+      "table": "gUnk_08104258 @CharacterNamePointers",
+      "record_size": 8,
+      "indexing": "actor_id * 8",
+      "first_word": "pointer to character name string",
+      "proven_mapping": {
+        "0x03": "Popuri",
+        "0x0C": "Mary",
+        "0x13": "Karen",
+        "0x15": "Elli",
+        "0x19": "Ann",
+        "0x1F": "H. Goddess"
+      },
+      "evidence": "ROM records at 0x08104270/2B8/2F0/300/320/350 point respectively to name strings at 0x08104138/17C/1B0/1C0/1E0/204"
+    },
+    "correction_call10": {
+      "supersedes": "Call7/Call9 statement that normal rival completion count is 4 and threshold-5 rival selectors are unreachable",
+      "correct": "rival_events maximum is 5; player_events maximum is 6",
+      "reason": "direct decompiled Bachelorette update methods"
+    }
+  }
+}

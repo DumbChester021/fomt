@@ -1,0 +1,638 @@
+{
+  "batch": 12,
+  "call": 10,
+  "focus": "inventory / held item / tools / rucksack runtime anchors",
+  "known_farmer_offsets": {
+    "held_item": "GameState+0x1C2C / Farmer+0x54",
+    "tool_stack": "GameState+0x1C34 / Farmer+0x5C",
+    "rucksack": "GameState+0x1C38 / Farmer+0x60"
+  },
+  "status": "seed only; promote field semantics and APIs only from exact declaration/caller evidence",
+  "game_state_inventory_offsets": {
+    "Farmer": "0x1BD8",
+    "HeldItem": "0x1C2C",
+    "ToolStack": "0x1C34",
+    "Rucksack": "0x1C38"
+  },
+  "tool_stack_layout": {
+    "size": 2,
+    "byte0": "tool id",
+    "byte1": "amount",
+    "max_amount": 99
+  },
+  "rucksack_layout": {
+    "items": "FixedVec<RucksackItem,8> at +0x00",
+    "tools": "FixedVec<ToolStack,8> at +0x24",
+    "capacity_each": 8
+  },
+  "held_item_encoding": {
+    "kind": "byte0 bits0..2",
+    "wrapped": "byte0 bit3",
+    "inner_offset": "0x02",
+    "empty": "KIND_5 + inner.unk_k5_02=0xFFFF",
+    "food": "kind0: id/stamina_bonus/fatigue_bonus",
+    "article": "kind1: id"
+  },
+  "retail_farmer_inventory_offsets": {
+    "Farmer_base": "GameState+0x1BD8",
+    "held_item": "Farmer+0x54 = GameState+0x1C2C",
+    "tool_stack": "Farmer+0x5C = GameState+0x1C34",
+    "rucksack": "Farmer+0x60 = GameState+0x1C38"
+  },
+  "layout_probe_warning": "The Call5 arm-none-eabi-g++ layout probe produced Farmer +0x4D/+0x52/+0x54, which conflicts with exact retail addressing. Do not use those Farmer offsets as retail ABI facts; the project uses a different historical compiler/ABI path for matching code. Retail binary/source addressing is authoritative.",
+  "nonmatching_modern_compiler_offsets": {
+    "Rucksack.tools": 36,
+    "Farmer.held_item": 77,
+    "Farmer.tool_stack": 82,
+    "Farmer.rucksack": 84
+  },
+  "modern_compiler_size_probe": {
+    "Tool": 1,
+    "ToolStack": 2,
+    "Food": 3,
+    "RucksackItem": 4,
+    "HeldItem": 5,
+    "Rucksack": 56,
+    "Farmer": 140
+  },
+  "query_selector_note": "Selectors listed here are mechanically mapped from func_0804590C jump-table cases whose blocks touch inventory offsets/APIs. Promote individual semantics only after reading the exact case body and return path.",
+  "query_selector_inventory": {
+    "0x02C": {
+      "meaning": "Rucksack upgrade level",
+      "implementation": "GameState+0x1C38 -> GetUpgradeLevel__C8Rucksack -> query return",
+      "status": "binary-proven"
+    }
+  },
+  "query_selector_correction": "Call7 bounded-window candidates 0x01E and 0x023..0x027 were false positives caused by lookahead bleeding into the 0x02C case. Independent grep of func_0804590C shows only 0x02C directly touches inventory/rucksack APIs among those candidates.",
+  "direct_callable_inventory_cases": [
+    {
+      "callable_id": 75,
+      "hex": "0x04B",
+      "label": ".L080412B8",
+      "asm_line": 3094,
+      "hits": [
+        "00001C2C",
+        "func_0800F190",
+        "func_0800F204",
+        "func_0800F258"
+      ]
+    },
+    {
+      "callable_id": 78,
+      "hex": "0x04E",
+      "label": ".L080416A2",
+      "asm_line": 3573,
+      "hits": [
+        "00001C34",
+        "GetTool__C9ToolStack",
+        "IsEmpty__C9ToolStack"
+      ]
+    },
+    {
+      "callable_id": 79,
+      "hex": "0x04F",
+      "label": ".L080416F4",
+      "asm_line": 3611,
+      "hits": [
+        "00001C34",
+        "IsEmpty__C9ToolStack",
+        "GetAmount__C9ToolStack"
+      ]
+    },
+    {
+      "callable_id": 80,
+      "hex": "0x050",
+      "label": ".L0804173C",
+      "asm_line": 3645,
+      "hits": [
+        "00001C34"
+      ]
+    },
+    {
+      "callable_id": 81,
+      "hex": "0x051",
+      "label": ".L08041860",
+      "asm_line": 3778,
+      "hits": [
+        "00001C34"
+      ]
+    },
+    {
+      "callable_id": 82,
+      "hex": "0x052",
+      "label": ".L08041884",
+      "asm_line": 3795,
+      "hits": [
+        "00001C38",
+        "GetFirstSlotWithFood__C8RucksackUi"
+      ]
+    },
+    {
+      "callable_id": 83,
+      "hex": "0x053",
+      "label": ".L080418BC",
+      "asm_line": 3822,
+      "hits": [
+        "00001C38",
+        "GetFirstSlotWithArticle__C8RucksackUi"
+      ]
+    },
+    {
+      "callable_id": 84,
+      "hex": "0x054",
+      "label": ".L080418F4",
+      "asm_line": 3849,
+      "hits": [
+        "00001C38"
+      ]
+    },
+    {
+      "callable_id": 85,
+      "hex": "0x055",
+      "label": ".L08041930",
+      "asm_line": 3877,
+      "hits": [
+        "00001C38",
+        "GetFirstFreeToolSlot__C8Rucksack"
+      ]
+    },
+    {
+      "callable_id": 86,
+      "hex": "0x056",
+      "label": ".L08041948",
+      "asm_line": 3888,
+      "hits": [
+        "00001C38",
+        "GetFirstFreeItemSlot__C8Rucksack"
+      ]
+    },
+    {
+      "callable_id": 87,
+      "hex": "0x057",
+      "label": ".L0804196C",
+      "asm_line": 3905,
+      "hits": [
+        "00001C38",
+        "AddAmountOfArticle__8RucksackUiUi"
+      ]
+    },
+    {
+      "callable_id": 88,
+      "hex": "0x058",
+      "label": ".L080419B4",
+      "asm_line": 3942,
+      "hits": [
+        "00001C38",
+        "AddAmountOfFood__8RucksackUiUi"
+      ]
+    },
+    {
+      "callable_id": 89,
+      "hex": "0x059",
+      "label": ".L080419FC",
+      "asm_line": 3979,
+      "hits": [
+        "00001C38",
+        "AddAmountOfTool__8RucksackUiUi"
+      ]
+    },
+    {
+      "callable_id": 96,
+      "hex": "0x060",
+      "label": ".L080451EE",
+      "asm_line": 10912,
+      "hits": [
+        "00001C2C",
+        "00001C38",
+        "func_0800F190",
+        "func_0800F204",
+        "func_0800F258",
+        "func_0800F390"
+      ]
+    },
+    {
+      "callable_id": 116,
+      "hex": "0x074",
+      "label": ".L0804425C",
+      "asm_line": 8885,
+      "hits": [
+        "00001C38",
+        "Upgrade__8Rucksack"
+      ]
+    },
+    {
+      "callable_id": 117,
+      "hex": "0x075",
+      "label": ".L08044274",
+      "asm_line": 8896,
+      "hits": [
+        "00001C38",
+        "GetUpgradeLevel__C8Rucksack"
+      ]
+    },
+    {
+      "callable_id": 288,
+      "hex": "0x120",
+      "label": ".L0804315A",
+      "asm_line": 6847,
+      "hits": [
+        "00001C2C",
+        "func_0800F190",
+        "func_0800F204"
+      ]
+    }
+  ],
+  "direct_callable_inventory_semantics": {
+    "0x04E": {
+      "behavior": "return held ToolStack tool id; returns -1 when held ToolStack is empty",
+      "status": "binary-proven"
+    },
+    "0x04F": {
+      "behavior": "return held ToolStack amount; returns -1 when held ToolStack is empty",
+      "status": "binary-proven"
+    },
+    "0x051": {
+      "behavior": "reset held ToolStack to default empty state (TOOL_NONE sentinel, amount 0)",
+      "status": "binary-proven"
+    },
+    "0x052": {
+      "behavior": "find first rucksack item slot containing requested food id",
+      "status": "binary-proven"
+    },
+    "0x053": {
+      "behavior": "find first rucksack item slot containing requested article id",
+      "status": "binary-proven"
+    },
+    "0x054": {
+      "behavior": "replace rucksack item at requested index with default/empty RucksackItem",
+      "status": "binary-proven"
+    },
+    "0x055": {
+      "behavior": "return first free rucksack tool slot",
+      "status": "binary-proven"
+    },
+    "0x056": {
+      "behavior": "return first free rucksack item slot",
+      "status": "binary-proven"
+    },
+    "0x057": {
+      "behavior": "add requested amount of requested article id to rucksack; forwards Rucksack return value",
+      "status": "binary-proven"
+    },
+    "0x058": {
+      "behavior": "add requested amount of requested food id to rucksack; forwards Rucksack return value",
+      "status": "binary-proven"
+    },
+    "0x059": {
+      "behavior": "add requested amount of requested tool id to rucksack; forwards Rucksack return value",
+      "status": "binary-proven"
+    },
+    "0x074": {
+      "behavior": "upgrade rucksack by one level when possible",
+      "status": "binary-proven"
+    },
+    "0x075": {
+      "behavior": "return rucksack upgrade level",
+      "status": "binary-proven"
+    },
+    "0x02C_query": {
+      "behavior": "return rucksack upgrade level through generic query dispatcher",
+      "status": "binary-proven"
+    },
+    "0x050": {
+      "behavior": "set held ToolStack from two VM arguments: tool id then amount; ToolStack constructor normalizes amount 0 -> 1 and clamps positive amounts to 99",
+      "argument_order": "dispatcher pops top/later argument as amount, then next/earlier argument as tool id",
+      "status": "binary-proven"
+    }
+  },
+  "callable_case_call_graph": [
+    {
+      "id": 74,
+      "hex": "0x04A",
+      "label": ".L08041612",
+      "asm_line": 3501,
+      "end_line": 3531,
+      "calls": [
+        "__7ArticleUi",
+        "__12RucksackItemG7Article",
+        "func_08014164"
+      ]
+    },
+    {
+      "id": 75,
+      "hex": "0x04B",
+      "label": ".L080412B8",
+      "asm_line": 3094,
+      "end_line": 3365,
+      "calls": [
+        "func_0800F190",
+        "func_0800F204",
+        "func_0800F258",
+        "CanBeDiscarded__C7Article",
+        ".L08045572",
+        ".L080454BE",
+        ".L08045572",
+        ".L08045516",
+        "func_0800F190",
+        "func_0800F204",
+        ".L080454B2",
+        ".L08045572",
+        ".L08045516",
+        "func_0800F190",
+        "func_0800F388",
+        ".L080454B2",
+        ".L08045572",
+        ".L08045516",
+        "func_0800F190",
+        "func_0800F204",
+        "func_0800F20C",
+        "GetId__C4Food",
+        ".L080454B2",
+        ".L08045572",
+        ".L08045516",
+        "func_0800F190",
+        "func_0800F204",
+        "func_0800F258",
+        "GetId__C7Article",
+        ".L080454B2",
+        ".L08045572",
+        ".L08045516",
+        "func_0800F190",
+        "func_0800F204",
+        "func_0800F344",
+        ".L080454B2",
+        ".L08045572",
+        ".L08045516"
+      ]
+    },
+    {
+      "id": 76,
+      "hex": "0x04C",
+      "label": ".L08041652",
+      "asm_line": 3532,
+      "end_line": 3563,
+      "calls": [
+        "func_0801412C",
+        ".L08045572",
+        ".L08045574"
+      ]
+    },
+    {
+      "id": 77,
+      "hex": "0x04D",
+      "label": ".L08041690",
+      "asm_line": 3564,
+      "end_line": 3572,
+      "calls": [
+        "func_080141C4"
+      ]
+    },
+    {
+      "id": 78,
+      "hex": "0x04E",
+      "label": ".L080416A2",
+      "asm_line": 3573,
+      "end_line": 3610,
+      "calls": [
+        "IsEmpty__C9ToolStack",
+        "GetTool__C9ToolStack",
+        "GetId__C4Tool",
+        ".L08045572",
+        ".L080454BE"
+      ]
+    },
+    {
+      "id": 79,
+      "hex": "0x04F",
+      "label": ".L080416F4",
+      "asm_line": 3611,
+      "end_line": 3644,
+      "calls": [
+        "IsEmpty__C9ToolStack",
+        "GetAmount__C9ToolStack",
+        ".L08045572",
+        ".L080454BE"
+      ]
+    },
+    {
+      "id": 80,
+      "hex": "0x050",
+      "label": ".L0804173C",
+      "asm_line": 3645,
+      "end_line": 3688,
+      "calls": [
+        "__4ToolUi",
+        "__9ToolStackG4ToolUi"
+      ]
+    },
+    {
+      "id": 81,
+      "hex": "0x051",
+      "label": ".L08041860",
+      "asm_line": 3778,
+      "end_line": 3794,
+      "calls": [
+        "__9ToolStack",
+        "memcpy",
+        ".L08045572"
+      ]
+    },
+    {
+      "id": 82,
+      "hex": "0x052",
+      "label": ".L08041884",
+      "asm_line": 3795,
+      "end_line": 3821,
+      "calls": [
+        "GetFirstSlotWithFood__C8RucksackUi",
+        ".L08045166"
+      ]
+    },
+    {
+      "id": 83,
+      "hex": "0x053",
+      "label": ".L080418BC",
+      "asm_line": 3822,
+      "end_line": 3848,
+      "calls": [
+        "GetFirstSlotWithArticle__C8RucksackUi",
+        ".L08045166"
+      ]
+    },
+    {
+      "id": 84,
+      "hex": "0x054",
+      "label": ".L080418F4",
+      "asm_line": 3849,
+      "end_line": 3876,
+      "calls": [
+        "GetItemAt__8RucksackUi",
+        "__12RucksackItem",
+        ".L08045572"
+      ]
+    },
+    {
+      "id": 85,
+      "hex": "0x055",
+      "label": ".L08041930",
+      "asm_line": 3877,
+      "end_line": 3887,
+      "calls": [
+        "GetFirstFreeToolSlot__C8Rucksack",
+        ".L080454A6"
+      ]
+    },
+    {
+      "id": 86,
+      "hex": "0x056",
+      "label": ".L08041948",
+      "asm_line": 3888,
+      "end_line": 3904,
+      "calls": [
+        "GetFirstFreeItemSlot__C8Rucksack",
+        ".L080454B2"
+      ]
+    },
+    {
+      "id": 87,
+      "hex": "0x057",
+      "label": ".L0804196C",
+      "asm_line": 3905,
+      "end_line": 3941,
+      "calls": [
+        "AddAmountOfArticle__8RucksackUiUi",
+        ".L08045166"
+      ]
+    },
+    {
+      "id": 88,
+      "hex": "0x058",
+      "label": ".L080419B4",
+      "asm_line": 3942,
+      "end_line": 3978,
+      "calls": [
+        "AddAmountOfFood__8RucksackUiUi",
+        ".L08045166"
+      ]
+    },
+    {
+      "id": 89,
+      "hex": "0x059",
+      "label": ".L080419FC",
+      "asm_line": 3979,
+      "end_line": 4015,
+      "calls": [
+        "AddAmountOfTool__8RucksackUiUi",
+        ".L08045166"
+      ]
+    },
+    {
+      "id": 96,
+      "hex": "0x060",
+      "label": ".L080451EE",
+      "asm_line": 10912,
+      "end_line": 11059,
+      "calls": [
+        "func_0800F190",
+        "func_0800F204",
+        "func_0800F258",
+        "GetId__C7Article",
+        "func_0800F390",
+        "GetItemAt__8RucksackUi",
+        "IsEmpty__C12RucksackItem",
+        "GetKind__C12RucksackItem",
+        "GetArticle__C12RucksackItem",
+        "GetId__C7Article",
+        "__12RucksackItem",
+        "GetSize__C8Rucksack",
+        "GetShelf__9FarmHouse",
+        "GetShelf__9FarmHouse",
+        "GetArticleStackAt__5ShelfUi",
+        "IsEmpty__C12ArticleStack",
+        "GetArticle__C12ArticleStack",
+        "GetId__C7Article",
+        "__12ArticleStack",
+        "memcpy"
+      ]
+    },
+    {
+      "id": 116,
+      "hex": "0x074",
+      "label": ".L0804425C",
+      "asm_line": 8885,
+      "end_line": 8895,
+      "calls": [
+        "Upgrade__8Rucksack",
+        ".L08045572"
+      ]
+    },
+    {
+      "id": 117,
+      "hex": "0x075",
+      "label": ".L08044274",
+      "asm_line": 8896,
+      "end_line": 8906,
+      "calls": [
+        "GetUpgradeLevel__C8Rucksack",
+        ".L080454A6"
+      ]
+    },
+    {
+      "id": 288,
+      "hex": "0x120",
+      "label": ".L0804315A",
+      "asm_line": 6847,
+      "end_line": 7111,
+      "calls": [
+        "func_0800F190",
+        "func_0800F204",
+        "func_0800F20C",
+        "GetId__C4Food",
+        "GetId__C4Food",
+        "GetId__C4Food",
+        "GetId__C4Food",
+        "GetId__C4Food",
+        "GetId__C4Food"
+      ]
+    }
+  ],
+  "retail_rucksack_layout": {
+    "base": "GameState+0x1C38 = Farmer+0x60",
+    "item_size_field": "+0x00 u32 active item-slot count",
+    "items": "+0x04, 8 physical RucksackItem slots, 4 bytes each",
+    "tool_size_field": "+0x24 u32 active tool-slot count",
+    "tools": "+0x28, 8 physical ToolStack slots, 2 bytes each",
+    "physical_size": "0x38 bytes",
+    "constructor_active_size": 2,
+    "upgrade_active_sizes": [
+      2,
+      4,
+      8
+    ],
+    "upgrade_levels": "level 0 => active size 2, level 1 => 4, level 2 => 8"
+  },
+  "retail_inventory_offsets": {
+    "Farmer": "GameState+0x1BD8",
+    "HeldItem": "Farmer+0x54 = GameState+0x1C2C",
+    "ToolStack": "Farmer+0x5C = GameState+0x1C34",
+    "Rucksack": "Farmer+0x60 = GameState+0x1C38"
+  },
+  "vm_inventory_api_summary": {
+    "query_0x02C": "rucksack upgrade level",
+    "call_0x04E": "held tool id, -1 if empty",
+    "call_0x04F": "held tool amount, -1 if empty",
+    "call_0x050": "set held tool stack(tool_id, amount)",
+    "call_0x051": "clear held tool stack",
+    "call_0x052": "find first rucksack slot with food id",
+    "call_0x053": "find first rucksack slot with article id",
+    "call_0x054": "clear requested rucksack item slot",
+    "call_0x055": "first free rucksack tool slot",
+    "call_0x056": "first free rucksack item slot",
+    "call_0x057": "add article amount to rucksack (present in dispatcher; Mary marks FoMT callable unreferenced)",
+    "call_0x058": "add food amount to rucksack",
+    "call_0x059": "add tool amount to rucksack",
+    "call_0x074": "upgrade rucksack",
+    "call_0x075": "rucksack upgrade level"
+  },
+  "compiler_layout_warning": "Do not use modern arm-none-eabi-g++ Farmer offsetof results as retail ABI. The matching project compiles C++ through agbcp (gcc 2.9-arm-000512); retail binary/source member addressing above is authoritative."
+}

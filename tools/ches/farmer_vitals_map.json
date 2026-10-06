@@ -1,0 +1,102 @@
+{
+  "query_selectors": {
+    "0x0A": {
+      "role": "current_stamina",
+      "verified_constant_usage": {
+        "calls": 4,
+        "scripts": [
+          483
+        ]
+      }
+    },
+    "0x0B": {
+      "role": "max_stamina",
+      "verified_constant_usage": {
+        "calls": 4,
+        "scripts": [
+          483
+        ]
+      }
+    },
+    "0x0C": {
+      "role": "fatigue_div_2",
+      "verified_constant_usage": {
+        "calls": 19,
+        "scripts": [
+          350,
+          483,
+          978,
+          986
+        ]
+      }
+    },
+    "0x0D": {
+      "role": "mysterious_berry_flag",
+      "verified_constant_usage": null
+    },
+    "0x2D": {
+      "role": "step_count",
+      "verified_constant_usage": {
+        "calls": 1,
+        "scripts": [
+          571
+        ]
+      }
+    }
+  },
+  "generic_action_candidates": {},
+  "farmer_location_verified": {
+    "game_state_offset": "0x1BD8",
+    "evidence": "query dispatcher 0x0A/0x0B/0x0C/0x0D/0x2D and direct mutation paths all form GameState + 0x1BD8 before Farmer calls"
+  },
+  "query_dispatch_verified": {
+    "dispatcher": "func_0804590C",
+    "labels": {
+      "0x0A": ".L08046360",
+      "0x0B": ".L08046378",
+      "0x0C": ".L08046390",
+      "0x0D": ".L080463A8",
+      "0x2D": ".L0804664C"
+    },
+    "getters": {
+      "0x0A": "func_0800E4F0 current stamina",
+      "0x0B": "func_0800E51C max stamina",
+      "0x0C": "func_0800E4FC fatigue/2",
+      "0x0D": "func_0800E53C unk_44_04 flag",
+      "0x2D": "func_0800E958 step count"
+    }
+  },
+  "farmer_state_verified": {
+    "constructor_stamina": 150,
+    "max_stamina_formula": "150 + 10 * num_power_berries",
+    "power_berry_cap": 10,
+    "fatigue_storage_field": "unk_44_0F",
+    "fatigue_storage_cap": 200,
+    "fatigue_query": "unk_44_0F / 2",
+    "exhaustion_test": "unk_44_0F >= 200",
+    "stamina_mutator": "func_0800E9E4",
+    "stamina_decrease_wrapper": "func_0800EA38",
+    "stamina_full_restore": "func_0800EA44",
+    "fatigue_mutator": "func_0800EA68",
+    "fatigue_decrease_wrapper": "func_0800EAD4",
+    "fatigue_clear": "func_0800EAE0",
+    "mysterious_berry_flag_getter": "func_0800E53C",
+    "mysterious_berry_flag_setter": "func_0800EAF0",
+    "step_count_getter": "func_0800E958",
+    "step_count_increment": "func_0800ED8C"
+  },
+  "entity_vitals_wrapper_candidate": {
+    "function": "func_08025068",
+    "signature_from_register_use": "(entity, stamina_delta, fatigue_delta)",
+    "farmer_pointer_member_offset": "entity + 0x38",
+    "behavior": "captures old/current stamina and fatigue, invokes func_0800E9E4 and func_0800EA68, then reacts to resulting player state",
+    "status": "verified behavior; semantic class/name still unknown",
+    "address": "0x08025068",
+    "thumb_pointer": "0x08025069",
+    "rom_pointer_location": "0x080E66BC",
+    "candidate_table_base": "0x080E6658",
+    "candidate_table_slot": "0x64",
+    "pointer_proof": "ROM[0x080E66BC]=0x08025069",
+    "semantic_owner_status": "candidate table/type identity requires constructor/symbol boundary proof; do not infer solely from pointer density"
+  }
+}

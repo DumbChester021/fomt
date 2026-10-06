@@ -1,0 +1,57 @@
+CC src/m4a.c
+CC src/pure_virtual.c
+CP src/actor.cc
+CP src/animal.cc
+CP src/bachelorette.cc
+CP src/barn.cc
+CP src/barn_animal.cc
+CP src/character_info.cc
+CP src/chicken.cc
+CP src/code_0800BC58.cc
+CP src/code_0800E2E4.cc
+CP src/code_08017C00.cc
+CP src/code_actor_0809BFE8.cc
+CP src/code_entity_08020018.cc
+CP src/coop.cc
+CP src/cow.cc
+CP src/data_cursed_tool_requirements.cc
+CP src/data_field_weather_rates.cc
+CP src/data_livestock_day_update_info.cc
+CP src/data_schedules.cc
+CP src/dog.cc
+CP src/entity.cc
+CP src/entity_actor.cc
+CP src/farm.cc
+CP src/farm_house.cc
+CP src/farmer.cc
+CP src/farmer_entity_item_action.cc
+CP src/field.cc
+CP src/fridge.cc
+CP src/game_object_discard.cc
+CP src/hardware.cc
+CP src/harvest_sprite.cc
+CP src/held_item.cc
+CP src/horse.cc
+CP src/item.cc
+CP src/key_input.cc
+CP src/livestock.cc
+CP src/mine_floor.cc
+CP src/new.cc
+CP src/npc.cc
+CP src/npc_entity.cc
+CP src/pet.cc
+CP src/record_player.cc
+CP src/rucksack.cc
+CP src/rucksack_item.cc
+CP src/save_format.cc
+CP src/scene.cc
+CP src/script_engine.cc
+CP src/sheep.cc
+CP src/shelf.cc
+CP src/shipping_bin.cc
+CP src/tool_chest.cc
+LD fomt.lds src/m4a.o src/pure_virtual.o src/actor.o src/animal.o src/bachelorette.o src/barn.o src/barn_animal.o src/character_info.o src/chicken.o src/code_0800BC58.o src/code_0800E2E4.o src/code_08017C00.o src/code_actor_0809BFE8.o src/code_entity_08020018.o src/coop.o src/cow.o src/data_cursed_tool_requirements.o src/data_field_weather_rates.o src/data_livestock_day_update_info.o src/data_schedules.o src/dog.o src/entity.o src/entity_actor.o src/farm.o src/farm_house.o src/farmer.o src/farmer_entity_item_action.o src/field.o src/fridge.o src/game_object_discard.o src/hardware.o src/harvest_sprite.o src/held_item.o src/horse.o src/item.o src/key_input.o src/livestock.o src/mine_floor.o src/new.o src/npc.o src/npc_entity.o src/pet.o src/record_player.o src/rucksack.o src/rucksack_item.o src/save_format.o src/scene.o src/script_engine.o src/sheep.o src/shelf.o src/shipping_bin.o src/tool_chest.o src/crt0.o src/m4a_1.o src/sound_data.o asm/code_0803A8A4.o asm/code_0803EE94.o asm/code_809E804.o asm/code_actor_0809BFE8.o asm/code_entities.o asm/code_entities_080320DC.o asm/code_entities_08034CEC.o asm/code_iwram.o asm/code_lib_sram.o asm/code_lib_syscall.o asm/code_libc_string.o asm/code_linkonce.o asm/game_scene.o asm/game_state.o asm/hardware.o asm/interrupt.o asm/intro_scene.o asm/main.o asm/more_items.o asm/new_game.o asm/scene.o asm/sram_proxy_1.o asm/sram_proxy_2.o asm/vtables.o asm/data/data_080E8610.o asm/data/data_080F0348.o asm/data/data_080F1A80.o asm/data/data_080F9EB8.o asm/data/data_0813B288.o
+arm-none-eabi-ld: src/game_object_discard.o: in function `func_0801EE00':
+/mnt/data/Github/gba/fomt/src/game_object_discard.cc:147: multiple definition of `func_0801EE00'; asm/game_state.o:(.text.after_func_08017C00+0x71d0): first defined here
+arm-none-eabi-ld: warning: ../fomt.elf has a LOAD segment with RWX permissions
+make: *** [Makefile:106: fomt.elf] Error 1

@@ -1,0 +1,250 @@
+{
+  "batch": 10,
+  "call": 8,
+  "status": "survey",
+  "verified_prior": {
+    "farmer_base": "GameState+0x1BD8",
+    "shipping_bin_note": "shipping subsystem has tracked values capped at 1,000,000,000 from prior exact source inspection",
+    "money_storage": "unresolved before this call"
+  },
+  "artifacts": {
+    "query_map": "/tmp/b9c01-query-map.json",
+    "gamestate_offset_rank": "/tmp/b9c01-gamestate-offset-rank.json",
+    "money_offset_refs": "/tmp/b9c03-money-offset-refs.json",
+    "money_callables": "/tmp/b9c03-money-callables.json",
+    "money_dispatch": "/tmp/b9c05-money-dispatch.json",
+    "money_callable_reachability": "/tmp/b9c06-money-callable-reachability.json"
+  },
+  "rule": "Do not assign a money/wallet semantic name unless a field is tied to both an economy operation and a read/write dataflow.",
+  "money": {
+    "runtime_offset": "GameState+0x1AA8",
+    "status": "proven",
+    "proof": [
+      "shop/menu code compares [GameState+0x1AA8] against item/unit cost before allowing purchase",
+      "shop quantity widget divides [GameState+0x1AA8] by unit price to cap purchasable quantity",
+      "purchase path calls func_0809ACC0(GameState+0x1AA8, unit_price*quantity)",
+      "HUD/menu renderer displays [GameState+0x1AA8] as a numeric value",
+      "historical FOMT-DOC independently records this object first word defaulting to 500 and tentatively labels it money"
+    ],
+    "api_semantics": "pending exact classification of func_0809ABD8/func_0809ACC0 if not resolved by this call",
+    "starting_value": 500,
+    "cap": "pending binary classification",
+    "constructor": "func_0809AB8C",
+    "starting_value_status": "binary-proven from func_0809AB8C",
+    "add_api": "func_0809ABD8",
+    "add_api_status": "binary-proven: shipping settlement passes shipped value to this routine; routine adds argument to balance",
+    "subtract_api": "func_0809ACC0",
+    "subtract_api_status": "binary-proven: shop purchase passes cost to this routine; routine subtracts argument from balance",
+    "saturation_boundary": 1000000000,
+    "saturation_boundary_status": "binary-proven constant 0x3B9ACA00 in money mutation routines",
+    "helper_constants": {
+      "add": [
+        "0x0001869F",
+        "0x05F5E0FF",
+        "0x0809ABD8",
+        "0x3B9ACA00"
+      ],
+      "subtract": [
+        "0x0001869F",
+        "0x0809ACC0",
+        "0x3B9ACA00"
+      ],
+      "other": [
+        "0x0809ADA8"
+      ]
+    },
+    "cap_semantics_status": "verify from exact branch logic printed in Batch9 Call6; constant presence alone is insufficient",
+    "balance_type": "u32-like 32-bit word by instruction behavior",
+    "add_semantics": "balance += min(amount, 1000000000-balance); therefore credits saturate exactly at 1000000000",
+    "subtract_semantics": "if amount > balance: return 0 and leave balance unchanged; otherwise subtract amount and return 1",
+    "balance_saturation_max": 1000000000,
+    "high_balance_flag_threshold": 99999999,
+    "high_balance_flag_behavior": "func_0809ABD8 sets object byte+4 bit1 once resulting balance exceeds 0x05F5E0FF (99,999,999); semantic purpose not yet named",
+    "script_direct_candidates": {
+      "0xEC": "read balance",
+      "0xED": "credit popped argument",
+      "0xEE": "debit popped argument; helper return behavior should be checked against VM result handling"
+    },
+    "generic_query_action_money_handlers": "none found by direct handler-body scan; money has dedicated direct callables instead",
+    "script_direct_api": {
+      "0xEC": {
+        "semantic": "read current balance",
+        "status": "dispatcher-proven: loads [GameState+0x1AA8] and routes value through VM result path",
+        "vm_behavior": "loads balance into r4 then enters common value-result helper .L080454B2",
+        "arguments": 0,
+        "returns": "balance value",
+        "retail_calls": 33,
+        "retail_script_count": 15,
+        "retail_scripts": [
+          139,
+          285,
+          358,
+          469,
+          470,
+          471,
+          472,
+          473,
+          474,
+          475,
+          476,
+          477,
+          478,
+          479,
+          483
+        ],
+        "mary_library": {
+          "kind": "func",
+          "name": "Func0EF",
+          "params": "",
+          "line": 243,
+          "raw": "func 0x0EC Func0EF()"
+        }
+      },
+      "0xED": {
+        "semantic": "credit/add money",
+        "target": "func_0809ABD8",
+        "status": "dispatcher-proven; argument comes from dispatcher VM value path immediately before helper",
+        "vm_behavior": "reads top VM value from [value_stack_base + depth*4 + 0x20], decrements depth when nonzero, passes value in r1, then enters common no-value completion helper .L08045572",
+        "arguments": 1,
+        "retail_calls": 1,
+        "retail_script_count": 1,
+        "retail_scripts": [
+          717
+        ],
+        "mary_library": {
+          "kind": "proc",
+          "name": "Proc0F0",
+          "params": "arg_1",
+          "line": 244,
+          "raw": "proc 0x0ED Proc0F0(arg_1)"
+        }
+      },
+      "0xEE": {
+        "semantic": "debit/subtract money",
+        "target": "func_0809ACC0",
+        "status": "dispatcher-proven; argument comes from dispatcher VM value path immediately before helper",
+        "vm_behavior": "reads top VM value from [value_stack_base + depth*4 + 0x20], decrements depth when nonzero, passes value in r1, then enters common no-value completion helper .L08045572; func_0809ACC0 return is discarded by this callable path",
+        "arguments": 1,
+        "returns": "none at script level",
+        "retail_calls": 26,
+        "retail_script_count": 7,
+        "retail_scripts": [
+          139,
+          285,
+          469,
+          479,
+          483,
+          811,
+          812
+        ],
+        "mary_library": {
+          "kind": "proc",
+          "name": "Proc0F1",
+          "params": "arg_1",
+          "line": 245,
+          "raw": "proc 0x0EE Proc0F1(arg_1)"
+        }
+      }
+    },
+    "retail_script_census": {
+      "decoder": "Mary bytecode::decode_script -> Ins::Call(CallId); instruction-boundary decode, not raw byte search",
+      "scripts_from_rom": 1328,
+      "decoded_ok": 1328,
+      "decode_errors": 0,
+      "total_direct_calls": 75522,
+      "money_callables": {
+        "0xEC": {
+          "calls": 33,
+          "script_count": 15,
+          "scripts": [
+            139,
+            285,
+            358,
+            469,
+            470,
+            471,
+            472,
+            473,
+            474,
+            475,
+            476,
+            477,
+            478,
+            479,
+            483
+          ]
+        },
+        "0xED": {
+          "calls": 1,
+          "script_count": 1,
+          "scripts": [
+            717
+          ]
+        },
+        "0xEE": {
+          "calls": 26,
+          "script_count": 7,
+          "scripts": [
+            139,
+            285,
+            469,
+            479,
+            483,
+            811,
+            812
+          ]
+        }
+      }
+    },
+    "direct_flag_callable": {
+      "id": "0xE3",
+      "mary_library_name": "Func0E6",
+      "retail_calls": 1,
+      "retail_scripts": [
+        571
+      ],
+      "known_binary_behavior": "returns money-object byte +4 bit1 through VM value-result path",
+      "flag_set_condition": "func_0809ABD8 latches bit1 when resulting balance > 99,999,999",
+      "semantic_status": "leave unnamed until script571 meaning is independently established"
+    },
+    "history_helpers": {
+      "rollover": "func_0809ADA8",
+      "initialization": "func_0809AE6C",
+      "status": "structural behavior proven; exact calendar period semantic pending caller-context conclusion"
+    },
+    "history_period_analysis": {
+      "daily_transition_caller": "func_08010F54",
+      "date_selector_expression": "(GameState byte +0x11 >> 2) & 0x1F",
+      "branch_behavior": "selector==0 -> func_0809AE6C; selector!=0 -> func_0809ADA8",
+      "safe_conclusion": "func_0809ADA8 advances the <=30-entry short-period ledger once per ordinary day-transition path; func_0809AE6C is the boundary/reset path and also advances the <=4-entry longer ledger",
+      "semantic_label_status": "daily and seasonal labels are now supported by exact calendar rollover behavior, not inferred from array capacities alone",
+      "date_selector_proof": "GameState+0x11 bits2..6 are the packed GameDate day field; func_08010F54 extracts exactly this field before choosing the history helper",
+      "day_zero_branch": "day == 0 -> func_0809AE6C; day != 0 -> func_0809ADA8",
+      "short_ledger_layout": "+0x008 count; +0x00C 30 entries * 8 bytes; each entry is credit/income then debit/spend",
+      "long_ledger_layout": "+0x0FC count; +0x100 4 entries * 8 bytes; each entry is credit/income then debit/spend",
+      "maxima_layout": "+0x120 short-ledger credit max, +0x124 short-ledger debit max, +0x128 long-ledger credit max, +0x12C long-ledger debit max",
+      "period_label_status": "day-zero boundary is proven; seasonal naming is accepted only if date rollover evidence in this call proves day resets to 0 when season advances",
+      "short_ledger_entries": 30,
+      "short_ledger_entry_size": 8,
+      "short_ledger_fields": "credit/income u32, debit/spend u32",
+      "long_ledger_entries": 4,
+      "long_ledger_entry_size": 8,
+      "long_ledger_fields": "credit/income u32, debit/spend u32",
+      "day_field_proven": "func_08010F54 extracts GameDate.day from GameState+0x11 bits2..6; day==0 selects func_0809AE6C, otherwise func_0809ADA8",
+      "seasonal_label_rule": "do not label long ledger seasonal unless this or a later call proves day resets to 0 exactly when season advances",
+      "batch10_call7_goal": "prove GameDate day rollover and season increment; only then promote short/long ledger semantic labels",
+      "calendar_proof": "func_08010F54 increments GameDate.day each daily transition; reaching 30 increments GameDate.season modulo 4 and wraps the day field to the new season boundary",
+      "day_encoding": "packed GameDate.day is zero-based within a 30-day season; gameplay/display code commonly converts it to one-based day numbers",
+      "short_ledger_semantic": "daily income/spend history, up to 30 entries",
+      "long_ledger_semantic": "seasonal income/spend history, up to 4 entries",
+      "ordinary_day_rollover": "func_0809ADA8",
+      "season_boundary_rollover": "func_0809AE6C",
+      "maxima_semantics": {
+        "+0x120": "maximum daily income observed",
+        "+0x124": "maximum daily spend observed",
+        "+0x128": "maximum seasonal income observed",
+        "+0x12C": "maximum seasonal spend observed"
+      }
+    }
+  }
+}

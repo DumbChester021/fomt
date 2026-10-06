@@ -1,0 +1,67 @@
+{
+  "batch": 12,
+  "calls_completed": 10,
+  "focus": "inventory / held items / held tools / rucksack VM API",
+  "head_expected": "8c52b9f decompile interaction state id helpers",
+  "retail_offsets": {
+    "Farmer": "GameState+0x1BD8",
+    "HeldItem": "Farmer+0x54 = GameState+0x1C2C",
+    "ToolStack": "Farmer+0x5C = GameState+0x1C34",
+    "Rucksack": "Farmer+0x60 = GameState+0x1C38"
+  },
+  "rucksack_layout": {
+    "base": "GameState+0x1C38 = Farmer+0x60",
+    "item_size_field": "+0x00 u32 active item-slot count",
+    "items": "+0x04, 8 physical RucksackItem slots, 4 bytes each",
+    "tool_size_field": "+0x24 u32 active tool-slot count",
+    "tools": "+0x28, 8 physical ToolStack slots, 2 bytes each",
+    "physical_size": "0x38 bytes",
+    "constructor_active_size": 2,
+    "upgrade_active_sizes": [
+      2,
+      4,
+      8
+    ],
+    "upgrade_levels": "level 0 => active size 2, level 1 => 4, level 2 => 8"
+  },
+  "held_item": {
+    "encoding": "kind byte0 bits0..2; wrapped byte0 bit3; inner starts +0x02",
+    "food": "kind 0; id + stamina bonus + fatigue bonus",
+    "article": "kind 1; article id",
+    "empty": "KIND_5 with inner u16 = 0xFFFF",
+    "note": "logical fields are source-proven; preserve unknown KIND_2/KIND_3/KIND_4/KIND_5 semantics until stronger evidence"
+  },
+  "tool_stack": {
+    "payload": "2 bytes: tool id + amount",
+    "max_amount": 99,
+    "default": "TOOL_NONE sentinel (0x51 in retail) + amount 0",
+    "constructor": "amount 0 becomes 1; nonzero amount is min(amount,99)"
+  },
+  "vm_api": {
+    "query_0x02C": "rucksack upgrade level",
+    "call_0x04E": "held tool id, -1 if empty",
+    "call_0x04F": "held tool amount, -1 if empty",
+    "call_0x050": "set held tool stack(tool_id, amount)",
+    "call_0x051": "clear held tool stack",
+    "call_0x052": "find first rucksack slot with food id",
+    "call_0x053": "find first rucksack slot with article id",
+    "call_0x054": "clear requested rucksack item slot",
+    "call_0x055": "first free rucksack tool slot",
+    "call_0x056": "first free rucksack item slot",
+    "call_0x057": "add article amount to rucksack (present in dispatcher; Mary marks FoMT callable unreferenced)",
+    "call_0x058": "add food amount to rucksack",
+    "call_0x059": "add tool amount to rucksack",
+    "call_0x074": "upgrade rucksack",
+    "call_0x075": "rucksack upgrade level"
+  },
+  "query_dispatcher": {
+    "0x02C": "binary-proven rucksack upgrade level"
+  },
+  "cautions": [
+    "Call7 lookahead falsely associated selectors 0x01E/0x023..0x027 with rucksack access; Call8 corrected this. Only query selector 0x02C directly touches the rucksack in func_0804590C.",
+    "Modern GCC layout probes are non-authoritative for Farmer because retail matching uses agbcp/gcc 2.9 ABI.",
+    "Mary callable names are generic placeholders and may be numerically named one higher than the actual callable ID; use the dispatcher case ID as authoritative."
+  ],
+  "contribution_code_changes": "none in Batch12; private docs/maps only",
+  "exactness_required": "whole-ROM SHA1 a2fc3574f0a65a4fcf7682fb274b9d7eebdef963"
+}

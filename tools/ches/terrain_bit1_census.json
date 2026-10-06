@@ -1,0 +1,230 @@
+{
+  "physical_mapdata_count": 66,
+  "total_cells": 10675,
+  "resources": [
+    {
+      "resource": 0,
+      "size": [
+        128,
+        88
+      ],
+      "cells": 1046,
+      "bbox": [
+        0,
+        38,
+        127,
+        87
+      ],
+      "words": {
+        "0x00000002": 1046
+      },
+      "descriptor_indices": {
+        "3": 1046
+      },
+      "terrain_info": "0x0811EE68",
+      "terrain_map": "0x0811EEB0"
+    },
+    {
+      "resource": 1,
+      "size": [
+        128,
+        88
+      ],
+      "cells": 1046,
+      "bbox": [
+        0,
+        38,
+        127,
+        87
+      ],
+      "words": {
+        "0x00000002": 1046
+      },
+      "descriptor_indices": {
+        "3": 1046
+      },
+      "terrain_info": "0x0811EE68",
+      "terrain_map": "0x0811EEB0"
+    },
+    {
+      "resource": 6,
+      "size": [
+        173,
+        64
+      ],
+      "cells": 816,
+      "bbox": [
+        32,
+        58,
+        172,
+        63
+      ],
+      "words": {
+        "0x00000002": 816
+      },
+      "descriptor_indices": {
+        "5": 816
+      },
+      "terrain_info": "0x08134FB0",
+      "terrain_map": "0x08134FFC"
+    },
+    {
+      "resource": 7,
+      "size": [
+        173,
+        64
+      ],
+      "cells": 816,
+      "bbox": [
+        32,
+        58,
+        172,
+        63
+      ],
+      "words": {
+        "0x00000002": 816
+      },
+      "descriptor_indices": {
+        "5": 816
+      },
+      "terrain_info": "0x08134FB0",
+      "terrain_map": "0x08134FFC"
+    },
+    {
+      "resource": 8,
+      "size": [
+        64,
+        80
+      ],
+      "cells": 2211,
+      "bbox": [
+        25,
+        0,
+        63,
+        73
+      ],
+      "words": {
+        "0x00000002": 2195,
+        "0x00000003": 16
+      },
+      "descriptor_indices": {
+        "2": 2195,
+        "12": 16
+      },
+      "terrain_info": "0x0811C1B4",
+      "terrain_map": "0x0811C1E8"
+    },
+    {
+      "resource": 9,
+      "size": [
+        64,
+        80
+      ],
+      "cells": 2211,
+      "bbox": [
+        25,
+        0,
+        63,
+        73
+      ],
+      "words": {
+        "0x00000002": 2195,
+        "0x00000003": 16
+      },
+      "descriptor_indices": {
+        "2": 2195,
+        "12": 16
+      },
+      "terrain_info": "0x0811C1B4",
+      "terrain_map": "0x0811C1E8"
+    },
+    {
+      "resource": 14,
+      "size": [
+        150,
+        100
+      ],
+      "cells": 1125,
+      "bbox": [
+        33,
+        32,
+        149,
+        68
+      ],
+      "words": {
+        "0x00000002": 1125
+      },
+      "descriptor_indices": {
+        "7": 1125
+      },
+      "terrain_info": "0x08117CE0",
+      "terrain_map": "0x08117D10"
+    },
+    {
+      "resource": 15,
+      "size": [
+        150,
+        100
+      ],
+      "cells": 1125,
+      "bbox": [
+        33,
+        32,
+        149,
+        68
+      ],
+      "words": {
+        "0x00000002": 1125
+      },
+      "descriptor_indices": {
+        "7": 1125
+      },
+      "terrain_info": "0x08117CE0",
+      "terrain_map": "0x08117D10"
+    },
+    {
+      "resource": 60,
+      "size": [
+        30,
+        20
+      ],
+      "cells": 179,
+      "bbox": [
+        1,
+        1,
+        28,
+        9
+      ],
+      "words": {
+        "0x00000002": 179
+      },
+      "descriptor_indices": {
+        "2": 179
+      },
+      "terrain_info": "0x08131534",
+      "terrain_map": "0x08131544"
+    },
+    {
+      "resource": 62,
+      "size": [
+        30,
+        20
+      ],
+      "cells": 100,
+      "bbox": [
+        25,
+        0,
+        29,
+        19
+      ],
+      "words": {
+        "0x00000002": 100
+      },
+      "descriptor_indices": {
+        "1": 100
+      },
+      "terrain_info": "0x08138DC4",
+      "terrain_map": "0x08138DCC"
+    }
+  ]
+}

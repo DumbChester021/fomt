@@ -1,0 +1,122 @@
+{
+  "format": "packed-animation-v1",
+  "bank_rom_offset": "0x6678a0",
+  "animation_id": 45,
+  "animation": {
+    "frame_count": 3,
+    "first_frame": 60
+  },
+  "frames": [
+    {
+      "frame_no": 0,
+      "frame_id": 60,
+      "sprite_id": 37,
+      "duration": 10,
+      "descriptor": [
+        1,
+        0,
+        4,
+        68,
+        1,
+        20,
+        0,
+        0
+      ],
+      "parts": [
+        {
+          "part_no": 0,
+          "layout_index": 0,
+          "attr0": "0xf4",
+          "attr1": "0x41f8",
+          "attr2": "0x0",
+          "extra": "0x0",
+          "x": -8,
+          "y": -12,
+          "width": 16,
+          "height": 16,
+          "tile_offset": 0,
+          "tile_count": 4
+        }
+      ],
+      "png": "assets/item_icons/dog_ball/dog_ball_dog_anim_0375_facing_0_frame_00.png",
+      "origin_x": -8,
+      "origin_y": -12,
+      "width": 16,
+      "height": 16
+    },
+    {
+      "frame_no": 1,
+      "frame_id": 61,
+      "sprite_id": 40,
+      "duration": 10,
+      "descriptor": [
+        1,
+        8,
+        4,
+        52,
+        1,
+        20,
+        0,
+        0
+      ],
+      "parts": [
+        {
+          "part_no": 0,
+          "layout_index": 8,
+          "attr0": "0xf2",
+          "attr1": "0x41f8",
+          "attr2": "0x0",
+          "extra": "0x0",
+          "x": -8,
+          "y": -14,
+          "width": 16,
+          "height": 16,
+          "tile_offset": 0,
+          "tile_count": 4
+        }
+      ],
+      "png": "assets/item_icons/dog_ball/dog_ball_dog_anim_0375_facing_0_frame_01.png",
+      "origin_x": -8,
+      "origin_y": -14,
+      "width": 16,
+      "height": 16
+    },
+    {
+      "frame_no": 2,
+      "frame_id": 62,
+      "sprite_id": 43,
+      "duration": 10,
+      "descriptor": [
+        1,
+        3,
+        4,
+        68,
+        1,
+        20,
+        0,
+        0
+      ],
+      "parts": [
+        {
+          "part_no": 0,
+          "layout_index": 3,
+          "attr0": "0xf6",
+          "attr1": "0x41f8",
+          "attr2": "0x0",
+          "extra": "0x0",
+          "x": -8,
+          "y": -10,
+          "width": 16,
+          "height": 16,
+          "tile_offset": 0,
+          "tile_count": 4
+        }
+      ],
+      "png": "assets/item_icons/dog_ball/dog_ball_dog_anim_0375_facing_0_frame_02.png",
+      "origin_x": -8,
+      "origin_y": -10,
+      "width": 16,
+      "height": 16
+    }
+  ]
+}

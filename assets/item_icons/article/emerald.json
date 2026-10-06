@@ -1,0 +1,34 @@
+{
+  "bank_rom_offset": "0x6678a0",
+  "icon_id": 137,
+  "animation": {
+    "frame_count": 1,
+    "first_frame": 166
+  },
+  "frame": {
+    "id": 166,
+    "sprite_id": 141,
+    "duration": 0
+  },
+  "descriptor": [
+    1,
+    2,
+    4,
+    481,
+    1,
+    92,
+    0,
+    0
+  ],
+  "layout": {
+    "index": 2,
+    "attr0": "0xf7",
+    "attr1": "0x41f9",
+    "attr2": "0x0",
+    "extra": "0x0",
+    "x": -7,
+    "y": -9,
+    "width": 16,
+    "height": 16
+  }
+}

@@ -1,0 +1,243 @@
+{
+  "batch": 11,
+  "call": 10,
+  "game_state_offsets": {
+    "+0x11": {
+      "type": "GameDate packed byte",
+      "bits0_1": "season enum 0..3",
+      "bits2_6": "zero-based day within 30-day season"
+    },
+    "+0x12": {
+      "status": "candidate packed GameTime storage; exact placement/packing to be proven from call output"
+    },
+    "+0x10": {
+      "status": "candidate adjacent year/weekday/time state; exact semantics to be proven from call output"
+    }
+  },
+  "types": {
+    "GameDate": "season:2 bits, day:5 bits",
+    "GameTime": "clock_hour:5 bits, clock_minute:6 bits"
+  },
+  "daily_transition": "func_08010F54 increments day and advances season modulo 4 when increment reaches 30",
+  "naming_policy": "do not assign year/weekday/clock storage offsets or callable IDs until direct extraction/write evidence is identified",
+  "query_dispatch_labels": {
+    ".L0804626C": {
+      "selector": 0,
+      "line": 12454,
+      "body": [
+        "\tmovs r1, #0xd4",
+        "\tlsls r1, r1, #2",
+        "\tadds r0, r2, r1",
+        "\tldr r0, [r0]",
+        "\tmovs r3, #0xc8",
+        "\tstr r3, [sp, #4]",
+        "\tldrb r0, [r0, #0x10]",
+        "\tlsrs r2, r0, #3",
+        "\tlsls r1, r2, #3",
+        "\tsubs r1, r1, r2",
+        "\tlsls r0, r0, #0x1d",
+        "\tlsrs r0, r0, #0x1d",
+        "\tadds r1, r1, r0",
+        "\tstr r1, [sp, #8]",
+        "\tadd r2, sp, #8",
+        "\tadd r0, sp, #4",
+        "\tcmp r3, r1",
+        "\tbhi .L08046292",
+        "\tb .L0804688E"
+      ]
+    },
+    ".L08046296": {
+      "selector": 1,
+      "line": 12477,
+      "body": [
+        "\tmovs r1, #0xd4",
+        "\tlsls r1, r1, #2",
+        "\tadds r0, r2, r1",
+        "\tldr r0, [r0]",
+        "\tldrb r0, [r0, #0x11]",
+        "\tbl .L08048F32"
+      ]
+    },
+    ".L080462A4": {
+      "selector": 2,
+      "line": 12484,
+      "body": [
+        "\tmovs r1, #0xd4",
+        "\tlsls r1, r1, #2",
+        "\tadds r0, r2, r1",
+        "\tldr r0, [r0]",
+        "\tldrb r0, [r0, #0x11]",
+        "\tb .L08046812"
+      ]
+    },
+    ".L080462B0": {
+      "selector": 3,
+      "line": 12491,
+      "body": [
+        "\tmovs r1, #0xd4",
+        "\tlsls r1, r1, #2",
+        "\tadds r0, r2, r1",
+        "\tldr r0, [r0]",
+        "\tldrb r0, [r0, #0x12]",
+        "\tbl sub_08047766"
+      ]
+    },
+    ".L080462BE": {
+      "selector": 4,
+      "line": 12498,
+      "body": [
+        "\tmovs r1, #0xd4",
+        "\tlsls r1, r1, #2",
+        "\tadds r0, r2, r1",
+        "\tldr r0, [r0]",
+        "\tldrh r0, [r0, #0x12]",
+        "\tlsls r0, r0, #0x15",
+        "\tlsrs r0, r0, #0x1a",
+        "\tbl .L08048FEE"
+      ]
+    },
+    ".L080462D0": {
+      "selector": 5,
+      "line": 12507,
+      "body": [
+        "\tmovs r1, #0xd4",
+        "\tlsls r1, r1, #2",
+        "\tadds r0, r2, r1",
+        "\tldr r0, [r0]",
+        "\tldrb r2, [r0, #0x10]",
+        "\tlsls r2, r2, #0x1d",
+        "\tlsrs r2, r2, #0x1d",
+        "\tldrb r3, [r0, #0x11]",
+        "\tlsls r0, r3, #0x1e",
+        "\tlsrs r0, r0, #0x1e",
+        "\tlsls r3, r3, #0x19",
+        "\tlsrs r3, r3, #0x1b",
+        "\tadds r2, #6",
+        "\tlsls r1, r0, #4",
+        "\tsubs r1, r1, r0",
+        "\tlsls r1, r1, #1",
+        "\tlsls r0, r2, #4",
+        "\tsubs r0, r0, r2",
+        "\tlsls r0, r0, #3",
+        "\tadds r1, r1, r0",
+        "\tadds r3, r3, r1",
+        "\tcmp r3, #6",
+        "\tbls .L08046308",
+        "\tadds r0, r3, #0",
+        "\tmovs r1, #7",
+        "\tbl __umodsi3",
+        "\tadds r3, r0, #0"
+      ]
+    }
+  },
+  "proven_layout": {
+    "GameState+0x11": "GameDate packed byte: season bits0..1, zero-based day bits2..6",
+    "GameState+0x12/+0x13": "GameTime packed 16-bit value; hour occupies bits0..4 and minute occupies bits5..10",
+    "GameState+0x10": "packed year counter E(y)=((y//7)<<3)|(y%7); low 3 bits are y mod 7 and upper 5 bits are y//7"
+  },
+  "calendar_math": {
+    "days_per_season": 30,
+    "seasons_per_year": 4,
+    "days_per_year": 120,
+    "weekday_formula_evidence": "query body combines (GameState+0x10 & 7), season*30, day, and a fixed +6 offset modulo 7",
+    "year_encoding_candidate": "upper 5 bits quotient by 7, low 3 bits remainder by 7; decoded by 7*q+r"
+  },
+  "time_bit_proof": {
+    "hour": "low 5 bits of packed GameTime at +0x12",
+    "minute": "bits5..10 (6 bits), extracted by (u16 << 21) >> 26"
+  },
+  "selector_formulas": {
+    "0": "min(200, 7*(GameState[0x10]>>3) + (GameState[0x10]&7))",
+    "1": "GameDate field reached through .L08048F32; exact returned field to be taken from shared-label output",
+    "2": "GameDate field reached through .L08046812; exact returned field to be taken from shared-label output",
+    "3": "GameTime low-byte passed through sub_08047766; exact transform to be taken from helper output",
+    "4": "(u16(GameState+0x12) >> 5) & 0x3F",
+    "5": "((GameState[0x10]&7)*120 + season*30 + day + 6) % 7"
+  },
+  "batch11_call1_goal": "resolve +0x10 write/rollover and exact selector 0..5 return semantics without speculative naming",
+  "query_selectors": {
+    "0": {
+      "semantic": "year",
+      "return": "min(200, 7*(byte>>3)+(byte&7))",
+      "storage": "GameState+0x10"
+    },
+    "1": {
+      "semantic": "season",
+      "return": "GameDate.season (0..3)",
+      "storage": "GameState+0x11 bits0..1"
+    },
+    "2": {
+      "semantic": "day_of_season_display",
+      "return": "GameDate.day + 1 (1..30)",
+      "storage": "GameState+0x11 bits2..6, stored zero-based"
+    },
+    "3": {
+      "semantic": "hour",
+      "return": "GameTime.clock_hour",
+      "storage": "GameState+0x12/+0x13 bits0..4"
+    },
+    "4": {
+      "semantic": "minute",
+      "return": "GameTime.clock_minute",
+      "storage": "GameState+0x12/+0x13 bits5..10"
+    },
+    "5": {
+      "semantic": "weekday_index",
+      "return": "((year_mod7*120)+season*30+zero_based_day+6)%7",
+      "storage": "derived"
+    }
+  },
+  "year_encoding_proof": "year rollover increments low remainder 0..6; on 6->0 it increments the upper quotient, matching E(y+1), while selector 0 exactly decodes 7*q+r",
+  "semantic_status": "year/season/day/hour/minute/weekday selector meanings binary-proven; weekday enum/name ordering not assigned here",
+  "clock_progression": {
+    "routine": "func_08017C30",
+    "minute_rollover": 60,
+    "hour_rollover": 24,
+    "day_rollover": 30,
+    "year_rollover": "when season wraps 3->0, increment packed year E(y)=((y//7)<<3)|(y%7)",
+    "tick_gate_note": "routine contains multiple gameplay/state gates before clock mutation; do not assume raw call frequency equals in-game minute frequency without caller proof",
+    "evidence_policy": "rollover thresholds are proven; exact accepted-tick minute delta and real-time/frame cadence require explicit instruction/caller proof and must not be inferred from the thresholds alone",
+    "minute_divider": {
+      "counter_object_offset": "game object +0x1044",
+      "behavior": "counter increments by 1 on an accepted update; values 1..24 are stored and return without advancing packed time; when increment reaches 25, counter resets to 0 and packed minute increments by exactly 1",
+      "calls_per_minute": 25,
+      "status": "binary-proven",
+      "cadence_warning": "this proves 25 accepted func_08017C30 update invocations per in-game minute, not yet that each invocation equals one video frame"
+    },
+    "minute_step": "exactly +1 when the 25-call divider expires; minute field rolls after 59",
+    "scene_vtable": "vtable_unk_080E5EC4",
+    "scene_vtable_slot_0x0c": null,
+    "scene_runner": "func_0800082C repeatedly invokes current scene vtable slot +0x0C; AgbMain calls func_0800082C",
+    "frame_cadence_status": "UNPROVEN: func_08017C30 contains no direct func_08008AF0/func_08000568/IntrWait/VBlank synchronization call, so do not document 25 video frames per game minute without a concrete synchronization edge",
+    "scene_vtable_slot_0x0c_raw": "0x08017C31",
+    "scene_vtable_slot_0x0c_target": "func_08017C30",
+    "scene_runner_fact": "func_0800082C invokes current scene vtable +0x0C repeatedly until scene transition/null",
+    "game_object_vtable": "vtable_unk_080E5EC4",
+    "run_slot_offset": "0x0C",
+    "run_function": "func_08017C30",
+    "clock_base_pointer_storage": "game object +0x1040 stores GameState +0x10",
+    "tick_counter": "game object +0x1044, initialized to 0 by func_080175B4",
+    "eligible_run_calls_per_game_minute": 25,
+    "season_rollover": 4,
+    "packed_time_location": "GameState +0x12: hour bits 0..4, minute bits 5..10",
+    "packed_date_location": "GameState +0x11: season bits 0..1, day bits 2..6",
+    "time_advance_gates": [
+      "game object +0x103C must be 0",
+      "GameState +0x34C4 must be 0",
+      "current MapData +0x24 must be 0",
+      "an actor/entity virtual predicate reached through the index-0 object must return 0"
+    ],
+    "notable_exact_clock_boundaries": {
+      "06:00": "dispatches an entity virtual with arguments 0 and 0x0A; semantics not promoted",
+      "20:00": "calls func_08012464 with 0x9E then func_0801DB58",
+      "00:00": "dispatches entity virtual with arguments 0 and 3",
+      "02:00": "dispatches entity virtual with arguments 0 and 4",
+      "04:00": "dispatches entity virtual with arguments 0 and 5"
+    },
+    "cadence_proof": "25 eligible game-scene Run invocations per game minute"
+  },
+  "batch11_call3_goal": "map clock progression and identify any generic action calendar/time writers",
+  "batch11_call4_goal": "prove exact clock step size and virtual update cadence; revise minute-tick wording if necessary",
+  "batch11_call5_goal": "trace virtual update caller to determine whether accepted func_08017C30 invocations are frame-driven",
+  "batch11_call7_goal": "trace func_08017C30 through high-confidence virtual slot +0x0C dispatches directly from current source/binary; do not infer frame cadence without a concrete top-level loop edge"
+}

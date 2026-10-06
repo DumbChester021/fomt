@@ -1,0 +1,22 @@
+{
+  "batch": "8",
+  "checkpoint_call": 10,
+  "player_entity_ctor": "func_08024974",
+  "player_vtable": "0x080E6658",
+  "farmer_pointer": "entity+0x38 -> GameState+0x1BD8",
+  "vitals_delta_virtual": "+0x64 -> func_08025068",
+  "reaction_queue": "entity+0xC3",
+  "active_action_state": "entity+0x3C",
+  "ordinary_reaction_states": [
+    "0x24",
+    "0x25",
+    "0x26",
+    "0x27",
+    "0x28",
+    "0x29"
+  ],
+  "fatigue_100_state": "0x2A",
+  "reaction_finalize_virtual": "+0x6C -> func_080299D0 -> SetAnim 0x192",
+  "exact_rom_sha1": "a2fc3574f0a65a4fcf7682fb274b9d7eebdef963",
+  "note": "0x2B6 interface meaning remains unresolved unless independent evidence above proves it; avoid script/event label by default"
+}

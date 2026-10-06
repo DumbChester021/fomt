@@ -1,0 +1,4129 @@
+{
+  "85": {
+    "script_id": 85,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [
+      "1"
+    ],
+    "decoded_text_bytes": 980
+  },
+  "94": {
+    "script_id": 94,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 178
+  },
+  "95": {
+    "script_id": 95,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 177
+  },
+  "96": {
+    "script_id": 96,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 177
+  },
+  "98": {
+    "script_id": 98,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 876
+  },
+  "99": {
+    "script_id": 99,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 180
+  },
+  "100": {
+    "script_id": 100,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 179
+  },
+  "103": {
+    "script_id": 103,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 178
+  },
+  "105": {
+    "script_id": 105,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [
+      [
+        "13",
+        "120",
+        "208"
+      ]
+    ],
+    "set_entity0": [
+      [
+        "120",
+        "208",
+        "1"
+      ]
+    ],
+    "proc038": [
+      "709",
+      "764",
+      "806"
+    ],
+    "facing_equals": [
+      "1"
+    ],
+    "decoded_text_bytes": 2902
+  },
+  "108": {
+    "script_id": 108,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [
+      [
+        "36",
+        "120",
+        "208"
+      ]
+    ],
+    "set_entity0": [
+      [
+        "120",
+        "208",
+        "1"
+      ]
+    ],
+    "proc038": [
+      "707",
+      "714",
+      "795"
+    ],
+    "facing_equals": [
+      "1"
+    ],
+    "decoded_text_bytes": 2265
+  },
+  "109": {
+    "script_id": 109,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 180
+  },
+  "110": {
+    "script_id": 110,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 182
+  },
+  "116": {
+    "script_id": 116,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 179
+  },
+  "117": {
+    "script_id": 117,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 181
+  },
+  "118": {
+    "script_id": 118,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 186
+  },
+  "119": {
+    "script_id": 119,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 189
+  },
+  "120": {
+    "script_id": 120,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 178
+  },
+  "121": {
+    "script_id": 121,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 183
+  },
+  "122": {
+    "script_id": 122,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 179
+  },
+  "125": {
+    "script_id": 125,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 182
+  },
+  "126": {
+    "script_id": 126,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 177
+  },
+  "127": {
+    "script_id": 127,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 183
+  },
+  "128": {
+    "script_id": 128,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 179
+  },
+  "129": {
+    "script_id": 129,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 194
+  },
+  "130": {
+    "script_id": 130,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 178
+  },
+  "131": {
+    "script_id": 131,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 196
+  },
+  "132": {
+    "script_id": 132,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 184
+  },
+  "133": {
+    "script_id": 133,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 179
+  },
+  "135": {
+    "script_id": 135,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 181
+  },
+  "136": {
+    "script_id": 136,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [
+      [
+        "4",
+        "252",
+        "368"
+      ]
+    ],
+    "set_entity0": [
+      [
+        "252",
+        "368",
+        "1"
+      ]
+    ],
+    "proc038": [],
+    "facing_equals": [
+      "1"
+    ],
+    "decoded_text_bytes": 1364
+  },
+  "137": {
+    "script_id": 137,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 186
+  },
+  "138": {
+    "script_id": 138,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 179
+  },
+  "139": {
+    "script_id": 139,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 24922
+  },
+  "140": {
+    "script_id": 140,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 179
+  },
+  "141": {
+    "script_id": 141,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 179
+  },
+  "144": {
+    "script_id": 144,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 180
+  },
+  "145": {
+    "script_id": 145,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 180
+  },
+  "146": {
+    "script_id": 146,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 180
+  },
+  "147": {
+    "script_id": 147,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 177
+  },
+  "148": {
+    "script_id": 148,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 183
+  },
+  "149": {
+    "script_id": 149,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 181
+  },
+  "150": {
+    "script_id": 150,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 337
+  },
+  "151": {
+    "script_id": 151,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 186
+  },
+  "152": {
+    "script_id": 152,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 182
+  },
+  "154": {
+    "script_id": 154,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 358
+  },
+  "155": {
+    "script_id": 155,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 887
+  },
+  "156": {
+    "script_id": 156,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 877
+  },
+  "157": {
+    "script_id": 157,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 969
+  },
+  "159": {
+    "script_id": 159,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 188
+  },
+  "160": {
+    "script_id": 160,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 280
+  },
+  "161": {
+    "script_id": 161,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 200
+  },
+  "162": {
+    "script_id": 162,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 194
+  },
+  "163": {
+    "script_id": 163,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 288
+  },
+  "164": {
+    "script_id": 164,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 250
+  },
+  "165": {
+    "script_id": 165,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [
+      [
+        "9",
+        "120",
+        "208"
+      ]
+    ],
+    "set_entity0": [
+      [
+        "120",
+        "208",
+        "1"
+      ]
+    ],
+    "proc038": [],
+    "facing_equals": [
+      "1"
+    ],
+    "decoded_text_bytes": 367
+  },
+  "173": {
+    "script_id": 173,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 967
+  },
+  "174": {
+    "script_id": 174,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 178
+  },
+  "179": {
+    "script_id": 179,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [
+      [
+        "40",
+        "120",
+        "208"
+      ]
+    ],
+    "set_entity0": [
+      [
+        "120",
+        "208",
+        "1"
+      ]
+    ],
+    "proc038": [
+      "799",
+      "800",
+      "801"
+    ],
+    "facing_equals": [
+      "1"
+    ],
+    "decoded_text_bytes": 2182
+  },
+  "180": {
+    "script_id": 180,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 177
+  },
+  "182": {
+    "script_id": 182,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 179
+  },
+  "183": {
+    "script_id": 183,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 181
+  },
+  "184": {
+    "script_id": 184,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 179
+  },
+  "185": {
+    "script_id": 185,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 186
+  },
+  "186": {
+    "script_id": 186,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 189
+  },
+  "187": {
+    "script_id": 187,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 179
+  },
+  "189": {
+    "script_id": 189,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 178
+  },
+  "190": {
+    "script_id": 190,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 177
+  },
+  "191": {
+    "script_id": 191,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 183
+  },
+  "192": {
+    "script_id": 192,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 179
+  },
+  "193": {
+    "script_id": 193,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 179
+  },
+  "194": {
+    "script_id": 194,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 186
+  },
+  "195": {
+    "script_id": 195,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 181
+  },
+  "196": {
+    "script_id": 196,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 178
+  },
+  "197": {
+    "script_id": 197,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 191
+  },
+  "198": {
+    "script_id": 198,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 186
+  },
+  "199": {
+    "script_id": 199,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 183
+  },
+  "200": {
+    "script_id": 200,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 179
+  },
+  "202": {
+    "script_id": 202,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [
+      "1"
+    ],
+    "decoded_text_bytes": 7125
+  },
+  "203": {
+    "script_id": 203,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 179
+  },
+  "204": {
+    "script_id": 204,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 179
+  },
+  "205": {
+    "script_id": 205,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [
+      [
+        "16",
+        "92",
+        "320"
+      ]
+    ],
+    "set_entity0": [
+      [
+        "92",
+        "320",
+        "1"
+      ]
+    ],
+    "proc038": [],
+    "facing_equals": [
+      "1"
+    ],
+    "decoded_text_bytes": 1114
+  },
+  "207": {
+    "script_id": 207,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 187
+  },
+  "208": {
+    "script_id": 208,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 180
+  },
+  "209": {
+    "script_id": 209,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 419
+  },
+  "210": {
+    "script_id": 210,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 419
+  },
+  "211": {
+    "script_id": 211,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 419
+  },
+  "212": {
+    "script_id": 212,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 419
+  },
+  "213": {
+    "script_id": 213,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 419
+  },
+  "214": {
+    "script_id": 214,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 419
+  },
+  "215": {
+    "script_id": 215,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 419
+  },
+  "216": {
+    "script_id": 216,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 419
+  },
+  "217": {
+    "script_id": 217,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 502
+  },
+  "218": {
+    "script_id": 218,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 1385
+  },
+  "219": {
+    "script_id": 219,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 1191
+  },
+  "221": {
+    "script_id": 221,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 287
+  },
+  "223": {
+    "script_id": 223,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [
+      [
+        "200",
+        "-46",
+        "0"
+      ]
+    ],
+    "proc038": [
+      "988"
+    ],
+    "facing_equals": [
+      "3"
+    ],
+    "decoded_text_bytes": 1571
+  },
+  "224": {
+    "script_id": 224,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 882
+  },
+  "225": {
+    "script_id": 225,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 2554
+  },
+  "226": {
+    "script_id": 226,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 141
+  },
+  "227": {
+    "script_id": 227,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 183
+  },
+  "229": {
+    "script_id": 229,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 1568
+  },
+  "230": {
+    "script_id": 230,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 183
+  },
+  "231": {
+    "script_id": 231,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 183
+  },
+  "232": {
+    "script_id": 232,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 183
+  },
+  "233": {
+    "script_id": 233,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 179
+  },
+  "234": {
+    "script_id": 234,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 179
+  },
+  "235": {
+    "script_id": 235,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 179
+  },
+  "236": {
+    "script_id": 236,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 179
+  },
+  "241": {
+    "script_id": 241,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 177
+  },
+  "242": {
+    "script_id": 242,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 183
+  },
+  "243": {
+    "script_id": 243,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 178
+  },
+  "244": {
+    "script_id": 244,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 178
+  },
+  "245": {
+    "script_id": 245,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 179
+  },
+  "246": {
+    "script_id": 246,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 179
+  },
+  "247": {
+    "script_id": 247,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 177
+  },
+  "248": {
+    "script_id": 248,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 179
+  },
+  "249": {
+    "script_id": 249,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 179
+  },
+  "251": {
+    "script_id": 251,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 180
+  },
+  "252": {
+    "script_id": 252,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 179
+  },
+  "253": {
+    "script_id": 253,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 186
+  },
+  "254": {
+    "script_id": 254,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 177
+  },
+  "255": {
+    "script_id": 255,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 179
+  },
+  "256": {
+    "script_id": 256,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 179
+  },
+  "257": {
+    "script_id": 257,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 181
+  },
+  "260": {
+    "script_id": 260,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 181
+  },
+  "261": {
+    "script_id": 261,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 185
+  },
+  "262": {
+    "script_id": 262,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 190
+  },
+  "263": {
+    "script_id": 263,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 186
+  },
+  "264": {
+    "script_id": 264,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 179
+  },
+  "265": {
+    "script_id": 265,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 177
+  },
+  "266": {
+    "script_id": 266,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 183
+  },
+  "267": {
+    "script_id": 267,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 179
+  },
+  "269": {
+    "script_id": 269,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 179
+  },
+  "270": {
+    "script_id": 270,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 179
+  },
+  "271": {
+    "script_id": 271,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [
+      [
+        "22",
+        "92",
+        "320"
+      ]
+    ],
+    "set_entity0": [
+      [
+        "92",
+        "320",
+        "1"
+      ]
+    ],
+    "proc038": [
+      "792"
+    ],
+    "facing_equals": [
+      "1"
+    ],
+    "decoded_text_bytes": 2158
+  },
+  "276": {
+    "script_id": 276,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 177
+  },
+  "277": {
+    "script_id": 277,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 179
+  },
+  "278": {
+    "script_id": 278,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 179
+  },
+  "279": {
+    "script_id": 279,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 178
+  },
+  "280": {
+    "script_id": 280,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 177
+  },
+  "281": {
+    "script_id": 281,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 179
+  },
+  "282": {
+    "script_id": 282,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 179
+  },
+  "283": {
+    "script_id": 283,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 178
+  },
+  "285": {
+    "script_id": 285,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 15675
+  },
+  "286": {
+    "script_id": 286,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 179
+  },
+  "287": {
+    "script_id": 287,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 181
+  },
+  "288": {
+    "script_id": 288,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 190
+  },
+  "289": {
+    "script_id": 289,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 186
+  },
+  "290": {
+    "script_id": 290,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 189
+  },
+  "291": {
+    "script_id": 291,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 179
+  },
+  "294": {
+    "script_id": 294,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 177
+  },
+  "295": {
+    "script_id": 295,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 183
+  },
+  "296": {
+    "script_id": 296,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 179
+  },
+  "297": {
+    "script_id": 297,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 179
+  },
+  "298": {
+    "script_id": 298,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 179
+  },
+  "299": {
+    "script_id": 299,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 183
+  },
+  "301": {
+    "script_id": 301,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 179
+  },
+  "302": {
+    "script_id": 302,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 181
+  },
+  "303": {
+    "script_id": 303,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 179
+  },
+  "304": {
+    "script_id": 304,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 180
+  },
+  "308": {
+    "script_id": 308,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 142
+  },
+  "309": {
+    "script_id": 309,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 142
+  },
+  "310": {
+    "script_id": 310,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 142
+  },
+  "311": {
+    "script_id": 311,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 142
+  },
+  "312": {
+    "script_id": 312,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 143
+  },
+  "313": {
+    "script_id": 313,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 143
+  },
+  "314": {
+    "script_id": 314,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 143
+  },
+  "315": {
+    "script_id": 315,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 143
+  },
+  "316": {
+    "script_id": 316,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 27328
+  },
+  "317": {
+    "script_id": 317,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 3831
+  },
+  "318": {
+    "script_id": 318,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 4074
+  },
+  "319": {
+    "script_id": 319,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 143
+  },
+  "320": {
+    "script_id": 320,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [
+      "1"
+    ],
+    "decoded_text_bytes": 331
+  },
+  "321": {
+    "script_id": 321,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [
+      "1"
+    ],
+    "decoded_text_bytes": 331
+  },
+  "322": {
+    "script_id": 322,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [
+      "1"
+    ],
+    "decoded_text_bytes": 1176
+  },
+  "323": {
+    "script_id": 323,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 177
+  },
+  "324": {
+    "script_id": 324,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 179
+  },
+  "325": {
+    "script_id": 325,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 181
+  },
+  "326": {
+    "script_id": 326,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 179
+  },
+  "327": {
+    "script_id": 327,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 179
+  },
+  "328": {
+    "script_id": 328,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 179
+  },
+  "330": {
+    "script_id": 330,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 177
+  },
+  "331": {
+    "script_id": 331,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 183
+  },
+  "332": {
+    "script_id": 332,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 179
+  },
+  "333": {
+    "script_id": 333,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 179
+  },
+  "334": {
+    "script_id": 334,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 181
+  },
+  "335": {
+    "script_id": 335,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [
+      "820"
+    ],
+    "facing_equals": [],
+    "decoded_text_bytes": 939
+  },
+  "336": {
+    "script_id": 336,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 189
+  },
+  "337": {
+    "script_id": 337,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 179
+  },
+  "342": {
+    "script_id": 342,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [
+      [
+        "200",
+        "-46",
+        "0"
+      ],
+      [
+        "320",
+        "-46",
+        "0"
+      ],
+      [
+        "384",
+        "-46",
+        "0"
+      ]
+    ],
+    "proc038": [
+      "1299",
+      "1307",
+      "988"
+    ],
+    "facing_equals": [
+      "3"
+    ],
+    "decoded_text_bytes": 3464
+  },
+  "344": {
+    "script_id": 344,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 858
+  },
+  "345": {
+    "script_id": 345,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 141
+  },
+  "346": {
+    "script_id": 346,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 179
+  },
+  "348": {
+    "script_id": 348,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 141
+  },
+  "351": {
+    "script_id": 351,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 1319
+  },
+  "354": {
+    "script_id": 354,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 3906
+  },
+  "355": {
+    "script_id": 355,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 183
+  },
+  "356": {
+    "script_id": 356,
+    "mary_structured": false,
+    "partial_recovery": true,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [
+      "1057",
+      "1049",
+      "1043",
+      "1044",
+      "1052",
+      "1041",
+      "1052",
+      "1034",
+      "1038",
+      "1035",
+      "1045",
+      "1054",
+      "1046",
+      "1051"
+    ],
+    "facing_equals": [],
+    "decoded_text_bytes": 4388
+  },
+  "357": {
+    "script_id": 357,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 344
+  },
+  "362": {
+    "script_id": 362,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [
+      [
+        "28",
+        "120",
+        "208"
+      ]
+    ],
+    "set_entity0": [
+      [
+        "120",
+        "208",
+        "1"
+      ]
+    ],
+    "proc038": [],
+    "facing_equals": [
+      "1"
+    ],
+    "decoded_text_bytes": 911
+  },
+  "363": {
+    "script_id": 363,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 180
+  },
+  "364": {
+    "script_id": 364,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 179
+  },
+  "365": {
+    "script_id": 365,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 184
+  },
+  "366": {
+    "script_id": 366,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 181
+  },
+  "367": {
+    "script_id": 367,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 185
+  },
+  "368": {
+    "script_id": 368,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 859
+  },
+  "369": {
+    "script_id": 369,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 179
+  },
+  "370": {
+    "script_id": 370,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [
+      [
+        "12",
+        "184",
+        "320"
+      ]
+    ],
+    "set_entity0": [
+      [
+        "184",
+        "320",
+        "1"
+      ]
+    ],
+    "proc038": [
+      "879",
+      "899",
+      "919",
+      "937",
+      "957",
+      "38",
+      "908",
+      "777",
+      "779"
+    ],
+    "facing_equals": [
+      "1"
+    ],
+    "decoded_text_bytes": 3979
+  },
+  "371": {
+    "script_id": 371,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [
+      [
+        "14",
+        "120",
+        "208"
+      ]
+    ],
+    "set_entity0": [
+      [
+        "120",
+        "208",
+        "1"
+      ]
+    ],
+    "proc038": [
+      "1303",
+      "72",
+      "947",
+      "776",
+      "745",
+      "750",
+      "712",
+      "713",
+      "742"
+    ],
+    "facing_equals": [
+      "1"
+    ],
+    "decoded_text_bytes": 5488
+  },
+  "372": {
+    "script_id": 372,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [
+      [
+        "15",
+        "144",
+        "320"
+      ]
+    ],
+    "set_entity0": [
+      [
+        "144",
+        "320",
+        "1"
+      ]
+    ],
+    "proc038": [
+      "1304",
+      "20",
+      "24",
+      "29",
+      "721",
+      "751",
+      "753",
+      "16"
+    ],
+    "facing_equals": [
+      "1"
+    ],
+    "decoded_text_bytes": 6810
+  },
+  "373": {
+    "script_id": 373,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [
+      [
+        "19",
+        "184",
+        "320"
+      ]
+    ],
+    "set_entity0": [
+      [
+        "184",
+        "320",
+        "1"
+      ]
+    ],
+    "proc038": [
+      "66",
+      "69",
+      "944",
+      "950",
+      "769",
+      "773"
+    ],
+    "facing_equals": [
+      "1"
+    ],
+    "decoded_text_bytes": 4049
+  },
+  "374": {
+    "script_id": 374,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [
+      [
+        "21",
+        "184",
+        "320"
+      ]
+    ],
+    "set_entity0": [
+      [
+        "184",
+        "320",
+        "1"
+      ]
+    ],
+    "proc038": [
+      "1302",
+      "46",
+      "51",
+      "52",
+      "911",
+      "710",
+      "711",
+      "763",
+      "786",
+      "794"
+    ],
+    "facing_equals": [
+      "1"
+    ],
+    "decoded_text_bytes": 7148
+  },
+  "375": {
+    "script_id": 375,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [
+      [
+        "26",
+        "120",
+        "208"
+      ]
+    ],
+    "set_entity0": [
+      [
+        "120",
+        "208",
+        "1"
+      ]
+    ],
+    "proc038": [
+      "1305",
+      "62",
+      "726",
+      "731",
+      "732"
+    ],
+    "facing_equals": [
+      "1"
+    ],
+    "decoded_text_bytes": 3978
+  },
+  "376": {
+    "script_id": 376,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [
+      [
+        "24",
+        "120",
+        "208"
+      ]
+    ],
+    "set_entity0": [
+      [
+        "120",
+        "208",
+        "1"
+      ]
+    ],
+    "proc038": [
+      "57",
+      "59",
+      "929",
+      "933"
+    ],
+    "facing_equals": [
+      "1"
+    ],
+    "decoded_text_bytes": 3222
+  },
+  "377": {
+    "script_id": 377,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [
+      [
+        "30",
+        "120",
+        "208"
+      ]
+    ],
+    "set_entity0": [
+      [
+        "120",
+        "208",
+        "1"
+      ]
+    ],
+    "proc038": [],
+    "facing_equals": [
+      "1"
+    ],
+    "decoded_text_bytes": 1692
+  },
+  "378": {
+    "script_id": 378,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [
+      [
+        "31",
+        "120",
+        "208"
+      ]
+    ],
+    "set_entity0": [
+      [
+        "120",
+        "208",
+        "1"
+      ]
+    ],
+    "proc038": [
+      "717",
+      "718"
+    ],
+    "facing_equals": [
+      "1"
+    ],
+    "decoded_text_bytes": 2344
+  },
+  "380": {
+    "script_id": 380,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [
+      [
+        "33",
+        "120",
+        "208"
+      ]
+    ],
+    "set_entity0": [
+      [
+        "120",
+        "208",
+        "1"
+      ]
+    ],
+    "proc038": [
+      "915"
+    ],
+    "facing_equals": [
+      "1"
+    ],
+    "decoded_text_bytes": 807
+  },
+  "382": {
+    "script_id": 382,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 180
+  },
+  "383": {
+    "script_id": 383,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 179
+  },
+  "384": {
+    "script_id": 384,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 181
+  },
+  "385": {
+    "script_id": 385,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 190
+  },
+  "386": {
+    "script_id": 386,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 186
+  },
+  "387": {
+    "script_id": 387,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 189
+  },
+  "388": {
+    "script_id": 388,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 179
+  },
+  "391": {
+    "script_id": 391,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 182
+  },
+  "392": {
+    "script_id": 392,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 177
+  },
+  "393": {
+    "script_id": 393,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 183
+  },
+  "394": {
+    "script_id": 394,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 179
+  },
+  "396": {
+    "script_id": 396,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 196
+  },
+  "397": {
+    "script_id": 397,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 179
+  },
+  "398": {
+    "script_id": 398,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 179
+  },
+  "402": {
+    "script_id": 402,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 188
+  },
+  "403": {
+    "script_id": 403,
+    "mary_structured": false,
+    "partial_recovery": true,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 2717
+  },
+  "405": {
+    "script_id": 405,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 756
+  },
+  "408": {
+    "script_id": 408,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 194
+  },
+  "412": {
+    "script_id": 412,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 180
+  },
+  "413": {
+    "script_id": 413,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 186
+  },
+  "414": {
+    "script_id": 414,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 179
+  },
+  "417": {
+    "script_id": 417,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 182
+  },
+  "418": {
+    "script_id": 418,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 186
+  },
+  "419": {
+    "script_id": 419,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 186
+  },
+  "420": {
+    "script_id": 420,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 183
+  },
+  "421": {
+    "script_id": 421,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 179
+  },
+  "425": {
+    "script_id": 425,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [
+      [
+        "200",
+        "-46",
+        "0"
+      ]
+    ],
+    "proc038": [
+      "988"
+    ],
+    "facing_equals": [
+      "3"
+    ],
+    "decoded_text_bytes": 1573
+  },
+  "426": {
+    "script_id": 426,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 141
+  },
+  "427": {
+    "script_id": 427,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 2554
+  },
+  "428": {
+    "script_id": 428,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 141
+  },
+  "429": {
+    "script_id": 429,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 183
+  },
+  "431": {
+    "script_id": 431,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 184
+  },
+  "432": {
+    "script_id": 432,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 179
+  },
+  "433": {
+    "script_id": 433,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 181
+  },
+  "434": {
+    "script_id": 434,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 178
+  },
+  "435": {
+    "script_id": 435,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 190
+  },
+  "436": {
+    "script_id": 436,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 180
+  },
+  "437": {
+    "script_id": 437,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 186
+  },
+  "438": {
+    "script_id": 438,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 189
+  },
+  "439": {
+    "script_id": 439,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 179
+  },
+  "442": {
+    "script_id": 442,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 419
+  },
+  "443": {
+    "script_id": 443,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 419
+  },
+  "444": {
+    "script_id": 444,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 421
+  },
+  "445": {
+    "script_id": 445,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 421
+  },
+  "446": {
+    "script_id": 446,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 421
+  },
+  "447": {
+    "script_id": 447,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 421
+  },
+  "448": {
+    "script_id": 448,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 421
+  },
+  "449": {
+    "script_id": 449,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 421
+  },
+  "450": {
+    "script_id": 450,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 419
+  },
+  "451": {
+    "script_id": 451,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 419
+  },
+  "452": {
+    "script_id": 452,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 419
+  },
+  "453": {
+    "script_id": 453,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 419
+  },
+  "454": {
+    "script_id": 454,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 419
+  },
+  "455": {
+    "script_id": 455,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 419
+  },
+  "456": {
+    "script_id": 456,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 419
+  },
+  "457": {
+    "script_id": 457,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 419
+  },
+  "458": {
+    "script_id": 458,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 485
+  },
+  "459": {
+    "script_id": 459,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 479
+  },
+  "460": {
+    "script_id": 460,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 479
+  },
+  "461": {
+    "script_id": 461,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 288
+  },
+  "464": {
+    "script_id": 464,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 381
+  },
+  "466": {
+    "script_id": 466,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [
+      "3"
+    ],
+    "decoded_text_bytes": 7420
+  },
+  "467": {
+    "script_id": 467,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [
+      "3"
+    ],
+    "decoded_text_bytes": 7147
+  },
+  "469": {
+    "script_id": 469,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 8255
+  },
+  "471": {
+    "script_id": 471,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 7384
+  },
+  "472": {
+    "script_id": 472,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 7390
+  },
+  "473": {
+    "script_id": 473,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 7390
+  },
+  "474": {
+    "script_id": 474,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 7395
+  },
+  "475": {
+    "script_id": 475,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 7385
+  },
+  "476": {
+    "script_id": 476,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 7383
+  },
+  "477": {
+    "script_id": 477,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 7603
+  },
+  "478": {
+    "script_id": 478,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 7390
+  },
+  "482": {
+    "script_id": 482,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [
+      "1"
+    ],
+    "decoded_text_bytes": 7220
+  },
+  "483": {
+    "script_id": 483,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [
+      "1"
+    ],
+    "decoded_text_bytes": 17224
+  },
+  "484": {
+    "script_id": 484,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [
+      "1"
+    ],
+    "decoded_text_bytes": 7830
+  },
+  "485": {
+    "script_id": 485,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [
+      "1"
+    ],
+    "decoded_text_bytes": 7246
+  },
+  "486": {
+    "script_id": 486,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [
+      "1"
+    ],
+    "decoded_text_bytes": 7711
+  },
+  "487": {
+    "script_id": 487,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [
+      "1"
+    ],
+    "decoded_text_bytes": 20261
+  },
+  "488": {
+    "script_id": 488,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [
+      "1"
+    ],
+    "decoded_text_bytes": 7534
+  },
+  "489": {
+    "script_id": 489,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [
+      "2"
+    ],
+    "decoded_text_bytes": 7228
+  },
+  "490": {
+    "script_id": 490,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 231
+  },
+  "491": {
+    "script_id": 491,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 244
+  },
+  "492": {
+    "script_id": 492,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 2044
+  },
+  "493": {
+    "script_id": 493,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 266
+  },
+  "494": {
+    "script_id": 494,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 224
+  },
+  "495": {
+    "script_id": 495,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 194
+  },
+  "496": {
+    "script_id": 496,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 232
+  },
+  "497": {
+    "script_id": 497,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 324
+  },
+  "498": {
+    "script_id": 498,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 283
+  },
+  "499": {
+    "script_id": 499,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 249
+  },
+  "500": {
+    "script_id": 500,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 237
+  },
+  "501": {
+    "script_id": 501,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 213
+  },
+  "502": {
+    "script_id": 502,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 433
+  },
+  "503": {
+    "script_id": 503,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 262
+  },
+  "504": {
+    "script_id": 504,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 226
+  },
+  "505": {
+    "script_id": 505,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 267
+  },
+  "506": {
+    "script_id": 506,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 269
+  },
+  "507": {
+    "script_id": 507,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 275
+  },
+  "508": {
+    "script_id": 508,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 233
+  },
+  "509": {
+    "script_id": 509,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 323
+  },
+  "510": {
+    "script_id": 510,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 230
+  },
+  "511": {
+    "script_id": 511,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 177
+  },
+  "512": {
+    "script_id": 512,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 183
+  },
+  "514": {
+    "script_id": 514,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 190
+  },
+  "515": {
+    "script_id": 515,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 180
+  },
+  "516": {
+    "script_id": 516,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 180
+  },
+  "517": {
+    "script_id": 517,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 179
+  },
+  "518": {
+    "script_id": 518,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 179
+  },
+  "520": {
+    "script_id": 520,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 179
+  },
+  "521": {
+    "script_id": 521,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [
+      [
+        "41",
+        "40",
+        "208"
+      ]
+    ],
+    "set_entity0": [
+      [
+        "40",
+        "208",
+        "1"
+      ]
+    ],
+    "proc038": [],
+    "facing_equals": [
+      "1"
+    ],
+    "decoded_text_bytes": 273
+  },
+  "522": {
+    "script_id": 522,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 181
+  },
+  "523": {
+    "script_id": 523,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [
+      [
+        "10",
+        "120",
+        "208"
+      ]
+    ],
+    "set_entity0": [
+      [
+        "120",
+        "208",
+        "1"
+      ]
+    ],
+    "proc038": [
+      "1301",
+      "39",
+      "894",
+      "695",
+      "699",
+      "704",
+      "804",
+      "760"
+    ],
+    "facing_equals": [
+      "1"
+    ],
+    "decoded_text_bytes": 6899
+  },
+  "528": {
+    "script_id": 528,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [
+      [
+        "38",
+        "120",
+        "208"
+      ]
+    ],
+    "set_entity0": [
+      [
+        "120",
+        "208",
+        "1"
+      ]
+    ],
+    "proc038": [
+      "926"
+    ],
+    "facing_equals": [
+      "1"
+    ],
+    "decoded_text_bytes": 3151
+  },
+  "530": {
+    "script_id": 530,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [
+      [
+        "41",
+        "168",
+        "208"
+      ]
+    ],
+    "set_entity0": [
+      [
+        "168",
+        "208",
+        "1"
+      ]
+    ],
+    "proc038": [],
+    "facing_equals": [
+      "1"
+    ],
+    "decoded_text_bytes": 1688
+  },
+  "531": {
+    "script_id": 531,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 1702
+  },
+  "533": {
+    "script_id": 533,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [
+      [
+        "200",
+        "-46",
+        "0"
+      ]
+    ],
+    "proc038": [
+      "988"
+    ],
+    "facing_equals": [
+      "3"
+    ],
+    "decoded_text_bytes": 1573
+  },
+  "534": {
+    "script_id": 534,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 141
+  },
+  "535": {
+    "script_id": 535,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 179
+  },
+  "536": {
+    "script_id": 536,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 2554
+  },
+  "537": {
+    "script_id": 537,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 141
+  },
+  "538": {
+    "script_id": 538,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 184
+  },
+  "539": {
+    "script_id": 539,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 179
+  },
+  "540": {
+    "script_id": 540,
+    "mary_structured": false,
+    "partial_recovery": true,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [
+      "1058",
+      "1042",
+      "1039",
+      "1053",
+      "1056",
+      "1036",
+      "1037",
+      "1048",
+      "1033",
+      "1047",
+      "1040"
+    ],
+    "facing_equals": [],
+    "decoded_text_bytes": 3131
+  },
+  "542": {
+    "script_id": 542,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 177
+  },
+  "543": {
+    "script_id": 543,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 179
+  },
+  "545": {
+    "script_id": 545,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 181
+  },
+  "546": {
+    "script_id": 546,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 179
+  },
+  "547": {
+    "script_id": 547,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 189
+  },
+  "548": {
+    "script_id": 548,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 183
+  },
+  "549": {
+    "script_id": 549,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 179
+  },
+  "551": {
+    "script_id": 551,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 182
+  },
+  "552": {
+    "script_id": 552,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 179
+  },
+  "553": {
+    "script_id": 553,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 179
+  },
+  "554": {
+    "script_id": 554,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 181
+  },
+  "555": {
+    "script_id": 555,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 186
+  },
+  "556": {
+    "script_id": 556,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 189
+  },
+  "557": {
+    "script_id": 557,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 179
+  },
+  "558": {
+    "script_id": 558,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 179
+  },
+  "562": {
+    "script_id": 562,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 182
+  },
+  "563": {
+    "script_id": 563,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 177
+  },
+  "564": {
+    "script_id": 564,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 183
+  },
+  "565": {
+    "script_id": 565,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 179
+  },
+  "566": {
+    "script_id": 566,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 179
+  },
+  "567": {
+    "script_id": 567,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 179
+  },
+  "569": {
+    "script_id": 569,
+    "mary_structured": true,
+    "partial_recovery": false,
+    "proc016": [],
+    "set_entity0": [],
+    "proc038": [],
+    "facing_equals": [],
+    "decoded_text_bytes": 178
+  }
+}

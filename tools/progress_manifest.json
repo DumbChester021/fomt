@@ -1,0 +1,19 @@
+{
+  "opaque_source_data": [
+    {
+      "name": "gSongTable retail incbin",
+      "path": "data/sound/song_table.s",
+      "bytes": 1688,
+      "note": "Linked through src/sound_data.o but still copied directly from baserom.gba."
+    }
+  ],
+  "generated_assets": [
+    {
+      "name": "Semantically owned packed-sprite graphics and palettes",
+      "type": "packed_sprite_item_icons",
+      "manifest": "assets/item_icons/manifest.json",
+      "rom": "baserom.gba",
+      "note": "Counts unique graphics and palette byte spans actually rebuilt from semantically owned simple and multi-frame PNG source."
+    }
+  ]
+}

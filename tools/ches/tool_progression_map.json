@@ -1,0 +1,934 @@
+{
+  "batch": 13,
+  "call": 10,
+  "farmer_base": "GameState+0x1BD8",
+  "tool_levels": "Farmer+0x2C, six Farmer::ToolLevel entries (hoe,sickle,axe,hammer,watering can,fishing rod mapping proven by func_0800E550 source switch)",
+  "toollevel_fields_from_header": {
+    "unk_000": "16 bits",
+    "unk_010": "3 bits",
+    "unk_013": "3 bits"
+  },
+  "known_levels": [
+    "LEVEL_0",
+    "LEVEL_1",
+    "LEVEL_2",
+    "LEVEL_3",
+    "LEVEL_4",
+    "LEVEL_5"
+  ],
+  "helpers": [
+    "func_0800E548",
+    "func_0800E550",
+    "func_0800EF68",
+    "func_0800EF6C",
+    "func_0800EF74",
+    "func_0800EF88",
+    "func_0800EFB4",
+    "func_0800EFD8"
+  ],
+  "caller_census": {
+    "func_0800E548": {
+      "count": 2,
+      "first": [
+        {
+          "file": "asm/code_0803EE94.s",
+          "line": 82325,
+          "text": "bl func_0800E548"
+        },
+        {
+          "file": "src/farmer.cc",
+          "line": 68,
+          "text": "EC Farmer::ToolLevel const & func_0800E548(Farmer const & self, unsigned int idx)"
+        }
+      ]
+    },
+    "func_0800E550": {
+      "count": 136,
+      "first": [
+        {
+          "file": "asm/code_0803EE94.s",
+          "line": 150167,
+          "text": "bl func_0800E550"
+        },
+        {
+          "file": "asm/code_0803EE94.s",
+          "line": 150201,
+          "text": "bl func_0800E550"
+        },
+        {
+          "file": "asm/code_0803EE94.s",
+          "line": 155847,
+          "text": "bl func_0800E550"
+        },
+        {
+          "file": "asm/code_0803EE94.s",
+          "line": 155881,
+          "text": "bl func_0800E550"
+        },
+        {
+          "file": "asm/code_0803EE94.s",
+          "line": 155942,
+          "text": "bl func_0800E550"
+        },
+        {
+          "file": "asm/code_0803EE94.s",
+          "line": 156575,
+          "text": "bl func_0800E550"
+        },
+        {
+          "file": "asm/code_0803EE94.s",
+          "line": 156780,
+          "text": "bl func_0800E550"
+        },
+        {
+          "file": "asm/code_0803EE94.s",
+          "line": 156812,
+          "text": "bl func_0800E550"
+        },
+        {
+          "file": "asm/code_0803EE94.s",
+          "line": 156877,
+          "text": "bl func_0800E550"
+        },
+        {
+          "file": "asm/code_0803EE94.s",
+          "line": 158087,
+          "text": "bl func_0800E550"
+        },
+        {
+          "file": "asm/code_0803EE94.s",
+          "line": 158142,
+          "text": "bl func_0800E550"
+        },
+        {
+          "file": "asm/code_0803EE94.s",
+          "line": 158352,
+          "text": "bl func_0800E550"
+        },
+        {
+          "file": "asm/code_0803EE94.s",
+          "line": 158392,
+          "text": "bl func_0800E550"
+        },
+        {
+          "file": "asm/code_0803EE94.s",
+          "line": 158507,
+          "text": "bl func_0800E550"
+        },
+        {
+          "file": "asm/code_0803EE94.s",
+          "line": 158564,
+          "text": "bl func_0800E550"
+        },
+        {
+          "file": "asm/code_0803EE94.s",
+          "line": 158759,
+          "text": "bl func_0800E550"
+        },
+        {
+          "file": "asm/code_0803EE94.s",
+          "line": 158796,
+          "text": "bl func_0800E550"
+        },
+        {
+          "file": "asm/code_0803EE94.s",
+          "line": 159705,
+          "text": "bl func_0800E550"
+        },
+        {
+          "file": "asm/code_0803EE94.s",
+          "line": 159739,
+          "text": "bl func_0800E550"
+        },
+        {
+          "file": "asm/code_0803EE94.s",
+          "line": 160911,
+          "text": "bl func_0800E550"
+        }
+      ]
+    },
+    "func_0800EF68": {
+      "count": 3,
+      "first": [
+        {
+          "file": "asm/code_0803EE94.s",
+          "line": 82327,
+          "text": "bl func_0800EF68"
+        },
+        {
+          "file": "asm/code_0803EE94.s",
+          "line": 161540,
+          "text": "bl func_0800EF68"
+        },
+        {
+          "file": "src/farmer.cc",
+          "line": 518,
+          "text": "EC unsigned int func_0800EF68(Farmer::ToolLevel const & self)"
+        }
+      ]
+    },
+    "func_0800EF6C": {
+      "count": 8,
+      "first": [
+        {
+          "file": "asm/code_0803EE94.s",
+          "line": 82332,
+          "text": "bl func_0800EF6C"
+        },
+        {
+          "file": "src/farmer.cc",
+          "line": 80,
+          "text": "switch (func_0800EF6C(self.unk_2C[1]))"
+        },
+        {
+          "file": "src/farmer.cc",
+          "line": 97,
+          "text": "switch (func_0800EF6C(self.unk_2C[0]))"
+        },
+        {
+          "file": "src/farmer.cc",
+          "line": 114,
+          "text": "switch (func_0800EF6C(self.unk_2C[2]))"
+        },
+        {
+          "file": "src/farmer.cc",
+          "line": 131,
+          "text": "switch (func_0800EF6C(self.unk_2C[3]))"
+        },
+        {
+          "file": "src/farmer.cc",
+          "line": 148,
+          "text": "switch (func_0800EF6C(self.unk_2C[4]))"
+        },
+        {
+          "file": "src/farmer.cc",
+          "line": 165,
+          "text": "switch (func_0800EF6C(self.unk_2C[5]))"
+        },
+        {
+          "file": "src/farmer.cc",
+          "line": 523,
+          "text": "EC unsigned int func_0800EF6C(Farmer::ToolLevel const & self)"
+        }
+      ]
+    },
+    "func_0800EF74": {
+      "count": 13,
+      "first": [
+        {
+          "file": "asm/code_0803EE94.s",
+          "line": 82815,
+          "text": "bl func_0800EF74"
+        },
+        {
+          "file": "asm/code_0803EE94.s",
+          "line": 82834,
+          "text": "bl func_0800EF74"
+        },
+        {
+          "file": "asm/code_0803EE94.s",
+          "line": 82952,
+          "text": "bl func_0800EF74"
+        },
+        {
+          "file": "asm/code_0803EE94.s",
+          "line": 82975,
+          "text": "bl func_0800EF74"
+        },
+        {
+          "file": "asm/code_0803EE94.s",
+          "line": 82999,
+          "text": "bl func_0800EF74"
+        },
+        {
+          "file": "asm/code_0803EE94.s",
+          "line": 83128,
+          "text": "bl func_0800EF74"
+        },
+        {
+          "file": "asm/code_0803EE94.s",
+          "line": 83150,
+          "text": "bl func_0800EF74"
+        },
+        {
+          "file": "asm/code_0803EE94.s",
+          "line": 83174,
+          "text": "bl func_0800EF74"
+        },
+        {
+          "file": "asm/code_0803EE94.s",
+          "line": 83290,
+          "text": "bl func_0800EF74"
+        },
+        {
+          "file": "asm/code_0803EE94.s",
+          "line": 83312,
+          "text": "bl func_0800EF74"
+        },
+        {
+          "file": "asm/code_0803EE94.s",
+          "line": 83336,
+          "text": "bl func_0800EF74"
+        },
+        {
+          "file": "asm/code_0803EE94.s",
+          "line": 83466,
+          "text": "bl func_0800EF74"
+        },
+        {
+          "file": "src/farmer.cc",
+          "line": 528,
+          "text": "EC bool func_0800EF74(Farmer::ToolLevel const & self)"
+        }
+      ]
+    },
+    "func_0800EF88": {
+      "count": 8,
+      "first": [
+        {
+          "file": "asm/code_entities.s",
+          "line": 27597,
+          "text": "bl func_0800EF88"
+        },
+        {
+          "file": "asm/code_entities.s",
+          "line": 28055,
+          "text": "bl func_0800EF88"
+        },
+        {
+          "file": "asm/code_entities.s",
+          "line": 29622,
+          "text": "bl func_0800EF88"
+        },
+        {
+          "file": "asm/code_entities.s",
+          "line": 30280,
+          "text": "bl func_0800EF88"
+        },
+        {
+          "file": "asm/code_entities.s",
+          "line": 30502,
+          "text": "bl func_0800EF88"
+        },
+        {
+          "file": "asm/code_entities.s",
+          "line": 30589,
+          "text": "bl func_0800EF88"
+        },
+        {
+          "file": "asm/code_entities.s",
+          "line": 30777,
+          "text": "bl func_0800EF88"
+        },
+        {
+          "file": "src/farmer.cc",
+          "line": 533,
+          "text": "EC void func_0800EF88(Farmer::ToolLevel & self, int arg_1)"
+        }
+      ]
+    },
+    "func_0800EFB4": {
+      "count": 2,
+      "first": [
+        {
+          "file": "asm/code_0803EE94.s",
+          "line": 135023,
+          "text": "bl func_0800EFB4"
+        },
+        {
+          "file": "src/farmer.cc",
+          "line": 538,
+          "text": "EC void func_0800EFB4(Farmer::ToolLevel & self, unsigned int arg_1)"
+        }
+      ]
+    },
+    "func_0800EFD8": {
+      "count": 7,
+      "first": [
+        {
+          "file": "asm/code_0803EE94.s",
+          "line": 7783,
+          "text": "bl func_0800EFD8"
+        },
+        {
+          "file": "asm/code_0803EE94.s",
+          "line": 7836,
+          "text": "bl func_0800EFD8"
+        },
+        {
+          "file": "asm/code_0803EE94.s",
+          "line": 7889,
+          "text": "bl func_0800EFD8"
+        },
+        {
+          "file": "asm/code_0803EE94.s",
+          "line": 7942,
+          "text": "bl func_0800EFD8"
+        },
+        {
+          "file": "asm/code_0803EE94.s",
+          "line": 7995,
+          "text": "bl func_0800EFD8"
+        },
+        {
+          "file": "asm/code_0803EE94.s",
+          "line": 8048,
+          "text": "bl func_0800EFD8"
+        },
+        {
+          "file": "src/farmer.cc",
+          "line": 546,
+          "text": "EC void func_0800EFD8(Farmer::ToolLevel & self)"
+        }
+      ]
+    }
+  },
+  "semantic_policy": "Do not rename packed ToolLevel fields until helper behavior and progression thresholds are binary-proven.",
+  "toollevel_field_roles": {
+    "unk_000": {
+      "width": "16-bit",
+      "behavior": "accumulator saturated at 0xFFFF by func_0800EF88",
+      "status": "binary-proven; likely tool-use/experience counter pending threshold proof"
+    },
+    "unk_010": {
+      "width": "3-bit",
+      "behavior": "current level used by func_0800E550 to map base tools to Copper/Silver/Gold/Mystrile",
+      "status": "binary-proven"
+    },
+    "unk_013": {
+      "width": "3-bit",
+      "behavior": "staged/pending level; func_0800EFB4 sets it when different from current; func_0800EFD8 commits it into current",
+      "status": "binary-proven"
+    }
+  },
+  "gain_callsite_summary": [
+    {
+      "line": 27597,
+      "tool_index_evidence": [
+        "movs r1, #2"
+      ],
+      "gain_r1_constants": [
+        "movs r1, #2",
+        "movs r1, #0x32",
+        "movs r1, #0x64"
+      ]
+    },
+    {
+      "line": 28055,
+      "tool_index_evidence": [
+        "movs r1, #3"
+      ],
+      "gain_r1_constants": [
+        "movs r1, #3",
+        "movs r1, #0x32",
+        "movs r1, #0x64"
+      ]
+    },
+    {
+      "line": 29622,
+      "tool_index_evidence": [
+        "movs r1, #5"
+      ],
+      "gain_r1_constants": [
+        "movs r1, #5",
+        "movs r1, #0x32",
+        "movs r1, #0x64"
+      ]
+    },
+    {
+      "line": 30280,
+      "tool_index_evidence": [
+        "movs r1, #0"
+      ],
+      "gain_r1_constants": [
+        "movs r1, #0",
+        "movs r1, #0x32",
+        "movs r1, #0x64"
+      ]
+    },
+    {
+      "line": 30502,
+      "tool_index_evidence": [
+        "movs r1, #1"
+      ],
+      "gain_r1_constants": [
+        "movs r1, #1",
+        "movs r1, #0x32",
+        "movs r1, #0x64"
+      ]
+    },
+    {
+      "line": 30589,
+      "tool_index_evidence": [
+        "movs r1, #4"
+      ],
+      "gain_r1_constants": [
+        "movs r1, #4",
+        "movs r1, #0x32",
+        "movs r1, #0x64"
+      ]
+    },
+    {
+      "line": 30777,
+      "tool_index_evidence": [
+        "movs r1, #4"
+      ],
+      "gain_r1_constants": [
+        "movs r1, #4",
+        "movs r1, #0x32",
+        "movs r1, #0x64"
+      ]
+    }
+  ],
+  "experience_thresholds": {
+    "level_progress_bands": [
+      {
+        "xp_min": 0,
+        "xp_max": 5999,
+        "boundary": "UI branch <= 0x176F"
+      },
+      {
+        "xp_min": 6000,
+        "xp_max": 17999,
+        "boundary": "UI branch > 0x176F and <= 0x464F"
+      },
+      {
+        "xp_min": 18000,
+        "xp_max": 35999,
+        "boundary": "UI branch > 0x464F and <= 0x8C9F"
+      },
+      {
+        "xp_min": 36000,
+        "xp_max": 65534,
+        "boundary": "UI branch > 0x8C9F and != 0xFFFF"
+      },
+      {
+        "xp_min": 65535,
+        "xp_max": 65535,
+        "boundary": "0xFFFF special/max path"
+      }
+    ],
+    "status": "binary-proven as UI/progression bands; upgrade-level transition linkage being traced",
+    "upgrade_cutoffs_raw": [
+      6000,
+      18000,
+      36000,
+      65535
+    ],
+    "percent_of_0xFFFF": {
+      "6000": 9.155413138017853,
+      "18000": 27.466239414053558,
+      "36000": 54.932478828107115,
+      "65535": 100.0
+    },
+    "interpretation": "Cutoffs are binary-proven in the tool-status UI/progression display. Mapping each cutoff to staged/current level requires upgrade-flow evidence."
+  },
+  "base_tool_level_mapping": {
+    "LEVEL_0": "Iron/base tool",
+    "LEVEL_1": "Copper",
+    "LEVEL_2": "Silver",
+    "LEVEL_3": "Gold",
+    "LEVEL_4": "Mystrile",
+    "LEVEL_5": "source mapping captured from func_0800E550 in Call3; do not infer until inspected output"
+  },
+  "tool_use_xp_gain": {
+    "normal_candidate": 50,
+    "boosted_candidate": 100,
+    "gate": "player entity byte +0x78 nonzero selects 100, zero selects 50 at every observed ToolLevel gain call",
+    "status": "binary-proven values/gate; semantic meaning of +0x78 still unresolved"
+  },
+  "xp_gain_context": [
+    {
+      "line": 27597,
+      "function": "sub_0802FBFC",
+      "label": ".L0802FFCE",
+      "tool_index": 2,
+      "context": [
+        "    strb r0, [r5]",
+        ".L0802FFAA:",
+        "    mov r6, sl",
+        "    ldr r0, [r6, #0x34]",
+        "    ldr r7, .L0802FFE4 @ =0x000034C4",
+        "    adds r0, r0, r7",
+        "    ldrb r0, [r0]",
+        "    cmp r0, #0",
+        "    bne .L0802FFD4",
+        "    ldr r0, [r6, #0x38]",
+        "    movs r1, #2",
+        ".L0802FFBC:",
+        "    bl func_0800EB2C",
+        "    adds r2, r0, #0",
+        "    ldr r1, [sp, #0x160]",
+        "    ldrb r0, [r1]",
+        "    movs r1, #0x32",
+        "    cmp r0, #0",
+        "    beq .L0802FFCE",
+        "    movs r1, #0x64",
+        ".L0802FFCE:",
+        "    adds r0, r2, #0",
+        "    bl func_0800EF88",
+        ".L0802FFD4:"
+      ]
+    },
+    {
+      "line": 28055,
+      "function": "sub_0802FBFC",
+      "label": ".L08030346",
+      "tool_index": 3,
+      "context": [
+        "    ldr r2, [sp, #0x160]",
+        "    strb r0, [r2]",
+        "    mov r3, sl",
+        "    ldr r0, [r3, #0x34]",
+        "    ldr r5, .L08030360 @ =0x000034C4",
+        "    adds r0, r0, r5",
+        "    ldrb r0, [r0]",
+        "    cmp r0, #0",
+        "    bne .L0803034C",
+        "    ldr r0, [r3, #0x38]",
+        "    movs r1, #3",
+        ".L08030334:",
+        "    bl func_0800EB2C",
+        "    adds r2, r0, #0",
+        "    ldr r6, [sp, #0x160]",
+        "    ldrb r0, [r6]",
+        "    movs r1, #0x32",
+        "    cmp r0, #0",
+        "    beq .L08030346",
+        "    movs r1, #0x64",
+        ".L08030346:",
+        "    adds r0, r2, #0",
+        "    bl func_0800EF88",
+        ".L0803034C:"
+      ]
+    },
+    {
+      "line": 29622,
+      "function": "sub_08030E0A",
+      "label": ".L08030F9A",
+      "tool_index": 5,
+      "context": [
+        "    mov r0, sl",
+        "    bl func_0802A7D8",
+        "    mov r7, sl",
+        "    ldr r0, [r7, #0x34]",
+        "    ldr r1, .L08030FBC @ =0x000034C4",
+        "    adds r0, r0, r1",
+        "    ldrb r0, [r0]",
+        "    cmp r0, #0",
+        "    bne .L08030FA0",
+        "    ldr r0, [r7, #0x38]",
+        "    movs r1, #5",
+        "    bl func_0800EB2C",
+        "    adds r2, r0, #0",
+        "    mov r0, sl",
+        "    adds r0, #0x78",
+        "    ldrb r0, [r0]",
+        "    movs r1, #0x32",
+        "    cmp r0, #0",
+        "    beq .L08030F9A",
+        "    movs r1, #0x64",
+        ".L08030F9A:",
+        "    adds r0, r2, #0",
+        "    bl func_0800EF88",
+        ".L08030FA0:"
+      ]
+    },
+    {
+      "line": 30280,
+      "function": "sub_08030E0A",
+      "label": ".L08031498",
+      "tool_index": 0,
+      "context": [
+        "    bl .L08031F0E",
+        ".L08031472:",
+        "    mov r3, sl",
+        "    ldr r0, [r3, #0x34]",
+        "    ldr r4, .L080314B8 @ =0x000034C4",
+        "    adds r0, r0, r4",
+        "    ldrb r0, [r0]",
+        "    cmp r0, #0",
+        "    bne .L0803149E",
+        "    ldr r0, [r3, #0x38]",
+        "    movs r1, #0",
+        "    bl func_0800EB2C",
+        "    adds r2, r0, #0",
+        "    mov r0, sl",
+        "    adds r0, #0x78",
+        "    ldrb r0, [r0]",
+        "    movs r1, #0x32",
+        "    cmp r0, #0",
+        "    beq .L08031498",
+        "    movs r1, #0x64",
+        ".L08031498:",
+        "    adds r0, r2, #0",
+        "    bl func_0800EF88",
+        ".L0803149E:"
+      ]
+    },
+    {
+      "line": 30502,
+      "function": "sub_08030E0A",
+      "label": ".L0803164C",
+      "tool_index": 1,
+      "context": [
+        "    cmp r0, r1",
+        "    bhi .L08031678",
+        "    mov r5, sl",
+        "    ldr r0, [r5, #0x34]",
+        "    ldr r6, .L08031674 @ =0x000034C4",
+        "    adds r0, r0, r6",
+        "    ldrb r0, [r0]",
+        "    cmp r0, #0",
+        "    bne .L08031652",
+        "    ldr r0, [r5, #0x38]",
+        "    movs r1, #1",
+        "    bl func_0800EB2C",
+        "    adds r2, r0, #0",
+        "    mov r0, sl",
+        "    adds r0, #0x78",
+        "    ldrb r0, [r0]",
+        "    movs r1, #0x32",
+        "    cmp r0, #0",
+        "    beq .L0803164C",
+        "    movs r1, #0x64",
+        ".L0803164C:",
+        "    adds r0, r2, #0",
+        "    bl func_0800EF88",
+        ".L08031652:"
+      ]
+    },
+    {
+      "line": 30589,
+      "function": "sub_08030E0A",
+      "label": ".L080316FA",
+      "tool_index": 4,
+      "context": [
+        "    mov r4, sl",
+        "    ldr r0, [r4, #0x34]",
+        "    ldr r5, .L08031704 @ =0x000034C4",
+        "    adds r0, r0, r5",
+        "    ldrb r0, [r0]",
+        "    cmp r0, #0",
+        "    beq .L080316E2",
+        "    b .L08031D92",
+        ".L080316E2:",
+        "    ldr r0, [r4, #0x38]",
+        "    movs r1, #4",
+        "    bl func_0800EB2C",
+        "    adds r2, r0, #0",
+        "    mov r0, sl",
+        "    adds r0, #0x78",
+        "    ldrb r0, [r0]",
+        "    movs r1, #0x32",
+        "    cmp r0, #0",
+        "    beq .L080316FA",
+        "    movs r1, #0x64",
+        ".L080316FA:",
+        "    adds r0, r2, #0",
+        "    bl func_0800EF88",
+        "    b .L08031D92"
+      ]
+    },
+    {
+      "line": 30777,
+      "function": "sub_08030E0A",
+      "label": ".L0803186A",
+      "tool_index": 4,
+      "context": [
+        "    ldrb r1, [r1]",
+        "    cmp r0, r1",
+        "    bne .L08031880",
+        "    ldr r0, [r5, #0x34]",
+        "    ldr r7, .L0803187C @ =0x000034C4",
+        "    adds r0, r0, r7",
+        "    ldrb r0, [r0]",
+        "    cmp r0, #0",
+        "    beq .L08031856",
+        "    b .L08031C7C",
+        ".L08031856:",
+        "    ldr r0, [r5, #0x38]",
+        "    movs r1, #4",
+        "    bl func_0800EB2C",
+        "    adds r2, r0, #0",
+        "    ldrb r0, [r4]",
+        "    movs r1, #0x32",
+        "    cmp r0, #0",
+        "    beq .L0803186A",
+        "    movs r1, #0x64",
+        ".L0803186A:",
+        "    adds r0, r2, #0",
+        "    bl func_0800EF88",
+        "    b .L08031C7C"
+      ]
+    }
+  ],
+  "tool_index_mapping": {
+    "0": "Hoe",
+    "1": "Sickle",
+    "2": "Axe",
+    "3": "Hammer",
+    "4": "Watering Can",
+    "5": "Fishing Rod"
+  },
+  "tool_level_id_mapping": {
+    "LEVEL_0": "Iron/base",
+    "LEVEL_1": "Copper",
+    "LEVEL_2": "Silver",
+    "LEVEL_3": "Gold",
+    "LEVEL_4": "Mystrile",
+    "LEVEL_5": "Mythic"
+  },
+  "xp_boost_flag": {
+    "offset": "player entity +0x78",
+    "behavior": "0 => +50 ToolLevel accumulator; nonzero => +100 at all seven observed gain sites; initialized to 0 and updated from action/interaction success booleans in tool-action paths",
+    "semantic_name": null,
+    "status": "behavior proven; semantic name intentionally unresolved"
+  },
+  "upgrade_staging": {
+    "helper": "func_0800EFB4",
+    "behavior": "if requested level differs from current, writes requested level into pending/staged 3-bit field",
+    "observed_upgrade_flow": "sub_08082F50 computes r4 in 0..4 from upgrade selection/context and passes r4+1 to func_0800EFB4, therefore staged targets are LEVEL_1..LEVEL_5",
+    "tool_family_index_mapping": {
+      "0": "Hoe",
+      "1": "Sickle",
+      "2": "Axe",
+      "3": "Hammer",
+      "4": "Watering Can",
+      "5": "Fishing Rod"
+    },
+    "status": "binary-proven for staging call and target-level arithmetic; exact eligibility conditions continue to be separated from UI threshold display"
+  },
+  "tool_level_fields": {
+    "unk_000": "16-bit saturating accumulator; func_0800EF68 getter; func_0800EF88 adds and caps at 0xFFFF",
+    "unk_010": "3-bit current/effective upgrade level; func_0800EF6C getter",
+    "unk_013": "3-bit pending/staged upgrade level; func_0800EF74 reports pending != current; func_0800EFB4 stages; func_0800EFD8 commits pending to current"
+  },
+  "forge_tool_family_permutation": {
+    "forge_family_0": "ToolLevel index 1 = Sickle",
+    "forge_family_1": "ToolLevel index 0 = Hoe",
+    "forge_family_2": "ToolLevel index 2 = Axe",
+    "forge_family_3": "ToolLevel index 3 = Hammer",
+    "forge_family_4": "ToolLevel index 4 = Watering Can",
+    "forge_family_5": "ToolLevel index 5 = Fishing Rod"
+  },
+  "commit_helpers": {
+    "func_0800EFD8": "copies pending/staged level into current/effective level"
+  },
+  "eligibility_trace": {
+    "primary_function": "func_08068344",
+    "reason": "contains the only non-UI cluster of accumulator/current/pending ToolLevel reads: EF68 x1, EF6C x1, EF74 x12",
+    "status": "Call7 traces exact branches; threshold-to-upgrade-level mapping must only be promoted after branch correlation is proven"
+  },
+  "ordinary_upgrade_requirements": [
+    {
+      "target_level": 1,
+      "name": "Copper",
+      "minimum_accumulator": 6000,
+      "material_article_id": "0x12",
+      "material": "Copper"
+    },
+    {
+      "target_level": 2,
+      "name": "Silver",
+      "minimum_accumulator": 18000,
+      "material_article_id": "0x13",
+      "material": "Silver"
+    },
+    {
+      "target_level": 3,
+      "name": "Gold",
+      "minimum_accumulator": 36000,
+      "material_article_id": "0x14",
+      "material": "Gold"
+    },
+    {
+      "target_level": 4,
+      "name": "Mystrile",
+      "minimum_accumulator": 65535,
+      "material_article_id": "0x15",
+      "material": "Mystrile"
+    }
+  ],
+  "mythic_upgrade": {
+    "target_level": 5,
+    "material_article_id": "0x1C",
+    "material": "Mythic Stone",
+    "accumulator_cutoff": null,
+    "separate_from_ordinary_xp_cutoffs": true,
+    "status": "material-to-target-level mapping binary-proven; any additional blessed/all-tools/event prerequisites require separate evidence"
+  },
+  "pending_upgrade_effect": {
+    "func_0800EF74": "true when pending/staged differs from current",
+    "ui_behavior": "08068344 renders alternate/blocked progression presentation whenever a pending upgrade exists; exact transaction lock semantics should not be inferred beyond observed branches"
+  },
+  "forge_transaction": {
+    "selection_storage": {
+      "field_0x48D8": "selection encoding; transaction uses (value >> 3) as a six-way tool-family selector and (value & 7) as a separate variant/subtype check",
+      "field_0x48DC": "selected Article id; upgrade materials observed: 0x12 Copper, 0x13 Silver, 0x14 Gold, 0x15 Mystrile, 0x1C Mythic Stone",
+      "field_0x48E0": "transaction money amount; passed directly to func_0809ACC0 debit on commit",
+      "field_0x48E4": "auxiliary transaction value passed to func_0809EE20; semantic name intentionally unresolved"
+    },
+    "family_remap_before_toollevel_write": {
+      "selection_family_0": 1,
+      "selection_family_1": 0,
+      "selection_family_2": 2,
+      "selection_family_3": 3,
+      "selection_family_4": 4,
+      "selection_family_5": 5
+    },
+    "requested_level_from_material": {
+      "0x12": 1,
+      "0x13": 2,
+      "0x14": 3,
+      "0x15": 4,
+      "0x1C": 5
+    },
+    "pending_stage_write": "func_0800EFB4(mapped ToolLevel, requested level) is executed only when (field_0x48D8 & 7) == 0",
+    "commit_order_observed": [
+      "remove matching selected Article from held item when held item is that Article",
+      "otherwise clear first matching Article slot in Rucksack",
+      "debit field_0x48E0 through func_0809ACC0",
+      "perform subsequent Farmer/update side effects whose semantics remain partly unnamed"
+    ],
+    "guardrail": "func_08068344 menu/progression presentation and sub_08082F50 transaction mutation are distinct paths; do not infer all transaction validity rules from either one alone"
+  },
+  "batch13_summary": {
+    "accumulator": "func_0800EF68 returns the ToolLevel 16-bit accumulator",
+    "current_level": "func_0800EF6C returns current 3-bit level",
+    "pending_diff": "func_0800EF74 reports pending/staged level differs from current",
+    "ordinary_thresholds": [
+      {
+        "accumulator_min": 6000,
+        "target_level": 1,
+        "name": "Copper",
+        "article_id": "0x12"
+      },
+      {
+        "accumulator_min": 18000,
+        "target_level": 2,
+        "name": "Silver",
+        "article_id": "0x13"
+      },
+      {
+        "accumulator_min": 36000,
+        "target_level": 3,
+        "name": "Gold",
+        "article_id": "0x14"
+      },
+      {
+        "accumulator_min": 65535,
+        "target_level": 4,
+        "name": "Mystrile",
+        "article_id": "0x15"
+      }
+    ],
+    "mythic": {
+      "target_level": 5,
+      "article_id": "0x1C",
+      "material": "Mythic Stone",
+      "ordinary_accumulator_cutoff": null
+    },
+    "evidence_scope": "threshold/material/transaction relationships are binary-proven; extra Mythic prerequisites such as blessed/all-tools/event gates are not asserted without separate evidence"
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "batch": 14,
+  "topic": "save/load and SRAM format",
+  "calls_accounting": {
+    "call4": "executed; failed after useful output due missing Python re import",
+    "call5": "completed primary-record/checksum census",
+    "call6": "completed but oversized output; result established need for executable bypass classification",
+    "call7": "confirmed executed later by canary; persisted conservative bypass evidence",
+    "call8": "safe resume call; proved raw GameState serialization ABI and no successful-load fixup pass",
+    "call9": "executed; failed on nonexistent ELF .text section after independently proving exactly four low-level SRAM branches",
+    "call10": "checkpoint/final classification and docs"
+  },
+  "retail_sram": {
+    "header": "0x0000..0x0027",
+    "slot_bases": [
+      "0x0028",
+      "0x4014"
+    ],
+    "slot_stride": "0x3FEC",
+    "primary_record": "0x34FC bytes",
+    "extension_tail": "0xAF0 bytes relative 0x34FC..0x3FEB per slot"
+  },
+  "serialization_abi": {
+    "gamestate_size": "0x34F4 bytes",
+    "save_behavior": "func_080115B0 serializes the complete GameState memory image verbatim rather than field-by-field",
+    "load_behavior": "func_08011650 constructs/reset-initializes a fallback GameState first, then successful loading overwrites all 0x34F4 bytes directly from SRAM and validates the checksum",
+    "successful_load_postprocessing": "after the raw payload read, only checksum/error handling occurs inside func_08011650; there is no successful-path field migration/fixup pass",
+    "compatibility_consequence": "retail save compatibility depends on exact GameState byte layout and serialized representations; changing the layout or serialized size needs an explicit compatibility layer",
+    "failure_safety": "the constructor/reset work before SRAM reads provides a valid fallback object when size/read/checksum validation fails"
+  },
+  "primary_slot_record": {
+    "relative_layout": [
+      {
+        "range": "0x0000..0x0003",
+        "meaning": "u32 serialized GameState byte count; writer stores 0x34F4 and loader requires equality to 0x34F4"
+      },
+      {
+        "range": "0x0004..0x34F7",
+        "meaning": "0x34F4-byte GameState memory image copied verbatim"
+      },
+      {
+        "range": "0x34F8..0x34FB",
+        "meaning": "u32 checksum = unsigned byte sum of the 0x34F4 GameState bytes modulo 2^32"
+      }
+    ],
+    "used_bytes": "0x34FC",
+    "slot_size": "0x3FEC",
+    "remaining_tail": "0xAF0 bytes at relative 0x34FC..0x3FEB",
+    "checksum_helper": "func_08011588(ptr,len): returns 0 for null pointer or zero length; otherwise sums each u8 into a 32-bit accumulator",
+    "save_order": "size word, raw GameState image, checksum",
+    "load_validation_order": "read size word and require 0x34F4, read raw GameState image, read stored checksum, recompute byte sum and compare"
+  },
+  "slot_tail_access_census": {
+    "relative_range": "0x34FC..0x3FEB",
+    "size": "0xAF0",
+    "high_level_proxy_access": "none; complete high-level proxy census has 17 calls, all addressing SRAM header fields or the primary slot record through relative 0x34FB",
+    "bypass_check": "completed in Call6: direct low-level SRAM library callers and raw SRAM-address references were censused separately",
+    "conclusion": "retail-unused by the identified save/SRAM executable: the per-slot relative range 0x34FC..0x3FEB is never touched by the high-level save proxy, no executable caller bypasses the proxy/library call chain, and no explicit raw SRAM address materialization exists outside the SRAM subsystem in the assembly source census",
+    "modding_note": "0xAF0 bytes per retail slot are therefore available as a strong mod-owned extension area while preserving the retail header and 0x34FC-byte primary record. Namespace/version custom data and do not assume compatibility with unrelated third-party hacks that may independently reuse this space.",
+    "executable_bypass_evidence": {
+      "source_direct_low_level_edges": [
+        {
+          "file": "asm/code_lib_sram.s",
+          "line": 211,
+          "caller": "func_080D38D4",
+          "callee": "func_080D3800"
+        },
+        {
+          "file": "asm/code_lib_sram.s",
+          "line": 215,
+          "caller": "func_080D38D4",
+          "callee": "func_080D3870"
+        },
+        {
+          "file": "asm/sram_proxy_2.s",
+          "line": 52,
+          "caller": "func_080006A4",
+          "callee": "func_080D38D4"
+        },
+        {
+          "file": "asm/sram_proxy_2.s",
+          "line": 84,
+          "caller": "func_080006E4",
+          "callee": "func_080D379C"
+        }
+      ],
+      "outside_proxy_or_library": [],
+      "final_elf_direct_branch_count": 4,
+      "explicit_raw_sram_address_materialization_outside_sram_subsystem": "none found in assembly source census",
+      "raw_rom_word_scan": "discarded as proof because arbitrary data produces numerical 0x0E00xxxx false positives",
+      "proof_status": "pass for the retail executable represented by this exact decompilation"
+    }
+  },
+  "code_changes": "none; Batch14 produced private evidence/docs only",
+  "next_priority": "progression/event gates or another modding-helpful gameplay subsystem; preserve exact ROM and retail save ABI"
+}

@@ -1,16 +1,21 @@
 # Save format and extension space
 
-The retail save layout contains two primary slot regions after a 0x28-byte
-header. `GetSaveSlotOffset` returns a slot's SRAM-relative base:
+The original US FoMT layout contains two primary slots after a 0x28-byte SRAM
+header. Each slot begins at `0x28 + slot * 0x3FEC`. Preserve the serialized
+retail `GameState` size and offsets when adding compatible custom state.
 
-```text
-0x28 + slot * 0x3FEC
-```
+## Recovered record interface
 
-`src/save_format.cc` is a byte-matching reconstruction of the original helper
-at 0x080003DC. The original `func_080003DC` symbol remains as an alias for
-assembly callers. Constants in `include/save_format.hh` describe the proven
-record boundaries for tooling and expansion work.
+[save_format.hh](../include/save_format.hh) supplies the proven constants;
+[save_format.cc](../src/save_format.cc) reconstructs these matching helpers.
+Original assembly names remain aliases.
+
+| Helper | Retail address | Contract |
+| --- | --- | --- |
+| `GetSaveSlotOffset` / `func_080003DC` | 0x080003DC | SRAM-relative slot base |
+| `CalculateSaveChecksum` / `func_08011588` | 0x08011588 | Additive unsigned byte sum; zero for null data or zero length |
+| `GetSaveSlotRecordSize` / `func_080115A8` | 0x080115A8 | Returns 0x34FC, including length and checksum |
+| `WriteSaveSlotRecord` / `func_080115B0` | 0x080115B0 | Writes length, payload, checksum; returns zero on success |
 
 ## Retail slot record
 
@@ -21,34 +26,86 @@ record boundaries for tooling and expansion work.
 | 0x34F8..0x34FB | 0x4 | Additive checksum of the payload bytes |
 | 0x34FC..0x3FEB | 0xAF0 | Unused by retail code |
 
-The checksum is an unsigned byte sum over only the 0x34F4-byte payload,
-accumulated modulo 2^32. The retail loader requires the stored size to equal
-0x34F4, reads that complete payload, and compares its checksum. Existing save
-compatibility therefore depends on the retail `GameState` size and field
-offsets remaining stable.
+Because the payload is the complete in-memory `GameState` image, runtime field offsets transfer directly into the save payload. Newly binary-proven early fields are: `GameState+0x08` current weather, `+0x0C` tomorrow's forecast, and `+0x10..+0x13` the packed year/date/time calendar. Relative to the start of a slot record, including the four-byte size word, these begin at **0x000C**, **0x0010**, and **0x0014** respectively. `func_08010F54` proves the weather roles by copying forecast to current weather at the daily transition, generating the next forecast, and passing current weather into `Farm::DayUpdate`.
 
-## Mod extension record
+The checksum covers only the 0x34F4-byte payload, modulo 2^32. The writer
+performs three separate SRAM writes. Failure results combine the low-level
+error value with 0x10000 (length), 0x20000 (payload), or 0x30000 (checksum).
+This routine does not write an extension record or establish atomicity between
+retail and custom data.
 
-The 0xAF0-byte tail at slot-relative 0x34FC is a practical place for persistent
-mod data, including state for added characters, scenes, quests, or systems. A
-mod can leave the retail payload and checksum unchanged and maintain a separate
-extension record in this tail.
+The legacy loader `func_08011650` remains assembly in
+[game_state.s](../asm/game_state.s). It initializes state, requires the stored
+length to equal 0x34F4, reads the complete payload and checksum, and reports
+errors through its existing error output. Its returned state pointer alone
+must not be treated as a success flag.
 
-A robust extension format should begin with its own magic, format version,
-payload length, and checksum. Loaders should treat absent or invalid extension
-data as an empty/default extension so unmodified retail saves remain usable.
-Coordinate this allocation with other hacks: retail leaves the range unused,
-but an unrelated hack may independently claim it.
+The loader is bounded at `0x08011650..0x08011933` (0x2E4 / 740 bytes).
+Both callers allocate 0x34F4 bytes and pass the destination state, save
+context, slot-relative SRAM offset, and an error-output pointer. It always
+returns the destination state pointer and zeros the error output before I/O.
+Failures OR the low-level `gUnk_03000400` value with `0x10000` for
+length/generic/checksum failure, `0x20000` for payload-read failure, or
+`0x30000` for stored-checksum-read failure. `func_080006E4` is the
+four-argument read primitive used for all three reads. A successful 0x34F4-byte
+payload load has no migration/fixup pass afterward. The pre-read half builds a
+complete fallback/default state; that initializer is still private matching
+research, not completed source.
 
-The unused-tail conclusion comes from a complete static census of the retail
-SRAM paths: 8 calls to the high-level write proxy, 9 calls to the read proxy,
-3 callers of the slot-base resolver, and the full low-level SRAM-library call
-graph. Header access ends at SRAM offset 0x27, primary slot access ends at
-relative 0x34FB, and no separate source path materializes or accesses the tail.
+In [new_game.s](../asm/new_game.s), `func_08003F9C` calls the writer;
+`func_080040A0` and `func_080041DC` call the loader. These are integration seams
+to recover and audit before a custom save implementation. Existing social
+records occupy a fixed 0x478-byte block at GameState+0x1CD4; inserting more
+records there would move later serialized fields.
+
+## Proven unused tail
+
+The static SRAM census covered all 17 high-level proxy calls (8 writes and 9
+reads), three slot-base callers, and the complete low-level library call graph.
+Header access ends at SRAM offset 0x27; retail slot access ends at relative
+0x34FB. No separate retail path materializes or accesses the remaining tail.
+This establishes **0xAF0 = 2,800 bytes per slot** of retail-unused space.
+It does not establish a character count or compatibility with other hacks
+that independently use this range.
+
+## Proposed extension contract
+
+This remains deferred design reference. The retail loader semantics and writer/
+slot geometry are sufficiently bounded for now, and exact loader source matching
+is explicitly **paused** during the non-save expansion pivot. Resume persistence
+work when custom runtime/content systems are ready to require stored state.
+
+A separately versioned record in that tail is a candidate for added NPCs,
+quests, or other mod-owned state. No serializer, loader, allocation registry,
+or migration protocol has been implemented. The first persistent custom system
+should define the shared budget rather than allocating the entire tail to one
+feature.
+
+A design should include its own magic, version, bounded length, and integrity
+check; use stable record identities and explicit serialized fields rather than
+RAM pointers or mutable array positions. Header/bookkeeping, any recovery
+copies, and other mods reduce the 2,800-byte data budget.
+
+The load/write lifecycle must specify:
+
+- Validate the retail load before applying custom records. Preserve the retail
+  length, payload geometry, and checksum contract.
+- Initialize defaults for a legacy save with no extension. Define handling for
+  corrupt, truncated, unsupported, or stale extension records without reading
+  beyond the tail or silently attaching one save's state to another.
+- Associate custom and retail records, and define behavior when only part of a
+  save succeeds. The three-write retail helper supplies no combined transaction.
+- Handle both slots, new game, overwrite, copy/erase paths, schema migration,
+  and record reordering/removal. Audit every relevant path before claiming
+  compatibility.
+
+Character-specific staging and gameplay checks are in
+[CUSTOM_CHARACTERS.md](CUSTOM_CHARACTERS.md).
 
 ## Matching validation
 
-The linker places `src/save_format.cc` between the two sections of
-`asm/sram_proxy_1.s`, preserving the original helper address and every
-following address. `make compare` and `sha1sum -c fomt.sha1` must pass after
-changes to this interface.
+The slot-base helper is linked between sections of `asm/sram_proxy_1.s`;
+the checksum/size/writer block occupies 0x08011588..0x0801164F between sections
+of `asm/game_state.s`. The loader starts at its original 0x08011650 address.
+Run `make compare` and `sha1sum -c fomt.sha1` after source/interface changes.
+Documentation-only changes do not require rebuilding unchanged code.

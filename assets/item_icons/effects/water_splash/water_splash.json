@@ -1,0 +1,205 @@
+{
+  "format": "packed-animation-v1",
+  "bank_rom_offset": "0x6678a0",
+  "animation_id": 425,
+  "animation": {
+    "frame_count": 5,
+    "first_frame": 457
+  },
+  "frames": [
+    {
+      "frame_no": 0,
+      "frame_id": 457,
+      "sprite_id": 425,
+      "duration": 5,
+      "descriptor": [
+        1,
+        1,
+        4,
+        1426,
+        1,
+        94,
+        0,
+        0
+      ],
+      "parts": [
+        {
+          "part_no": 0,
+          "layout_index": 1,
+          "attr0": "0xf7",
+          "attr1": "0x41f8",
+          "attr2": "0x0",
+          "extra": "0x0",
+          "x": -8,
+          "y": -9,
+          "width": 16,
+          "height": 16,
+          "tile_offset": 0,
+          "tile_count": 4
+        }
+      ],
+      "png": "assets/item_icons/effects/water_splash/water_splash_frame_00.png",
+      "origin_x": -8,
+      "origin_y": -9,
+      "width": 16,
+      "height": 16
+    },
+    {
+      "frame_no": 1,
+      "frame_id": 458,
+      "sprite_id": 426,
+      "duration": 6,
+      "descriptor": [
+        1,
+        90,
+        2,
+        1430,
+        1,
+        94,
+        0,
+        0
+      ],
+      "parts": [
+        {
+          "part_no": 0,
+          "layout_index": 90,
+          "attr0": "0x40fb",
+          "attr1": "0x1f8",
+          "attr2": "0x0",
+          "extra": "0x0",
+          "x": -8,
+          "y": -5,
+          "width": 16,
+          "height": 8,
+          "tile_offset": 0,
+          "tile_count": 2
+        }
+      ],
+      "png": "assets/item_icons/effects/water_splash/water_splash_frame_01.png",
+      "origin_x": -8,
+      "origin_y": -5,
+      "width": 16,
+      "height": 8
+    },
+    {
+      "frame_no": 2,
+      "frame_id": 459,
+      "sprite_id": 427,
+      "duration": 6,
+      "descriptor": [
+        2,
+        91,
+        3,
+        1432,
+        1,
+        94,
+        0,
+        0
+      ],
+      "parts": [
+        {
+          "part_no": 0,
+          "layout_index": 91,
+          "attr0": "0x40fb",
+          "attr1": "0x1f4",
+          "attr2": "0x0",
+          "extra": "0x0",
+          "x": -12,
+          "y": -5,
+          "width": 16,
+          "height": 8,
+          "tile_offset": 0,
+          "tile_count": 2
+        },
+        {
+          "part_no": 1,
+          "layout_index": 92,
+          "attr0": "0xfb",
+          "attr1": "0x4",
+          "attr2": "0x2",
+          "extra": "0x0",
+          "x": 4,
+          "y": -5,
+          "width": 8,
+          "height": 8,
+          "tile_offset": 2,
+          "tile_count": 1
+        }
+      ],
+      "png": "assets/item_icons/effects/water_splash/water_splash_frame_02.png",
+      "origin_x": -12,
+      "origin_y": -5,
+      "width": 24,
+      "height": 8
+    },
+    {
+      "frame_no": 3,
+      "frame_id": 460,
+      "sprite_id": 428,
+      "duration": 8,
+      "descriptor": [
+        2,
+        93,
+        3,
+        1435,
+        1,
+        94,
+        0,
+        0
+      ],
+      "parts": [
+        {
+          "part_no": 0,
+          "layout_index": 93,
+          "attr0": "0x40fc",
+          "attr1": "0x1f4",
+          "attr2": "0x0",
+          "extra": "0x0",
+          "x": -12,
+          "y": -4,
+          "width": 16,
+          "height": 8,
+          "tile_offset": 0,
+          "tile_count": 2
+        },
+        {
+          "part_no": 1,
+          "layout_index": 94,
+          "attr0": "0xfc",
+          "attr1": "0x4",
+          "attr2": "0x2",
+          "extra": "0x0",
+          "x": 4,
+          "y": -4,
+          "width": 8,
+          "height": 8,
+          "tile_offset": 2,
+          "tile_count": 1
+        }
+      ],
+      "png": "assets/item_icons/effects/water_splash/water_splash_frame_03.png",
+      "origin_x": -12,
+      "origin_y": -4,
+      "width": 24,
+      "height": 8
+    },
+    {
+      "frame_no": 4,
+      "frame_id": 461,
+      "sprite_id": 429,
+      "duration": 60,
+      "descriptor": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "parts": [],
+      "png": null
+    }
+  ]
+}

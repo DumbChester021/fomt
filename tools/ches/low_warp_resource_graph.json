@@ -1,0 +1,6766 @@
+{
+  "schema_version": 3,
+  "source_model": "66 physical MapData resources; logical maps resolved by func_0803A8A4 using effective season + farmhouse/coop/barn upgrade levels",
+  "effective_season": "func_0800E324: current season, except day==0 before 06:00 returns previous season",
+  "cell_count": 722,
+  "component_count": 100,
+  "unique_scripts": [
+    88,
+    89,
+    90,
+    92,
+    93,
+    97,
+    106,
+    123,
+    124,
+    134,
+    142,
+    143,
+    153,
+    166,
+    172,
+    175,
+    176,
+    177,
+    178,
+    188,
+    201,
+    206,
+    222,
+    228,
+    237,
+    238,
+    250,
+    268,
+    272,
+    273,
+    284,
+    292,
+    293,
+    300,
+    305,
+    306,
+    307,
+    329,
+    338,
+    339,
+    358,
+    360,
+    361,
+    379,
+    381,
+    389,
+    390,
+    399,
+    400,
+    401,
+    409,
+    410,
+    411,
+    415,
+    416,
+    422,
+    430,
+    440,
+    462,
+    519,
+    524,
+    525,
+    526,
+    527,
+    532,
+    541,
+    550,
+    559,
+    560,
+    561,
+    568
+  ],
+  "components": [
+    {
+      "physical_resource": 0,
+      "logical_sources": [
+        {
+          "logical_map": 2,
+          "condition": "season!=3 (Spring/Summer/Fall)"
+        }
+      ],
+      "script_id": 166,
+      "cell_count": 6,
+      "bbox": [
+        30,
+        87,
+        35,
+        87
+      ],
+      "cells": [
+        [
+          30,
+          87
+        ],
+        [
+          31,
+          87
+        ],
+        [
+          32,
+          87
+        ],
+        [
+          33,
+          87
+        ],
+        [
+          34,
+          87
+        ],
+        [
+          35,
+          87
+        ]
+      ],
+      "script": {
+        "script_id": 166,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 3,
+          "x": 168,
+          "y": 24
+        },
+        "player_position": {
+          "x": 168,
+          "y": 24,
+          "facing": 0
+        }
+      }
+    },
+    {
+      "physical_resource": 0,
+      "logical_sources": [
+        {
+          "logical_map": 2,
+          "condition": "season!=3 (Spring/Summer/Fall)"
+        }
+      ],
+      "script_id": 172,
+      "cell_count": 22,
+      "bbox": [
+        37,
+        4,
+        47,
+        5
+      ],
+      "cells": [
+        [
+          37,
+          4
+        ],
+        [
+          38,
+          4
+        ],
+        [
+          39,
+          4
+        ],
+        [
+          40,
+          4
+        ],
+        [
+          41,
+          4
+        ],
+        [
+          42,
+          4
+        ],
+        [
+          43,
+          4
+        ],
+        [
+          44,
+          4
+        ],
+        [
+          45,
+          4
+        ],
+        [
+          46,
+          4
+        ],
+        [
+          47,
+          4
+        ],
+        [
+          37,
+          5
+        ],
+        [
+          38,
+          5
+        ],
+        [
+          39,
+          5
+        ],
+        [
+          40,
+          5
+        ],
+        [
+          41,
+          5
+        ],
+        [
+          42,
+          5
+        ],
+        [
+          43,
+          5
+        ],
+        [
+          44,
+          5
+        ],
+        [
+          45,
+          5
+        ],
+        [
+          46,
+          5
+        ],
+        [
+          47,
+          5
+        ]
+      ],
+      "script": {
+        "script_id": 172,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 7,
+          "x": 104,
+          "y": 496
+        },
+        "player_position": {
+          "x": 104,
+          "y": 496,
+          "facing": 1
+        },
+        "proc038": [
+          "796"
+        ]
+      }
+    },
+    {
+      "physical_resource": 1,
+      "logical_sources": [
+        {
+          "logical_map": 2,
+          "condition": "season==3 (Winter)"
+        }
+      ],
+      "script_id": 166,
+      "cell_count": 6,
+      "bbox": [
+        30,
+        87,
+        35,
+        87
+      ],
+      "cells": [
+        [
+          30,
+          87
+        ],
+        [
+          31,
+          87
+        ],
+        [
+          32,
+          87
+        ],
+        [
+          33,
+          87
+        ],
+        [
+          34,
+          87
+        ],
+        [
+          35,
+          87
+        ]
+      ],
+      "script": {
+        "script_id": 166,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 3,
+          "x": 168,
+          "y": 24
+        },
+        "player_position": {
+          "x": 168,
+          "y": 24,
+          "facing": 0
+        }
+      }
+    },
+    {
+      "physical_resource": 1,
+      "logical_sources": [
+        {
+          "logical_map": 2,
+          "condition": "season==3 (Winter)"
+        }
+      ],
+      "script_id": 172,
+      "cell_count": 22,
+      "bbox": [
+        37,
+        4,
+        47,
+        5
+      ],
+      "cells": [
+        [
+          37,
+          4
+        ],
+        [
+          38,
+          4
+        ],
+        [
+          39,
+          4
+        ],
+        [
+          40,
+          4
+        ],
+        [
+          41,
+          4
+        ],
+        [
+          42,
+          4
+        ],
+        [
+          43,
+          4
+        ],
+        [
+          44,
+          4
+        ],
+        [
+          45,
+          4
+        ],
+        [
+          46,
+          4
+        ],
+        [
+          47,
+          4
+        ],
+        [
+          37,
+          5
+        ],
+        [
+          38,
+          5
+        ],
+        [
+          39,
+          5
+        ],
+        [
+          40,
+          5
+        ],
+        [
+          41,
+          5
+        ],
+        [
+          42,
+          5
+        ],
+        [
+          43,
+          5
+        ],
+        [
+          44,
+          5
+        ],
+        [
+          45,
+          5
+        ],
+        [
+          46,
+          5
+        ],
+        [
+          47,
+          5
+        ]
+      ],
+      "script": {
+        "script_id": 172,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 7,
+          "x": 104,
+          "y": 496
+        },
+        "player_position": {
+          "x": 104,
+          "y": 496,
+          "facing": 1
+        },
+        "proc038": [
+          "796"
+        ]
+      }
+    },
+    {
+      "physical_resource": 2,
+      "logical_sources": [
+        {
+          "logical_map": 6,
+          "condition": "season!=3 (Spring/Summer/Fall)"
+        }
+      ],
+      "script_id": 409,
+      "cell_count": 8,
+      "bbox": [
+        58,
+        14,
+        59,
+        17
+      ],
+      "cells": [
+        [
+          58,
+          14
+        ],
+        [
+          59,
+          14
+        ],
+        [
+          58,
+          15
+        ],
+        [
+          59,
+          15
+        ],
+        [
+          58,
+          16
+        ],
+        [
+          59,
+          16
+        ],
+        [
+          58,
+          17
+        ],
+        [
+          59,
+          17
+        ]
+      ],
+      "script": {
+        "script_id": 409,
+        "mary_structured": false,
+        "partial_recovery": true,
+        "scene_destination": {
+          "logical_map": 1,
+          "x": 24,
+          "y": 280
+        },
+        "player_position": {
+          "x": 24,
+          "y": 280,
+          "facing": 3
+        },
+        "proc038": [
+          "692",
+          "1131",
+          "1191",
+          "76",
+          "886",
+          "889",
+          "891",
+          "953",
+          "703",
+          "783"
+        ]
+      }
+    },
+    {
+      "physical_resource": 2,
+      "logical_sources": [
+        {
+          "logical_map": 6,
+          "condition": "season!=3 (Spring/Summer/Fall)"
+        }
+      ],
+      "script_id": 410,
+      "cell_count": 10,
+      "bbox": [
+        25,
+        0,
+        29,
+        1
+      ],
+      "cells": [
+        [
+          25,
+          0
+        ],
+        [
+          26,
+          0
+        ],
+        [
+          27,
+          0
+        ],
+        [
+          28,
+          0
+        ],
+        [
+          29,
+          0
+        ],
+        [
+          25,
+          1
+        ],
+        [
+          26,
+          1
+        ],
+        [
+          27,
+          1
+        ],
+        [
+          28,
+          1
+        ],
+        [
+          29,
+          1
+        ]
+      ],
+      "script": {
+        "script_id": 410,
+        "mary_structured": false,
+        "partial_recovery": true,
+        "scene_destination": {
+          "logical_map": 5,
+          "x": 1260,
+          "y": 680
+        },
+        "player_position": {
+          "x": 1260,
+          "y": 680,
+          "facing": 1
+        }
+      }
+    },
+    {
+      "physical_resource": 2,
+      "logical_sources": [
+        {
+          "logical_map": 6,
+          "condition": "season!=3 (Spring/Summer/Fall)"
+        }
+      ],
+      "script_id": 411,
+      "cell_count": 7,
+      "bbox": [
+        24,
+        55,
+        30,
+        55
+      ],
+      "cells": [
+        [
+          24,
+          55
+        ],
+        [
+          25,
+          55
+        ],
+        [
+          26,
+          55
+        ],
+        [
+          27,
+          55
+        ],
+        [
+          28,
+          55
+        ],
+        [
+          29,
+          55
+        ],
+        [
+          30,
+          55
+        ]
+      ],
+      "script": {
+        "script_id": 411,
+        "mary_structured": false,
+        "partial_recovery": true,
+        "scene_destination": {
+          "logical_map": 7,
+          "x": 1272,
+          "y": 24
+        },
+        "player_position": {
+          "x": 1272,
+          "y": 24,
+          "facing": 0
+        }
+      }
+    },
+    {
+      "physical_resource": 3,
+      "logical_sources": [
+        {
+          "logical_map": 6,
+          "condition": "season==3 (Winter)"
+        }
+      ],
+      "script_id": 409,
+      "cell_count": 8,
+      "bbox": [
+        58,
+        14,
+        59,
+        17
+      ],
+      "cells": [
+        [
+          58,
+          14
+        ],
+        [
+          59,
+          14
+        ],
+        [
+          58,
+          15
+        ],
+        [
+          59,
+          15
+        ],
+        [
+          58,
+          16
+        ],
+        [
+          59,
+          16
+        ],
+        [
+          58,
+          17
+        ],
+        [
+          59,
+          17
+        ]
+      ],
+      "script": {
+        "script_id": 409,
+        "mary_structured": false,
+        "partial_recovery": true,
+        "scene_destination": {
+          "logical_map": 1,
+          "x": 24,
+          "y": 280
+        },
+        "player_position": {
+          "x": 24,
+          "y": 280,
+          "facing": 3
+        },
+        "proc038": [
+          "692",
+          "1131",
+          "1191",
+          "76",
+          "886",
+          "889",
+          "891",
+          "953",
+          "703",
+          "783"
+        ]
+      }
+    },
+    {
+      "physical_resource": 3,
+      "logical_sources": [
+        {
+          "logical_map": 6,
+          "condition": "season==3 (Winter)"
+        }
+      ],
+      "script_id": 410,
+      "cell_count": 10,
+      "bbox": [
+        25,
+        0,
+        29,
+        1
+      ],
+      "cells": [
+        [
+          25,
+          0
+        ],
+        [
+          26,
+          0
+        ],
+        [
+          27,
+          0
+        ],
+        [
+          28,
+          0
+        ],
+        [
+          29,
+          0
+        ],
+        [
+          25,
+          1
+        ],
+        [
+          26,
+          1
+        ],
+        [
+          27,
+          1
+        ],
+        [
+          28,
+          1
+        ],
+        [
+          29,
+          1
+        ]
+      ],
+      "script": {
+        "script_id": 410,
+        "mary_structured": false,
+        "partial_recovery": true,
+        "scene_destination": {
+          "logical_map": 5,
+          "x": 1260,
+          "y": 680
+        },
+        "player_position": {
+          "x": 1260,
+          "y": 680,
+          "facing": 1
+        }
+      }
+    },
+    {
+      "physical_resource": 3,
+      "logical_sources": [
+        {
+          "logical_map": 6,
+          "condition": "season==3 (Winter)"
+        }
+      ],
+      "script_id": 411,
+      "cell_count": 7,
+      "bbox": [
+        24,
+        55,
+        30,
+        55
+      ],
+      "cells": [
+        [
+          24,
+          55
+        ],
+        [
+          25,
+          55
+        ],
+        [
+          26,
+          55
+        ],
+        [
+          27,
+          55
+        ],
+        [
+          28,
+          55
+        ],
+        [
+          29,
+          55
+        ],
+        [
+          30,
+          55
+        ]
+      ],
+      "script": {
+        "script_id": 411,
+        "mary_structured": false,
+        "partial_recovery": true,
+        "scene_destination": {
+          "logical_map": 7,
+          "x": 1272,
+          "y": 24
+        },
+        "player_position": {
+          "x": 1272,
+          "y": 24,
+          "facing": 0
+        }
+      }
+    },
+    {
+      "physical_resource": 4,
+      "logical_sources": [
+        {
+          "logical_map": 5,
+          "condition": "season!=3 (Spring/Summer/Fall)"
+        }
+      ],
+      "script_id": 142,
+      "cell_count": 6,
+      "bbox": [
+        160,
+        0,
+        162,
+        1
+      ],
+      "cells": [
+        [
+          160,
+          0
+        ],
+        [
+          161,
+          0
+        ],
+        [
+          162,
+          0
+        ],
+        [
+          160,
+          1
+        ],
+        [
+          161,
+          1
+        ],
+        [
+          162,
+          1
+        ]
+      ],
+      "script": {
+        "script_id": 142,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 4,
+          "x": 332,
+          "y": 368
+        },
+        "player_position": {
+          "x": 332,
+          "y": 368,
+          "facing": 1
+        }
+      }
+    },
+    {
+      "physical_resource": 4,
+      "logical_sources": [
+        {
+          "logical_map": 5,
+          "condition": "season!=3 (Spring/Summer/Fall)"
+        }
+      ],
+      "script_id": 379,
+      "cell_count": 10,
+      "bbox": [
+        155,
+        86,
+        159,
+        87
+      ],
+      "cells": [
+        [
+          155,
+          86
+        ],
+        [
+          156,
+          86
+        ],
+        [
+          157,
+          86
+        ],
+        [
+          158,
+          86
+        ],
+        [
+          159,
+          86
+        ],
+        [
+          155,
+          87
+        ],
+        [
+          156,
+          87
+        ],
+        [
+          157,
+          87
+        ],
+        [
+          158,
+          87
+        ],
+        [
+          159,
+          87
+        ]
+      ],
+      "script": {
+        "script_id": 379,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 6,
+          "x": 220,
+          "y": 24
+        },
+        "player_position": {
+          "x": 220,
+          "y": 24,
+          "facing": 0
+        },
+        "proc038": [
+          "689",
+          "1065",
+          "689",
+          "1080",
+          "689",
+          "1100",
+          "1114",
+          "689",
+          "1161",
+          "689",
+          "1165",
+          "689",
+          "1217",
+          "689",
+          "1246",
+          "689",
+          "1266",
+          "689",
+          "1308"
+        ]
+      }
+    },
+    {
+      "physical_resource": 4,
+      "logical_sources": [
+        {
+          "logical_map": 5,
+          "condition": "season!=3 (Spring/Summer/Fall)"
+        }
+      ],
+      "script_id": 381,
+      "cell_count": 12,
+      "bbox": [
+        10,
+        86,
+        15,
+        87
+      ],
+      "cells": [
+        [
+          10,
+          86
+        ],
+        [
+          11,
+          86
+        ],
+        [
+          12,
+          86
+        ],
+        [
+          13,
+          86
+        ],
+        [
+          14,
+          86
+        ],
+        [
+          15,
+          86
+        ],
+        [
+          10,
+          87
+        ],
+        [
+          11,
+          87
+        ],
+        [
+          12,
+          87
+        ],
+        [
+          13,
+          87
+        ],
+        [
+          14,
+          87
+        ],
+        [
+          15,
+          87
+        ]
+      ],
+      "script": {
+        "script_id": 381,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 7,
+          "x": 104,
+          "y": 24
+        },
+        "player_position": {
+          "x": 104,
+          "y": 24,
+          "facing": 0
+        }
+      }
+    },
+    {
+      "physical_resource": 5,
+      "logical_sources": [
+        {
+          "logical_map": 5,
+          "condition": "season==3 (Winter)"
+        }
+      ],
+      "script_id": 142,
+      "cell_count": 6,
+      "bbox": [
+        160,
+        0,
+        162,
+        1
+      ],
+      "cells": [
+        [
+          160,
+          0
+        ],
+        [
+          161,
+          0
+        ],
+        [
+          162,
+          0
+        ],
+        [
+          160,
+          1
+        ],
+        [
+          161,
+          1
+        ],
+        [
+          162,
+          1
+        ]
+      ],
+      "script": {
+        "script_id": 142,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 4,
+          "x": 332,
+          "y": 368
+        },
+        "player_position": {
+          "x": 332,
+          "y": 368,
+          "facing": 1
+        }
+      }
+    },
+    {
+      "physical_resource": 5,
+      "logical_sources": [
+        {
+          "logical_map": 5,
+          "condition": "season==3 (Winter)"
+        }
+      ],
+      "script_id": 379,
+      "cell_count": 10,
+      "bbox": [
+        155,
+        86,
+        159,
+        87
+      ],
+      "cells": [
+        [
+          155,
+          86
+        ],
+        [
+          156,
+          86
+        ],
+        [
+          157,
+          86
+        ],
+        [
+          158,
+          86
+        ],
+        [
+          159,
+          86
+        ],
+        [
+          155,
+          87
+        ],
+        [
+          156,
+          87
+        ],
+        [
+          157,
+          87
+        ],
+        [
+          158,
+          87
+        ],
+        [
+          159,
+          87
+        ]
+      ],
+      "script": {
+        "script_id": 379,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 6,
+          "x": 220,
+          "y": 24
+        },
+        "player_position": {
+          "x": 220,
+          "y": 24,
+          "facing": 0
+        },
+        "proc038": [
+          "689",
+          "1065",
+          "689",
+          "1080",
+          "689",
+          "1100",
+          "1114",
+          "689",
+          "1161",
+          "689",
+          "1165",
+          "689",
+          "1217",
+          "689",
+          "1246",
+          "689",
+          "1266",
+          "689",
+          "1308"
+        ]
+      }
+    },
+    {
+      "physical_resource": 5,
+      "logical_sources": [
+        {
+          "logical_map": 5,
+          "condition": "season==3 (Winter)"
+        }
+      ],
+      "script_id": 381,
+      "cell_count": 12,
+      "bbox": [
+        10,
+        86,
+        15,
+        87
+      ],
+      "cells": [
+        [
+          10,
+          86
+        ],
+        [
+          11,
+          86
+        ],
+        [
+          12,
+          86
+        ],
+        [
+          13,
+          86
+        ],
+        [
+          14,
+          86
+        ],
+        [
+          15,
+          86
+        ],
+        [
+          10,
+          87
+        ],
+        [
+          11,
+          87
+        ],
+        [
+          12,
+          87
+        ],
+        [
+          13,
+          87
+        ],
+        [
+          14,
+          87
+        ],
+        [
+          15,
+          87
+        ]
+      ],
+      "script": {
+        "script_id": 381,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 7,
+          "x": 104,
+          "y": 24
+        },
+        "player_position": {
+          "x": 104,
+          "y": 24,
+          "facing": 0
+        }
+      }
+    },
+    {
+      "physical_resource": 6,
+      "logical_sources": [
+        {
+          "logical_map": 7,
+          "condition": "season!=3 (Spring/Summer/Fall)"
+        }
+      ],
+      "script_id": 524,
+      "cell_count": 6,
+      "bbox": [
+        10,
+        63,
+        15,
+        63
+      ],
+      "cells": [
+        [
+          10,
+          63
+        ],
+        [
+          11,
+          63
+        ],
+        [
+          12,
+          63
+        ],
+        [
+          13,
+          63
+        ],
+        [
+          14,
+          63
+        ],
+        [
+          15,
+          63
+        ]
+      ],
+      "script": {
+        "script_id": 524,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 2,
+          "x": 340,
+          "y": 56
+        },
+        "player_position": {
+          "x": 340,
+          "y": 56,
+          "facing": 0
+        }
+      }
+    },
+    {
+      "physical_resource": 6,
+      "logical_sources": [
+        {
+          "logical_map": 7,
+          "condition": "season!=3 (Spring/Summer/Fall)"
+        }
+      ],
+      "script_id": 525,
+      "cell_count": 5,
+      "bbox": [
+        99,
+        63,
+        103,
+        63
+      ],
+      "cells": [
+        [
+          99,
+          63
+        ],
+        [
+          100,
+          63
+        ],
+        [
+          101,
+          63
+        ],
+        [
+          102,
+          63
+        ],
+        [
+          103,
+          63
+        ]
+      ],
+      "script": {
+        "script_id": 525,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 3,
+          "x": 832,
+          "y": 24
+        },
+        "player_position": {
+          "x": 832,
+          "y": 24,
+          "facing": 0
+        },
+        "proc038": [
+          "736"
+        ]
+      }
+    },
+    {
+      "physical_resource": 6,
+      "logical_sources": [
+        {
+          "logical_map": 7,
+          "condition": "season!=3 (Spring/Summer/Fall)"
+        }
+      ],
+      "script_id": 526,
+      "cell_count": 12,
+      "bbox": [
+        10,
+        0,
+        15,
+        1
+      ],
+      "cells": [
+        [
+          10,
+          0
+        ],
+        [
+          11,
+          0
+        ],
+        [
+          12,
+          0
+        ],
+        [
+          13,
+          0
+        ],
+        [
+          14,
+          0
+        ],
+        [
+          15,
+          0
+        ],
+        [
+          10,
+          1
+        ],
+        [
+          11,
+          1
+        ],
+        [
+          12,
+          1
+        ],
+        [
+          13,
+          1
+        ],
+        [
+          14,
+          1
+        ],
+        [
+          15,
+          1
+        ]
+      ],
+      "script": {
+        "script_id": 526,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 5,
+          "x": 104,
+          "y": 680
+        },
+        "player_position": {
+          "x": 104,
+          "y": 680,
+          "facing": 1
+        }
+      }
+    },
+    {
+      "physical_resource": 6,
+      "logical_sources": [
+        {
+          "logical_map": 7,
+          "condition": "season!=3 (Spring/Summer/Fall)"
+        }
+      ],
+      "script_id": 527,
+      "cell_count": 12,
+      "bbox": [
+        156,
+        0,
+        161,
+        1
+      ],
+      "cells": [
+        [
+          156,
+          0
+        ],
+        [
+          157,
+          0
+        ],
+        [
+          158,
+          0
+        ],
+        [
+          159,
+          0
+        ],
+        [
+          160,
+          0
+        ],
+        [
+          161,
+          0
+        ],
+        [
+          156,
+          1
+        ],
+        [
+          157,
+          1
+        ],
+        [
+          158,
+          1
+        ],
+        [
+          159,
+          1
+        ],
+        [
+          160,
+          1
+        ],
+        [
+          161,
+          1
+        ]
+      ],
+      "script": {
+        "script_id": 527,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 6,
+          "x": 220,
+          "y": 432
+        },
+        "player_position": {
+          "x": 220,
+          "y": 432,
+          "facing": 1
+        },
+        "proc038": [
+          "690",
+          "1065",
+          "690",
+          "1080",
+          "690",
+          "1100",
+          "1114",
+          "690",
+          "1161",
+          "690",
+          "1165",
+          "690",
+          "1217",
+          "690",
+          "1246",
+          "690",
+          "1266",
+          "690",
+          "1308",
+          "781",
+          "756"
+        ]
+      }
+    },
+    {
+      "physical_resource": 7,
+      "logical_sources": [
+        {
+          "logical_map": 7,
+          "condition": "season==3 (Winter)"
+        }
+      ],
+      "script_id": 524,
+      "cell_count": 6,
+      "bbox": [
+        10,
+        63,
+        15,
+        63
+      ],
+      "cells": [
+        [
+          10,
+          63
+        ],
+        [
+          11,
+          63
+        ],
+        [
+          12,
+          63
+        ],
+        [
+          13,
+          63
+        ],
+        [
+          14,
+          63
+        ],
+        [
+          15,
+          63
+        ]
+      ],
+      "script": {
+        "script_id": 524,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 2,
+          "x": 340,
+          "y": 56
+        },
+        "player_position": {
+          "x": 340,
+          "y": 56,
+          "facing": 0
+        }
+      }
+    },
+    {
+      "physical_resource": 7,
+      "logical_sources": [
+        {
+          "logical_map": 7,
+          "condition": "season==3 (Winter)"
+        }
+      ],
+      "script_id": 525,
+      "cell_count": 5,
+      "bbox": [
+        99,
+        63,
+        103,
+        63
+      ],
+      "cells": [
+        [
+          99,
+          63
+        ],
+        [
+          100,
+          63
+        ],
+        [
+          101,
+          63
+        ],
+        [
+          102,
+          63
+        ],
+        [
+          103,
+          63
+        ]
+      ],
+      "script": {
+        "script_id": 525,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 3,
+          "x": 832,
+          "y": 24
+        },
+        "player_position": {
+          "x": 832,
+          "y": 24,
+          "facing": 0
+        },
+        "proc038": [
+          "736"
+        ]
+      }
+    },
+    {
+      "physical_resource": 7,
+      "logical_sources": [
+        {
+          "logical_map": 7,
+          "condition": "season==3 (Winter)"
+        }
+      ],
+      "script_id": 526,
+      "cell_count": 12,
+      "bbox": [
+        10,
+        0,
+        15,
+        1
+      ],
+      "cells": [
+        [
+          10,
+          0
+        ],
+        [
+          11,
+          0
+        ],
+        [
+          12,
+          0
+        ],
+        [
+          13,
+          0
+        ],
+        [
+          14,
+          0
+        ],
+        [
+          15,
+          0
+        ],
+        [
+          10,
+          1
+        ],
+        [
+          11,
+          1
+        ],
+        [
+          12,
+          1
+        ],
+        [
+          13,
+          1
+        ],
+        [
+          14,
+          1
+        ],
+        [
+          15,
+          1
+        ]
+      ],
+      "script": {
+        "script_id": 526,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 5,
+          "x": 104,
+          "y": 680
+        },
+        "player_position": {
+          "x": 104,
+          "y": 680,
+          "facing": 1
+        }
+      }
+    },
+    {
+      "physical_resource": 7,
+      "logical_sources": [
+        {
+          "logical_map": 7,
+          "condition": "season==3 (Winter)"
+        }
+      ],
+      "script_id": 527,
+      "cell_count": 12,
+      "bbox": [
+        156,
+        0,
+        161,
+        1
+      ],
+      "cells": [
+        [
+          156,
+          0
+        ],
+        [
+          157,
+          0
+        ],
+        [
+          158,
+          0
+        ],
+        [
+          159,
+          0
+        ],
+        [
+          160,
+          0
+        ],
+        [
+          161,
+          0
+        ],
+        [
+          156,
+          1
+        ],
+        [
+          157,
+          1
+        ],
+        [
+          158,
+          1
+        ],
+        [
+          159,
+          1
+        ],
+        [
+          160,
+          1
+        ],
+        [
+          161,
+          1
+        ]
+      ],
+      "script": {
+        "script_id": 527,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 6,
+          "x": 220,
+          "y": 432
+        },
+        "player_position": {
+          "x": 220,
+          "y": 432,
+          "facing": 1
+        },
+        "proc038": [
+          "690",
+          "1065",
+          "690",
+          "1080",
+          "690",
+          "1100",
+          "1114",
+          "690",
+          "1161",
+          "690",
+          "1165",
+          "690",
+          "1217",
+          "690",
+          "1246",
+          "690",
+          "1266",
+          "690",
+          "1308",
+          "781",
+          "756"
+        ]
+      }
+    },
+    {
+      "physical_resource": 8,
+      "logical_sources": [
+        {
+          "logical_map": 1,
+          "condition": "season!=3 (Spring/Summer/Fall)"
+        }
+      ],
+      "script_id": 106,
+      "cell_count": 8,
+      "bbox": [
+        0,
+        33,
+        1,
+        36
+      ],
+      "cells": [
+        [
+          0,
+          33
+        ],
+        [
+          1,
+          33
+        ],
+        [
+          0,
+          34
+        ],
+        [
+          1,
+          34
+        ],
+        [
+          0,
+          35
+        ],
+        [
+          1,
+          35
+        ],
+        [
+          0,
+          36
+        ],
+        [
+          1,
+          36
+        ]
+      ],
+      "script": {
+        "script_id": 106,
+        "mary_structured": false,
+        "partial_recovery": true,
+        "scene_destination": {
+          "logical_map": 6,
+          "x": 456,
+          "y": 128
+        },
+        "player_position": {
+          "x": 456,
+          "y": 128,
+          "facing": 2
+        },
+        "proc038": [
+          "691",
+          "1065",
+          "691",
+          "1080",
+          "691",
+          "1100",
+          "1114",
+          "691",
+          "1161",
+          "691",
+          "1165",
+          "691",
+          "1217",
+          "691",
+          "1246",
+          "691",
+          "1266",
+          "691",
+          "1308"
+        ]
+      }
+    },
+    {
+      "physical_resource": 9,
+      "logical_sources": [
+        {
+          "logical_map": 1,
+          "condition": "season==3 (Winter)"
+        }
+      ],
+      "script_id": 106,
+      "cell_count": 8,
+      "bbox": [
+        0,
+        33,
+        1,
+        36
+      ],
+      "cells": [
+        [
+          0,
+          33
+        ],
+        [
+          1,
+          33
+        ],
+        [
+          0,
+          34
+        ],
+        [
+          1,
+          34
+        ],
+        [
+          0,
+          35
+        ],
+        [
+          1,
+          35
+        ],
+        [
+          0,
+          36
+        ],
+        [
+          1,
+          36
+        ]
+      ],
+      "script": {
+        "script_id": 106,
+        "mary_structured": false,
+        "partial_recovery": true,
+        "scene_destination": {
+          "logical_map": 6,
+          "x": 456,
+          "y": 128
+        },
+        "player_position": {
+          "x": 456,
+          "y": 128,
+          "facing": 2
+        },
+        "proc038": [
+          "691",
+          "1065",
+          "691",
+          "1080",
+          "691",
+          "1100",
+          "1114",
+          "691",
+          "1161",
+          "691",
+          "1165",
+          "691",
+          "1217",
+          "691",
+          "1246",
+          "691",
+          "1266",
+          "691",
+          "1308"
+        ]
+      }
+    },
+    {
+      "physical_resource": 10,
+      "logical_sources": [
+        {
+          "logical_map": 4,
+          "condition": "season!=3 (Spring/Summer/Fall)"
+        }
+      ],
+      "script_id": 360,
+      "cell_count": 10,
+      "bbox": [
+        25,
+        47,
+        34,
+        47
+      ],
+      "cells": [
+        [
+          25,
+          47
+        ],
+        [
+          26,
+          47
+        ],
+        [
+          27,
+          47
+        ],
+        [
+          28,
+          47
+        ],
+        [
+          29,
+          47
+        ],
+        [
+          30,
+          47
+        ],
+        [
+          31,
+          47
+        ],
+        [
+          32,
+          47
+        ],
+        [
+          33,
+          47
+        ],
+        [
+          34,
+          47
+        ]
+      ],
+      "script": {
+        "script_id": 360,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 12,
+          "x": 308,
+          "y": 64
+        },
+        "player_position": {
+          "x": 308,
+          "y": 64,
+          "facing": 0
+        },
+        "proc038": [
+          "780"
+        ]
+      }
+    },
+    {
+      "physical_resource": 10,
+      "logical_sources": [
+        {
+          "logical_map": 4,
+          "condition": "season!=3 (Spring/Summer/Fall)"
+        }
+      ],
+      "script_id": 361,
+      "cell_count": 5,
+      "bbox": [
+        39,
+        47,
+        43,
+        47
+      ],
+      "cells": [
+        [
+          39,
+          47
+        ],
+        [
+          40,
+          47
+        ],
+        [
+          41,
+          47
+        ],
+        [
+          42,
+          47
+        ],
+        [
+          43,
+          47
+        ]
+      ],
+      "script": {
+        "script_id": 361,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 5,
+          "x": 1292,
+          "y": 24
+        },
+        "player_position": {
+          "x": 1292,
+          "y": 24,
+          "facing": 0
+        }
+      }
+    },
+    {
+      "physical_resource": 11,
+      "logical_sources": [
+        {
+          "logical_map": 4,
+          "condition": "season==3 (Winter)"
+        }
+      ],
+      "script_id": 360,
+      "cell_count": 10,
+      "bbox": [
+        25,
+        47,
+        34,
+        47
+      ],
+      "cells": [
+        [
+          25,
+          47
+        ],
+        [
+          26,
+          47
+        ],
+        [
+          27,
+          47
+        ],
+        [
+          28,
+          47
+        ],
+        [
+          29,
+          47
+        ],
+        [
+          30,
+          47
+        ],
+        [
+          31,
+          47
+        ],
+        [
+          32,
+          47
+        ],
+        [
+          33,
+          47
+        ],
+        [
+          34,
+          47
+        ]
+      ],
+      "script": {
+        "script_id": 360,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 12,
+          "x": 308,
+          "y": 64
+        },
+        "player_position": {
+          "x": 308,
+          "y": 64,
+          "facing": 0
+        },
+        "proc038": [
+          "780"
+        ]
+      }
+    },
+    {
+      "physical_resource": 11,
+      "logical_sources": [
+        {
+          "logical_map": 4,
+          "condition": "season==3 (Winter)"
+        }
+      ],
+      "script_id": 361,
+      "cell_count": 5,
+      "bbox": [
+        39,
+        47,
+        43,
+        47
+      ],
+      "cells": [
+        [
+          39,
+          47
+        ],
+        [
+          40,
+          47
+        ],
+        [
+          41,
+          47
+        ],
+        [
+          42,
+          47
+        ],
+        [
+          43,
+          47
+        ]
+      ],
+      "script": {
+        "script_id": 361,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 5,
+          "x": 1292,
+          "y": 24
+        },
+        "player_position": {
+          "x": 1292,
+          "y": 24,
+          "facing": 0
+        }
+      }
+    },
+    {
+      "physical_resource": 12,
+      "logical_sources": [
+        {
+          "logical_map": 3,
+          "condition": "season!=3 (Spring/Summer/Fall)"
+        }
+      ],
+      "script_id": 175,
+      "cell_count": 8,
+      "bbox": [
+        0,
+        30,
+        1,
+        33
+      ],
+      "cells": [
+        [
+          0,
+          30
+        ],
+        [
+          1,
+          30
+        ],
+        [
+          0,
+          31
+        ],
+        [
+          1,
+          31
+        ],
+        [
+          0,
+          32
+        ],
+        [
+          1,
+          32
+        ],
+        [
+          0,
+          33
+        ],
+        [
+          1,
+          33
+        ]
+      ],
+      "script": {
+        "script_id": 175,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 0,
+          "x": 1176,
+          "y": 510
+        },
+        "player_position": {
+          "x": 1176,
+          "y": 510,
+          "facing": 2
+        }
+      }
+    },
+    {
+      "physical_resource": 12,
+      "logical_sources": [
+        {
+          "logical_map": 3,
+          "condition": "season!=3 (Spring/Summer/Fall)"
+        }
+      ],
+      "script_id": 176,
+      "cell_count": 18,
+      "bbox": [
+        0,
+        52,
+        1,
+        60
+      ],
+      "cells": [
+        [
+          0,
+          52
+        ],
+        [
+          1,
+          52
+        ],
+        [
+          0,
+          53
+        ],
+        [
+          1,
+          53
+        ],
+        [
+          0,
+          54
+        ],
+        [
+          1,
+          54
+        ],
+        [
+          0,
+          55
+        ],
+        [
+          1,
+          55
+        ],
+        [
+          0,
+          56
+        ],
+        [
+          1,
+          56
+        ],
+        [
+          0,
+          57
+        ],
+        [
+          1,
+          57
+        ],
+        [
+          0,
+          58
+        ],
+        [
+          1,
+          58
+        ],
+        [
+          0,
+          59
+        ],
+        [
+          1,
+          59
+        ],
+        [
+          0,
+          60
+        ],
+        [
+          1,
+          60
+        ]
+      ],
+      "script": {
+        "script_id": 176,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 0,
+          "x": 1175,
+          "y": 752
+        },
+        "player_position": {
+          "x": 1175,
+          "y": 752,
+          "facing": 2
+        },
+        "proc038": [
+          "767"
+        ]
+      }
+    },
+    {
+      "physical_resource": 12,
+      "logical_sources": [
+        {
+          "logical_map": 3,
+          "condition": "season!=3 (Spring/Summer/Fall)"
+        }
+      ],
+      "script_id": 177,
+      "cell_count": 10,
+      "bbox": [
+        19,
+        0,
+        23,
+        1
+      ],
+      "cells": [
+        [
+          19,
+          0
+        ],
+        [
+          20,
+          0
+        ],
+        [
+          21,
+          0
+        ],
+        [
+          22,
+          0
+        ],
+        [
+          23,
+          0
+        ],
+        [
+          19,
+          1
+        ],
+        [
+          20,
+          1
+        ],
+        [
+          21,
+          1
+        ],
+        [
+          22,
+          1
+        ],
+        [
+          23,
+          1
+        ]
+      ],
+      "script": {
+        "script_id": 177,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 2,
+          "x": 264,
+          "y": 688
+        },
+        "player_position": {
+          "x": 264,
+          "y": 688,
+          "facing": 1
+        }
+      }
+    },
+    {
+      "physical_resource": 12,
+      "logical_sources": [
+        {
+          "logical_map": 3,
+          "condition": "season!=3 (Spring/Summer/Fall)"
+        }
+      ],
+      "script_id": 178,
+      "cell_count": 16,
+      "bbox": [
+        100,
+        0,
+        107,
+        1
+      ],
+      "cells": [
+        [
+          100,
+          0
+        ],
+        [
+          101,
+          0
+        ],
+        [
+          102,
+          0
+        ],
+        [
+          103,
+          0
+        ],
+        [
+          104,
+          0
+        ],
+        [
+          105,
+          0
+        ],
+        [
+          106,
+          0
+        ],
+        [
+          107,
+          0
+        ],
+        [
+          100,
+          1
+        ],
+        [
+          101,
+          1
+        ],
+        [
+          102,
+          1
+        ],
+        [
+          103,
+          1
+        ],
+        [
+          104,
+          1
+        ],
+        [
+          105,
+          1
+        ],
+        [
+          106,
+          1
+        ],
+        [
+          107,
+          1
+        ]
+      ],
+      "script": {
+        "script_id": 178,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 7,
+          "x": 812,
+          "y": 496
+        },
+        "player_position": {
+          "x": 812,
+          "y": 496,
+          "facing": 1
+        }
+      }
+    },
+    {
+      "physical_resource": 13,
+      "logical_sources": [
+        {
+          "logical_map": 3,
+          "condition": "season==3 (Winter)"
+        }
+      ],
+      "script_id": 175,
+      "cell_count": 8,
+      "bbox": [
+        0,
+        30,
+        1,
+        33
+      ],
+      "cells": [
+        [
+          0,
+          30
+        ],
+        [
+          1,
+          30
+        ],
+        [
+          0,
+          31
+        ],
+        [
+          1,
+          31
+        ],
+        [
+          0,
+          32
+        ],
+        [
+          1,
+          32
+        ],
+        [
+          0,
+          33
+        ],
+        [
+          1,
+          33
+        ]
+      ],
+      "script": {
+        "script_id": 175,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 0,
+          "x": 1176,
+          "y": 510
+        },
+        "player_position": {
+          "x": 1176,
+          "y": 510,
+          "facing": 2
+        }
+      }
+    },
+    {
+      "physical_resource": 13,
+      "logical_sources": [
+        {
+          "logical_map": 3,
+          "condition": "season==3 (Winter)"
+        }
+      ],
+      "script_id": 176,
+      "cell_count": 18,
+      "bbox": [
+        0,
+        52,
+        1,
+        60
+      ],
+      "cells": [
+        [
+          0,
+          52
+        ],
+        [
+          1,
+          52
+        ],
+        [
+          0,
+          53
+        ],
+        [
+          1,
+          53
+        ],
+        [
+          0,
+          54
+        ],
+        [
+          1,
+          54
+        ],
+        [
+          0,
+          55
+        ],
+        [
+          1,
+          55
+        ],
+        [
+          0,
+          56
+        ],
+        [
+          1,
+          56
+        ],
+        [
+          0,
+          57
+        ],
+        [
+          1,
+          57
+        ],
+        [
+          0,
+          58
+        ],
+        [
+          1,
+          58
+        ],
+        [
+          0,
+          59
+        ],
+        [
+          1,
+          59
+        ],
+        [
+          0,
+          60
+        ],
+        [
+          1,
+          60
+        ]
+      ],
+      "script": {
+        "script_id": 176,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 0,
+          "x": 1175,
+          "y": 752
+        },
+        "player_position": {
+          "x": 1175,
+          "y": 752,
+          "facing": 2
+        },
+        "proc038": [
+          "767"
+        ]
+      }
+    },
+    {
+      "physical_resource": 13,
+      "logical_sources": [
+        {
+          "logical_map": 3,
+          "condition": "season==3 (Winter)"
+        }
+      ],
+      "script_id": 177,
+      "cell_count": 10,
+      "bbox": [
+        19,
+        0,
+        23,
+        1
+      ],
+      "cells": [
+        [
+          19,
+          0
+        ],
+        [
+          20,
+          0
+        ],
+        [
+          21,
+          0
+        ],
+        [
+          22,
+          0
+        ],
+        [
+          23,
+          0
+        ],
+        [
+          19,
+          1
+        ],
+        [
+          20,
+          1
+        ],
+        [
+          21,
+          1
+        ],
+        [
+          22,
+          1
+        ],
+        [
+          23,
+          1
+        ]
+      ],
+      "script": {
+        "script_id": 177,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 2,
+          "x": 264,
+          "y": 688
+        },
+        "player_position": {
+          "x": 264,
+          "y": 688,
+          "facing": 1
+        }
+      }
+    },
+    {
+      "physical_resource": 13,
+      "logical_sources": [
+        {
+          "logical_map": 3,
+          "condition": "season==3 (Winter)"
+        }
+      ],
+      "script_id": 178,
+      "cell_count": 16,
+      "bbox": [
+        100,
+        0,
+        107,
+        1
+      ],
+      "cells": [
+        [
+          100,
+          0
+        ],
+        [
+          101,
+          0
+        ],
+        [
+          102,
+          0
+        ],
+        [
+          103,
+          0
+        ],
+        [
+          104,
+          0
+        ],
+        [
+          105,
+          0
+        ],
+        [
+          106,
+          0
+        ],
+        [
+          107,
+          0
+        ],
+        [
+          100,
+          1
+        ],
+        [
+          101,
+          1
+        ],
+        [
+          102,
+          1
+        ],
+        [
+          103,
+          1
+        ],
+        [
+          104,
+          1
+        ],
+        [
+          105,
+          1
+        ],
+        [
+          106,
+          1
+        ],
+        [
+          107,
+          1
+        ]
+      ],
+      "script": {
+        "script_id": 178,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 7,
+          "x": 812,
+          "y": 496
+        },
+        "player_position": {
+          "x": 812,
+          "y": 496,
+          "facing": 1
+        }
+      }
+    },
+    {
+      "physical_resource": 14,
+      "logical_sources": [
+        {
+          "logical_map": 0,
+          "condition": "season!=3 (Spring/Summer/Fall)"
+        }
+      ],
+      "script_id": 88,
+      "cell_count": 12,
+      "bbox": [
+        148,
+        63,
+        149,
+        68
+      ],
+      "cells": [
+        [
+          148,
+          63
+        ],
+        [
+          149,
+          63
+        ],
+        [
+          148,
+          64
+        ],
+        [
+          149,
+          64
+        ],
+        [
+          148,
+          65
+        ],
+        [
+          149,
+          65
+        ],
+        [
+          148,
+          66
+        ],
+        [
+          149,
+          66
+        ],
+        [
+          148,
+          67
+        ],
+        [
+          149,
+          67
+        ],
+        [
+          148,
+          68
+        ],
+        [
+          149,
+          68
+        ]
+      ],
+      "script": {
+        "script_id": 88,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 3,
+          "x": 24,
+          "y": 264
+        },
+        "player_position": {
+          "x": 24,
+          "y": 264,
+          "facing": 3
+        }
+      }
+    },
+    {
+      "physical_resource": 14,
+      "logical_sources": [
+        {
+          "logical_map": 0,
+          "condition": "season!=3 (Spring/Summer/Fall)"
+        }
+      ],
+      "script_id": 89,
+      "cell_count": 6,
+      "bbox": [
+        111,
+        41,
+        113,
+        42
+      ],
+      "cells": [
+        [
+          111,
+          41
+        ],
+        [
+          112,
+          41
+        ],
+        [
+          113,
+          41
+        ],
+        [
+          111,
+          42
+        ],
+        [
+          112,
+          42
+        ],
+        [
+          113,
+          42
+        ]
+      ],
+      "script": {
+        "script_id": 89,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 52,
+          "x": 120,
+          "y": 192
+        },
+        "player_position": {
+          "x": 120,
+          "y": 192,
+          "facing": 1
+        }
+      }
+    },
+    {
+      "physical_resource": 14,
+      "logical_sources": [
+        {
+          "logical_map": 0,
+          "condition": "season!=3 (Spring/Summer/Fall)"
+        }
+      ],
+      "script_id": 90,
+      "cell_count": 16,
+      "bbox": [
+        148,
+        90,
+        149,
+        97
+      ],
+      "cells": [
+        [
+          148,
+          90
+        ],
+        [
+          149,
+          90
+        ],
+        [
+          148,
+          91
+        ],
+        [
+          149,
+          91
+        ],
+        [
+          148,
+          92
+        ],
+        [
+          149,
+          92
+        ],
+        [
+          148,
+          93
+        ],
+        [
+          149,
+          93
+        ],
+        [
+          148,
+          94
+        ],
+        [
+          149,
+          94
+        ],
+        [
+          148,
+          95
+        ],
+        [
+          149,
+          95
+        ],
+        [
+          148,
+          96
+        ],
+        [
+          149,
+          96
+        ],
+        [
+          148,
+          97
+        ],
+        [
+          149,
+          97
+        ]
+      ],
+      "script": {
+        "script_id": 90,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 3,
+          "x": 24,
+          "y": 448
+        },
+        "player_position": {
+          "x": 24,
+          "y": 448,
+          "facing": 3
+        }
+      }
+    },
+    {
+      "physical_resource": 14,
+      "logical_sources": [
+        {
+          "logical_map": 0,
+          "condition": "season!=3 (Spring/Summer/Fall)"
+        }
+      ],
+      "script_id": 92,
+      "cell_count": 6,
+      "bbox": [
+        52,
+        53,
+        53,
+        55
+      ],
+      "cells": [
+        [
+          52,
+          53
+        ],
+        [
+          53,
+          53
+        ],
+        [
+          52,
+          54
+        ],
+        [
+          53,
+          54
+        ],
+        [
+          52,
+          55
+        ],
+        [
+          53,
+          55
+        ]
+      ],
+      "script": {
+        "script_id": 92,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 308,
+          "x": 120,
+          "y": 192
+        },
+        "player_position": {
+          "x": 120,
+          "y": 192,
+          "facing": 1
+        }
+      }
+    },
+    {
+      "physical_resource": 14,
+      "logical_sources": [
+        {
+          "logical_map": 0,
+          "condition": "season!=3 (Spring/Summer/Fall)"
+        }
+      ],
+      "script_id": 93,
+      "cell_count": 14,
+      "bbox": [
+        59,
+        0,
+        65,
+        1
+      ],
+      "cells": [
+        [
+          59,
+          0
+        ],
+        [
+          60,
+          0
+        ],
+        [
+          61,
+          0
+        ],
+        [
+          62,
+          0
+        ],
+        [
+          63,
+          0
+        ],
+        [
+          64,
+          0
+        ],
+        [
+          65,
+          0
+        ],
+        [
+          59,
+          1
+        ],
+        [
+          60,
+          1
+        ],
+        [
+          61,
+          1
+        ],
+        [
+          62,
+          1
+        ],
+        [
+          63,
+          1
+        ],
+        [
+          64,
+          1
+        ],
+        [
+          65,
+          1
+        ]
+      ],
+      "script": {
+        "script_id": 93,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 8,
+          "x": 236,
+          "y": 464
+        },
+        "player_position": {
+          "x": 236,
+          "y": 464,
+          "facing": 1
+        },
+        "proc038": [
+          "1242",
+          "1318",
+          "61",
+          "932",
+          "784",
+          "733",
+          "744",
+          "821"
+        ]
+      }
+    },
+    {
+      "physical_resource": 15,
+      "logical_sources": [
+        {
+          "logical_map": 0,
+          "condition": "season==3 (Winter)"
+        }
+      ],
+      "script_id": 88,
+      "cell_count": 12,
+      "bbox": [
+        148,
+        63,
+        149,
+        68
+      ],
+      "cells": [
+        [
+          148,
+          63
+        ],
+        [
+          149,
+          63
+        ],
+        [
+          148,
+          64
+        ],
+        [
+          149,
+          64
+        ],
+        [
+          148,
+          65
+        ],
+        [
+          149,
+          65
+        ],
+        [
+          148,
+          66
+        ],
+        [
+          149,
+          66
+        ],
+        [
+          148,
+          67
+        ],
+        [
+          149,
+          67
+        ],
+        [
+          148,
+          68
+        ],
+        [
+          149,
+          68
+        ]
+      ],
+      "script": {
+        "script_id": 88,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 3,
+          "x": 24,
+          "y": 264
+        },
+        "player_position": {
+          "x": 24,
+          "y": 264,
+          "facing": 3
+        }
+      }
+    },
+    {
+      "physical_resource": 15,
+      "logical_sources": [
+        {
+          "logical_map": 0,
+          "condition": "season==3 (Winter)"
+        }
+      ],
+      "script_id": 89,
+      "cell_count": 6,
+      "bbox": [
+        111,
+        41,
+        113,
+        42
+      ],
+      "cells": [
+        [
+          111,
+          41
+        ],
+        [
+          112,
+          41
+        ],
+        [
+          113,
+          41
+        ],
+        [
+          111,
+          42
+        ],
+        [
+          112,
+          42
+        ],
+        [
+          113,
+          42
+        ]
+      ],
+      "script": {
+        "script_id": 89,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 52,
+          "x": 120,
+          "y": 192
+        },
+        "player_position": {
+          "x": 120,
+          "y": 192,
+          "facing": 1
+        }
+      }
+    },
+    {
+      "physical_resource": 15,
+      "logical_sources": [
+        {
+          "logical_map": 0,
+          "condition": "season==3 (Winter)"
+        }
+      ],
+      "script_id": 90,
+      "cell_count": 16,
+      "bbox": [
+        148,
+        90,
+        149,
+        97
+      ],
+      "cells": [
+        [
+          148,
+          90
+        ],
+        [
+          149,
+          90
+        ],
+        [
+          148,
+          91
+        ],
+        [
+          149,
+          91
+        ],
+        [
+          148,
+          92
+        ],
+        [
+          149,
+          92
+        ],
+        [
+          148,
+          93
+        ],
+        [
+          149,
+          93
+        ],
+        [
+          148,
+          94
+        ],
+        [
+          149,
+          94
+        ],
+        [
+          148,
+          95
+        ],
+        [
+          149,
+          95
+        ],
+        [
+          148,
+          96
+        ],
+        [
+          149,
+          96
+        ],
+        [
+          148,
+          97
+        ],
+        [
+          149,
+          97
+        ]
+      ],
+      "script": {
+        "script_id": 90,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 3,
+          "x": 24,
+          "y": 448
+        },
+        "player_position": {
+          "x": 24,
+          "y": 448,
+          "facing": 3
+        }
+      }
+    },
+    {
+      "physical_resource": 15,
+      "logical_sources": [
+        {
+          "logical_map": 0,
+          "condition": "season==3 (Winter)"
+        }
+      ],
+      "script_id": 92,
+      "cell_count": 6,
+      "bbox": [
+        52,
+        53,
+        53,
+        55
+      ],
+      "cells": [
+        [
+          52,
+          53
+        ],
+        [
+          53,
+          53
+        ],
+        [
+          52,
+          54
+        ],
+        [
+          53,
+          54
+        ],
+        [
+          52,
+          55
+        ],
+        [
+          53,
+          55
+        ]
+      ],
+      "script": {
+        "script_id": 92,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 308,
+          "x": 120,
+          "y": 192
+        },
+        "player_position": {
+          "x": 120,
+          "y": 192,
+          "facing": 1
+        }
+      }
+    },
+    {
+      "physical_resource": 15,
+      "logical_sources": [
+        {
+          "logical_map": 0,
+          "condition": "season==3 (Winter)"
+        }
+      ],
+      "script_id": 93,
+      "cell_count": 14,
+      "bbox": [
+        59,
+        0,
+        65,
+        1
+      ],
+      "cells": [
+        [
+          59,
+          0
+        ],
+        [
+          60,
+          0
+        ],
+        [
+          61,
+          0
+        ],
+        [
+          62,
+          0
+        ],
+        [
+          63,
+          0
+        ],
+        [
+          64,
+          0
+        ],
+        [
+          65,
+          0
+        ],
+        [
+          59,
+          1
+        ],
+        [
+          60,
+          1
+        ],
+        [
+          61,
+          1
+        ],
+        [
+          62,
+          1
+        ],
+        [
+          63,
+          1
+        ],
+        [
+          64,
+          1
+        ],
+        [
+          65,
+          1
+        ]
+      ],
+      "script": {
+        "script_id": 93,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 8,
+          "x": 236,
+          "y": 464
+        },
+        "player_position": {
+          "x": 236,
+          "y": 464,
+          "facing": 1
+        },
+        "proc038": [
+          "1242",
+          "1318",
+          "61",
+          "932",
+          "784",
+          "733",
+          "744",
+          "821"
+        ]
+      }
+    },
+    {
+      "physical_resource": 16,
+      "logical_sources": [
+        {
+          "logical_map": 8,
+          "condition": "season!=3 (Spring/Summer/Fall)"
+        },
+        {
+          "logical_map": 44,
+          "condition": "always"
+        },
+        {
+          "logical_map": 45,
+          "condition": "always"
+        },
+        {
+          "logical_map": 46,
+          "condition": "always"
+        }
+      ],
+      "script_id": 532,
+      "cell_count": 7,
+      "bbox": [
+        26,
+        59,
+        32,
+        59
+      ],
+      "cells": [
+        [
+          26,
+          59
+        ],
+        [
+          27,
+          59
+        ],
+        [
+          28,
+          59
+        ],
+        [
+          29,
+          59
+        ],
+        [
+          30,
+          59
+        ],
+        [
+          31,
+          59
+        ],
+        [
+          32,
+          59
+        ]
+      ],
+      "script": {
+        "script_id": 532,
+        "mary_structured": false,
+        "partial_recovery": true,
+        "scene_destination": {
+          "logical_map": 0,
+          "x": 500,
+          "y": 20
+        },
+        "player_position": {
+          "x": 500,
+          "y": 20,
+          "facing": 0
+        }
+      }
+    },
+    {
+      "physical_resource": 17,
+      "logical_sources": [
+        {
+          "logical_map": 8,
+          "condition": "season==3 (Winter)"
+        },
+        {
+          "logical_map": 47,
+          "condition": "always"
+        }
+      ],
+      "script_id": 532,
+      "cell_count": 7,
+      "bbox": [
+        26,
+        59,
+        32,
+        59
+      ],
+      "cells": [
+        [
+          26,
+          59
+        ],
+        [
+          27,
+          59
+        ],
+        [
+          28,
+          59
+        ],
+        [
+          29,
+          59
+        ],
+        [
+          30,
+          59
+        ],
+        [
+          31,
+          59
+        ],
+        [
+          32,
+          59
+        ]
+      ],
+      "script": {
+        "script_id": 532,
+        "mary_structured": false,
+        "partial_recovery": true,
+        "scene_destination": {
+          "logical_map": 0,
+          "x": 500,
+          "y": 20
+        },
+        "player_position": {
+          "x": 500,
+          "y": 20,
+          "facing": 0
+        }
+      }
+    },
+    {
+      "physical_resource": 18,
+      "logical_sources": [
+        {
+          "logical_map": 31,
+          "condition": "always"
+        }
+      ],
+      "script_id": 389,
+      "cell_count": 4,
+      "bbox": [
+        13,
+        27,
+        16,
+        27
+      ],
+      "cells": [
+        [
+          13,
+          27
+        ],
+        [
+          14,
+          27
+        ],
+        [
+          15,
+          27
+        ],
+        [
+          16,
+          27
+        ]
+      ],
+      "script": {
+        "script_id": 389,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 5,
+          "x": 232,
+          "y": 488
+        },
+        "player_position": {
+          "x": 232,
+          "y": 488,
+          "facing": 0
+        }
+      }
+    },
+    {
+      "physical_resource": 18,
+      "logical_sources": [
+        {
+          "logical_map": 31,
+          "condition": "always"
+        }
+      ],
+      "script_id": 390,
+      "cell_count": 4,
+      "bbox": [
+        25,
+        14,
+        28,
+        14
+      ],
+      "cells": [
+        [
+          25,
+          14
+        ],
+        [
+          26,
+          14
+        ],
+        [
+          27,
+          14
+        ],
+        [
+          28,
+          14
+        ]
+      ],
+      "script": {
+        "script_id": 390,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 32,
+          "x": 216,
+          "y": 64
+        },
+        "player_position": {
+          "x": 216,
+          "y": 64,
+          "facing": 1
+        }
+      }
+    },
+    {
+      "physical_resource": 19,
+      "logical_sources": [
+        {
+          "logical_map": 32,
+          "condition": "always"
+        }
+      ],
+      "script_id": 399,
+      "cell_count": 4,
+      "bbox": [
+        25,
+        9,
+        28,
+        9
+      ],
+      "cells": [
+        [
+          25,
+          9
+        ],
+        [
+          26,
+          9
+        ],
+        [
+          27,
+          9
+        ],
+        [
+          28,
+          9
+        ]
+      ],
+      "script": {
+        "script_id": 399,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 31,
+          "x": 216,
+          "y": 136
+        },
+        "player_position": {
+          "x": 216,
+          "y": 136,
+          "facing": 0
+        }
+      }
+    },
+    {
+      "physical_resource": 20,
+      "logical_sources": [
+        {
+          "logical_map": 33,
+          "condition": "always"
+        }
+      ],
+      "script_id": 415,
+      "cell_count": 4,
+      "bbox": [
+        13,
+        27,
+        16,
+        27
+      ],
+      "cells": [
+        [
+          13,
+          27
+        ],
+        [
+          14,
+          27
+        ],
+        [
+          15,
+          27
+        ],
+        [
+          16,
+          27
+        ]
+      ],
+      "script": {
+        "script_id": 415,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 5,
+          "x": 316,
+          "y": 464
+        },
+        "player_position": {
+          "x": 316,
+          "y": 464,
+          "facing": 0
+        }
+      }
+    },
+    {
+      "physical_resource": 20,
+      "logical_sources": [
+        {
+          "logical_map": 33,
+          "condition": "always"
+        }
+      ],
+      "script_id": 416,
+      "cell_count": 4,
+      "bbox": [
+        13,
+        11,
+        16,
+        11
+      ],
+      "cells": [
+        [
+          13,
+          11
+        ],
+        [
+          14,
+          11
+        ],
+        [
+          15,
+          11
+        ],
+        [
+          16,
+          11
+        ]
+      ],
+      "script": {
+        "script_id": 416,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 34,
+          "x": 120,
+          "y": 152
+        },
+        "player_position": {
+          "x": 120,
+          "y": 152,
+          "facing": 0
+        }
+      }
+    },
+    {
+      "physical_resource": 21,
+      "logical_sources": [
+        {
+          "logical_map": 34,
+          "condition": "always"
+        }
+      ],
+      "script_id": 422,
+      "cell_count": 4,
+      "bbox": [
+        13,
+        16,
+        16,
+        16
+      ],
+      "cells": [
+        [
+          13,
+          16
+        ],
+        [
+          14,
+          16
+        ],
+        [
+          15,
+          16
+        ],
+        [
+          16,
+          16
+        ]
+      ],
+      "script": {
+        "script_id": 422,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 33,
+          "x": 120,
+          "y": 80
+        },
+        "player_position": {
+          "x": 120,
+          "y": 80,
+          "facing": 1
+        }
+      }
+    },
+    {
+      "physical_resource": 22,
+      "logical_sources": [
+        {
+          "logical_map": 21,
+          "condition": "always"
+        }
+      ],
+      "script_id": 272,
+      "cell_count": 4,
+      "bbox": [
+        3,
+        9,
+        6,
+        9
+      ],
+      "cells": [
+        [
+          3,
+          9
+        ],
+        [
+          4,
+          9
+        ],
+        [
+          5,
+          9
+        ],
+        [
+          6,
+          9
+        ]
+      ],
+      "script": {
+        "script_id": 272,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 23,
+          "x": 40,
+          "y": 248
+        },
+        "player_position": {
+          "x": 40,
+          "y": 248,
+          "facing": 1
+        },
+        "proc038": [
+          "49",
+          "906"
+        ]
+      }
+    },
+    {
+      "physical_resource": 22,
+      "logical_sources": [
+        {
+          "logical_map": 21,
+          "condition": "always"
+        }
+      ],
+      "script_id": 273,
+      "cell_count": 4,
+      "bbox": [
+        21,
+        41,
+        24,
+        41
+      ],
+      "cells": [
+        [
+          21,
+          41
+        ],
+        [
+          22,
+          41
+        ],
+        [
+          23,
+          41
+        ],
+        [
+          24,
+          41
+        ]
+      ],
+      "script": {
+        "script_id": 273,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 5,
+          "x": 632,
+          "y": 496
+        },
+        "player_position": {
+          "x": 632,
+          "y": 496,
+          "facing": 0
+        }
+      }
+    },
+    {
+      "physical_resource": 23,
+      "logical_sources": [
+        {
+          "logical_map": 22,
+          "condition": "always"
+        }
+      ],
+      "script_id": 268,
+      "cell_count": 3,
+      "bbox": [
+        10,
+        41,
+        12,
+        41
+      ],
+      "cells": [
+        [
+          10,
+          41
+        ],
+        [
+          11,
+          41
+        ],
+        [
+          12,
+          41
+        ]
+      ],
+      "script": {
+        "script_id": 268,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 21,
+          "x": 92,
+          "y": 64
+        },
+        "player_position": {
+          "x": 92,
+          "y": 64,
+          "facing": 0
+        }
+      }
+    },
+    {
+      "physical_resource": 24,
+      "logical_sources": [
+        {
+          "logical_map": 23,
+          "condition": "always"
+        }
+      ],
+      "script_id": 284,
+      "cell_count": 4,
+      "bbox": [
+        3,
+        32,
+        6,
+        32
+      ],
+      "cells": [
+        [
+          3,
+          32
+        ],
+        [
+          4,
+          32
+        ],
+        [
+          5,
+          32
+        ],
+        [
+          6,
+          32
+        ]
+      ],
+      "script": {
+        "script_id": 284,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 21,
+          "x": 40,
+          "y": 96
+        },
+        "player_position": {
+          "x": 40,
+          "y": 96,
+          "facing": 0
+        }
+      }
+    },
+    {
+      "physical_resource": 25,
+      "logical_sources": [
+        {
+          "logical_map": 15,
+          "condition": "always"
+        }
+      ],
+      "script_id": 206,
+      "cell_count": 4,
+      "bbox": [
+        16,
+        41,
+        19,
+        41
+      ],
+      "cells": [
+        [
+          16,
+          41
+        ],
+        [
+          17,
+          41
+        ],
+        [
+          18,
+          41
+        ],
+        [
+          19,
+          41
+        ]
+      ],
+      "script": {
+        "script_id": 206,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 5,
+          "x": 688,
+          "y": 168
+        },
+        "player_position": {
+          "x": 688,
+          "y": 168,
+          "facing": 0
+        }
+      }
+    },
+    {
+      "physical_resource": 26,
+      "logical_sources": [
+        {
+          "logical_map": 16,
+          "condition": "always"
+        }
+      ],
+      "script_id": 201,
+      "cell_count": 3,
+      "bbox": [
+        10,
+        41,
+        12,
+        41
+      ],
+      "cells": [
+        [
+          10,
+          41
+        ],
+        [
+          11,
+          41
+        ],
+        [
+          12,
+          41
+        ]
+      ],
+      "script": {
+        "script_id": 201,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 15,
+          "x": 100,
+          "y": 64
+        },
+        "player_position": {
+          "x": 100,
+          "y": 64,
+          "facing": 0
+        }
+      }
+    },
+    {
+      "physical_resource": 27,
+      "logical_sources": [
+        {
+          "logical_map": 36,
+          "condition": "always"
+        }
+      ],
+      "script_id": 440,
+      "cell_count": 4,
+      "bbox": [
+        13,
+        27,
+        16,
+        27
+      ],
+      "cells": [
+        [
+          13,
+          27
+        ],
+        [
+          14,
+          27
+        ],
+        [
+          15,
+          27
+        ],
+        [
+          16,
+          27
+        ]
+      ],
+      "script": {
+        "script_id": 440,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 1,
+          "x": 84,
+          "y": 120
+        },
+        "player_position": {
+          "x": 84,
+          "y": 120,
+          "facing": 0
+        }
+      }
+    },
+    {
+      "physical_resource": 28,
+      "logical_sources": [
+        {
+          "logical_map": 13,
+          "condition": "always"
+        }
+      ],
+      "script_id": 153,
+      "cell_count": 4,
+      "bbox": [
+        13,
+        27,
+        16,
+        27
+      ],
+      "cells": [
+        [
+          13,
+          27
+        ],
+        [
+          14,
+          27
+        ],
+        [
+          15,
+          27
+        ],
+        [
+          16,
+          27
+        ]
+      ],
+      "script": {
+        "script_id": 153,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 1,
+          "x": 212,
+          "y": 120
+        },
+        "player_position": {
+          "x": 212,
+          "y": 120,
+          "facing": 0
+        }
+      }
+    },
+    {
+      "physical_resource": 29,
+      "logical_sources": [
+        {
+          "logical_map": 19,
+          "condition": "always"
+        }
+      ],
+      "script_id": 237,
+      "cell_count": 4,
+      "bbox": [
+        1,
+        16,
+        4,
+        16
+      ],
+      "cells": [
+        [
+          1,
+          16
+        ],
+        [
+          2,
+          16
+        ],
+        [
+          3,
+          16
+        ],
+        [
+          4,
+          16
+        ]
+      ],
+      "script": {
+        "script_id": 237,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 20,
+          "x": 24,
+          "y": 64
+        },
+        "player_position": {
+          "x": 24,
+          "y": 64,
+          "facing": 1
+        }
+      }
+    },
+    {
+      "physical_resource": 29,
+      "logical_sources": [
+        {
+          "logical_map": 19,
+          "condition": "always"
+        }
+      ],
+      "script_id": 238,
+      "cell_count": 4,
+      "bbox": [
+        21,
+        41,
+        24,
+        41
+      ],
+      "cells": [
+        [
+          21,
+          41
+        ],
+        [
+          22,
+          41
+        ],
+        [
+          23,
+          41
+        ],
+        [
+          24,
+          41
+        ]
+      ],
+      "script": {
+        "script_id": 238,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 5,
+          "x": 856,
+          "y": 168
+        },
+        "player_position": {
+          "x": 856,
+          "y": 168,
+          "facing": 0
+        }
+      }
+    },
+    {
+      "physical_resource": 30,
+      "logical_sources": [
+        {
+          "logical_map": 20,
+          "condition": "always"
+        }
+      ],
+      "script_id": 250,
+      "cell_count": 4,
+      "bbox": [
+        1,
+        9,
+        4,
+        9
+      ],
+      "cells": [
+        [
+          1,
+          9
+        ],
+        [
+          2,
+          9
+        ],
+        [
+          3,
+          9
+        ],
+        [
+          4,
+          9
+        ]
+      ],
+      "script": {
+        "script_id": 250,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 19,
+          "x": 24,
+          "y": 152
+        },
+        "player_position": {
+          "x": 24,
+          "y": 152,
+          "facing": 0
+        }
+      }
+    },
+    {
+      "physical_resource": 31,
+      "logical_sources": [
+        {
+          "logical_map": 12,
+          "condition": "always"
+        }
+      ],
+      "script_id": 143,
+      "cell_count": 8,
+      "bbox": [
+        19,
+        41,
+        26,
+        41
+      ],
+      "cells": [
+        [
+          19,
+          41
+        ],
+        [
+          20,
+          41
+        ],
+        [
+          21,
+          41
+        ],
+        [
+          22,
+          41
+        ],
+        [
+          23,
+          41
+        ],
+        [
+          24,
+          41
+        ],
+        [
+          25,
+          41
+        ],
+        [
+          26,
+          41
+        ]
+      ],
+      "script": {
+        "script_id": 143,
+        "mary_structured": false,
+        "partial_recovery": true,
+        "scene_destination": {
+          "logical_map": 5,
+          "x": 1232,
+          "y": 168
+        },
+        "player_position": {
+          "x": 1232,
+          "y": 168,
+          "facing": 0
+        }
+      }
+    },
+    {
+      "physical_resource": 32,
+      "logical_sources": [
+        {
+          "logical_map": 24,
+          "condition": "always"
+        }
+      ],
+      "script_id": 305,
+      "cell_count": 4,
+      "bbox": [
+        25,
+        18,
+        28,
+        18
+      ],
+      "cells": [
+        [
+          25,
+          18
+        ],
+        [
+          26,
+          18
+        ],
+        [
+          27,
+          18
+        ],
+        [
+          28,
+          18
+        ]
+      ],
+      "script": {
+        "script_id": 305,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 25,
+          "x": 216,
+          "y": 96
+        },
+        "player_position": {
+          "x": 216,
+          "y": 96,
+          "facing": 1
+        }
+      }
+    },
+    {
+      "physical_resource": 32,
+      "logical_sources": [
+        {
+          "logical_map": 24,
+          "condition": "always"
+        }
+      ],
+      "script_id": 306,
+      "cell_count": 4,
+      "bbox": [
+        13,
+        27,
+        16,
+        27
+      ],
+      "cells": [
+        [
+          13,
+          27
+        ],
+        [
+          14,
+          27
+        ],
+        [
+          15,
+          27
+        ],
+        [
+          16,
+          27
+        ]
+      ],
+      "script": {
+        "script_id": 306,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 5,
+          "x": 276,
+          "y": 176
+        },
+        "player_position": {
+          "x": 276,
+          "y": 176,
+          "facing": 0
+        }
+      }
+    },
+    {
+      "physical_resource": 33,
+      "logical_sources": [
+        {
+          "logical_map": 25,
+          "condition": "always"
+        }
+      ],
+      "script_id": 307,
+      "cell_count": 4,
+      "bbox": [
+        25,
+        13,
+        28,
+        13
+      ],
+      "cells": [
+        [
+          25,
+          13
+        ],
+        [
+          26,
+          13
+        ],
+        [
+          27,
+          13
+        ],
+        [
+          28,
+          13
+        ]
+      ],
+      "script": {
+        "script_id": 307,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 24,
+          "x": 216,
+          "y": 168
+        },
+        "player_position": {
+          "x": 216,
+          "y": 168,
+          "facing": 0
+        }
+      }
+    },
+    {
+      "physical_resource": 34,
+      "logical_sources": [
+        {
+          "logical_map": 26,
+          "condition": "always"
+        }
+      ],
+      "script_id": 292,
+      "cell_count": 4,
+      "bbox": [
+        25,
+        15,
+        28,
+        15
+      ],
+      "cells": [
+        [
+          25,
+          15
+        ],
+        [
+          26,
+          15
+        ],
+        [
+          27,
+          15
+        ],
+        [
+          28,
+          15
+        ]
+      ],
+      "script": {
+        "script_id": 292,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 27,
+          "x": 216,
+          "y": 88
+        },
+        "player_position": {
+          "x": 216,
+          "y": 88,
+          "facing": 1
+        },
+        "proc038": [
+          "724"
+        ]
+      }
+    },
+    {
+      "physical_resource": 34,
+      "logical_sources": [
+        {
+          "logical_map": 26,
+          "condition": "always"
+        }
+      ],
+      "script_id": 293,
+      "cell_count": 4,
+      "bbox": [
+        13,
+        27,
+        16,
+        27
+      ],
+      "cells": [
+        [
+          13,
+          27
+        ],
+        [
+          14,
+          27
+        ],
+        [
+          15,
+          27
+        ],
+        [
+          16,
+          27
+        ]
+      ],
+      "script": {
+        "script_id": 293,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 5,
+          "x": 200,
+          "y": 168
+        },
+        "player_position": {
+          "x": 200,
+          "y": 168,
+          "facing": 0
+        }
+      }
+    },
+    {
+      "physical_resource": 35,
+      "logical_sources": [
+        {
+          "logical_map": 27,
+          "condition": "always"
+        }
+      ],
+      "script_id": 300,
+      "cell_count": 4,
+      "bbox": [
+        25,
+        12,
+        28,
+        12
+      ],
+      "cells": [
+        [
+          25,
+          12
+        ],
+        [
+          26,
+          12
+        ],
+        [
+          27,
+          12
+        ],
+        [
+          28,
+          12
+        ]
+      ],
+      "script": {
+        "script_id": 300,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 26,
+          "x": 216,
+          "y": 144
+        },
+        "player_position": {
+          "x": 216,
+          "y": 144,
+          "facing": 0
+        }
+      }
+    },
+    {
+      "physical_resource": 36,
+      "logical_sources": [
+        {
+          "logical_map": 17,
+          "condition": "coop_upgrade==0"
+        }
+      ],
+      "script_id": 222,
+      "cell_count": 4,
+      "bbox": [
+        13,
+        27,
+        16,
+        27
+      ],
+      "cells": [
+        [
+          13,
+          27
+        ],
+        [
+          14,
+          27
+        ],
+        [
+          15,
+          27
+        ],
+        [
+          16,
+          27
+        ]
+      ],
+      "script": {
+        "script_id": 222,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 2,
+          "x": 144,
+          "y": 520
+        },
+        "player_position": {
+          "x": 144,
+          "y": 520,
+          "facing": 0
+        }
+      }
+    },
+    {
+      "physical_resource": 37,
+      "logical_sources": [
+        {
+          "logical_map": 17,
+          "condition": "coop_upgrade==1"
+        }
+      ],
+      "script_id": 222,
+      "cell_count": 4,
+      "bbox": [
+        13,
+        27,
+        16,
+        27
+      ],
+      "cells": [
+        [
+          13,
+          27
+        ],
+        [
+          14,
+          27
+        ],
+        [
+          15,
+          27
+        ],
+        [
+          16,
+          27
+        ]
+      ],
+      "script": {
+        "script_id": 222,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 2,
+          "x": 144,
+          "y": 520
+        },
+        "player_position": {
+          "x": 144,
+          "y": 520,
+          "facing": 0
+        }
+      }
+    },
+    {
+      "physical_resource": 38,
+      "logical_sources": [
+        {
+          "logical_map": 37,
+          "condition": "barn_upgrade==0"
+        }
+      ],
+      "script_id": 462,
+      "cell_count": 8,
+      "bbox": [
+        19,
+        35,
+        26,
+        35
+      ],
+      "cells": [
+        [
+          19,
+          35
+        ],
+        [
+          20,
+          35
+        ],
+        [
+          21,
+          35
+        ],
+        [
+          22,
+          35
+        ],
+        [
+          23,
+          35
+        ],
+        [
+          24,
+          35
+        ],
+        [
+          25,
+          35
+        ],
+        [
+          26,
+          35
+        ]
+      ],
+      "script": {
+        "script_id": 462,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 2,
+          "x": 504,
+          "y": 120
+        },
+        "player_position": {
+          "x": 504,
+          "y": 120,
+          "facing": 0
+        }
+      }
+    },
+    {
+      "physical_resource": 39,
+      "logical_sources": [
+        {
+          "logical_map": 37,
+          "condition": "barn_upgrade==1"
+        }
+      ],
+      "script_id": 462,
+      "cell_count": 8,
+      "bbox": [
+        19,
+        35,
+        26,
+        35
+      ],
+      "cells": [
+        [
+          19,
+          35
+        ],
+        [
+          20,
+          35
+        ],
+        [
+          21,
+          35
+        ],
+        [
+          22,
+          35
+        ],
+        [
+          23,
+          35
+        ],
+        [
+          24,
+          35
+        ],
+        [
+          25,
+          35
+        ],
+        [
+          26,
+          35
+        ]
+      ],
+      "script": {
+        "script_id": 462,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 2,
+          "x": 504,
+          "y": 120
+        },
+        "player_position": {
+          "x": 504,
+          "y": 120,
+          "facing": 0
+        }
+      }
+    },
+    {
+      "physical_resource": 40,
+      "logical_sources": [
+        {
+          "logical_map": 9,
+          "condition": "always"
+        }
+      ],
+      "script_id": 97,
+      "cell_count": 4,
+      "bbox": [
+        13,
+        27,
+        16,
+        27
+      ],
+      "cells": [
+        [
+          13,
+          27
+        ],
+        [
+          14,
+          27
+        ],
+        [
+          15,
+          27
+        ],
+        [
+          16,
+          27
+        ]
+      ],
+      "script": {
+        "script_id": 97,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 2,
+          "x": 752,
+          "y": 122
+        },
+        "player_position": {
+          "x": 752,
+          "y": 122,
+          "facing": 0
+        }
+      }
+    },
+    {
+      "physical_resource": 41,
+      "logical_sources": [
+        {
+          "logical_map": 29,
+          "condition": "farmhouse_upgrade==0"
+        }
+      ],
+      "script_id": 358,
+      "cell_count": 4,
+      "bbox": [
+        13,
+        27,
+        16,
+        27
+      ],
+      "cells": [
+        [
+          13,
+          27
+        ],
+        [
+          14,
+          27
+        ],
+        [
+          15,
+          27
+        ],
+        [
+          16,
+          27
+        ]
+      ],
+      "script": {
+        "script_id": 358,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 2,
+          "x": 228,
+          "y": 120
+        },
+        "player_position": {
+          "x": 228,
+          "y": 120,
+          "facing": 0
+        },
+        "proc038": [
+          "1079",
+          "1099",
+          "1130",
+          "1146",
+          "1164",
+          "1203",
+          "1216",
+          "1245",
+          "1265",
+          "737",
+          "810",
+          "797",
+          "798",
+          "716",
+          "819",
+          "37",
+          "588",
+          "587",
+          "573",
+          "574",
+          "575",
+          "576",
+          "577",
+          "578",
+          "579",
+          "580",
+          "581",
+          "582",
+          "583",
+          "584",
+          "585",
+          "586",
+          "813",
+          "814",
+          "738",
+          "740",
+          "741",
+          "811",
+          "812",
+          "5",
+          "6",
+          "7",
+          "809"
+        ]
+      }
+    },
+    {
+      "physical_resource": 42,
+      "logical_sources": [
+        {
+          "logical_map": 29,
+          "condition": "farmhouse_upgrade==1"
+        }
+      ],
+      "script_id": 358,
+      "cell_count": 4,
+      "bbox": [
+        28,
+        27,
+        31,
+        27
+      ],
+      "cells": [
+        [
+          28,
+          27
+        ],
+        [
+          29,
+          27
+        ],
+        [
+          30,
+          27
+        ],
+        [
+          31,
+          27
+        ]
+      ],
+      "script": {
+        "script_id": 358,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 2,
+          "x": 228,
+          "y": 120
+        },
+        "player_position": {
+          "x": 228,
+          "y": 120,
+          "facing": 0
+        },
+        "proc038": [
+          "1079",
+          "1099",
+          "1130",
+          "1146",
+          "1164",
+          "1203",
+          "1216",
+          "1245",
+          "1265",
+          "737",
+          "810",
+          "797",
+          "798",
+          "716",
+          "819",
+          "37",
+          "588",
+          "587",
+          "573",
+          "574",
+          "575",
+          "576",
+          "577",
+          "578",
+          "579",
+          "580",
+          "581",
+          "582",
+          "583",
+          "584",
+          "585",
+          "586",
+          "813",
+          "814",
+          "738",
+          "740",
+          "741",
+          "811",
+          "812",
+          "5",
+          "6",
+          "7",
+          "809"
+        ]
+      }
+    },
+    {
+      "physical_resource": 43,
+      "logical_sources": [
+        {
+          "logical_map": 29,
+          "condition": "farmhouse_upgrade==2"
+        }
+      ],
+      "script_id": 358,
+      "cell_count": 4,
+      "bbox": [
+        36,
+        27,
+        39,
+        27
+      ],
+      "cells": [
+        [
+          36,
+          27
+        ],
+        [
+          37,
+          27
+        ],
+        [
+          38,
+          27
+        ],
+        [
+          39,
+          27
+        ]
+      ],
+      "script": {
+        "script_id": 358,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 2,
+          "x": 228,
+          "y": 120
+        },
+        "player_position": {
+          "x": 228,
+          "y": 120,
+          "facing": 0
+        },
+        "proc038": [
+          "1079",
+          "1099",
+          "1130",
+          "1146",
+          "1164",
+          "1203",
+          "1216",
+          "1245",
+          "1265",
+          "737",
+          "810",
+          "797",
+          "798",
+          "716",
+          "819",
+          "37",
+          "588",
+          "587",
+          "573",
+          "574",
+          "575",
+          "576",
+          "577",
+          "578",
+          "579",
+          "580",
+          "581",
+          "582",
+          "583",
+          "584",
+          "585",
+          "586",
+          "813",
+          "814",
+          "738",
+          "740",
+          "741",
+          "811",
+          "812",
+          "5",
+          "6",
+          "7",
+          "809"
+        ]
+      }
+    },
+    {
+      "physical_resource": 44,
+      "logical_sources": [
+        {
+          "logical_map": 10,
+          "condition": "always"
+        }
+      ],
+      "script_id": 123,
+      "cell_count": 4,
+      "bbox": [
+        1,
+        16,
+        4,
+        16
+      ],
+      "cells": [
+        [
+          1,
+          16
+        ],
+        [
+          2,
+          16
+        ],
+        [
+          3,
+          16
+        ],
+        [
+          4,
+          16
+        ]
+      ],
+      "script": {
+        "script_id": 123,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 11,
+          "x": 24,
+          "y": 96
+        },
+        "player_position": {
+          "x": 24,
+          "y": 96,
+          "facing": 1
+        }
+      }
+    },
+    {
+      "physical_resource": 44,
+      "logical_sources": [
+        {
+          "logical_map": 10,
+          "condition": "always"
+        }
+      ],
+      "script_id": 124,
+      "cell_count": 4,
+      "bbox": [
+        13,
+        27,
+        16,
+        27
+      ],
+      "cells": [
+        [
+          13,
+          27
+        ],
+        [
+          14,
+          27
+        ],
+        [
+          15,
+          27
+        ],
+        [
+          16,
+          27
+        ]
+      ],
+      "script": {
+        "script_id": 124,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 7,
+          "x": 572,
+          "y": 232
+        },
+        "player_position": {
+          "x": 572,
+          "y": 232,
+          "facing": 0
+        },
+        "proc038": [
+          "876"
+        ]
+      }
+    },
+    {
+      "physical_resource": 45,
+      "logical_sources": [
+        {
+          "logical_map": 11,
+          "condition": "always"
+        }
+      ],
+      "script_id": 134,
+      "cell_count": 4,
+      "bbox": [
+        1,
+        13,
+        4,
+        13
+      ],
+      "cells": [
+        [
+          1,
+          13
+        ],
+        [
+          2,
+          13
+        ],
+        [
+          3,
+          13
+        ],
+        [
+          4,
+          13
+        ]
+      ],
+      "script": {
+        "script_id": 134,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 10,
+          "x": 24,
+          "y": 152
+        },
+        "player_position": {
+          "x": 24,
+          "y": 152,
+          "facing": 0
+        }
+      }
+    },
+    {
+      "physical_resource": 46,
+      "logical_sources": [
+        {
+          "logical_map": 41,
+          "condition": "always"
+        }
+      ],
+      "script_id": 559,
+      "cell_count": 4,
+      "bbox": [
+        19,
+        27,
+        22,
+        27
+      ],
+      "cells": [
+        [
+          19,
+          27
+        ],
+        [
+          20,
+          27
+        ],
+        [
+          21,
+          27
+        ],
+        [
+          22,
+          27
+        ]
+      ],
+      "script": {
+        "script_id": 559,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 7,
+          "x": 992,
+          "y": 240
+        },
+        "player_position": {
+          "x": 992,
+          "y": 240,
+          "facing": 0
+        }
+      }
+    },
+    {
+      "physical_resource": 46,
+      "logical_sources": [
+        {
+          "logical_map": 41,
+          "condition": "always"
+        }
+      ],
+      "script_id": 560,
+      "cell_count": 4,
+      "bbox": [
+        3,
+        27,
+        6,
+        27
+      ],
+      "cells": [
+        [
+          3,
+          27
+        ],
+        [
+          4,
+          27
+        ],
+        [
+          5,
+          27
+        ],
+        [
+          6,
+          27
+        ]
+      ],
+      "script": {
+        "script_id": 560,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 7,
+          "x": 944,
+          "y": 232
+        },
+        "player_position": {
+          "x": 944,
+          "y": 232,
+          "facing": 0
+        }
+      }
+    },
+    {
+      "physical_resource": 46,
+      "logical_sources": [
+        {
+          "logical_map": 41,
+          "condition": "always"
+        }
+      ],
+      "script_id": 561,
+      "cell_count": 4,
+      "bbox": [
+        25,
+        18,
+        28,
+        18
+      ],
+      "cells": [
+        [
+          25,
+          18
+        ],
+        [
+          26,
+          18
+        ],
+        [
+          27,
+          18
+        ],
+        [
+          28,
+          18
+        ]
+      ],
+      "script": {
+        "script_id": 561,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 42,
+          "x": 216,
+          "y": 96
+        },
+        "player_position": {
+          "x": 216,
+          "y": 96,
+          "facing": 1
+        }
+      }
+    },
+    {
+      "physical_resource": 47,
+      "logical_sources": [
+        {
+          "logical_map": 42,
+          "condition": "always"
+        }
+      ],
+      "script_id": 568,
+      "cell_count": 4,
+      "bbox": [
+        25,
+        13,
+        28,
+        13
+      ],
+      "cells": [
+        [
+          25,
+          13
+        ],
+        [
+          26,
+          13
+        ],
+        [
+          27,
+          13
+        ],
+        [
+          28,
+          13
+        ]
+      ],
+      "script": {
+        "script_id": 568,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 41,
+          "x": 216,
+          "y": 168
+        },
+        "player_position": {
+          "x": 216,
+          "y": 168,
+          "facing": 0
+        }
+      }
+    },
+    {
+      "physical_resource": 48,
+      "logical_sources": [
+        {
+          "logical_map": 38,
+          "condition": "always"
+        }
+      ],
+      "script_id": 519,
+      "cell_count": 4,
+      "bbox": [
+        13,
+        27,
+        16,
+        27
+      ],
+      "cells": [
+        [
+          13,
+          27
+        ],
+        [
+          14,
+          27
+        ],
+        [
+          15,
+          27
+        ],
+        [
+          16,
+          27
+        ]
+      ],
+      "script": {
+        "script_id": 519,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 7,
+          "x": 296,
+          "y": 120
+        },
+        "player_position": {
+          "x": 296,
+          "y": 120,
+          "facing": 0
+        },
+        "proc038": [
+          "36"
+        ]
+      }
+    },
+    {
+      "physical_resource": 49,
+      "logical_sources": [
+        {
+          "logical_map": 40,
+          "condition": "always"
+        }
+      ],
+      "script_id": 550,
+      "cell_count": 4,
+      "bbox": [
+        13,
+        27,
+        16,
+        27
+      ],
+      "cells": [
+        [
+          13,
+          27
+        ],
+        [
+          14,
+          27
+        ],
+        [
+          15,
+          27
+        ],
+        [
+          16,
+          27
+        ]
+      ],
+      "script": {
+        "script_id": 550,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 3,
+          "x": 612,
+          "y": 248
+        },
+        "player_position": {
+          "x": 612,
+          "y": 248,
+          "facing": 0
+        },
+        "proc038": [
+          "874"
+        ]
+      }
+    },
+    {
+      "physical_resource": 50,
+      "logical_sources": [
+        {
+          "logical_map": 30,
+          "condition": "always"
+        }
+      ],
+      "script_id": 338,
+      "cell_count": 4,
+      "bbox": [
+        13,
+        27,
+        16,
+        27
+      ],
+      "cells": [
+        [
+          13,
+          27
+        ],
+        [
+          14,
+          27
+        ],
+        [
+          15,
+          27
+        ],
+        [
+          16,
+          27
+        ]
+      ],
+      "script": {
+        "script_id": 338,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 5,
+          "x": 480,
+          "y": 168
+        },
+        "player_position": {
+          "x": 480,
+          "y": 168,
+          "facing": 0
+        }
+      }
+    },
+    {
+      "physical_resource": 51,
+      "logical_sources": [
+        {
+          "logical_map": 14,
+          "condition": "always"
+        }
+      ],
+      "script_id": 188,
+      "cell_count": 4,
+      "bbox": [
+        13,
+        27,
+        16,
+        27
+      ],
+      "cells": [
+        [
+          13,
+          27
+        ],
+        [
+          14,
+          27
+        ],
+        [
+          15,
+          27
+        ],
+        [
+          16,
+          27
+        ]
+      ],
+      "script": {
+        "script_id": 188,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 5,
+          "x": 400,
+          "y": 168
+        },
+        "player_position": {
+          "x": 400,
+          "y": 168,
+          "facing": 0
+        }
+      }
+    },
+    {
+      "physical_resource": 52,
+      "logical_sources": [
+        {
+          "logical_map": 28,
+          "condition": "always"
+        }
+      ],
+      "script_id": 329,
+      "cell_count": 4,
+      "bbox": [
+        13,
+        27,
+        16,
+        27
+      ],
+      "cells": [
+        [
+          13,
+          27
+        ],
+        [
+          14,
+          27
+        ],
+        [
+          15,
+          27
+        ],
+        [
+          16,
+          27
+        ]
+      ],
+      "script": {
+        "script_id": 329,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 4,
+          "x": 372,
+          "y": 312
+        },
+        "player_position": {
+          "x": 372,
+          "y": 312,
+          "facing": 0
+        }
+      }
+    },
+    {
+      "physical_resource": 53,
+      "logical_sources": [
+        {
+          "logical_map": 18,
+          "condition": "always"
+        }
+      ],
+      "script_id": 228,
+      "cell_count": 4,
+      "bbox": [
+        13,
+        27,
+        16,
+        27
+      ],
+      "cells": [
+        [
+          13,
+          27
+        ],
+        [
+          14,
+          27
+        ],
+        [
+          15,
+          27
+        ],
+        [
+          16,
+          27
+        ]
+      ],
+      "script": {
+        "script_id": 228,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 0,
+          "x": 360,
+          "y": 144
+        },
+        "player_position": {
+          "x": 360,
+          "y": 144,
+          "facing": 0
+        }
+      }
+    },
+    {
+      "physical_resource": 54,
+      "logical_sources": [
+        {
+          "logical_map": 35,
+          "condition": "always"
+        }
+      ],
+      "script_id": 430,
+      "cell_count": 4,
+      "bbox": [
+        13,
+        27,
+        16,
+        27
+      ],
+      "cells": [
+        [
+          13,
+          27
+        ],
+        [
+          14,
+          27
+        ],
+        [
+          15,
+          27
+        ],
+        [
+          16,
+          27
+        ]
+      ],
+      "script": {
+        "script_id": 430,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 1,
+          "x": 260,
+          "y": 504
+        },
+        "player_position": {
+          "x": 260,
+          "y": 504,
+          "facing": 0
+        },
+        "proc038": [
+          "693",
+          "1131"
+        ]
+      }
+    },
+    {
+      "physical_resource": 55,
+      "logical_sources": [
+        {
+          "logical_map": 39,
+          "condition": "always"
+        }
+      ],
+      "script_id": 541,
+      "cell_count": 4,
+      "bbox": [
+        13,
+        27,
+        16,
+        27
+      ],
+      "cells": [
+        [
+          13,
+          27
+        ],
+        [
+          14,
+          27
+        ],
+        [
+          15,
+          27
+        ],
+        [
+          16,
+          27
+        ]
+      ],
+      "script": {
+        "script_id": 541,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 7,
+          "x": 548,
+          "y": 106
+        },
+        "player_position": {
+          "x": 548,
+          "y": 106,
+          "facing": 0
+        }
+      }
+    },
+    {
+      "physical_resource": 56,
+      "logical_sources": [
+        {
+          "logical_map": 52,
+          "condition": "always"
+        },
+        {
+          "logical_map": 308,
+          "condition": "always"
+        }
+      ],
+      "script_id": 339,
+      "cell_count": 4,
+      "bbox": [
+        13,
+        25,
+        16,
+        25
+      ],
+      "cells": [
+        [
+          13,
+          25
+        ],
+        [
+          14,
+          25
+        ],
+        [
+          15,
+          25
+        ],
+        [
+          16,
+          25
+        ]
+      ],
+      "script": {
+        "script_id": 339,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "proc038": [
+          "977"
+        ],
+        "indirect_route": {
+          "via_script": 977,
+          "facing_required": 0,
+          "cases": [
+            {
+              "when_source_logical_range": [
+                52,
+                307
+              ],
+              "destination": {
+                "logical_map": 0,
+                "x": 900,
+                "y": 350,
+                "facing": 0
+              }
+            },
+            {
+              "when_source_logical_range": [
+                308,
+                563
+              ],
+              "destination": {
+                "logical_map": 0,
+                "x": 424,
+                "y": 448,
+                "facing": 0
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "physical_resource": 60,
+      "logical_sources": [
+        {
+          "logical_map": 43,
+          "condition": "always"
+        }
+      ],
+      "script_id": 400,
+      "cell_count": 4,
+      "bbox": [
+        13,
+        19,
+        16,
+        19
+      ],
+      "cells": [
+        [
+          13,
+          19
+        ],
+        [
+          14,
+          19
+        ],
+        [
+          15,
+          19
+        ],
+        [
+          16,
+          19
+        ]
+      ],
+      "script": {
+        "script_id": 400,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 317,
+          "x": 160,
+          "y": 24
+        },
+        "player_position": {
+          "x": 120,
+          "y": 32,
+          "facing": 0
+        }
+      }
+    },
+    {
+      "physical_resource": 61,
+      "logical_sources": [
+        {
+          "logical_map": 317,
+          "condition": "always"
+        }
+      ],
+      "script_id": 401,
+      "cell_count": 12,
+      "bbox": [
+        13,
+        0,
+        16,
+        2
+      ],
+      "cells": [
+        [
+          13,
+          0
+        ],
+        [
+          14,
+          0
+        ],
+        [
+          15,
+          0
+        ],
+        [
+          16,
+          0
+        ],
+        [
+          13,
+          1
+        ],
+        [
+          14,
+          1
+        ],
+        [
+          15,
+          1
+        ],
+        [
+          16,
+          1
+        ],
+        [
+          13,
+          2
+        ],
+        [
+          14,
+          2
+        ],
+        [
+          15,
+          2
+        ],
+        [
+          16,
+          2
+        ]
+      ],
+      "script": {
+        "script_id": 401,
+        "mary_structured": true,
+        "partial_recovery": false,
+        "scene_destination": {
+          "logical_map": 43,
+          "x": 120,
+          "y": 144
+        },
+        "player_position": {
+          "x": 120,
+          "y": 144,
+          "facing": 1
+        }
+      }
+    }
+  ]
+}

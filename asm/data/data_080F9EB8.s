@@ -1038,9 +1038,7 @@ gUnk_080FDD68:
 gUnk_080FDD84:
 	.incbin "baserom.gba", 0xFDD84, 0x54
 
-	.global gUnk_080FDDD8
-gUnk_080FDDD8:
-	.incbin "baserom.gba", 0xFDDD8, 0x68
+	.section .rodata.after_seed_catalog, "a", %progbits
 
 	.global gUnk_080FDE40
 gUnk_080FDE40:
@@ -1074,9 +1072,7 @@ gUnk_080FDEF8:
 gUnk_080FDF50:
 	.incbin "baserom.gba", 0xFDF50, 0x54
 
-	.global gUnk_080FDFA4
-gUnk_080FDFA4:
-	.incbin "baserom.gba", 0xFDFA4, 0x40
+	.section .rodata.after_supermarket_catalog, "a", %progbits
 
 	.global gUnk_080FDFE4
 gUnk_080FDFE4:
@@ -1086,9 +1082,7 @@ gUnk_080FDFE4:
 gUnk_080FE034:
 	.incbin "baserom.gba", 0xFE034, 0x1C
 
-	.global gUnk_080FE050
-gUnk_080FE050:
-	.incbin "baserom.gba", 0xFE050, 0x20
+	.section .rodata.after_medicine_catalog, "a", %progbits
 
 	.global gUnk_080FE070
 gUnk_080FE070:
@@ -1142,9 +1136,7 @@ gUnk_080FE404:
 gUnk_080FE448:
 	.incbin "baserom.gba", 0xFE448, 0x3C
 
-	.global gUnk_080FE484
-gUnk_080FE484:
-	.incbin "baserom.gba", 0xFE484, 0x50
+	.section .rodata.after_mixed_catalog, "a", %progbits
 
 	.global gUnk_080FE4D4
 gUnk_080FE4D4:
@@ -1186,9 +1178,7 @@ gUnk_080FE6E4:
 gUnk_080FE708:
 	.incbin "baserom.gba", 0xFE708, 0x38
 
-	.global gUnk_080FE740
-gUnk_080FE740:
-	.incbin "baserom.gba", 0xFE740, 0x10
+	.section .rodata.after_winery_catalog, "a", %progbits
 
 	.global gUnk_080FE750
 gUnk_080FE750:
@@ -1222,9 +1212,7 @@ gUnk_080FE8AC:
 gUnk_080FE8C0:
 	.incbin "baserom.gba", 0xFE8C0, 0x3C
 
-	.global gUnk_080FE8FC
-gUnk_080FE8FC:
-	.incbin "baserom.gba", 0xFE8FC, 0x78
+	.section .rodata.after_record_article_catalog, "a", %progbits
 
 	.global gUnk_080FE974
 gUnk_080FE974:
@@ -1939,12 +1927,23 @@ gUnk_08100AA0:
 	.incbin "baserom.gba", 0x100AA0, 0x20
 
 	.global gUnk_08100AC0
+	.global gCookingOptionCount
 gUnk_08100AC0:
-	.incbin "baserom.gba", 0x100AC0, 0x2
+gCookingOptionCount:
+	.hword 12
 
 	.global gUnk_08100AC2
+	.global gCookingUtensilIconIds
 gUnk_08100AC2:
-	.incbin "baserom.gba", 0x100AC2, 0x10
+gCookingUtensilIconIds:
+	.hword 265 @ Knife
+	.hword 204 @ Frying Pan
+	.hword 346 @ Pot
+	.hword 64  @ Mixer
+	.hword 472 @ Whisk
+	.hword 313 @ Rolling Pin
+	.hword 327 @ Oven
+	.hword 400 @ Seasoning Set
 
 	.global gUnk_08100AD2
 gUnk_08100AD2:
@@ -1955,8 +1954,10 @@ gUnk_08100BD7:
 	.incbin "baserom.gba", 0x100BD7, 0x20D
 
 	.global gUnk_08100DE4
+	.global gCookingSeasoningSetName
 gUnk_08100DE4:
-	.incbin "baserom.gba", 0x100DE4, 0x10
+gCookingSeasoningSetName:
+	.ascii "Seasoning Set\0\0\0"
 
 	.global gUnk_08100DF4
 gUnk_08100DF4:
@@ -2043,16 +2044,22 @@ gUnk_08101008:
 	.incbin "baserom.gba", 0x101008, 0x18
 
 	.global gUnk_08101020
+	.global gCookingUtensilsTitle
 gUnk_08101020:
-	.incbin "baserom.gba", 0x101020, 0xC
+gCookingUtensilsTitle:
+	.ascii "Utensils\0\0\0\0"
 
 	.global gUnk_0810102C
+	.global gCookingElementsTitle
 gUnk_0810102C:
-	.incbin "baserom.gba", 0x10102C, 0xC
+gCookingElementsTitle:
+	.ascii "Elements\0\0\0\0"
 
 	.global gUnk_08101038
+	.global gCookingUseWhatTitle
 gUnk_08101038:
-	.incbin "baserom.gba", 0x101038, 0xC
+gCookingUseWhatTitle:
+	.ascii "Use what\0\0\0\0"
 
 	.global gUnk_08101044
 gUnk_08101044:
@@ -2063,12 +2070,29 @@ gUnk_08101048:
 	.incbin "baserom.gba", 0x101048, 0x11
 
 	.global gUnk_08101059
+	.global gCookingUiTextRows
 gUnk_08101059:
-	.incbin "baserom.gba", 0x101059, 0xB
+gCookingUiTextRows:
+	.byte 0x81, 0x40, 0x81, 0x40, 0x81, 0x40, 0x81, 0x40, 0x81, 0x40, 0x00
 
 	.global gUnk_08101064
+	.global gCookingOptionNames
 gUnk_08101064:
-	.incbin "baserom.gba", 0x101064, 0x84
+gCookingOptionNames:
+	.asciz "Knife     "
+	.asciz "Frying pan"
+	.asciz "Pot       "
+	.asciz "Mixer     "
+	.asciz "Whisk     "
+	.asciz "Roll.Pin  "
+	.asciz "Oven      "
+	.global gCookingElementNames
+gCookingElementNames:
+	.asciz "Sugar     "
+	.asciz "Salt      "
+	.asciz "Vinegar   "
+	.asciz "Soy Sauce "
+	.asciz "Miso      "
 
 	.global gUnk_081010E8
 gUnk_081010E8:

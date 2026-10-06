@@ -1,0 +1,48 @@
+{
+  "format": "packed-animation-v1",
+  "bank_rom_offset": "0x6678a0",
+  "animation_id": 23,
+  "animation": {
+    "frame_count": 1,
+    "first_frame": 23
+  },
+  "frames": [
+    {
+      "frame_no": 0,
+      "frame_id": 23,
+      "sprite_id": 24,
+      "duration": 0,
+      "descriptor": [
+        1,
+        9,
+        4,
+        60,
+        1,
+        20,
+        0,
+        0
+      ],
+      "parts": [
+        {
+          "part_no": 0,
+          "layout_index": 9,
+          "attr0": "0xf5",
+          "attr1": "0x41ee",
+          "attr2": "0x0",
+          "extra": "0x0",
+          "x": -18,
+          "y": -11,
+          "width": 16,
+          "height": 16,
+          "tile_offset": 0,
+          "tile_count": 4
+        }
+      ],
+      "png": "assets/item_icons/dog_ball/dog_ball_default_facing_2_frame_00.png",
+      "origin_x": -18,
+      "origin_y": -11,
+      "width": 16,
+      "height": 16
+    }
+  ]
+}

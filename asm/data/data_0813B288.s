@@ -102,7 +102,7 @@ gUnk_08667060:
 
 	.global gUnk_086678A0
 gUnk_086678A0:
-	.incbin "baserom.gba", 0x6678A0, 0x30080
+	.incbin "build/assets/item_icon_bank.bin"
 
 	.global gUnk_08697920
 gUnk_08697920:

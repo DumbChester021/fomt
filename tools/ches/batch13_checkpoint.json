@@ -1,0 +1,24 @@
+{
+  "batch": 13,
+  "completed_calls": 10,
+  "completed_at_utc": "2026-09-16T09:31:31.682703+00:00",
+  "head": "8c52b9f",
+  "head_subject": "decompile interaction state id helpers",
+  "contribution_commits_added_this_batch": 0,
+  "major_results": [
+    "ToolLevel accumulator/current/pending helpers traced in retail binary.",
+    "Ordinary upgrade thresholds proven: Copper 6000, Silver 18000, Gold 36000, Mystrile 65535.",
+    "Forge material ids proven: 0x12/0x13/0x14/0x15 request levels 1/2/3/4; Mythic Stone 0x1C requests level 5.",
+    "No fifth ordinary XP cutoff exists; extra Mythic prerequisites remain separate/unproven in this batch.",
+    "Forge transaction stages ToolLevel through func_0800EFB4 only when low three bits of selection field 0x48D8 are zero.",
+    "Forge commit consumes selected material held-first then rucksack fallback and debits stored transaction amount through func_0809ACC0."
+  ],
+  "private_maps": [
+    "tools/ches/tool_progression_map.json"
+  ],
+  "public_working_notes": [
+    "docs/DECOMP_NOTES.md"
+  ],
+  "exactness_required": true,
+  "notes": "Call9 executed and counts but exited late because of a local analysis-script NameError after the important transaction evidence had already printed; it was intentionally not replayed under at-most-once policy."
+}

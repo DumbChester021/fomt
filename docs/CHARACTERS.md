@@ -1,8 +1,9 @@
 # Character identity, state, and lifecycle
 
 This page describes the original US FoMT architecture recovered from source,
-assembly, and the matching ROM. An editable character registry or save
-extension has not been implemented.
+assembly, and the matching ROM. The proposed custom-character workflow is in
+[CUSTOM_CHARACTERS.md](CUSTOM_CHARACTERS.md). An editable character registry or
+save extension has not been implemented.
 
 ## Recovered identity interface
 
@@ -47,6 +48,7 @@ ordinary table path and has an empty name. An ID greater than 42 returns an
 empty name and a birthday with Spring/encoded day 15 (calendar day 16).
 `GetCharacterNpc` returns null for ID 0 or an out-of-range ID; for ID 35 its
 child resolver can also return null when the child is absent.
+A separate retail resolver at `func_080A0878` accepts only IDs 3, 12, 19, 21, 25, and 31 and returns the corresponding `Bachelorette *` records at social offsets 0x098, 0x154, 0x1E4, 0x210, 0x264, and 0x2E4; every other ID returns null. This fixed six-entry boundary is an explicit expansion point for romance-candidate support.
 
 ## Retail roster and persistent offsets
 
@@ -187,13 +189,24 @@ The shared fields following the actor base are:
 | +0x44, +0x46 | Animation bases supplied during construction |
 
 The actual entity creation route is `func_0801A8E0` in
-[game_state.s](../asm/game_state.s). It accesses an indexed pointer slot at
-owner+0x008+4*selector, releases an existing object, then uses a 94-entry
-jump table for selectors 0..93. Its surrounding initialization iterates
-0..99. Raw code at **0x0801FD00** is an unchecked lookup of that same pointer
-array. Character IDs and entity selectors overlap for the original residents
-but are different domains: **entity selector 43 is already occupied**.
-Increasing `CHARACTER_COUNT` cannot resize or register these objects.
+[game_state.s](../asm/game_state.s). The coherent factory region is
+`0x0801A8E0..0x0801B497` (0xBB8 / 3,000 bytes); the assembler label at
+`0x0801B464` is inside its live epilogue rather than a standalone helper. The
+factory accesses the indexed pointer array at owner+0x008+4*selector and uses
+a 94-entry jump table for selectors 0..93. All 94 selectors are mapped to 58
+unique construction targets. Selectors **1..34 are exactly character IDs
+1..34**, selector 35 is the child, and selectors 36..42 are the seven Harvest
+Sprites. **Entity selector 43 is already occupied.** Its surrounding
+initialization still iterates 0..99.
+
+The native indexed lookup and teardown boundary is now matching C++ in
+[game_object_entity_lookup.cc](../src/game_object_entity_lookup.cc).
+`GameObject::vfunc_40` and `GameObject::vfunc_44` return the indexed entity
+slot, while `GameObject::vfunc_3C` deletes a present entity and clears that
+slot. The lookup itself has no range check, so caller-specific bounds remain
+important. Character IDs and entity selectors are related for the original
+resident range but remain different domains. Increasing `CHARACTER_COUNT`
+cannot resize or register runtime entity slots.
 
 A fully traced ordinary example is Lillia:
 
@@ -224,30 +237,42 @@ slot numbers without identifying the receiver type.
 `GetCharacterLocation` wraps persistent lookup and returns an `ActorLocation`
 by value. Its null-record fallback is map 2, x=0, y=0, facing=0; it does not
 create or register an NPC.
-`func_080A0518` scans IDs 1..42 for friendship while excluding a hard-coded
-subset. `func_080A041C` and `func_080A0490` explicitly inspect the six existing
-bachelorettes. These routines remain in
-[code_809E804.s](../asm/code_809E804.s). Widening the name helper alone would
-leave these behaviors unchanged.
 
-Dialogue needs both script bytecode and an interaction/trigger route. Graphics
-need compatible animation/frame providers, palettes, tile/OAM resources, and
-display assets. The added-NPC registry, native ID routing, asset authoring,
-save extension, romance integration, and runtime capacity are still design or
-research work.
+The social resolver boundary is now exact source. `src/character_info.cc` owns
+the early fixed bachelorette/Harvest-Sprite/child resolver block at
+`080A01F8..080A03B7`; `src/character_social.cc` owns the later broad NPC plus
+fixed bachelorette/Harvest-Sprite resolver block at `080A06B0..080A0A1B`. The
+six bachelorettes are still hard-coded, so a seventh candidate needs an
+extensible resolver policy rather than only a new record.
+
+Native social calls are also mapped: 124..133 use the broad NPC resolver for
+friendship/talk/gift state, while 134..136 use the fixed bachelorette resolver
+for love. `src/heart_event_days.cc` owns exact `func_08045584`;
+`func_080455D8` is behavior-complete but parked at an exact-size five-byte
+scheduling mismatch. `func_080A0518` still scans IDs 1..42 for friendship with
+a hard-coded exclusion subset, and `func_080A041C` / `func_080A0490` remain
+other explicit six-bachelorette consumers.
+
+Dialogue still needs both script bytecode and an interaction/trigger route.
+Graphics need compatible animation/frame providers, palettes, tile/OAM
+resources, and display assets. Added-NPC registration, asset authoring, later
+romance spouse/rival/wedding/UI logic, persistence, and runtime capacity remain
+design or research work. See [CUSTOM_CHARACTERS.md](CUSTOM_CHARACTERS.md) for
+the phased plan and acceptance criteria.
 
 ## Matching validation
 
 The linker keeps the original identity helpers and location helper at their
 retail positions, the two scheduling helpers at 0x0803D688..0x0803DA23, and
-Lillia's pair at 0x08035AFC..0x08035B63. Following assembly boundaries and
-all original callable aliases remain unchanged. The shared header introduces
-no duplicate vtable; existing `ANpcEntity` code remains byte-identical.
+Lillia's pair at 0x08035AFC..0x08035B63. The October 5 resolver splits preserve
+the original addresses for `080A01F8..080A03B7` and `080A06B0..080A0A1B`;
+`func_08045584` is likewise sourced at its retail address. Following assembly
+boundaries and callable aliases remain unchanged.
 
 Run `make compare` and `sha1sum -c fomt.sha1` after source/data/interface
-changes. Both forced full-ROM builds verified the five-function support unit
-with the tracked compiler. The unit adds 1,128 linked source bytes; documentation
-updates do not change the ROM or count as new source reconstruction.
+changes. The current exact worktree reports **64,536 / 940,036 = 6.8653%**
+source with the retail SHA1 unchanged. Documentation updates do not change the
+ROM or count as new source reconstruction.
 
 The readonly character table occupies exactly 0x08104258..0x081043AF. Its
 following `bad_alloc` data starts at 0x081043B0, and the next named block stays

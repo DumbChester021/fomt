@@ -2,6 +2,8 @@
 
 This is a decompilation of the 2003 GBA game "Harvest Moon: Friends of Mineral Town" (US).
 
+> New to this repository? Start with **[START_HERE.md](./START_HERE.md)** for a plain-English map of the folders, game systems, build flow, and recommended reading order.
+
 It builds the following ROM:
 
 * **[fomt.gba]** `sha1: a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`
@@ -11,6 +13,24 @@ It builds the following ROM:
 ## Setting up
 
 See [INSTALL.md](./INSTALL.md).
+
+## Reconstruction progress
+
+Run `make progress` for separate code, data/assets, overall meaningful-ROM, and
+PRET-style contiguous tail free-space metrics. Asset progress counts only bytes
+that are actually regenerated from editable project-side sources; opaque copied
+`.incbin` data does not count. Current expansion-focused work also pairs asset
+promotion with the runtime code that owns, interprets, loads, or renders the
+resource rather than harvesting anonymous assets for percentage alone. See
+[`docs/ASSET_DECOMPILATION.md`](./docs/ASSET_DECOMPILATION.md).
+
+## Editable item graphics
+
+The retail Tool/Food/Article icon set is available as indexed PNG source under
+`assets/item_icons/`. The normal build recompiles those assets into the packed
+GBA sprite bank while preserving the matching retail ROM. See
+[`assets/item_icons/README.md`](./assets/item_icons/README.md) for the
+round-trip and editing workflow.
 
 ## Contributing
 

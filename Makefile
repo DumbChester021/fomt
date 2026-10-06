@@ -16,6 +16,10 @@ ASM_DIR = asm
 DATA_ASM_DIR = asm/data
 BUILD_DIR = build
 
+ITEM_ICON_BANK := $(BUILD_DIR)/assets/item_icon_bank.bin
+ITEM_ICON_MANIFEST := assets/item_icons/manifest.json
+ITEM_ICON_ASSETS := $(shell find assets/item_icons -type f \( -name '*.png' -o -name '*.json' \) ! -name 'manifest.json' | sort)
+
 # ====================
 # = TOOL DEFINITIONS =
 # ====================
@@ -87,7 +91,7 @@ compare: $(ROM)
 	sha1sum -c $(BUILD_NAME).sha1
 
 progress: $(ROM)
-	@perl tools/scripts/calcrom.pl $(MAP)
+	@python3 tools/scripts/calcprogress.py $(MAP)
 	@sha1sum -c $(BUILD_NAME).sha1
 	@printf "branch: "
 	@git branch --show-current
@@ -131,6 +135,14 @@ $(BUILD_DIR)/%.o: %.cc $(BUILD_DIR)/%.d
 # ASM dependency file (dummy, generated with the object)
 $(BUILD_DIR)/%.d: $(BUILD_DIR)/%.o
 	@touch $@
+
+# Generated item-icon bank. Converted icons come from editable PNG/JSON assets;
+# unresolved portions of the packed retail bank remain preserved from baserom.
+$(ITEM_ICON_BANK): baserom.gba tools/packed_sprite_bank.py $(ITEM_ICON_MANIFEST) $(ITEM_ICON_ASSETS)
+	@mkdir -p $(dir $@)
+	@python3 tools/packed_sprite_bank.py build-bank --manifest $(ITEM_ICON_MANIFEST) --out $@
+
+$(BUILD_DIR)/asm/data/data_0813B288.o: $(ITEM_ICON_BANK)
 
 # ASM object
 $(BUILD_DIR)/%.o: %.s

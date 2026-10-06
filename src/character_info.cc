@@ -1,4 +1,6 @@
 #include "character_info.hh"
+#include "bachelorette.hh"
+#include "harvest_sprite.hh"
 
 EXTERN_C
 extern char const gUnk_08104108[];
@@ -174,3 +176,92 @@ EC Npc * GetCharacterNpc(void * social_state, unsigned int character_id)
 }
 
 EC Npc * func_080A0030(void * social_state, unsigned int character_id) ALIAS(GetCharacterNpc);
+
+
+EC Bachelorette * func_080A01F8(void * social_state, unsigned int character_id)
+{
+    u8 * base = static_cast<u8 *>(social_state);
+
+    switch (character_id)
+    {
+    default: return 0;
+    case CHARACTER_ID_POPURI: return reinterpret_cast<Bachelorette *>(base + 0x098);
+    case CHARACTER_ID_MARY: return reinterpret_cast<Bachelorette *>(base + 0x154);
+    case CHARACTER_ID_KAREN: return reinterpret_cast<Bachelorette *>(base + 0x1E4);
+    case CHARACTER_ID_ELLI: return reinterpret_cast<Bachelorette *>(base + 0x210);
+    case CHARACTER_ID_ANN: return reinterpret_cast<Bachelorette *>(base + 0x264);
+    case CHARACTER_ID_HARVEST_GODDESS: return reinterpret_cast<Bachelorette *>(base + 0x2E4);
+    }
+}
+
+EC HarvestSprite * func_080A02B0(void * social_state, unsigned int character_id)
+{
+    u8 * base = static_cast<u8 *>(social_state);
+
+    switch (character_id)
+    {
+    default: return 0;
+    case 36: return reinterpret_cast<HarvestSprite *>(base + 0x33C);
+    case 37: return reinterpret_cast<HarvestSprite *>(base + 0x360);
+    case 38: return reinterpret_cast<HarvestSprite *>(base + 0x384);
+    case 39: return reinterpret_cast<HarvestSprite *>(base + 0x3A8);
+    case 40: return reinterpret_cast<HarvestSprite *>(base + 0x3CC);
+    case 41: return reinterpret_cast<HarvestSprite *>(base + 0x3F0);
+    case 42: return reinterpret_cast<HarvestSprite *>(base + 0x414);
+    }
+}
+
+EC HarvestSprite * func_080A031C(void * social_state, unsigned int sprite_id)
+{
+    u8 * base = static_cast<u8 *>(social_state);
+
+    switch (sprite_id)
+    {
+    default: return 0;
+    case 0: return reinterpret_cast<HarvestSprite *>(base + 0x33C);
+    case 1: return reinterpret_cast<HarvestSprite *>(base + 0x360);
+    case 2: return reinterpret_cast<HarvestSprite *>(base + 0x384);
+    case 3: return reinterpret_cast<HarvestSprite *>(base + 0x3A8);
+    case 4: return reinterpret_cast<HarvestSprite *>(base + 0x3CC);
+    case 5: return reinterpret_cast<HarvestSprite *>(base + 0x3F0);
+    case 6: return reinterpret_cast<HarvestSprite *>(base + 0x414);
+    }
+}
+
+EC Npc * func_080A0384(void * social_state)
+{
+    u8 * base = static_cast<u8 *>(social_state);
+    int present = base[3] << 30;
+    Npc * result = 0;
+
+    if (present < 0)
+        result = reinterpret_cast<Npc *>(base + 4);
+
+    return result;
+}
+
+EC unsigned int func_080A039C(void const * social_state)
+{
+    u8 const * base = static_cast<u8 const *>(social_state);
+    return (static_cast<unsigned int>(base[3]) << 27) >> 29;
+}
+
+EC void func_080A03A4(void * social_state, unsigned int value)
+{
+    u8 * base = static_cast<u8 *>(social_state);
+    register unsigned int bits asm("r1") = value;
+    {
+        register int mask asm("r2") = 7;
+        bits &= mask;
+    }
+    bits <<= 2;
+
+    register unsigned int old_value asm("r3") = base[3];
+    asm volatile("" : : : "r2");
+
+    register int result asm("r2") = 29;
+    result = -result;
+    result &= old_value;
+    result |= bits;
+    base[3] = result;
+}

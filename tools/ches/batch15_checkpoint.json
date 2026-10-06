@@ -1,0 +1,30 @@
+{
+  "batch": 15,
+  "calls_executed": 10,
+  "domain": "progression/event gates - relationship architecture",
+  "head": "8c52b9f",
+  "head_log": "8c52b9f decompile interaction state id helpers",
+  "contribution_commits_this_batch": [],
+  "staged_index": "EMPTY",
+  "whole_rom_exact": true,
+  "expected_sha1": "a2fc3574f0a65a4fcf7682fb274b9d7eebdef963",
+  "relationship_findings": {
+    "actor_names": {
+      "0x03": "Popuri",
+      "0x0C": "Mary",
+      "0x13": "Karen",
+      "0x15": "Elli",
+      "0x19": "Ann",
+      "0x1F": "H. Goddess"
+    },
+    "counter_maxima": {
+      "player_events": 6,
+      "rival_events": 5
+    },
+    "func_08045584": "stage-specific elapsed-days query: player count==5 uses bugged getter returning days_since_rival_event; rival count==4 uses rival elapsed-days getter",
+    "func_080455D8": "tri-state gate: 1 if interaction/state bit set; otherwise 2 if selected event count >= threshold; else 0",
+    "selector_map": "tools/ches/progression_event_gates_map.json"
+  },
+  "correction": "Earlier Call7/Call9 claim that rival threshold 5 was unreachable is superseded; RivalEventUpdate permits count 5.",
+  "status": "## ches-dev...ches/ches-dev\n M README.md\n?? START_HERE.md\n?? docs/\n?? tools/ches/"
+}

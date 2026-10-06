@@ -1,0 +1,19 @@
+{
+  "batch": 10,
+  "calls_completed": 10,
+  "head": "8c52b9f",
+  "calendar_query_selectors": {
+    ".L0804626C": 0,
+    ".L08046296": 1,
+    ".L080462A4": 2,
+    ".L080462B0": 3,
+    ".L080462BE": 4,
+    ".L080462D0": 5
+  },
+  "money_history": "daily 30-entry income/spend ledger; seasonal 4-entry income/spend ledger; calendar-rollover proven",
+  "calendar": "GameDate at +0x11 proven; 30 days/season, 4 seasons/year",
+  "clock": "packed GameTime at +0x12/+0x13; hour bits0..4; minute bits5..10",
+  "year_byte_status": "GameState+0x10 decode/weekday arithmetic mapped; semantic label only promoted if corroborating write evidence is present in Call10 output",
+  "contribution_code_changed": false,
+  "private_docs_tools_only": true
+}

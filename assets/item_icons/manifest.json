@@ -1,0 +1,2916 @@
+{
+  "icons": [
+    {
+      "kind": "tool",
+      "tag": "IRON_SICKLE",
+      "icon_id": 403,
+      "png": "assets/item_icons/tool/iron_sickle.png",
+      "meta": "assets/item_icons/tool/iron_sickle.json"
+    },
+    {
+      "kind": "tool",
+      "tag": "COPPER_SICKLE",
+      "icon_id": 404,
+      "png": "assets/item_icons/tool/copper_sickle.png",
+      "meta": "assets/item_icons/tool/copper_sickle.json"
+    },
+    {
+      "kind": "tool",
+      "tag": "SILVER_SICKLE",
+      "icon_id": 405,
+      "png": "assets/item_icons/tool/silver_sickle.png",
+      "meta": "assets/item_icons/tool/silver_sickle.json"
+    },
+    {
+      "kind": "tool",
+      "tag": "GOLD_SICKLE",
+      "icon_id": 406,
+      "png": "assets/item_icons/tool/gold_sickle.png",
+      "meta": "assets/item_icons/tool/gold_sickle.json"
+    },
+    {
+      "kind": "tool",
+      "tag": "MYSTRILE_SICKLE",
+      "icon_id": 407,
+      "png": "assets/item_icons/tool/mystrile_sickle.png",
+      "meta": "assets/item_icons/tool/mystrile_sickle.json"
+    },
+    {
+      "kind": "tool",
+      "tag": "CURSED_SICKLE",
+      "icon_id": 409,
+      "png": "assets/item_icons/tool/cursed_sickle.png",
+      "meta": "assets/item_icons/tool/cursed_sickle.json"
+    },
+    {
+      "kind": "tool",
+      "tag": "BLESSED_SICKLE",
+      "icon_id": 408,
+      "png": "assets/item_icons/tool/blessed_sickle.png",
+      "meta": "assets/item_icons/tool/blessed_sickle.json"
+    },
+    {
+      "kind": "tool",
+      "tag": "MYTHIC_SICKLE",
+      "icon_id": 410,
+      "png": "assets/item_icons/tool/mythic_sickle.png",
+      "meta": "assets/item_icons/tool/mythic_sickle.json"
+    },
+    {
+      "kind": "tool",
+      "tag": "IRON_HOE",
+      "icon_id": 234,
+      "png": "assets/item_icons/tool/iron_hoe.png",
+      "meta": "assets/item_icons/tool/iron_hoe.json"
+    },
+    {
+      "kind": "tool",
+      "tag": "COPPER_HOE",
+      "icon_id": 235,
+      "png": "assets/item_icons/tool/copper_hoe.png",
+      "meta": "assets/item_icons/tool/copper_hoe.json"
+    },
+    {
+      "kind": "tool",
+      "tag": "SILVER_HOE",
+      "icon_id": 236,
+      "png": "assets/item_icons/tool/silver_hoe.png",
+      "meta": "assets/item_icons/tool/silver_hoe.json"
+    },
+    {
+      "kind": "tool",
+      "tag": "GOLD_HOE",
+      "icon_id": 237,
+      "png": "assets/item_icons/tool/gold_hoe.png",
+      "meta": "assets/item_icons/tool/gold_hoe.json"
+    },
+    {
+      "kind": "tool",
+      "tag": "MYSTRILE_HOE",
+      "icon_id": 238,
+      "png": "assets/item_icons/tool/mystrile_hoe.png",
+      "meta": "assets/item_icons/tool/mystrile_hoe.json"
+    },
+    {
+      "kind": "tool",
+      "tag": "CURSED_HOE",
+      "icon_id": 240,
+      "png": "assets/item_icons/tool/cursed_hoe.png",
+      "meta": "assets/item_icons/tool/cursed_hoe.json"
+    },
+    {
+      "kind": "tool",
+      "tag": "BLESSED_HOE",
+      "icon_id": 239,
+      "png": "assets/item_icons/tool/blessed_hoe.png",
+      "meta": "assets/item_icons/tool/blessed_hoe.json"
+    },
+    {
+      "kind": "tool",
+      "tag": "MYTHIC_HOE",
+      "icon_id": 241,
+      "png": "assets/item_icons/tool/mythic_hoe.png",
+      "meta": "assets/item_icons/tool/mythic_hoe.json"
+    },
+    {
+      "kind": "tool",
+      "tag": "IRON_AXE",
+      "icon_id": 13,
+      "png": "assets/item_icons/tool/iron_axe.png",
+      "meta": "assets/item_icons/tool/iron_axe.json"
+    },
+    {
+      "kind": "tool",
+      "tag": "COPPER_AXE",
+      "icon_id": 14,
+      "png": "assets/item_icons/tool/copper_axe.png",
+      "meta": "assets/item_icons/tool/copper_axe.json"
+    },
+    {
+      "kind": "tool",
+      "tag": "SILVER_AXE",
+      "icon_id": 15,
+      "png": "assets/item_icons/tool/silver_axe.png",
+      "meta": "assets/item_icons/tool/silver_axe.json"
+    },
+    {
+      "kind": "tool",
+      "tag": "GOLD_AXE",
+      "icon_id": 16,
+      "png": "assets/item_icons/tool/gold_axe.png",
+      "meta": "assets/item_icons/tool/gold_axe.json"
+    },
+    {
+      "kind": "tool",
+      "tag": "MYSTRILE_AXE",
+      "icon_id": 17,
+      "png": "assets/item_icons/tool/mystrile_axe.png",
+      "meta": "assets/item_icons/tool/mystrile_axe.json"
+    },
+    {
+      "kind": "tool",
+      "tag": "CURSED_AXE",
+      "icon_id": 19,
+      "png": "assets/item_icons/tool/cursed_axe.png",
+      "meta": "assets/item_icons/tool/cursed_axe.json"
+    },
+    {
+      "kind": "tool",
+      "tag": "BLESSED_AXE",
+      "icon_id": 18,
+      "png": "assets/item_icons/tool/blessed_axe.png",
+      "meta": "assets/item_icons/tool/blessed_axe.json"
+    },
+    {
+      "kind": "tool",
+      "tag": "MYTHIC_AXE",
+      "icon_id": 20,
+      "png": "assets/item_icons/tool/mythic_axe.png",
+      "meta": "assets/item_icons/tool/mythic_axe.json"
+    },
+    {
+      "kind": "tool",
+      "tag": "IRON_HAMMER",
+      "icon_id": 223,
+      "png": "assets/item_icons/tool/iron_hammer.png",
+      "meta": "assets/item_icons/tool/iron_hammer.json"
+    },
+    {
+      "kind": "tool",
+      "tag": "COPPER_HAMMER",
+      "icon_id": 224,
+      "png": "assets/item_icons/tool/copper_hammer.png",
+      "meta": "assets/item_icons/tool/copper_hammer.json"
+    },
+    {
+      "kind": "tool",
+      "tag": "SILVER_HAMMER",
+      "icon_id": 225,
+      "png": "assets/item_icons/tool/silver_hammer.png",
+      "meta": "assets/item_icons/tool/silver_hammer.json"
+    },
+    {
+      "kind": "tool",
+      "tag": "GOLD_HAMMER",
+      "icon_id": 226,
+      "png": "assets/item_icons/tool/gold_hammer.png",
+      "meta": "assets/item_icons/tool/gold_hammer.json"
+    },
+    {
+      "kind": "tool",
+      "tag": "MYSTRILE_HAMMER",
+      "icon_id": 227,
+      "png": "assets/item_icons/tool/mystrile_hammer.png",
+      "meta": "assets/item_icons/tool/mystrile_hammer.json"
+    },
+    {
+      "kind": "tool",
+      "tag": "CURSED_HAMMER",
+      "icon_id": 229,
+      "png": "assets/item_icons/tool/cursed_hammer.png",
+      "meta": "assets/item_icons/tool/cursed_hammer.json"
+    },
+    {
+      "kind": "tool",
+      "tag": "BLESSED_HAMMER",
+      "icon_id": 228,
+      "png": "assets/item_icons/tool/blessed_hammer.png",
+      "meta": "assets/item_icons/tool/blessed_hammer.json"
+    },
+    {
+      "kind": "tool",
+      "tag": "MYTHIC_HAMMER",
+      "icon_id": 230,
+      "png": "assets/item_icons/tool/mythic_hammer.png",
+      "meta": "assets/item_icons/tool/mythic_hammer.json"
+    },
+    {
+      "kind": "tool",
+      "tag": "WATERING_CAN",
+      "icon_id": 462,
+      "png": "assets/item_icons/tool/watering_can.png",
+      "meta": "assets/item_icons/tool/watering_can.json"
+    },
+    {
+      "kind": "tool",
+      "tag": "COPPER_WATERING_CAN",
+      "icon_id": 463,
+      "png": "assets/item_icons/tool/copper_watering_can.png",
+      "meta": "assets/item_icons/tool/copper_watering_can.json"
+    },
+    {
+      "kind": "tool",
+      "tag": "SILVER_WATERING_CAN",
+      "icon_id": 464,
+      "png": "assets/item_icons/tool/silver_watering_can.png",
+      "meta": "assets/item_icons/tool/silver_watering_can.json"
+    },
+    {
+      "kind": "tool",
+      "tag": "GOLD_WATERING_CAN",
+      "icon_id": 465,
+      "png": "assets/item_icons/tool/gold_watering_can.png",
+      "meta": "assets/item_icons/tool/gold_watering_can.json"
+    },
+    {
+      "kind": "tool",
+      "tag": "MYSTRILE_WATERING_CAN",
+      "icon_id": 466,
+      "png": "assets/item_icons/tool/mystrile_watering_can.png",
+      "meta": "assets/item_icons/tool/mystrile_watering_can.json"
+    },
+    {
+      "kind": "tool",
+      "tag": "CURSED_WATERING_CAN",
+      "icon_id": 468,
+      "png": "assets/item_icons/tool/cursed_watering_can.png",
+      "meta": "assets/item_icons/tool/cursed_watering_can.json"
+    },
+    {
+      "kind": "tool",
+      "tag": "BLESSED_WATERING_CAN",
+      "icon_id": 467,
+      "png": "assets/item_icons/tool/blessed_watering_can.png",
+      "meta": "assets/item_icons/tool/blessed_watering_can.json"
+    },
+    {
+      "kind": "tool",
+      "tag": "MYTHIC_WATERING_CAN",
+      "icon_id": 469,
+      "png": "assets/item_icons/tool/mythic_watering_can.png",
+      "meta": "assets/item_icons/tool/mythic_watering_can.json"
+    },
+    {
+      "kind": "tool",
+      "tag": "FISHING_ROD",
+      "icon_id": 148,
+      "png": "assets/item_icons/tool/fishing_rod.png",
+      "meta": "assets/item_icons/tool/fishing_rod.json"
+    },
+    {
+      "kind": "tool",
+      "tag": "COPPER_FISHING_ROD",
+      "icon_id": 149,
+      "png": "assets/item_icons/tool/copper_fishing_rod.png",
+      "meta": "assets/item_icons/tool/copper_fishing_rod.json"
+    },
+    {
+      "kind": "tool",
+      "tag": "SILVER_FISHING_ROD",
+      "icon_id": 150,
+      "png": "assets/item_icons/tool/silver_fishing_rod.png",
+      "meta": "assets/item_icons/tool/silver_fishing_rod.json"
+    },
+    {
+      "kind": "tool",
+      "tag": "GOLD_FISHING_ROD",
+      "icon_id": 151,
+      "png": "assets/item_icons/tool/gold_fishing_rod.png",
+      "meta": "assets/item_icons/tool/gold_fishing_rod.json"
+    },
+    {
+      "kind": "tool",
+      "tag": "MYSTRILE_FISHING_ROD",
+      "icon_id": 152,
+      "png": "assets/item_icons/tool/mystrile_fishing_rod.png",
+      "meta": "assets/item_icons/tool/mystrile_fishing_rod.json"
+    },
+    {
+      "kind": "tool",
+      "tag": "CURSED_FISHING_ROD",
+      "icon_id": 154,
+      "png": "assets/item_icons/tool/cursed_fishing_rod.png",
+      "meta": "assets/item_icons/tool/cursed_fishing_rod.json"
+    },
+    {
+      "kind": "tool",
+      "tag": "BLESSED_FISHING_ROD",
+      "icon_id": 153,
+      "png": "assets/item_icons/tool/blessed_fishing_rod.png",
+      "meta": "assets/item_icons/tool/blessed_fishing_rod.json"
+    },
+    {
+      "kind": "tool",
+      "tag": "MYTHIC_FISHING_ROD",
+      "icon_id": 155,
+      "png": "assets/item_icons/tool/mythic_fishing_rod.png",
+      "meta": "assets/item_icons/tool/mythic_fishing_rod.json"
+    },
+    {
+      "kind": "tool",
+      "tag": "COW_MIRACLE_POTION",
+      "icon_id": 91,
+      "png": "assets/item_icons/tool/cow_miracle_potion.png",
+      "meta": "assets/item_icons/tool/cow_miracle_potion.json"
+    },
+    {
+      "kind": "tool",
+      "tag": "SHEEP_MIRACLE_POTION",
+      "icon_id": 402,
+      "png": "assets/item_icons/tool/sheep_miracle_potion.png",
+      "meta": "assets/item_icons/tool/sheep_miracle_potion.json"
+    },
+    {
+      "kind": "tool",
+      "tag": "TURNIP_SEEDS",
+      "icon_id": 458,
+      "png": "assets/item_icons/tool/turnip_seeds.png",
+      "meta": "assets/item_icons/tool/turnip_seeds.json"
+    },
+    {
+      "kind": "tool",
+      "tag": "POTATO_SEEDS",
+      "icon_id": 348,
+      "png": "assets/item_icons/tool/potato_seeds.png",
+      "meta": "assets/item_icons/tool/potato_seeds.json"
+    },
+    {
+      "kind": "tool",
+      "tag": "CUCUMBER_SEEDS",
+      "icon_id": 114,
+      "png": "assets/item_icons/tool/cucumber_seeds.png",
+      "meta": "assets/item_icons/tool/cucumber_seeds.json"
+    },
+    {
+      "kind": "tool",
+      "tag": "STRAWBERRY_SEEDS",
+      "icon_id": 433,
+      "png": "assets/item_icons/tool/strawberry_seeds.png",
+      "meta": "assets/item_icons/tool/strawberry_seeds.json"
+    },
+    {
+      "kind": "tool",
+      "tag": "CABBAGE_SEEDS",
+      "icon_id": 85,
+      "png": "assets/item_icons/tool/cabbage_seeds.png",
+      "meta": "assets/item_icons/tool/cabbage_seeds.json"
+    },
+    {
+      "kind": "tool",
+      "tag": "TOMATO_SEEDS",
+      "icon_id": 450,
+      "png": "assets/item_icons/tool/tomato_seeds.png",
+      "meta": "assets/item_icons/tool/tomato_seeds.json"
+    },
+    {
+      "kind": "tool",
+      "tag": "CORN_SEEDS",
+      "icon_id": 111,
+      "png": "assets/item_icons/tool/corn_seeds.png",
+      "meta": "assets/item_icons/tool/corn_seeds.json"
+    },
+    {
+      "kind": "tool",
+      "tag": "ONION_SEEDS",
+      "icon_id": 320,
+      "png": "assets/item_icons/tool/onion_seeds.png",
+      "meta": "assets/item_icons/tool/onion_seeds.json"
+    },
+    {
+      "kind": "tool",
+      "tag": "PUMPKIN_SEEDS",
+      "icon_id": 356,
+      "png": "assets/item_icons/tool/pumpkin_seeds.png",
+      "meta": "assets/item_icons/tool/pumpkin_seeds.json"
+    },
+    {
+      "kind": "tool",
+      "tag": "PINEAPPLE_SEEDS",
+      "icon_id": 335,
+      "png": "assets/item_icons/tool/pineapple_seeds.png",
+      "meta": "assets/item_icons/tool/pineapple_seeds.json"
+    },
+    {
+      "kind": "tool",
+      "tag": "EGGPLANT_SEEDS",
+      "icon_id": 134,
+      "png": "assets/item_icons/tool/eggplant_seeds.png",
+      "meta": "assets/item_icons/tool/eggplant_seeds.json"
+    },
+    {
+      "kind": "tool",
+      "tag": "CARROT_SEEDS",
+      "icon_id": 90,
+      "png": "assets/item_icons/tool/carrot_seeds.png",
+      "meta": "assets/item_icons/tool/carrot_seeds.json"
+    },
+    {
+      "kind": "tool",
+      "tag": "SWEET_POTATO_SEEDS",
+      "icon_id": 440,
+      "png": "assets/item_icons/tool/sweet_potato_seeds.png",
+      "meta": "assets/item_icons/tool/sweet_potato_seeds.json"
+    },
+    {
+      "kind": "tool",
+      "tag": "SPINACH_SEEDS",
+      "icon_id": 424,
+      "png": "assets/item_icons/tool/spinach_seeds.png",
+      "meta": "assets/item_icons/tool/spinach_seeds.json"
+    },
+    {
+      "kind": "tool",
+      "tag": "GREEN_PEPPER_SEEDS",
+      "icon_id": 219,
+      "png": "assets/item_icons/tool/green_pepper_seeds.png",
+      "meta": "assets/item_icons/tool/green_pepper_seeds.json"
+    },
+    {
+      "kind": "tool",
+      "tag": "GRASS_SEEDS",
+      "icon_id": 215,
+      "png": "assets/item_icons/tool/grass_seeds.png",
+      "meta": "assets/item_icons/tool/grass_seeds.json"
+    },
+    {
+      "kind": "tool",
+      "tag": "MOON_DROP_SEEDS",
+      "icon_id": 305,
+      "png": "assets/item_icons/tool/moon_drop_seeds.png",
+      "meta": "assets/item_icons/tool/moon_drop_seeds.json"
+    },
+    {
+      "kind": "tool",
+      "tag": "PINK_CAT_SEEDS",
+      "icon_id": 339,
+      "png": "assets/item_icons/tool/pink_cat_seeds.png",
+      "meta": "assets/item_icons/tool/pink_cat_seeds.json"
+    },
+    {
+      "kind": "tool",
+      "tag": "MAGIC_SEEDS",
+      "icon_id": 276,
+      "png": "assets/item_icons/tool/magic_seeds.png",
+      "meta": "assets/item_icons/tool/magic_seeds.json"
+    },
+    {
+      "kind": "tool",
+      "tag": "TOY_FLOWER_SEEDS",
+      "icon_id": 454,
+      "png": "assets/item_icons/tool/toy_flower_seeds.png",
+      "meta": "assets/item_icons/tool/toy_flower_seeds.json"
+    },
+    {
+      "kind": "tool",
+      "tag": "BRUSH",
+      "icon_id": 80,
+      "png": "assets/item_icons/tool/brush.png",
+      "meta": "assets/item_icons/tool/brush.json"
+    },
+    {
+      "kind": "tool",
+      "tag": "MILKER",
+      "icon_id": 294,
+      "png": "assets/item_icons/tool/milker.png",
+      "meta": "assets/item_icons/tool/milker.json"
+    },
+    {
+      "kind": "tool",
+      "tag": "CLIPPER",
+      "icon_id": 222,
+      "png": "assets/item_icons/tool/clipper.png",
+      "meta": "assets/item_icons/tool/clipper.json"
+    },
+    {
+      "kind": "tool",
+      "tag": "BELL",
+      "icon_id": 59,
+      "png": "assets/item_icons/tool/bell.png",
+      "meta": "assets/item_icons/tool/bell.json"
+    },
+    {
+      "kind": "tool",
+      "tag": "ANIMAL_MEDICINE",
+      "icon_id": 6,
+      "png": "assets/item_icons/tool/animal_medicine.png",
+      "meta": "assets/item_icons/tool/animal_medicine.json"
+    },
+    {
+      "kind": "tool",
+      "tag": "BLUE_FEATHER",
+      "icon_id": 67,
+      "png": "assets/item_icons/tool/blue_feather.png",
+      "meta": "assets/item_icons/tool/blue_feather.json"
+    },
+    {
+      "kind": "tool",
+      "tag": "PEDOMETER",
+      "icon_id": 328,
+      "png": "assets/item_icons/tool/pedometer.png",
+      "meta": "assets/item_icons/tool/pedometer.json"
+    },
+    {
+      "kind": "tool",
+      "tag": "TELEPORT_STONE",
+      "icon_id": 165,
+      "png": "assets/item_icons/tool/teleport_stone.png",
+      "meta": "assets/item_icons/tool/teleport_stone.json"
+    },
+    {
+      "kind": "tool",
+      "tag": "GEM_OF_THE_GODDESS",
+      "icon_id": 208,
+      "png": "assets/item_icons/tool/gem_of_the_goddess.png",
+      "meta": "assets/item_icons/tool/gem_of_the_goddess.json"
+    },
+    {
+      "kind": "tool",
+      "tag": "GEM_OF_THE_KAPPA",
+      "icon_id": 262,
+      "png": "assets/item_icons/tool/gem_of_the_kappa.png",
+      "meta": "assets/item_icons/tool/gem_of_the_kappa.json"
+    },
+    {
+      "kind": "tool",
+      "tag": "GEM_OF_TRUTH",
+      "icon_id": 456,
+      "png": "assets/item_icons/tool/gem_of_truth.png",
+      "meta": "assets/item_icons/tool/gem_of_truth.json"
+    },
+    {
+      "kind": "article",
+      "tag": "MOON_DROP_GRASS",
+      "icon_id": 303,
+      "png": "assets/item_icons/article/moon_drop_grass.png",
+      "meta": "assets/item_icons/article/moon_drop_grass.json"
+    },
+    {
+      "kind": "article",
+      "tag": "PINK_CAT_GRASS",
+      "icon_id": 337,
+      "png": "assets/item_icons/article/pink_cat_grass.png",
+      "meta": "assets/item_icons/article/pink_cat_grass.json"
+    },
+    {
+      "kind": "article",
+      "tag": "BLUE_MAGIC_GRASS",
+      "icon_id": 272,
+      "png": "assets/item_icons/article/blue_magic_grass.png",
+      "meta": "assets/item_icons/article/blue_magic_grass.json"
+    },
+    {
+      "kind": "article",
+      "tag": "RED_MAGIC_GRASS",
+      "icon_id": 274,
+      "png": "assets/item_icons/article/red_magic_grass.png",
+      "meta": "assets/item_icons/article/red_magic_grass.json"
+    },
+    {
+      "kind": "article",
+      "tag": "TOY_FLOWER",
+      "icon_id": 452,
+      "png": "assets/item_icons/article/toy_flower.png",
+      "meta": "assets/item_icons/article/toy_flower.json"
+    },
+    {
+      "kind": "article",
+      "tag": "WOOL_S",
+      "icon_id": 488,
+      "png": "assets/item_icons/article/wool_s.png",
+      "meta": "assets/item_icons/article/wool_s.json"
+    },
+    {
+      "kind": "article",
+      "tag": "WOOL_M",
+      "icon_id": 486,
+      "png": "assets/item_icons/article/wool_m.png",
+      "meta": "assets/item_icons/article/wool_m.json"
+    },
+    {
+      "kind": "article",
+      "tag": "WOOL_L",
+      "icon_id": 485,
+      "png": "assets/item_icons/article/wool_l.png",
+      "meta": "assets/item_icons/article/wool_l.json"
+    },
+    {
+      "kind": "article",
+      "tag": "WOOL_G",
+      "icon_id": 484,
+      "png": "assets/item_icons/article/wool_g.png",
+      "meta": "assets/item_icons/article/wool_g.json"
+    },
+    {
+      "kind": "article",
+      "tag": "WOOL_P",
+      "icon_id": 487,
+      "png": "assets/item_icons/article/wool_p.png",
+      "meta": "assets/item_icons/article/wool_p.json"
+    },
+    {
+      "kind": "article",
+      "tag": "WOOL_X",
+      "icon_id": 489,
+      "png": "assets/item_icons/article/wool_x.png",
+      "meta": "assets/item_icons/article/wool_x.json"
+    },
+    {
+      "kind": "article",
+      "tag": "YARN_S",
+      "icon_id": 482,
+      "png": "assets/item_icons/article/yarn_s.png",
+      "meta": "assets/item_icons/article/yarn_s.json"
+    },
+    {
+      "kind": "article",
+      "tag": "YARN_M",
+      "icon_id": 480,
+      "png": "assets/item_icons/article/yarn_m.png",
+      "meta": "assets/item_icons/article/yarn_m.json"
+    },
+    {
+      "kind": "article",
+      "tag": "YARN_L",
+      "icon_id": 479,
+      "png": "assets/item_icons/article/yarn_l.png",
+      "meta": "assets/item_icons/article/yarn_l.json"
+    },
+    {
+      "kind": "article",
+      "tag": "YARN_G",
+      "icon_id": 478,
+      "png": "assets/item_icons/article/yarn_g.png",
+      "meta": "assets/item_icons/article/yarn_g.json"
+    },
+    {
+      "kind": "article",
+      "tag": "YARN_P",
+      "icon_id": 481,
+      "png": "assets/item_icons/article/yarn_p.png",
+      "meta": "assets/item_icons/article/yarn_p.json"
+    },
+    {
+      "kind": "article",
+      "tag": "YARN_X",
+      "icon_id": 483,
+      "png": "assets/item_icons/article/yarn_x.png",
+      "meta": "assets/item_icons/article/yarn_x.json"
+    },
+    {
+      "kind": "article",
+      "tag": "JUNK_ORE",
+      "icon_id": 267,
+      "png": "assets/item_icons/article/junk_ore.png",
+      "meta": "assets/item_icons/article/junk_ore.json"
+    },
+    {
+      "kind": "article",
+      "tag": "COPPER",
+      "icon_id": 108,
+      "png": "assets/item_icons/article/copper.png",
+      "meta": "assets/item_icons/article/copper.json"
+    },
+    {
+      "kind": "article",
+      "tag": "SILVER",
+      "icon_id": 411,
+      "png": "assets/item_icons/article/silver.png",
+      "meta": "assets/item_icons/article/silver.json"
+    },
+    {
+      "kind": "article",
+      "tag": "GOLD",
+      "icon_id": 209,
+      "png": "assets/item_icons/article/gold.png",
+      "meta": "assets/item_icons/article/gold.json"
+    },
+    {
+      "kind": "article",
+      "tag": "MYSTRILE",
+      "icon_id": 299,
+      "png": "assets/item_icons/article/mystrile.png",
+      "meta": "assets/item_icons/article/mystrile.json"
+    },
+    {
+      "kind": "article",
+      "tag": "ORICHALC",
+      "icon_id": 326,
+      "png": "assets/item_icons/article/orichalc.png",
+      "meta": "assets/item_icons/article/orichalc.json"
+    },
+    {
+      "kind": "article",
+      "tag": "ADAMANTITE",
+      "icon_id": 0,
+      "png": "assets/item_icons/article/adamantite.png",
+      "meta": "assets/item_icons/article/adamantite.json"
+    },
+    {
+      "kind": "article",
+      "tag": "MOON_STONE",
+      "icon_id": 302,
+      "png": "assets/item_icons/article/moon_stone.png",
+      "meta": "assets/item_icons/article/moon_stone.json"
+    },
+    {
+      "kind": "article",
+      "tag": "SAND_ROSE",
+      "icon_id": 397,
+      "png": "assets/item_icons/article/sand_rose.png",
+      "meta": "assets/item_icons/article/sand_rose.json"
+    },
+    {
+      "kind": "article",
+      "tag": "PINK_DIAMOND",
+      "icon_id": 336,
+      "png": "assets/item_icons/article/pink_diamond.png",
+      "meta": "assets/item_icons/article/pink_diamond.json"
+    },
+    {
+      "kind": "article",
+      "tag": "ALEXANDRITE",
+      "icon_id": 3,
+      "png": "assets/item_icons/article/alexandrite.png",
+      "meta": "assets/item_icons/article/alexandrite.json"
+    },
+    {
+      "kind": "article",
+      "tag": "MYTHIC_STONE",
+      "icon_id": 395,
+      "png": "assets/item_icons/article/mythic_stone.png",
+      "meta": "assets/item_icons/article/mythic_stone.json"
+    },
+    {
+      "kind": "article",
+      "tag": "DIAMOND",
+      "icon_id": 120,
+      "png": "assets/item_icons/article/diamond.png",
+      "meta": "assets/item_icons/article/diamond.json"
+    },
+    {
+      "kind": "article",
+      "tag": "EMERALD",
+      "icon_id": 137,
+      "png": "assets/item_icons/article/emerald.png",
+      "meta": "assets/item_icons/article/emerald.json"
+    },
+    {
+      "kind": "article",
+      "tag": "RUBY",
+      "icon_id": 393,
+      "png": "assets/item_icons/article/ruby.png",
+      "meta": "assets/item_icons/article/ruby.json"
+    },
+    {
+      "kind": "article",
+      "tag": "TOPAZ",
+      "icon_id": 451,
+      "png": "assets/item_icons/article/topaz.png",
+      "meta": "assets/item_icons/article/topaz.json"
+    },
+    {
+      "kind": "article",
+      "tag": "PERIDOT",
+      "icon_id": 330,
+      "png": "assets/item_icons/article/peridot.png",
+      "meta": "assets/item_icons/article/peridot.json"
+    },
+    {
+      "kind": "article",
+      "tag": "FLUORITE",
+      "icon_id": 164,
+      "png": "assets/item_icons/article/fluorite.png",
+      "meta": "assets/item_icons/article/fluorite.json"
+    },
+    {
+      "kind": "article",
+      "tag": "AGATE",
+      "icon_id": 2,
+      "png": "assets/item_icons/article/agate.png",
+      "meta": "assets/item_icons/article/agate.json"
+    },
+    {
+      "kind": "article",
+      "tag": "AMETHYST",
+      "icon_id": 5,
+      "png": "assets/item_icons/article/amethyst.png",
+      "meta": "assets/item_icons/article/amethyst.json"
+    },
+    {
+      "kind": "article",
+      "tag": "HARVEST_GODDESS_JEWEL",
+      "icon_id": 207,
+      "png": "assets/item_icons/article/harvest_goddess_jewel.png",
+      "meta": "assets/item_icons/article/harvest_goddess_jewel.json"
+    },
+    {
+      "kind": "article",
+      "tag": "KAPPA_JEWEL",
+      "icon_id": 261,
+      "png": "assets/item_icons/article/kappa_jewel.png",
+      "meta": "assets/item_icons/article/kappa_jewel.json"
+    },
+    {
+      "kind": "article",
+      "tag": "JEWEL_OF_TRUTH",
+      "icon_id": 455,
+      "png": "assets/item_icons/article/jewel_of_truth.png",
+      "meta": "assets/item_icons/article/jewel_of_truth.json"
+    },
+    {
+      "kind": "article",
+      "tag": "THE_SPRING_SUN",
+      "icon_id": 426,
+      "png": "assets/item_icons/article/the_spring_sun.png",
+      "meta": "assets/item_icons/article/the_spring_sun.json"
+    },
+    {
+      "kind": "article",
+      "tag": "THE_SUMMER_SUN",
+      "icon_id": 436,
+      "png": "assets/item_icons/article/the_summer_sun.png",
+      "meta": "assets/item_icons/article/the_summer_sun.json"
+    },
+    {
+      "kind": "article",
+      "tag": "THE_AUTUMN_SUN",
+      "icon_id": 12,
+      "png": "assets/item_icons/article/the_autumn_sun.png",
+      "meta": "assets/item_icons/article/the_autumn_sun.json"
+    },
+    {
+      "kind": "article",
+      "tag": "THE_WINTER_SUN",
+      "icon_id": 476,
+      "png": "assets/item_icons/article/the_winter_sun.png",
+      "meta": "assets/item_icons/article/the_winter_sun.json"
+    },
+    {
+      "kind": "article",
+      "tag": "BRACELET",
+      "icon_id": 75,
+      "png": "assets/item_icons/article/bracelet.png",
+      "meta": "assets/item_icons/article/bracelet.json"
+    },
+    {
+      "kind": "article",
+      "tag": "NECKLACE",
+      "icon_id": 311,
+      "png": "assets/item_icons/article/necklace.png",
+      "meta": "assets/item_icons/article/necklace.json"
+    },
+    {
+      "kind": "article",
+      "tag": "EARRINGS",
+      "icon_id": 123,
+      "png": "assets/item_icons/article/earrings.png",
+      "meta": "assets/item_icons/article/earrings.json"
+    },
+    {
+      "kind": "article",
+      "tag": "BROACH",
+      "icon_id": 79,
+      "png": "assets/item_icons/article/broach.png",
+      "meta": "assets/item_icons/article/broach.json"
+    },
+    {
+      "kind": "article",
+      "tag": "WEEDS",
+      "icon_id": 471,
+      "png": "assets/item_icons/article/weeds.png",
+      "meta": "assets/item_icons/article/weeds.json"
+    },
+    {
+      "kind": "article",
+      "tag": "STONES",
+      "icon_id": 428,
+      "png": "assets/item_icons/article/stones.png",
+      "meta": "assets/item_icons/article/stones.json"
+    },
+    {
+      "kind": "article",
+      "tag": "BRANCHES",
+      "icon_id": 76,
+      "png": "assets/item_icons/article/branches.png",
+      "meta": "assets/item_icons/article/branches.json"
+    },
+    {
+      "kind": "article",
+      "tag": "LITHOGRAPH",
+      "icon_id": 270,
+      "png": "assets/item_icons/article/lithograph.png",
+      "meta": "assets/item_icons/article/lithograph.json"
+    },
+    {
+      "kind": "article",
+      "tag": "MESSAGE_IN_A_BOTTLE",
+      "icon_id": 74,
+      "png": "assets/item_icons/article/message_in_a_bottle.png",
+      "meta": "assets/item_icons/article/message_in_a_bottle.json"
+    },
+    {
+      "kind": "article",
+      "tag": "BALL",
+      "icon_id": 49,
+      "png": "assets/item_icons/article/ball.png",
+      "meta": "assets/item_icons/article/ball.json"
+    },
+    {
+      "kind": "article",
+      "tag": "PIRATE_TREASURE",
+      "icon_id": 340,
+      "png": "assets/item_icons/article/pirate_treasure.png",
+      "meta": "assets/item_icons/article/pirate_treasure.json"
+    },
+    {
+      "kind": "article",
+      "tag": "FOSSIL_OF_FISH",
+      "icon_id": 167,
+      "png": "assets/item_icons/article/fossil_of_fish.png",
+      "meta": "assets/item_icons/article/fossil_of_fish.json"
+    },
+    {
+      "kind": "article",
+      "tag": "EMPTY_CAN",
+      "icon_id": 87,
+      "png": "assets/item_icons/article/empty_can.png",
+      "meta": "assets/item_icons/article/empty_can.json"
+    },
+    {
+      "kind": "article",
+      "tag": "BOOTS",
+      "icon_id": 73,
+      "png": "assets/item_icons/article/boots.png",
+      "meta": "assets/item_icons/article/boots.json"
+    },
+    {
+      "kind": "article",
+      "tag": "FISH_BONES",
+      "icon_id": 71,
+      "png": "assets/item_icons/article/fish_bones.png",
+      "meta": "assets/item_icons/article/fish_bones.json"
+    },
+    {
+      "kind": "article",
+      "tag": "KARENS_WINE",
+      "icon_id": 263,
+      "png": "assets/item_icons/article/karens_wine.png",
+      "meta": "assets/item_icons/article/karens_wine.json"
+    },
+    {
+      "kind": "article",
+      "tag": "POPURIS_MUD_BALL",
+      "icon_id": 345,
+      "png": "assets/item_icons/article/popuris_mud_ball.png",
+      "meta": "assets/item_icons/article/popuris_mud_ball.json"
+    },
+    {
+      "kind": "article",
+      "tag": "ANNS_MUSIC_BOX",
+      "icon_id": 360,
+      "png": "assets/item_icons/article/anns_music_box.png",
+      "meta": "assets/item_icons/article/anns_music_box.json"
+    },
+    {
+      "kind": "article",
+      "tag": "MARYS_GREAT_BOOK",
+      "icon_id": 277,
+      "png": "assets/item_icons/article/marys_great_book.png",
+      "meta": "assets/item_icons/article/marys_great_book.json"
+    },
+    {
+      "kind": "article",
+      "tag": "ELLIS_PRESSED_FLOWER",
+      "icon_id": 136,
+      "png": "assets/item_icons/article/ellis_pressed_flower.png",
+      "meta": "assets/item_icons/article/ellis_pressed_flower.json"
+    },
+    {
+      "kind": "article",
+      "tag": "ALBUM_1",
+      "icon_id": 361,
+      "png": "assets/item_icons/article/album_1.png",
+      "meta": "assets/item_icons/article/album_1.json"
+    },
+    {
+      "kind": "article",
+      "tag": "ALBUM_2",
+      "icon_id": 362,
+      "png": "assets/item_icons/article/album_2.png",
+      "meta": "assets/item_icons/article/album_2.json"
+    },
+    {
+      "kind": "article",
+      "tag": "ALBUM_3",
+      "icon_id": 363,
+      "png": "assets/item_icons/article/album_3.png",
+      "meta": "assets/item_icons/article/album_3.json"
+    },
+    {
+      "kind": "article",
+      "tag": "ALBUM_4",
+      "icon_id": 364,
+      "png": "assets/item_icons/article/album_4.png",
+      "meta": "assets/item_icons/article/album_4.json"
+    },
+    {
+      "kind": "article",
+      "tag": "ALBUM_5",
+      "icon_id": 365,
+      "png": "assets/item_icons/article/album_5.png",
+      "meta": "assets/item_icons/article/album_5.json"
+    },
+    {
+      "kind": "article",
+      "tag": "ALBUM_6",
+      "icon_id": 366,
+      "png": "assets/item_icons/article/album_6.png",
+      "meta": "assets/item_icons/article/album_6.json"
+    },
+    {
+      "kind": "article",
+      "tag": "ALBUM_7",
+      "icon_id": 367,
+      "png": "assets/item_icons/article/album_7.png",
+      "meta": "assets/item_icons/article/album_7.json"
+    },
+    {
+      "kind": "article",
+      "tag": "ALBUM_8",
+      "icon_id": 368,
+      "png": "assets/item_icons/article/album_8.png",
+      "meta": "assets/item_icons/article/album_8.json"
+    },
+    {
+      "kind": "article",
+      "tag": "ALBUM_9",
+      "icon_id": 369,
+      "png": "assets/item_icons/article/album_9.png",
+      "meta": "assets/item_icons/article/album_9.json"
+    },
+    {
+      "kind": "article",
+      "tag": "ALBUM_10",
+      "icon_id": 370,
+      "png": "assets/item_icons/article/album_10.png",
+      "meta": "assets/item_icons/article/album_10.json"
+    },
+    {
+      "kind": "article",
+      "tag": "ALBUM_11",
+      "icon_id": 371,
+      "png": "assets/item_icons/article/album_11.png",
+      "meta": "assets/item_icons/article/album_11.json"
+    },
+    {
+      "kind": "article",
+      "tag": "ALBUM_12",
+      "icon_id": 372,
+      "png": "assets/item_icons/article/album_12.png",
+      "meta": "assets/item_icons/article/album_12.json"
+    },
+    {
+      "kind": "article",
+      "tag": "ALBUM_13",
+      "icon_id": 373,
+      "png": "assets/item_icons/article/album_13.png",
+      "meta": "assets/item_icons/article/album_13.json"
+    },
+    {
+      "kind": "article",
+      "tag": "ALBUM_14",
+      "icon_id": 374,
+      "png": "assets/item_icons/article/album_14.png",
+      "meta": "assets/item_icons/article/album_14.json"
+    },
+    {
+      "kind": "article",
+      "tag": "ALBUM_15",
+      "icon_id": 375,
+      "png": "assets/item_icons/article/album_15.png",
+      "meta": "assets/item_icons/article/album_15.json"
+    },
+    {
+      "kind": "article",
+      "tag": "BANDAID",
+      "icon_id": 52,
+      "png": "assets/item_icons/article/bandaid.png",
+      "meta": "assets/item_icons/article/bandaid.json"
+    },
+    {
+      "kind": "article",
+      "tag": "BOOK",
+      "icon_id": 72,
+      "png": "assets/item_icons/article/book.png",
+      "meta": "assets/item_icons/article/book.json"
+    },
+    {
+      "kind": "article",
+      "tag": "PERFUME",
+      "icon_id": 329,
+      "png": "assets/item_icons/article/perfume.png",
+      "meta": "assets/item_icons/article/perfume.json"
+    },
+    {
+      "kind": "article",
+      "tag": "PHOTO",
+      "icon_id": 331,
+      "png": "assets/item_icons/article/photo.png",
+      "meta": "assets/item_icons/article/photo.json"
+    },
+    {
+      "kind": "article",
+      "tag": "PLANT_ENCYCLOPEDIA",
+      "icon_id": 342,
+      "png": "assets/item_icons/article/plant_encyclopedia.png",
+      "meta": "assets/item_icons/article/plant_encyclopedia.json"
+    },
+    {
+      "kind": "article",
+      "tag": "INVITATION",
+      "icon_id": 258,
+      "png": "assets/item_icons/article/invitation.png",
+      "meta": "assets/item_icons/article/invitation.json"
+    },
+    {
+      "kind": "article",
+      "tag": "DRESS",
+      "icon_id": 121,
+      "png": "assets/item_icons/article/dress.png",
+      "meta": "assets/item_icons/article/dress.json"
+    },
+    {
+      "kind": "article",
+      "tag": "FACIAL_PACK",
+      "icon_id": 139,
+      "png": "assets/item_icons/article/facial_pack.png",
+      "meta": "assets/item_icons/article/facial_pack.json"
+    },
+    {
+      "kind": "article",
+      "tag": "SKIN_LOTION",
+      "icon_id": 412,
+      "png": "assets/item_icons/article/skin_lotion.png",
+      "meta": "assets/item_icons/article/skin_lotion.json"
+    },
+    {
+      "kind": "article",
+      "tag": "SUNBLOCK",
+      "icon_id": 437,
+      "png": "assets/item_icons/article/sunblock.png",
+      "meta": "assets/item_icons/article/sunblock.json"
+    },
+    {
+      "kind": "article",
+      "tag": "LUMBER",
+      "icon_id": 278,
+      "png": "assets/item_icons/article/lumber.png",
+      "meta": "assets/item_icons/article/lumber.json"
+    },
+    {
+      "kind": "article",
+      "tag": "GOLDEN_LUMBER",
+      "icon_id": 210,
+      "png": "assets/item_icons/article/golden_lumber.png",
+      "meta": "assets/item_icons/article/golden_lumber.json"
+    },
+    {
+      "kind": "article",
+      "tag": "ANIMAL_FODDER",
+      "icon_id": 166,
+      "png": "assets/item_icons/article/animal_fodder.png",
+      "meta": "assets/item_icons/article/animal_fodder.json"
+    },
+    {
+      "kind": "article",
+      "tag": "CHICKEN_FEED",
+      "icon_id": 231,
+      "png": "assets/item_icons/article/chicken_feed.png",
+      "meta": "assets/item_icons/article/chicken_feed.json"
+    },
+    {
+      "kind": "article",
+      "tag": "LOTTERY",
+      "icon_id": 271,
+      "png": "assets/item_icons/article/lottery.png",
+      "meta": "assets/item_icons/article/lottery.json"
+    },
+    {
+      "kind": "article",
+      "tag": "FRISBEE",
+      "icon_id": 201,
+      "png": "assets/item_icons/article/frisbee.png",
+      "meta": "assets/item_icons/article/frisbee.json"
+    },
+    {
+      "kind": "food",
+      "tag": "TURNIP",
+      "icon_id": 457,
+      "png": "assets/item_icons/food/turnip.png",
+      "meta": "assets/item_icons/food/turnip.json"
+    },
+    {
+      "kind": "food",
+      "tag": "POTATO",
+      "icon_id": 347,
+      "png": "assets/item_icons/food/potato.png",
+      "meta": "assets/item_icons/food/potato.json"
+    },
+    {
+      "kind": "food",
+      "tag": "CUCUMBER",
+      "icon_id": 113,
+      "png": "assets/item_icons/food/cucumber.png",
+      "meta": "assets/item_icons/food/cucumber.json"
+    },
+    {
+      "kind": "food",
+      "tag": "STRAWBERRY",
+      "icon_id": 430,
+      "png": "assets/item_icons/food/strawberry.png",
+      "meta": "assets/item_icons/food/strawberry.json"
+    },
+    {
+      "kind": "food",
+      "tag": "CABBAGE",
+      "icon_id": 84,
+      "png": "assets/item_icons/food/cabbage.png",
+      "meta": "assets/item_icons/food/cabbage.json"
+    },
+    {
+      "kind": "food",
+      "tag": "TOMATO",
+      "icon_id": 448,
+      "png": "assets/item_icons/food/tomato.png",
+      "meta": "assets/item_icons/food/tomato.json"
+    },
+    {
+      "kind": "food",
+      "tag": "CORN",
+      "icon_id": 109,
+      "png": "assets/item_icons/food/corn.png",
+      "meta": "assets/item_icons/food/corn.json"
+    },
+    {
+      "kind": "food",
+      "tag": "ONION",
+      "icon_id": 319,
+      "png": "assets/item_icons/food/onion.png",
+      "meta": "assets/item_icons/food/onion.json"
+    },
+    {
+      "kind": "food",
+      "tag": "PUMPKIN",
+      "icon_id": 354,
+      "png": "assets/item_icons/food/pumpkin.png",
+      "meta": "assets/item_icons/food/pumpkin.json"
+    },
+    {
+      "kind": "food",
+      "tag": "PINEAPPLE",
+      "icon_id": 334,
+      "png": "assets/item_icons/food/pineapple.png",
+      "meta": "assets/item_icons/food/pineapple.json"
+    },
+    {
+      "kind": "food",
+      "tag": "EGGPLANT",
+      "icon_id": 132,
+      "png": "assets/item_icons/food/eggplant.png",
+      "meta": "assets/item_icons/food/eggplant.json"
+    },
+    {
+      "kind": "food",
+      "tag": "CARROT",
+      "icon_id": 89,
+      "png": "assets/item_icons/food/carrot.png",
+      "meta": "assets/item_icons/food/carrot.json"
+    },
+    {
+      "kind": "food",
+      "tag": "SWEET_POTATO",
+      "icon_id": 439,
+      "png": "assets/item_icons/food/sweet_potato.png",
+      "meta": "assets/item_icons/food/sweet_potato.json"
+    },
+    {
+      "kind": "food",
+      "tag": "SPINACH",
+      "icon_id": 423,
+      "png": "assets/item_icons/food/spinach.png",
+      "meta": "assets/item_icons/food/spinach.json"
+    },
+    {
+      "kind": "food",
+      "tag": "GREEN_PEPPER",
+      "icon_id": 218,
+      "png": "assets/item_icons/food/green_pepper.png",
+      "meta": "assets/item_icons/food/green_pepper.json"
+    },
+    {
+      "kind": "food",
+      "tag": "REGULAR_QUALITY_EGG",
+      "icon_id": 125,
+      "png": "assets/item_icons/food/regular_quality_egg.png",
+      "meta": "assets/item_icons/food/regular_quality_egg.json"
+    },
+    {
+      "kind": "food",
+      "tag": "GOOD_QUALITY_EGG",
+      "icon_id": 126,
+      "png": "assets/item_icons/food/good_quality_egg.png",
+      "meta": "assets/item_icons/food/good_quality_egg.json"
+    },
+    {
+      "kind": "food",
+      "tag": "HIGH_QUALITY_EGG",
+      "icon_id": 127,
+      "png": "assets/item_icons/food/high_quality_egg.png",
+      "meta": "assets/item_icons/food/high_quality_egg.json"
+    },
+    {
+      "kind": "food",
+      "tag": "GOLDEN_EGG",
+      "icon_id": 128,
+      "png": "assets/item_icons/food/golden_egg.png",
+      "meta": "assets/item_icons/food/golden_egg.json"
+    },
+    {
+      "kind": "food",
+      "tag": "P_EGG",
+      "icon_id": 129,
+      "png": "assets/item_icons/food/p_egg.png",
+      "meta": "assets/item_icons/food/p_egg.json"
+    },
+    {
+      "kind": "food",
+      "tag": "X_EGG",
+      "icon_id": 130,
+      "png": "assets/item_icons/food/x_egg.png",
+      "meta": "assets/item_icons/food/x_egg.json"
+    },
+    {
+      "kind": "food",
+      "tag": "SPABOILED_EGG",
+      "icon_id": 131,
+      "png": "assets/item_icons/food/spaboiled_egg.png",
+      "meta": "assets/item_icons/food/spaboiled_egg.json"
+    },
+    {
+      "kind": "food",
+      "tag": "MAYONNAISE_S",
+      "icon_id": 284,
+      "png": "assets/item_icons/food/mayonnaise_s.png",
+      "meta": "assets/item_icons/food/mayonnaise_s.json"
+    },
+    {
+      "kind": "food",
+      "tag": "MAYONNAISE_M",
+      "icon_id": 285,
+      "png": "assets/item_icons/food/mayonnaise_m.png",
+      "meta": "assets/item_icons/food/mayonnaise_m.json"
+    },
+    {
+      "kind": "food",
+      "tag": "MAYONNAISE_L",
+      "icon_id": 286,
+      "png": "assets/item_icons/food/mayonnaise_l.png",
+      "meta": "assets/item_icons/food/mayonnaise_l.json"
+    },
+    {
+      "kind": "food",
+      "tag": "MAYONNAISE_G",
+      "icon_id": 287,
+      "png": "assets/item_icons/food/mayonnaise_g.png",
+      "meta": "assets/item_icons/food/mayonnaise_g.json"
+    },
+    {
+      "kind": "food",
+      "tag": "MAYONNAISE_P",
+      "icon_id": 288,
+      "png": "assets/item_icons/food/mayonnaise_p.png",
+      "meta": "assets/item_icons/food/mayonnaise_p.json"
+    },
+    {
+      "kind": "food",
+      "tag": "MAYONNAISE_X",
+      "icon_id": 289,
+      "png": "assets/item_icons/food/mayonnaise_x.png",
+      "meta": "assets/item_icons/food/mayonnaise_x.json"
+    },
+    {
+      "kind": "food",
+      "tag": "MILK_S",
+      "icon_id": 296,
+      "png": "assets/item_icons/food/milk_s.png",
+      "meta": "assets/item_icons/food/milk_s.json"
+    },
+    {
+      "kind": "food",
+      "tag": "MILK_M",
+      "icon_id": 293,
+      "png": "assets/item_icons/food/milk_m.png",
+      "meta": "assets/item_icons/food/milk_m.json"
+    },
+    {
+      "kind": "food",
+      "tag": "MILK_L",
+      "icon_id": 292,
+      "png": "assets/item_icons/food/milk_l.png",
+      "meta": "assets/item_icons/food/milk_l.json"
+    },
+    {
+      "kind": "food",
+      "tag": "MILK_G",
+      "icon_id": 291,
+      "png": "assets/item_icons/food/milk_g.png",
+      "meta": "assets/item_icons/food/milk_g.json"
+    },
+    {
+      "kind": "food",
+      "tag": "MILK_P",
+      "icon_id": 295,
+      "png": "assets/item_icons/food/milk_p.png",
+      "meta": "assets/item_icons/food/milk_p.json"
+    },
+    {
+      "kind": "food",
+      "tag": "MILK_X",
+      "icon_id": 297,
+      "png": "assets/item_icons/food/milk_x.png",
+      "meta": "assets/item_icons/food/milk_x.json"
+    },
+    {
+      "kind": "food",
+      "tag": "CHEESE_S",
+      "icon_id": 92,
+      "png": "assets/item_icons/food/cheese_s.png",
+      "meta": "assets/item_icons/food/cheese_s.json"
+    },
+    {
+      "kind": "food",
+      "tag": "CHEESE_M",
+      "icon_id": 93,
+      "png": "assets/item_icons/food/cheese_m.png",
+      "meta": "assets/item_icons/food/cheese_m.json"
+    },
+    {
+      "kind": "food",
+      "tag": "CHEESE_L",
+      "icon_id": 94,
+      "png": "assets/item_icons/food/cheese_l.png",
+      "meta": "assets/item_icons/food/cheese_l.json"
+    },
+    {
+      "kind": "food",
+      "tag": "CHEESE_G",
+      "icon_id": 95,
+      "png": "assets/item_icons/food/cheese_g.png",
+      "meta": "assets/item_icons/food/cheese_g.json"
+    },
+    {
+      "kind": "food",
+      "tag": "CHEESE_P",
+      "icon_id": 96,
+      "png": "assets/item_icons/food/cheese_p.png",
+      "meta": "assets/item_icons/food/cheese_p.json"
+    },
+    {
+      "kind": "food",
+      "tag": "CHEESE_X",
+      "icon_id": 97,
+      "png": "assets/item_icons/food/cheese_x.png",
+      "meta": "assets/item_icons/food/cheese_x.json"
+    },
+    {
+      "kind": "food",
+      "tag": "APPLE",
+      "icon_id": 8,
+      "png": "assets/item_icons/food/apple.png",
+      "meta": "assets/item_icons/food/apple.json"
+    },
+    {
+      "kind": "food",
+      "tag": "HONEY",
+      "icon_id": 242,
+      "png": "assets/item_icons/food/honey.png",
+      "meta": "assets/item_icons/food/honey.json"
+    },
+    {
+      "kind": "food",
+      "tag": "BAMBOO_SHOOT",
+      "icon_id": 50,
+      "png": "assets/item_icons/food/bamboo_shoot.png",
+      "meta": "assets/item_icons/food/bamboo_shoot.json"
+    },
+    {
+      "kind": "food",
+      "tag": "WILD_GRAPES",
+      "icon_id": 309,
+      "png": "assets/item_icons/food/wild_grapes.png",
+      "meta": "assets/item_icons/food/wild_grapes.json"
+    },
+    {
+      "kind": "food",
+      "tag": "MUSHROOM",
+      "icon_id": 306,
+      "png": "assets/item_icons/food/mushroom.png",
+      "meta": "assets/item_icons/food/mushroom.json"
+    },
+    {
+      "kind": "food",
+      "tag": "POISONOUS_MUSHROOM",
+      "icon_id": 245,
+      "png": "assets/item_icons/food/poisonous_mushroom.png",
+      "meta": "assets/item_icons/food/poisonous_mushroom.json"
+    },
+    {
+      "kind": "food",
+      "tag": "TRUFFLE",
+      "icon_id": 281,
+      "png": "assets/item_icons/food/truffle.png",
+      "meta": "assets/item_icons/food/truffle.json"
+    },
+    {
+      "kind": "food",
+      "tag": "BLUE_GRASS",
+      "icon_id": 65,
+      "png": "assets/item_icons/food/blue_grass.png",
+      "meta": "assets/item_icons/food/blue_grass.json"
+    },
+    {
+      "kind": "food",
+      "tag": "GREEN_GRASS",
+      "icon_id": 216,
+      "png": "assets/item_icons/food/green_grass.png",
+      "meta": "assets/item_icons/food/green_grass.json"
+    },
+    {
+      "kind": "food",
+      "tag": "RED_GRASS",
+      "icon_id": 376,
+      "png": "assets/item_icons/food/red_grass.png",
+      "meta": "assets/item_icons/food/red_grass.json"
+    },
+    {
+      "kind": "food",
+      "tag": "YELLOW_GRASS",
+      "icon_id": 490,
+      "png": "assets/item_icons/food/yellow_grass.png",
+      "meta": "assets/item_icons/food/yellow_grass.json"
+    },
+    {
+      "kind": "food",
+      "tag": "ORANGE_GRASS",
+      "icon_id": 322,
+      "png": "assets/item_icons/food/orange_grass.png",
+      "meta": "assets/item_icons/food/orange_grass.json"
+    },
+    {
+      "kind": "food",
+      "tag": "PURPLE_GRASS",
+      "icon_id": 357,
+      "png": "assets/item_icons/food/purple_grass.png",
+      "meta": "assets/item_icons/food/purple_grass.json"
+    },
+    {
+      "kind": "food",
+      "tag": "INDIGO_GRASS",
+      "icon_id": 256,
+      "png": "assets/item_icons/food/indigo_grass.png",
+      "meta": "assets/item_icons/food/indigo_grass.json"
+    },
+    {
+      "kind": "food",
+      "tag": "BLACK_GRASS",
+      "icon_id": 63,
+      "png": "assets/item_icons/food/black_grass.png",
+      "meta": "assets/item_icons/food/black_grass.json"
+    },
+    {
+      "kind": "food",
+      "tag": "WHITE_GRASS",
+      "icon_id": 473,
+      "png": "assets/item_icons/food/white_grass.png",
+      "meta": "assets/item_icons/food/white_grass.json"
+    },
+    {
+      "kind": "food",
+      "tag": "QUEEN_OF_THE_NIGHT",
+      "icon_id": 58,
+      "png": "assets/item_icons/food/queen_of_the_night.png",
+      "meta": "assets/item_icons/food/queen_of_the_night.json"
+    },
+    {
+      "kind": "food",
+      "tag": "BODIGIZER",
+      "icon_id": 349,
+      "png": "assets/item_icons/food/bodigizer.png",
+      "meta": "assets/item_icons/food/bodigizer.json"
+    },
+    {
+      "kind": "food",
+      "tag": "BODIGIZER_XL",
+      "icon_id": 350,
+      "png": "assets/item_icons/food/bodigizer_xl.png",
+      "meta": "assets/item_icons/food/bodigizer_xl.json"
+    },
+    {
+      "kind": "food",
+      "tag": "TURBOJOLT",
+      "icon_id": 146,
+      "png": "assets/item_icons/food/turbojolt.png",
+      "meta": "assets/item_icons/food/turbojolt.json"
+    },
+    {
+      "kind": "food",
+      "tag": "TURBOJOLT_XL",
+      "icon_id": 147,
+      "png": "assets/item_icons/food/turbojolt_xl.png",
+      "meta": "assets/item_icons/food/turbojolt_xl.json"
+    },
+    {
+      "kind": "food",
+      "tag": "WINE",
+      "icon_id": 475,
+      "png": "assets/item_icons/food/wine.png",
+      "meta": "assets/item_icons/food/wine.json"
+    },
+    {
+      "kind": "food",
+      "tag": "GRAPE_JUICE",
+      "icon_id": 221,
+      "png": "assets/item_icons/food/grape_juice.png",
+      "meta": "assets/item_icons/food/grape_juice.json"
+    },
+    {
+      "kind": "food",
+      "tag": "RICE_BALL",
+      "icon_id": 380,
+      "png": "assets/item_icons/food/rice_ball.png",
+      "meta": "assets/item_icons/food/rice_ball.json"
+    },
+    {
+      "kind": "food",
+      "tag": "BREAD",
+      "icon_id": 78,
+      "png": "assets/item_icons/food/bread.png",
+      "meta": "assets/item_icons/food/bread.json"
+    },
+    {
+      "kind": "food",
+      "tag": "OIL",
+      "icon_id": 315,
+      "png": "assets/item_icons/food/oil.png",
+      "meta": "assets/item_icons/food/oil.json"
+    },
+    {
+      "kind": "food",
+      "tag": "FLOWER",
+      "icon_id": 163,
+      "png": "assets/item_icons/food/flower.png",
+      "meta": "assets/item_icons/food/flower.json"
+    },
+    {
+      "kind": "food",
+      "tag": "CURRY_POWDER",
+      "icon_id": 118,
+      "png": "assets/item_icons/food/curry_powder.png",
+      "meta": "assets/item_icons/food/curry_powder.json"
+    },
+    {
+      "kind": "food",
+      "tag": "MUFFIN_MIX",
+      "icon_id": 122,
+      "png": "assets/item_icons/food/muffin_mix.png",
+      "meta": "assets/item_icons/food/muffin_mix.json"
+    },
+    {
+      "kind": "food",
+      "tag": "CHOCOLATE",
+      "icon_id": 102,
+      "png": "assets/item_icons/food/chocolate.png",
+      "meta": "assets/item_icons/food/chocolate.json"
+    },
+    {
+      "kind": "food",
+      "tag": "RELAX_TEA_LEAVES",
+      "icon_id": 379,
+      "png": "assets/item_icons/food/relax_tea_leaves.png",
+      "meta": "assets/item_icons/food/relax_tea_leaves.json"
+    },
+    {
+      "kind": "food",
+      "tag": "SUGDW_APPLE",
+      "icon_id": 435,
+      "png": "assets/item_icons/food/sugdw_apple.png",
+      "meta": "assets/item_icons/food/sugdw_apple.json"
+    },
+    {
+      "kind": "food",
+      "tag": "HMSGB_APPLE",
+      "icon_id": 233,
+      "png": "assets/item_icons/food/hmsgb_apple.png",
+      "meta": "assets/item_icons/food/hmsgb_apple.json"
+    },
+    {
+      "kind": "food",
+      "tag": "AEPFE_APPLE",
+      "icon_id": 1,
+      "png": "assets/item_icons/food/aepfe_apple.png",
+      "meta": "assets/item_icons/food/aepfe_apple.json"
+    },
+    {
+      "kind": "food",
+      "tag": "BUCKWHEAT_FLOUR",
+      "icon_id": 81,
+      "png": "assets/item_icons/food/buckwheat_flour.png",
+      "meta": "assets/item_icons/food/buckwheat_flour.json"
+    },
+    {
+      "kind": "food",
+      "tag": "WILD_GRAPE_JUICE",
+      "icon_id": 214,
+      "png": "assets/item_icons/food/wild_grape_juice.png",
+      "meta": "assets/item_icons/food/wild_grape_juice.json"
+    },
+    {
+      "kind": "food",
+      "tag": "SALAD",
+      "icon_id": 396,
+      "png": "assets/item_icons/food/salad.png",
+      "meta": "assets/item_icons/food/salad.json"
+    },
+    {
+      "kind": "food",
+      "tag": "CURRY_RICE",
+      "icon_id": 115,
+      "png": "assets/item_icons/food/curry_rice.png",
+      "meta": "assets/item_icons/food/curry_rice.json"
+    },
+    {
+      "kind": "food",
+      "tag": "STEW",
+      "icon_id": 427,
+      "png": "assets/item_icons/food/stew.png",
+      "meta": "assets/item_icons/food/stew.json"
+    },
+    {
+      "kind": "food",
+      "tag": "MISO_SOUP",
+      "icon_id": 298,
+      "png": "assets/item_icons/food/miso_soup.png",
+      "meta": "assets/item_icons/food/miso_soup.json"
+    },
+    {
+      "kind": "food",
+      "tag": "STIR_FRY",
+      "icon_id": 206,
+      "png": "assets/item_icons/food/stir_fry.png",
+      "meta": "assets/item_icons/food/stir_fry.json"
+    },
+    {
+      "kind": "food",
+      "tag": "FRIED_RICE",
+      "icon_id": 388,
+      "png": "assets/item_icons/food/fried_rice.png",
+      "meta": "assets/item_icons/food/fried_rice.json"
+    },
+    {
+      "kind": "food",
+      "tag": "SAVORY_PANCAKE",
+      "icon_id": 316,
+      "png": "assets/item_icons/food/savory_pancake.png",
+      "meta": "assets/item_icons/food/savory_pancake.json"
+    },
+    {
+      "kind": "food",
+      "tag": "SANDWICH",
+      "icon_id": 398,
+      "png": "assets/item_icons/food/sandwich.png",
+      "meta": "assets/item_icons/food/sandwich.json"
+    },
+    {
+      "kind": "food",
+      "tag": "FRUIT_JUICE",
+      "icon_id": 202,
+      "png": "assets/item_icons/food/fruit_juice.png",
+      "meta": "assets/item_icons/food/fruit_juice.json"
+    },
+    {
+      "kind": "food",
+      "tag": "VEGETABLE_JUICE",
+      "icon_id": 459,
+      "png": "assets/item_icons/food/vegetable_juice.png",
+      "meta": "assets/item_icons/food/vegetable_juice.json"
+    },
+    {
+      "kind": "food",
+      "tag": "MIXED_JUICE",
+      "icon_id": 300,
+      "png": "assets/item_icons/food/mixed_juice.png",
+      "meta": "assets/item_icons/food/mixed_juice.json"
+    },
+    {
+      "kind": "food",
+      "tag": "FRUIT_LATTE",
+      "icon_id": 203,
+      "png": "assets/item_icons/food/fruit_latte.png",
+      "meta": "assets/item_icons/food/fruit_latte.json"
+    },
+    {
+      "kind": "food",
+      "tag": "VEGETABLE_LATTE",
+      "icon_id": 460,
+      "png": "assets/item_icons/food/vegetable_latte.png",
+      "meta": "assets/item_icons/food/vegetable_latte.json"
+    },
+    {
+      "kind": "food",
+      "tag": "MIXED_LATTE",
+      "icon_id": 301,
+      "png": "assets/item_icons/food/mixed_latte.png",
+      "meta": "assets/item_icons/food/mixed_latte.json"
+    },
+    {
+      "kind": "food",
+      "tag": "STRAWBERRY_MILK",
+      "icon_id": 432,
+      "png": "assets/item_icons/food/strawberry_milk.png",
+      "meta": "assets/item_icons/food/strawberry_milk.json"
+    },
+    {
+      "kind": "food",
+      "tag": "STRAWBERRY_JAM",
+      "icon_id": 431,
+      "png": "assets/item_icons/food/strawberry_jam.png",
+      "meta": "assets/item_icons/food/strawberry_jam.json"
+    },
+    {
+      "kind": "food",
+      "tag": "TOMATO_JUICE",
+      "icon_id": 449,
+      "png": "assets/item_icons/food/tomato_juice.png",
+      "meta": "assets/item_icons/food/tomato_juice.json"
+    },
+    {
+      "kind": "food",
+      "tag": "PICKLED_TURNIP",
+      "icon_id": 333,
+      "png": "assets/item_icons/food/pickled_turnip.png",
+      "meta": "assets/item_icons/food/pickled_turnip.json"
+    },
+    {
+      "kind": "food",
+      "tag": "FRENCH_FRIES",
+      "icon_id": 205,
+      "png": "assets/item_icons/food/french_fries.png",
+      "meta": "assets/item_icons/food/french_fries.json"
+    },
+    {
+      "kind": "food",
+      "tag": "PICKLES",
+      "icon_id": 332,
+      "png": "assets/item_icons/food/pickles.png",
+      "meta": "assets/item_icons/food/pickles.json"
+    },
+    {
+      "kind": "food",
+      "tag": "KETCHUP",
+      "icon_id": 264,
+      "png": "assets/item_icons/food/ketchup.png",
+      "meta": "assets/item_icons/food/ketchup.json"
+    },
+    {
+      "kind": "food",
+      "tag": "POPCORN",
+      "icon_id": 343,
+      "png": "assets/item_icons/food/popcorn.png",
+      "meta": "assets/item_icons/food/popcorn.json"
+    },
+    {
+      "kind": "food",
+      "tag": "CORN_FLAKES",
+      "icon_id": 110,
+      "png": "assets/item_icons/food/corn_flakes.png",
+      "meta": "assets/item_icons/food/corn_flakes.json"
+    },
+    {
+      "kind": "food",
+      "tag": "BAKED_CORN",
+      "icon_id": 384,
+      "png": "assets/item_icons/food/baked_corn.png",
+      "meta": "assets/item_icons/food/baked_corn.json"
+    },
+    {
+      "kind": "food",
+      "tag": "PINEAPPLE_JUICE",
+      "icon_id": 359,
+      "png": "assets/item_icons/food/pineapple_juice.png",
+      "meta": "assets/item_icons/food/pineapple_juice.json"
+    },
+    {
+      "kind": "food",
+      "tag": "PUMPKIN_PUDDING",
+      "icon_id": 355,
+      "png": "assets/item_icons/food/pumpkin_pudding.png",
+      "meta": "assets/item_icons/food/pumpkin_pudding.json"
+    },
+    {
+      "kind": "food",
+      "tag": "PUMPKIN_STEW",
+      "icon_id": 70,
+      "png": "assets/item_icons/food/pumpkin_stew.png",
+      "meta": "assets/item_icons/food/pumpkin_stew.json"
+    },
+    {
+      "kind": "food",
+      "tag": "HAPPY_EGGPLANT",
+      "icon_id": 133,
+      "png": "assets/item_icons/food/happy_eggplant.png",
+      "meta": "assets/item_icons/food/happy_eggplant.json"
+    },
+    {
+      "kind": "food",
+      "tag": "SWEET_POTATOES",
+      "icon_id": 441,
+      "png": "assets/item_icons/food/sweet_potatoes.png",
+      "meta": "assets/item_icons/food/sweet_potatoes.json"
+    },
+    {
+      "kind": "food",
+      "tag": "BAKED_SWEET_POTATO",
+      "icon_id": 387,
+      "png": "assets/item_icons/food/baked_sweet_potato.png",
+      "meta": "assets/item_icons/food/baked_sweet_potato.json"
+    },
+    {
+      "kind": "food",
+      "tag": "GREENS",
+      "icon_id": 314,
+      "png": "assets/item_icons/food/greens.png",
+      "meta": "assets/item_icons/food/greens.json"
+    },
+    {
+      "kind": "food",
+      "tag": "SCRAMBLED_EGGS",
+      "icon_id": 385,
+      "png": "assets/item_icons/food/scrambled_eggs.png",
+      "meta": "assets/item_icons/food/scrambled_eggs.json"
+    },
+    {
+      "kind": "food",
+      "tag": "OMELET",
+      "icon_id": 317,
+      "png": "assets/item_icons/food/omelet.png",
+      "meta": "assets/item_icons/food/omelet.json"
+    },
+    {
+      "kind": "food",
+      "tag": "OMELET_RICE",
+      "icon_id": 318,
+      "png": "assets/item_icons/food/omelet_rice.png",
+      "meta": "assets/item_icons/food/omelet_rice.json"
+    },
+    {
+      "kind": "food",
+      "tag": "BOILED_EGG",
+      "icon_id": 68,
+      "png": "assets/item_icons/food/boiled_egg.png",
+      "meta": "assets/item_icons/food/boiled_egg.json"
+    },
+    {
+      "kind": "food",
+      "tag": "HOT_MILK",
+      "icon_id": 244,
+      "png": "assets/item_icons/food/hot_milk.png",
+      "meta": "assets/item_icons/food/hot_milk.json"
+    },
+    {
+      "kind": "food",
+      "tag": "BUTTER",
+      "icon_id": 82,
+      "png": "assets/item_icons/food/butter.png",
+      "meta": "assets/item_icons/food/butter.json"
+    },
+    {
+      "kind": "food",
+      "tag": "CHEESE_CAKE",
+      "icon_id": 98,
+      "png": "assets/item_icons/food/cheese_cake.png",
+      "meta": "assets/item_icons/food/cheese_cake.json"
+    },
+    {
+      "kind": "food",
+      "tag": "CHEESE_FONDUE",
+      "icon_id": 99,
+      "png": "assets/item_icons/food/cheese_fondue.png",
+      "meta": "assets/item_icons/food/cheese_fondue.json"
+    },
+    {
+      "kind": "food",
+      "tag": "APPLE_PIE",
+      "icon_id": 11,
+      "png": "assets/item_icons/food/apple_pie.png",
+      "meta": "assets/item_icons/food/apple_pie.json"
+    },
+    {
+      "kind": "food",
+      "tag": "APPLE_JAM",
+      "icon_id": 10,
+      "png": "assets/item_icons/food/apple_jam.png",
+      "meta": "assets/item_icons/food/apple_jam.json"
+    },
+    {
+      "kind": "food",
+      "tag": "APPLE_SOUFFL",
+      "icon_id": 383,
+      "png": "assets/item_icons/food/apple_souffl.png",
+      "meta": "assets/item_icons/food/apple_souffl.json"
+    },
+    {
+      "kind": "food",
+      "tag": "MUSHROOM_RICE",
+      "icon_id": 308,
+      "png": "assets/item_icons/food/mushroom_rice.png",
+      "meta": "assets/item_icons/food/mushroom_rice.json"
+    },
+    {
+      "kind": "food",
+      "tag": "BAMBOO_RICE",
+      "icon_id": 442,
+      "png": "assets/item_icons/food/bamboo_rice.png",
+      "meta": "assets/item_icons/food/bamboo_rice.json"
+    },
+    {
+      "kind": "food",
+      "tag": "TRUFFLE_RICE",
+      "icon_id": 283,
+      "png": "assets/item_icons/food/truffle_rice.png",
+      "meta": "assets/item_icons/food/truffle_rice.json"
+    },
+    {
+      "kind": "food",
+      "tag": "SUSHI",
+      "icon_id": 438,
+      "png": "assets/item_icons/food/sushi.png",
+      "meta": "assets/item_icons/food/sushi.json"
+    },
+    {
+      "kind": "food",
+      "tag": "JAM_BUN",
+      "icon_id": 260,
+      "png": "assets/item_icons/food/jam_bun.png",
+      "meta": "assets/item_icons/food/jam_bun.json"
+    },
+    {
+      "kind": "food",
+      "tag": "DINNER_ROLE",
+      "icon_id": 83,
+      "png": "assets/item_icons/food/dinner_role.png",
+      "meta": "assets/item_icons/food/dinner_role.json"
+    },
+    {
+      "kind": "food",
+      "tag": "RAISIN_BREAD",
+      "icon_id": 212,
+      "png": "assets/item_icons/food/raisin_bread.png",
+      "meta": "assets/item_icons/food/raisin_bread.json"
+    },
+    {
+      "kind": "food",
+      "tag": "GRAPE_JAM",
+      "icon_id": 213,
+      "png": "assets/item_icons/food/grape_jam.png",
+      "meta": "assets/item_icons/food/grape_jam.json"
+    },
+    {
+      "kind": "food",
+      "tag": "CURRY_BREAD",
+      "icon_id": 116,
+      "png": "assets/item_icons/food/curry_bread.png",
+      "meta": "assets/item_icons/food/curry_bread.json"
+    },
+    {
+      "kind": "food",
+      "tag": "SASHIMI",
+      "icon_id": 399,
+      "png": "assets/item_icons/food/sashimi.png",
+      "meta": "assets/item_icons/food/sashimi.json"
+    },
+    {
+      "kind": "food",
+      "tag": "GRILLED_FISH",
+      "icon_id": 220,
+      "png": "assets/item_icons/food/grilled_fish.png",
+      "meta": "assets/item_icons/food/grilled_fish.json"
+    },
+    {
+      "kind": "food",
+      "tag": "CHIRASHI_SUSHI",
+      "icon_id": 101,
+      "png": "assets/item_icons/food/chirashi_sushi.png",
+      "meta": "assets/item_icons/food/chirashi_sushi.json"
+    },
+    {
+      "kind": "food",
+      "tag": "PIZZA",
+      "icon_id": 341,
+      "png": "assets/item_icons/food/pizza.png",
+      "meta": "assets/item_icons/food/pizza.json"
+    },
+    {
+      "kind": "food",
+      "tag": "NOODLES",
+      "icon_id": 312,
+      "png": "assets/item_icons/food/noodles.png",
+      "meta": "assets/item_icons/food/noodles.json"
+    },
+    {
+      "kind": "food",
+      "tag": "CURRY_NOODLES",
+      "icon_id": 117,
+      "png": "assets/item_icons/food/curry_noodles.png",
+      "meta": "assets/item_icons/food/curry_noodles.json"
+    },
+    {
+      "kind": "food",
+      "tag": "TEMPURA_NOODLES",
+      "icon_id": 445,
+      "png": "assets/item_icons/food/tempura_noodles.png",
+      "meta": "assets/item_icons/food/tempura_noodles.json"
+    },
+    {
+      "kind": "food",
+      "tag": "FRIED_NOODLES",
+      "icon_id": 386,
+      "png": "assets/item_icons/food/fried_noodles.png",
+      "meta": "assets/item_icons/food/fried_noodles.json"
+    },
+    {
+      "kind": "food",
+      "tag": "BUCKWHEAT_NOODLES",
+      "icon_id": 492,
+      "png": "assets/item_icons/food/buckwheat_noodles.png",
+      "meta": "assets/item_icons/food/buckwheat_noodles.json"
+    },
+    {
+      "kind": "food",
+      "tag": "NOODLES_W_TEMPURA",
+      "icon_id": 446,
+      "png": "assets/item_icons/food/noodles_w_tempura.png",
+      "meta": "assets/item_icons/food/noodles_w_tempura.json"
+    },
+    {
+      "kind": "food",
+      "tag": "FRIED_NOODLES_2",
+      "icon_id": 391,
+      "png": "assets/item_icons/food/fried_noodles_2.png",
+      "meta": "assets/item_icons/food/fried_noodles_2.json"
+    },
+    {
+      "kind": "food",
+      "tag": "BUCKWHEAT_CHIPS",
+      "icon_id": 421,
+      "png": "assets/item_icons/food/buckwheat_chips.png",
+      "meta": "assets/item_icons/food/buckwheat_chips.json"
+    },
+    {
+      "kind": "food",
+      "tag": "COOKIES",
+      "icon_id": 107,
+      "png": "assets/item_icons/food/cookies.png",
+      "meta": "assets/item_icons/food/cookies.json"
+    },
+    {
+      "kind": "food",
+      "tag": "CHOCOLATE_COOKIES",
+      "icon_id": 104,
+      "png": "assets/item_icons/food/chocolate_cookies.png",
+      "meta": "assets/item_icons/food/chocolate_cookies.json"
+    },
+    {
+      "kind": "food",
+      "tag": "TEMPURA",
+      "icon_id": 443,
+      "png": "assets/item_icons/food/tempura.png",
+      "meta": "assets/item_icons/food/tempura.json"
+    },
+    {
+      "kind": "food",
+      "tag": "ICE_CREAM",
+      "icon_id": 248,
+      "png": "assets/item_icons/food/ice_cream.png",
+      "meta": "assets/item_icons/food/ice_cream.json"
+    },
+    {
+      "kind": "food",
+      "tag": "CAKE",
+      "icon_id": 86,
+      "png": "assets/item_icons/food/cake.png",
+      "meta": "assets/item_icons/food/cake.json"
+    },
+    {
+      "kind": "food",
+      "tag": "CHOCOLATE_CAKE",
+      "icon_id": 103,
+      "png": "assets/item_icons/food/chocolate_cake.png",
+      "meta": "assets/item_icons/food/chocolate_cake.json"
+    },
+    {
+      "kind": "food",
+      "tag": "RELAXATION_TEA",
+      "icon_id": 378,
+      "png": "assets/item_icons/food/relaxation_tea.png",
+      "meta": "assets/item_icons/food/relaxation_tea.json"
+    },
+    {
+      "kind": "food",
+      "tag": "TOAST",
+      "icon_id": 447,
+      "png": "assets/item_icons/food/toast.png",
+      "meta": "assets/item_icons/food/toast.json"
+    },
+    {
+      "kind": "food",
+      "tag": "FRENCH_TOAST",
+      "icon_id": 168,
+      "png": "assets/item_icons/food/french_toast.png",
+      "meta": "assets/item_icons/food/french_toast.json"
+    },
+    {
+      "kind": "food",
+      "tag": "PUDDING",
+      "icon_id": 353,
+      "png": "assets/item_icons/food/pudding.png",
+      "meta": "assets/item_icons/food/pudding.json"
+    },
+    {
+      "kind": "food",
+      "tag": "MOUNTAIN_STEW",
+      "icon_id": 100,
+      "png": "assets/item_icons/food/mountain_stew.png",
+      "meta": "assets/item_icons/food/mountain_stew.json"
+    },
+    {
+      "kind": "food",
+      "tag": "MOON_DUMPLINGS",
+      "icon_id": 119,
+      "png": "assets/item_icons/food/moon_dumplings.png",
+      "meta": "assets/item_icons/food/moon_dumplings.json"
+    },
+    {
+      "kind": "food",
+      "tag": "RICE_CAKE",
+      "icon_id": 381,
+      "png": "assets/item_icons/food/rice_cake.png",
+      "meta": "assets/item_icons/food/rice_cake.json"
+    },
+    {
+      "kind": "food",
+      "tag": "ROASTED_RICE_CAKE",
+      "icon_id": 390,
+      "png": "assets/item_icons/food/roasted_rice_cake.png",
+      "meta": "assets/item_icons/food/roasted_rice_cake.json"
+    },
+    {
+      "kind": "food",
+      "tag": "ELLI_LEAVES",
+      "icon_id": 138,
+      "png": "assets/item_icons/food/elli_leaves.png",
+      "meta": "assets/item_icons/food/elli_leaves.json"
+    },
+    {
+      "kind": "food",
+      "tag": "FAILED_DISH",
+      "icon_id": 140,
+      "png": "assets/item_icons/food/failed_dish.png",
+      "meta": "assets/item_icons/food/failed_dish.json"
+    },
+    {
+      "kind": "food",
+      "tag": "FAILED_DRINK",
+      "icon_id": 143,
+      "png": "assets/item_icons/food/failed_drink.png",
+      "meta": "assets/item_icons/food/failed_drink.json"
+    },
+    {
+      "kind": "food",
+      "tag": "FAILED_POT_DISH",
+      "icon_id": 145,
+      "png": "assets/item_icons/food/failed_pot_dish.png",
+      "meta": "assets/item_icons/food/failed_pot_dish.json"
+    },
+    {
+      "kind": "food",
+      "tag": "FAILED_DESSERT",
+      "icon_id": 142,
+      "png": "assets/item_icons/food/failed_dessert.png",
+      "meta": "assets/item_icons/food/failed_dessert.json"
+    },
+    {
+      "kind": "food",
+      "tag": "FAILED_BREAD",
+      "icon_id": 141,
+      "png": "assets/item_icons/food/failed_bread.png",
+      "meta": "assets/item_icons/food/failed_bread.json"
+    },
+    {
+      "kind": "food",
+      "tag": "FAILED_NOODLES",
+      "icon_id": 144,
+      "png": "assets/item_icons/food/failed_noodles.png",
+      "meta": "assets/item_icons/food/failed_noodles.json"
+    },
+    {
+      "kind": "food",
+      "tag": "SMALL_FISH",
+      "icon_id": 159,
+      "png": "assets/item_icons/food/small_fish.png",
+      "meta": "assets/item_icons/food/small_fish.json"
+    },
+    {
+      "kind": "food",
+      "tag": "MEDIUM_FISH",
+      "icon_id": 158,
+      "png": "assets/item_icons/food/medium_fish.png",
+      "meta": "assets/item_icons/food/medium_fish.json"
+    },
+    {
+      "kind": "food",
+      "tag": "LARGE_FISH",
+      "icon_id": 157,
+      "png": "assets/item_icons/food/large_fish.png",
+      "meta": "assets/item_icons/food/large_fish.json"
+    },
+    {
+      "kind": "food",
+      "tag": "TOASTED_RICE_BALL",
+      "icon_id": 389,
+      "png": "assets/item_icons/food/toasted_rice_ball.png",
+      "meta": "assets/item_icons/food/toasted_rice_ball.json"
+    },
+    {
+      "kind": "food",
+      "tag": "TEMPURA_RICE",
+      "icon_id": 444,
+      "png": "assets/item_icons/food/tempura_rice.png",
+      "meta": "assets/item_icons/food/tempura_rice.json"
+    },
+    {
+      "kind": "food",
+      "tag": "EGG_OVER_RICE",
+      "icon_id": 135,
+      "png": "assets/item_icons/food/egg_over_rice.png",
+      "meta": "assets/item_icons/food/egg_over_rice.json"
+    },
+    {
+      "kind": "food",
+      "tag": "RICE_GRUEL",
+      "icon_id": 382,
+      "png": "assets/item_icons/food/rice_gruel.png",
+      "meta": "assets/item_icons/food/rice_gruel.json"
+    },
+    {
+      "kind": "food",
+      "tag": "PANCAKES",
+      "icon_id": 243,
+      "png": "assets/item_icons/food/pancakes.png",
+      "meta": "assets/item_icons/food/pancakes.json"
+    },
+    {
+      "kind": "food",
+      "tag": "FISH_STICKS",
+      "icon_id": 69,
+      "png": "assets/item_icons/food/fish_sticks.png",
+      "meta": "assets/item_icons/food/fish_sticks.json"
+    },
+    {
+      "kind": "food",
+      "tag": "CANDIED_POTATO",
+      "icon_id": 88,
+      "png": "assets/item_icons/food/candied_potato.png",
+      "meta": "assets/item_icons/food/candied_potato.json"
+    },
+    {
+      "kind": "food",
+      "tag": "POTATO_PANCAKES",
+      "icon_id": 112,
+      "png": "assets/item_icons/food/potato_pancakes.png",
+      "meta": "assets/item_icons/food/potato_pancakes.json"
+    },
+    {
+      "kind": "special",
+      "tag": "WRAPPED_PRESENT",
+      "icon_id": 352,
+      "png": "assets/item_icons/special/wrapped_present.png",
+      "meta": "assets/item_icons/special/wrapped_present.json"
+    },
+    {
+      "kind": "special",
+      "tag": "BASKET",
+      "icon_id": 53,
+      "png": "assets/item_icons/special/basket.png",
+      "meta": "assets/item_icons/special/basket.json"
+    },
+    {
+      "kind": "cooking",
+      "tag": "KNIFE",
+      "icon_id": 265,
+      "png": "assets/item_icons/cooking/knife.png",
+      "meta": "assets/item_icons/cooking/knife.json"
+    },
+    {
+      "kind": "cooking",
+      "tag": "FRYING_PAN",
+      "icon_id": 204,
+      "png": "assets/item_icons/cooking/frying_pan.png",
+      "meta": "assets/item_icons/cooking/frying_pan.json"
+    },
+    {
+      "kind": "cooking",
+      "tag": "POT",
+      "icon_id": 346,
+      "png": "assets/item_icons/cooking/pot.png",
+      "meta": "assets/item_icons/cooking/pot.json"
+    },
+    {
+      "kind": "cooking",
+      "tag": "MIXER",
+      "icon_id": 64,
+      "png": "assets/item_icons/cooking/mixer.png",
+      "meta": "assets/item_icons/cooking/mixer.json"
+    },
+    {
+      "kind": "cooking",
+      "tag": "WHISK",
+      "icon_id": 472,
+      "png": "assets/item_icons/cooking/whisk.png",
+      "meta": "assets/item_icons/cooking/whisk.json"
+    },
+    {
+      "kind": "cooking",
+      "tag": "ROLLING_PIN",
+      "icon_id": 313,
+      "png": "assets/item_icons/cooking/rolling_pin.png",
+      "meta": "assets/item_icons/cooking/rolling_pin.json"
+    },
+    {
+      "kind": "cooking",
+      "tag": "OVEN",
+      "icon_id": 327,
+      "png": "assets/item_icons/cooking/oven.png",
+      "meta": "assets/item_icons/cooking/oven.json"
+    },
+    {
+      "kind": "cooking",
+      "tag": "SEASONING_SET",
+      "icon_id": 400,
+      "png": "assets/item_icons/cooking/seasoning_set.png",
+      "meta": "assets/item_icons/cooking/seasoning_set.json"
+    },
+    {
+      "kind": "mine",
+      "tag": "MONEY_BAG",
+      "icon_id": 106,
+      "png": "assets/item_icons/mine/money_bag.png",
+      "meta": "assets/item_icons/mine/money_bag.json"
+    },
+    {
+      "kind": "overnight",
+      "tag": "BAMBOO_SHOOT_OVERNIGHT",
+      "icon_id": 51,
+      "png": "assets/item_icons/overnight/bamboo_shoot_overnight.png",
+      "meta": "assets/item_icons/overnight/bamboo_shoot_overnight.json"
+    },
+    {
+      "kind": "overnight",
+      "tag": "WILD_GRAPES_OVERNIGHT",
+      "icon_id": 310,
+      "png": "assets/item_icons/overnight/wild_grapes_overnight.png",
+      "meta": "assets/item_icons/overnight/wild_grapes_overnight.json"
+    },
+    {
+      "kind": "overnight",
+      "tag": "MUSHROOM_OVERNIGHT",
+      "icon_id": 307,
+      "png": "assets/item_icons/overnight/mushroom_overnight.png",
+      "meta": "assets/item_icons/overnight/mushroom_overnight.json"
+    },
+    {
+      "kind": "overnight",
+      "tag": "POISONOUS_MUSHROOM_OVERNIGHT",
+      "icon_id": 246,
+      "png": "assets/item_icons/overnight/poisonous_mushroom_overnight.png",
+      "meta": "assets/item_icons/overnight/poisonous_mushroom_overnight.json"
+    },
+    {
+      "kind": "overnight",
+      "tag": "TRUFFLE_OVERNIGHT",
+      "icon_id": 282,
+      "png": "assets/item_icons/overnight/truffle_overnight.png",
+      "meta": "assets/item_icons/overnight/truffle_overnight.json"
+    },
+    {
+      "kind": "overnight",
+      "tag": "BLUE_GRASS_OVERNIGHT",
+      "icon_id": 66,
+      "png": "assets/item_icons/overnight/blue_grass_overnight.png",
+      "meta": "assets/item_icons/overnight/blue_grass_overnight.json"
+    },
+    {
+      "kind": "overnight",
+      "tag": "GREEN_GRASS_OVERNIGHT",
+      "icon_id": 217,
+      "png": "assets/item_icons/overnight/green_grass_overnight.png",
+      "meta": "assets/item_icons/overnight/green_grass_overnight.json"
+    },
+    {
+      "kind": "overnight",
+      "tag": "RED_GRASS_OVERNIGHT",
+      "icon_id": 377,
+      "png": "assets/item_icons/overnight/red_grass_overnight.png",
+      "meta": "assets/item_icons/overnight/red_grass_overnight.json"
+    },
+    {
+      "kind": "overnight",
+      "tag": "YELLOW_GRASS_OVERNIGHT",
+      "icon_id": 491,
+      "png": "assets/item_icons/overnight/yellow_grass_overnight.png",
+      "meta": "assets/item_icons/overnight/yellow_grass_overnight.json"
+    },
+    {
+      "kind": "overnight",
+      "tag": "ORANGE_GRASS_OVERNIGHT",
+      "icon_id": 323,
+      "png": "assets/item_icons/overnight/orange_grass_overnight.png",
+      "meta": "assets/item_icons/overnight/orange_grass_overnight.json"
+    },
+    {
+      "kind": "overnight",
+      "tag": "PURPLE_GRASS_OVERNIGHT",
+      "icon_id": 358,
+      "png": "assets/item_icons/overnight/purple_grass_overnight.png",
+      "meta": "assets/item_icons/overnight/purple_grass_overnight.json"
+    },
+    {
+      "kind": "overnight",
+      "tag": "INDIGO_GRASS_OVERNIGHT",
+      "icon_id": 257,
+      "png": "assets/item_icons/overnight/indigo_grass_overnight.png",
+      "meta": "assets/item_icons/overnight/indigo_grass_overnight.json"
+    },
+    {
+      "kind": "overnight",
+      "tag": "WHITE_GRASS_OVERNIGHT",
+      "icon_id": 474,
+      "png": "assets/item_icons/overnight/white_grass_overnight.png",
+      "meta": "assets/item_icons/overnight/white_grass_overnight.json"
+    },
+    {
+      "kind": "overnight",
+      "tag": "APPLE_OVERNIGHT",
+      "icon_id": 9,
+      "png": "assets/item_icons/overnight/apple_overnight.png",
+      "meta": "assets/item_icons/overnight/apple_overnight.json"
+    },
+    {
+      "kind": "overnight",
+      "tag": "MOON_DROP_GRASS_OVERNIGHT",
+      "icon_id": 304,
+      "png": "assets/item_icons/overnight/moon_drop_grass_overnight.png",
+      "meta": "assets/item_icons/overnight/moon_drop_grass_overnight.json"
+    },
+    {
+      "kind": "overnight",
+      "tag": "PINK_CAT_GRASS_OVERNIGHT",
+      "icon_id": 338,
+      "png": "assets/item_icons/overnight/pink_cat_grass_overnight.png",
+      "meta": "assets/item_icons/overnight/pink_cat_grass_overnight.json"
+    },
+    {
+      "kind": "overnight",
+      "tag": "BLUE_MAGIC_GRASS_OVERNIGHT",
+      "icon_id": 273,
+      "png": "assets/item_icons/overnight/blue_magic_grass_overnight.png",
+      "meta": "assets/item_icons/overnight/blue_magic_grass_overnight.json"
+    },
+    {
+      "kind": "overnight",
+      "tag": "TOY_FLOWER_OVERNIGHT",
+      "icon_id": 453,
+      "png": "assets/item_icons/overnight/toy_flower_overnight.png",
+      "meta": "assets/item_icons/overnight/toy_flower_overnight.json"
+    },
+    {
+      "kind": "effect",
+      "tag": "WATER_SPLASH",
+      "icon_id": 425,
+      "format": "animation",
+      "meta": "assets/item_icons/effects/water_splash/water_splash.json"
+    },
+    {
+      "kind": "fish_king",
+      "tag": "JP_HUCHEN",
+      "icon_id": 252,
+      "png": "assets/item_icons/fish_kings/jp_huchen.png",
+      "meta": "assets/item_icons/fish_kings/jp_huchen.json"
+    },
+    {
+      "kind": "fish_king",
+      "tag": "MONKFISH",
+      "icon_id": 249,
+      "png": "assets/item_icons/fish_kings/monkfish.png",
+      "meta": "assets/item_icons/fish_kings/monkfish.json"
+    },
+    {
+      "kind": "fish_king",
+      "tag": "CATFISH",
+      "icon_id": 254,
+      "png": "assets/item_icons/fish_kings/catfish.png",
+      "meta": "assets/item_icons/fish_kings/catfish.json"
+    },
+    {
+      "kind": "fish_king",
+      "tag": "CARP",
+      "icon_id": 253,
+      "png": "assets/item_icons/fish_kings/carp.png",
+      "meta": "assets/item_icons/fish_kings/carp.json"
+    },
+    {
+      "kind": "fish_king",
+      "tag": "COELACANTH",
+      "icon_id": 250,
+      "png": "assets/item_icons/fish_kings/coelacanth.png",
+      "meta": "assets/item_icons/fish_kings/coelacanth.json"
+    },
+    {
+      "kind": "fish_king",
+      "tag": "SQUID",
+      "icon_id": 251,
+      "png": "assets/item_icons/fish_kings/squid.png",
+      "meta": "assets/item_icons/fish_kings/squid.json"
+    },
+    {
+      "kind": "menu_special",
+      "tag": "MENU_WATER",
+      "icon_id": 461,
+      "png": "assets/item_icons/menu_special/water.png",
+      "meta": "assets/item_icons/menu_special/water.json"
+    },
+    {
+      "kind": "menu_special",
+      "tag": "MENU_BOX_LUNCH",
+      "icon_id": 401,
+      "png": "assets/item_icons/menu_special/box_lunch.png",
+      "meta": "assets/item_icons/menu_special/box_lunch.json"
+    },
+    {
+      "kind": "menu_special",
+      "tag": "MENU_MILK",
+      "icon_id": 290,
+      "png": "assets/item_icons/menu_special/milk.png",
+      "meta": "assets/item_icons/menu_special/milk.json"
+    },
+    {
+      "kind": "menu_special",
+      "tag": "MENU_SPAGHETTI",
+      "icon_id": 422,
+      "png": "assets/item_icons/menu_special/spaghetti.png",
+      "meta": "assets/item_icons/menu_special/spaghetti.json"
+    },
+    {
+      "kind": "menu_special",
+      "tag": "MENU_SNOW_CONE",
+      "icon_id": 247,
+      "png": "assets/item_icons/menu_special/snow_cone.png",
+      "meta": "assets/item_icons/menu_special/snow_cone.json"
+    },
+    {
+      "kind": "dog_ball",
+      "tag": "DOG_BALL_DEFAULT_FACING_0",
+      "icon_id": 21,
+      "format": "animation",
+      "meta": "assets/item_icons/dog_ball/dog_ball_default_facing_0.json"
+    },
+    {
+      "kind": "dog_ball",
+      "tag": "DOG_BALL_DEFAULT_FACING_1",
+      "icon_id": 22,
+      "format": "animation",
+      "meta": "assets/item_icons/dog_ball/dog_ball_default_facing_1.json"
+    },
+    {
+      "kind": "dog_ball",
+      "tag": "DOG_BALL_DEFAULT_FACING_2",
+      "icon_id": 23,
+      "format": "animation",
+      "meta": "assets/item_icons/dog_ball/dog_ball_default_facing_2.json"
+    },
+    {
+      "kind": "dog_ball",
+      "tag": "DOG_BALL_DEFAULT_FACING_3",
+      "icon_id": 24,
+      "format": "animation",
+      "meta": "assets/item_icons/dog_ball/dog_ball_default_facing_3.json"
+    },
+    {
+      "kind": "dog_ball",
+      "tag": "DOG_BALL_DOG_ANIM_033C_FACING_0",
+      "icon_id": 25,
+      "format": "animation",
+      "meta": "assets/item_icons/dog_ball/dog_ball_dog_anim_033c_facing_0.json"
+    },
+    {
+      "kind": "dog_ball",
+      "tag": "DOG_BALL_DOG_ANIM_033C_FACING_1",
+      "icon_id": 26,
+      "format": "animation",
+      "meta": "assets/item_icons/dog_ball/dog_ball_dog_anim_033c_facing_1.json"
+    },
+    {
+      "kind": "dog_ball",
+      "tag": "DOG_BALL_DOG_ANIM_033C_FACING_2",
+      "icon_id": 27,
+      "format": "animation",
+      "meta": "assets/item_icons/dog_ball/dog_ball_dog_anim_033c_facing_2.json"
+    },
+    {
+      "kind": "dog_ball",
+      "tag": "DOG_BALL_DOG_ANIM_033C_FACING_3",
+      "icon_id": 28,
+      "format": "animation",
+      "meta": "assets/item_icons/dog_ball/dog_ball_dog_anim_033c_facing_3.json"
+    },
+    {
+      "kind": "dog_ball",
+      "tag": "DOG_BALL_DOG_ANIM_0340_FACING_0",
+      "icon_id": 29,
+      "format": "animation",
+      "meta": "assets/item_icons/dog_ball/dog_ball_dog_anim_0340_facing_0.json"
+    },
+    {
+      "kind": "dog_ball",
+      "tag": "DOG_BALL_DOG_ANIM_0340_FACING_1",
+      "icon_id": 30,
+      "format": "animation",
+      "meta": "assets/item_icons/dog_ball/dog_ball_dog_anim_0340_facing_1.json"
+    },
+    {
+      "kind": "dog_ball",
+      "tag": "DOG_BALL_DOG_ANIM_0340_FACING_2",
+      "icon_id": 31,
+      "format": "animation",
+      "meta": "assets/item_icons/dog_ball/dog_ball_dog_anim_0340_facing_2.json"
+    },
+    {
+      "kind": "dog_ball",
+      "tag": "DOG_BALL_DOG_ANIM_0340_FACING_3",
+      "icon_id": 32,
+      "format": "animation",
+      "meta": "assets/item_icons/dog_ball/dog_ball_dog_anim_0340_facing_3.json"
+    },
+    {
+      "kind": "dog_ball",
+      "tag": "DOG_BALL_DOG_ANIM_0344_FACING_0",
+      "icon_id": 33,
+      "format": "animation",
+      "meta": "assets/item_icons/dog_ball/dog_ball_dog_anim_0344_facing_0.json"
+    },
+    {
+      "kind": "dog_ball",
+      "tag": "DOG_BALL_DOG_ANIM_0344_FACING_1",
+      "icon_id": 34,
+      "format": "animation",
+      "meta": "assets/item_icons/dog_ball/dog_ball_dog_anim_0344_facing_1.json"
+    },
+    {
+      "kind": "dog_ball",
+      "tag": "DOG_BALL_DOG_ANIM_0344_FACING_2",
+      "icon_id": 35,
+      "format": "animation",
+      "meta": "assets/item_icons/dog_ball/dog_ball_dog_anim_0344_facing_2.json"
+    },
+    {
+      "kind": "dog_ball",
+      "tag": "DOG_BALL_DOG_ANIM_0344_FACING_3",
+      "icon_id": 36,
+      "format": "animation",
+      "meta": "assets/item_icons/dog_ball/dog_ball_dog_anim_0344_facing_3.json"
+    },
+    {
+      "kind": "dog_ball",
+      "tag": "DOG_BALL_DOG_ANIM_0348_FACING_0",
+      "icon_id": 37,
+      "format": "animation",
+      "meta": "assets/item_icons/dog_ball/dog_ball_dog_anim_0348_facing_0.json"
+    },
+    {
+      "kind": "dog_ball",
+      "tag": "DOG_BALL_DOG_ANIM_0348_FACING_1",
+      "icon_id": 38,
+      "format": "animation",
+      "meta": "assets/item_icons/dog_ball/dog_ball_dog_anim_0348_facing_1.json"
+    },
+    {
+      "kind": "dog_ball",
+      "tag": "DOG_BALL_DOG_ANIM_0348_FACING_2",
+      "icon_id": 39,
+      "format": "animation",
+      "meta": "assets/item_icons/dog_ball/dog_ball_dog_anim_0348_facing_2.json"
+    },
+    {
+      "kind": "dog_ball",
+      "tag": "DOG_BALL_DOG_ANIM_0348_FACING_3",
+      "icon_id": 40,
+      "format": "animation",
+      "meta": "assets/item_icons/dog_ball/dog_ball_dog_anim_0348_facing_3.json"
+    },
+    {
+      "kind": "dog_ball",
+      "tag": "DOG_BALL_DOG_ANIM_034C_FACING_0",
+      "icon_id": 41,
+      "format": "animation",
+      "meta": "assets/item_icons/dog_ball/dog_ball_dog_anim_034c_facing_0.json"
+    },
+    {
+      "kind": "dog_ball",
+      "tag": "DOG_BALL_DOG_ANIM_034C_FACING_1",
+      "icon_id": 42,
+      "format": "animation",
+      "meta": "assets/item_icons/dog_ball/dog_ball_dog_anim_034c_facing_1.json"
+    },
+    {
+      "kind": "dog_ball",
+      "tag": "DOG_BALL_DOG_ANIM_034C_FACING_2",
+      "icon_id": 43,
+      "format": "animation",
+      "meta": "assets/item_icons/dog_ball/dog_ball_dog_anim_034c_facing_2.json"
+    },
+    {
+      "kind": "dog_ball",
+      "tag": "DOG_BALL_DOG_ANIM_034C_FACING_3",
+      "icon_id": 44,
+      "format": "animation",
+      "meta": "assets/item_icons/dog_ball/dog_ball_dog_anim_034c_facing_3.json"
+    },
+    {
+      "kind": "dog_ball",
+      "tag": "DOG_BALL_DOG_ANIM_0375_FACING_0",
+      "icon_id": 45,
+      "format": "animation",
+      "meta": "assets/item_icons/dog_ball/dog_ball_dog_anim_0375_facing_0.json"
+    },
+    {
+      "kind": "dog_ball",
+      "tag": "DOG_BALL_DOG_ANIM_0375_FACING_1",
+      "icon_id": 46,
+      "format": "animation",
+      "meta": "assets/item_icons/dog_ball/dog_ball_dog_anim_0375_facing_1.json"
+    },
+    {
+      "kind": "dog_ball",
+      "tag": "DOG_BALL_DOG_ANIM_0375_FACING_2",
+      "icon_id": 47,
+      "format": "animation",
+      "meta": "assets/item_icons/dog_ball/dog_ball_dog_anim_0375_facing_2.json"
+    },
+    {
+      "kind": "dog_ball",
+      "tag": "DOG_BALL_DOG_ANIM_0375_FACING_3",
+      "icon_id": 48,
+      "format": "animation",
+      "meta": "assets/item_icons/dog_ball/dog_ball_dog_anim_0375_facing_3.json"
+    }
+  ]
+}
