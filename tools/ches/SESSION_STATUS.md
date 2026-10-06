@@ -1,15 +1,18 @@
 # Ches Session Status — FOMT decomp
 
-## Current checkpoint - 22 packed-provider constructors exhausted; family-first provenance - October 6, 2026
+## Current checkpoint - whole-game throughput pivot adopted - October 6, 2026
 
-- Ownership unchanged: **416 / 493 = 405 / 450 simple + 11 / 43 multi**, leaving **45 simple + 32 multi = 77**.
-- All **22** explicit `gUnk_086678A0` provider-constructor sites are now accounted for, along with the common packed renderer/provider APIs. No remaining multi-frame owner was found through direct callsite tracing.
-- `func_080CE184` is only grid/slot arithmetic; `func_0800F258` is typed `GetHeldArticle`. Both are closed false sprite leads.
-- `func_080A748C` uses packed IDs 472/265/346/204/327/313/64/400/303/337/272 only, none from the remaining multi-frame set.
-- Strong resource clusters: **173..180** exact-alias one 4-frame animation; **413..420** contiguous two-frame family; **54..57** shared-palette group; **160/161** shared-frame/palette pair.
-- Numeric hits inside other banks and `gUnk_0810110C` were checked and closed as non-selector coincidences.
-- No production source/assets changed, so progress remains **64,536 code / 75,334 data-assets / 140,266 overall**, with the prior exact `fomt.gba: OK` baseline unchanged.
-- **Next:** trace 413..420 and 173..180 from structural/visual family evidence back to authoritative code/table/state owners; do not promote on appearance alone.
+- Strategy changed from individual packed-sprite provenance to **throughput-first whole-game decompilation**.
+- Exact state is unchanged: **64,536 / 940,036 = 6.8653% source**, **75,334 data/asset bytes**, **140,266 overall meaningful-ROM bytes**, retail ROM still exact at the prior verified baseline.
+- Normal work unit is now an inferred **translation unit or coherent structural/type/similarity cluster**, not five functions.
+- Immediate next tooling: complete remaining-function inventory with size/call/xref/TU/class/similarity/status/difficulty fields; infer TU and data ownership; cluster similar asm; map vtables/classes; score coherent units; work the ranked queue.
+- Production remains exact-only. Understood but nonmatching source stays private research unless a supported NONMATCHING convention is deliberately added later.
+- Packed-bank ownership remains **416 / 493**, leaving **77** unowned; those IDs are parked as a by-product lane, not the main queue. Closed provider/consumer evidence remains closed.
+- Durable runtime seed remains **`/mnt/data/Ches/runtime-saves/fomt/opening-farm.ss1`**, 81,767 bytes. Load semantics are still unverified, but this is now scenario-harness work rather than the blocking next action.
+- Future runtime work should use deterministic savestate + scripted inputs for bulk function coverage, indirect/virtual call targets, and targeted RAM diffs. Watchpoints answer focused questions only.
+- Keep `func_08011650`, `func_080455D8`, `func_08092A70`, `func_080CAC7C` / `func_080CAD18`, and `func_08092940` parked unless new structural evidence changes their leverage.
+- Standing checkpoint publication rule: after every durable checkpoint is made continuation-ready and diff-verified, commit it on `Live-temp` and push to `ches/Live-temp`. Retail contribution pushes to `ches-dev` remain governed separately by exactness gates.
+- **Next:** publish this documentation/strategy checkpoint to `ches/Live-temp`, then build the first machine-readable remaining-function database from existing project/map/call-graph evidence, derive TU guesses and similarity clusters, rank coherent units, and continue from that queue.
 
 ## Current checkpoint - Dog Ball 21..48 and menu-special family exact - October 6, 2026
 
@@ -289,7 +292,7 @@ This section records the completed docs sweep after the character/social integra
 - **Exact next action remains unchanged:** inspect/decompile the GameObject article-interaction vtable `+0xE8` base target at Thumb `0x0801CFB8`, identify concrete overrides, type the smallest honest interface, and exact-match one bounded article-interaction implementation. Save/product persistence work remains paused.
 ## Item/tool expansion boundary checkpoint - October 5, 2026
 
-This is the newest active checkpoint under the non-save expansion pivot.
+This is a historical checkpoint preserved from the earlier non-save expansion pivot; the top checkpoint owns current work.
 
 - `func_080455D8` is now **parked, not blocking**. Its behavior is fully understood and scratch V4/V6 both compile to the exact 0x60-byte size with only **5 differing linked bytes**, all from one setup-order difference: retail emits stack-argument address materialization before the u16 event-id normalize, while the tracked compiler schedules those three instructions in the opposite order. The function body after that setup is instruction-identical. Do not spin more source/compiler variants unless a later exact-match batch naturally reveals the original shape.
 - Current retail item ID spaces:
@@ -316,7 +319,7 @@ This is the newest active checkpoint under the non-save expansion pivot.
 
 ## Character social + heart-event integration checkpoint - October 5, 2026
 
-This is the newest active checkpoint under the non-save expansion pivot.
+This is a historical checkpoint preserved from the earlier non-save expansion pivot; the top checkpoint owns current work.
 
 - Production retail exactness remains intact: after all integrations below, `make -j4` ends with **`fomt.gba: OK`**.
 - Newly sourced exact retail block `080A01F8..080A03B7` (**0x1C0 / 448 bytes**) now lives in `src/character_info.cc`. It contains:
@@ -352,7 +355,7 @@ This is the newest active checkpoint under the non-save expansion pivot.
 
 ## Character social resolver throughput checkpoint - October 5, 2026
 
-This is the newest active decomp checkpoint under the non-save expansion pivot.
+This is a historical decomp checkpoint preserved from the earlier non-save expansion pivot; the top checkpoint owns current work.
 
 - Scratch exact matches under the tracked compiler:
   - `func_080A06B0`: **0x1C8 / 0 differing bytes**. It is the broad NPC/social-record resolver and matches the already-proven `GetCharacterNpc` source shape when the child case calls `func_080A0A04`.

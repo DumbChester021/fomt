@@ -2,22 +2,22 @@
 
 ## Active scope — October 6, 2026
 
-The active goal is now **non-save custom-game expansion enablement through retail
-decompilation**. Preserve the byte-identical US retail ROM on `ches-dev`, but
-prioritize the runtime/data boundaries that let the separate custom-game branch
-add or extend NPCs, bachelorettes, items, tools, crops, dialogue/events,
-inventory/shops, and their assets.
+The active goal is now **throughput-first whole-game retail decompilation**.
+Preserve the byte-identical US retail ROM on `ches-dev`, keep custom behavior in
+the separate custom-game worktree, and prioritize inferred translation units,
+structural/type clusters, repeated function families, shared class/data
+ownership, and recoverable bytes per effort.
 
-The legacy save loader `func_08011650` is **paused, not abandoned**. Its
-behavior, experiments, failures, and exact continuation are preserved under
-`tools/ches/checkpoints/save-loader-08011650-2026-10-04/`. Do not resume that
-compiler-sensitive exact-match puzzle unless the user explicitly asks, or a
-later expansion feature requires a missing persistence fact.
+The legacy save loader `func_08011650` remains paused, with its experiments and
+exact continuation preserved. Other documented compiler-sensitive islands stay
+parked unless new structural evidence materially changes their leverage.
 
-Use a throughput-first decomp strategy: prefer coherent clusters and
-high-leverage small/medium functions, recover semantics/types/callers first,
-and rotate away from compiler archaeology once a function's remaining problem
-is source-spelling/allocation exactness rather than missing game behavior.
+The next tooling layer is a unified remaining-function/TU database with call/xref
+information, similarity clustering, vtable/class/global ownership, status and
+difficulty evidence, followed by a ranked coherent-unit queue. Runtime analysis
+should evolve into deterministic savestate/scripted coverage and indirect-call
+collection rather than manual resource hunting.
+
 Custom behavior still belongs only in the separate custom-game worktree.
 
 
@@ -30,13 +30,13 @@ Current retail state:
 - Current exact worktree progress is **64,536 / 940,036 = 6.8653% source** and **875,500 assembly bytes**. Data/assets reconstruction is **75,334 / 6,777,404 = 1.1115%** and overall meaningful-ROM reconstruction is **140,266 / 7,717,440 = 1.8175%**. `make progress` reports `fomt.gba: OK`; retail SHA1 remains `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
 - Shared NPC identity/location/schedule/Lillia support and the exact 43-entry metadata table remain complete. `src/game_object_entity_lookup.cc` owns the two native indexed entity lookups and entity teardown.
 - Legacy loader `func_08011650` remains paused with matching research preserved under `tools/ches/checkpoints/save-loader-08011650-2026-10-04/`.
-- Packed-bank ownership is now **416 / 493 animations: 405 / 450 simple and 11 / 43 multi-frame**. Water Splash 425 / 0x1A9 proves generic multi-frame authoring, and Dog Ball 21..48 contributes 10 additional owned multi-frame animations.
+- Packed-bank ownership remains **416 / 493 animations: 405 / 450 simple and 11 / 43 multi-frame**. Water Splash 425 / 0x1A9 proves generic multi-frame authoring, and Dog Ball 21..48 contributes 10 additional owned multi-frame animations.
 - Recent exact families also include the six Fish Kings, five menu-special presentation icons, and the complete Dog Ball visual range.
-- Common packed-consumer lanes are now exhausted for the remaining multi-frame set: direct `func_080A4A00`, `func_0805E824`, packed `SetAnimation`, `CB304/CC728/CBAF0`, `CAC7C/CAD18`, local packed-provider screens, and the retail OnCall-320 landing-resource path.
-- The landing-resource chain is structurally bounded: hidden `0x0802BD50` stores `resource_id` at entity `+0x56`; `func_0802BA74` forwards that field into GameObject `+0xBC` / `func_080AD77C`. Parsing all 1,328 retail RIFF/SCR scripts found only two OnCall(320) uses, both resource IDs 0 and 1.
+- All 22 explicit `gUnk_086678A0` provider-constructor sites and the documented common packed-consumer lanes are accounted for. `func_080CE184` and `func_0800F258` are closed false leads; Mary actor-animation overlaps and OnCall-320 resource IDs are also closed evidence.
+- The remaining **77 packed animations** are now a parked open list, not the active decompilation queue. Preserve family evidence for 173..180, 413..420, 54..57, 160/161 and other documented IDs, but resolve them as owning TUs/scenes/events/tables are reconstructed.
 - `func_08092A70` remains behavior-complete and parked at exact size `0x260 / 3 differing linked bytes`; `func_080455D8`, `func_080CAC7C` / `func_080CAD18`, and `func_08092940` remain parked at their documented compiler-sensitive boundaries.
 - Authoritative compiler remains the tracked 13-rule compatibility path, patch SHA256 `aa7cc6df0efbd066e9c33deb887731e1d0210babfaeba4c9b64f3e8bc35c4256`.
-- Custom-game source remains separate. **45 simple and 32 multi-frame animations remain unowned** and should not be exported anonymously. All 22 direct `gUnk_086678A0` constructor sites are now accounted for; `func_080CE184` (grid/slot arithmetic) and `func_0800F258` (`GetHeldArticle`) are false co-occurrence leads. Continue resource-family-first provenance, prioritizing exact-alias block 173..180, contiguous two-frame block 413..420, shared-palette 54..57, and shared-frame pair 160/161. Numeric hits inside `gUnk_08523290`, `gUnk_0852D984`, and the 20-byte-record table `gUnk_0810110C` are closed as other-bank/state-data coincidences.
+- The active continuation is the throughput pipeline: complete the function/TU inventory, similarity and class/data ownership maps, rank coherent units, then decompile from that queue. The opening-farm savestate/watchpoint work is preserved as seed infrastructure for scripted runtime coverage.
 
 Naming rule:
 Use semantic names when evidence is strong. If identity remains unresolved, an honest address-derived name is acceptable for an otherwise fully exact retail contribution. Do not invent a semantic name merely to eliminate `func_*` or `unk_*`.

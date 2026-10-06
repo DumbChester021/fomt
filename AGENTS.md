@@ -24,65 +24,88 @@ These tracks support each other: retail reconstruction explains the game well en
 
 ## Active scope — October 6, 2026
 
-The active goal is now **non-save custom-game expansion enablement through retail
-decompilation**. Preserve the byte-identical US retail ROM on `ches-dev`, but
-prioritize the runtime/data boundaries that let the separate custom-game branch
-add or extend NPCs, bachelorettes, items, tools, crops, dialogue/events,
-inventory/shops, and their assets.
-
-The legacy save loader `func_08011650` is **paused, not abandoned**. Its
-behavior, experiments, failures, and exact continuation are preserved under
-`tools/ches/checkpoints/save-loader-08011650-2026-10-04/`. Do not resume that
-compiler-sensitive exact-match puzzle unless the user explicitly asks, or a
-later expansion feature requires a missing persistence fact.
-
-Use a throughput-first decomp strategy across **both code and assets**. Prefer
-coherent clusters and high-leverage functions/data banks, recover
-semantics/types/providers/formats first, and rotate away from compiler
-archaeology once a function's remaining problem is source-spelling/allocation
-exactness rather than missing game behavior. For assets, count progress only
-when editable project-side source regenerates the retail bytes exactly; moving
-an opaque `.incbin` into another binary file is not reconstruction.
-
-The character/romance resolver pass and the first item/tool expansion lane are
-now substantially recovered in the exact worktree. Article interaction, the
-MoneyState core, typed shop catalogs, the packed animation provider, and all
-**347 Tool/Food/Article item icons** are readable/editable boundaries. The normal
-matching build regenerates the retail packed bank from PNG/JSON sources and still
-reproduces the retail SHA1.
-
-The active retail frontier is **code-coupled asset reconstruction**. Do not
-promote anonymous graphics merely to raise the asset percentage. The packed bank
-has **416 semantically owned animations: 405 / 450 simple and 11 / 43
-multi-frame**, leaving **45 simple and 32 multi-frame animations unowned**.
-Completed non-core families include Wrapped Present (352), Basket (53), the eight
-cooking utensil assets, Money Bag (106), 18 overnight forage/map variants, Water
-Splash (425 / 0x1A9), the six Fish Kings, five menu-special presentation icons,
-and the Dog Ball visual family 21..48. Dog Ball alone contributes 28 animations /
-53 frames, including 10 multi-frame animations.
-
-Common packed-consumer lanes are now exhausted for the remaining multi-frame set:
-direct `func_080A4A00`, `func_0805E824`, packed
-`SpriteAnimator::SetAnimation`, `func_080CB304` / `func_080CC728` /
-`func_080CBAF0`, `func_080CAC7C` / `func_080CAD18`, local packed-provider
-screens, the script-driven OnCall-320 landing-resource path, and all 22 explicit
-`gUnk_086678A0` provider-constructor sites. Continue by classifying coherent
-unowned resource families and tracing them back to runtime/table owners.
-Highest-priority clusters are exact-alias block 173..180, contiguous two-frame
-block 413..420, shared-palette 54..57, and shared-frame pair 160/161. Keep
-`func_08092A70`, `func_080CAC7C` / `func_080CAD18`, and `func_08092940`
-parked unless new structural evidence appears. Use `make progress` and
-`docs/ASSET_DECOMPILATION.md` to track code, data/assets, overall linked-ROM
-reconstruction, and PRET-style contiguous tail free space separately.
-
-The separate custom-game worktree can then use these authoring paths for a first
-new Tool/Food/Article plus unique icon. A unique new icon must extend the
-saturated animation, frame, sprite-descriptor, graphics and palette pools. Do
-not expand `ShippingBin::product_stats[NUM_PRODUCTS]` yet because product-count
-growth changes persistent state layout. `func_080455D8` remains parked at a
-five-byte instruction-order mismatch and is not an active compiler target.
-
+The active goal is now **throughput-first whole-game retail decompilation**, while
+continuing to improve the runtime/data boundaries needed by the separate
+custom-game branch. Preserve the byte-identical US retail ROM on `ches-dev`.
 Custom behavior still belongs only in the separate custom-game worktree.
+
+The project has already paid for substantial shared infrastructure: hardware,
+DMA/transfer, intrusive lists, entity/effect lifecycle, resource handles,
+SpriteAnimator/provider parsing, NPC/social support, GameObject entity
+lookup/teardown, article interaction, MoneyState, typed shop catalogs, and
+editable packed-sprite families. The priority is now to **cash in on those
+shared types across the remaining assembly**, rather than optimizing one
+resource family at a time.
+
+### Throughput strategy
+
+- Treat an inferred original translation unit or coherent structural/type
+  cluster as the normal work unit. Do not target a fixed number of functions
+  per batch.
+- Build and maintain one machine-readable function inventory with address,
+  size, callers/callees, data/global xrefs, vtable/class evidence, inferred TU,
+  similarity cluster, current status, compiler-difficulty evidence, and later
+  runtime coverage.
+- Rank remaining TUs/clusters by expected recovered bytes, downstream unlock
+  value, type readiness, subsystem coherence, and estimated difficulty.
+  Re-rank after meaningful integrations.
+- Use normalized-assembly similarity clustering aggressively. Solve one member
+  of a repeated family carefully, then use it as a source/type oracle for its
+  siblings.
+- Recover vtables, constructors/destructors, globals, fixed-stride tables, and
+  other shared ownership boundaries early when they unlock many callers.
+- Keep exact matching as the production gate. A semantically reconstructed but
+  nonmatching function may be preserved as private research/understood work,
+  but must not replace retail assembly in production `src/` unless an explicit
+  supported NONMATCHING convention is deliberately adopted later.
+- Park compiler-sensitive functions once their remaining delta is codegen or
+  source-shape archaeology rather than missing behavior. Preserve the best
+  candidate and cause, then move to higher-throughput work.
+
+### Runtime and asset role
+
+Runtime work is now **bulk evidence collection**, not manual gameplay-driven
+resource hunting. The durable opening-farm mGBA state at
+`/mnt/data/Ches/runtime-saves/fomt/opening-farm.ss1` is retained as the first
+scenario asset. Future emulator work should grow into deterministic savestate
+plus scripted-input scenarios that record function coverage, indirect
+caller/callee targets, and targeted RAM changes. Watchpoints remain useful for
+specific ownership/field questions, but are not the primary discovery queue.
+
+The packed sprite bank remains correctly reconstructed at its proven scope:
+**416 / 493 animations are semantically owned: 405 / 450 simple and 11 / 43
+multi-frame**, leaving **77** unowned. Those 77 are now a parked open list, not
+the main decompilation frontier. Resolve them naturally as owning TUs,
+tables, scenes, events, minigames, and other consumers are reconstructed.
+Do not promote anonymous assets merely to raise coverage.
+
+For data/assets, use a hybrid rule: bulk-catalog recognizable structure such
+as pointer tables, fixed-stride arrays, palettes, tile banks, script tables,
+and resource headers when cheap, then use recovered consumers to assign
+semantics and ownership. Bytes count as reconstructed only when editable
+project-side source regenerates the retail bytes exactly.
+
+The legacy save loader `func_08011650`, `func_080455D8`,
+`func_08092A70`, `func_080CAC7C` / `func_080CAD18`, and
+`func_08092940` remain parked at their documented compiler-sensitive
+frontiers unless new structural evidence makes them high-value again.
+
+Immediate strategy work is:
+1. generate the complete remaining-function database from existing map/call
+   graph evidence;
+2. infer TU boundaries and global/data ownership;
+3. cluster normalized assembly and identify repeated function families;
+4. map vtables/classes/constructors/destructors;
+5. score all remaining TUs/clusters and select the highest-leverage coherent
+   units;
+6. decompile those units while preserving exact production gates;
+7. build scripted runtime coverage scenarios in parallel as a classification
+   and indirect-call tool, not as the primary queue.
+
+Use `make progress` to keep exact code, data/assets, overall meaningful-ROM,
+and contiguous tail free-space metrics honest. Track semantic/understood
+coverage separately when that machinery is implemented; do not mix it into the
+exact matched-source percentage.
 
 ## Respect for the original project and authors
 
@@ -114,8 +137,8 @@ Custom behavior still belongs only in the separate custom-game worktree.
 
 - After meaningful integrated changes, run the exact project build/compare path and check the actual exit status and output. The "100% compiling retail" gate is not satisfied by a one-off local binary or unsaved toolchain mutation: a clean/fresh checkout must have a documented, saved, reproducible path to the same exact build using committed project/toolchain inputs or an already-established reproducible dependency.
 - Verify the ROM is still 8,388,608 bytes with the expected SHA1, inspect progress, run `git diff --check`, and review the index and contribution diff explicitly.
-- Commit only coherent, verified contribution files using explicit paths. Keep private handoffs, research, failed candidates, logs, and operator notes out of contribution commits. Once a retail unit has both an exact local/source proof and an exact integrated/full-ROM proof, treat documentation + save + explicit-path commit + push to the current `ches-dev` remote branch as the default completion step. This standing authorization applies only to fully retail-exact reconstruction work; anything still under investigation remains uncommitted/unpushed.
-- Record findings, rejected hypotheses, exact mismatch counts, build logs, and next steps in the numbered checkpoint and update `tools/ches/SESSION_STATUS.md` before stopping or context compaction. When a retail unit reaches both exactness gates, also update every other project document whose current facts changed before the commit/push, so the pushed code and the local durable handoff cannot disagree.
+- Retail contribution commits to `ches-dev` remain exact-only: stage only coherent contribution files after both exactness gates pass, and keep private research/checkpoint files out of those contribution commits.
+- **Checkpoint publication rule:** every durable Ches checkpoint on the active `Live-temp` branch must be committed and pushed to `ches/Live-temp` after canonical docs/artifacts are updated and the checkpoint diff is verified. These checkpoint commits may include private coordination/research/docs intended for `Live-temp`; they are distinct from contribution commits to `ches-dev`. Do not leave a completed checkpoint only local unless push is genuinely blocked, in which case record the failure and exact local HEAD in the handoff.
 
 ## Documentation and anti-rediscovery discipline
 
@@ -177,4 +200,4 @@ A no-context agent must be able to answer from files alone: project goals, curre
 
 The live dashboard/current snapshot and newest evidence supersede older chronological handoff history.
 
-Standing batch-size rule: 5 completed retail functions per user-facing batch when feasible. Keep canonical docs current as exact functions land; only pause earlier for a genuine blocker or the mandatory Ches safety checkpoint.
+Standing work-unit rule: use the ranked TU/type/similarity-cluster queue rather than a fixed function count. At every mandatory Ches safety checkpoint or other durable checkpoint, update canonical state, verify the checkpoint diff, commit it on `Live-temp`, and push to `ches/Live-temp` before ending the turn.

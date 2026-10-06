@@ -72,7 +72,7 @@ that independently use this range.
 
 This remains deferred design reference. The retail loader semantics and writer/
 slot geometry are sufficiently bounded for now, and exact loader source matching
-is explicitly **paused** during the non-save expansion pivot. Resume persistence
+is explicitly **paused** during the whole-game throughput pivot. Resume persistence
 work when custom runtime/content systems are ready to require stored state.
 
 A separately versioned record in that tail is a candidate for added NPCs,

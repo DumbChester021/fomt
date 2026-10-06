@@ -1,122 +1,143 @@
 # FoMT Decompilation Priority Map
 
-## Active scope — October 5, 2026
+## Active scope — October 6, 2026
 
-The active goal is now **non-save custom-game expansion enablement through retail
-decompilation**. Preserve the byte-identical US retail ROM on `ches-dev`, but
-prioritize the runtime/data boundaries that let the separate custom-game branch
-add or extend NPCs, bachelorettes, items, tools, crops, dialogue/events,
-inventory/shops, and their assets.
+The active goal is **throughput-first whole-game retail decompilation**.
+Preserve the byte-identical US retail ROM on `ches-dev`, keep custom behavior
+in the separate custom-game worktree, and prioritize coherent reconstruction
+that maximizes useful source and downstream understanding.
 
-The legacy save loader `func_08011650` is **paused, not abandoned**. Its
-behavior, experiments, failures, and exact continuation are preserved under
-`tools/ches/checkpoints/save-loader-08011650-2026-10-04/`. Do not resume that
-compiler-sensitive exact-match puzzle unless the user explicitly asks, or a
-later expansion feature requires a missing persistence fact.
+The project already has strong foundational types and APIs. The next phase is to
+exploit them across the remaining assembly instead of making an individual
+resource family the main queue.
 
-Use a throughput-first decomp strategy: prefer coherent clusters and
-high-leverage small/medium functions, recover semantics/types/callers first,
-and rotate away from compiler archaeology once a function's remaining problem
-is source-spelling/allocation exactness rather than missing game behavior.
-Custom behavior still belongs only in the separate custom-game worktree.
+Current exact worktree:
+- code: **64,536 / 940,036 = 6.8653%**;
+- assembly remaining: **875,500 bytes**;
+- data/assets: **75,334 / 6,777,404 = 1.1115%**;
+- overall meaningful ROM: **140,266 / 7,717,440 = 1.8175%**;
+- packed bank: **416 / 493 semantically owned animations**;
+- retail ROM remains exact.
 
+The legacy save loader `func_08011650`, `func_080455D8`,
+`func_08092A70`, `func_080CAC7C` / `func_080CAD18`, and
+`func_08092940` remain parked unless new structural evidence raises their
+leverage.
 
-This is a private local roadmap for zero-context continuation. It is not an upstream contribution file.
+This is a private local roadmap for zero-context continuation. It is not an
+upstream contribution file.
 
 ## Why this exists
 
-Address adjacency is useful for recovering one subsystem, but it is not always the fastest way to decompile an entire game.
+Address adjacency, raw fan-out, and easy function count are all useful signals,
+but none is sufficient by itself. The roadmap now ranks **translation units and
+coherent structural/type clusters**, not just individual functions.
 
-This roadmap ranks remaining assembly by **future leverage**: how much understanding one recovered function/type is likely to unlock elsewhere.
+The target queue should be driven by a machine-readable function database with:
+- function address and exact size;
+- callers, callees, and cross-module fan-out;
+- data/global xrefs and likely owner;
+- inferred original TU/subsystem;
+- vtable/class/constructor/destructor relationships;
+- normalized-assembly similarity cluster;
+- exact / understood-nonmatching / parked / assembly status;
+- known compiler-difficulty evidence;
+- runtime coverage and indirect call targets when available.
 
-The ranking combines:
-- direct call count from remaining assembly;
-- number of distinct calling functions;
-- number of assembly modules using it;
-- approximate function size;
-- whether an existing readable type already points to its semantics;
-- whether solving it exposes a shared object layout or ABI;
-- whether it belongs to a coherent cluster that can be decompiled together.
-
-The quantitative score is a heuristic, not an automatic target selector. A tiny generic wrapper can rank very high while teaching little. Human classification is required.
-
-Regenerate the raw ranking with:
+The old direct-call leverage analyzer remains useful input:
 
 `python3 tools/ches/analyze_decomp_leverage.py --top 100 --min-callers 5 --markdown`
 
-Current raw snapshot:
-`tools/ches/checkpoints/decomp-leverage-2026-10-04-npc-support.md`
+but its score is no longer an execution order.
 
-## Current priority: non-save expansion enablement
+## Current priority: build the throughput queue, then work the top coherent units
 
-Five retail NPC support functions are complete, with both forced ROM proofs:
+### 1. Complete the function/TU inventory
 
-| Retail symbol | Readable interface | Exact bytes |
-| --- | --- | ---: |
-| `func_080A03B8` | `GetCharacterLocation` | 100 |
-| `func_0803D688` | `ApplyNpcSchedule` | 348 |
-| `func_0803D7E4` | `InitializeCharacterSchedules` | 576 |
-| `func_08035AFC` | `LilliaEntity::LilliaEntity` | 60 |
-| `func_08035B38` | `LilliaEntity::vfunc_30` | 44 |
+Generate one authoritative machine-readable inventory for all remaining
+assembly. Reuse existing map/call-graph/progress tooling instead of rediscovering
+symbols.
 
-Contribution `565529c` and the later 43-entry typed metadata contribution
-`56f3434` remain exact and pushed. Since then, `579c16c` recovered the two
-native GameObject indexed entity lookups and `9078f36` recovered entity
-teardown. Current HEAD is still `9078f36`, while the exact October 5 worktree
-has advanced to **64,536 / 940,036 = 6.8653%** source and **875,500** assembly
-bytes. The retail ROM remains exact. October 5 character/social, item/shop,
-provider and asset-pipeline work is still uncommitted.
+Infer likely original translation-unit boundaries from:
+- linked address/section locality;
+- padding and literal-pool seams;
+- static rodata/data referenced primarily by one local region;
+- internal-call locality versus cross-module calls;
+- vtable and constructor/destructor groupings;
+- linker/object boundaries already exposed by the build.
 
-The main `func_0801A8E0` factory is also fully mapped at the selector/target
-level: the coherent region is 0xBB8 bytes, all 94 selectors are classified into
-58 unique targets, selectors 1..34 are resident character IDs, 35 is the child,
-36..42 are Harvest Sprites, and 43 is occupied. Do not restart factory-table
-discovery or treat selector 43 as free. Full factory C++ is deferred until its
-remaining families can be typed without invented names.
+### 2. Cluster repeated machine-code families
 
-The legacy loader `func_08011650` is paused. The active retail priority remains
-**code-coupled asset reconstruction**: recover the runtime boundary and the
-resource together instead of alternating isolated code work with anonymous
-asset harvesting. See [ASSET_DECOMPILATION.md](ASSET_DECOMPILATION.md) for the
-counting rules and multi-axis progress tracker.
+Normalize registers, relocatable addresses, and suitable immediates, then
+cluster similar remaining functions. FoMT contains many repeated entity/NPC,
+menu, wrapper, state, map, item/tool, and scene patterns where one exact source
+member can become a strong oracle for the rest.
 
-Ordered frontier:
+Prioritize clusters by total remaining bytes and how much shared type/source
+shape one representative can teach.
 
-1. **Preserve parked compiler-sensitive boundaries.** Wrapped Present (352),
-   Basket (53), `func_08092CD0`, and `func_08092754` are complete.
-   `func_08092A70` remains behavior-complete at exact size 0x260 / 3 bytes;
-   keep `func_080CAC7C` / `func_080CAD18` and `func_08092940` parked unless
-   new structural evidence appears.
-2. **Packed sprite bank by resource-family provenance.** Ownership is
-   **416 / 493 = 405 / 450 simple + 11 / 43 multi-frame**, leaving **45 simple
-   + 32 multi-frame**. Direct `func_080A4A00`, `func_0805E824`, packed
-   `SetAnimation`, `CB304/CC728/CBAF0`, `CAC7C/CAD18`, local provider
-   screens, the retail OnCall-320 landing-resource path, and all **22** explicit
-   `gUnk_086678A0` provider-constructor sites are accounted for.
-   `func_080CE184` is only grid/slot arithmetic and `func_0800F258` is
-   `GetHeldArticle`; both are closed false sprite leads. Prioritize exact-alias
-   block **173..180**, contiguous two-frame block **413..420**, shared-palette
-   **54..57**, and shared-frame pair **160/161**. Prove the runtime/table owner
-   before promoting any cluster.
-3. **Large graphics/palette/tileset banks with their loaders/renderers.**
-   Classify opaque ranges in `asm/data/data_0813B288.s` together with the code
-   that establishes their format and ownership, then promote editable exact
-   assets.
-4. **Maps, dialogue/events, portraits/providers, and sound/music.** Recover each
-   data family together with the runtime registration/consumer path that makes
-   it meaningful. Raw extracted `.bin` copies do not count.
-5. **Custom-game insertion.** Use proven authoring/runtime boundaries for the
-   first new Tool/Food/Article plus unique icon. New basic item IDs still fit u8;
-   do not increase `NUM_PRODUCTS` because `ShippingBin::product_stats` is
-   persistent.
-6. **Persistence-dependent expansion.** Revisit save/product-state growth only
-   after runtime custom content needs stored state. The audited extension design
-   and legacy loader research remain preserved and paused.
+### 3. Build the class/global/data ownership map
 
-See [CUSTOM_GAME_EXPANSION.md](CUSTOM_GAME_EXPANSION.md) for the cross-system
-roadmap and [CUSTOM_CHARACTERS.md](CUSTOM_CHARACTERS.md) for the character lane.
-Save persistence remains a later lane and its preserved facts stay in
-[SAVE_FORMAT.md](SAVE_FORMAT.md).
+Scan vtable/function-pointer runs, link them to constructors/destructors and
+known virtual callsites, and connect globals/tables to their main consumers.
+Feed recovered ownership and types back into the function database before
+ranking the next queue.
+
+### 4. Score coherent TUs/clusters
+
+Use a multi-factor score rather than raw fan-out alone. Inputs should include:
+- recoverable source bytes;
+- downstream unresolved bytes unlocked;
+- type readiness;
+- similarity to already-exact source;
+- TU/subsystem coherence;
+- compiler difficulty/failure history;
+- useful data/asset formats exposed as a by-product.
+
+A tiny wrapper with hundreds of calls may still rank below a medium TU whose
+types unlock several large callers.
+
+### 5. Decompile by TU/cluster, not by fixed function count
+
+There is no longer a five-function batch target. Work through as much of a
+coherent unit as remains high-throughput. When one function becomes a pure
+compiler/codegen island, preserve the best natural candidate and cause, mark it
+parked/understood privately, and continue the rest of the unit.
+
+Only byte-exact source replaces assembly in production. Semantically understood
+but nonmatching source is valuable research and mod-readiness evidence, but must
+stay private unless a supported NONMATCHING convention is deliberately adopted.
+
+### 6. Use runtime tracing as bulk classification
+
+The existing opening-farm savestate is useful infrastructure, not the main
+frontier. Build deterministic savestate + scripted-input scenarios that can
+collect:
+- function-entry coverage;
+- indirect and virtual caller/callee targets;
+- first-hit frame/scenario;
+- targeted RAM before/after diffs.
+
+Use watchpoints only to answer focused ownership or field questions.
+
+### 7. Treat assets/data as a by-product and parallel structural lane
+
+The remaining **77 packed-sprite animations** are parked as an open list rather
+than the primary queue. Their current family evidence remains valid:
+173..180, 413..420, 54..57, 160/161, plus the other documented IDs. Resolve
+them naturally as their owning TUs, tables, scenes, events, minigames, and
+consumers are reconstructed.
+
+Bulk-catalog recognizable pointer tables, fixed-stride arrays, palettes, tile
+banks, script tables, and resource headers when cheap. Assign semantic ownership
+through consumers. Only editable project-side representations that regenerate
+retail bytes count as reconstructed assets/data.
+
+### 8. Re-score continuously
+
+After a shared type, class family, TU, major table, or runtime coverage set is
+recovered, update the function database and re-rank the remaining work. The
+queue is evidence-driven and dynamic, not a permanently hand-written list.
 
 ## Previous resource unit and deferred allocator continuation
 
@@ -415,17 +436,23 @@ At that point, shared animation, manager, and transfer types should make those f
 
 ## Target-selection rule for future agents
 
-Before each new 5-function batch:
+Before starting a new source unit:
 
-1. Run or consult the leverage map.
-2. Ask whether a high-fanout unresolved type can unlock multiple subsystems.
-3. Prefer a coherent API/type cluster over five unrelated tiny wrappers.
-4. Prefer an existing semantic anchor in readable source.
-5. Balance leverage with tractability.
-6. Preserve local-subsystem candidates when pivoting.
-7. Recompute the map after major shared types are recovered.
+1. Refresh or consult the function/TU database and ranked queue.
+2. Prefer a coherent TU/type/similarity cluster over unrelated easy functions.
+3. Check whether an already-exact family member can serve as a source-shape
+   oracle.
+4. Prefer work where recovered types are already strong and where the unit
+   unlocks large unresolved callers/data.
+5. Balance total bytes and leverage against known compiler difficulty.
+6. Preserve hard local candidates instead of letting one function block the
+   cluster.
+7. Re-score after major shared types, classes, TUs, or runtime coverage are
+   recovered.
 
-A local adjacent function remains the right choice when it directly completes a type/subsystem model. Global fan-out is a prioritization input, not a command to jump randomly around the ROM.
+Address adjacency remains valuable when it reflects a real TU, type family,
+shared static data, or subsystem. It is not a rule to advance linearly through
+ROM addresses.
 
 ## Historical SpriteAnimator batch state - October 2, 2026
 

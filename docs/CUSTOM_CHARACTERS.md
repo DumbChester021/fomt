@@ -1,31 +1,28 @@
 # Custom-character enablement roadmap and deferred design
 
-## Active scope — October 5, 2026
+## Active scope — October 6, 2026
 
-The active goal is now **non-save custom-game expansion enablement through retail
-decompilation**. Preserve the byte-identical US retail ROM on `ches-dev`, but
-prioritize the runtime/data boundaries that let the separate custom-game branch
-add or extend NPCs, bachelorettes, items, tools, crops, dialogue/events,
-inventory/shops, and their assets.
+The retail project now uses **throughput-first whole-game decompilation** rather
+than making character expansion the primary queue. Preserve the byte-identical
+US retail ROM on `ches-dev`; custom behavior remains only in the separate
+custom-game worktree.
 
-The legacy save loader `func_08011650` is **paused, not abandoned**. Its
-behavior, experiments, failures, and exact continuation are preserved under
-`tools/ches/checkpoints/save-loader-08011650-2026-10-04/`. Do not resume that
-compiler-sensitive exact-match puzzle unless the user explicitly asks, or a
-later expansion feature requires a missing persistence fact.
+Character work still benefits directly from the new TU/cluster pipeline:
+recover shared classes, dispatchers, globals, tables, and repeated entity/NPC
+families when they rank highly, then reuse that understanding for future added
+NPCs and romance candidates. Do not force the retail queue to stay inside the
+character lane when another coherent unit has better total leverage.
 
-Use a throughput-first decomp strategy: prefer coherent clusters and
-high-leverage small/medium functions, recover semantics/types/callers first,
-and rotate away from compiler archaeology once a function's remaining problem
-is source-spelling/allocation exactness rather than missing game behavior.
-Custom behavior still belongs only in the separate custom-game worktree.
+The legacy save loader `func_08011650` remains paused with its research
+preserved. Persistence returns when a concrete runtime feature needs stored
+custom state.
 
-
-This page owns the **character lane** of the broader non-save expansion pivot.
-The cross-system ordering is in [CUSTOM_GAME_EXPANSION.md](CUSTOM_GAME_EXPANSION.md).
-Earlier design notes use one ordinary added NPC as a reference for dependencies
-and compatibility requirements. Runtime character expansion is now an active
-enablement goal, while persistence design remains intentionally deferred.
+This page owns the **character lane** of the broader custom-game roadmap. The
+cross-system retail queue is in [DECOMP_PRIORITY_MAP.md](DECOMP_PRIORITY_MAP.md)
+and [CUSTOM_GAME_EXPANSION.md](CUSTOM_GAME_EXPANSION.md). Earlier design notes
+use one ordinary added NPC as a reference for dependencies and compatibility
+requirements; they remain valid design evidence, not the immediate retail next
+action.
 
 [CHARACTERS.md](CHARACTERS.md) owns proven retail character architecture.
 [SAVE_FORMAT.md](SAVE_FORMAT.md) owns the paused retail persistence boundary.

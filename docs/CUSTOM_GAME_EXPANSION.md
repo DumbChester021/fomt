@@ -1,14 +1,15 @@
 # Custom-game expansion enablement roadmap
 
-## Active pivot — October 5, 2026
+## Active pivot — October 6, 2026
 
-The immediate project goal is to make the separate custom-game branch capable
-of safely adding content **without blocking on save-loader exact matching**.
+The retail project has pivoted to **throughput-first whole-game decompilation**.
+The custom-game goal is unchanged: make future added content safe and source-
+level, but do not let one expansion lane dictate the retail work queue when a
+higher-leverage TU/type cluster can unlock more of the game.
+
 Retail reconstruction remains byte-exact on `ches-dev`; custom behavior remains
-in the separate custom-game worktree.
-
-Save/persistence is a later lane. `func_08011650` and all associated compiler
-research are preserved, not discarded.
+in the separate custom-game worktree. Save/persistence stays a later lane and
+`func_08011650` research remains preserved.
 
 ## Readiness by system
 
@@ -26,35 +27,35 @@ research are preserved, not discarded.
 
 ## Active priority order
 
-### 1. Code-coupled asset authoring and reconstruction
+### 1. Exploit the whole-game decompilation queue
 
-Retail work now advances asset/data recovery together with the runtime code that
-owns and interprets those resources. Most of the ROM is outside the executable
-code metric, but anonymous extraction is not useful enough for the custom-game
-goal. Trace the owner/consumer, recover the relevant types/loaders/renderers, and
-only then promote the corresponding resource to editable, byte-exact source.
-Track this in `docs/ASSET_DECOMPILATION.md` and `make progress`; copied or
-semantically unowned opaque blobs do not count.
+Custom-game readiness now benefits from the same ranked TU/cluster pipeline as
+the retail project. Recover high-leverage classes, globals, dispatchers, tables,
+and coherent translation units first when they unlock many later systems.
 
-The packed bank now has **416 semantically owned animations: 405 / 450
-simple and 11 / 43 multi-frame**. **45 simple and 32 multi-frame animations
-remain unowned.** Completed non-core families are Wrapped Present (352), Basket
-(53), the eight `gCookingUtensilIconIds` assets, Money Bag (106), 18 overnight
-forage/map variants, Water Splash (425 / 0x1A9), six Fish Kings, five
-menu-special presentation icons, and Dog Ball 21..48. Dog Ball contributes 28
-animations / 53 frames, including 10 multi-frame animations.
+The function/TU database, similarity clustering, vtable/class map, data ownership
+map, and later runtime coverage should reveal extension points faster than
+manually chasing one resource ID at a time.
 
-The common packed-consumer lanes for the remaining multi-frame set and all 22
-explicit `gUnk_086678A0` provider-constructor sites are now accounted for.
-`func_080CE184` is only grid/slot arithmetic, while `func_0800F258` is typed
-`GetHeldArticle`; both are closed false co-occurrence leads. Continue
-resource-family-first provenance on coherent unowned clusters 173..180,
-413..420, 54..57, and 160/161, and do not promote them until runtime/table
-semantics prove ownership. This code-coupled workflow directly benefits the
-custom-game branch because each recovered family provides both editable assets
-and the source-level runtime boundary needed to use them safely.
+### 2. Keep asset authoring code-coupled, but not queue-defining
 
-### 2. Item and tool extension boundary
+Retail asset/data recovery still requires enough runtime/type evidence to know
+format and ownership. Anonymous extraction does not count. However, the 77
+remaining unowned packed animations are now parked as an open list and should
+resolve naturally while their scenes, events, minigames, tables, and owning TUs
+are reconstructed.
+
+The packed bank remains **416 / 493 semantically owned animations: 405 / 450
+simple and 11 / 43 multi-frame**. All 22 explicit provider-constructor sites and
+the common packed-consumer lanes are already accounted for. Preserve that
+closed evidence rather than restarting the same searches.
+
+Bulk structural extraction is still useful for recognizable pointer tables,
+fixed-stride records, palettes, tile banks, scripts, maps, and sound tables.
+Consumers establish semantics; editable byte-exact rebuilds establish asset
+progress.
+
+### 3. Item and tool extension boundary
 
 The character/romance resolver pass is no longer the active blocker. Exact
 worktree source now owns the early 0x1C0-byte social block, the later
@@ -96,7 +97,7 @@ sprite descriptor 499, so a genuinely new unique icon must extend those
 namespaces and the referenced graphics/palette pools. Reusing or editing an
 existing retail icon slot already works.
 
-### 3. Character follow-through
+### 4. Character follow-through
 
 Character interaction routing is now sufficiently mapped to stop blocking the
 broader pivot. Remaining character work is asset/provider round trips, runtime
@@ -105,11 +106,11 @@ candidate across spouse/rival/wedding/event/UI consumers. Do not reopen the
 giant dispatcher or the parked five-byte `func_080455D8` mismatch without a
 new structural reason.
 
-### 4. Crops and field behavior
+### 5. Crops and field behavior
 
 Turn opaque `FieldPlot` state into gameplay concepts. Prioritize seed/article use, till/water/tool effects, planting/growth state, harvest output, crop death/weather, and product/item conversion.
 
-### 5. Dialogue, events and non-item assets
+### 6. Dialogue, events and non-item assets
 
 Use Mary for bytecode, but recover the native side that makes bytecode reachable:
 trigger/event registration, native callable/script dispatch, fixed event-table
@@ -117,7 +118,7 @@ consumers, portrait/display-animation selection, and character/map asset-provide
 registration/bounds. The Tool/Food/Article icon bank is no longer an unknown
 asset boundary: its 347 named item icons already round-trip through PNG source.
 
-### 6. Runtime custom-character prototype
+### 7. Runtime custom-character prototype
 
 Once interaction + assets + registration are understood, return to the mapped entity factory only for the concrete pieces needed to instantiate one extra ordinary NPC, then a bachelorette. Keep character IDs, entity selectors, display IDs, script IDs and schedule cursors as separate domains.
 
@@ -125,6 +126,11 @@ Persistence is deliberately not part of this prototype. A non-persistent or dete
 
 ## Throughput rule
 
-A hard retail function may remain assembly after its behavior and interfaces are understood. If exact matching stalls on compiler allocation/source spelling and no new semantic fact is being learned, checkpoint it and move to another function in the same subsystem. Prefer several connected exact functions and typed data over weeks spent on one compiler-sensitive island.
+A hard retail function may remain assembly after its behavior and interfaces are
+understood. If exact matching stalls on compiler allocation/source spelling and
+no new semantic fact is being learned, preserve the best candidate/evidence and
+continue the rest of the coherent TU/cluster. Production source remains exact-
+only; understood-but-nonmatching work is tracked privately. Re-rank after major
+shared types or units are recovered.
 
 The retail ROM SHA1 remains the final authority for every promoted retail contribution.

@@ -19,9 +19,9 @@ See [INSTALL.md](./INSTALL.md).
 Run `make progress` for separate code, data/assets, overall meaningful-ROM, and
 PRET-style contiguous tail free-space metrics. Asset progress counts only bytes
 that are actually regenerated from editable project-side sources; opaque copied
-`.incbin` data does not count. Current expansion-focused work also pairs asset
-promotion with the runtime code that owns, interprets, loads, or renders the
-resource rather than harvesting anonymous assets for percentage alone. See
+`.incbin` data does not count. Asset reconstruction also pairs promotion with
+the runtime code that owns, interprets, loads, or renders the resource rather
+than harvesting anonymous assets for percentage alone. See
 [`docs/ASSET_DECOMPILATION.md`](./docs/ASSET_DECOMPILATION.md).
 
 ## Editable item graphics

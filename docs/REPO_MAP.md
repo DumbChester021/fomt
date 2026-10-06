@@ -1,24 +1,23 @@
 # FoMT Repository Map
 
-## Active scope — October 5, 2026
+## Active scope — October 6, 2026
 
-The active goal is now **non-save custom-game expansion enablement through retail
-decompilation**. Preserve the byte-identical US retail ROM on `ches-dev`, but
-prioritize the runtime/data boundaries that let the separate custom-game branch
-add or extend NPCs, bachelorettes, items, tools, crops, dialogue/events,
-inventory/shops, and their assets.
+The active retail goal is **throughput-first whole-game decompilation**. Preserve
+the byte-identical US ROM on `ches-dev`, keep custom behavior separate, and use
+the already-recovered shared infrastructure to unlock large coherent portions of
+the remaining assembly.
 
-The legacy save loader `func_08011650` is **paused, not abandoned**. Its
-behavior, experiments, failures, and exact continuation are preserved under
-`tools/ches/checkpoints/save-loader-08011650-2026-10-04/`. Do not resume that
-compiler-sensitive exact-match puzzle unless the user explicitly asks, or a
-later expansion feature requires a missing persistence fact.
+The normal work unit is now an inferred original translation unit or coherent
+structural/type/similarity cluster. Target selection comes from the unified
+function/TU inventory, similarity and class/data ownership maps, and a ranked
+queue that balances bytes, downstream leverage, type readiness, coherence, and
+known compiler difficulty.
 
-Use a throughput-first decomp strategy: prefer coherent clusters and
-high-leverage small/medium functions, recover semantics/types/callers first,
-and rotate away from compiler archaeology once a function's remaining problem
-is source-spelling/allocation exactness rather than missing game behavior.
-Custom behavior still belongs only in the separate custom-game worktree.
+Save-loader exact matching and the documented compiler-sensitive islands remain
+parked unless new evidence raises their leverage. Runtime savestate/watchpoint
+work is preserved as the seed for scripted coverage/indirect-call collection,
+not as the primary target queue. Custom behavior still belongs only in the
+separate custom-game worktree.
 
 
 This is a practical map of the current reconstruction, not a claim that every subsystem is fully understood.
@@ -33,9 +32,8 @@ Authoritative live state is in `START_HERE.md`; this section keeps the repositor
 - Current contiguous tail free space is **671,168 bytes = 655.44 KiB = 8.0009%** of the 8 MiB ROM. `make progress` reports all four metrics plus `fomt.gba: OK`.
 - Retail SHA1 remains `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
 - Authoritative compiler path is the tracked `tools/install_agbcp.sh` + `tools/agbcp_fomt_compat.patch` SHA-256 `aa7cc6df0efbd066e9c33deb887731e1d0210babfaeba4c9b64f3e8bc35c4256`.
-- Hardware, intrusive callback-list, DMA/transfer, entity-effect, and resource-handle ownership remain readable in their existing shared source/docs.
-- Sprite animation remains readable in `include/sprite_animator.hh`, `src/sprite_animator.cc`, and `docs/SPRITE_ANIMATOR.md`; packed-bank parsing remains readable in `include/sprite_animation_provider.hh` / `src/sprite_animation_provider.cc`.
-- The packed bank has **416 semantically owned animations: 405 / 450 simple and 11 / 43 multi-frame**. Completed exact families include Water Splash 425 / 0x1A9, six Fish Kings, five menu-special presentation icons, and Dog Ball 21..48. **45 simple and 32 multi-frame animations remain intentionally unowned.** The direct runtime census is now exhaustive: all 22 explicit `gUnk_086678A0` provider-constructor sites are accounted for, and the common renderer/provider APIs own only completed families. `func_080CE184` is only grid/slot arithmetic and `func_0800F258` is typed `GetHeldArticle`; both are closed false co-occurrence leads. The active frontier is resource-family provenance, led by alias block 173..180, contiguous block 413..420, shared-palette group 54..57, and shared-frame pair 160/161.
+- Hardware, intrusive callback-list, DMA/transfer, entity-effect, resource-handle, SpriteAnimator/provider, NPC/social, item/economy, and GameObject lookup/teardown boundaries provide the current shared type foundation.
+- The active strategy is now **whole-game throughput by inferred TU/type/similarity cluster**. Build the unified remaining-function inventory, infer TU/data ownership, cluster repeated assembly, map vtables/classes, score coherent units, and then work the ranked queue. The packed bank remains **416 / 493 semantically owned animations**, but its remaining 77 IDs are a parked by-product lane rather than the active frontier.
 - Recent 0x080Axxxx source conversions include:
   - `src/code_080A46AC.cc`
   - `src/code_080A480C.cc`
@@ -103,7 +101,7 @@ Tracked subsystem/domain references currently include:
 - `docs/SAVE_FORMAT.md`: retail save-slot layout, checksum boundary, and extension-space findings.
 - `docs/CHARACTERS.md`: matching name/birthday/NPC interfaces, decoded roster, persistent offsets, schedules, entity/effect lifecycle, and fixed consumers.
 - `docs/CUSTOM_CHARACTERS.md`: character-specific expansion stages, separate ID domains, asset/dialogue work, and first-NPC acceptance criteria.
-- `docs/CUSTOM_GAME_EXPANSION.md`: active cross-system non-save expansion roadmap for characters, items/tools, crops, events/dialogue, assets and runtime registration.
+- `docs/CUSTOM_GAME_EXPANSION.md`: custom-game readiness roadmap for characters, items/tools, crops, events/dialogue, assets and runtime registration; retail execution order comes from the throughput priority map.
 - `docs/HARDWARE.md`: hardware owner/context layout, accessors, VBlank update path, and shared callback-list ownership.
 - `docs/HARDWARE_TRANSFER.md`: transfer descriptor/vector layout, DMA copy/fill setup, and exact integration boundaries.
 - `docs/INTRUSIVE_CALLBACK_LIST.md`: shared callback node/list layout, sentinel invariants, recovered operations, and exact linker boundaries.
@@ -376,4 +374,4 @@ Private roadmap/tooling:
 - `tools/ches/checkpoints/decomp-leverage-2026-10-02.md`: dated raw ranking snapshot.
 
 Historical shared-type continuation at the October 2 checkpoint:
-`include/resource_handle.hh` and `src/resource_handle.cc` expose the shared client/reference/query API. That resource-handle continuation was subsequently completed through the documented twenty-function scope; its allocator/CSE frontiers are deferred research, not current work. SpriteAnimator is also fully recovered and production-integrated. The save loader `func_08011650` is preserved but paused. The current continuation is the non-save item/tool interaction boundary after completing the character/social resolver pass; use `START_HERE.md`, `docs/CUSTOM_GAME_EXPANSION.md`, and `tools/ches/NEXT_AGENT_HANDOFF.md` for the exact active frontier.
+`include/resource_handle.hh` and `src/resource_handle.cc` expose the shared client/reference/query API. That resource-handle continuation was subsequently completed through the documented twenty-function scope; its allocator/CSE frontiers are deferred research, not current work. SpriteAnimator is also fully recovered and production-integrated. The save loader `func_08011650` is preserved but paused. Current continuation is the throughput pipeline described in `START_HERE.md`, `docs/DECOMP_PRIORITY_MAP.md`, and `tools/ches/NEXT_AGENT_HANDOFF.md`: build the complete function/TU database, similarity and class/data ownership maps, then decompile the highest-ranked coherent units. Runtime savestate/watchpoint work is preserved as future bulk coverage infrastructure rather than the primary queue.

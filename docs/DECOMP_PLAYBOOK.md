@@ -13,11 +13,12 @@ The project has two goals that support each other but must remain separate:
 
 Never mix custom behavior into a retail-matching contribution.
 
-Current priority is throughput-first retail decompilation for **non-save
-custom-game expansion enablement** across characters, items/tools, crops,
-dialogue/events and assets. Save-loader exact matching is paused. Custom
-behavior still stays on the separate custom-game worktree, but target selection
-should now favor runtime/content boundaries that directly unlock added content.
+Current priority is **throughput-first whole-game retail decompilation**.
+Custom-game readiness remains an important payoff, but target selection is now
+driven by total useful reconstruction: coherent translation units/type clusters,
+repeated-function families, shared class/data ownership, and recoverable bytes
+per unit effort. Save-loader exact matching remains paused. Custom behavior still
+stays on the separate custom-game worktree.
 
 ## Authority and read order
 
@@ -72,8 +73,7 @@ pages together. Mark the previous continuation deferred and preserve its evidenc
 For custom characters, use `docs/CHARACTERS.md`, `docs/CUSTOM_CHARACTERS.md` and
 `docs/SAVE_FORMAT.md`. Track a full gameplay/persistence path for the first
 prototype, then apply the ordinary exact-ROM gates to every retail recovery.
-Docs-only checkpoints verify changed paths, links and preservation of code/build
-inputs; rerun full builds when actual build inputs change.
+Docs-only checkpoints verify changed paths, links and preservation of code/build inputs; rerun full builds when actual build inputs change. Every durable checkpoint on `Live-temp`, including docs/research checkpoints, is then committed and pushed to `ches/Live-temp` after diff verification. This checkpoint history is separate from exact retail contribution commits to `ches-dev`.
 
 ## Standard decompilation workflow
 
@@ -347,38 +347,69 @@ Rule: diagnose the first divergence before rewriting exact source.
 
 ## Target-selection strategy
 
-The goal is not merely to maximize function count, and it is not to stay strictly adjacent at all costs. Target selection is **leverage-first**: prefer work that makes many later functions easier to understand, type, name, or exact-match.
+The goal is not merely to maximize function count, and it is not to stay
+strictly adjacent at all costs. Target selection is **throughput and
+leverage-first**: prefer coherent work that recovers substantial source while
+making many later functions easier to understand, type, name, or exact-match.
 
-Before each new five-function batch, consult `docs/DECOMP_PRIORITY_MAP.md`. When the call graph has materially changed, regenerate the raw ranking with:
+The normal unit of work is now an inferred original translation unit or coherent
+structural/type cluster, not a fixed five-function batch.
+
+Maintain one machine-readable function inventory that can grow to include:
+- address and exact size;
+- callers/callees and cross-module fan-out;
+- globals/data xrefs and likely data owner;
+- inferred TU/subsystem;
+- vtable/class/constructor/destructor relationships;
+- normalized-assembly similarity cluster;
+- exact, understood/nonmatching, parked, or assembly status;
+- known compiler-sensitive failure evidence;
+- runtime coverage and indirect call targets when available.
+
+Rank remaining TUs/clusters using a combination of:
+- source bytes recoverable;
+- downstream unlock value, weighted by unresolved caller/callee size;
+- type readiness from already-recovered structs/classes/APIs;
+- subsystem/TU coherence;
+- similarity to an already-solved family member;
+- tractability and known compiler risk;
+- data/asset formats unlocked as a by-product.
+
 `python3 tools/ches/analyze_decomp_leverage.py --top 100 --min-callers 5 --markdown`
+remains useful raw evidence, but direct-call fan-out alone is not the queue.
+The next tooling phase should merge that evidence with TU inference, xrefs,
+similarity clusters, class/vtable data, and later runtime coverage.
 
-The raw fan-out score is evidence, not an automatic execution order. A tiny generic wrapper can have hundreds of callers while teaching little. Human classification must distinguish:
-- shared typed infrastructure that exposes object layouts/APIs;
-- central manager/accessor clusters whose owner type should be reconstructed coherently;
-- cross-cutting hardware/resource abstractions;
-- generic leaf wrappers that are easy but lower leverage.
+Address adjacency matters when it represents a real original TU, shared literal/
+rodata boundary, class family, or subsystem. Otherwise it does not override a
+clearly higher-throughput coherent cluster elsewhere in the ROM.
 
-Prefer targets that combine:
-- high unique-caller fan-out or cross-module use;
-- an existing semantic anchor in readable source or headers;
-- a coherent type/API cluster rather than unrelated functions;
-- reuse of proven object layouts/types;
-- useful caller/callee/vtable information;
-- reasonable exact-match difficulty;
-- source bytes removed per unit effort;
-- ability to teach harder neighboring functions.
+Use normalized-assembly clustering aggressively. When many functions differ only
+in constants, targets, or small state details, solve one representative carefully
+and reuse its type/source shape as an oracle for the family.
 
-Address adjacency still matters when it completes a type/subsystem model, but it no longer overrides a clearly higher-leverage shared type elsewhere in the ROM.
+If one hard function starts consuming disproportionate effort:
+1. preserve its current candidate, mismatch counts, ABI/layout discoveries, and
+   first proven compiler/source-shape divergence;
+2. mark it parked or understood/nonmatching in the private research state;
+3. continue the rest of its TU/cluster when useful;
+4. return only when new structural evidence or a solved sibling changes the odds.
 
-Current user-facing cadence: aim for 5 completed retail functions per batch when feasible.
+Production remains exact-only. Semantically reconstructed but nonmatching source
+is useful research and mod-readiness evidence, but must remain outside production
+`src/` unless the project later deliberately implements a supported NONMATCHING
+build convention.
 
-If one hard function starts consuming the entire batch:
-1. preserve its current candidate, mismatch counts, ABI/layout discoveries, and next hypothesis;
-2. rotate to nearby or globally higher-leverage helpers;
-3. use those helpers to strengthen shared types/object models;
-4. return to the hard function with better evidence.
+Runtime analysis supports the queue rather than defining it. Prefer deterministic
+savestate + scripted-input scenarios that collect function hits, indirect
+caller/callee edges, and targeted RAM diffs in bulk. Use watchpoints to answer
+specific ownership/field questions, not to discover work by manually wandering
+the game.
 
-Historical example: the October 2 renderer batch solved 5A9C, 5EA0, 601C, 6420, and 6640 while preserving 5760/58EC/5960, then pivoted to the shared `SpriteAnimator` API instead of staying purely address-adjacent. That SpriteAnimator batch is now complete and must not be treated as the current next task.
+Historical example: the October 2 renderer batch solved 5A9C, 5EA0, 601C, 6420,
+and 6640 while preserving harder neighbors, then pivoted to SpriteAnimator.
+That remains a useful leverage example, but the fixed five-function batch size
+is no longer current policy.
 
 ## Documentation contract
 
@@ -412,9 +443,9 @@ Do not wait for a scheduled checkpoint to make essential state durable. After a 
 - toolchain/compiler state if changed;
 - exact next experiment or command.
 
-The periodic checkpoint is a consolidation boundary, not permission to leave the previous calls undocumented.
+The periodic checkpoint is a consolidation and publication boundary, not permission to leave previous calls undocumented. At each durable checkpoint, update the canonical state, verify the checkpoint diff, commit on `Live-temp`, and push to `ches/Live-temp`. If the push cannot complete, record the exact local HEAD and failure before stopping.
 
-The standard is strict: a zero-context model should be able to inspect the project after any completed safe step and continue without asking what happened in chat.
+The standard is strict: a zero-context model should be able to inspect the project or the published `ches/Live-temp` checkpoint after any completed safe step and continue without asking what happened in chat.
 
 ### Dedicated subsystem architecture docs
 
@@ -439,7 +470,7 @@ When a batch materially recovers a subsystem architecture, the batch is not full
 
 ## Current strategic direction
 
-SpriteAnimator, hardware ownership, DMA/transfer infrastructure, intrusive lists, entity/effect lifecycle, shared-resource functions, NPC support, typed character metadata, native GameObject entity lookup/teardown, character/social resolvers, article interaction, MoneyState, typed shop catalogs, and the packed animation-provider pipeline are recovered at their documented scopes. Production HEAD remains `9078f36`; the active exact `Live-temp` worktree is **64,536 / 940,036 = 6.8653% source**, with **75,334 data/asset bytes** and **140,266 overall meaningful-ROM bytes** reconstructed while the retail ROM remains exact. The legacy save loader, `func_080455D8`, `func_08092A70`, `func_080CAC7C` / `func_080CAD18`, and `func_08092940` are parked. Packed-sprite tracing has now accounted for all 22 explicit `gUnk_086678A0` provider constructors plus the common renderer/provider APIs. `func_080CE184` is only grid/slot arithmetic and `func_0800F258` is `GetHeldArticle`, so both are closed false leads. The active frontier is resource-family provenance: trace coherent unowned clusters 173..180, 413..420, 54..57, and 160/161 back to authoritative runtime/table owners before any promotion. Preserve older allocator/CSE/save and article-interaction notes as historical evidence rather than current next actions. The handoff owns exact active commands/artifacts; the priority map owns target selection.
+SpriteAnimator, hardware ownership, DMA/transfer infrastructure, intrusive lists, entity/effect lifecycle, shared-resource functions, NPC support, typed character metadata, native GameObject entity lookup/teardown, character/social resolvers, article interaction, MoneyState, typed shop catalogs, and the packed animation-provider pipeline are recovered at their documented scopes. Production HEAD remains `9078f36`; the active exact `Live-temp` worktree is **64,536 / 940,036 = 6.8653% source**, with **75,334 data/asset bytes** and **140,266 overall meaningful-ROM bytes** reconstructed while the retail ROM remains exact. The legacy save loader, `func_080455D8`, `func_08092A70`, `func_080CAC7C` / `func_080CAD18`, and `func_08092940` are parked. The packed sprite bank remains **416 / 493 semantically owned**, with 77 IDs open, but sprite-family provenance is no longer the primary queue. The active frontier is the throughput pipeline: build the complete remaining-function database, infer TUs/data ownership, cluster similar assembly, map vtables/classes, score coherent clusters, then decompile the highest-leverage units. Preserve the opening-farm savestate and prior watchpoint work as the seed for later scripted runtime coverage. The handoff owns exact active commands/artifacts; the priority map owns target selection.
 
 Preserved renderer candidates remain:
 - `func_080A5CC0`: expected 0x54, v1 actual 0x58, 72 differing linked bytes;

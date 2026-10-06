@@ -2,44 +2,49 @@
 
 Date: 2026-10-06
 
-## Code-coupled asset policy
+## Asset/data role in the throughput pipeline
 
-Asset recovery is not a standalone percentage hunt. A non-code resource should be
-promoted to editable source together with enough runtime decompilation/type
-recovery to explain who owns it and how the game interprets it.
+Asset recovery is not a standalone percentage hunt, and it is no longer the
+primary target-selection queue. A non-code resource should still be promoted to
+editable source only when enough runtime/type evidence exists to explain its
+format, ownership, and use.
 
-The first application of this policy is the packed item/UI sprite bank
-gUnk_086678A0:
+Use a hybrid workflow:
+- bulk-catalog recognizable structure when cheap, including pointer tables,
+  fixed-stride records, palettes, tile banks, script tables, and resource
+  headers;
+- let TU/cluster decompilation and consumer analysis assign semantics and
+  ownership;
+- add editable rebuild support only when the format is understood well enough to
+  regenerate the retail bytes exactly.
+
+The packed item/UI sprite bank `gUnk_086678A0` remains a successful example:
 
 - the 347 Tool/Food/Article icons remain valid recovered assets because their
-  ownership and renderer path are already proven;
-- ownership is now **416 / 493 animations: 405 / 450 simple and 11 / 43
-  multi-frame**; **45 simple and 32 multi-frame animations remain unowned** and
-  must **not** be exported as generic/unassigned PNGs in a blind batch;
-- completed code-coupled families include Wrapped Present (352), Basket (53),
-  eight cooking utensils, Money Bag (106), 18 overnight forage/map variants,
-  Water Splash (425 / 0x1A9), six Fish Kings, five menu-special presentation
-  icons, and Dog Ball 21..48;
-- Water Splash proves generic multi-frame/multi-part authoring, while Dog Ball
-  expands owned multi-frame coverage to 11 / 43;
-- common packed-consumer lanes have been exhausted for the remaining multi-frame
-  set, including direct `func_080A4A00`, `func_0805E824`, packed
-  `SetAnimation`, `CB304/CC728/CBAF0`, `CAC7C/CAD18`, local packed-provider
-- all 22 explicit `gUnk_086678A0` provider-constructor sites are now
-  accounted for; `func_080CE184` is grid/slot arithmetic and
-  `func_0800F258` is `GetHeldArticle`, so both are closed false leads;
-- continue resource-family-first provenance, prioritizing 173..180, 413..420,
-  54..57, and 160/161, and promote only after runtime/table ownership is proven;
-- runtime/type recovery independently agrees with older MFoMT research:
-  AbstractSprite, DefinedSprite, SpriteAnimationData, SpriteFrameData, and
-  SpriteAnimator.
+  ownership and renderer path are proven;
+- ownership is **416 / 493 animations: 405 / 450 simple and 11 / 43
+  multi-frame**, leaving **45 simple and 32 multi-frame** unowned;
+- completed families include Wrapped Present (352), Basket (53), eight cooking
+  utensils, Money Bag (106), 18 overnight forage/map variants, Water Splash
+  (425 / 0x1A9), six Fish Kings, five menu-special presentation icons, and Dog
+  Ball 21..48;
+- all 22 explicit provider-constructor sites and the documented common
+  packed-consumer lanes are already accounted for;
+- `func_080CE184` and `func_0800F258` are closed false leads;
+- the remaining 77 IDs are now a **parked open list**, not the main
+  decompilation frontier. Preserve existing family evidence for 173..180,
+  413..420, 54..57, 160/161, and the other documented IDs, but resolve them as
+  their owning TUs/scenes/events/tables are reconstructed instead of hunting
+  them individually;
+- runtime/type recovery continues to agree with the recovered
+  AbstractSprite/DefinedSprite/SpriteAnimationData/SpriteFrameData/
+  SpriteAnimator model.
 
-Current detailed checkpoint:
-tools/ches/checkpoints/ui-packed-sprite-2026-10-05/README.md.
+Detailed packed-bank evidence remains in
+`tools/ches/checkpoints/ui-packed-sprite-2026-10-05/README.md`.
 
-This policy governs the roadmap below. Work through non-item resources by
-coherent code-owner/consumer subsystem and count editable bytes only after that
-ownership and interpretation are understood.
+This policy keeps asset progress useful without allowing it to displace higher-
+throughput code/type recovery.
 
 FoMT now tracks executable-code reconstruction and non-code asset/data
 reconstruction separately.
@@ -188,46 +193,39 @@ runtime semantics are proven. Neither group is an anonymous export queue.
 Promote a family only after its runtime owner/consumer is traced far enough to
 support semantic assignment.
 
-## Code-coupled asset priority
+## Asset/data priority under the whole-game queue
 
-The current retail-decomp priority deliberately advances code and non-code
-resources together. Most of the ROM is non-code, but an asset counts as
-meaningfully recovered only when the project also understands enough of the
-runtime boundary to know what it is and how the game uses it.
+The project still advances code and non-code reconstruction together, but asset
+work now follows the ranked TU/cluster pipeline instead of defining it.
 
 Recommended order:
 
 1. **Preserve completed units and parked compiler-sensitive frontiers.**
-   Keep `func_08092A70` parked at exact size `0x260 / 3`; keep
-   `func_080CAC7C` / `func_080CAD18` and `func_08092940` parked unless new
-   structural evidence appears.
-2. **Continue through the packed sprite bank by consumer subsystem.**
-   The bank has 416 semantically owned animations, with **45 simple and 32
-   multi-frame animations still unowned**. Completed state/effect families include
-   cooking, Money Bag, overnight forage/map variants, Water Splash, Fish Kings,
-   menu-special presentation icons, and Dog Ball. Common packed-consumer APIs
-   (`func_080A4A00`, `func_0805E824`, packed `SetAnimation`,
-   `CB304/CC728/CBAF0`, `CAC7C/CAD18`, local provider screens, and the retail
-   multi-frame set. The explicit provider-constructor census is also complete:
-   all 22 `gUnk_086678A0` constructor sites are accounted for.
-   `func_080CE184` and `func_0800F258` are false co-occurrence leads.
-   Continue resource-family-first provenance on 173..180, 413..420, 54..57,
-   and 160/161, then trace each cluster to an authoritative runtime/table owner.
-3. **Classify large graphics/palette/tileset banks with their code owners.**
-   Use loaders, providers, renderers, and table consumers to establish format
-   and ownership before promoting opaque ranges in `asm/data/data_0813B288.s`.
-4. **Recover maps and tilesets with their runtime/resource boundaries.**
-   Build editable representations only when extraction/rebuild are byte-exact
-   and the consuming map/scene code is understood enough to define the format.
-5. **Recover sound/music assets with the M4A runtime tables that own them.**
-   Move proven songs/voicegroups/samples to editable exact sources while keeping
-   the current baserom-backed `gSongTable` payload excluded until reconstructed.
-6. **Recover fonts/UI/static graphics and palettes through their consumers.**
-   Convert repeated palette/tile structures only after ownership/layout is
-   established from code and data together.
+   Do not reopen already-bounded hard functions or closed provider searches
+   without new structural evidence.
+2. **Bulk-catalog cheap structure.** Scan obvious pointer tables, fixed-stride
+   arrays, palettes, tiles, script tables, M4A tables, and resource headers so
+   the function/TU database can reference them even before semantics are final.
+3. **Use code consumers to assign meaning.** As high-ranked TUs/clusters are
+   decompiled, type the tables/assets they index and identify format, bounds,
+   ownership, and lifetime from those consumers.
+4. **Promote editable sources only after ownership/format is proven.** Keep the
+   packed-bank rule: no anonymous export backlog. The remaining 77 animations
+   can be resolved naturally when their owning systems are reconstructed.
+5. **Prioritize high-modding-value families when scores are otherwise close.**
+   Maps/collision, event scripts/text, character/schedule data, items/shops,
+   portraits/UI, then other graphics and sound are good tie-breakers because
+   they expose reusable authoring boundaries.
+6. **Recover sound/music as a coherent self-contained subsystem.** Trace
+   song/voicegroup/sample ownership through the M4A runtime tables before moving
+   baserom-backed payloads to editable source.
+7. **Keep counting conservative.** Raw extracted `.bin` copies, opaque incbins,
+   and documentation-only semantic recovery do not increase the asset/data
+   metric.
 
 Do not choose a blob merely because it is large. The goal is high-throughput,
-honest reconstruction with useful editable assets, not percentage gaming.
+honest reconstruction with useful editable assets and strong source-level
+ownership.
 
 ## ROM free space
 

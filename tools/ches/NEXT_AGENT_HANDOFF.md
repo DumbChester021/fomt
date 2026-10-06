@@ -1,18 +1,21 @@
 # Current FoMT continuation — October 6, 2026
 
-## CURRENT CHECKPOINT - all direct packed-provider constructors accounted for; pivot to resource-family provenance - October 6, 2026
+## CURRENT CHECKPOINT - whole-game throughput pivot adopted - October 6, 2026
 
-- No production source/assets were promoted in this pass; ownership remains **416 / 493 = 405 / 450 simple + 11 / 43 multi-frame**, with **45 simple + 32 multi-frame = 77** remaining.
-- The direct `gUnk_086678A0` census is now exhaustive: exactly **22 explicit provider-constructor sites** exist, and every one is accounted for. Their packed-resource lookups resolve to already-owned Tool/Food/Article, cooking, Basket, Wrapped Present, Product, Fish King, menu-special, overnight, Dog Ball, or fixed simple IDs outside the remaining multi-frame set.
-- Newly closed false next steps: `func_080CE184` is a tiny grid/slot arithmetic mapper with no sprite-provider semantics; `func_0800F258` is already typed `GetHeldArticle(HeldItem const*)`. Their appearance in packed-provider-bearing functions was incidental.
-- `func_080A748C`, the last large unaccounted constructor dispatcher, was exhaustively checked. Its packed lookups use fixed IDs **472, 265, 346, 204, 327, 313, 64, 400, 303, 337, 272**, none in the 32 remaining multi-frame IDs.
-- Resource-side clustering now replaces callsite-first tracing. Strongest coherent clusters: **173..180** are eight IDs aliasing the exact same 4-frame sequence (same first frame 210, sprites 178/177/178/177, duration 12 each, same graphics/palette); **413..420** are an eight-ID contiguous two-frame block with shared generic palette/layout behavior; **54..57** form a shared-palette two-frame group; **160/161** share frames/palette and form a coherent multi-frame pair.
-- Other remaining multi-frame IDs: **60,62,77,211,279,325,392,429,434,470**. Generic-palette relationships exist among several of these but do not yet prove semantics.
-- Targeted numeric-table checks were closed conservatively: apparent 173..180/u32 hits around `0x0858B9DC` and 413..420 halfword runs around `0x085236AC` lie inside other opaque sprite/data banks; `0x0810360A` lies inside parent `gUnk_0810110C`, whose consumers `func_0809A58C` / `func_0809A8AC` treat it as 20-byte gameplay/state records, not a packed animation selector.
-- Previous landing-resource proof remains authoritative: hidden `0x0802BD50` stores resource_id at entity +0x56; `func_0802BA74` forwards it to GameObject +0xBC / `func_080AD77C`; all 1,328 retail RIFF/SCR scripts were parsed and OnCall(320) only supplies IDs 0 and 1.
-- Scratch-only visual research lives under `/tmp/fomt-remaining-contact/`; it is not project source and nothing from it has been promoted.
-- Active branch remains `Live-temp`, HEAD `9078f36`; preserve the intentional dirty worktree and do not commit/push from this branch.
-- **Exact next action:** continue resource-family provenance, starting with **413..420** and **173..180**. Use visual/structural similarity only to form hypotheses, then locate an authoritative code/table/state owner before naming or promoting any animation. Do not return to direct constructor/helper hunting unless new evidence points there.
+- The user requested an external strategy audit specifically to challenge whether individual packed-sprite tracing was the fastest route to decompiling FoMT. The core recommendation is adopted: optimize for total coherent decompilation throughput and reusable understanding, not for resolving the last sprite IDs first.
+- Before changing documentation, the current project charter, start-here, roadmap/playbook, subsystem docs, progress/repo maps, TODO, handoff/status, and supporting asset/custom-game documentation were read/reconciled. Historical checkpoints remain evidence, not current authority.
+- **No production code, assets, compiler files, linker inputs, commits, or pushes changed in this strategy pass.** Exact reconstruction remains **64,536 / 940,036 = 6.8653% source**, **75,334 data/asset bytes**, **140,266 overall meaningful-ROM bytes**, and the prior `fomt.gba: OK` / retail SHA1 baseline remains authoritative.
+- The normal work unit is now an inferred original **translation unit or coherent structural/type/similarity cluster**, not a fixed five-function batch.
+- Immediate pipeline target: build one machine-readable inventory of every remaining assembly function with address/size, callers/callees, data/global xrefs, inferred TU/subsystem, vtable/class evidence, similarity cluster, exact/understood/parked status, and known compiler-difficulty evidence.
+- Then infer TU boundaries from linker/address locality, padding/literal pools, static data ownership, internal-call locality, vtable and constructor/destructor groupings; normalize/cluster similar assembly; build class/vtable/global ownership maps; score coherent units by recoverable bytes, downstream unlock, type readiness, coherence, similarity and difficulty; and work the ranked queue.
+- Production remains **exact-only**. Semantically reconstructed but nonmatching functions may be preserved privately as understood research, but must not replace retail assembly in `src/` unless the project later deliberately adopts a supported NONMATCHING build convention.
+- Packed-bank ownership remains **416 / 493 = 405 / 450 simple + 11 / 43 multi-frame**, leaving **77** unowned animations. Those 77 are now a **parked open list**, not the main queue. Existing evidence for 173..180, 413..420, 54..57, 160/161 and all closed provider/consumer paths remains valid and must not be rediscovered.
+- The durable mGBA state **`/mnt/data/Ches/runtime-saves/fomt/opening-farm.ss1`** still exists at 81,767 bytes. Its exact load command remains unverified, but it is now seed infrastructure for a future deterministic savestate + scripted-input coverage harness rather than a blocking next step.
+- Runtime work should collect function-entry coverage, indirect/virtual caller-callee targets, first-hit scenario/frame, and targeted RAM before/after diffs in bulk. Watchpoints remain for focused field/ownership questions only.
+- Data/assets remain code-coupled for semantic promotion, but cheap structural cataloging of pointer tables, fixed-stride arrays, palettes, tile banks, scripts, maps and M4A tables can run alongside code analysis. Only editable sources that regenerate retail bytes count as reconstructed data/assets.
+- Keep `func_08011650`, `func_080455D8`, `func_08092A70`, `func_080CAC7C` / `func_080CAD18`, and `func_08092940` parked unless new structural evidence materially raises their leverage.
+- Active branch is `Live-temp`; remote tracking branch is `ches/Live-temp`. **Standing checkpoint rule as of October 6, 2026:** every durable checkpoint must be committed on `Live-temp` and pushed to `ches/Live-temp` after canonical docs/artifacts and diff verification are complete. This is separate from exact retail contribution pushes to `ches-dev`.
+- **Exact next action on Continue:** publish this documentation/strategy checkpoint to `ches/Live-temp`, then build the first version of the remaining-function database from existing repository/map/call-graph evidence, derive TU guesses and similarity clusters, score/rank coherent units, and select the top decompilation target. Do not resume manual sprite-ID tracing first.
 
 ## CURRENT CHECKPOINT - Dog Ball 21..48 + five menu-special icons promoted exactly - October 6, 2026
 
@@ -327,7 +330,7 @@ Current paired target status:
 
 ## Item article-interaction exact checkpoint - October 5, 2026
 
-This is the newest active retail-decomp checkpoint under the non-save expansion pivot.
+This is a historical retail-decomp checkpoint preserved from the earlier non-save expansion pivot; the top checkpoint owns current work.
 
 - Corrected an important vtable interpretation error: `GameObject` stores `vtable_unk_080E5EC4` itself as its vptr, so runtime slot `+0xE8` is table label `+0xE8`, not `+0xF0`. Raw retail table `0x080E5EC4 + 0xE8` contains `0x0801D88D`, so the real Thumb target is **`0x0801D88C`**. The previously documented `0x0801CFB8` is the unrelated `+0xF0` slot.
 - `func_0801D88C` is now exact readable source in `src/game_object_article_interaction.cc`: **0x40 / 0 differing linked bytes** in scratch and exact at linked address `0x0801D88C` after production integration. It resolves a field plot for the supplied `Location`, returns article-interaction result 2 when no plot exists, otherwise delegates to `FieldPlot::method_0800A6C8(article)` and returns 0 for handled or 1 for blocked.
@@ -353,7 +356,7 @@ This section records the completed docs sweep after the character/social integra
 - **Exact next action remains unchanged:** inspect/decompile the GameObject article-interaction vtable `+0xE8` base target at Thumb `0x0801CFB8`, identify concrete overrides, type the smallest honest interface, and exact-match one bounded article-interaction implementation. Save/product persistence work remains paused.
 ## Item/tool expansion boundary checkpoint - October 5, 2026
 
-This is the newest active checkpoint under the non-save expansion pivot.
+This is a historical checkpoint preserved from the earlier non-save expansion pivot; the top checkpoint owns current work.
 
 - `func_080455D8` is now **parked, not blocking**. Its behavior is fully understood and scratch V4/V6 both compile to the exact 0x60-byte size with only **5 differing linked bytes**, all from one setup-order difference: retail emits stack-argument address materialization before the u16 event-id normalize, while the tracked compiler schedules those three instructions in the opposite order. The function body after that setup is instruction-identical. Do not spin more source/compiler variants unless a later exact-match batch naturally reveals the original shape.
 - Current retail item ID spaces:
@@ -380,7 +383,7 @@ This is the newest active checkpoint under the non-save expansion pivot.
 
 ## Character social + heart-event integration checkpoint - October 5, 2026
 
-This is the newest active checkpoint under the non-save expansion pivot.
+This is a historical checkpoint preserved from the earlier non-save expansion pivot; the top checkpoint owns current work.
 
 - Production retail exactness remains intact: after all integrations below, `make -j4` ends with **`fomt.gba: OK`**.
 - Newly sourced exact retail block `080A01F8..080A03B7` (**0x1C0 / 448 bytes**) now lives in `src/character_info.cc`. It contains:
@@ -416,7 +419,7 @@ This is the newest active checkpoint under the non-save expansion pivot.
 
 ## Character social resolver throughput checkpoint - October 5, 2026
 
-This is the newest active decomp checkpoint under the non-save expansion pivot.
+This is a historical decomp checkpoint preserved from the earlier non-save expansion pivot; the top checkpoint owns current work.
 
 - Scratch exact matches under the tracked compiler:
   - `func_080A06B0`: **0x1C8 / 0 differing bytes**. It is the broad NPC/social-record resolver and matches the already-proven `GetCharacterNpc` source shape when the child case calls `func_080A0A04`.

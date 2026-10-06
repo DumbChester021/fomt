@@ -130,7 +130,7 @@
 
 ## Item article-interaction exact checkpoint - October 5, 2026
 
-This is the newest active retail-decomp checkpoint under the non-save expansion pivot.
+This is a completed historical retail-decomp checkpoint. Its exact source and compiler evidence remain valid, but its next-action language is superseded by the current throughput plan below.
 
 - Corrected an important vtable interpretation error: `GameObject` stores `vtable_unk_080E5EC4` itself as its vptr, so runtime slot `+0xE8` is table label `+0xE8`, not `+0xF0`. Raw retail table `0x080E5EC4 + 0xE8` contains `0x0801D88D`, so the real Thumb target is **`0x0801D88C`**. The previously documented `0x0801CFB8` is the unrelated `+0xF0` slot.
 - `func_0801D88C` is now exact readable source in `src/game_object_article_interaction.cc`: **0x40 / 0 differing linked bytes** in scratch and exact at linked address `0x0801D88C` after production integration. It resolves a field plot for the supplied `Location`, returns article-interaction result 2 when no plot exists, otherwise delegates to `FieldPlot::method_0800A6C8(article)` and returns 0 for handled or 1 for blocked.
@@ -139,27 +139,25 @@ This is the newest active retail-decomp checkpoint under the non-save expansion 
 - Current exact worktree progress is **62,604 / 940,036 = 6.6597% source**, **877,432 assembly bytes = 93.3403%**. HEAD is still `9078f36`; the October 5 source integrations remain uncommitted.
 - The supporting field-plot resolver `func_0801C0F8` is semantically recovered: map 2 only; world coordinates divide by 8; valid tile bounds x 0x22..0x77 / y 0x16..0x47; 43x25 plot grid; output record is 12 bytes containing `FieldPlot *`, anchor x/y, and plot x/y. Scratch V2/V4 are exact size **0xA0 / 4 differing bytes**, only equivalent lower-bound branch spelling (`cmp 34; bcc` vs `cmp 33; bls`). Park this helper instead of syntax roulette.
 - The immediately preceding GameObject virtual at runtime `+0xE4`, Thumb **`0x0801D7B0`**, is the article mutation partner. It is the ROM's only direct caller of `FieldPlot::method_0800A6F4`: resolve plot, apply Stone/Branch/Lumber/Golden-Lumber state, require current map match, choose vertical neighbor plots, call `FieldPlot::method_0800AF5C`, then `func_080AA6D0` for field visual/update refresh. Scratch V3/V4 reach exact retail size **0xDC** with **106 differing linked bytes**. The front half through the map check is already structurally aligned; remaining differences are register/lifetime/order in the neighbor-refresh half.
-- **Exact next action:** resume from `candidate-gameobject-apply-article-v4.cc` (V3 is equivalent at 0xDC/106). Preserve the solved front half and explicit neighbor-validity boolean shape. Focus only on the post-`0x0801D7F4` live-range/register arrangement so retail can reuse r4/r5/r6 without the candidate's extra saved r7. Do not reopen `0x0801CFB8`, the exact `+0xE8` function, the 4-byte `func_0801C0F8` branch spelling, save-loader work, or compiler research without new structural evidence.
+- **Historical next action (superseded):** the saved `candidate-gameobject-apply-article-v4.cc` frontier remains useful evidence if this TU ranks highly again. Do not resume it merely because this older checkpoint once called it next.
 
-## Active scope — October 5, 2026
+## Active scope — October 6, 2026
 
-The active goal is now **non-save custom-game expansion enablement through retail
-decompilation**. Preserve the byte-identical US retail ROM on `ches-dev`, but
-prioritize the runtime/data boundaries that let the separate custom-game branch
-add or extend NPCs, bachelorettes, items, tools, crops, dialogue/events,
-inventory/shops, and their assets.
+The active retail goal is **throughput-first whole-game decompilation**. Preserve
+the byte-identical US ROM on `ches-dev`, keep custom behavior in the separate
+custom-game worktree, and exploit the already-recovered shared infrastructure
+across the remaining assembly.
 
-The legacy save loader `func_08011650` is **paused, not abandoned**. Its
-behavior, experiments, failures, and exact continuation are preserved under
-`tools/ches/checkpoints/save-loader-08011650-2026-10-04/`. Do not resume that
-compiler-sensitive exact-match puzzle unless the user explicitly asks, or a
-later expansion feature requires a missing persistence fact.
+The normal work unit is an inferred original translation unit or coherent
+structural/type/similarity cluster. Build the unified function/TU inventory,
+infer TU and data ownership, cluster repeated assembly, map vtables/classes,
+score coherent units, and work the ranked queue. A fixed function-count cadence
+and one-resource-at-a-time sprite tracing are no longer current policy.
 
-Use a throughput-first decomp strategy: prefer coherent clusters and
-high-leverage small/medium functions, recover semantics/types/callers first,
-and rotate away from compiler archaeology once a function's remaining problem
-is source-spelling/allocation exactness rather than missing game behavior.
-Custom behavior still belongs only in the separate custom-game worktree.
+The save loader and documented compiler-sensitive islands remain parked unless
+new structural evidence raises their leverage. Runtime work should grow into
+deterministic scripted coverage and indirect-call collection. Custom behavior
+still belongs only in the separate custom-game worktree.
 
 
 This is the authoritative live dashboard for the local FoMT retail decompilation and custom-game work. It is a private coordination file and must not be included in upstream-facing contribution commits.
@@ -305,55 +303,70 @@ Do not copy an arbitrary generated `tools/agbcc` directory into an integration w
 
 ## Current next work
 
-The indexed GameObject lookup/teardown, character/social resolvers, article
-classification/mutation, MoneyState core, typed shop catalogs, packed animation
-provider, and all 347 named Tool/Food/Article item-icon assets are already recovered
-enough for the current expansion lane. Do not redo those investigations.
+The current exact worktree has enough shared infrastructure that the fastest
+route forward is no longer one-resource-at-a-time tracing. The next phase is a
+**whole-game throughput pipeline** built around coherent translation units and
+structural/type clusters.
 
-The active frontier is **code-coupled packed-sprite reconstruction**, not
-anonymous whole-bank export. Of the 493 animations in `gUnk_086678A0`, 450
-are simple one-frame/one-part/one-palette cases and 43 are multi-frame. The bank
-currently has **416 semantically owned animations: 405 simple and 11
-multi-frame**, leaving **45 simple and 32 multi-frame** unowned. Completed
-families include the Tool/Food/Article set, cooking utensils, Wrapped Present,
-Basket, Money Bag, overnight forage/map variants, Water Splash, Fish Kings,
-menu-special presentation icons, and Dog Ball 21..48.
+The following are already recovered enough to act as leverage rather than as
+primary research targets: indexed GameObject lookup/teardown, character/social
+resolvers, article classification/mutation, MoneyState, typed shop catalogs,
+hardware/DMA/list infrastructure, entity effects, resource handles,
+SpriteAnimator/provider parsing, and the editable packed-sprite families.
+Do not redo those investigations.
 
-The common packed-consumer paths for the remaining multi-frame set have now been
-exhausted: direct `func_080A4A00`, `func_0805E824`, packed
-`SpriteAnimator::SetAnimation`, `CB304/CC728/CBAF0`, `CAC7C/CAD18`, local
-packed-provider screens, and the retail OnCall-320 landing-resource path. The
-OnCall path was verified by parsing all 1,328 retail RIFF/SCR scripts; its only
-resource IDs are 0 and 1.
+### Immediate priority
 
-The priority is sequential:
-1. keep `func_08092A70`, `func_080CAC7C` / `func_080CAD18`, and
-   `func_08092940` parked unless new structural evidence appears;
-2. treat the direct `gUnk_086678A0` constructor census as complete across all
-   22 sites; do not reopen `func_080CE184` / `func_0800F258` as sprite leads;
-3. pivot to resource-family-first provenance, prioritizing exact-alias block
-   173..180, contiguous two-frame block 413..420, shared-palette 54..57, and
-   shared-frame pair 160/161; trace each cluster to an authoritative owner
-   before promotion;
-4. continue coherent simple-animation ownership only when its runtime consumer
-   is proven, not as an anonymous export backlog;
-5. classify and convert larger graphics/palette/tileset families in
-   `asm/data/data_0813B288.s` together with their loaders/renderers/providers;
-6. recover map/tileset and M4A sound asset authoring paths with the same
-   code-coupled rule;
-7. return to the separate custom-game worktree for the first deliberate new
-   Tool/Food/Article plus unique icon after the required runtime/asset boundary
-   is proven.
+1. Build one machine-readable inventory of every remaining assembly function:
+   address, size, callers/callees, global/data xrefs, inferred subsystem/TU,
+   vtable/class evidence, similarity cluster, status, and known
+   compiler-difficulty evidence.
+2. Infer original translation-unit boundaries from section/address locality,
+   padding/literal pools, static data ownership, internal call locality,
+   vtables, constructor/destructor families, and related evidence.
+3. Normalize and cluster remaining assembly so repeated NPC/entity/menu/map/
+   wrapper/state families can be solved from one strong source/type oracle
+   instead of independently.
+4. Build a vtable/class/global-ownership map and feed those types back into the
+   function inventory.
+5. Rank TUs/clusters by expected source bytes, downstream unlock value, type
+   readiness, coherence, and estimated difficulty. Re-score after meaningful
+   integrations.
+6. Decompile the highest-ranked coherent TUs/clusters. Keep exact source as the
+   production gate; preserve understood-but-nonmatching candidates privately
+   rather than letting a few allocator/scheduling bytes stall the whole unit.
+7. Grow the emulator work into deterministic savestate + scripted-input
+   scenarios that log function coverage and indirect caller/callee targets.
+   Runtime tracing should classify and answer targeted questions, not drive the
+   primary work queue.
 
-Use `make progress` to track code, data/assets, overall meaningful-ROM
-reconstruction, and contiguous tail free space. Do not increase a percentage by
-relocating opaque binary data; only editable byte-exact sources count.
+The packed bank remains at **416 / 493 semantically owned animations: 405 / 450
+simple and 11 / 43 multi-frame**, leaving **77** unowned. The direct packed
+consumer/provider census is already exhausted at the documented scope. Keep the
+77 IDs as a parked open list and let them resolve as their scenes, tables,
+events, minigames, and owning TUs are reconstructed. Do not spend the main
+decompilation lane manually hunting individual remaining IDs.
 
+The durable opening-farm savestate at
+`/mnt/data/Ches/runtime-saves/fomt/opening-farm.ss1` is retained as the first
+runtime-scenario asset. Its exact load path is still unverified, but verifying
+it is now runtime-harness work rather than the blocking next decompilation
+action.
+
+For data/assets, bulk-catalog recognizable structures when cheap, then assign
+meaning through consumers. Continue to count only editable project-side source
+that regenerates the retail bytes exactly. Anonymous binary relocation does not
+count as reconstruction.
+
+Keep the save loader `func_08011650`, `func_080455D8`,
+`func_08092A70`, `func_080CAC7C` / `func_080CAD18`, and
+`func_08092940` parked unless new structural evidence raises their leverage.
 Do not expand `ShippingBin::product_stats[NUM_PRODUCTS]` yet because a larger
-product count changes persistent state layout. Character portrait/display assets,
-crop/field semantics, and dialogue/event registration remain later non-save
-frontiers. Persistence/save extension work remains deferred until runtime custom
-content needs stored state.
+product count changes persistent state layout.
+
+Use `make progress` for exact code, data/assets, overall meaningful-ROM
+reconstruction, and contiguous tail free space. A future semantic/understood
+coverage metric must remain separate from the exact matched-source percentage.
 
 ## Non-negotiable rules
 
@@ -370,9 +383,10 @@ content needs stored state.
 - Update docs as part of the engineering work.
 - Treat every run as potentially the last before conversation/context exhaustion: never leave the only copy of important progress, reasoning, candidates, or exact next action in chat.
 - Keep stable recovered subsystem/type architecture in dedicated tracked `docs/*.md` pages when warranted; keep transient experiments and failed paths in private `tools/ches/` research.
-- Keep private research/docs out of contribution commits.
-- Commit/push fully exact retail units automatically under the standing user rule.
-- Never mix custom-game behavior into retail commits.
+- **Publish every durable checkpoint:** after checkpoint docs/artifacts are saved and verified, commit the checkpoint on `Live-temp` and push it to `ches/Live-temp`. This includes private coordination/research docs that belong on the live working branch. If push fails, record the failure and local HEAD before stopping.
+- Keep private research/docs out of retail contribution commits to `ches-dev`; the `Live-temp` checkpoint history is separate.
+- Commit/push fully exact retail contribution units to `ches-dev` only under the standing exactness gates.
+- Never mix custom-game behavior into retail contribution commits.
 - Preserve original project style and avoid generated-looking noise.
 
 ## Private dirty files are intentional
