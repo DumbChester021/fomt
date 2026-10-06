@@ -54,7 +54,7 @@ but its score is no longer an execution order.
 
 The throughput pipeline is operational. The Ball family remains parked at its documented mover seam. The adjacent `vtable_unk_080E7380` family now owns **316 exact retail bytes** in source: 224 bytes of entity surface plus 92 bytes of controller helpers. Controller constructor `0x08038820` is behavior-complete and exact-size but bounded by register-lifetime codegen.
 
-The raw queue still begins with deliberately parked work, so score is not execution order. Exact source now includes `func_08039134`, `func_080391C0`, `func_080391FC`, and `func_08039200`. Retail pointer tracing maps the 74AC/74BC/74CC strategy interface; `func_08039204` is behavior-complete but parked at best 0x110/210 on Vec2 temporary/source-lifetime layout. Structural continuity moves to trivial sister `func_0803930C` and then `func_08039310`. Do not reopen `0x08039204`, `0x08038820`, or `0x08038EE0` without new evidence.
+The raw queue still begins with deliberately parked work, so score is not execution order. The full five-slot Entity38740 strategy interface is now mapped, exact selector/helper source has been promoted through `0x08039D98`/`0x08039E8C`, and the large update methods `39204`, `39310`, `3955C`, and `39708` are behavior-complete parked source-lifetime frontiers. Structural continuity now moves to paired 0x70 setup helpers `39DA8` and `39E18`; do not reopen the parked large updates or earlier controller islands without new evidence.
 
 ### 1. Keep the function/TU inventory current
 

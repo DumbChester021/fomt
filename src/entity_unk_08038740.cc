@@ -35,6 +35,22 @@ struct Entity39134
     /* +10 */ void * unk_10;
     /* +14 */ Entity39134VTable * vtable;
 };
+
+struct EntityStrategyStateView
+{
+    u8 pad_00[0x0C];
+    u32 mode_0C;
+    u8 pad_10[2];
+    u8 flag_12;
+};
+
+struct EntityStrategyOwnerView
+{
+    u8 pad_00[0x34];
+    EntityStrategyStateView * state_34;
+    void * strategies_38[5];
+};
+
 struct Entity38740 : public AEntity
 {
     Entity38740(GameObject *, void *) SECTION(".text.entity38740_ctor");
@@ -61,6 +77,16 @@ EC u32 func_08039134(GameObject *, u32, i32, i32) SECTION(".text.entity39134_nea
 EC bool func_080391C0(i32, i32) SECTION(".text.entity391c0_area");
 EC void func_080391FC() SECTION(".text.entity391fc_noop");
 EC bool func_08039200() SECTION(".text.entity39200_false");
+EC bool func_0803930C() SECTION(".text.entity3930c_true");
+EC u32 func_080396F4(void *, EntityStrategyOwnerView *) SECTION(".text.entity396f4_mode");
+EC u32 func_080398A0() SECTION(".text.entity398a0_two");
+EC u32 func_08039E88() SECTION(".text.entity39e88_two");
+EC void * func_08039E8C(EntityStrategyOwnerView *) SECTION(".text.entity39e8c_strategy");
+EC u16 gUnk_080F16AE[];
+EC void func_08039A5C() SECTION(".text.entity39a5c_noop");
+EC u32 func_08039D4C(void *, u32) SECTION(".text.entity39d4c_table");
+EC u32 func_08039D5C(void *, u32) SECTION(".text.entity39d5c_mask");
+EC bool func_08039D98(EntityStrategyOwnerView *) SECTION(".text.entity39d98_mode");
 void func_08038E90(Entity38740Controller * self)
 {
     u8 * effect = self->effect_0C;
@@ -155,6 +181,75 @@ void func_080391FC()
 bool func_08039200()
 {
     return false;
+}
+
+bool func_0803930C()
+{
+    return true;
+}
+
+u32 func_080396F4(void *, EntityStrategyOwnerView * owner)
+{
+    u32 flag = owner->state_34->flag_12;
+    u32 result = 0;
+    if (flag != 0)
+        result = 3;
+    return result;
+}
+
+u32 func_080398A0()
+{
+    return 2;
+}
+
+u32 func_08039E88()
+{
+    return 2;
+}
+
+void * func_08039E8C(EntityStrategyOwnerView * owner)
+{
+    u32 offset = owner->state_34->mode_0C << 2;
+    u8 * base = reinterpret_cast<u8 *>(
+        offset + reinterpret_cast<u32>(owner));
+    return *reinterpret_cast<void **>(base + 0x38);
+}
+
+void func_08039A5C()
+{
+}
+
+u32 func_08039D4C(void *, u32 index)
+{
+    return gUnk_080F16AE[index];
+}
+
+u32 func_08039D5C(void *, u32 mode)
+{
+    u32 result;
+    switch (mode)
+    {
+        case 0:
+            result = 0;
+            break;
+        case 1:
+            result = 0x8000;
+            break;
+        case 2:
+            result = 0x10000;
+            break;
+        case 3:
+        case 4:
+        default:
+            result = 0;
+            break;
+    }
+    return result;
+}
+
+bool func_08039D98(EntityStrategyOwnerView * owner)
+{
+    return owner->state_34->mode_0C != 4;
 }
 
 Entity38740::Entity38740(GameObject * game_object, void * state)

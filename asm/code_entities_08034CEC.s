@@ -5228,11 +5228,7 @@ func_08039204: @ 0x08039204
     pop {r0}
     bx r0
 
-    thumb_func_start func_0803930C
-func_0803930C: @ 0x0803930C
-    movs r0, #1
-    bx lr
-
+    .section .text.after_entity3930c, "ax", %progbits
     thumb_func_start func_08039310
 func_08039310: @ 0x08039310
     push {r4, r5, r6, r7, lr}
@@ -5725,20 +5721,7 @@ func_0803955C: @ 0x0803955C
     pop {r0}
     bx r0
 
-    thumb_func_start func_080396F4
-func_080396F4: @ 0x080396F4
-    push {lr}
-    ldr r0, [r1, #0x34]
-    ldrb r0, [r0, #0x12]
-    movs r1, #0
-    cmp r0, #0
-    beq .L08039702
-    movs r1, #3
-.L08039702:
-    adds r0, r1, #0
-    pop {r1}
-    bx r1
-
+    .section .text.after_entity396f4, "ax", %progbits
     thumb_func_start func_08039708
 func_08039708: @ 0x08039708
     push {r4, r5, r6, r7, lr}
@@ -5939,9 +5922,7 @@ func_08039708: @ 0x08039708
     bx r0
     .align 2, 0
 .L0803989C: .4byte 0xFFFF0000
-.L080398A0:
-    .byte 0x02, 0x20, 0x70, 0x47
-
+    .section .text.after_entity398a0, "ax", %progbits
     thumb_func_start func_080398A4
 func_080398A4: @ 0x080398A4
     push {r4, r5, r6, lr}
@@ -6151,11 +6132,7 @@ func_08039A30: @ 0x08039A30
     pop {r1}
     bx r1
 
-    thumb_func_start func_08039A5C
-func_08039A5C: @ 0x08039A5C
-    bx lr
-    .align 2, 0
-
+    .section .text.after_entity39a5c, "ax", %progbits
     thumb_func_start func_08039A60
 func_08039A60: @ 0x08039A60
     push {r4, r5, r6, r7, lr}
@@ -6522,60 +6499,7 @@ func_08039A60: @ 0x08039A60
     pop {r0}
     bx r0
 
-    thumb_func_start func_08039D4C
-func_08039D4C: @ 0x08039D4C
-    ldr r0, .L08039D58 @ =gUnk_080F16AE
-    lsls r1, r1, #1
-    adds r1, r1, r0
-    ldrh r0, [r1]
-    bx lr
-    .align 2, 0
-.L08039D58: .4byte gUnk_080F16AE
-
-    thumb_func_start func_08039D5C
-func_08039D5C: @ 0x08039D5C
-    push {lr}
-    cmp r1, #4
-    bhi .L08039D90
-    lsls r0, r1, #2
-    ldr r1, .L08039D6C @ =.L08039D70
-    adds r0, r0, r1
-    ldr r0, [r0]
-    mov pc, r0
-    .align 2, 0
-.L08039D6C: .4byte .L08039D70
-.L08039D70: @ jump table
-    .4byte .L08039D90 @ case 0
-    .4byte .L08039D84 @ case 1
-    .4byte .L08039D8A @ case 2
-    .4byte .L08039D90 @ case 3
-    .4byte .L08039D90 @ case 4
-.L08039D84:
-    movs r0, #0x80
-    lsls r0, r0, #8
-    b .L08039D92
-.L08039D8A:
-    movs r0, #0x80
-    lsls r0, r0, #9
-    b .L08039D92
-.L08039D90:
-    movs r0, #0
-.L08039D92:
-    pop {r1}
-    bx r1
-    .align 2, 0
-
-    thumb_func_start func_08039D98
-func_08039D98: @ 0x08039D98
-    ldr r0, [r0, #0x34]
-    ldr r1, [r0, #0xc]
-    movs r0, #4
-    eors r1, r0
-    rsbs r0, r1, #0
-    orrs r0, r1
-    lsrs r0, r0, #0x1f
-    bx lr
-
+    .section .text.after_entity39d98, "ax", %progbits
     thumb_func_start func_08039DA8
 func_08039DA8: @ 0x08039DA8
     push {r4, lr}
@@ -6679,10 +6603,7 @@ func_08039E18: @ 0x08039E18
 .L08039E7C: .4byte 0xFFFF0000
 .L08039E80: .4byte 0xFF80FFFF
 .L08039E84: .4byte 0x00FFFFFF
-.L08039E88:
-    .byte 0x02, 0x20, 0x70, 0x47, 0x41, 0x6B, 0xC9, 0x68
-    .byte 0x89, 0x00, 0x09, 0x18, 0x88, 0x6B, 0x70, 0x47
-
+    .section .text.after_entity39e8c, "ax", %progbits
     thumb_func_start func_08039E98
 func_08039E98: @ 0x08039E98
     push {r4, r5, r6, r7, lr}

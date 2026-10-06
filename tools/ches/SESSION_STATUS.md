@@ -1,15 +1,14 @@
 # Ches Session Status — FOMT decomp
 
-## CURRENT SNAPSHOT - 7.4346%; trivial strategy pair exact, 0x08039204 bounded - October 6, 2026
+## CURRENT SNAPSHOT - 7.4495%; five-mode strategy machine mapped, +140 exact bytes - October 6, 2026
 
-- Active branch `Live-temp`; continued from pushed checkpoint `7cd4f00`.
-- Added **8 exact retail range bytes**: `func_080391FC` = 0x02 body + align, and `func_08039200` = 0x04/0. Full ROM remains **`fomt.gba: OK`**.
-- Progress: **69,888 / 940,036 = 7.4346% code**, **870,148 asm bytes**, **75,334 data/assets**, **145,618 meaningful-ROM bytes = 1.8869%**, **671,168 bytes free**.
-- Inventory: **2,352 linked asm functions**, **868,984 / 870,148 inferred range bytes = 99.8662%**, **1,164 unattributed bytes**.
-- Strategy interface mapping: 74CC -> 391FC/39200, 74BC -> 39204/3930C, 74AC -> 39310 at vtable +08. `func_080398A4` owns five 4-byte strategy pointers at +38..+48.
-- `func_08039204` behavior is complete; best scratch v2 is **0x110 / 210** versus retail 0x108. v1b 0x11C/268; v3 0x112/244. Remaining mismatch is Vec2 temporary/source lifetime layout, not unknown game behavior.
-- Existing parked `0x08038820` (0x108/183) and `0x08038EE0` (0x1EC/127) remain closed.
-- Next: exact-check `0x0803930C`, then reconstruct sister strategy `0x08039310` using the mapped interface and 39204 behavior as local oracles.
+- Active branch `Live-temp`; continued from pushed checkpoint `324911e`.
+- Added **140 exact retail range bytes** across `3930C`, `396F4`, `398A0`, `39E88`, `39E8C`, `39A5C`, `39D4C`, `39D5C`, and `39D98`. Full ROM remains **`fomt.gba: OK`**.
+- Progress: **70,028 / 940,036 = 7.4495% code**, **870,008 asm bytes**, **75,334 data/assets**, **145,758 meaningful-ROM bytes = 1.8887%**, **671,168 bytes free**.
+- Inventory: **2,346 linked asm functions**, **868,844 / 870,008 inferred range bytes = 99.8662%**, **1,164 unattributed bytes**.
+- Five strategy slots are mapped end-to-end, including exact selector `39E8C`. Large updates are behavior-complete but compiler/lifetime-sensitive: `39204` 0x110/210, `39310` 0x248/505, `3955C` 0x194/383 (v2b 0x19E/362), `39708` exact-size 0x198/290.
+- Existing parked `38820` and `38EE0` remain closed.
+- Next: paired 0x70 helpers `39DA8` and `39E18`, which construct mode-4 packed state and differ primarily in target-kind bit and energy decrement.
 
 ## SUPERSEDED SNAPSHOT - 7.3261%; location-bound actor island bounded - October 6, 2026
 

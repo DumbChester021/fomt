@@ -390,6 +390,21 @@ SECTIONS
         src/entity_unk_08038740.o(.text.entity391fc_noop);
         src/entity_unk_08038740.o(.text.entity39200_false);
         asm/code_entities_08034CEC.o(.text.after_entity39200);
+        src/entity_unk_08038740.o(.text.entity3930c_true);
+        asm/code_entities_08034CEC.o(.text.after_entity3930c);
+        src/entity_unk_08038740.o(.text.entity396f4_mode);
+        asm/code_entities_08034CEC.o(.text.after_entity396f4);
+        src/entity_unk_08038740.o(.text.entity398a0_two);
+        asm/code_entities_08034CEC.o(.text.after_entity398a0);
+        src/entity_unk_08038740.o(.text.entity39a5c_noop);
+        asm/code_entities_08034CEC.o(.text.after_entity39a5c);
+        src/entity_unk_08038740.o(.text.entity39d4c_table);
+        src/entity_unk_08038740.o(.text.entity39d5c_mask);
+        src/entity_unk_08038740.o(.text.entity39d98_mode);
+        asm/code_entities_08034CEC.o(.text.after_entity39d98);
+        src/entity_unk_08038740.o(.text.entity39e88_two);
+        src/entity_unk_08038740.o(.text.entity39e8c_strategy);
+        asm/code_entities_08034CEC.o(.text.after_entity39e8c);
 
         asm/code_0803A8A4.o(.text);
         src/character_schedule.o(.text);

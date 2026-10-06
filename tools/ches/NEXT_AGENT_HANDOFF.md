@@ -1,25 +1,33 @@
 # Current FoMT continuation — October 6, 2026
 
-## CURRENT CHECKPOINT - strategy interface mapped; 0x080391FC/39200 exact; 0x08039204 behavior-complete and parked - October 6, 2026
+## CURRENT CHECKPOINT - five-mode strategy machine mapped; +140 exact bytes; large updates bounded - October 6, 2026
 
-- Continued from pushed checkpoint `7cd4f00` on `Live-temp`.
-- Promoted **8 additional exact retail range bytes**:
-  - `func_080391FC`: **0x02 executable bytes + 2-byte retail alignment**, empty strategy update hook.
-  - `func_08039200`: **0x04 / 0**, strategy selector/result method returning false.
-- Full production gate still passes: `make -B -j4 compare` -> **`fomt.gba: OK`**, retail SHA1 unchanged.
-- Current progress: **69,888 / 940,036 = 7.4346% code**, **870,148 asm bytes** remain; **2,352 unresolved linked asm functions**; inferred ranges **868,984 / 870,148 = 99.8662%**; unattributed asm remains **1,164 bytes**. Data/assets remain **75,334 / 6,777,404 = 1.1115%**; meaningful ROM is **145,618 / 7,717,440 = 1.8869%**; free tail **671,168 bytes**.
-- Retail pointer tracing mapped the local 4-byte strategy interface:
-  - `vtable_unk_080E74CC`: +08 = `func_080391FC`, +0C = `func_08039200`;
-  - `vtable_unk_080E74BC`: +08 = `func_08039204`, +0C = `func_0803930C`;
-  - `vtable_unk_080E74AC`: +08 = `func_08039310`.
-  - Constructor `func_080398A4` allocates five 4-byte strategy objects into owner +38/+3C/+40/+44/+48. State +0x0C selects one by index; vtable +08 is called as `(strategy, owner, update_arg)`, and +0C as `(strategy, owner)`.
-- `func_08039204` is behavior-complete in scratch. It reads owner state at +34 and timer u16 at state +10, decrements nonzero timer, gets owner map/X/Y, chooses target **(0x108,0x2D0)** when Y > 0x160 else **(0x154,-16)**, and on map 2 clears the actor state after moving owner to `MAP_NONE` when within 15 units of both target axes. When timer reaches zero it chooses facing either from exact `func_080391C0` or `func_080ABC40(x,y,target_x,target_y,update_arg,current_facing)`, updates facing if changed, then reloads timer as `func_080AB788(0x1E)+1`.
-- Scratch frontier:
-  - v1b `candidate-strategy-39204-v1.cc`: **0x11C / 268**.
-  - v2 `candidate-strategy-39204-v2.cc`: **0x110 / 210**, strongest result; wide timer + long-lived target coordinates recovers retail register pressure, but branch-created `Vec2` temporaries inflate stack frame to 0x20 versus retail 0x18.
-  - v3 `candidate-strategy-39204-v3.cc`: **0x112 / 244**; direct single-Vec2 field writes regress.
-- Decision: semantics are closed; park `0x08039204` on source temporary/lifetime shape. Do not repeat Vec2 assignment/direct-write or timer-width permutations without new type/source evidence. Existing parked `0x08038820` and `0x08038EE0` remain closed as documented.
-- **Exact next action on Continue:** exact-check sister `func_0803930C` (retail 4-byte `return true` body), then use the now-mapped strategy interface and `func_08039204` semantics as anchors for sister strategy `func_08039310`.
+- Continued from pushed checkpoint `324911e` on `Live-temp`.
+- Promoted **140 exact retail range bytes** this turn:
+  - `func_0803930C`: **0x04 / 0**, returns true.
+  - `func_080396F4`: **0x14 / 0**, returns 3 when state byte +0x12 is nonzero, else 0.
+  - `func_080398A0`: **0x04 / 0**, returns 2.
+  - `func_08039E88`: **0x04 / 0**, returns 2.
+  - `func_08039E8C`: **0x0C / 0**, returns owner strategy pointer at +0x38 indexed by state mode +0x0C.
+  - `func_08039A5C`: exact **0x02 body + 2-byte retail alignment**, empty hook.
+  - `func_08039D4C`: **0x10 / 0**, u16 lookup from `gUnk_080F16AE[index]`.
+  - `func_08039D5C`: exact **0x3A body + 2-byte retail alignment** from the natural explicit five-case switch; mode 1 -> 0x8000, mode 2 -> 0x10000, all others -> 0.
+  - `func_08039D98`: **0x10 / 0**, returns whether state mode is not 4.
+- Full production gate passes: `make -B -j4 compare` -> **`fomt.gba: OK`**, retail SHA1 unchanged.
+- Current progress: **70,028 / 940,036 = 7.4495% code**, **870,008 asm bytes** remain; **2,346 unresolved linked asm functions**; inferred ranges **868,844 / 870,008 = 99.8662%**; unattributed asm **1,164 bytes**. Data/assets remain **75,334 / 6,777,404 = 1.1115%**; meaningful ROM is **145,758 / 7,717,440 = 1.8887%**; free tail remains **671,168 bytes**.
+- The five 4-byte strategy objects installed by `func_080398A4` are now mapped:
+  - slot 0 / vtable 74CC: +08 `391FC` no-op, +0C `39200` returns 0.
+  - slot 1 / vtable 74BC: +08 `39204`, +0C `3930C` returns 1.
+  - slot 2 / vtable 74AC: +08 `39310`, +0C `39E88` returns 2.
+  - slot 3 / vtable 749C: +08 `3955C`, +0C `396F4` returns 0 or 3 from state flag.
+  - slot 4 / vtable 748C: +08 `39708`, +0C `398A0` returns 2.
+  - exact `39E8C` selects `owner->strategies_38[state->mode_0C]`.
+- Large strategy update frontiers are behavior-complete and parked:
+  - `39310` retail 0x24C: v1 **0x218/542** missed the previous-waypoint check; v2 `candidate-strategy-39310-v2.cc` is strongest at **0x248/505** and closes behavior; v3 shared-epilogue shape regressed to **0x238/540**. Mode 2 chases a same-map active target, tracks timer/retry count/last waypoint/target id, recalculates facing early when the actor reaches the stored waypoint, and transitions/reacquires through the existing mode setters.
+  - `3955C` retail 0x198: v1 `candidate-strategy-3955c-v1.cc` **0x194/383** is behavior-complete; v2b separate raw-state/mode lifetime improves diffs to **0x19E/362** but overshoots size. Mode 3 handles countdown/flag, near-target virtual +0x80 interaction, subtracts 4 state energy, then chooses the next mode.
+  - `39708` retail 0x198: v1b `candidate-strategy-39708-v1.cc` is **exact-size 0x198/290**, strongest; v2 packed-lifetime experiment regressed to **0x194/342**. Mode 4 contains timer + 7-bit subcounter + target-kind bit + facing timer, follows entity 0 or 0x2B, updates facing through `func_080ABE58`, then falls back through `func_080323C8` and next-mode selection.
+- Existing parked `39204` (0x110/210 best), `38820` (0x108/183), and `38EE0` (0x1EC/127) remain closed; do not reopen any parked strategy/controller without new original-type/compiler evidence.
+- **Exact next action on Continue:** reconstruct the adjacent paired setup helpers `func_08039DA8` and `func_08039E18`. Both retail ranges are exactly **0x70**, share the same mode-4 packed-state construction and owner setup, and differ mainly in target-kind bit and energy decrement (15 vs 4). Scratch one natural packed-state representative, then batch the sibling if it matches.
 
 ## SUPERSEDED CHECKPOINT - location-bound actor island behavior-complete; move into rank-11 entity region - October 6, 2026
 
