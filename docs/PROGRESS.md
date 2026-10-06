@@ -16,8 +16,8 @@ Current reconstruction:
 
 ```text
 Code reconstruction
-  70472 / 940036 bytes (7.4967%)
-  869564 bytes remain in asm
+  70756 / 940036 bytes (7.5269%)
+  869280 bytes remain in asm
 
 Data/assets reconstruction
   75334 / 6777404 bytes (1.1115%)
@@ -28,7 +28,7 @@ Data/assets reconstruction
   396 additional source-owned ROM-header bytes count only toward overall
 
 Overall meaningful-ROM reconstruction
-  146202 / 7717440 bytes (1.8944%)
+  146486 / 7717440 bytes (1.8981%)
   final ROM padding is excluded from this denominator
 
 ROM space
@@ -36,7 +36,7 @@ ROM space
   671168 bytes free (655.44 KiB, 8.0009%) contiguous tail space
 ```
 
-The code inventory currently reports **2,341 linked assembly functions**, **868,400 bytes** covered by inferred function ranges, and **1,164 unattributed assembly bytes**.
+The code inventory currently reports **2,340 linked assembly functions**, **868,116 bytes** covered by inferred function ranges, and **1,164 unattributed assembly bytes**.
 
 ## What the metrics mean
 
@@ -52,11 +52,11 @@ Understanding or documenting an opaque `.incbin` does not count as asset/data re
 
 The current Entity38740 strategy/controller run substantially expanded the readable entity family.
 
-The latest exact promotion added **112 retail bytes**:
+The latest exact promotion added **284 retail bytes**:
 
-- `Entity398A4::~Entity398A4` / retail `func_080399C0`: 0x70
+- `Entity398A4::Entity398A4(GameObject *, Actor *)` / retail `func_080398A4`: 0x11C
 
-The immediately preceding exact batch added 332 retail bytes across `39DA8`, `39E18`, `39A30`, and `39F50`.
+The adjacent destructor remains exact source at 0x70, and the immediately preceding batch added 332 retail bytes across `39DA8`, `39E18`, `39A30`, and `39F50`.
 
 The broader recent family also promoted exact nearest-entity selection, coordinate-region tests, strategy selectors, state helpers, table/mask lookups, and strategy-pointer selection.
 
@@ -76,7 +76,7 @@ Other major recovered areas include:
 
 ## Current frontier
 
-The exact next code target is constructor `func_080398A4` at `0x080398A4..0x080399C0` (0x11C), using the owner layout now proven by the exact destructor.
+The exact next code target is `func_08039A60` at `0x08039A60..0x08039D4C` (0x2EC), the `Entity398A4` vtable +0x18 override.
 
 Its first saved candidate did not compile only because of two C++ declaration issues. Its retail destructor behavior is already understood. See `START_HERE.md` and `tools/ches/NEXT_AGENT_HANDOFF.md` for the exact resume steps.
 

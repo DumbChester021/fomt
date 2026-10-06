@@ -43,13 +43,13 @@ Retail ROM:
 
 Current exact reconstruction:
 
-- code: **70,472 / 940,036 = 7.4967%**
-- assembly remaining: **869,564 bytes**
-- remaining linked assembly functions: **2,341**
-- inferred function ranges: **868,400 / 869,564 = 99.8661%**
+- code: **70,756 / 940,036 = 7.5269%**
+- assembly remaining: **869,280 bytes**
+- remaining linked assembly functions: **2,340**
+- inferred function ranges: **868,116 / 869,280 = 99.8661%**
 - unattributed assembly: **1,164 bytes**
 - data/assets: **75,334 / 6,777,404 = 1.1115%**
-- overall meaningful ROM: **146,202 / 7,717,440 = 1.8944%**
+- overall meaningful ROM: **146,486 / 7,717,440 = 1.8981%**
 - contiguous tail free space: **671,168 bytes = 655.44 KiB**
 
 Use `make progress` after meaningful exact integrations.
@@ -78,23 +78,25 @@ Earlier exact helpers in this same strategy/controller run include `39134`, `391
 
 ## Exact next action
 
-`func_080399C0` is integrated as exact source on `main`: **0x70 / 0**, with the full retail ROM still matching.
+`Entity398A4` constructor and destructor are now both integrated exact source on `main`:
 
-Adjacent constructor `func_080398A4`, retail `0x080398A4..0x080399C0` (**0x11C**), is now also **scratch-exact 0x11C / 0** in `candidate-ctor-398a4-v2.cc`.
+- constructor / retail `func_080398A4`: **0x11C / 0**;
+- destructor / retail `func_080399C0`: **0x70 / 0**;
+- full production ROM: **`fomt.gba: OK`** at retail SHA1.
 
-The constructor corrects the owner hierarchy and strategy interface:
+The constructor establishes the owner hierarchy and strategy interface:
 
-- actual base: `Entity_080E6554`, itself derived from `AActorEntity`; its +0x30 bool explains the derived +0x34 member boundary;
+- actual base: `Entity_080E6554`, itself derived from `AActorEntity`; its +0x30 bool explains the derived +0x34 boundary;
 - constructor signature: `Entity398A4(GameObject *, Actor *)`;
 - base construction: `Entity_080E6554(game_object, Actor(*actor).location, 0x9C7)`;
 - +0x34: `Actor * actor_34`;
 - +0x38..+0x48: five default-zeroed owning `SmartPtr` strategy slots;
-- each concrete strategy is a 4-byte polymorphic object with a 0x10-byte vtable, meaning two metadata words plus two virtual methods;
+- each concrete strategy is a 4-byte polymorphic object with a 0x10-byte vtable, two metadata words plus two virtual methods;
 - +0x4C: selected mode/state word;
 - +0x50: saved facing;
-- generated owner vtable maps to retail `0x080E74DC`.
+- owner vtable maps to retail `0x080E74DC`.
 
-**Next:** prove the constructor plus the already-exact destructor together in an isolated production splice, because changing the production base hierarchy from direct `AActorEntity` to `Entity_080E6554` must preserve the exact destructor. If the full ROM remains exact, promote `398A4`, rerun progress/inventory/docs, and publish the code checkpoint. Keep `39E98` and the other documented codegen-only islands parked.
+Continue **`func_08039A60`**, retail `0x08039A60..0x08039D4C` (**0x2EC**). It is the `Entity398A4` vtable +0x18 override, has no direct callers because dispatch is virtual, and already calls many source-owned helpers from this recovered family. Treat the vtable/type recovery above as the new structural oracle. Keep `39E98` and the other documented codegen-only islands parked.
 
 ## Parked nearby frontiers
 

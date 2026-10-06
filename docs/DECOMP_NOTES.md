@@ -25,13 +25,13 @@ live state. This file keeps subsystem/function evidence and matching lessons.
 
 Current retail state:
 - Active public retail branch: `main`; the former `Live-temp` line is retired. Historical `ches-dev` commits remain provenance only.
-- Current exact progress: **70,472 / 940,036 = 7.4967% source** and **869,564 assembly bytes**. Data/assets reconstruction is **75,334 / 6,777,404 = 1.1115%** and overall meaningful-ROM reconstruction is **146,202 / 7,717,440 = 1.8944%**. `make progress` reports `fomt.gba: OK`; retail SHA1 remains `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
-- Remaining linked assembly functions: **2,341**; inferred function ranges cover **868,400 / 869,564 = 99.8661%**, with **1,164 unattributed bytes**.
+- Current exact progress: **70,756 / 940,036 = 7.5269% source** and **869,280 assembly bytes**. Data/assets reconstruction is **75,334 / 6,777,404 = 1.1115%** and overall meaningful-ROM reconstruction is **146,486 / 7,717,440 = 1.8981%**. `make progress` reports `fomt.gba: OK`; retail SHA1 remains `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
+- Remaining linked assembly functions: **2,340**; inferred function ranges cover **868,116 / 869,280 = 99.8661%**, with **1,164 unattributed bytes**.
 - Shared NPC identity/location/schedule support, all resident constructors, GameObject entity lookup/teardown, and the exact 43-entry metadata table remain complete.
 - Packed-bank ownership remains **416 / 493 animations: 405 / 450 simple and 11 / 43 multi-frame**. The remaining 77 are a parked by-product lane.
 - `func_08092A70`, `func_080455D8`, `func_080CAC7C` / `func_080CAD18`, `func_08092940`, and the documented Entity38740/Ball codegen islands remain parked at their recorded frontiers.
 - Authoritative compiler remains the tracked 13-rule compatibility path, patch SHA256 `aa7cc6df0efbd066e9c33deb887731e1d0210babfaeba4c9b64f3e8bc35c4256`.
-- The current coherent unit is the Entity38740 neighborhood. `39DA8`, `39E18`, `39A30`, `39F50`, and the `399C0` owner destructor are exact; `39E98` is behavior-complete/exact-size but parked. The exact next target is adjacent constructor `func_080398A4` (0x11C), using the owner layout now proven by the destructor.
+- The current coherent unit is the Entity38740/Entity398A4 neighborhood. `398A4`, `399C0`, `39DA8`, `39E18`, `39A30`, and `39F50` are exact; `39E98` is behavior-complete/exact-size but parked. The exact next target is `func_08039A60` (0x2EC), the Entity398A4 vtable +0x18 override.
 - The opening-farm savestate/watchpoint work remains seed infrastructure for later scripted runtime coverage, not the primary queue.
 
 Naming rule:

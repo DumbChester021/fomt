@@ -53,12 +53,56 @@ struct EntityStrategyOwnerView
     void * strategies_38[5];
 };
 
-struct Entity398A4 : public AActorEntity
+struct Entity398A4;
+
+struct Entity_080E6554 : public AActorEntity
 {
-    Entity398A4(GameObject *, ActorLocation const &, u32, u32);
+    Entity_080E6554(GameObject *, ActorLocation const &, u32);
+
+    bool unk_30;
+};
+
+struct StrategyCall
+{
+    virtual void vfunc_08();
+    virtual u32 Select(Entity398A4 *);
+};
+
+struct Strategy74CC
+{
+    virtual void vfunc_08();
+    virtual u32 Select(Entity398A4 *);
+};
+
+struct Strategy74BC
+{
+    virtual void vfunc_08();
+    virtual u32 Select(Entity398A4 *);
+};
+
+struct Strategy74AC
+{
+    virtual void vfunc_08();
+    virtual u32 Select(Entity398A4 *);
+};
+
+struct Strategy749C
+{
+    virtual void vfunc_08();
+    virtual u32 Select(Entity398A4 *);
+};
+
+struct Strategy748C
+{
+    virtual void vfunc_08();
+    virtual u32 Select(Entity398A4 *);
+};
+
+struct Entity398A4 : public Entity_080E6554
+{
+    Entity398A4(GameObject *, Actor *) SECTION(".text.entity398a4_ctor");
     virtual ~Entity398A4() SECTION(".text.entity399c0_dtor");
 
-    u32 unk_30;
     Actor * actor_34;
     SmartPtr<u8> strategies_38[5];
     u32 mode_4C;
@@ -136,6 +180,7 @@ EC u32 func_080AB788(u32);
 EC void func_0809C0C8(EntityStrategyStateView &, u32 const *);
 EC void func_0809C068(EntityStrategyStateView &, int);
 EC void func_08032384(EntityStrategyOwnerView &, u32, bool);
+EC void func_08020080(AActorEntity *, u32);
 EC void func_080200C4(EntityStrategyOwnerView *, u32);
 EC void func_08039DA8(EntityStrategyOwnerView *) SECTION(".text.entity39da8_setup");
 EC void func_08039E18(EntityStrategyOwnerView *) SECTION(".text.entity39e18_setup");
@@ -176,6 +221,33 @@ void func_08038EB8(Entity38740Controller * self)
 bool func_080390D0(Entity38740Controller * self)
 {
     return self->collection_10 != 0;
+}
+
+Entity398A4::Entity398A4(GameObject * game_object, Actor * actor)
+    : Entity_080E6554(game_object, Actor(*actor).location, 0x9C7),
+      actor_34(actor)
+{
+    strategies_38[0] = reinterpret_cast<u8 *>(new Strategy74CC);
+    strategies_38[1] = reinterpret_cast<u8 *>(new Strategy74BC);
+    strategies_38[2] = reinterpret_cast<u8 *>(new Strategy74AC);
+    strategies_38[3] = reinterpret_cast<u8 *>(new Strategy749C);
+    strategies_38[4] = reinterpret_cast<u8 *>(new Strategy748C);
+
+    u32 strategy_index = *reinterpret_cast<u32 *>(
+        reinterpret_cast<u8 *>(actor_34) + 0x0C);
+    StrategyCall * strategy = reinterpret_cast<StrategyCall *>(
+        strategies_38[strategy_index].Get());
+
+    u32 mode = strategy->Select(this);
+
+    func_08020080(this, func_08039D5C(this, mode));
+
+    u32 anim = func_08039D4C(this, mode);
+    if (anim_id != anim)
+        SetAnim(anim);
+
+    mode_4C = mode;
+    unk_50 = facing;
 }
 
 Entity398A4::~Entity398A4()
