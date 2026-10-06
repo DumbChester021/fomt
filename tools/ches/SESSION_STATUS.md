@@ -9,7 +9,7 @@
 - Inventory: **2,342 linked asm functions**, **868,512 / 869,676 inferred range bytes = 99.8662%**, **1,164 unattributed bytes**.
 - `39E98` constructor is behavior-complete at **exact-size 0xB8 / 109** in `candidate-ctor-39e98-v2.cc`; real 8-byte `SpriteAnimation` temporary recovers the retail frame/high-register shape. Park on register allocation.
 - Public docs were audited and current-state branch/metric/frontier drift was corrected; genuine historical records below remain historical.
-- Next: fix the two declaration-only compile errors in `candidate-dtor-399c0-v1.cc`, compare `399C0` retail 0x70, then promote if exact.
+- `399C0` declaration blockers are fixed in `candidate-dtor-399c0-v1.cc`; it now compares **0x68 actual vs 0x70 retail / 102 differing linked bytes**. Retail preloads `actor_34` before `GetLocation` and retains a begin-null check for the inline +0x38..+0x4C reverse-delete range; v1 does neither. Next: v2 should hoist the actor pointer and recover a natural helper/container shape that preserves that null check, then recompare 0x70.
 
 ## SUPERSEDED SNAPSHOT - 7.3261%; location-bound actor island bounded - October 6, 2026
 

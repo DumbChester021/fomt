@@ -28,11 +28,17 @@ Continue **`func_080399C0`**, retail `0x080399C0..0x08039A30` (0x70).
 Saved scratch:
 `tools/ches/checkpoints/entity-08038740-2026-10-06/candidate-dtor-399c0-v1.cc`
 
-The first attempt did **not compile**, so there is no match result yet. Fix only these two declaration issues:
-1. the scratch derived type used `AActorEntity` without declaring a constructor even though the base has no default constructor; declare a suitable scratch constructor or use a raw ABI overlay;
-2. remove the duplicate `__vt_7AEntity` declaration and use the existing `AEntity::__vt_7AEntity`.
+The two declaration-only blockers are now fixed in that saved candidate. Important compiler syntax detail: removing the duplicate global `__vt_7AEntity` declaration and using the already-visible unqualified `__vt_7AEntity` compiles; spelling it as `AEntity::__vt_7AEntity` is rejected by this old compiler as “not a member” even though its earlier redeclaration diagnostic describes the generated external that way.
 
-Retail semantics are already visible: copy current `ActorLocation` into actor state +0x34; delete the five strategy pointers +0x38..+0x48 in reverse; restore the AEntity vtable; virtual-destroy the +0x10 owned target with flags 3; conditionally free self. Compare the 0x70 range, then promote only if exact.
+Measured result after the declaration fix: **expected 0x70, actual 0x68, 102 differing linked bytes** (`match/e399c0-v1-fixed2.*`). Behavior remains closed, but source shape is not yet exact.
+
+First divergence clues are strong and local:
+- retail loads `actor_34` into r4 **before** `GetLocation`, then keeps `self` in r5; v1 delays the actor load until after `GetLocation` and therefore keeps `self` in r6;
+- retail preserves a null check on the computed inline strategy-array begin pointer (`self+0x38`) before reverse deletion; the direct v1 array loop folds that check away, accounting for the 8-byte size deficit together with different register/lifetime choices.
+
+Retail semantics are unchanged: copy current `ActorLocation` into actor state +0x34; delete the five strategy pointers +0x38..+0x48 in reverse; restore the AEntity vtable; virtual-destroy the +0x10 owned target with flags 3; conditionally free self.
+
+**Next command/source experiment:** create a v2 natural-source probe that hoists `Actor * actor = self->actor_34` before `GetLocation`, then reproduce the reverse-delete range through a believable helper/container source shape that retains the begin-null check. Do not use volatile/register forcing/asm. Compare the same 0x70 range immediately; promote only if exact.
 
 For fresh-conversation automation, do **not** resend a handoff merely because a browser/send command reports an error or omits a reply. Inspect the actual target tab first and confirm whether the user message appeared or a turn started. The previous failure mode produced a real 54-tool-call turn despite a misleading return.
 
