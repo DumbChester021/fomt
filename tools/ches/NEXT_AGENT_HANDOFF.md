@@ -1,5 +1,19 @@
 # Current FoMT continuation — October 6, 2026
 
+## CURRENT CHECKPOINT - resident specials + location-bound actor methods integrated exact - October 6, 2026
+
+- Started from clean pushed checkpoint `82450e7a357db5f7a05ac76456a12cb2ec9842d4` and production-integrated the scratch-proven Lou/Child and adjacent `UnkEntity37008` family.
+- **Full ROM gate passed on the first production splice:** `make compare` -> `fomt.gba: OK`; ROM size **8,388,608**; SHA1 **`a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`**.
+- Progress is now **68,592 / 940,036 = 7.2967% code**, **871,444 asm bytes remain**, **75,334 data/assets**, **144,322 / 7,717,440 = 1.8701% overall**, free tail **671,168 bytes**. This checkpoint added **760 exact source bytes**.
+- Resident class result: **all 35 resident constructors are source-owned**. IDs **1..34** also have source-owned +0x30 effect factories. Child ID35 +0x30 at `0x08036F0C` remains assembly; Child +0x3C is source. Lou constructor/+0x30 are source.
+- `tools/ches/map_npc_entity_classes.py` was fixed for source constructors whose base initializer is followed by additional member initializers (Child). It now parses source constructor metadata with a multiline regex and obtains source symbol sizes from `arm-none-eabi-nm -S`. Regenerated map succeeds for all 35 residents.
+- New stable architecture doc: `docs/ENTITY_08037008.md`. `include/entity_unk_08037008.hh` / `src/entity_unk_08037008.cc` own the neutral location-bound actor base and proven concrete methods. Base layout: `ActorLocation* +0x30`, embedded `Box +0x34`, `u16 +0x3C`, `u16 +0x3E`, `bool +0x40`; pure virtual +0x3C/+0x40. Base ctor/dtor/GetBox/+0x10/+0x14/+0x34 are source.
+- Concrete source-owned +0x30 factories: 72E4 `0x0803753C`, 72A0 `0x080376E4`, 725C `0x0803788C`, 7218 `0x080379D8`. 725C/7218 also own +0x3C and GetAnim helpers at `0x080378B8/EC` and `0x08037A04/38`.
+- Child unresolved code remains explicit assembly functions `func_08036F0C` (0x5C bytes) and `func_08036F68` (0xA0 bytes), not anonymous raw bytes. Do not block throughput on Child +0x30; semantics are already documented in the preceding research checkpoint.
+- Regenerated inventory: **2,385 linked asm functions / 871,444 canonical asm bytes / 870,396 function-range bytes = 99.8797% coverage / 1,048 unattributed bytes / 191 repeated shape clusters / 891 participating functions / 182 exact normalized clusters**.
+- Raw queue rank 1 is still the parked save-loader region. The strongest structural-continuity target is now queue **rank 5**, `asm/code_entities_08034CEC.s:08037A48-0803A8A4` (**81 funcs / 11,868 bytes**), continuing the same actor/entity neighborhood.
+- **Exact next action on Continue:** inspect `0x08037A48` onward as a coherent class/factory family. First prioritize the remaining +0x40/+0x3C siblings (`0x08037494`, `0x0803763C`, `0x080377E8`, `0x08037958`, helpers `0x08037618/28`, `0x080377C4/D4`, `0x080378FC`, `0x08037A48`) and concrete factory/constructor run `0x08037A5C..0x08037CC4`. Scratch-prove repeated source shapes, integrate exact-only, then regenerate queue/progress.
+
 ## CURRENT CHECKPOINT - Lou solved; Child bounded; adjacent actor family class model proven - October 6, 2026
 
 - Started from clean pushed `Live-temp` checkpoint `ad6300da19ea0e0f73b6f3cae7b4f9d723301a31` and continued queue rank 2 `asm/code_entities_08034CEC.s:08036DC4-08039E18`.

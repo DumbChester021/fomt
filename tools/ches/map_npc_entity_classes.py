@@ -105,23 +105,16 @@ def parse_source_constructor_metadata():
     if not path.exists():
         return {}
 
-    lines = path.read_text().splitlines()
+    text = path.read_text()
+    pattern = re.compile(
+        r"^([A-Za-z_][A-Za-z0-9_]*Entity)::\1\(GameObject \* game_object, Npc \* npc, u32 context\)\n"
+        r"\s*: ANpcEntity\(([^)]*)\)",
+        re.MULTILINE,
+    )
     metadata = {}
-    for index, line in enumerate(lines[:-1]):
-        match = re.match(
-            r"^([A-Za-z_][A-Za-z0-9_]*Entity)::\1\(GameObject \* game_object, Npc \* npc, u32 context\)$",
-            line,
-        )
-        if not match:
-            continue
-
+    for match in pattern.finditer(text):
         class_name = match.group(1)
-        initializer = lines[index + 1].strip()
-        prefix = ": ANpcEntity("
-        if not initializer.startswith(prefix) or not initializer.endswith(")"):
-            continue
-
-        args = [part.strip() for part in initializer[len(prefix):-1].split(",")]
+        args = [part.strip() for part in match.group(2).split(",")]
         if len(args) != 7:
             continue
 
@@ -134,6 +127,25 @@ def parse_source_constructor_metadata():
         }
 
     return metadata
+
+
+def load_symbol_sizes():
+    text = subprocess.check_output(
+        ["arm-none-eabi-nm", "-S", "-n", "fomt.elf"],
+        cwd=ROOT,
+        text=True,
+    )
+    sizes = {}
+    for line in text.splitlines():
+        parts = line.split(None, 3)
+        if len(parts) != 4:
+            continue
+        if not re.fullmatch(r"[0-9A-Fa-f]{8}", parts[0]):
+            continue
+        if not re.fullmatch(r"[0-9A-Fa-f]{8}", parts[1]):
+            continue
+        sizes[parts[3]] = int(parts[1], 16)
+    return sizes
 
 
 def parse_vtable_addresses(addr_by_name):
@@ -201,6 +213,7 @@ def build():
     ctor_meta.update(parse_source_constructor_metadata())
     vtable_addresses = parse_vtable_addresses(addr_by_name)
     inventory = load_inventory()
+    symbol_sizes = load_symbol_sizes()
 
     # Lillia lives in its own exact source TU.
     lillia_constructor = "__12LilliaEntityP10GameObjectP3NpcUi"
@@ -272,7 +285,9 @@ def build():
                 ctor_inventory.get("shape_cluster") if ctor_inventory else "source"
             ),
             "constructor_size": (
-                ctor_inventory.get("size") if ctor_inventory else 0x3C
+                ctor_inventory.get("size")
+                if ctor_inventory
+                else symbol_sizes.get(constructor)
             ),
             "vfunc_30_shape": (
                 vfunc_inventory.get("shape_cluster")
@@ -282,7 +297,7 @@ def build():
             "vfunc_30_size": (
                 vfunc_inventory.get("size")
                 if vfunc_inventory
-                else (0x2C if selector == 1 else None)
+                else symbol_sizes.get(vfunc30_symbol)
             ),
             "vtable_slots": slots,
         })

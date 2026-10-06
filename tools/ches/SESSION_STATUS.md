@@ -1,5 +1,16 @@
 # Ches Session Status — FOMT decomp
 
+## CURRENT SNAPSHOT - 7.2967%; resident specials and location-bound actor source exact - October 6, 2026
+
+- Active branch: `Live-temp`; start checkpoint for this integration was pushed `82450e7`.
+- Full retail verification after integration: `make compare` -> **`fomt.gba: OK`**, SHA1 `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
+- Progress: **68,592 / 940,036 = 7.2967% code**, **871,444 asm bytes**, **75,334 data/assets**, **144,322 overall meaningful-ROM bytes = 1.8701%**, **671,168 bytes free**. +760 exact source bytes this pass.
+- Resident selector/class state: all **35 constructors source-owned**; IDs **1..34 +0x30 source-owned**; Child +0x30 remains assembly; Child +0x3C source-owned.
+- New exact hierarchy source: `entity_unk_08037008.*`; stable layout/behavior in `docs/ENTITY_08037008.md`.
+- Mapper upgraded for multiline source constructors/member initializers and ELF-derived source symbol sizes; regenerated map covers all 35 residents.
+- Inventory: **2,385 linked asm functions**, **871,444 canonical asm bytes**, **191 repeated shape clusters / 891 participating functions**, **182 exact normalized clusters**.
+- Next structural-continuity work: queue rank 5 `asm/code_entities_08034CEC.s:08037A48-0803A8A4`, focusing first on remaining +0x40/+0x3C sibling methods and concrete constructors/factories. Raw rank-1 save loader remains parked.
+
 ## CURRENT SNAPSHOT - Lou exact; Child bounded; location-bound actor base recovered - October 6, 2026
 
 - Clean start from pushed `ad6300d`; no production code/linker/assembly mutations in this research checkpoint.

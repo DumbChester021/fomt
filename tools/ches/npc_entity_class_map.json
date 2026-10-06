@@ -148,9 +148,9 @@
         "symbol": "func_08034F00"
       },
       "constructor_shape": "source",
-      "constructor_size": 60,
+      "constructor_size": 56,
       "vfunc_30_shape": "source",
-      "vfunc_30_size": null,
+      "vfunc_30_size": 44,
       "vtable_slots": [
         {
           "raw": "0x00000000",
@@ -261,7 +261,7 @@
       "constructor_shape": "source",
       "constructor_size": 60,
       "vfunc_30_shape": "source",
-      "vfunc_30_size": null,
+      "vfunc_30_size": 48,
       "vtable_slots": [
         {
           "raw": "0x00000000",
@@ -372,7 +372,7 @@
       "constructor_shape": "source",
       "constructor_size": 60,
       "vfunc_30_shape": "source",
-      "vfunc_30_size": null,
+      "vfunc_30_size": 46,
       "vtable_slots": [
         {
           "raw": "0x00000000",
@@ -483,7 +483,7 @@
       "constructor_shape": "source",
       "constructor_size": 60,
       "vfunc_30_shape": "source",
-      "vfunc_30_size": null,
+      "vfunc_30_size": 44,
       "vtable_slots": [
         {
           "raw": "0x00000000",
@@ -594,7 +594,7 @@
       "constructor_shape": "source",
       "constructor_size": 60,
       "vfunc_30_shape": "source",
-      "vfunc_30_size": null,
+      "vfunc_30_size": 44,
       "vtable_slots": [
         {
           "raw": "0x00000000",
@@ -705,7 +705,7 @@
       "constructor_shape": "source",
       "constructor_size": 60,
       "vfunc_30_shape": "source",
-      "vfunc_30_size": null,
+      "vfunc_30_size": 46,
       "vtable_slots": [
         {
           "raw": "0x00000000",
@@ -814,9 +814,9 @@
         "symbol": "func_08034F00"
       },
       "constructor_shape": "source",
-      "constructor_size": 60,
+      "constructor_size": 56,
       "vfunc_30_shape": "source",
-      "vfunc_30_size": null,
+      "vfunc_30_size": 44,
       "vtable_slots": [
         {
           "raw": "0x00000000",
@@ -925,9 +925,9 @@
         "symbol": "func_08034F00"
       },
       "constructor_shape": "source",
-      "constructor_size": 60,
+      "constructor_size": 56,
       "vfunc_30_shape": "source",
-      "vfunc_30_size": null,
+      "vfunc_30_size": 44,
       "vtable_slots": [
         {
           "raw": "0x00000000",
@@ -1038,7 +1038,7 @@
       "constructor_shape": "source",
       "constructor_size": 60,
       "vfunc_30_shape": "source",
-      "vfunc_30_size": null,
+      "vfunc_30_size": 46,
       "vtable_slots": [
         {
           "raw": "0x00000000",
@@ -1149,7 +1149,7 @@
       "constructor_shape": "source",
       "constructor_size": 60,
       "vfunc_30_shape": "source",
-      "vfunc_30_size": null,
+      "vfunc_30_size": 44,
       "vtable_slots": [
         {
           "raw": "0x00000000",
@@ -1260,7 +1260,7 @@
       "constructor_shape": "source",
       "constructor_size": 60,
       "vfunc_30_shape": "source",
-      "vfunc_30_size": null,
+      "vfunc_30_size": 48,
       "vtable_slots": [
         {
           "raw": "0x00000000",
@@ -1371,7 +1371,7 @@
       "constructor_shape": "source",
       "constructor_size": 60,
       "vfunc_30_shape": "source",
-      "vfunc_30_size": null,
+      "vfunc_30_size": 44,
       "vtable_slots": [
         {
           "raw": "0x00000000",
@@ -1482,7 +1482,7 @@
       "constructor_shape": "source",
       "constructor_size": 60,
       "vfunc_30_shape": "source",
-      "vfunc_30_size": null,
+      "vfunc_30_size": 46,
       "vtable_slots": [
         {
           "raw": "0x00000000",
@@ -1591,9 +1591,9 @@
         "symbol": "func_08034F00"
       },
       "constructor_shape": "source",
-      "constructor_size": 60,
+      "constructor_size": 56,
       "vfunc_30_shape": "source",
-      "vfunc_30_size": null,
+      "vfunc_30_size": 46,
       "vtable_slots": [
         {
           "raw": "0x00000000",
@@ -1704,7 +1704,7 @@
       "constructor_shape": "source",
       "constructor_size": 60,
       "vfunc_30_shape": "source",
-      "vfunc_30_size": null,
+      "vfunc_30_size": 44,
       "vtable_slots": [
         {
           "raw": "0x00000000",
@@ -1815,7 +1815,7 @@
       "constructor_shape": "source",
       "constructor_size": 60,
       "vfunc_30_shape": "source",
-      "vfunc_30_size": null,
+      "vfunc_30_size": 44,
       "vtable_slots": [
         {
           "raw": "0x00000000",
@@ -1926,7 +1926,7 @@
       "constructor_shape": "source",
       "constructor_size": 60,
       "vfunc_30_shape": "source",
-      "vfunc_30_size": null,
+      "vfunc_30_size": 44,
       "vtable_slots": [
         {
           "raw": "0x00000000",
@@ -2035,9 +2035,9 @@
         "symbol": "func_080364E4"
       },
       "constructor_shape": "source",
-      "constructor_size": 60,
+      "constructor_size": 56,
       "vfunc_30_shape": "source",
-      "vfunc_30_size": null,
+      "vfunc_30_size": 48,
       "vtable_slots": [
         {
           "raw": "0x00000000",
@@ -2146,9 +2146,9 @@
         "symbol": "func_08034F00"
       },
       "constructor_shape": "source",
-      "constructor_size": 60,
+      "constructor_size": 52,
       "vfunc_30_shape": "source",
-      "vfunc_30_size": null,
+      "vfunc_30_size": 44,
       "vtable_slots": [
         {
           "raw": "0x00000000",
@@ -2259,7 +2259,7 @@
       "constructor_shape": "source",
       "constructor_size": 60,
       "vfunc_30_shape": "source",
-      "vfunc_30_size": null,
+      "vfunc_30_size": 48,
       "vtable_slots": [
         {
           "raw": "0x00000000",
@@ -2368,9 +2368,9 @@
         "symbol": "func_08034F00"
       },
       "constructor_shape": "source",
-      "constructor_size": 60,
+      "constructor_size": 56,
       "vfunc_30_shape": "source",
-      "vfunc_30_size": null,
+      "vfunc_30_size": 44,
       "vtable_slots": [
         {
           "raw": "0x00000000",
@@ -2479,9 +2479,9 @@
         "symbol": "func_080367AC"
       },
       "constructor_shape": "source",
-      "constructor_size": 60,
+      "constructor_size": 56,
       "vfunc_30_shape": "source",
-      "vfunc_30_size": null,
+      "vfunc_30_size": 48,
       "vtable_slots": [
         {
           "raw": "0x00000000",
@@ -2592,7 +2592,7 @@
       "constructor_shape": "source",
       "constructor_size": 60,
       "vfunc_30_shape": "source",
-      "vfunc_30_size": null,
+      "vfunc_30_size": 44,
       "vtable_slots": [
         {
           "raw": "0x00000000",
@@ -2703,7 +2703,7 @@
       "constructor_shape": "source",
       "constructor_size": 60,
       "vfunc_30_shape": "source",
-      "vfunc_30_size": null,
+      "vfunc_30_size": 48,
       "vtable_slots": [
         {
           "raw": "0x00000000",
@@ -2814,7 +2814,7 @@
       "constructor_shape": "source",
       "constructor_size": 60,
       "vfunc_30_shape": "source",
-      "vfunc_30_size": null,
+      "vfunc_30_size": 44,
       "vtable_slots": [
         {
           "raw": "0x00000000",
@@ -2925,7 +2925,7 @@
       "constructor_shape": "source",
       "constructor_size": 60,
       "vfunc_30_shape": "source",
-      "vfunc_30_size": null,
+      "vfunc_30_size": 48,
       "vtable_slots": [
         {
           "raw": "0x00000000",
@@ -3034,9 +3034,9 @@
         "symbol": "func_08036BF8"
       },
       "constructor_shape": "source",
-      "constructor_size": 60,
+      "constructor_size": 52,
       "vfunc_30_shape": "source",
-      "vfunc_30_size": null,
+      "vfunc_30_size": 46,
       "vtable_slots": [
         {
           "raw": "0x00000000",
@@ -3145,9 +3145,9 @@
         "symbol": "func_08034F00"
       },
       "constructor_shape": "source",
-      "constructor_size": 60,
+      "constructor_size": 56,
       "vfunc_30_shape": "source",
-      "vfunc_30_size": null,
+      "vfunc_30_size": 44,
       "vtable_slots": [
         {
           "raw": "0x00000000",
@@ -3256,9 +3256,9 @@
         "symbol": "func_08034F00"
       },
       "constructor_shape": "source",
-      "constructor_size": 60,
+      "constructor_size": 48,
       "vfunc_30_shape": "source",
-      "vfunc_30_size": null,
+      "vfunc_30_size": 46,
       "vtable_slots": [
         {
           "raw": "0x00000000",
@@ -3367,9 +3367,9 @@
         "symbol": "func_08034F00"
       },
       "constructor_shape": "source",
-      "constructor_size": 60,
+      "constructor_size": 48,
       "vfunc_30_shape": "source",
-      "vfunc_30_size": null,
+      "vfunc_30_size": 44,
       "vtable_slots": [
         {
           "raw": "0x00000000",
@@ -3478,9 +3478,9 @@
         "symbol": "func_08034F00"
       },
       "constructor_shape": "source",
-      "constructor_size": 60,
+      "constructor_size": 48,
       "vfunc_30_shape": "source",
-      "vfunc_30_size": null,
+      "vfunc_30_size": 44,
       "vtable_slots": [
         {
           "raw": "0x00000000",
@@ -3568,10 +3568,10 @@
       "character_id": 33,
       "character_name": "Lou",
       "factory_stub": "0x0801B2E4",
-      "constructor": "func_08036DC4",
+      "constructor": "__9LouEntityP10GameObjectP3NpcUi",
       "constructor_address": "0x08036DC4",
       "schedule": "gUnk_080F6B10",
-      "vtable": "vtable_unk_080E6958",
+      "vtable": "__vt_9LouEntity",
       "vtable_address": "0x080E6958",
       "destructor": {
         "raw": "0x080DC9B5",
@@ -3581,17 +3581,17 @@
       "vfunc_30": {
         "raw": "0x08036E01",
         "address": "0x08036E00",
-        "symbol": null
+        "symbol": "vfunc_30__9LouEntity"
       },
       "vfunc_3C": {
         "raw": "0x08034F01",
         "address": "0x08034F00",
         "symbol": "func_08034F00"
       },
-      "constructor_shape": null,
-      "constructor_size": 104,
-      "vfunc_30_shape": "unlabeled",
-      "vfunc_30_size": null,
+      "constructor_shape": "source",
+      "constructor_size": 60,
+      "vfunc_30_shape": "source",
+      "vfunc_30_size": 44,
       "vtable_slots": [
         {
           "raw": "0x00000000",
@@ -3656,7 +3656,7 @@
         {
           "raw": "0x08036E01",
           "address": "0x08036E00",
-          "symbol": null
+          "symbol": "vfunc_30__9LouEntity"
         },
         {
           "raw": "0x08034EE1",
@@ -3700,9 +3700,9 @@
         "symbol": "func_08034F00"
       },
       "constructor_shape": "source",
-      "constructor_size": 60,
+      "constructor_size": 56,
       "vfunc_30_shape": "source",
-      "vfunc_30_size": null,
+      "vfunc_30_size": 44,
       "vtable_slots": [
         {
           "raw": "0x00000000",
@@ -3790,10 +3790,10 @@
       "character_id": 35,
       "character_name": "Child",
       "factory_stub": "0x0801B324",
-      "constructor": "func_08036E2C",
+      "constructor": "__11ChildEntityP10GameObjectP3NpcUi",
       "constructor_address": "0x08036E2C",
       "schedule": "gUnk_080F29C0",
-      "vtable": "vtable_unk_080E6918",
+      "vtable": "__vt_11ChildEntity",
       "vtable_address": "0x080E6918",
       "destructor": {
         "raw": "0x080DC9A9",
@@ -3803,17 +3803,17 @@
       "vfunc_30": {
         "raw": "0x08036F0D",
         "address": "0x08036F0C",
-        "symbol": null
+        "symbol": "func_08036F0C"
       },
       "vfunc_3C": {
         "raw": "0x08036EF1",
         "address": "0x08036EF0",
-        "symbol": null
+        "symbol": "vfunc_3C__11ChildEntityUi"
       },
-      "constructor_shape": null,
+      "constructor_shape": "source",
       "constructor_size": 68,
-      "vfunc_30_shape": "unlabeled",
-      "vfunc_30_size": null,
+      "vfunc_30_shape": "shape0111",
+      "vfunc_30_size": 92,
       "vtable_slots": [
         {
           "raw": "0x00000000",
@@ -3848,7 +3848,7 @@
         {
           "raw": "0x08036F69",
           "address": "0x08036F68",
-          "symbol": null
+          "symbol": "func_08036F68"
         },
         {
           "raw": "0x0801FE49",
@@ -3878,7 +3878,7 @@
         {
           "raw": "0x08036F0D",
           "address": "0x08036F0C",
-          "symbol": null
+          "symbol": "func_08036F0C"
         },
         {
           "raw": "0x08034EE1",
@@ -3893,7 +3893,7 @@
         {
           "raw": "0x08036EF1",
           "address": "0x08036EF0",
-          "symbol": null
+          "symbol": "vfunc_3C__11ChildEntityUi"
         }
       ]
     }

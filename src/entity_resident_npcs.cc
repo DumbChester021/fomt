@@ -26,6 +26,8 @@ EC ScheduleInfo const gUnk_080F66C4;
 EC ScheduleInfo const gUnk_080F6B4C;
 EC ScheduleInfo const gUnk_080F6DE8;
 EC ScheduleInfo const gUnk_080F6FF8;
+EC ScheduleInfo const gUnk_080F6B10;
+EC ScheduleInfo const gUnk_080F29C0;
 EC ScheduleInfo const gUnk_080F7294;
 EC ScheduleInfo const gUnk_080F77FC;
 EC ScheduleInfo const gUnk_080F7B40;
@@ -39,6 +41,8 @@ EC void func_080365CC(ElliEntity *);
 EC void func_08036768(CliffEntity *);
 EC void func_08036900(AnnEntity *);
 EC void func_08036AB4(GotzEntity *);
+EC void func_08034F00(ANpcEntity *, int);
+EC void func_08036E70(ChildEntity *);
 
 RickEntity::RickEntity(GameObject * game_object, Npc * npc, u32 context)
     : ANpcEntity(game_object, npc, context, &ScheduleInfo_Unk_080F1A80, 0x213, 0x217, 0x3E0)
@@ -365,4 +369,28 @@ KappaEntity::KappaEntity(GameObject * game_object, Npc * npc, u32 context)
 UnknownEntityThing * KappaEntity::vfunc_30()
 {
     return new UnknownEntityThing(this, 4, 0x1B, 1, 0, 0, false);
+}
+
+
+LouEntity::LouEntity(GameObject * game_object, Npc * npc, u32 context)
+    : ANpcEntity(game_object, npc, context, &gUnk_080F6B10, 0x8D8, 0x8DC, 0x3FE)
+{
+}
+
+UnknownEntityThing * LouEntity::vfunc_30()
+{
+    return new UnknownEntityThing(this, 4, 0x1B, 1, 0, 0, false);
+}
+
+ChildEntity::ChildEntity(GameObject * game_object, Npc * npc, u32 context)
+    : ANpcEntity(game_object, npc, context, &gUnk_080F29C0, 0x267, 0x26F, 0x3E3),
+      unk_48(0)
+{
+}
+
+void ChildEntity::vfunc_3C(u32 arg)
+{
+    func_08034F00(this, arg);
+    if ((i32)arg > 1)
+        func_08036E70(this);
 }

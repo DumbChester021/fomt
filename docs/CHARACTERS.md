@@ -167,7 +167,7 @@ be checked before treating these tools as an authoring pipeline.
 ## Runtime entities and render objects
 
 Persistent `Npc`, runtime `ANpcEntity`, and `UnknownEntityThing` are distinct
-objects. [entity_npc.hh](../include/entity_npc.hh) exposes the shared `ANpcEntity` declaration and `LilliaEntity`; [entity_resident_npcs.hh](../include/entity_resident_npcs.hh) declares the exact concrete resident classes for Rick through Kappa plus Lu. [entity_resident_npcs.cc](../src/entity_resident_npcs.cc) owns their constructors and virtual +0x30 effect factories. Lou and Child remain the two special resident classes whose constructor/+0x30 layer is still assembly. In [npc_entity.cc](../src/npc_entity.cc), `ANpcEntity` references its
+objects. [entity_npc.hh](../include/entity_npc.hh) exposes the shared `ANpcEntity` declaration and `LilliaEntity`; [entity_resident_npcs.hh](../include/entity_resident_npcs.hh) declares all concrete resident classes through Lou and Child. [entity_resident_npcs.cc](../src/entity_resident_npcs.cc) owns all 35 resident constructors, virtual +0x30 effect factories for IDs 1..34, and Child's +0x3C override. Child +0x30 remains assembly. In [npc_entity.cc](../src/npc_entity.cc), `ANpcEntity` references its
 persistent `Npc`; construction restores location/animation/cursors and
 destruction writes them back. Some movement/schedule methods in this C++ unit
 still contain naked assembly. A custom record must outlive its runtime entity.
@@ -255,10 +255,10 @@ the phased plan and acceptance criteria.
 
 ## Matching validation
 
-The linker keeps the original identity/location and scheduling helpers at their retail positions, Lillia's pair at 0x08035AFC..0x08035B63, and the 64 resident methods at their original addresses through nine source/assembly interleave seams from 0x08035B64 through 0x08036DC3. The October 5 resolver splits preserve `080A01F8..080A03B7` and `080A06B0..080A0A1B`; `func_08045584` remains sourced at its retail address. Legacy callable names for the promoted resident methods are linker aliases, so existing address-derived references remain valid.
+The linker keeps the original identity/location and scheduling helpers at their retail positions, Lillia's pair at 0x08035AFC..0x08035B63, the original 64 resident methods through 0x08036DC3, and now Lou constructor/+0x30 plus Child constructor/+0x3C at their retail addresses through 0x08036F0B. All 35 resident constructors are source-owned; IDs 1..34 also have source-owned +0x30 factories, while Child +0x30 at 0x08036F0C remains assembly. The October 5 resolver splits preserve `080A01F8..080A03B7` and `080A06B0..080A0A1B`; `func_08045584` remains sourced at its retail address. Legacy callable names for promoted methods are linker aliases, so existing address-derived references remain valid.
 
 Run `make compare` and `sha1sum -c fomt.sha1` after source/data/interface
-changes. The current exact worktree reports **67,832 / 940,036 = 7.2159%**
+changes. The current exact worktree reports **68,592 / 940,036 = 7.2967%**
 source with the retail SHA1 unchanged. Documentation updates do not change the
 ROM or count as new source reconstruction.
 

@@ -197,4 +197,20 @@ struct LuEntity : public ANpcEntity
     virtual UnknownEntityThing * vfunc_30() SECTION(".text.npc_resident_run6");
 };
 
+
+struct LouEntity : public ANpcEntity
+{
+    LouEntity(GameObject * game_object, Npc * npc, u32 context) SECTION(".text.npc_special_run1");
+    virtual UnknownEntityThing * vfunc_30() SECTION(".text.npc_special_run1");
+};
+
+struct ChildEntity : public ANpcEntity
+{
+    ChildEntity(GameObject * game_object, Npc * npc, u32 context) SECTION(".text.npc_special_run1");
+    virtual UnknownEntityThing * vfunc_30();
+    virtual void vfunc_3C(u32 arg) SECTION(".text.npc_special_run2");
+
+    /* +48 */ u16 unk_48;
+};
+
 #endif // ENTITY_RESIDENT_NPCS_HH
