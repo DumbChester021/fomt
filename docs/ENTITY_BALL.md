@@ -18,38 +18,35 @@ This document records the proven `AEntity`-derived thrown Ball object selected b
 
 ## Exact source-owned methods
 
-The current exact C++ pass owns **396 retail bytes** across the Ball entity plus its first controller method:
+The current exact C++ pass owns **496 retail bytes** across the Ball entity and its controller-facing helpers:
 
-- `BallEntity::BallEntity(GameObject*, Location&)` at `0x08038028`, **0x70 / 0 diff**. It initializes the base entity, stores the location back-reference, clears flight/activity state, seeds resource ID `0x31`, then queries selector `0x2B`. If that actor is on the same map and `func_08020460` reports its required state, the constructor seeds the Ball from that actor's Q16 position, animation ID, and facing through `func_08038374`.
-- `BallEntity::~BallEntity()` at `0x08038098`, **0x54 / 0 diff**. It copies the final six-byte `Location` through `location_ref`, then performs normal `AEntity` / smart-pointer teardown.
-- `BallEntity::Launch(u32)` at `0x080380EC`, exact **0x1A-byte body** plus retail alignment. It stores the launch state, initializes `flight_pos_q16 = 0x150000`, `flight_speed_q16 = 0x30000`, and sets `active`.
+- `BallEntity::BallEntity(GameObject*, Location&)` at `0x08038028`, **0x70 / 0 diff**.
+- `BallEntity::~BallEntity()` at `0x08038098`, **0x54 / 0 diff**; it copies the final six-byte `Location` through `location_ref`.
+- `BallEntity::Launch(u32)` at `0x080380EC`, exact **0x1A-byte body** plus retail alignment.
 - `BallEntity::IsActive() const` at `0x08038108`, exact **0x06-byte body** plus alignment.
-- `BallEntity::vfunc_18()` at `0x08038300`, **0x20 / 0 diff**. It updates the visual/controller when present, then calls `func_08038110`.
-- `BallEntity::vfunc_2C(u32)` at `0x08038320`, **0x14 / 0 diff**. It runs `AEntity::vfunc_2C` and then `func_08038110`.
-- `BallEntity::vfunc_30()` at `0x08038334`, exact **0x16-byte body** plus retail alignment. It allocates the separate **0x48-byte** `BallVisualController` and calls retail constructor `func_0803853C`.
-- `BallEntity::GetBox() const` at `0x0803834C`, **0x20 / 0 diff**. It returns the 8x8 box centered on the Ball's integer x/y position.
-- `BallEntity::GetFlightHeight() const` at `0x0803836C`, exact **0x06-byte body** plus alignment; it returns `flight_pos_q16 >> 16`.
-- `BallVisualController::vfunc_0C()` at `0x08038580`, exact **0x2E-byte body** plus retail alignment. Natural source is simply `effect.Update()`.
+- `BallEntity::vfunc_18()` at `0x08038300`, **0x20 / 0 diff**; controller update then `func_08038110`.
+- `BallEntity::vfunc_2C(u32)` at `0x08038320`, **0x14 / 0 diff**; base vfunc then `func_08038110`.
+- `BallEntity::vfunc_30()` at `0x08038334`, exact **0x16-byte body** plus alignment; allocates the 0x48-byte `BallVisualController`.
+- `BallEntity::GetBox() const` at `0x0803834C`, **0x20 / 0 diff**.
+- `BallEntity::GetFlightHeight() const` at `0x0803836C`, exact **0x06-byte body** plus alignment.
+- `func_08038374(BallEntity*, i32, i32, u32, u32)` at `0x08038374`, exact **0x22-byte body + 2-byte alignment**. It enters dog-play mode, stores Q16 x/y, and forwards dog animation/facing to `func_08038398`.
+- `func_080384FC(BallEntity*)` at `0x080384FC`, exact **0x3E-byte body + 2-byte alignment**. It restores packed Ball resource `0x31`, resets the live controller effect animation/upload state when present, and clears dog-play mode.
+- `BallVisualController::vfunc_0C()` at `0x08038580`, exact **0x2E-byte body** plus alignment; natural source is `effect.Update()`.
 
-`#pragma interface` keeps the retail vtables in `asm/vtables.s`; `fomt.lds` interleaves the exact source sections with the remaining assembly at retail addresses.
+`#pragma interface` keeps the retail vtables in `asm/vtables.s`; `fomt.lds` interleaves the exact source sections with remaining assembly at retail addresses.
 
 ## Existing semantic evidence
 
-Selector `0x4B` is the thrown Ball world object. Player item-use code launches that selector for `ARTICLE_BALL`; adult-dog play/fetch code drives `func_08038374` / `func_08038398`; `func_08038398` maps dog animation plus facing into packed Ball animation IDs 21..48; and `func_0803853C` uses `resource_id` with the GameObject packed-animation provider. The large mover `func_08038110` uses the alternate terrain collision predicate that ignores descriptor bit 1 and has the already-documented three landing outcomes. See `docs/DECOMP_NOTES.md` and `docs/ASSET_DECOMPILATION.md` for the terrain and visual-family evidence.
+Selector `0x4B` is the thrown Ball world object. Player item-use code launches that selector for `ARTICLE_BALL`; adult-dog play/fetch code drives `func_08038374` / `func_08038398`; `func_08038398` maps dog animation plus facing into packed Ball animation IDs 21..48; and `func_0803853C` uses `resource_id` with the GameObject packed-animation provider. The large mover `func_08038110` uses the alternate terrain collision predicate that ignores descriptor bit 1 and has the already-documented landing outcomes. See `docs/DECOMP_NOTES.md` and `docs/ASSET_DECOMPILATION.md` for the terrain and visual-family evidence.
 
-## Proven visual/controller layout and remaining frontier
+## Proven visual/controller layout and bounded seams
 
-The +0x30 factory allocates exactly **0x48 bytes**. Retail constructor `func_0803853C` writes the Ball owner at +0x00, the controller vtable at +0x04, and constructs one `EntityEffect` at +0x08. Because `EntityEffect` is 0x40 bytes, this exactly fills the object. Its controller fields therefore map naturally: `effect.active` at +0x44, refresh at +0x45, upload state at +0x46, and reset-update at +0x47. `vtable_unk_080E73E8` contains destructor `0x080DCE94`, update `0x08038580`, and render `0x080385B0`.
+The +0x30 factory allocates exactly **0x48 bytes**. Retail constructor `func_0803853C` writes the Ball owner at +0x00, controller vtable at +0x04, and constructs one 0x40-byte `EntityEffect` at +0x08. `vtable_unk_080E73E8` contains destructor `0x080DCE94`, update `0x08038580`, and render `0x080385B0`.
 
-The constructor's first natural scratch model is **0x44 exact size / 8 differing linked bytes**. The only mismatch is four argument-setup instructions at `0x08038556..0x0803855C`: retail loads the GameObject argument before forming the destination/resource arguments, while the current natural source orders those loads differently. Treat this as one bounded source/codegen seam, not a reason for syntax roulette.
+Three remaining small/controller routines are structurally recovered but compiler-sensitive:
 
-There is also a known shared-type debt: runtime layout shows the Ball controller uses the common 8-byte helper base, but current source types narrow `AEntity::unk_10` / `vfunc_30` to `UnknownEntityThing*` and the helper base owner to `AActorEntity*`. A trial global widening broke actor code that legitimately accesses `UnknownEntityThing`-specific fields, so it was reverted. The Ball factory currently uses a local cast while the ABI stays unchanged.
+- `func_0803853C`: **0x44 exact size / 8 differing linked bytes**, all from four argument-setup instructions.
+- `func_08038398`: explicit no-op `case 0x338` reproduces the retail 62-entry `0x338..0x375` sparse jump table; best natural source is **0x164 exact size / 21 differing linked bytes**, entirely the r5/r6 allocation swap for `self` and the new packed resource ID. A real-member probe gives the same result.
+- `func_080385B0`: behavior-reconstructed renderer. Natural source reproduces camera-relative position, flight-height offset, dog-play depth bias, render-attribute gate, effect draw/upload, and ground shadow. Using the same explicit render/resource temporaries as the exact generic renderer improves it to **0x18C vs retail 0x190**; a real-member probe does not improve the remaining register/source-lifetime seam.
 
-Continue this coherent family in this order:
-
-1. inspect controller render `0x080385B0` and keep using the proven embedded-`EntityEffect` layout;
-2. give constructor `0x0803853C` only bounded effort around the known four-instruction load-order delta;
-3. inspect adjacent Ball helpers `0x08038374`, `0x08038398`, and `0x080384FC` for natural exact wins;
-4. only then return to the 0x1F0-byte flight/landing routine `func_08038110`, whose terrain/dog-play semantics are already documented.
-
-Do not reopen Ball identity, article/resource-ID provenance, or packed-animation mapping without genuinely new structural evidence.
+Do not syntax-roulette these three routines. With the smaller surface exhausted, the next coherent Ball target is the **0x1F0-byte `func_08038110` mover**. Its terrain collision, landing, dog-play, and selector semantics are already documented; reconstruct source from that evidence rather than re-researching identity or behavior.

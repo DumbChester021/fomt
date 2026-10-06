@@ -1,13 +1,13 @@
 # Ches Session Status — FOMT decomp
 
-## CURRENT SNAPSHOT - 7.3682%; Ball virtual/controller surface exact - October 6, 2026
+## CURRENT SNAPSHOT - 7.3789%; Ball dog-play helpers exact, small surface bounded - October 6, 2026
 
-- Active branch `Live-temp`; continued from pushed handoff `0c0e10870abf130113ceeb207fe20f22f9a092e6`.
-- Ball family source now owns **396 retail bytes** total; this checkpoint adds **208 exact bytes**: destructor `0x08038098`, wrappers `0x08038300/20`, factory `0x08038334`, and controller update `0x08038580`.
-- Progress: **69,264 / 940,036 = 7.3682% code**, **870,772 asm bytes**, **75,334 data/assets**, **144,994 meaningful-ROM bytes = 1.8788%**, **671,168 bytes free**. `fomt.gba: OK`.
-- Regenerated inventory: **2,370 linked asm functions**, **869,696 / 870,772 inferred range bytes = 99.8764%**, **1,076 unattributed bytes**.
-- Proven controller is 0x48 bytes = 8-byte helper base + 0x40 `EntityEffect`; constructor `0x0803853C` is exact-size 0x44 with only 8 linked bytes differing in four argument-setup instructions, while update `0x08038580` is exact source.
-- Next: continue `0x080385B0` and adjacent Ball helpers `0x08038374/398/4FC`; bound the constructor-order mismatch instead of syntax roulette; keep `0x08038110` deferred.
+- Active branch `Live-temp`; continued from pushed checkpoint `7eff5d9`.
+- Added **100 exact Ball bytes**: `func_08038374` (0x22 body + align) and `func_080384FC` (0x3E body + align). Ball family source total is now **496 retail bytes**.
+- Progress: **69,364 / 940,036 = 7.3789% code**, **870,672 asm bytes**, **75,334 data/assets**, **145,094 meaningful-ROM bytes = 1.8801%**, **671,168 bytes free**. `fomt.gba: OK`.
+- Regenerated inventory: **2,368 linked asm functions**, **869,596 / 870,672 inferred range bytes = 99.8764%**, **1,076 unattributed bytes**.
+- Bounded seams: `0x08038398` = **0x164 exact size / 21 diff**, pure r5/r6 allocation after reproducing retail switch span; `0x0803853C` = **0x44 / 8 diff** argument-load order; `0x080385B0` behavior-recovered at **0x18C vs 0x190** with remaining register/lifetime codegen differences.
+- Next: move to Ball mover `func_08038110`; use existing documented terrain/landing/dog-play semantics and do not reopen the bounded smaller seams without new structural evidence.
 
 ## SUPERSEDED SNAPSHOT - 7.3261%; location-bound actor island bounded - October 6, 2026
 

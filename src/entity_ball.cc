@@ -2,7 +2,9 @@
 #include "entity_actor.hh"
 
 EC bool func_08020460(AActorEntity *);
-EC void func_08038374(BallEntity *, i32, i32, u32, u32);
+EC void func_08038374(BallEntity *, i32, i32, u32, u32) SECTION(".text.ball_dog_play_position");
+EC void func_08038398(BallEntity *, u32, u32);
+EC void func_080384FC(BallEntity *) SECTION(".text.ball_reset_dog_play");
 EC void func_08038110(BallEntity *);
 
 
@@ -80,4 +82,33 @@ UnknownEntityThing * BallEntity::vfunc_30()
 void BallVisualController::vfunc_0C()
 {
     effect.Update();
+}
+
+EC void func_08038374(BallEntity * self, i32 x_q16, i32 y_q16, u32 anim, u32 facing)
+{
+    self->dog_play = 1;
+    self->x_q16 = x_q16;
+    self->y_q16 = y_q16;
+    func_08038398(self, anim, facing);
+}
+
+EC void func_080384FC(BallEntity * self)
+{
+    if (self->resource_id != 0x31)
+    {
+        BallVisualController * controller =
+            reinterpret_cast<BallVisualController *>(self->unk_10.Get());
+
+        if (controller != nullptr)
+        {
+            controller->effect.animator.SetAnimation(0x31);
+            controller->effect.active = 1;
+            controller->effect.unk_3E = 0;
+            controller->effect.reset_update = 1;
+        }
+
+        self->resource_id = 0x31;
+    }
+
+    self->dog_play = 0;
 }

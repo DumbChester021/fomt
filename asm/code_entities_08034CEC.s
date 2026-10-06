@@ -3619,25 +3619,6 @@ func_08038110: @ 0x08038110
 
     .section .text.after_ball_run2, "ax", %progbits
 
-    thumb_func_start func_08038374
-func_08038374: @ 0x08038374
-    push {r4, r5, r6, lr}
-    ldr r5, [sp, #0x10]
-    movs r4, #0x26
-    adds r4, r4, r0
-    mov ip, r4
-    movs r4, #1
-    mov r6, ip
-    strb r4, [r6]
-    str r1, [r0, #8]
-    str r2, [r0, #0xc]
-    adds r1, r3, #0
-    adds r2, r5, #0
-    bl func_08038398
-    pop {r4, r5, r6}
-    pop {r0}
-    bx r0
-    .align 2, 0
 
     thumb_func_start func_08038398
 func_08038398: @ 0x08038398
@@ -3766,42 +3747,7 @@ func_08038398: @ 0x08038398
     pop {r0}
     bx r0
 
-    thumb_func_start func_080384FC
-func_080384FC: @ 0x080384FC
-    push {r4, r5, lr}
-    adds r5, r0, #0
-    ldrh r0, [r5, #0x28]
-    cmp r0, #0x31
-    beq .L0803852C
-    ldr r4, [r5, #0x10]
-    cmp r4, #0
-    beq .L08038528
-    adds r0, r4, #0
-    adds r0, #0x30
-    movs r1, #0x31
-    bl func_0805E860
-    adds r0, r4, #0
-    adds r0, #0x44
-    movs r2, #0
-    movs r1, #1
-    strb r1, [r0]
-    adds r0, #2
-    strb r2, [r0]
-    adds r0, #1
-    strb r1, [r0]
-.L08038528:
-    movs r0, #0x31
-    strh r0, [r5, #0x28]
-.L0803852C:
-    adds r1, r5, #0
-    adds r1, #0x26
-    movs r0, #0
-    strb r0, [r1]
-    pop {r4, r5}
-    pop {r0}
-    bx r0
-    .align 2, 0
-
+    .section .text.after_ball_reset_dog_play, "ax", %progbits
     thumb_func_start func_0803853C
 func_0803853C: @ 0x0803853C
     push {r4, r5, r6, lr}

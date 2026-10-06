@@ -353,7 +353,10 @@ SECTIONS
         asm/code_entities_08034CEC.o(.text.after_ball_run1);
         src/entity_ball.o(.text.ball_run3);
         src/entity_ball.o(.text.ball_run2);
+        src/entity_ball.o(.text.ball_dog_play_position);
         asm/code_entities_08034CEC.o(.text.after_ball_run2);
+        src/entity_ball.o(.text.ball_reset_dog_play);
+        asm/code_entities_08034CEC.o(.text.after_ball_reset_dog_play);
         src/entity_ball.o(.text.ball_controller_update);
         asm/code_entities_08034CEC.o(.text.after_ball_controller_update);
 
