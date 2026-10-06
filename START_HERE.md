@@ -1,6 +1,10 @@
 # FoMT Zero-Context Start Here
 
-## Multi-axis progress + code-coupled asset pivot - October 6, 2026
+## Current throughput inventory - October 6, 2026
+
+`tools/ches/build_decomp_inventory.py` now generates the machine-readable remaining-function database (`tools/ches/decomp_inventory.json`) and ranked human queue (`tools/ches/DECOMP_QUEUE.md`). Current linker-backed totals are 2,463 linked assembly functions across 875,500 asm code bytes; inferred function ranges cover 874,452 bytes (99.8803%). The first ranked coherent target is `asm/code_entities_08034CEC.s:08035B64-08038DF0`: 157 functions / 12,940 bytes, with 107 functions in repeated opcode families. It follows the exact-source `LilliaEntity` implementation and sits beside a dense run of NPC/entity vtables, so the next work is class/vtable/factory mapping followed by family-level reconstruction.
+
+## Current project status
 
 - `make progress` tracks reconstruction across code and non-code ROM bytes instead of reporting only executable code.
 - Current **code reconstruction** is **64,536 / 940,036 = 6.8653%**.

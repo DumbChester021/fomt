@@ -1,6 +1,14 @@
 # Ches Session Status — FOMT decomp
 
-## Current checkpoint - whole-game throughput pivot adopted - October 6, 2026
+## CURRENT SNAPSHOT - function inventory live; sibling NPC/entity region is first ranked target - October 6, 2026
+
+- Strategy checkpoint `e68144f7055fc4896b49cc31429f90c64fef3be1` is published on `ches/Live-temp`.
+- New durable analysis: `tools/ches/build_decomp_inventory.py` -> `tools/ches/decomp_inventory.json` + `tools/ches/DECOMP_QUEUE.md`.
+- Inventory: **2,463 linked asm functions**, **875,500 canonical asm bytes**, **874,452 function-range bytes (99.8803%)**, **1,048 unassigned asm bytes**, **199 repeated opcode-shape clusters / 960 participating functions**, **190 exact normalized-body clusters**.
+- Top coherent target: `asm/code_entities_08034CEC.s:08035B64-08038DF0`, **157 functions / 12,940 bytes**, **107 repeated-family functions**. It begins directly after exact-source LilliaEntity and is adjacent to the dense NPC/entity vtable sequence, making sibling-class recovery the leading hypothesis.
+- Next: map this region against vtables + entity factory selectors, establish class boundaries/names where evidence supports them, then reconstruct a representative repeated family and propagate the proven shape.
+
+## CURRENT SNAPSHOT - whole-game throughput pivot adopted - October 6, 2026
 
 - Strategy changed from individual packed-sprite provenance to **throughput-first whole-game decompilation**.
 - Exact state is unchanged: **64,536 / 940,036 = 6.8653% source**, **75,334 data/asset bytes**, **140,266 overall meaningful-ROM bytes**, retail ROM still exact at the prior verified baseline.

@@ -1,5 +1,17 @@
 # Current FoMT continuation — October 6, 2026
 
+## CURRENT CHECKPOINT - remaining-function inventory built; NPC/entity cluster ranks first - October 6, 2026
+
+- Published strategy checkpoint `e68144f7055fc4896b49cc31429f90c64fef3be1` to `ches/Live-temp` before beginning this analysis.
+- Added `tools/ches/build_decomp_inventory.py`, generating `tools/ches/decomp_inventory.json` plus human-readable `tools/ches/DECOMP_QUEUE.md` from current assembly, linker map, ELF symbols, direct calls, global/data refs, normalized instruction shapes, and coarse source/asm locality.
+- Current linker-backed inventory: **2,463 linked assembly functions**, **875,500 canonical assembly code bytes**, with inferred function ranges covering **874,452 bytes = 99.8803%**. The remaining **1,048 bytes** are not assigned to inferred function ranges. Two `_asm` fallback definitions (`func_0802A7E0_asm`, `func_0809CF34_asm`) are present in assembly source but are not linked as assembly code and are excluded.
+- Similarity pass finds **199 repeated opcode-shape clusters**, covering **960 remaining functions**, plus **190 exact normalized-body clusters**. This confirms substantial family-level leverage exists beyond one-function-at-a-time work.
+- The highest-ranked coherent region is **`asm/code_entities_08034CEC.s:08035B64-08038DF0`**: **157 functions / 12,940 bytes**, all currently under the tractable-size threshold, with **107 functions in repeated families**, 28 source-anchor callees, and no giant-function penalty.
+- Structural interpretation is strong: this region starts immediately after exact-source `LilliaEntity::LilliaEntity` / `LilliaEntity::vfunc_30` at `08035AFC..08035B63`. The following anonymous functions cluster into repeated families such as 19 members / 1,184 bytes (`shape0007`), 19 members / 836 bytes (`shape0005`), 4 members / 720 bytes (`shape0047`), and multiple 7-8 member families. The adjacent vtable block beginning around `vtable_unk_080E7198` contains many consecutive anonymous vtables, reinforcing the sibling NPC/entity-family hypothesis.
+- The first inventory version deliberately keeps TU/region boundaries and scores labeled **heuristic**. Addresses, linker ownership, direct call edges, linked-byte totals, and exact repeated signatures are repository-derived evidence. Runtime/library helpers and giant functions are penalized so they do not dominate target selection merely by fan-out or size.
+- A malformed intermediate patch to the inventory script was caught **before execution** after shifted line numbers caused edits to land in the wrong blocks. The affected build/report section was replaced cleanly; `python3 -m py_compile tools/ches/build_decomp_inventory.py` passes and the corrected generator completed successfully.
+- **Exact next action on Continue:** map the `08035B64..08038DF0` functions to the consecutive vtables and the entity factory selectors/character IDs, identify the first sibling class/family boundary, then reconstruct one representative repeated family and propagate the proven source shape across its siblings. Do not fall back to manual sprite tracing or isolated function roulette.
+
 ## CURRENT CHECKPOINT - whole-game throughput pivot adopted - October 6, 2026
 
 - The user requested an external strategy audit specifically to challenge whether individual packed-sprite tracing was the fastest route to decompiling FoMT. The core recommendation is adopted: optimize for total coherent decompilation throughput and reusable understanding, not for resolving the last sprite IDs first.
