@@ -23,27 +23,27 @@
 
 ### Exact next action
 
-`Entity398A4` constructor and destructor are now both production-exact source.
+Production remains exact at commit `0f0f29e25d55189b93af2fb665ffff43e343eb5a`: **70,756 / 940,036 = 7.5269% code**, retail SHA1 unchanged. No production source changed in the current `39A60` research turn.
 
-Constructor proof:
-- scratch candidate `candidate-ctor-398a4-v2.cc`: **0x11C / 0**, execution `sh_mux7zw37_d4a0cefd`;
-- isolated combined production proof `sh_muxa62ce_875d7747`: **`fomt.gba: OK`**;
-- isolated SHA `sh_muxa6ixk_9424a606`: `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`;
-- production proof `sh_muxa77wq_affad249`: **`fomt.gba: OK`**;
-- production SHA `sh_muxa7u8i_31f490e1`: same retail hash;
-- production symbols `sh_muxa7zbt_73c1e106`: constructor `0x080398A4` size 0x11C, destructor `0x080399C0` size 0x70, strategy vtables at retail `748C..74CC`, owner vtable `74DC`.
+Target `func_08039A60`, retail `0x08039A60..0x08039D4C` (**0x2EC**), is now behavior-mapped as the `Entity398A4` vtable +0x18 update override.
 
-Recovered structure:
-- `Entity398A4 : Entity_080E6554`;
-- constructor `(GameObject *, Actor *)`;
-- base init `Entity_080E6554(game_object, Actor(*actor).location, 0x9C7)`;
-- +0x34 `Actor *`;
-- +0x38..+0x48 five owning `SmartPtr` slots;
-- five 4-byte strategy objects with 0x10-byte, two-method vtables;
-- selector virtual at vtable +0x0C;
-- +0x4C mode, +0x50 saved facing.
+Recovered contract and behavior:
+- second argument is the normal entity-update wrapper: input pointer at +0 and update/active byte at +4; this function reads only +4;
+- when update byte is set and current map != 2, it reads GameObject virtual +0x144 state, requires `(flags_0A & 0x7FF)==0x14` and word +0 == 0, chooses one of two map-2 coordinate pairs, finds a nearby entity through exact `39134`, and with a 15% random gate teleports/retargets the owner and seeds actor state through `func_0809C0AC` + `func_080200C4(...,0xAB)`;
+- normal half gets the map terrain view via GameObject vtable +0x34 / `GetLocationTerrain`, gets the owner Box, builds the 0x34-byte collision work record, folds selector 0 and selector 0x4A entity boxes through `func_080ABA90`, runs active strategy virtual +0x08 then selector +0x0C, updates speed/animation/mode/facing, applies the map-2/facing collision suppression through exact `391C0`, then calls `func_08020170`;
+- tail clears inherited +0x30 bool, updates +0x24/+0x26 timer, and calls the owned +0x10 object's +0x0C virtual exactly like the base update tail.
 
-**Next target:** `func_08039A60`, retail `0x08039A60..0x08039D4C` (**0x2EC**). Inventory records 338 instructions, priority 66.75, no direct callers, and many source-anchor callees. Retail owner vtable `0x080E74DC` places it at **vtable +0x18**, so it is the next same-class virtual override. Start by typing its second argument and reconstructing the two large behavioral halves from existing exact helpers; compare the whole 0x2EC early. Do not reopen parked `39E98` or strategy register-allocation islands first.
+Saved probes:
+- `candidate-vfunc18-39a60-v1.cc`: first behavior-complete whole-function source; compile stopped only on declaration/type-model issues, while its emitted assembly already showed strong structural alignment.
+- `candidate-vfunc18-39a60-v2.cc`: declaration issues fixed. Compare execution `sh_muxalo14_9d6cccd7`: **expected 0x2EC, actual 0x2C8, 680 differing linked bytes**. Artifacts: `match/e39a60-v2.diff`, `.mismatch.txt`, `.alloc.log`, `.s`.
+
+Strong next source-shape clues from v2:
+1. Retail stack frame is **0x70**, v2 is **0x64**.
+2. In the first retarget block retail creates a **4-byte signed coordinate-pair value at stack +0x44, copies it to +0x48, then loads signed x/y from the copy** before calling `func_08039134`. v2 keeps x/y in registers and omits this value-object/copy shape. Recover the repository/original 4-byte coordinate-pair type (or a natural local type with identical ctor/copy semantics) first.
+3. Retail later copies the current **8-byte Box** into collision record +0x20 with two word loads/stores. v2's temporary `RawBox398A4` workaround uses four halfword copies. Replace that workaround with a natural Box-containing collision type/constructor or copy shape that restores the two-word copy.
+4. Do **not** start register forcing or compiler tuning. The remaining delta still has clear missing original value types/source structure.
+
+**Exact next action on Continue:** make v3 from v2, first restoring the 4-byte coordinate-pair temporary/copy and natural 8-byte Box copy. Recompare the entire 0x2EC immediately. If frame/size move to retail and the main-half alignment tightens, continue type recovery; otherwise save the result and reassess source object layout. Keep `39E98` and prior strategy register-allocation islands parked.
 
 For fresh-conversation automation, do **not** resend a handoff merely because a browser/send command reports an error or omits a reply. Inspect the actual target tab first and confirm whether the user message appeared or a turn started. The previous failure mode produced a real 54-tool-call turn despite a misleading return.
 
