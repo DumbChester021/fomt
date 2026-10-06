@@ -21,10 +21,10 @@ Current exact reconstruction metrics:
 
 | Metric | Current |
 | --- | ---: |
-| Code | **70,756 / 940,036 bytes (7.5269%)** |
-| Assembly remaining | **869,280 bytes** |
+| Code | **71,504 / 940,036 bytes (7.6065%)** |
+| Assembly remaining | **868,532 bytes** |
 | Data/assets | **75,334 / 6,777,404 bytes (1.1115%)** |
-| Overall meaningful ROM | **146,486 / 7,717,440 bytes (1.8981%)** |
+| Overall meaningful ROM | **147,234 / 7,717,440 bytes (1.9078%)** |
 | Contiguous ROM tail free space | **671,168 bytes (655.44 KiB)** |
 
 Run `make progress` for the live report.

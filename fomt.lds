@@ -408,6 +408,7 @@ SECTIONS
         asm/code_entities_08034CEC.o(.text.after_entity39a30);
         src/entity_unk_08038740.o(.text.entity39a5c_noop);
         asm/code_entities_08034CEC.o(.text.after_entity39a5c);
+        src/entity_unk_08038740.o(.text.entity39a60_update);
         src/entity_unk_08038740.o(.text.entity39d4c_table);
         src/entity_unk_08038740.o(.text.entity39d5c_mask);
         src/entity_unk_08038740.o(.text.entity39d98_mode);

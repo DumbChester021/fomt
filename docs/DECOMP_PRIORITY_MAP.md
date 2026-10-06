@@ -12,11 +12,11 @@ exploit them across the remaining assembly instead of making an individual
 resource family the main queue.
 
 Current exact `main` state:
-- code: **70,756 / 940,036 = 7.5269%**;
-- assembly remaining: **869,280 bytes**;
-- remaining linked assembly functions: **2,340**;
+- code: **71,504 / 940,036 = 7.6065%**;
+- assembly remaining: **868,532 bytes**;
+- remaining linked assembly functions: **2,339**;
 - data/assets: **75,334 / 6,777,404 = 1.1115%**;
-- overall meaningful ROM: **146,486 / 7,717,440 = 1.8981%**;
+- overall meaningful ROM: **147,234 / 7,717,440 = 1.9078%**;
 - packed bank: **416 / 493 semantically owned animations**;
 - retail ROM remains exact at SHA1 `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
 
@@ -55,7 +55,7 @@ but its score is no longer an execution order.
 
 The throughput pipeline is operational. The Ball family remains parked at its documented mover seam. The adjacent `vtable_unk_080E7380` family now owns **316 exact retail bytes** in source: 224 bytes of entity surface plus 92 bytes of controller helpers. Controller constructor `0x08038820` is behavior-complete and exact-size but bounded by register-lifetime codegen.
 
-The raw queue still begins with deliberately parked work, so score is not execution order. The full five-slot Entity38740 strategy interface is mapped; paired mode-4 setup helpers `39DA8/39E18`, factory `39A30`, destructor `39F50`, and owner destructor `399C0` are now exact. Constructor `39E98` is behavior-complete at exact-size 0xB8/109 with the real SpriteAnimation temporary recovered, so it is parked on register allocation. The owner constructor `398A4` is now exact too. Structural continuity moves to `39A60` (0x2EC), the Entity398A4 vtable +0x18 override, using the now-proven hierarchy and strategy layout.
+The raw queue still begins with deliberately parked work, so score is not execution order. The full five-slot Entity38740 strategy interface is mapped; paired mode-4 setup helpers `39DA8/39E18`, factory `39A30`, destructor `39F50`, and owner destructor `399C0` are now exact. Constructor `39E98` is behavior-complete at exact-size 0xB8/109 with the real SpriteAnimation temporary recovered, so it is parked on register allocation. The owner constructor `398A4` is now exact too. The Entity398A4 `39A60` override is now exact source. Structural continuity moves to quick helper `3A144` (0x3C), then larger `39F90` (0x1B4) in the same regional family.
 
 ### 1. Keep the function/TU inventory current
 

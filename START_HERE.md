@@ -43,13 +43,13 @@ Retail ROM:
 
 Current exact reconstruction:
 
-- code: **70,756 / 940,036 = 7.5269%**
-- assembly remaining: **869,280 bytes**
-- remaining linked assembly functions: **2,340**
-- inferred function ranges: **868,116 / 869,280 = 99.8661%**
+- code: **71,504 / 940,036 = 7.6065%**
+- assembly remaining: **868,532 bytes**
+- remaining linked assembly functions: **2,339**
+- inferred function ranges: **867,368 / 868,532 = 99.8660%**
 - unattributed assembly: **1,164 bytes**
 - data/assets: **75,334 / 6,777,404 = 1.1115%**
-- overall meaningful ROM: **146,486 / 7,717,440 = 1.8981%**
+- overall meaningful ROM: **147,234 / 7,717,440 = 1.9078%**
 - contiguous tail free space: **671,168 bytes = 655.44 KiB**
 
 Use `make progress` after meaningful exact integrations.
@@ -96,7 +96,7 @@ The constructor establishes the owner hierarchy and strategy interface:
 - +0x50: saved facing;
 - owner vtable maps to retail `0x080E74DC`.
 
-Continue **`func_08039A60`**, retail `0x08039A60..0x08039D4C` (**0x2EC**). It is the `Entity398A4` vtable +0x18 override, has no direct callers because dispatch is virtual, and already calls many source-owned helpers from this recovered family. Treat the vtable/type recovery above as the new structural oracle. Keep `39E98` and the other documented codegen-only islands parked.
+`func_08039A60`, retail `0x08039A60..0x08039D4C` (**0x2EC**), is now exact production source. Continue **`func_0803A144`**, retail `0x0803A144..0x0803A180` (**0x3C**): a small same-region helper using `gUnk_080F16C2` and `func_080AB788`, with four callers. `39F90` remains the larger high-value regional target after this helper; keep `39E98` and the other documented codegen-only islands parked.
 
 ## Parked nearby frontiers
 

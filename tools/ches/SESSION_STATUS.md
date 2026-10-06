@@ -1,6 +1,15 @@
 # Ches Session Status — FOMT decomp
 
-## CURRENT SNAPSHOT - 7.5269%; Entity398A4 constructor/destructor exact - October 7, 2026
+## CURRENT SNAPSHOT - 7.6065%; Entity398A4 update override exact - October 7, 2026
+
+- Active branch is **`main`**, tracking `ches/main`.
+- `func_08039A60` / Entity398A4 vtable +0x18 update override is production source-owned exact: **0x2EC / 0** in scratch v8 (`sh_muxbff37_81d1735c`) and full production ROM exact (`sh_muxbh93t_b4ff0dd5` -> `fomt.gba: OK`).
+- Retail SHA `sh_muxbhmcx_ae389ea8`: `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
+- Progress `sh_muxbhnx7_236387d4`: **71,504 / 940,036 = 7.6065% code**, **868,532 asm bytes**, **75,334 data/assets**, **147,234 meaningful-ROM bytes = 1.9078%**, **671,168 free**.
+- Inventory `sh_muxbhvmg_1a3e4f77`: **2,339 linked asm functions**, **867,368 / 868,532 inferred range bytes = 99.8660%**, **1,164 unattributed bytes**.
+- Exact next target: `func_0803A144` (0x3C), then larger same-region `func_08039F90` (0x1B4). `39E98` remains parked.
+
+## SUPERSEDED SNAPSHOT - 7.5269%; Entity398A4 constructor/destructor exact - October 7, 2026
 
 - Active branch is **`main`**, tracking `ches/main`. The current production promotion adds the retail `func_080398A4` constructor as `Entity398A4::Entity398A4(GameObject *, Actor *)`, while preserving the already-exact `399C0` destructor.
 - Isolated combined proof `/tmp/fomt-398a4-integration`: `make -B -j4 compare` execution `sh_muxa62ce_875d7747` -> **`fomt.gba: OK`**; SHA `sh_muxa6ixk_9424a606` -> `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`; symbol proof `sh_muxa6ksa_e9507906` -> constructor `0x080398A4` size 0x11C and destructor `0x080399C0` size 0x70.

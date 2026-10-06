@@ -1,6 +1,6 @@
 # Current FoMT continuation - October 6, 2026
 
-## CURRENT CHECKPOINT - 0x080398A4 production-exact; next target 0x08039A60
+## CURRENT CHECKPOINT - 0x08039A60 production-exact; next target 0x0803A144
 
 - Active public retail branch is now **`main`**, local branch tracks `ches/main`, and the former `Live-temp` branch has been deleted both remotely and locally after containment proof. Historical `ches-dev` remains provenance only; custom behavior remains on the separate custom-game worktree/branch.
 - Migration commit: `d34efc5adaad56ce92a41bb354d1882847355438` (`consolidate public decomp documentation on main`). Push `sh_muwzf02b_fea9156d` fast-forwarded `ches/main`; independent verification `sh_muwzf82g_d1c9e8fc` showed remote `main` at the exact same hash.
@@ -8,7 +8,7 @@
 - Forced publication verification `sh_muwze013_1fa7bcd5`: `git diff --check` PASS, `make -B -j4 compare` -> **`fomt.gba: OK`**, SHA1 `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`, progress **70,360 / 940,036 = 7.4848% code** and **146,090 / 7,717,440 = 1.8930% meaningful ROM**.
 - Latest exact promotion replaces retail `func_080399C0` with natural `Entity398A4::~Entity398A4`, adding **112 source-owned code bytes** after the earlier 332-byte mode-4/factory/destructor batch.
 - Production gate `sh_mux5eybl_9b938ee0`: `make -B -j4 compare` -> **`fomt.gba: OK`**; SHA1 `sh_mux5fpg4_966284bb` -> `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
-- Current progress: **70,756 / 940,036 = 7.5269% code**, **869,280 asm bytes** remain; **2,340 linked asm functions**; inferred ranges **868,116 / 869,280 = 99.8661%**; unattributed asm **1,164 bytes**. Data/assets remain **75,334 / 6,777,404 = 1.1115%**; meaningful ROM is **146,486 / 7,717,440 = 1.8981%**; free tail **671,168 bytes**.
+- Current progress: **71,504 / 940,036 = 7.6065% code**, **868,532 asm bytes** remain; **2,339 linked asm functions**; inferred ranges **867,368 / 868,532 = 99.8660%**; unattributed asm **1,164 bytes**. Data/assets remain **75,334 / 6,777,404 = 1.1115%**; meaningful ROM is **147,234 / 7,717,440 = 1.9078%**; free tail **671,168 bytes**.
 - Latest exact family added **332 retail bytes**:
   - `func_08039DA8`: 0x70 / 0;
   - `func_08039E18`: 0x70 / 0;
@@ -23,49 +23,19 @@
 
 ### Exact next action
 
-Production remains exact at commit `0f0f29e25d55189b93af2fb665ffff43e343eb5a`: **70,756 / 940,036 = 7.5269% code**, retail SHA1 unchanged. Current work is scratch/research only; no production source changed.
+`func_08039A60`, retail `0x08039A60..0x08039D4C` (**0x2EC / 748 bytes**), is now production source-owned and exact.
 
-Target `func_08039A60`, retail `0x08039A60..0x08039D4C` (**0x2EC**), is now behavior-complete and nearly byte-exact as the `Entity398A4` vtable +0x18 update override.
+Proof:
+- scratch v8 compare `sh_muxbff37_81d1735c`: **0x2EC / 0 differing linked bytes**;
+- production `make -B -j4 compare` `sh_muxbh93t_b4ff0dd5`: **`fomt.gba: OK`**;
+- SHA `sh_muxbhmcx_ae389ea8`: `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`;
+- symbol seam `sh_muxbhpny_4713f31a`: `39A5C` at 0x08039A5C, `39A60` size 0x2EC at 0x08039A60, `39D4C` at 0x08039D4C;
+- progress `sh_muxbhnx7_236387d4`: **71,504 / 940,036 = 7.6065%**;
+- inventory `sh_muxbhvmg_1a3e4f77`: **2,339** linked asm functions, **868,532** asm bytes, **867,368** inferred-range bytes.
 
-Current best probe:
-- `candidate-vfunc18-39a60-v6.cc`
-- compare `sh_muxb968v_fb7dd4da`: **expected 0x2EC, actual 0x2EC, 5 differing linked bytes**
-- mismatch positions: **0x23A..0x23E only**
-- retail stack frame **0x70**, candidate stack frame **0x70**
-- every instruction outside the three-instruction ordering at retail `0x08039C9A..0x08039C9E` matches.
+Recovered exact structure: normal update context pointer +0 / active byte +4; repository `Vec2` for the map-2 coordinate temporary; natural 0x34 collision-record construction from terrain/Box/range/zero; known mode-2 actor bitfields; deliberate repeated strategy/index fetches; and exact local lifetime ordering without register forcing.
 
-Source-shape recovery that produced v6:
-1. Existing repository `Vec2` exactly reproduces the retail 4-byte signed coordinate temporary at stack +0x44 and copy to +0x48.
-2. An inline collision-record constructor with `TerrainMapView`, `Box`, range, and zero parameters reproduces the repeated retail 0x34-byte work-record build, including the 12-byte terrain copy, two-word Box copy, and keeping range/zero in callee-saved registers.
-3. The actor command is the same 8-byte mode-2 bitfield shape already recovered for `39708`: timer:16, last_x:16, last_y:16, retry_count:8, target_id:8. Using this makes the whole `func_0809C0AC` packing block exact.
-4. Retail re-evaluates the active strategy from `actor_34+0x0C` separately for virtual +0x08 Update and +0x0C Select, then reloads that index again for the suppression gate. v6 mirrors this.
-5. Retail uses `self->game_object` directly for the two selector lookups 0 and 0x4A rather than the earlier saved GameObject local. This removes the extra moves from v5.
-
-Only remaining mismatch:
-Retail:
-```
-ldrb r5, [r0]
-ldr  r1, [r7, #0x4C]
-adds r6, r0, #0
-cmp  r4, r1
-```
-v6:
-```
-ldrb r5, [r0]
-adds r6, r0, #0
-ldr  r0, [r7, #0x4C]
-cmp  r4, r0
-```
-
-This is pure source lifetime/order, not semantics or layout. Strong v7 source probe: after loading `facing`, materialize `old_mode = self->mode_4C` **before** declaring/preserving `facing_ptr = &self->facing`, then compare `mode != old_mode`. Expected natural allocation is retail's old-mode `r1` load followed by `r6 = facing pointer`. Do not use register forcing.
-
-Progression this turn:
-- v3: **0x2E0 / 403**, restored exact 0x70 frame, repository `Vec2`, natural Box copy;
-- v4: **0x2DC / 372**, exact mode-2 bitfield packing;
-- v5: **0x2F0 / 309**, exact collision constructor family and repeated strategy fetches;
-- v6: **0x2EC / 5**, all remaining differences isolated to the single three-instruction ordering above.
-
-**Exact next action on Continue:** make v7 from v6 with the old-mode lifetime/order change only, compare the whole 0x2EC immediately. If it reaches 0 diff, integrate `Entity398A4`'s update override into production source and run the full validation ladder: target compare, `make -B -j4 compare`, SHA1, progress, inventory/queue regeneration, docs, diff checks, commit/push to `ches/main`.
+**Next target:** `func_0803A144`, retail `0x0803A144..0x0803A180` (**0x3C**). Preserve output pointer from r1; interpret r2 as signed low byte; if negative choose `func_080AB788(3)`, otherwise use the supplied low byte; then copy two consecutive u16 values from `gUnk_080F16C2` to output +4/+6. Compare a natural typed helper immediately. Larger `func_08039F90` (0x1B4, priority 138.25) follows. Keep parked `39E98` closed.
 
 For fresh-conversation automation, do **not** resend a handoff merely because a browser/send command reports an error or omits a reply. Inspect the actual target tab first and confirm whether the user message appeared or a turn started. The previous failure mode produced a real 54-tool-call turn despite a misleading return.
 

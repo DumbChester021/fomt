@@ -1,6 +1,8 @@
 #include "entity.hh"
 #include "entity_actor.hh"
 #include "entity_effect.hh"
+#include "terrain.hh"
+#include "utility/vec2.hh"
 
 #pragma interface
 
@@ -64,7 +66,7 @@ struct Entity_080E6554 : public AActorEntity
 
 struct StrategyCall
 {
-    virtual void vfunc_08();
+    virtual void Update(Entity398A4 *, void *);
     virtual u32 Select(Entity398A4 *);
 };
 
@@ -107,6 +109,67 @@ struct Entity398A4 : public Entity_080E6554
     SmartPtr<u8> strategies_38[5];
     u32 mode_4C;
     u32 unk_50;
+};
+
+struct EntityUpdateContext
+{
+    void * input_00;
+    u8 active_04;
+};
+
+struct Entity398A4State
+{
+    u32 unk_00;
+    u8 pad_04[6];
+    u16 flags_0A;
+};
+
+struct Entity398A4Mode2Bits
+{
+    u32 timer : 16;
+    u32 last_x : 16;
+    u32 last_y : 16;
+    u32 retry_count : 8;
+    u32 target_id : 8;
+};
+
+struct Entity398A4Collision
+{
+    Entity398A4Collision(
+        TerrainMapView const & terrain,
+        Box const & box,
+        i32 range,
+        i32 zero)
+        : unk_00(0x21),
+          unk_04(-0x21),
+          unk_08(-0x21),
+          unk_0C(0x21),
+          terrain_14(terrain),
+          box_20(box),
+          range_28(range),
+          unk_2C(zero),
+          unk_30(zero)
+    {
+    }
+
+    i32 unk_00;
+    i32 unk_04;
+    i32 unk_08;
+    i32 unk_0C;
+    u32 unk_10;
+    TerrainMapView terrain_14;
+    Box box_20;
+    i32 range_28;
+    i32 unk_2C;
+    i32 unk_30;
+};
+
+typedef Entity398A4State * (*GetState398A4)(GameObject *);
+
+struct GameObjectVtable398A4
+{
+    void * pad_00[0x144 / 4];
+    GetState398A4 get_state_144;
 };
 
 struct EntityStrategyMode4Bits
@@ -182,6 +245,10 @@ EC void func_0809C068(EntityStrategyStateView &, int);
 EC void func_08032384(EntityStrategyOwnerView &, u32, bool);
 EC void func_08020080(AActorEntity *, u32);
 EC void func_080200C4(EntityStrategyOwnerView *, u32);
+EC void func_0809C0AC(Actor &, u32 const *);
+EC void func_080ABA90(void *, Box const &, u32);
+EC void func_08020170(AActorEntity *, void *);
+EC void func_08039A60(Entity398A4 *, EntityUpdateContext *) SECTION(".text.entity39a60_update");
 EC void func_08039DA8(EntityStrategyOwnerView *) SECTION(".text.entity39da8_setup");
 EC void func_08039E18(EntityStrategyOwnerView *) SECTION(".text.entity39e18_setup");
 EC void * vtable_unk_080E76BC[];
@@ -255,6 +322,119 @@ Entity398A4::~Entity398A4()
     Actor * actor = actor_34;
     ActorLocation location = GetLocation();
     actor->SetLocation(location);
+}
+
+void func_08039A60(Entity398A4 * self, EntityUpdateContext * update)
+{
+    GameObject * game_object = self->game_object;
+
+    if (update->active_04 != 0 && self->location_map != 2)
+    {
+        GameObjectVtable398A4 * vtable =
+            *reinterpret_cast<GameObjectVtable398A4 **>(game_object);
+        Entity398A4State * state = vtable->get_state_144(game_object);
+
+        if ((state->flags_0A & 0x7FF) == 0x14 && state->unk_00 == 0)
+        {
+            Vec2 target_position =
+                func_080AB788(2) != 0
+                    ? Vec2(0x108, 0x2D0)
+                    : Vec2(0x154, -0x10);
+
+            u32 target = func_08039134(
+                game_object, 2, target_position.x, target_position.y);
+            if (target != 0x64 && func_080AB788(0x64) <= 0x0E)
+            {
+                Location location(2, target_position.x, target_position.y);
+                ActorLocation actor_location(location, 1);
+                self->SetLocation(actor_location);
+
+                Entity398A4Mode2Bits command;
+                command.timer = 0;
+                command.retry_count = func_080AB788(8) + 3;
+                command.target_id = target;
+                func_0809C0AC(
+                    *self->actor_34,
+                    reinterpret_cast<u32 const *>(&command));
+                func_080200C4(
+                    reinterpret_cast<EntityStrategyOwnerView *>(self),
+                    0xAB);
+            }
+        }
+    }
+
+    u32 map = self->location_map;
+    if (map != MAP_NONE)
+    {
+        TerrainMapView terrain = game_object->GetLocationTerrain(map);
+        Box box = self->GetBox();
+
+        Entity398A4Collision collision(terrain, box, 0x20, 0);
+
+        AEntity * entity = self->game_object->vfunc_40(0);
+        if (entity != 0 && entity->location_map == map)
+        {
+            Box entity_box = entity->GetBox();
+            func_080ABA90(&collision, entity_box, 0);
+        }
+
+        entity = self->game_object->vfunc_40(0x4A);
+        if (entity != 0 && entity->location_map == map)
+        {
+            Box entity_box = entity->GetBox();
+            func_080ABA90(&collision, entity_box, 0);
+        }
+
+        u32 strategy_index = *reinterpret_cast<u32 *>(
+            reinterpret_cast<u8 *>(self->actor_34) + 0x0C);
+        reinterpret_cast<StrategyCall *>(
+            self->strategies_38[strategy_index].Get())->Update(self, &collision);
+
+        strategy_index = *reinterpret_cast<u32 *>(
+            reinterpret_cast<u8 *>(self->actor_34) + 0x0C);
+        u32 mode = reinterpret_cast<StrategyCall *>(
+            self->strategies_38[strategy_index].Get())->Select(self);
+
+        u32 facing = self->facing;
+        u32 old_mode = self->mode_4C;
+        u8 * facing_ptr = &self->facing;
+
+        if (mode != old_mode || facing != self->unk_50)
+            func_08020080(self, func_08039D5C(self, mode));
+
+        if (mode != self->mode_4C)
+        {
+            u32 anim = func_08039D4C(self, mode);
+            if (self->anim_id != anim)
+                self->SetAnim(anim);
+        }
+
+        self->mode_4C = mode;
+        self->unk_50 = facing;
+
+        void * collision_ptr = &collision;
+        strategy_index = *reinterpret_cast<u32 *>(
+            reinterpret_cast<u8 *>(self->actor_34) + 0x0C);
+        u32 facing_check = *facing_ptr;
+        if (strategy_index >= 1 && strategy_index <= 2 &&
+            facing_check <= 1 &&
+            func_080391C0(self->x_q16 >> 16, self->y_q16 >> 16))
+        {
+            collision_ptr = 0;
+        }
+
+        func_08020170(self, collision_ptr);
+    }
+
+    self->unk_30 = false;
+
+    if (self->unk_24 != 0)
+        --self->unk_24;
+    else
+        self->unk_24 = self->unk_26;
+
+    if (self->unk_10.Get() != 0)
+        self->unk_10->vfunc_0C();
 }
 u32 func_08039134(
     GameObject * game_object,
