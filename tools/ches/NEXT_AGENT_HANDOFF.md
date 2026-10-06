@@ -1,19 +1,20 @@
 # Current FoMT continuation — October 6, 2026
 
-## CURRENT CHECKPOINT - Entity38740 small surface exact; controller constructor next - October 6, 2026
+## CURRENT CHECKPOINT - Controller helpers exact; 0x08038820 behavior-complete exact-size and parked - October 6, 2026
 
-- Continued from pushed clean checkpoint `5660d8e` on `Live-temp`.
-- Promoted **160 additional exact retail bytes** in the adjacent `vtable_unk_080E7380` family:
-  - `Entity38740::Entity38740(GameObject*, void*)` at `0x08038740`: **0x60 / 0 diff** from the natural initializer `AEntity(game_object, Location(8, 0, 0)), state_18(state)`.
-  - `Entity38740::vfunc_30()` at `0x080387A0`: exact **0x16-byte body + 2-byte retail alignment**. It allocates a 0x18-byte `Entity38740Controller` and calls constructor `func_08038820`; the project-native `asm("func_08038820")` declaration avoids the artificial Thumb stub produced by scratch `--defsym`.
-  - boolean wrappers `0x080387D8` and `0x0803880C`: both **0x14 / 0 diff** once source is written with the non-null controller call path first.
-- Together with the prior four 0x10 forwarding wrappers, `Entity38740` now owns **224 exact retail bytes** in source across constructor, factory, and its complete small wrapper surface.
+- Continued from pushed clean checkpoint `830c1c8` on `Live-temp`.
+- Reconstructed controller constructor `func_08038820` semantically and structurally in scratch. Strongest proof is `tools/ches/checkpoints/entity-08038740-2026-10-06/candidate-controller-ctor-v2.cc`: **retail 0x108, candidate 0x108 exact size, 183 differing linked bytes**. It reproduces the 8-byte stack frame, 0x18-byte controller layout, mode extraction from owner state +0x54 bits 5-6, optional 0x4C effect creation via exact `func_080A4740`, two provider virtual calls using an 8-byte `SpriteAnimation` temporary, and replacement/destruction of the +0x14 0x50-stride collection from `func_080DCB7C`.
+- The remaining constructor gap is source lifetime/register allocation rather than unknown behavior. Retail keeps `this` in r7, effect in r6, animator destination in r8, and the +0x14 slot address late in sb. v2 assigns those lifetimes differently. A flatter v3 shrank to **0x102 / 199 diff**. A generic project `SmartPtr`/auto_ptr model was explicitly tested and rejected: v4 grew to **0x122 / 263 diff**. Do not reopen constructor syntax roulette without new compiler/lifetime evidence.
+- Controller destructor `func_080DCDB0` confirms ownership semantics: +08/+0C destroy `func_080A47B4(ptr,2)` then delete; +10 owns count + 0x40-stride polymorphic entries; +14 owns count + 0x50-stride entries destroyed by `func_080A47B4`.
+- Promoted **92 exact retail bytes** from four adjacent helpers into `src/entity_unk_08038740.cc`:
+  - `func_08038E90`: **0x10 / 0**, writes +0C object's +0x4C value and +0x50 active byte.
+  - `func_08038EA0`: exact **0x16-byte body + 2-byte alignment**, returns whether +0C object's +0x50 byte is zero.
+  - `func_08038EB8`: **0x28 / 0**, exact auto_ptr-style null assignment/destruction of controller +0x0C.
+  - `func_080390D0`: exact **0x0A-byte body + 2-byte alignment**, returns whether controller +0x10 is non-null.
 - Full production gate passes: `make -B -j4 compare` -> **`fomt.gba: OK`**, retail SHA1 `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
-- Current reconstruction: **69,588 / 940,036 = 7.4027% code**, **870,448 asm bytes** remain; data/assets **75,334 / 6,777,404 = 1.1115%**; meaningful ROM **145,318 / 7,717,440 = 1.8830%**; free tail **671,168 bytes**.
-- Regenerated inventory: **2,360 linked assembly functions**, **870,448 canonical asm bytes**, **869,372 inferred function-range bytes = 99.8764%**, **1,076 unattributed asm bytes**.
-- Controller structure for next work is already bounded: `func_08038820` is a **0x108-byte constructor** for a **0x18-byte `UnknownEntityThingBase`-shape controller**. `vtable_unk_080E736C` maps inherited destructor `func_080DCDB0`, update `func_08038928`, and render/second virtual `func_08038A70`. The constructor initializes owner/vtable, conditionally creates a 0x4C `UnkPoly`-derived resource object via exact `func_080A4740`, and replaces the +0x14 five-entry/0x50-stride collection via `func_080DCB7C`.
-- Ball mover `func_08038110` remains behavior-complete but parked on the missing retail r8 lifetime. Do not reopen it without new structural/compiler evidence.
-- **Exact next action on Continue:** reconstruct controller constructor `0x08038820` using real `UnknownEntityThingBase` inheritance/layout plus the already-recovered `UnkPoly` / `func_080A4740` and `func_080DCB7C` evidence. Do not redo the now-exact Entity38740 small surface.
+- Current reconstruction: **69,680 / 940,036 = 7.4125% code**, **870,356 asm bytes** remain; data/assets **75,334 / 6,777,404 = 1.1115%**; meaningful ROM **145,410 / 7,717,440 = 1.8842%**; free tail **671,168 bytes**.
+- Regenerated inventory: **2,356 linked assembly functions**, **870,356 canonical asm bytes**, **869,192 inferred function-range bytes = 99.8663%**, **1,164 unattributed asm bytes**. The +88 unattributed-byte change is expected: removing the misleading `func_080390D0` 0x64 inventory span exposed raw unlabeled bytes at `0x080390DC..0x08039134`; no ROM bytes were lost.
+- **Exact next action on Continue:** stay in this controller family and tackle `func_08038EE0` (0x1F0), the +0x10 collection builder/replacer. Its construction loop is already visibly five 0x40-stride entries using `func_080A4A00` / `func_080DC840`, then old-entry virtual destruction. If it becomes compiler-sensitive, pivot immediately to `func_08039134` (0x8C, four callers) rather than reopening parked `0x08038820` or Ball mover `0x08038110`.
 
 ## SUPERSEDED CHECKPOINT - location-bound actor island behavior-complete; move into rank-11 entity region - October 6, 2026
 

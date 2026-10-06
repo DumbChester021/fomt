@@ -4827,55 +4827,7 @@ func_08038DF0: @ 0x08038DF0
     .align 2, 0
 .L08038E8C: .4byte vtable_unk_080E602C
 
-    thumb_func_start func_08038E90
-func_08038E90: @ 0x08038E90
-    ldr r0, [r0, #0xc]
-    movs r1, #0x90
-    lsls r1, r1, #0x11
-    str r1, [r0, #0x4c]
-    adds r0, #0x50
-    movs r1, #1
-    strb r1, [r0]
-    bx lr
-
-    thumb_func_start func_08038EA0
-func_08038EA0: @ 0x08038EA0
-    push {lr}
-    ldr r0, [r0, #0xc]
-    movs r1, #0
-    adds r0, #0x50
-    ldrb r0, [r0]
-    cmp r0, #0
-    bne .L08038EB0
-    movs r1, #1
-.L08038EB0:
-    adds r0, r1, #0
-    pop {r1}
-    bx r1
-    .align 2, 0
-
-    thumb_func_start func_08038EB8
-func_08038EB8: @ 0x08038EB8
-    push {r4, r5, r6, lr}
-    adds r5, r0, #0
-    adds r5, #0xc
-    movs r6, #0
-    ldr r4, [r0, #0xc]
-    cmp r6, r4
-    beq .L08038ED8
-    cmp r4, #0
-    beq .L08038ED8
-    adds r0, r4, #0
-    movs r1, #2
-    bl func_080A47B4
-    adds r0, r4, #0
-    bl __builtin_delete
-.L08038ED8:
-    str r6, [r5]
-    pop {r4, r5, r6}
-    pop {r0}
-    bx r0
-
+    .section .text.after_entity38740_eb8, "ax", %progbits
     thumb_func_start func_08038EE0
 func_08038EE0: @ 0x08038EE0
     push {r4, r5, r6, r7, lr}
@@ -5123,14 +5075,7 @@ func_08038EE0: @ 0x08038EE0
     .align 2, 0
 .L080390CC: .4byte vtable_unk_080E681C
 
-    thumb_func_start func_080390D0
-func_080390D0: @ 0x080390D0
-    ldr r1, [r0, #0x10]
-    rsbs r0, r1, #0
-    orrs r0, r1
-    lsrs r0, r0, #0x1f
-    bx lr
-    .align 2, 0
+    .section .text.after_entity38740_390d0, "ax", %progbits
 .L080390DC:
     .byte 0x10, 0xB5, 0x04, 0x1C
     .byte 0x30, 0x30, 0x25, 0xF0, 0xBD, 0xFB, 0x20, 0x1C, 0x44, 0x30, 0x00, 0x22, 0x01, 0x21, 0x01, 0x70

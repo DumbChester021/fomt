@@ -377,6 +377,12 @@ SECTIONS
         src/entity_unk_08038740.o(.text.entity38740_fc);
         src/entity_unk_08038740.o(.text.entity38740_0c);
         asm/code_entities_08034CEC.o(.text.after_entity38740_0c);
+        src/entity_unk_08038740.o(.text.entity38740_ctrl_e90);
+        src/entity_unk_08038740.o(.text.entity38740_ctrl_ea0);
+        src/entity_unk_08038740.o(.text.entity38740_ctrl_eb8);
+        asm/code_entities_08034CEC.o(.text.after_entity38740_eb8);
+        src/entity_unk_08038740.o(.text.entity38740_ctrl_390d0);
+        asm/code_entities_08034CEC.o(.text.after_entity38740_390d0);
 
         asm/code_0803A8A4.o(.text);
         src/character_schedule.o(.text);

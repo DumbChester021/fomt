@@ -2,26 +2,26 @@
 
 ## Current NPC/entity family frontier - October 6, 2026
 
-The throughput strategy has now produced several exact family passes. The thrown `BallEntity` still owns **496 retail bytes** in source with its large mover parked on a source-lifetime seam. The adjacent `vtable_unk_080E7380` family now owns **224 exact retail bytes** in `src/entity_unk_08038740.cc`: constructor, +0x30 factory, four forwarding wrappers, and both boolean wrappers. The retail SHA1 remains unchanged.
+The throughput strategy continues to produce exact family passes. The adjacent `vtable_unk_080E7380` entity/controller family now owns **316 exact retail bytes** in `src/entity_unk_08038740.cc`: the 224-byte entity small surface plus 92 bytes of controller helpers. Controller constructor `0x08038820` is behavior-complete and exact-size in scratch but parked on register-lifetime codegen. The retail SHA1 remains unchanged.
 
 ## Current throughput inventory - October 6, 2026
 
-`tools/ches/build_decomp_inventory.py` generates the machine-readable remaining-function database and ranked queue. After completing the Entity38740 small surface the linker-backed inventory is **2,360 linked assembly functions / 870,448 asm code bytes**, with inferred function ranges covering **869,372 bytes = 99.8764%** and **1,076 unattributed asm bytes**. The immediate structural target is controller constructor `0x08038820`; its 0x18-byte `UnknownEntityThingBase`-shape layout and helper families are already bounded. The Ball mover remains parked and should not be reopened without new compiler/lifetime evidence.
+`tools/ches/build_decomp_inventory.py` generates the machine-readable remaining-function database and ranked queue. After the controller-helper integration the linker-backed inventory is **2,356 linked assembly functions / 870,356 asm code bytes**, with inferred function ranges covering **869,192 bytes = 99.8663%** and **1,164 unattributed asm bytes**. The extra 88 unattributed bytes are the already-existing raw block at `0x080390DC..0x08039134`, exposed when the old misleading `func_080390D0` 0x64 range was split correctly. Continue with controller +0x10 collection builder `0x08038EE0`; keep the exact-size constructor parked.
 
 ## Current project status
 
 - `make progress` tracks reconstruction across code and non-code ROM bytes instead of reporting only executable code.
-- Current **code reconstruction** is **69,588 / 940,036 = 7.4027%**.
+- Current **code reconstruction** is **69,680 / 940,036 = 7.4125%**.
 - Current **data/assets reconstruction** is **75,334 / 6,777,404 = 1.1115%**:
   - 31,110 bytes are linked typed/source non-code data;
   - 44,224 bytes are editable generated packed-sprite graphics/palettes;
   - the generated packed-sprite total is 33,664 graphics bytes + 10,560 palette bytes;
   - 396 mixed source-owned `.rom_header` bytes count only toward overall reconstruction.
-- Current **overall meaningful-ROM reconstruction** is **145,318 / 7,717,440 = 1.8830%**. Final ROM padding is excluded from this denominator.
+- Current **overall meaningful-ROM reconstruction** is **145,410 / 7,717,440 = 1.8842%**. Final ROM padding is excluded from this denominator.
 - PRET-style ROM-space reporting remains **671,168 bytes = 655.44 KiB = 8.0009% contiguous tail free space**.
 - Asset/data progress is conservative: an opaque `.incbin` does not count merely because it was identified or extracted; editable project-side source must regenerate the retail bytes exactly.
 - Progress implementation: `tools/scripts/calcprogress.py`, `tools/progress_manifest.json`, and `docs/ASSET_DECOMPILATION.md`.
-- The current retail priority is **whole-game throughput by coherent TU/type/similarity family**. `Entity38740`'s complete small surface is exact at **224 bytes**. Continue into its controller constructor `0x08038820`, using the proven `UnknownEntityThingBase` vtable shape plus existing `UnkPoly` / `func_080A4740` and collection helper `func_080DCB7C` evidence. The Ball mover and packed animation IDs remain parked/by-product lanes.
+- The current retail priority is **whole-game throughput by coherent TU/type/similarity family**. `Entity38740` plus its newly promoted controller helpers now account for **316 exact bytes**. `func_08038820` is behavior-complete and exact-size but parked on register lifetimes. Next target `func_08038EE0` (0x1F0), which builds/replaces the controller +0x10 five-entry 0x40-stride collection; pivot to `0x08039134` if that large helper becomes compiler-sensitive.
 - Raw binary relocation does not count as progress. Retail SHA1 remains the final authority.
 
 

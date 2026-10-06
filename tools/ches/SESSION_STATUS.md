@@ -1,14 +1,14 @@
 # Ches Session Status — FOMT decomp
 
-## CURRENT SNAPSHOT - 7.4027%; Entity38740 small surface exact - October 6, 2026
+## CURRENT SNAPSHOT - 7.4125%; controller helpers exact, constructor bounded - October 6, 2026
 
-- Active branch `Live-temp`; continued from pushed checkpoint `5660d8e`.
-- Added **160 exact bytes** this turn: ctor `0x08038740` (0x60/0), factory `0x080387A0` (0x16 exact body + 2-byte align), and boolean wrappers `0x080387D8` / `0x0803880C` (0x14/0 each). The family now owns **224 exact bytes** including the prior four forwarding wrappers.
-- Progress: **69,588 / 940,036 = 7.4027% code**, **870,448 asm bytes**, **75,334 data/assets**, **145,318 meaningful-ROM bytes = 1.8830%**, **671,168 bytes free**. `fomt.gba: OK`.
-- Inventory: **2,360 linked asm functions**, **869,372 / 870,448 inferred range bytes = 99.8764%**, **1,076 unattributed bytes**.
-- Next controller target `0x08038820` is a 0x108 constructor for a 0x18-byte `UnknownEntityThingBase`-shape object; vtable 736C points to destructor 080DCDB0 and methods 38928/38A70. Constructor uses exact `func_080A4740` for its optional 0x4C resource object and `func_080DCB7C` for its +0x14 collection.
-- Ball mover `0x08038110` remains parked at the documented lifetime/register-allocation seam.
-- Next: reconstruct `0x08038820` from the real base/layout and existing helper types; do not reopen the exact small surface.
+- Active branch `Live-temp`; continued from pushed checkpoint `830c1c8`.
+- Added **92 exact bytes**: `0x08038E90` (0x10/0), `0x08038EA0` (0x16 exact body + align), `0x08038EB8` (0x28/0), and `0x080390D0` (0x0A exact body + align). Full ROM remains `fomt.gba: OK`.
+- Progress: **69,680 / 940,036 = 7.4125% code**, **870,356 asm bytes**, **75,334 data/assets**, **145,410 meaningful-ROM bytes = 1.8842%**, **671,168 bytes free**.
+- Inventory: **2,356 linked asm functions**, **869,192 / 870,356 inferred range bytes = 99.8663%**, **1,164 unattributed bytes**. The +88 unattributed bytes are the pre-existing raw `0x080390DC..0x08039134` blob newly exposed after correcting the old 0x64 `func_080390D0` span.
+- `func_08038820` is behavior-complete and exact-size in `candidate-controller-ctor-v2.cc`: **0x108 / 0x108, 183 diff**. v3 shrank to 0x102/199; SmartPtr v4 worsened to 0x122/263. Park constructor pending new lifetime/compiler evidence.
+- Controller ownership is now typed in `src/entity_unk_08038740.cc`: +08/+0C effect pointers, +10 0x40-stride collection, +14 0x50-stride collection.
+- Next: reconstruct `func_08038EE0` (0x1F0) as the +0x10 five-entry collection builder/replacer; pivot to `0x08039134` if compiler-sensitive.
 
 ## SUPERSEDED SNAPSHOT - 7.3261%; location-bound actor island bounded - October 6, 2026
 
