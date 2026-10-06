@@ -1,5 +1,13 @@
 # Ches Session Status — FOMT decomp
 
+## CURRENT SNAPSHOT - resident NPC selector/vtable map proven; Rick exact representative - October 6, 2026
+
+- `tools/ches/map_npc_entity_classes.py` now generates the durable 35-character selector -> constructor -> schedule -> vtable -> virtual-method map in `tools/ches/npc_entity_class_map.json` and `tools/ches/NPC_ENTITY_CLASS_MAP.md`.
+- Selectors 1..35 are proven directly from the retail jump table and decoded Thumb constructor calls. All corresponding 0x40-byte vtables are decoded from baserom and joined to current symbols/similarity families.
+- Family counts among IDs 2..35: constructors `shape0007=19`, `shape0033=6`, `shape0118=2`, `shape0119=2`, solo=5; +0x30 methods `shape0005=16`, `shape0026=7`, `shape0024=7`, `shape0117=2`, unlabeled=2.
+- Rick representative proof: constructor **0x38/0 diff** and +0x30 virtual **0x2C/0 diff** on the first Lillia-shaped scratch source attempts. Production source remains unchanged.
+- Next: mass scratch-match Rick-family siblings, then the other dominant +0x30 families; integrate only after exact family proof.
+
 ## CURRENT SNAPSHOT - function inventory live; sibling NPC/entity region is first ranked target - October 6, 2026
 
 - Strategy checkpoint `e68144f7055fc4896b49cc31429f90c64fef3be1` is published on `ches/Live-temp`.

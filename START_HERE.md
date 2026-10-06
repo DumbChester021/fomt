@@ -1,5 +1,9 @@
 # FoMT Zero-Context Start Here
 
+## Current NPC family frontier - October 6, 2026
+
+The throughput inventory has now resolved the top NPC/entity region into a proven 35-character factory/vtable map. `tools/ches/map_npc_entity_classes.py` generates `tools/ches/npc_entity_class_map.json` and `tools/ches/NPC_ENTITY_CLASS_MAP.md`; selectors 1..35 are directly tied to characters, constructors, schedules, vtables and virtual slots. Rick is the first new exact representative: its 0x38-byte constructor and 0x2C-byte +0x30 virtual both reproduce retail with zero differing linked bytes using the already-proven Lillia source shape. The next work is family-scale scratch matching across the repeated constructor/+0x30 clusters before exact-only integration.
+
 ## Current throughput inventory - October 6, 2026
 
 `tools/ches/build_decomp_inventory.py` now generates the machine-readable remaining-function database (`tools/ches/decomp_inventory.json`) and ranked human queue (`tools/ches/DECOMP_QUEUE.md`). Current linker-backed totals are 2,463 linked assembly functions across 875,500 asm code bytes; inferred function ranges cover 874,452 bytes (99.8803%). The first ranked coherent target is `asm/code_entities_08034CEC.s:08035B64-08038DF0`: 157 functions / 12,940 bytes, with 107 functions in repeated opcode families. It follows the exact-source `LilliaEntity` implementation and sits beside a dense run of NPC/entity vtables, so the next work is class/vtable/factory mapping followed by family-level reconstruction.

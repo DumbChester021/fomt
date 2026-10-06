@@ -1,5 +1,15 @@
 # Current FoMT continuation — October 6, 2026
 
+## CURRENT CHECKPOINT - resident NPC class map proven; Rick representative exact - October 6, 2026
+
+- Added `tools/ches/map_npc_entity_classes.py`, generating `tools/ches/npc_entity_class_map.json` and `tools/ches/NPC_ENTITY_CLASS_MAP.md` from retail factory-table bytes, decoded Thumb BL calls, constructor schedule/vtable literals, the recovered character table, raw retail vtable words, ELF symbols, and the current similarity inventory.
+- Factory selectors **1..35 are now directly proven** to map to the resident characters Lillia through Child. The non-obvious tail is confirmed: selector 30 Gourmet -> `func_08036CAC`, 31 H. Goddess -> `func_08036D0C`, 32 Kappa -> `func_08036D68`, 33 Lou -> `func_08036DC4`, 34 Lu -> `func_08036860`, 35 Child -> `func_08036E2C`.
+- All 35 installed 0x40-byte NPC vtables are decoded from retail. Every class has a distinct destructor slot and distinct +0x30 virtual. Only 10 classes override +0x3C; the remaining classes share base `func_08034F00` there. Lou/Child +0x30 targets are real retail pointers but currently unlabeled symbols, so the generated map marks them `unlabeled`, not source-owned.
+- Family leverage is now concrete. Among IDs 2..35, constructor shapes are **shape0007=19, shape0033=6, shape0118=2, shape0119=2, solo=5**. +0x30 virtual shapes are **shape0005=16, shape0026=7, shape0024=7, shape0117=2, unlabeled=2**. This means a handful of proven source templates can cover most resident NPC class methods.
+- Rick was used as the first exact representative with scratch source shaped directly after exact-source Lillia. `RickEntity::RickEntity(GameObject*, Npc*, u32)` using `ScheduleInfo_Unk_080F1A80`, animation IDs `0x213`, `0x217`, and default `0x3E0` matched retail **0x38 bytes / 0 differing linked bytes** at `0x08035B64..0x08035B9C` (`rick_ctor_probe`). `RickEntity::vfunc_30()` using the same `UnknownEntityThing(this, 4, 0x1B, 1, 0, 0, false)` body as Lillia matched **0x2C bytes / 0 differing linked bytes** at `0x08035B9C..0x08035BC8` (`rick_vfunc30_probe`). No production source was changed yet.
+- The prior inventory checkpoint `74d84b42496cb0c5ee2948d7a8ae111a0a3175dd` is already published on `ches/Live-temp`.
+- **Exact next action on Continue:** use the proven selector/class/vtable map to parameterize and scratch-compare the remaining members of Rick's constructor family and +0x30 family, then expand to the other three dominant +0x30 shapes. Once a coherent family batch is 0-diff, integrate it exact-only, run full-ROM compare/SHA1/progress, update docs, and publish the next `Live-temp` checkpoint.
+
 ## CURRENT CHECKPOINT - remaining-function inventory built; NPC/entity cluster ranks first - October 6, 2026
 
 - Published strategy checkpoint `e68144f7055fc4896b49cc31429f90c64fef3be1` to `ches/Live-temp` before beginning this analysis.
