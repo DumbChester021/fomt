@@ -27,10 +27,10 @@ subsystem is fully understood.
 Authoritative live state is in `START_HERE.md`.
 
 - Active public retail branch: **`main`**. The former `Live-temp` series is retired; `ches-dev` remains historical.
-- Code reconstruction: **71,504 / 940,036 = 7.6065%**; **868,532 assembly bytes** remain.
-- Remaining linked asm functions: **2,339**; inferred ranges cover **867,368 / 868,532 = 99.8660%**, with **1,164 unattributed bytes**.
+- Code reconstruction: **71,564 / 940,036 = 7.6129%**; **868,472 assembly bytes** remain.
+- Remaining linked asm functions: **2,338**; inferred ranges cover **867,308 / 868,472 = 99.8660%**, with **1,164 unattributed bytes**.
 - Data/assets: **75,334 / 6,777,404 = 1.1115%**.
-- Overall meaningful-ROM reconstruction: **147,234 / 7,717,440 = 1.9078%**.
+- Overall meaningful-ROM reconstruction: **147,294 / 7,717,440 = 1.9086%**.
 - Contiguous tail free space: **671,168 bytes = 655.44 KiB**.
 - Retail SHA1: `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`; full compare remains **`fomt.gba: OK`**.
 - Authoritative compiler path is the tracked `tools/install_agbcp.sh` plus `tools/agbcp_fomt_compat.patch`, SHA-256 `aa7cc6df0efbd066e9c33deb887731e1d0210babfaeba4c9b64f3e8bc35c4256`.
@@ -39,7 +39,7 @@ Authoritative live state is in `START_HERE.md`.
 - The neutral location-bound actor hierarchy and thrown Ball family are bounded at documented scopes.
 - The adjacent Entity38740 controller/strategy neighborhood now owns numerous exact helpers, including nearest-entity selection, region testing, strategy selectors, mode-4 setup, table/mask helpers, the `UnknownEntityThing` factory, and the exact `39F50` destructor.
 - `func_08039E98` is behavior-complete and exact-size in scratch at 0xB8 / 109 but parked on register allocation.
-- `func_080398A4` and `func_080399C0` are now exact source as the Entity398A4 constructor/destructor pair. That class's `func_08039A60` vtable +0x18 override is now exact source. The exact next target is `func_0803A144` (0x3C), then larger regional target `func_08039F90`.
+- `func_080398A4` and `func_080399C0` are now exact source as the Entity398A4 constructor/destructor pair. That class's `func_08039A60` vtable +0x18 override is now exact source. `func_0803A144` (0x3C) is now exact source. The exact next target is `func_08039F90` (0x1B4).
 - The packed bank remains **416 / 493 semantically owned animations**, with the remaining 77 IDs as a parked by-product lane.
 
 Recent readable source in this region includes:

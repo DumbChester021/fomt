@@ -1,13 +1,15 @@
 # Ches Session Status — FOMT decomp
 
-## CURRENT SNAPSHOT - 7.6065%; Entity398A4 update override exact - October 7, 2026
+## CURRENT SNAPSHOT - 7.6129%; 3A144 table helper exact - October 7, 2026
 
 - Active branch is **`main`**, tracking `ches/main`.
-- `func_08039A60` / Entity398A4 vtable +0x18 update override is production source-owned exact: **0x2EC / 0** in scratch v8 (`sh_muxbff37_81d1735c`) and full production ROM exact (`sh_muxbh93t_b4ff0dd5` -> `fomt.gba: OK`).
-- Retail SHA `sh_muxbhmcx_ae389ea8`: `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
-- Progress `sh_muxbhnx7_236387d4`: **71,504 / 940,036 = 7.6065% code**, **868,532 asm bytes**, **75,334 data/assets**, **147,234 meaningful-ROM bytes = 1.9078%**, **671,168 free**.
-- Inventory `sh_muxbhvmg_1a3e4f77`: **2,339 linked asm functions**, **867,368 / 868,532 inferred range bytes = 99.8660%**, **1,164 unattributed bytes**.
-- Exact next target: `func_0803A144` (0x3C), then larger same-region `func_08039F90` (0x1B4). `39E98` remains parked.
+- `func_0803A144` is production source-owned exact: **0x3C / 0** in scratch v3 (`sh_muxc0kl1_d5ee2156`) and full production ROM exact (`sh_muxc322u_76a0188c` -> `fomt.gba: OK`).
+- Retail SHA `sh_muxc3kr8_1dd225ea`: `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
+- Symbol seam `sh_muxc3mx9_fbd2f815`: `3A144` at 0x0803A144 size 0x3C; `3A180` at 0x0803A180.
+- Progress `sh_muxc3ohw_4734845e`: **71,564 / 940,036 = 7.6129% code**, **868,472 asm bytes**, **75,334 data/assets**, **147,294 meaningful-ROM bytes = 1.9086%**, **671,168 free**.
+- Inventory `sh_muxc3u84_fda36dc7`: **2,338 linked asm functions**, **867,308 / 868,472 inferred range bytes = 99.8660%**, **1,164 unattributed bytes**.
+- Exact source shape uses signed i8 selection and a first-lookup local table pointer while leaving the second lookup global, matching retail instruction order naturally.
+- Exact next target: `func_08039F90` (0x1B4). `39E98` remains parked.
 
 ## SUPERSEDED SNAPSHOT - 7.5269%; Entity398A4 constructor/destructor exact - October 7, 2026
 

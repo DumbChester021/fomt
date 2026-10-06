@@ -43,13 +43,13 @@ Retail ROM:
 
 Current exact reconstruction:
 
-- code: **71,504 / 940,036 = 7.6065%**
-- assembly remaining: **868,532 bytes**
-- remaining linked assembly functions: **2,339**
-- inferred function ranges: **867,368 / 868,532 = 99.8660%**
+- code: **71,564 / 940,036 = 7.6129%**
+- assembly remaining: **868,472 bytes**
+- remaining linked assembly functions: **2,338**
+- inferred function ranges: **867,308 / 868,472 = 99.8660%**
 - unattributed assembly: **1,164 bytes**
 - data/assets: **75,334 / 6,777,404 = 1.1115%**
-- overall meaningful ROM: **147,234 / 7,717,440 = 1.9078%**
+- overall meaningful ROM: **147,294 / 7,717,440 = 1.9086%**
 - contiguous tail free space: **671,168 bytes = 655.44 KiB**
 
 Use `make progress` after meaningful exact integrations.
@@ -58,12 +58,11 @@ Use `make progress` after meaningful exact integrations.
 
 The current Entity38740 neighborhood now includes exact source for the mapped five-mode strategy interface and its small helpers.
 
-The most recent exact batch added **332 retail bytes**:
+The latest exact promotions are:
 
-- `func_08039DA8`: 0x70 / 0
-- `func_08039E18`: 0x70 / 0
-- `func_08039A30`: 0x2C / 0
-- `func_08039F50`: 0x40 / 0
+- `func_08039A60`: 0x2EC / 0
+- `func_0803A144`: 0x3C / 0
+- preceding exact batch: `39DA8` 0x70, `39E18` 0x70, `39A30` 0x2C, `39F50` 0x40
 
 The paired 0x70 setup methods prove the packed mode-4 state layout:
 
@@ -96,7 +95,7 @@ The constructor establishes the owner hierarchy and strategy interface:
 - +0x50: saved facing;
 - owner vtable maps to retail `0x080E74DC`.
 
-`func_08039A60`, retail `0x08039A60..0x08039D4C` (**0x2EC**), is now exact production source. Continue **`func_0803A144`**, retail `0x0803A144..0x0803A180` (**0x3C**): a small same-region helper using `gUnk_080F16C2` and `func_080AB788`, with four callers. `39F90` remains the larger high-value regional target after this helper; keep `39E98` and the other documented codegen-only islands parked.
+`func_08039A60` (0x2EC) and `func_0803A144` (0x3C) are now exact production source. Continue **`func_08039F90`**, retail `0x08039F90..0x0803A144` (**0x1B4**), the larger same-region routine immediately before `3A144`. Keep `39E98` and the other documented codegen-only islands parked.
 
 ## Parked nearby frontiers
 

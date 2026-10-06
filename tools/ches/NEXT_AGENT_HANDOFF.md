@@ -1,6 +1,6 @@
 # Current FoMT continuation - October 6, 2026
 
-## CURRENT CHECKPOINT - 0x08039A60 production-exact; next target 0x0803A144
+## CURRENT CHECKPOINT - 0x0803A144 production-exact; next target 0x08039F90
 
 - Active public retail branch is now **`main`**, local branch tracks `ches/main`, and the former `Live-temp` branch has been deleted both remotely and locally after containment proof. Historical `ches-dev` remains provenance only; custom behavior remains on the separate custom-game worktree/branch.
 - Migration commit: `d34efc5adaad56ce92a41bb354d1882847355438` (`consolidate public decomp documentation on main`). Push `sh_muwzf02b_fea9156d` fast-forwarded `ches/main`; independent verification `sh_muwzf82g_d1c9e8fc` showed remote `main` at the exact same hash.
@@ -8,7 +8,7 @@
 - Forced publication verification `sh_muwze013_1fa7bcd5`: `git diff --check` PASS, `make -B -j4 compare` -> **`fomt.gba: OK`**, SHA1 `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`, progress **70,360 / 940,036 = 7.4848% code** and **146,090 / 7,717,440 = 1.8930% meaningful ROM**.
 - Latest exact promotion replaces retail `func_080399C0` with natural `Entity398A4::~Entity398A4`, adding **112 source-owned code bytes** after the earlier 332-byte mode-4/factory/destructor batch.
 - Production gate `sh_mux5eybl_9b938ee0`: `make -B -j4 compare` -> **`fomt.gba: OK`**; SHA1 `sh_mux5fpg4_966284bb` -> `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
-- Current progress: **71,504 / 940,036 = 7.6065% code**, **868,532 asm bytes** remain; **2,339 linked asm functions**; inferred ranges **867,368 / 868,532 = 99.8660%**; unattributed asm **1,164 bytes**. Data/assets remain **75,334 / 6,777,404 = 1.1115%**; meaningful ROM is **147,234 / 7,717,440 = 1.9078%**; free tail **671,168 bytes**.
+- Current progress: **71,564 / 940,036 = 7.6129% code**, **868,472 asm bytes** remain; **2,338 linked asm functions**; inferred ranges **867,308 / 868,472 = 99.8660%**; unattributed asm **1,164 bytes**. Data/assets remain **75,334 / 6,777,404 = 1.1115%**; meaningful ROM is **147,294 / 7,717,440 = 1.9086%**; free tail **671,168 bytes**.
 - Latest exact family added **332 retail bytes**:
   - `func_08039DA8`: 0x70 / 0;
   - `func_08039E18`: 0x70 / 0;
@@ -23,19 +23,19 @@
 
 ### Exact next action
 
-`func_08039A60`, retail `0x08039A60..0x08039D4C` (**0x2EC / 748 bytes**), is now production source-owned and exact.
+`func_0803A144`, retail `0x0803A144..0x0803A180` (**0x3C / 60 bytes**), is now production source-owned and exact.
 
 Proof:
-- scratch v8 compare `sh_muxbff37_81d1735c`: **0x2EC / 0 differing linked bytes**;
-- production `make -B -j4 compare` `sh_muxbh93t_b4ff0dd5`: **`fomt.gba: OK`**;
-- SHA `sh_muxbhmcx_ae389ea8`: `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`;
-- symbol seam `sh_muxbhpny_4713f31a`: `39A5C` at 0x08039A5C, `39A60` size 0x2EC at 0x08039A60, `39D4C` at 0x08039D4C;
-- progress `sh_muxbhnx7_236387d4`: **71,504 / 940,036 = 7.6065%**;
-- inventory `sh_muxbhvmg_1a3e4f77`: **2,339** linked asm functions, **868,532** asm bytes, **867,368** inferred-range bytes.
+- scratch v3 compare `sh_muxc0kl1_d5ee2156`: **0x3C / 0 differing linked bytes**;
+- production `make -B -j4 compare` `sh_muxc322u_76a0188c`: **`fomt.gba: OK`**;
+- SHA `sh_muxc3kr8_1dd225ea`: `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`;
+- symbol seam `sh_muxc3mx9_fbd2f815`: `func_0803A144` at 0x0803A144 size 0x3C, `func_0803A180` at 0x0803A180;
+- progress `sh_muxc3ohw_4734845e`: **71,564 / 940,036 = 7.6129%**;
+- inventory `sh_muxc3u84_fda36dc7`: **2,338** linked asm functions, **868,472** asm bytes, **867,308** inferred-range bytes.
 
-Recovered exact structure: normal update context pointer +0 / active byte +4; repository `Vec2` for the map-2 coordinate temporary; natural 0x34 collision-record construction from terrain/Box/range/zero; known mode-2 actor bitfields; deliberate repeated strategy/index fetches; and exact local lifetime ordering without register forcing.
+Exact source shape: treat r2 as signed i8; negative chooses `func_080AB788(3)`; preserve a local `u16 * table = gUnk_080F16C2` for the first lookup while the second lookup remains expressed from the global table. That natural source ordering reproduces retail scheduling exactly without register forcing.
 
-**Next target:** `func_0803A144`, retail `0x0803A144..0x0803A180` (**0x3C**). Preserve output pointer from r1; interpret r2 as signed low byte; if negative choose `func_080AB788(3)`, otherwise use the supplied low byte; then copy two consecutive u16 values from `gUnk_080F16C2` to output +4/+6. Compare a natural typed helper immediately. Larger `func_08039F90` (0x1B4, priority 138.25) follows. Keep parked `39E98` closed.
+**Next target:** `func_08039F90`, retail `0x08039F90..0x0803A144` (**0x1B4**), priority 138.25. Start fresh from the retail body and current regional types. No reliable `39F90` scratch candidate was established in this turn. Keep parked `39E98` closed unless new type/compiler evidence appears.
 
 For fresh-conversation automation, do **not** resend a handoff merely because a browser/send command reports an error or omits a reply. Inspect the actual target tab first and confirm whether the user message appeared or a turn started. The previous failure mode produced a real 54-tool-call turn despite a misleading return.
 

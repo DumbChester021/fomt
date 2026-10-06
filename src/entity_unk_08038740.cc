@@ -234,6 +234,7 @@ EC u32 func_080398A0() SECTION(".text.entity398a0_two");
 EC u32 func_08039E88() SECTION(".text.entity39e88_two");
 EC void * func_08039E8C(EntityStrategyOwnerView *) SECTION(".text.entity39e8c_strategy");
 EC u16 gUnk_080F16AE[];
+EC u16 gUnk_080F16C2[];
 EC UnknownEntityThing * func_08039A30(AActorEntity *) SECTION(".text.entity39a30_factory");
 EC void func_08039A5C() SECTION(".text.entity39a5c_noop");
 EC u32 func_08039D4C(void *, u32) SECTION(".text.entity39d4c_table");
@@ -249,6 +250,7 @@ EC void func_0809C0AC(Actor &, u32 const *);
 EC void func_080ABA90(void *, Box const &, u32);
 EC void func_08020170(AActorEntity *, void *);
 EC void func_08039A60(Entity398A4 *, EntityUpdateContext *) SECTION(".text.entity39a60_update");
+EC u32 func_0803A144(void *, u16 *, i8) SECTION(".text.entity3a144_table");
 EC void func_08039DA8(EntityStrategyOwnerView *) SECTION(".text.entity39da8_setup");
 EC void func_08039E18(EntityStrategyOwnerView *) SECTION(".text.entity39e18_setup");
 EC void * vtable_unk_080E76BC[];
@@ -436,6 +438,20 @@ void func_08039A60(Entity398A4 * self, EntityUpdateContext * update)
     if (self->unk_10.Get() != 0)
         self->unk_10->vfunc_0C();
 }
+
+u32 func_0803A144(void *, u16 * output, i8 index)
+{
+    u32 selected = static_cast<u8>(index);
+    if (index < 0)
+        selected = static_cast<u8>(func_080AB788(3));
+
+    u16 * table = gUnk_080F16C2;
+    i32 signed_index = static_cast<i8>(selected);
+    output[2] = table[signed_index * 2];
+    output[3] = gUnk_080F16C2[signed_index * 2 + 1];
+    return signed_index;
+}
+
 u32 func_08039134(
     GameObject * game_object,
     u32 location_map,

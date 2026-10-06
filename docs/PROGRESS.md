@@ -16,8 +16,8 @@ Current reconstruction:
 
 ```text
 Code reconstruction
-  71504 / 940036 bytes (7.6065%)
-  868532 bytes remain in asm
+  71564 / 940036 bytes (7.6129%)
+  868472 bytes remain in asm
 
 Data/assets reconstruction
   75334 / 6777404 bytes (1.1115%)
@@ -28,7 +28,7 @@ Data/assets reconstruction
   396 additional source-owned ROM-header bytes count only toward overall
 
 Overall meaningful-ROM reconstruction
-  147234 / 7717440 bytes (1.9078%)
+  147294 / 7717440 bytes (1.9086%)
   final ROM padding is excluded from this denominator
 
 ROM space
@@ -36,7 +36,7 @@ ROM space
   671168 bytes free (655.44 KiB, 8.0009%) contiguous tail space
 ```
 
-The code inventory currently reports **2,339 linked assembly functions**, **867,368 bytes** covered by inferred function ranges, and **1,164 unattributed assembly bytes**.
+The code inventory currently reports **2,338 linked assembly functions**, **867,308 bytes** covered by inferred function ranges, and **1,164 unattributed assembly bytes**.
 
 ## What the metrics mean
 
@@ -52,11 +52,11 @@ Understanding or documenting an opaque `.incbin` does not count as asset/data re
 
 The current Entity38740 strategy/controller run substantially expanded the readable entity family.
 
-The latest exact promotion added **748 retail bytes**:
+The latest exact promotion added **60 retail bytes**:
 
-- `func_08039A60` / Entity398A4 vtable +0x18 update override: 0x2EC
+- `func_0803A144`: 0x3C / 0, a signed-index/table helper using `gUnk_080F16C2`.
 
-The adjacent destructor remains exact source at 0x70, and the immediately preceding batch added 332 retail bytes across `39DA8`, `39E18`, `39A30`, and `39F50`.
+Immediately before it, `func_08039A60` added 0x2EC exact source bytes. The adjacent destructor remains exact source at 0x70, and the earlier batch added 332 retail bytes across `39DA8`, `39E18`, `39A30`, and `39F50`.
 
 The broader recent family also promoted exact nearest-entity selection, coordinate-region tests, strategy selectors, state helpers, table/mask lookups, and strategy-pointer selection.
 
@@ -76,9 +76,9 @@ Other major recovered areas include:
 
 ## Current frontier
 
-The exact next code target is `func_0803A144` at `0x0803A144..0x0803A180` (0x3C), a small same-region helper using `gUnk_080F16C2` and `func_080AB788`.
+The exact next code target is `func_08039F90` at `0x08039F90..0x0803A144` (0x1B4), the larger same-region routine immediately preceding the now-exact `3A144` helper.
 
-Its first saved candidate did not compile only because of two C++ declaration issues. Its retail destructor behavior is already understood. See `START_HERE.md` and `tools/ches/NEXT_AGENT_HANDOFF.md` for the exact resume steps.
+Start from the retail assembly and current same-region types; no `39F90` scratch candidate was established in this turn. See `START_HERE.md` and `tools/ches/NEXT_AGENT_HANDOFF.md` for the exact resume steps.
 
 The adjacent `func_08039E98` constructor is behavior-complete and exact-size in scratch at **0xB8 / 109 differing linked bytes**; it is parked on register/lifetime allocation.
 

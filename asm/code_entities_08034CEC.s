@@ -6236,38 +6236,7 @@ func_08039F90: @ 0x08039F90
     pop {r0}
     bx r0
 
-    thumb_func_start func_0803A144
-func_0803A144: @ 0x0803A144
-    push {r4, lr}
-    adds r4, r1, #0
-    lsls r2, r2, #0x18
-    lsrs r0, r2, #0x18
-    cmp r2, #0
-    bge .L0803A15A
-    movs r0, #3
-    bl func_080AB788
-    lsls r0, r0, #0x18
-    lsrs r0, r0, #0x18
-.L0803A15A:
-    ldr r2, .L0803A17C @ =gUnk_080F16C2
-    lsls r0, r0, #0x18
-    asrs r0, r0, #0x18
-    lsls r1, r0, #2
-    adds r1, r1, r2
-    ldrh r1, [r1]
-    strh r1, [r4, #4]
-    lsls r1, r0, #1
-    adds r1, #1
-    lsls r1, r1, #1
-    adds r1, r1, r2
-    ldrh r1, [r1]
-    strh r1, [r4, #6]
-    pop {r4}
-    pop {r1}
-    bx r1
-    .align 2, 0
-.L0803A17C: .4byte gUnk_080F16C2
-
+    .section .text.after_entity3a144, "ax", %progbits
     thumb_func_start func_0803A180
 func_0803A180: @ 0x0803A180
     push {r4, r5, r6, r7, lr}
