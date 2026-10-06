@@ -2,7 +2,7 @@
 
 ## CURRENT SNAPSHOT - 7.4125%; controller helpers exact, constructor bounded - October 6, 2026
 
-- Active branch `Live-temp`; continued from pushed checkpoint `830c1c8`.
+- Active branch `Live-temp`; current pushed checkpoint `ef1c1d4` is synchronized to `ches/Live-temp`; this batch continued from `830c1c8`.
 - Added **92 exact bytes**: `0x08038E90` (0x10/0), `0x08038EA0` (0x16 exact body + align), `0x08038EB8` (0x28/0), and `0x080390D0` (0x0A exact body + align). Full ROM remains `fomt.gba: OK`.
 - Progress: **69,680 / 940,036 = 7.4125% code**, **870,356 asm bytes**, **75,334 data/assets**, **145,410 meaningful-ROM bytes = 1.8842%**, **671,168 bytes free**.
 - Inventory: **2,356 linked asm functions**, **869,192 / 870,356 inferred range bytes = 99.8663%**, **1,164 unattributed bytes**. The +88 unattributed bytes are the pre-existing raw `0x080390DC..0x08039134` blob newly exposed after correcting the old 0x64 `func_080390D0` span.

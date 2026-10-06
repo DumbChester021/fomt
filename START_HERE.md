@@ -2,7 +2,7 @@
 
 ## Current NPC/entity family frontier - October 6, 2026
 
-The throughput strategy continues to produce exact family passes. The adjacent `vtable_unk_080E7380` entity/controller family now owns **316 exact retail bytes** in `src/entity_unk_08038740.cc`: the 224-byte entity small surface plus 92 bytes of controller helpers. Controller constructor `0x08038820` is behavior-complete and exact-size in scratch but parked on register-lifetime codegen. The retail SHA1 remains unchanged.
+The throughput strategy continues to produce exact family passes. **Current retail checkpoint: `Live-temp` @ `ef1c1d4`**, pushed to `ches/Live-temp`, with `fomt.gba: OK`. The adjacent `vtable_unk_080E7380` entity/controller family now owns **316 exact retail bytes** in `src/entity_unk_08038740.cc`: the 224-byte entity small surface plus 92 bytes of controller helpers. Controller constructor `0x08038820` is behavior-complete and exact-size in scratch but parked on register-lifetime codegen. The retail SHA1 remains unchanged.
 
 ## Current throughput inventory - October 6, 2026
 
@@ -37,7 +37,7 @@ The throughput strategy continues to produce exact family passes. The adjacent `
 - Across all 493 animations in this bank, **450 are simple one-frame/one-part/one-palette** and **43 are multi-frame**. The remaining hard frames are ordinary multi-part OAM sprites; sampled part tile offsets exactly partition their graphics blobs, so no new codec is indicated. All 347 named item icons are in the simple class.
 - Detailed authority: `tools/ches/checkpoints/item-icon-assets-2026-10-05/README.md`.
 - **Item-lane status:** the cooking UI is the first completed table-driven family. `func_080989DC` / `func_08098CE8` consume `gCookingUtensilIconIds` through `gUnk_086678A0`; eight exact PNGs now live under `assets/item_icons/cooking/`: Knife 265, Frying Pan 204, Pot 346, Mixer 64, Whisk 472, Rolling Pin 313, Oven 327, Seasoning Set 400. Retail availability bits and the special `Seasoning Set` label prove the mapping. `func_08092A70` remains parked at `0x260 / 3` and `func_080CAC7C` remains parked at `0x8C / 52`; this item lane is parked behind the current whole-game Ball/entity throughput work.
-- Current validated baseline remains `fomt.gba: OK`: **69,588 code bytes / 75,334 data-asset bytes / 145,318 overall meaningful-ROM bytes**, **671,168 bytes free**.
+- Historical item-lane baseline at that checkpoint was **69,588 code bytes / 75,334 data-asset bytes / 145,318 overall meaningful-ROM bytes** with **671,168 bytes free**. The authoritative current totals are the live project-status block above.
 
 
 ## Historical item icon provider checkpoint - October 5, 2026 (superseded)
@@ -48,7 +48,7 @@ The throughput strategy continues to produce exact family passes. The adjacent `
 - `func_0805E760` at `0x0805E760` is now exact source, **0x30 / 0 differing bytes**. It is the provider's first indexed virtual lookup and returns a directly constructed packed animation `{frames, frame_count}`.
 - Production linker placement is verified at the original addresses: `func_0805E6CC=0x0805E6CC`, `func_0805E760=0x0805E760`, assembly resumes at `func_0805E790=0x0805E790`, and existing `SpriteAnimator` source still begins at `0x0805E824`.
 - Full validation passes: `make -j4 compare` -> `fomt.gba: OK`; `git diff --check` clean.
-- At this superseded provider checkpoint the worktree was **63,896 / 940,036 = 6.7972% source**. Current totals are listed in the live progress block below; HEAD remains `9078f36` and October 5 work is uncommitted.
+- At this superseded provider checkpoint the worktree was **63,896 / 940,036 = 6.7972% source**. Its historical HEAD was `9078f36`, with October 5 work then uncommitted. The authoritative current branch/HEAD and totals are the live blocks above.
 - The item icon bank `gUnk_086678A0` is a packed seven-pool resource blob. Its verified pool counts are **493, 500, 101, 1624, 342, 0, 532** with first-six entry strides **4, 16, 8, 32, 32, 8** bytes.
 - For this bank:
   - pool 0 is the 493-entry animation index table `{u16 frame_count, u16 first_frame}`;

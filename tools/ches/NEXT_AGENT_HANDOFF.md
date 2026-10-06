@@ -2,7 +2,7 @@
 
 ## CURRENT CHECKPOINT - Controller helpers exact; 0x08038820 behavior-complete exact-size and parked - October 6, 2026
 
-- Continued from pushed clean checkpoint `830c1c8` on `Live-temp`.
+- Current pushed checkpoint is `ef1c1d4` on `Live-temp` (`ches/Live-temp` synchronized); this work continued from prior clean checkpoint `830c1c8`.
 - Reconstructed controller constructor `func_08038820` semantically and structurally in scratch. Strongest proof is `tools/ches/checkpoints/entity-08038740-2026-10-06/candidate-controller-ctor-v2.cc`: **retail 0x108, candidate 0x108 exact size, 183 differing linked bytes**. It reproduces the 8-byte stack frame, 0x18-byte controller layout, mode extraction from owner state +0x54 bits 5-6, optional 0x4C effect creation via exact `func_080A4740`, two provider virtual calls using an 8-byte `SpriteAnimation` temporary, and replacement/destruction of the +0x14 0x50-stride collection from `func_080DCB7C`.
 - The remaining constructor gap is source lifetime/register allocation rather than unknown behavior. Retail keeps `this` in r7, effect in r6, animator destination in r8, and the +0x14 slot address late in sb. v2 assigns those lifetimes differently. A flatter v3 shrank to **0x102 / 199 diff**. A generic project `SmartPtr`/auto_ptr model was explicitly tested and rejected: v4 grew to **0x122 / 263 diff**. Do not reopen constructor syntax roulette without new compiler/lifetime evidence.
 - Controller destructor `func_080DCDB0` confirms ownership semantics: +08/+0C destroy `func_080A47B4(ptr,2)` then delete; +10 owns count + 0x40-stride polymorphic entries; +14 owns count + 0x50-stride entries destroyed by `func_080A47B4`.
