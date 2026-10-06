@@ -36,7 +36,7 @@ Current retail state:
 - The remaining **77 packed animations** are now a parked open list, not the active decompilation queue. Preserve family evidence for 173..180, 413..420, 54..57, 160/161 and other documented IDs, but resolve them as owning TUs/scenes/events/tables are reconstructed.
 - `func_08092A70` remains behavior-complete and parked at exact size `0x260 / 3 differing linked bytes`; `func_080455D8`, `func_080CAC7C` / `func_080CAD18`, and `func_08092940` remain parked at their documented compiler-sensitive boundaries.
 - Authoritative compiler remains the tracked 13-rule compatibility path, patch SHA256 `aa7cc6df0efbd066e9c33deb887731e1d0210babfaeba4c9b64f3e8bc35c4256`.
-- The active continuation is the throughput pipeline: complete the function/TU inventory, similarity and class/data ownership maps, rank coherent units, then decompile from that queue. The opening-farm savestate/watchpoint work is preserved as seed infrastructure for scripted runtime coverage.
+- The throughput inventory/ranked queue is operational and current. The active coherent unit is the proven thrown `BallEntity`: constructor plus four small methods are exact source; next target its destructor, wrappers, and visual/controller family before the large `func_08038110` mover. The opening-farm savestate/watchpoint work remains seed infrastructure for later scripted runtime coverage, not the primary queue.
 
 Naming rule:
 Use semantic names when evidence is strong. If identity remains unresolved, an honest address-derived name is acceptable for an otherwise fully exact retail contribution. Do not invent a semantic name merely to eliminate `func_*` or `unk_*`.

@@ -2,6 +2,7 @@
 
 ## CURRENT CHECKPOINT - thrown BallEntity constructor + four methods exact - October 6, 2026
 
+- **Conversation-transfer state:** full current documentation audit completed after this Ball pass. Live/current metrics/frontier text was reconciled; historical superseded checkpoints were preserved. The exact Ball code checkpoint is pushed at `4773f24f2adac663f26946fd310935ce971cddda`; the subsequent handoff commit is docs-only.
 - Continued from pushed checkpoint `fe2335f88ba16137eeae942923c0a7c72b685a42` into queue-rank-11 entity code.
 - Reused prior selector/item/terrain evidence instead of rediscovering identity: `vtable_unk_080E73B4`, selector `0x4B`, is the thrown Ball entity; `ARTICLE_BALL` is `0x35`; entity `+0x28` is packed animation/resource state, initially `0x31`.
 - Added `include/entity_ball.hh`, `src/entity_ball.cc`, and `docs/ENTITY_BALL.md`. `#pragma interface` preserves the retail vtable in assembly; linker aliases preserve legacy `func_08...` names.

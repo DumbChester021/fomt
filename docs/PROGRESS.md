@@ -17,12 +17,12 @@ Merely understanding, naming, documenting, or copying an `.incbin` does **not**
 increase the asset/data metric. Asset bytes count only when an editable source
 such as PNG data actually regenerates those retail bytes.
 
-Production `ches-dev` remains at `9078f36` (`decompile game object entity teardown`). The active exact `Live-temp` branch carries the private throughput/decomp checkpoints, including the October 6 resident-NPC family integration. Current worktree totals are:
+Production `ches-dev` remains at `9078f36` (`decompile game object entity teardown`). The active exact `Live-temp` branch carries the private throughput/decomp checkpoints through the October 6 thrown BallEntity integration. Current worktree totals are:
 
 ```text
 Code reconstruction
   69056 / 940036 bytes (7.3461%)
-  871180 bytes remain in asm
+  870980 bytes remain in asm
 
 Data/assets reconstruction
   75334 / 6777404 bytes (1.1115%)
@@ -57,7 +57,7 @@ holes as available space.
 | Throughput tooling | Unified remaining-function inventory, ranked region queue, similarity clusters, and resident-NPC factory/vtable/class map are live and regenerate from the current build | Keep the inventory fresh after integrations; deepen TU/type ownership only where it improves the next ranked coherent unit |
 | Input | Polling and new-press helpers are matching C++ | Extend only for a concrete control or scripted-runtime need |
 | Save data | Matching checksum/record writer and slot geometry; each slot has a proven unused 0xAF0-byte tail; retail loader behavior is bounded and exact-match research is preserved | **Paused** until persistence becomes a blocking dependency |
-| Characters | Exact 43-entry metadata, identity/location/schedules, complete 94-selector factory map, native lookup/teardown/social routing, all 35 resident constructors, +0x30 source for IDs 1..34, Child +0x3C, and the adjacent neutral location-bound actor hierarchy at its proven scope | Child +0x30 remains an understood assembly island; continue adjacent entity/class work while structural reuse stays high. Custom work still needs runtime registration and seventh-candidate policy |
+| Characters/entities | Exact 43-entry metadata, identity/location/schedules, complete 94-selector factory map, native lookup/teardown/social routing, all 35 resident constructors, +0x30 source for IDs 1..34, Child +0x3C, the bounded neutral location-bound actor hierarchy, and the thrown BallEntity constructor plus four exact methods | Continue the Ball destructor/wrappers/controller family before the large mover; Child +0x30 and documented compiler-sensitive actor islands remain parked. Custom work still needs runtime registration and seventh-candidate policy |
 | Scenes and dialogue | Event bytecode can be inspected with Mary and substantial script evidence exists | Rank native trigger/dispatch/event TUs; use scripted runtime coverage to classify scene/event code and indirect targets |
 | Items and tools | Core tables/wrappers, GameObject article paths, MoneyState, six typed shop catalogs, exact description helpers, proven 40-index shop stock, exact packed animation-provider parsing, and all 347 Tool/Food/Article icons as editable PNG inputs | Use these recovered types as leverage inside higher-ranked item/menu/shop TUs; avoid product-count growth because persistent layout depends on `NUM_PRODUCTS` |
 | Crops and field | Field/FieldPlot structure and many methods are source, but crop-state semantics remain partly opaque | Rank coherent field/crop/tool TUs and recover planting/growth/harvest transitions as clusters rather than isolated functions |
@@ -66,9 +66,9 @@ holes as available space.
 | Sound and music | M4A runtime is partly source, but the song payload remains baserom-backed | Treat audio as a coherent subsystem/TU/data project and rank it against other clusters rather than mining individual assets |
 | Runtime analysis | Durable opening-farm mGBA savestate exists; prior selective watchpoint work is preserved | Build deterministic savestate + scripted-input coverage/indirect-call/RAM-diff scenarios; watchpoints answer focused questions only |
 
-Exact reconstruction is now **68,856 / 940,036 source bytes = 7.3248%**,
+Exact reconstruction is now **69,056 / 940,036 source bytes = 7.3461%**,
 **75,334 data/asset bytes**, and **144,786 overall meaningful-ROM bytes** at the
-current verified baseline. The strategy change does not alter these numbers.
+current verified baseline. The latest BallEntity pass added **188 exact source bytes** while preserving the retail ROM.
 
 A future semantic/understood metric should be reported separately from exact
 matched source. Production source remains exact-only unless the project later

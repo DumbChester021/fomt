@@ -258,7 +258,7 @@ the phased plan and acceptance criteria.
 The linker keeps the original identity/location and scheduling helpers at their retail positions, Lillia's pair at 0x08035AFC..0x08035B63, the original 64 resident methods through 0x08036DC3, and now Lou constructor/+0x30 plus Child constructor/+0x3C at their retail addresses through 0x08036F0B. All 35 resident constructors are source-owned; IDs 1..34 also have source-owned +0x30 factories, while Child +0x30 at 0x08036F0C remains assembly. The October 5 resolver splits preserve `080A01F8..080A03B7` and `080A06B0..080A0A1B`; `func_08045584` remains sourced at its retail address. Legacy callable names for promoted methods are linker aliases, so existing address-derived references remain valid.
 
 Run `make compare` and `sha1sum -c fomt.sha1` after source/data/interface
-changes. The current exact worktree reports **68,868 / 940,036 = 7.3261%**
+changes. The current exact worktree reports **69,056 / 940,036 = 7.3461%**
 source with the retail SHA1 unchanged. Documentation updates do not change the
 ROM or count as new source reconstruction.
 

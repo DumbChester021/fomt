@@ -2,7 +2,7 @@
 
 ## CURRENT SNAPSHOT - 7.3461%; BallEntity exact class anchors - October 6, 2026
 
-- Active branch `Live-temp`; base pushed checkpoint `fe2335f`.
+- Active branch `Live-temp`; exact Ball code checkpoint pushed at `4773f24f2adac663f26946fd310935ce971cddda`. This final conversation-transfer pass is documentation-only.
 - Exact Ball source now owns constructor + four methods, **188 retail bytes**, under `entity_ball.*`; architecture in `docs/ENTITY_BALL.md`.
 - Progress: **69,056 / 940,036 = 7.3461% code**, **870,980 asm bytes**, **75,334 data/assets**, **144,786 meaningful-ROM bytes = 1.8761%**, **671,168 bytes free**. `fomt.gba: OK`.
 - Constructor proves writable `Location&` back-reference +0x18 and the current field layout through resource ID +0x28.

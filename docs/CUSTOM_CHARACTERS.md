@@ -114,9 +114,9 @@ the native GameObject entity lookups and teardown. The exact October 5 worktree
 adds the early 0x1C0-byte social resolver block to `src/character_info.cc`, the
 later 0x36C-byte NPC/bachelorette/Harvest-Sprite resolver block to
 `src/character_social.cc`, and `func_08045584` to `src/heart_event_days.cc`.
-Current executable progress is **68,868 / 940,036 = 7.3261%** and the retail
+Current executable progress is **69,056 / 940,036 = 7.3461%** and the retail
 ROM remains exact. Production HEAD is still `9078f36`; the active `Live-temp`
-integrations remain uncommitted.
+checkpoint series, including the BallEntity pass, is committed and pushed separately from production.
 
 The complete `func_0801A8E0` factory has also been mapped without pretending
 its unresolved families are semantically named: 94 selectors lead to 58 unique

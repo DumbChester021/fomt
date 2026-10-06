@@ -33,7 +33,7 @@ Authoritative live state is in `START_HERE.md`; this section keeps the repositor
 - Retail SHA1 remains `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
 - Authoritative compiler path is the tracked `tools/install_agbcp.sh` + `tools/agbcp_fomt_compat.patch` SHA-256 `aa7cc6df0efbd066e9c33deb887731e1d0210babfaeba4c9b64f3e8bc35c4256`.
 - Hardware, intrusive callback-list, DMA/transfer, entity-effect, resource-handle, SpriteAnimator/provider, NPC/social, item/economy, and GameObject lookup/teardown boundaries provide the current shared type foundation.
-- The active strategy is **whole-game throughput by inferred TU/type/similarity cluster**. The unified inventory/queue and resident-NPC factory/vtable/class map are live. The resident family plus latest adjacent entity pass now leave all 35 resident constructors in source, only Child +0x30 in assembly, and a newly recovered location-bound actor hierarchy in `entity_unk_08037008.*`. Re-rank after meaningful integrations and prefer structural continuity over raw score when a high-ranked region contains a deliberately parked target. The packed bank remains **416 / 493 semantically owned animations**, with its remaining 77 IDs as a parked by-product lane.
+- The active strategy is **whole-game throughput by inferred TU/type/similarity cluster**. The unified inventory/queue and resident-NPC factory/vtable/class map are live. All 35 resident constructors are source-owned, only Child +0x30 remains assembly, the `UnkEntity37008` hierarchy is bounded at documented compiler-sensitive frontiers, and the thrown `BallEntity` now owns its exact constructor plus four small methods in source. Re-rank after meaningful integrations and prefer structural continuity over raw score when a high-ranked region contains a deliberately parked target. The packed bank remains **416 / 493 semantically owned animations**, with its remaining 77 IDs as a parked by-product lane.
 - Recent 0x080Axxxx source conversions include:
   - `src/code_080A46AC.cc`
   - `src/code_080A480C.cc`
@@ -84,10 +84,7 @@ under `assets/item_icons/`. `tools/packed_sprite_bank.py` rebuilds the
 0x30080-byte bank exactly. The cooking UI owns `gCookingUtensilIconIds`, mapping
 Knife=265, Frying Pan=204, Pot=346, Mixer=64, Whisk=472, Rolling Pin=313,
 Oven=327, and Seasoning Set=400. `func_08092A70` remains parked at `0x260 / 3`.
-The active continuation is to trace the remaining seasoning-selection state
-before moving to the next table-driven packed-bank consumer. Product-count growth remains
-deferred because `ShippingBin::product_stats[NUM_PRODUCTS]` is embedded in
-persistent state.
+That item/tool lane is currently parked behind the whole-game throughput queue. The immediate continuation is the proven thrown Ball family: destructor `0x08038098`, wrappers `0x08038300/20/34`, then its 0x48-byte visual/controller family. Product-count growth remains deferred because `ShippingBin::product_stats[NUM_PRODUCTS]` is embedded in persistent state.
 
 Legacy loader `func_08011650` remains paused. Crop/field semantics,
 dialogue/event registration, and character portrait/display assets remain later

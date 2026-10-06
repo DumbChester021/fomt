@@ -13,7 +13,7 @@ resource family the main queue.
 
 Current exact worktree:
 - code: **69,056 / 940,036 = 7.3461%**;
-- assembly remaining: **871,168 bytes**;
+- assembly remaining: **870,980 bytes**;
 - data/assets: **75,334 / 6,777,404 = 1.1115%**;
 - overall meaningful ROM: **144,786 / 7,717,440 = 1.8761%**;
 - packed bank: **416 / 493 semantically owned animations**;
@@ -52,9 +52,9 @@ but its score is no longer an execution order.
 
 ## Current priority: work the live queue and preserve family-level leverage
 
-The throughput pipeline is operational: `tools/ches/build_decomp_inventory.py` produces the remaining-function database and ranked queue, while `tools/ches/map_npc_entity_classes.py` provides a proven factory/vtable/class map for the resident NPC family. The latest production pass leaves all 35 resident constructors in source, only Child +0x30 in assembly, and promotes the first exact methods of the adjacent location-bound actor hierarchy.
+The throughput pipeline is operational: `tools/ches/build_decomp_inventory.py` produces the remaining-function database and ranked queue, while `tools/ches/map_npc_entity_classes.py` provides a proven factory/vtable/class map for the resident NPC family. The latest exact pass adds the thrown `BallEntity` constructor plus four methods (**188 retail bytes**) on top of the resident and bounded location-bound actor work; Child +0x30 and the documented compiler-sensitive actor islands remain assembly.
 
-The raw queue currently ranks `asm/game_state.s:08011650-0801468C` first, but that region begins with the deliberately parked save loader and must **not** be reopened merely because of the heuristic score. The recovered `UnkEntity37008` island remains bounded. Queue rank 11 has now produced the exact thrown `BallEntity` constructor plus four small methods (**188 retail bytes**) at `0x08038028`, `0x080380EC`, `0x08038108`, `0x0803834C`, and `0x0803836C`. Continue that coherent family first: destructor `0x08038098`, virtual wrappers `0x08038300/20/34`, and the 0x48-byte visual/controller family beginning at `0x0803853C`. Defer the 0x1F0-byte `func_08038110` mover until the smaller class surface is sourced, then re-rank.
+The raw queue currently ranks `asm/game_state.s:08011650-0801468C` first, but that region begins with the deliberately parked save loader and must **not** be reopened merely because of the heuristic score. The recovered `UnkEntity37008` island remains bounded. The entity region that was rank 11 before the Ball pass produced the exact thrown `BallEntity` constructor plus four small methods (**188 retail bytes**) at `0x08038028`, `0x080380EC`, `0x08038108`, `0x0803834C`, and `0x0803836C`; after regeneration the remaining `0x08038374..0x0803A8A4` entity region is rank **19**. Continue the Ball family first: destructor `0x08038098`, virtual wrappers `0x08038300/20/34`, and the 0x48-byte visual/controller family beginning at `0x0803853C`. Defer the 0x1F0-byte `func_08038110` mover until the smaller class surface is sourced, then re-rank.
 
 ### 1. Keep the function/TU inventory current
 
