@@ -1,8 +1,8 @@
 # Ches Session Status — FOMT decomp
 
-## CURRENT SNAPSHOT - 7.4848%; documentation audit saved, public-main migration pending - October 6, 2026
+## CURRENT SNAPSHOT - 7.4848%; public main migration complete - October 6, 2026
 
-- Mandatory turn checkpoint interrupted the publication sequence after the documentation rewrite. Current checkout is still `Live-temp` with intentional uncommitted documentation changes. `ches/main` has not yet been advanced and `Live-temp` has not yet been deleted. The next turn must verify the dirty diff, rerun the retail gate, commit the documentation consolidation, fast-forward `ches/main`, verify the remote tip, switch local `main` to it, then delete `Live-temp` only after proof that `main` contains the checkpoint.
+- Active branch is **`main`**, tracking `ches/main`. Migration commit `d34efc5adaad56ce92a41bb354d1882847355438` is published on `ches/main`. The former `Live-temp` branch was proven contained and then deleted remotely and locally. Forced retail verification immediately before publication passed `make -B -j4 compare`, exact SHA1, progress, and `git diff --check`.
 - Latest exact code checkpoint before the documentation consolidation is `bf45d14`.
 - Latest exact batch added **332 retail range bytes**: `39DA8` 0x70/0, `39E18` 0x70/0, `39A30` 0x2C/0, `39F50` 0x40/0. Full ROM remains **`fomt.gba: OK`**.
 - Progress: **70,360 / 940,036 = 7.4848% code**, **869,676 asm bytes**, **75,334 data/assets**, **146,090 meaningful-ROM bytes = 1.8930%**, **671,168 bytes free**.

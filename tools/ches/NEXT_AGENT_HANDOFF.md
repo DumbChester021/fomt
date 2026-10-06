@@ -1,11 +1,12 @@
 # Current FoMT continuation - October 6, 2026
 
-## CURRENT CHECKPOINT - documentation audit complete locally; public-main migration still pending
+## CURRENT CHECKPOINT - public main migration complete; exact next target 0x080399C0
 
-- **IMPORTANT operational state:** the documentation/publication audit has been written to the working tree, but the mandatory Ches turn checkpoint fired before commit/push/branch deletion. The repository is still checked out on `Live-temp`; the documentation changes are intentionally dirty/uncommitted. `ches/main` has **not yet** been advanced and `Live-temp` has **not yet** been deleted. Do not assume the branch migration already happened.
-- Verified branch topology before editing: old `ches/main` tip `b8471ae065744869f64283473ed68372f82321c9` is an ancestor of exact code checkpoint `bf45d1405c67000a7aa023726a885c6c87216dfd`; the latter is **75 commits ahead / 0 behind**, so the eventual public-main update is a normal fast-forward with no force required.
-- Intended final policy after the pending publication step: active public retail branch **`main`**; former `Live-temp` retired/deleted; historical `ches-dev` retained as provenance; custom behavior remains on separate custom-game worktree/branch.
-- Latest exact code checkpoint before the documentation/publication consolidation: `bf45d1405c67000a7aa023726a885c6c87216dfd` (`decompile mode4 setup and effect helpers`).
+- Active public retail branch is now **`main`**, local branch tracks `ches/main`, and the former `Live-temp` branch has been deleted both remotely and locally after containment proof. Historical `ches-dev` remains provenance only; custom behavior remains on the separate custom-game worktree/branch.
+- Migration commit: `d34efc5adaad56ce92a41bb354d1882847355438` (`consolidate public decomp documentation on main`). Push `sh_muwzf02b_fea9156d` fast-forwarded `ches/main`; independent verification `sh_muwzf82g_d1c9e8fc` showed remote `main` at the exact same hash.
+- Before deletion, containment proof `sh_muwzg277_3954e956` showed local `main` and `Live-temp` both contained the full checkpoint and remote `main=d34efc5`, `Live-temp=bf45d14`. Remote deletion `sh_muwzg9tx_7a7d161b` succeeded; follow-up `sh_muwzgjmr_c4bbebf4` showed only remote `main`. Local deletion/upstream correction `sh_muwzgp9p_66615fdc` left clean `main...ches/main`.
+- Forced publication verification `sh_muwze013_1fa7bcd5`: `git diff --check` PASS, `make -B -j4 compare` -> **`fomt.gba: OK`**, SHA1 `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`, progress **70,360 / 940,036 = 7.4848% code** and **146,090 / 7,717,440 = 1.8930% meaningful ROM**.
+- Latest exact code family remains the 332-byte mode-4/factory/destructor batch from `bf45d1405c67000a7aa023726a885c6c87216dfd` (`decompile mode4 setup and effect helpers`).
 - Full retail gate is exact: `make -B -j4 compare` -> **`fomt.gba: OK`**; SHA1 `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
 - Current progress: **70,360 / 940,036 = 7.4848% code**, **869,676 asm bytes** remain; **2,342 linked asm functions**; inferred ranges **868,512 / 869,676 = 99.8662%**; unattributed asm **1,164 bytes**. Data/assets remain **75,334 / 6,777,404 = 1.1115%**; meaningful ROM is **146,090 / 7,717,440 = 1.8930%**; free tail **671,168 bytes**.
 - Latest exact family added **332 retail bytes**:
