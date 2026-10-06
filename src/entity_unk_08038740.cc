@@ -59,6 +59,8 @@ EC void func_08038EE0(UnknownEntityThing *);
 EC bool func_080390D0(Entity38740Controller *) SECTION(".text.entity38740_ctrl_390d0");
 EC u32 func_08039134(GameObject *, u32, i32, i32) SECTION(".text.entity39134_nearest");
 EC bool func_080391C0(i32, i32) SECTION(".text.entity391c0_area");
+EC void func_080391FC() SECTION(".text.entity391fc_noop");
+EC bool func_08039200() SECTION(".text.entity39200_false");
 void func_08038E90(Entity38740Controller * self)
 {
     u8 * effect = self->effect_0C;
@@ -143,6 +145,15 @@ bool func_080391C0(i32 x, i32 y)
     if (y > 0x27F && x > 0xF7 && x <= 0x118)
         return true;
 
+    return false;
+}
+
+void func_080391FC()
+{
+}
+
+bool func_08039200()
+{
     return false;
 }
 

@@ -5087,16 +5087,7 @@ func_08038EE0: @ 0x08038EE0
 
     .section .text.after_entity39134, "ax", %progbits
     .section .text.after_entity391c0, "ax", %progbits
-    thumb_func_start func_080391FC
-func_080391FC: @ 0x080391FC
-    bx lr
-    .align 2, 0
-
-    thumb_func_start func_08039200
-func_08039200: @ 0x08039200
-    movs r0, #0
-    bx lr
-
+    .section .text.after_entity39200, "ax", %progbits
     thumb_func_start func_08039204
 func_08039204: @ 0x08039204
     push {r4, r5, r6, r7, lr}

@@ -2,26 +2,26 @@
 
 ## Current NPC/entity family frontier - October 6, 2026
 
-The throughput strategy continues to produce exact family passes. The current working checkpoint adds **200 exact retail range bytes** from `func_08039134` and `func_080391C0` on top of pushed `Live-temp` checkpoint `bb503dd`; the full ROM remains `fomt.gba: OK`. The adjacent Entity38740/controller region now has exact source through the nearest-entity selector and coordinate-area predicate, while `0x08038820` and `0x08038EE0` remain behavior-complete parked compiler/register-lifetime islands. Retail SHA1 remains unchanged.
+The throughput strategy continues to produce exact family passes. On top of pushed `Live-temp` checkpoint `7cd4f00`, the current working tree adds exact `func_080391FC` and `func_08039200`, and the full ROM remains `fomt.gba: OK`. The local 4-byte strategy interface is now mapped across vtables `0x080E74AC/74BC/74CC`; `0x08039204` is behavior-complete but parked on source temporary/register-lifetime shape. Retail SHA1 remains unchanged.
 
 ## Current throughput inventory - October 6, 2026
 
-`tools/ches/build_decomp_inventory.py` now reports **2,354 linked assembly functions / 870,156 asm code bytes**, with inferred function ranges covering **868,992 bytes = 99.8662%** and **1,164 unattributed asm bytes**. `func_08039134` and `func_080391C0` are exact production source. Continue through the adjacent trivial `0x080391FC` / `0x08039200` helpers, then attack `func_08039204` using exact `func_080391C0` as the local anchor. Keep `0x08038820` and `0x08038EE0` parked unless new evidence appears.
+`tools/ches/build_decomp_inventory.py` now reports **2,352 linked assembly functions / 870,148 asm code bytes**, with inferred function ranges covering **868,984 bytes = 99.8662%** and **1,164 unattributed asm bytes**. Exact source now includes `func_08039134`, `func_080391C0`, `func_080391FC`, and `func_08039200`. Continue with sister `func_0803930C` and then `func_08039310`; keep `0x08039204`, `0x08038820`, and `0x08038EE0` parked unless new source/compiler evidence appears.
 
 ## Current project status
 
 - `make progress` tracks reconstruction across code and non-code ROM bytes instead of reporting only executable code.
-- Current **code reconstruction** is **69,880 / 940,036 = 7.4338%**.
+- Current **code reconstruction** is **69,888 / 940,036 = 7.4346%**.
 - Current **data/assets reconstruction** is **75,334 / 6,777,404 = 1.1115%**:
   - 31,110 bytes are linked typed/source non-code data;
   - 44,224 bytes are editable generated packed-sprite graphics/palettes;
   - the generated packed-sprite total is 33,664 graphics bytes + 10,560 palette bytes;
   - 396 mixed source-owned `.rom_header` bytes count only toward overall reconstruction.
-- Current **overall meaningful-ROM reconstruction** is **145,610 / 7,717,440 = 1.8868%**. Final ROM padding is excluded from this denominator.
+- Current **overall meaningful-ROM reconstruction** is **145,618 / 7,717,440 = 1.8869%**. Final ROM padding is excluded from this denominator.
 - PRET-style ROM-space reporting remains **671,168 bytes = 655.44 KiB = 8.0009% contiguous tail free space**.
 - Asset/data progress is conservative: an opaque `.incbin` does not count merely because it was identified or extracted; editable project-side source must regenerate the retail bytes exactly.
 - Progress implementation: `tools/scripts/calcprogress.py`, `tools/progress_manifest.json`, and `docs/ASSET_DECOMPILATION.md`.
-- The current retail priority is **whole-game throughput by coherent TU/type/similarity family**. `func_08039134` and `func_080391C0` are now exact and establish the local selector/coordinate contract. Harvest adjacent `0x080391FC` and `0x08039200` if they are natural exact wins, then reconstruct `func_08039204`. `0x08038820` remains parked at exact-size 0x108/183 and `0x08038EE0` at best 0x1EC/127.
+- The current retail priority is **whole-game throughput by coherent TU/type/similarity family**. The 74AC/74BC/74CC strategy interface is mapped; `func_080391FC` and `func_08039200` are exact. `func_08039204` is behavior-complete at best 0x110/210 versus retail 0x108 and is parked on temporary/lifetime shape. Take the trivial sister `func_0803930C` next, then reconstruct `func_08039310`.
 - Raw binary relocation does not count as progress. Retail SHA1 remains the final authority.
 
 

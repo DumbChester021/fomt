@@ -1,16 +1,25 @@
 # Current FoMT continuation — October 6, 2026
 
-## CURRENT CHECKPOINT - 0x08039134 and 0x080391C0 exact; continue adjacent 0x08039204 family - October 6, 2026
+## CURRENT CHECKPOINT - strategy interface mapped; 0x080391FC/39200 exact; 0x08039204 behavior-complete and parked - October 6, 2026
 
-- Continued from pushed research checkpoint `bb503dd` on `Live-temp`.
-- `func_08038EE0` remains behavior-complete but parked at best **0x1EC / 127** versus retail 0x1F0. `func_08038820` remains independently parked at exact-size **0x108 / 183**. Do not reopen either without new type/compiler evidence.
-- Promoted **200 exact retail range bytes** from two adjacent helpers:
-  - `func_08039134`: retail range **0x8C**, exact executable body **0x8A + 2-byte alignment**. Recovered contract is `(GameObject *game_object, u32 location_map, i32 x, i32 y)`. It scans entity selectors 0x2E..0x45, calls `GameObject::vfunc_40`, filters null entries, matching `location_map`, and a boolean virtual predicate at entity vtable +0x60, then returns the selector with minimum squared signed X/Y distance or sentinel 0x64. Scratch v1 was 0x88/40; v2 changed only the loop selector to signed and preserved one distance copy, producing an empty executable diff.
-  - `func_080391C0`: retail range **0x3C**, exact executable body **0x3A + 2-byte alignment** on the first natural source. It returns true for `y <= 0x38 && 0x143 < x <= 0x164` or `y > 0x27F && 0xF7 < x <= 0x118`, false otherwise.
-- Production integration is in `src/entity_unk_08038740.cc` with linker sections `.text.entity39134_nearest` and `.text.entity391c0_area`; assembly was split at the matching retail seams.
-- Full production gate passes: `make -B -j4 compare` -> **`fomt.gba: OK`**, retail SHA1 unchanged.
-- Regenerated inventory/progress: **69,880 / 940,036 = 7.4338% code**, **870,156 asm bytes** remain; **2,354 unresolved linked asm functions**; inferred ranges **868,992 / 870,156 = 99.8662%**; unattributed asm **1,164 bytes**. Data/assets remain **75,334 / 6,777,404 = 1.1115%**; meaningful ROM is **145,610 / 7,717,440 = 1.8868%**; free tail remains **671,168 bytes**.
-- **Exact next action on Continue:** harvest the adjacent trivial `func_080391FC` (identity/no-op body) and `func_08039200` (returns zero) if they scratch-match naturally, then reconstruct `func_08039204` (about 0x108) using exact `func_080391C0` as a local source anchor. Do not resume parked 0x08038820/0x08038EE0 tuning.
+- Continued from pushed checkpoint `7cd4f00` on `Live-temp`.
+- Promoted **8 additional exact retail range bytes**:
+  - `func_080391FC`: **0x02 executable bytes + 2-byte retail alignment**, empty strategy update hook.
+  - `func_08039200`: **0x04 / 0**, strategy selector/result method returning false.
+- Full production gate still passes: `make -B -j4 compare` -> **`fomt.gba: OK`**, retail SHA1 unchanged.
+- Current progress: **69,888 / 940,036 = 7.4346% code**, **870,148 asm bytes** remain; **2,352 unresolved linked asm functions**; inferred ranges **868,984 / 870,148 = 99.8662%**; unattributed asm remains **1,164 bytes**. Data/assets remain **75,334 / 6,777,404 = 1.1115%**; meaningful ROM is **145,618 / 7,717,440 = 1.8869%**; free tail **671,168 bytes**.
+- Retail pointer tracing mapped the local 4-byte strategy interface:
+  - `vtable_unk_080E74CC`: +08 = `func_080391FC`, +0C = `func_08039200`;
+  - `vtable_unk_080E74BC`: +08 = `func_08039204`, +0C = `func_0803930C`;
+  - `vtable_unk_080E74AC`: +08 = `func_08039310`.
+  - Constructor `func_080398A4` allocates five 4-byte strategy objects into owner +38/+3C/+40/+44/+48. State +0x0C selects one by index; vtable +08 is called as `(strategy, owner, update_arg)`, and +0C as `(strategy, owner)`.
+- `func_08039204` is behavior-complete in scratch. It reads owner state at +34 and timer u16 at state +10, decrements nonzero timer, gets owner map/X/Y, chooses target **(0x108,0x2D0)** when Y > 0x160 else **(0x154,-16)**, and on map 2 clears the actor state after moving owner to `MAP_NONE` when within 15 units of both target axes. When timer reaches zero it chooses facing either from exact `func_080391C0` or `func_080ABC40(x,y,target_x,target_y,update_arg,current_facing)`, updates facing if changed, then reloads timer as `func_080AB788(0x1E)+1`.
+- Scratch frontier:
+  - v1b `candidate-strategy-39204-v1.cc`: **0x11C / 268**.
+  - v2 `candidate-strategy-39204-v2.cc`: **0x110 / 210**, strongest result; wide timer + long-lived target coordinates recovers retail register pressure, but branch-created `Vec2` temporaries inflate stack frame to 0x20 versus retail 0x18.
+  - v3 `candidate-strategy-39204-v3.cc`: **0x112 / 244**; direct single-Vec2 field writes regress.
+- Decision: semantics are closed; park `0x08039204` on source temporary/lifetime shape. Do not repeat Vec2 assignment/direct-write or timer-width permutations without new type/source evidence. Existing parked `0x08038820` and `0x08038EE0` remain closed as documented.
+- **Exact next action on Continue:** exact-check sister `func_0803930C` (retail 4-byte `return true` body), then use the now-mapped strategy interface and `func_08039204` semantics as anchors for sister strategy `func_08039310`.
 
 ## SUPERSEDED CHECKPOINT - location-bound actor island behavior-complete; move into rank-11 entity region - October 6, 2026
 
