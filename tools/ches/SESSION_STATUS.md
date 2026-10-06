@@ -1,13 +1,14 @@
 # Ches Session Status — FOMT decomp
 
-## CURRENT SNAPSHOT - 7.3857%; Ball mover bounded, adjacent wrappers exact - October 6, 2026
+## CURRENT SNAPSHOT - 7.4027%; Entity38740 small surface exact - October 6, 2026
 
-- Active branch `Live-temp`; continued from pushed checkpoint `adcdb7d`.
-- Added **64 exact bytes** in new `src/entity_unk_08038740.cc`: `0x080387B8`, `0x080387C8`, `0x080387EC`, `0x080387FC`, each 0x10/0. Full ROM remains `fomt.gba: OK`.
-- Progress: **69,428 / 940,036 = 7.3857% code**, **870,608 asm bytes**, **75,334 data/assets**, **145,158 meaningful-ROM bytes = 1.8809%**, **671,168 bytes free**.
-- Inventory: **2,364 linked asm functions**, **869,532 / 870,608 inferred range bytes = 99.8764%**, **1,076 unattributed bytes**.
-- Ball mover `0x08038110` is behavior-complete but parked: strongest natural v3 has exact 68-byte stack frame and correct `UnkMapBox` temporary but is 0x1C2 vs 0x1F0 and never acquires retail r8; terrain-pointer v4 worsened to 0x1BE/483 and still no r8.
-- Next: stay in adjacent `vtable_unk_080E7380` family, target constructor `0x08038740` and factory `0x080387A0`, then controller `0x08038820`.
+- Active branch `Live-temp`; continued from pushed checkpoint `5660d8e`.
+- Added **160 exact bytes** this turn: ctor `0x08038740` (0x60/0), factory `0x080387A0` (0x16 exact body + 2-byte align), and boolean wrappers `0x080387D8` / `0x0803880C` (0x14/0 each). The family now owns **224 exact bytes** including the prior four forwarding wrappers.
+- Progress: **69,588 / 940,036 = 7.4027% code**, **870,448 asm bytes**, **75,334 data/assets**, **145,318 meaningful-ROM bytes = 1.8830%**, **671,168 bytes free**. `fomt.gba: OK`.
+- Inventory: **2,360 linked asm functions**, **869,372 / 870,448 inferred range bytes = 99.8764%**, **1,076 unattributed bytes**.
+- Next controller target `0x08038820` is a 0x108 constructor for a 0x18-byte `UnknownEntityThingBase`-shape object; vtable 736C points to destructor 080DCDB0 and methods 38928/38A70. Constructor uses exact `func_080A4740` for its optional 0x4C resource object and `func_080DCB7C` for its +0x14 collection.
+- Ball mover `0x08038110` remains parked at the documented lifetime/register-allocation seam.
+- Next: reconstruct `0x08038820` from the real base/layout and existing helper types; do not reopen the exact small surface.
 
 ## SUPERSEDED SNAPSHOT - 7.3261%; location-bound actor island bounded - October 6, 2026
 

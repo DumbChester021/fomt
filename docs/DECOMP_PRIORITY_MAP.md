@@ -52,9 +52,9 @@ but its score is no longer an execution order.
 
 ## Current priority: work the live queue and preserve family-level leverage
 
-The throughput pipeline is operational. The Ball family remains at **496 source-owned exact bytes**; its 0x1F0 mover is behavior-complete but parked after a strongest natural candidate reached the exact 68-byte frame yet failed to reproduce retail's r8 lifetime. The immediate adjacent `vtable_unk_080E7380` family has now yielded **64 exact retail bytes** from four controller-forwarding wrappers.
+The throughput pipeline is operational. The Ball family remains at **496 source-owned exact bytes** with its mover parked. The adjacent `vtable_unk_080E7380` family now owns **224 exact retail bytes** in source: constructor, factory, four forwarding wrappers, and both boolean wrappers.
 
-The raw queue still begins with deliberately parked work such as the save loader, so score is not execution order. Continue structural continuity in the adjacent `0x08038740` family: constructor and +0x30 factory are the next small targets, followed by controller constructor `0x08038820`. The boolean wrappers `0x080387D8/0x0803880C` are exact-size branch-layout seams. Keep `func_08038110` parked unless new lifetime/compiler evidence explains retail's extra r8 pressure.
+The raw queue still begins with deliberately parked work such as the save loader, so score is not execution order. Structural continuity now points directly to controller constructor `0x08038820`. Its 0x18-byte `UnknownEntityThingBase`-shape layout is established, and the constructor reuses known `UnkPoly` / exact `func_080A4740` resource machinery plus `func_080DCB7C` for its +0x14 collection. Do not reopen the exact Entity38740 small surface or Ball mover without genuinely new evidence.
 
 ### 1. Keep the function/TU inventory current
 

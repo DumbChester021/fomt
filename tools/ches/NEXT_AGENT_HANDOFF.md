@@ -1,17 +1,19 @@
 # Current FoMT continuation — October 6, 2026
 
-## CURRENT CHECKPOINT - Ball mover bounded; adjacent entity wrappers exact - October 6, 2026
+## CURRENT CHECKPOINT - Entity38740 small surface exact; controller constructor next - October 6, 2026
 
-- Continued from pushed clean checkpoint `adcdb7d` on `Live-temp`.
-- `func_08038110` (retail `0x08038110..0x08038300`, 0x1F0) is now behavior-complete in scratch but not production-promotable. Recovered source covers the full active gate, terrain-view fetch, gravity `flight_speed_q16 -= 0x47A3`, flight-height integration, four cardinal launch states through the Ball-only bit0 collision wrappers, Q16 movement clamp, landing Location write-back, terrain lookup, callback reasons 1/0, and adult-dog selector `0x2B` handoff.
-- Strongest mover source-shape proof is preserved by matcher artifacts under `tools/ches/checkpoints/ball-mover-2026-10-06/match/ball-mover-v3.*`: **0x1C2 vs retail 0x1F0**, with the **exact 68-byte retail stack frame**, the historically proven `Box box_a = UnkMapBox(GetBox()); Box &box = box_a;` temporary, correct airborne-before-landing layout, and retail case order 1/0/3/2. The working scratch `candidate-ball-mover-v2.cc` was subsequently changed for v4's terrain-pointer experiment, which regressed to **0x1BE / 483 differing linked bytes** and still did not create retail's saved r8 lifetime. Allocator trace output was empty, so there is no new compiler evidence. Park the mover rather than syntax-roulette it.
-- Pivoted immediately to the adjacent `vtable_unk_080E7380` entity family at `0x08038740`.
-- Promoted **64 exact retail bytes** in new `src/entity_unk_08038740.cc`: forwarding methods at `0x080387B8`, `0x080387C8`, `0x080387EC`, and `0x080387FC`, each **0x10 / 0 diff**. They forward through `AEntity::unk_10` to controller helpers `func_08038DF0`, `func_08038E90`, `func_08038EB8`, and `func_08038EE0`.
-- Boolean siblings `0x080387D8` and `0x0803880C` are **0x14 exact size** but differ only in branch orientation/return layout (9 and 8 linked bytes respectively). An explicit-result spelling grew both to 0x18, so park that spelling.
+- Continued from pushed clean checkpoint `5660d8e` on `Live-temp`.
+- Promoted **160 additional exact retail bytes** in the adjacent `vtable_unk_080E7380` family:
+  - `Entity38740::Entity38740(GameObject*, void*)` at `0x08038740`: **0x60 / 0 diff** from the natural initializer `AEntity(game_object, Location(8, 0, 0)), state_18(state)`.
+  - `Entity38740::vfunc_30()` at `0x080387A0`: exact **0x16-byte body + 2-byte retail alignment**. It allocates a 0x18-byte `Entity38740Controller` and calls constructor `func_08038820`; the project-native `asm("func_08038820")` declaration avoids the artificial Thumb stub produced by scratch `--defsym`.
+  - boolean wrappers `0x080387D8` and `0x0803880C`: both **0x14 / 0 diff** once source is written with the non-null controller call path first.
+- Together with the prior four 0x10 forwarding wrappers, `Entity38740` now owns **224 exact retail bytes** in source across constructor, factory, and its complete small wrapper surface.
 - Full production gate passes: `make -B -j4 compare` -> **`fomt.gba: OK`**, retail SHA1 `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
-- Current reconstruction: **69,428 / 940,036 = 7.3857% code**, **870,608 asm bytes** remain; data/assets **75,334 / 6,777,404 = 1.1115%**; meaningful ROM **145,158 / 7,717,440 = 1.8809%**; free tail **671,168 bytes**.
-- Regenerated inventory: **2,364 linked assembly functions**, **870,608 canonical asm bytes**, **869,532 inferred function-range bytes = 99.8764%**, **1,076 unattributed asm bytes**.
-- **Exact next action on Continue:** stay in the adjacent `0x08038740` family. Scratch-match constructor `0x08038740` and +0x30 factory `0x080387A0` first; then inspect the two exact-size boolean wrappers only if a genuinely structural source clue appears. After those small surfaces, continue into controller constructor `0x08038820`. Do not reopen Ball mover `0x08038110` without new lifetime/compiler evidence.
+- Current reconstruction: **69,588 / 940,036 = 7.4027% code**, **870,448 asm bytes** remain; data/assets **75,334 / 6,777,404 = 1.1115%**; meaningful ROM **145,318 / 7,717,440 = 1.8830%**; free tail **671,168 bytes**.
+- Regenerated inventory: **2,360 linked assembly functions**, **870,448 canonical asm bytes**, **869,372 inferred function-range bytes = 99.8764%**, **1,076 unattributed asm bytes**.
+- Controller structure for next work is already bounded: `func_08038820` is a **0x108-byte constructor** for a **0x18-byte `UnknownEntityThingBase`-shape controller**. `vtable_unk_080E736C` maps inherited destructor `func_080DCDB0`, update `func_08038928`, and render/second virtual `func_08038A70`. The constructor initializes owner/vtable, conditionally creates a 0x4C `UnkPoly`-derived resource object via exact `func_080A4740`, and replaces the +0x14 five-entry/0x50-stride collection via `func_080DCB7C`.
+- Ball mover `func_08038110` remains behavior-complete but parked on the missing retail r8 lifetime. Do not reopen it without new structural/compiler evidence.
+- **Exact next action on Continue:** reconstruct controller constructor `0x08038820` using real `UnknownEntityThingBase` inheritance/layout plus the already-recovered `UnkPoly` / `func_080A4740` and `func_080DCB7C` evidence. Do not redo the now-exact Entity38740 small surface.
 
 ## SUPERSEDED CHECKPOINT - location-bound actor island behavior-complete; move into rank-11 entity region - October 6, 2026
 
