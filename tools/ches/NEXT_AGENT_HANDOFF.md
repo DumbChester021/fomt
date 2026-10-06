@@ -1,17 +1,16 @@
 # Current FoMT continuation — October 6, 2026
 
-## CURRENT CHECKPOINT - 0x08038EE0 behavior-complete and parked; pivot to 0x08039134 - October 6, 2026
+## CURRENT CHECKPOINT - 0x08039134 and 0x080391C0 exact; continue adjacent 0x08039204 family - October 6, 2026
 
-- This research pass started from pushed documentation checkpoint `0f2babe` on `Live-temp`; production exact code remains the `ef1c1d4` controller-helper integration.
-- Reconstructed controller +0x10 builder/replacer `func_08038EE0` (`0x08038EE0..0x080390D0`, retail 0x1F0) semantically and structurally in scratch.
-- Proven object layout: allocated object is **0x14C bytes** = u32 count at +0x00, five uninitialized **0x40-byte DiscardEffect slots** at +0x04, five state bytes at +0x144..+0x148, then alignment padding. The loop runs indices 0..4 and constructs resources **[2,1,1,0,0]**.
-- Each entry uses GameObject virtual +0x78 as effect context and exact `DiscardEffect::DiscardEffect` / `func_080A4A00` with provider=GameObject, value=4, arg=0x1C, refresh=false. Append uses `func_080DC840`, installs `vtable_unk_080E681C`, copies the 0x14-byte animation plus +0x3C..+0x3F flags, increments count, destroys the temporary via `func_080A47B4(...,2)`, then clears state[i].
-- Replacement semantics are closed: controller +0x10 owns this collection; old entries are destroyed through the virtual function at entry vtable +8 with flags=2, stride 0x40, then the allocation is deleted and +0x10 receives the new pointer.
-- Strongest source is `tools/ches/checkpoints/entity-08038740-2026-10-06/candidate-controller-ee0-v2.cc`: **retail 0x1F0, candidate 0x1EC, 127 differing linked bytes**. It reproduces the 0x4C stack frame, jump-table grouping, three scoped case-construction shapes, copy sequence, temporary destruction, state-byte clearing, and replacement loop. Remaining delta is dominated by long-lived register allocation: retail keeps new collection/GameObject in r5/r6 while v2 uses r7/r5.
-- Closed variants: shared resource-id v1 collapsed to **0x140 / 441**; v2 tail-pointer spelling **0x1EC / 129**; owner-before-new plus tail spelling v3 **0x1EC / 142**; inlined collection-constructor hypothesis v4b collapsed to **0x124 / 461**. Existing `FixedVec` is not this type because its `push_back` shifts a fixed queue instead of appending to count*stride. Do not repeat these families without new type/compiler evidence.
-- `func_08038820` remains separately parked at exact-size **0x108 / 183**; do not reopen it from this result.
-- No production source bytes changed in this research pass. Exact metrics remain **69,680 / 940,036 = 7.4125% code**, **870,356 asm bytes**, **75,334 data/assets**, **145,410 meaningful-ROM bytes = 1.8842%**, **671,168 bytes free**; last production full-ROM gate is `fomt.gba: OK`.
-- **Exact next action on Continue:** pivot immediately to `func_08039134` (0x8C, four callers: `func_08039310`, `func_0803955C`, `func_08039708`, `func_08039A60`). Recover its argument contract from those callers and scratch-prove the natural source before touching its larger siblings. Do not resume `0x08038EE0` syntax/register tuning absent new structural evidence.
+- Continued from pushed research checkpoint `bb503dd` on `Live-temp`.
+- `func_08038EE0` remains behavior-complete but parked at best **0x1EC / 127** versus retail 0x1F0. `func_08038820` remains independently parked at exact-size **0x108 / 183**. Do not reopen either without new type/compiler evidence.
+- Promoted **200 exact retail range bytes** from two adjacent helpers:
+  - `func_08039134`: retail range **0x8C**, exact executable body **0x8A + 2-byte alignment**. Recovered contract is `(GameObject *game_object, u32 location_map, i32 x, i32 y)`. It scans entity selectors 0x2E..0x45, calls `GameObject::vfunc_40`, filters null entries, matching `location_map`, and a boolean virtual predicate at entity vtable +0x60, then returns the selector with minimum squared signed X/Y distance or sentinel 0x64. Scratch v1 was 0x88/40; v2 changed only the loop selector to signed and preserved one distance copy, producing an empty executable diff.
+  - `func_080391C0`: retail range **0x3C**, exact executable body **0x3A + 2-byte alignment** on the first natural source. It returns true for `y <= 0x38 && 0x143 < x <= 0x164` or `y > 0x27F && 0xF7 < x <= 0x118`, false otherwise.
+- Production integration is in `src/entity_unk_08038740.cc` with linker sections `.text.entity39134_nearest` and `.text.entity391c0_area`; assembly was split at the matching retail seams.
+- Full production gate passes: `make -B -j4 compare` -> **`fomt.gba: OK`**, retail SHA1 unchanged.
+- Regenerated inventory/progress: **69,880 / 940,036 = 7.4338% code**, **870,156 asm bytes** remain; **2,354 unresolved linked asm functions**; inferred ranges **868,992 / 870,156 = 99.8662%**; unattributed asm **1,164 bytes**. Data/assets remain **75,334 / 6,777,404 = 1.1115%**; meaningful ROM is **145,610 / 7,717,440 = 1.8868%**; free tail remains **671,168 bytes**.
+- **Exact next action on Continue:** harvest the adjacent trivial `func_080391FC` (identity/no-op body) and `func_08039200` (returns zero) if they scratch-match naturally, then reconstruct `func_08039204` (about 0x108) using exact `func_080391C0` as a local source anchor. Do not resume parked 0x08038820/0x08038EE0 tuning.
 
 ## SUPERSEDED CHECKPOINT - location-bound actor island behavior-complete; move into rank-11 entity region - October 6, 2026
 

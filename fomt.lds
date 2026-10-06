@@ -383,6 +383,10 @@ SECTIONS
         asm/code_entities_08034CEC.o(.text.after_entity38740_eb8);
         src/entity_unk_08038740.o(.text.entity38740_ctrl_390d0);
         asm/code_entities_08034CEC.o(.text.after_entity38740_390d0);
+        src/entity_unk_08038740.o(.text.entity39134_nearest);
+        asm/code_entities_08034CEC.o(.text.after_entity39134);
+        src/entity_unk_08038740.o(.text.entity391c0_area);
+        asm/code_entities_08034CEC.o(.text.after_entity391c0);
 
         asm/code_0803A8A4.o(.text);
         src/character_schedule.o(.text);

@@ -2,26 +2,26 @@
 
 ## Current NPC/entity family frontier - October 6, 2026
 
-The throughput strategy continues to produce exact family passes. The latest production-exact controller integration is `ef1c1d4`; documentation was refreshed at `0f2babe`, both on `Live-temp`. The adjacent `vtable_unk_080E7380` entity/controller family owns **316 exact retail bytes** in `src/entity_unk_08038740.cc`. Controller constructor `0x08038820` and +0x10 collection builder `0x08038EE0` are now behavior-complete private research but parked on compiler/register-lifetime codegen. Retail SHA1 remains unchanged.
+The throughput strategy continues to produce exact family passes. The current working checkpoint adds **200 exact retail range bytes** from `func_08039134` and `func_080391C0` on top of pushed `Live-temp` checkpoint `bb503dd`; the full ROM remains `fomt.gba: OK`. The adjacent Entity38740/controller region now has exact source through the nearest-entity selector and coordinate-area predicate, while `0x08038820` and `0x08038EE0` remain behavior-complete parked compiler/register-lifetime islands. Retail SHA1 remains unchanged.
 
 ## Current throughput inventory - October 6, 2026
 
-`tools/ches/build_decomp_inventory.py` currently reports **2,356 linked assembly functions / 870,356 asm code bytes**, with inferred function ranges covering **869,192 bytes = 99.8663%** and **1,164 unattributed asm bytes**. `func_08038EE0` has now been bounded at best **0x1EC / 127** against retail 0x1F0 after its full 0x14C collection semantics were recovered; the next structural target is `func_08039134` (0x8C, four callers). Keep `0x08038820` and `0x08038EE0` parked unless new type/compiler evidence appears.
+`tools/ches/build_decomp_inventory.py` now reports **2,354 linked assembly functions / 870,156 asm code bytes**, with inferred function ranges covering **868,992 bytes = 99.8662%** and **1,164 unattributed asm bytes**. `func_08039134` and `func_080391C0` are exact production source. Continue through the adjacent trivial `0x080391FC` / `0x08039200` helpers, then attack `func_08039204` using exact `func_080391C0` as the local anchor. Keep `0x08038820` and `0x08038EE0` parked unless new evidence appears.
 
 ## Current project status
 
 - `make progress` tracks reconstruction across code and non-code ROM bytes instead of reporting only executable code.
-- Current **code reconstruction** is **69,680 / 940,036 = 7.4125%**.
+- Current **code reconstruction** is **69,880 / 940,036 = 7.4338%**.
 - Current **data/assets reconstruction** is **75,334 / 6,777,404 = 1.1115%**:
   - 31,110 bytes are linked typed/source non-code data;
   - 44,224 bytes are editable generated packed-sprite graphics/palettes;
   - the generated packed-sprite total is 33,664 graphics bytes + 10,560 palette bytes;
   - 396 mixed source-owned `.rom_header` bytes count only toward overall reconstruction.
-- Current **overall meaningful-ROM reconstruction** is **145,410 / 7,717,440 = 1.8842%**. Final ROM padding is excluded from this denominator.
+- Current **overall meaningful-ROM reconstruction** is **145,610 / 7,717,440 = 1.8868%**. Final ROM padding is excluded from this denominator.
 - PRET-style ROM-space reporting remains **671,168 bytes = 655.44 KiB = 8.0009% contiguous tail free space**.
 - Asset/data progress is conservative: an opaque `.incbin` does not count merely because it was identified or extracted; editable project-side source must regenerate the retail bytes exactly.
 - Progress implementation: `tools/scripts/calcprogress.py`, `tools/progress_manifest.json`, and `docs/ASSET_DECOMPILATION.md`.
-- The current retail priority is **whole-game throughput by coherent TU/type/similarity family**. `Entity38740` plus exact controller helpers account for **316 exact bytes**. `func_08038820` is parked at exact-size 0x108/183; `func_08038EE0` is behavior-complete at best 0x1EC/127 versus retail 0x1F0. Continue with `func_08039134` (0x8C, four callers), using its callers to recover the natural argument/type contract before scratch matching.
+- The current retail priority is **whole-game throughput by coherent TU/type/similarity family**. `func_08039134` and `func_080391C0` are now exact and establish the local selector/coordinate contract. Harvest adjacent `0x080391FC` and `0x08039200` if they are natural exact wins, then reconstruct `func_08039204`. `0x08038820` remains parked at exact-size 0x108/183 and `0x08038EE0` at best 0x1EC/127.
 - Raw binary relocation does not count as progress. Retail SHA1 remains the final authority.
 
 

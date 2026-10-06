@@ -1,14 +1,16 @@
 # Ches Session Status — FOMT decomp
 
-## CURRENT SNAPSHOT - 7.4125%; 0x08038EE0 bounded, pivoting to 0x08039134 - October 6, 2026
+## CURRENT SNAPSHOT - 7.4338%; nearest-selector and area predicate exact - October 6, 2026
 
-- Active branch `Live-temp`; research started from pushed docs checkpoint `0f2babe`. No new production-exact bytes in this pass.
-- `func_08038EE0` is behavior-complete: allocates a 0x14C collection containing count + five 0x40-byte DiscardEffect slots + five state bytes, builds resource IDs [2,1,1,0,0], and replaces controller +0x10 with virtual destruction of the old entries.
-- Best candidate `candidate-controller-ee0-v2.cc`: **0x1F0 retail / 0x1EC candidate / 127 linked-byte diffs**. Main remaining cause is long-lived register allocation, not missing semantics.
-- Rejected/closed: shared-block v1 0x140/441; v2tail 0x1EC/129; v3 0x1EC/142; inline collection ctor v4b 0x124/461; project `FixedVec` semantics do not match append behavior.
-- `func_08038820` remains parked independently at exact-size 0x108/183.
-- Progress unchanged: **69,680 / 940,036 = 7.4125% code**, **870,356 asm bytes**, **75,334 data/assets**, **145,410 meaningful-ROM bytes = 1.8842%**, **671,168 bytes free**.
-- Next: `func_08039134` (0x8C, four callers). Recover caller contract and scratch-match it before expanding farther in the controller family.
+- Active branch `Live-temp`; continued from pushed checkpoint `bb503dd`.
+- Added **200 exact retail range bytes** in production:
+  - `func_08039134`: exact 0x8A executable body + 2-byte retail alignment; nearest active same-map entity selector across IDs 0x2E..0x45, sentinel 0x64.
+  - `func_080391C0`: exact 0x3A executable body + 2-byte retail alignment; two-region coordinate predicate.
+- Full ROM remains exact: `make -B -j4 compare` -> **`fomt.gba: OK`**.
+- Progress: **69,880 / 940,036 = 7.4338% code**, **870,156 asm bytes**, **75,334 data/assets**, **145,610 meaningful-ROM bytes = 1.8868%**, **671,168 bytes free**.
+- Inventory: **2,354 linked asm functions**, **868,992 / 870,156 inferred range bytes = 99.8662%**, **1,164 unattributed bytes**.
+- Parked frontiers remain `0x08038820` at 0x108/183 and `0x08038EE0` at 0x1EC/127.
+- Next: exact-check tiny `0x080391FC` and `0x08039200`, then move directly into `func_08039204` using exact `func_080391C0` as the local anchor.
 
 ## SUPERSEDED SNAPSHOT - 7.3261%; location-bound actor island bounded - October 6, 2026
 
