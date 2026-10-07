@@ -6948,58 +6948,7 @@ func_0803A394: @ 0x0803A394
     .align 2, 0
 .L0803A794: .4byte vtable_unk_080E759C
 
-    thumb_func_start func_0803A798
-func_0803A798: @ 0x0803A798
-    push {r4, r5, r6, lr}
-    mov r6, r8
-    push {r6}
-    sub sp, #8
-    adds r6, r0, #0
-    mov r8, r1
-    movs r0, #0x20
-    bl __builtin_new
-    adds r5, r0, #0
-    mov r1, sp
-    ldrh r2, [r1]
-    ldr r3, .L0803A7FC @ =0xFFFFFC00
-    adds r0, r3, #0
-    ands r0, r2
-    strh r0, [r1]
-    ldrb r4, [r1, #1]
-    movs r2, #3
-    adds r0, r2, #0
-    ands r0, r4
-    strb r0, [r1, #1]
-    ldrh r4, [r1, #2]
-    adds r0, r3, #0
-    ands r0, r4
-    strh r0, [r1, #2]
-    ldrb r0, [r1, #3]
-    ands r2, r0
-    strb r2, [r1, #3]
-    ldrh r0, [r1, #4]
-    ands r3, r0
-    strh r3, [r1, #4]
-    adds r0, r5, #0
-    adds r1, r6, #0
-    mov r2, sp
-    bl __7AEntityP10GameObjectRC8Location
-    ldr r0, .L0803A800 @ =vtable_unk_080E7568
-    str r0, [r5, #0x14]
-    mov r0, r8
-    str r0, [r5, #0x18]
-    movs r0, #1
-    strb r0, [r5, #0x1c]
-    adds r0, r5, #0
-    add sp, #8
-    pop {r3}
-    mov r8, r3
-    pop {r4, r5, r6}
-    pop {r1}
-    bx r1
-    .align 2, 0
-.L0803A7FC: .4byte 0xFFFFFC00
-.L0803A800: .4byte vtable_unk_080E7568
+    .section .text.after_entity3a798, "ax", %progbits
 .L0803A804:
     .byte 0x30, 0x30, 0x10, 0x21, 0x40, 0x5E, 0x70, 0x47, 0x30, 0x30, 0x01, 0x82
     .byte 0x70, 0x47, 0x00, 0x00, 0x00, 0xB5, 0x30, 0x30, 0x24, 0xF0, 0x3C, 0xF8, 0x02, 0xBC, 0x08, 0x47

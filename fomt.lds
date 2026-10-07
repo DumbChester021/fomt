@@ -427,6 +427,8 @@ SECTIONS
         src/entity_unk_08038740.o(.text.entity3a334_cosine);
         src/entity_unk_08038740.o(.text.entity3a350_sound);
         asm/code_entities_08034CEC.o(.text.after_entity3a350);
+        src/entity_unk_08038740.o(.text.entity3a798_factory);
+        asm/code_entities_08034CEC.o(.text.after_entity3a798);
 
         asm/code_0803A8A4.o(.text);
         src/character_schedule.o(.text);

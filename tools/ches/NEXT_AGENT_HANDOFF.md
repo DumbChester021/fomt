@@ -1,5 +1,29 @@
 # Current FoMT continuation - October 7, 2026
 
+## CURRENT TURN CHECKPOINT - 3A394 parked; 3A798 exact production source - October 7, 2026
+
+- Published the prior exact `func_0803A350` promotion on `main` as **`10bcf3c5038d67f92961d3e77b65c5739d99a726`** (`decompile entity sound player selector`), push execution `sh_muxt9u3v_16d13bb2`. Local `HEAD` and `ches/main` were verified equal and clean before new work.
+- Investigated adjacent `func_0803A394`, retail `0x0803A394..0x0803A798` (**0x404 / 1,028 bytes**), as one coherent weighted entity-factory family rather than transliterating assembly. Its single caller in `asm/code_linkonce.s` supplies the output/container, `GameObject *`, category 0-3, and an alternate-table flag.
+- The selection model is behavior-complete: normal table `gUnk_080F18D2` is 10 rows x 5 bytes; alternate `gUnk_080F1904` uses 4 rows x 5 bytes. Each row contains four category weights plus a spawn-count byte. The routine samples `func_080AB788(0x63)`, chooses a weighted row, maps alternate nonzero selections by +9, randomizes spawn count, generates map x/y, and constructs one of twelve sibling entity types.
+- The full 12-case constructor family is independently corroborated by `func_080DCFE0` in `asm/code_linkonce.s`, including resource IDs, vtables, common 0x64 movement layout, the 0x6C case with extra word at +0x68, the 0x88 case, and the same three-slot output container.
+- Bounded `3A394` candidates:
+  - V1 `candidate-3a394-v1.cc`: **0x3E8 / 1,000 bytes, 817 differing linked bytes**. Broad control/jump-table/constructor merging is viable.
+  - Retail-style table default/override shape `candidate-3a394-table.cc`: **0x3E8 / 809**, best byte score.
+  - Correct +0x64 gap/+0x68 extra layout: same **0x3E8 / 817**, therefore semantically necessary but not allocator-controlling.
+  - Raw 5-byte row indexing: **0x3DC / 942**, regression.
+  - Packed row type: **0x3EC / 864**; packed+safe combo **0x3EC / 856**, regressions.
+  - Full-width x/y source shape correctly reproduces retail's store-halfword then signed-reload semantics, but destroys GCC 2.9 common-tail merging and balloons the combined V2 to **0x50C / 1,292 bytes, 1,210 differing bytes**.
+  - Nested count+three-slot container on top of the best table variant compiles **byte-for-byte identical** to the best **0x3E8 / 809** result.
+- Therefore **`func_0803A394` is behavior/layout-complete and PARKED**. Remaining mismatch is original abstraction/lifetime/codegen, not unknown semantics. Do not reopen without genuinely new original class/constructor or compiler evidence. Do not register-force or syntax-roulette it.
+- Moved to adjacent `func_0803A798`, retail `0x0803A798..0x0803A804` (**0x6C / 108 bytes**). The existing `Entity38740` constructor at `0x08038740` proved the stack bitfield sequence is exactly `Location(0,0,0)` here, analogous to its own `Location(8,0,0)`.
+- `3A798` V1 modeled a 0x20 derived `AEntity`: exact size **0x6C**, only **11 differing bytes**. All 11 were constructor-order differences because a manual vtable write occurred after member initialization.
+- V2 let GCC perform genuine derived-class vptr initialization. The isolated `func_0803A798` symbol is exactly 0x6C and, when its generated vtable symbol is linked to proven retail `vtable_unk_080E7568`, compare execution **`sh_muxts5ct_66c98e16`** is **0x6C / 0 differing bytes**. Extra emitted class metadata made whole-object comparison larger, so it was not used for production.
+- V3 expresses the same exact ordering without duplicate metadata: allocate a raw 0x20 object, construct the existing `AEntity` base with `Location(0,0,0)`, then write retail-owned `vtable_unk_080E7568`, state pointer +0x18, and active byte +0x1C. Compare execution **`sh_muxtsuf3_989d2533`**: **expected 0x6C, actual 0x6C, differing linked bytes 0**.
+- Integrated V3 into `src/entity_unk_08038740.cc` as section `.text.entity3a798_factory`; `asm/code_entities_08034CEC.s` now resumes at `0x0803A804` in `.text.after_entity3a798`; `fomt.lds` orders the source section between the two assembly fragments.
+- Production verification: `git diff --check` execution **`sh_muxtuhbk_93a08581`** PASS. Full rebuild execution **`sh_muxtuohk_715e35ea`** -> **`fomt.gba: OK`**, preserving retail SHA1.
+- This promotion adds **108 exact source bytes**. Production code progress is now **71,788 / 940,036 = 7.6368%**, with **868,248 assembly code bytes** remaining before inventory regeneration.
+- **Exact next action:** if this 3A798 promotion is not yet committed/pushed, publish it first under the standing authorization. Then identify exact function boundaries beginning at `0x0803A804` from retail/vtable references before choosing the next same-TU target. Keep `39F90`, `3A180`, and `3A394` parked.
+
 ## CURRENT TURN CHECKPOINT - 3A180 parked; 3A350 exact production source - October 7, 2026
 
 - Continued from clean published `main` checkpoint `275c938688c427a564ea44d4c8fb5104aea866bf` with the saved V2 research handoff intact.

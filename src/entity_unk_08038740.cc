@@ -221,6 +221,11 @@ struct Entity3A350Owner
     GameObject * owner_00;
 };
 
+struct Entity3A798Raw
+{
+    u8 bytes[0x20];
+};
+
 struct Entity38740 : public AEntity
 {
     Entity38740(GameObject *, void *) SECTION(".text.entity38740_ctor");
@@ -276,6 +281,10 @@ EC i16 func_0803A334(void *, i16) SECTION(".text.entity3a334_cosine");
 EC bool IsSoundPlayerBusy3A350(SoundPlayer3A350 *) asm("func_08008CD0");
 EC void StartSongOnPlayer3A350(SoundPlayer3A350 *, u16) asm("func_08008B6C");
 EC void func_0803A350(Entity3A350Owner *, u32) SECTION(".text.entity3a350_sound");
+EC void * vtable_unk_080E7568[];
+EC void AEntityCtor3A798(AEntity *, GameObject *, Location const &)
+    asm("__7AEntityP10GameObjectRC8Location");
+EC Entity3A798Raw * func_0803A798(GameObject *, void *) SECTION(".text.entity3a798_factory");
 EC void func_08039DA8(EntityStrategyOwnerView *) SECTION(".text.entity39da8_setup");
 EC void func_08039E18(EntityStrategyOwnerView *) SECTION(".text.entity39e18_setup");
 EC void * vtable_unk_080E76BC[];
@@ -516,6 +525,23 @@ void func_0803A350(Entity3A350Owner * self, u32 song_id)
 
 play_sound:
     StartSongOnPlayer3A350(selected_player, song_id);
+}
+
+Entity3A798Raw * func_0803A798(GameObject * game_object, void * state)
+{
+    Entity3A798Raw * result = new Entity3A798Raw;
+
+    Location location(0, 0, 0);
+    AEntityCtor3A798(
+        reinterpret_cast<AEntity *>(result),
+        game_object,
+        location);
+
+    *reinterpret_cast<void **>(result->bytes + 0x14) = vtable_unk_080E7568;
+    *reinterpret_cast<void **>(result->bytes + 0x18) = state;
+    result->bytes[0x1C] = 1;
+
+    return result;
 }
 
 u32 func_08039134(
