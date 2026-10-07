@@ -19,6 +19,7 @@ or source-shape family. Older chronological next-action text is historical.
 
 - Retail branch: **`main`**, tracking **`ches/main`**.
 - Latest exact code checkpoint: **45dfb3f06eb800a152e967daa3f1a2a0efd2a561** (`decompile logical map resource resolver`).
+- Published map checkpoint/research base: **70a1d4bbb69120e1353b5946537e0fe7315fcf60**. This documentation wrap changes no build inputs; `git log -1` identifies its commit.
 - Custom behavior remains in the separate `custom-game` worktree/branch.
 - Retail ROM SHA1: **`a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`**.
 - Full gate: `make -B -j4 compare` -> **`fomt.gba: OK`**.
@@ -57,16 +58,26 @@ families. The original symbol and renderer caller remain byte-exact.
 Earlier exact Entity38740-family helpers through `3A8A0`, including `3A798`,
 `3A350` and `3A320/334`, remain complete. Do not replay their matching/integration.
 
-## Exact next action
+## Saved research and next action
 
-Recover the coherent **`0x0803AB30..0x0803AEA0` resource-owner family** in
-`asm/code_0803A8A4.s`. Its constructor, destructor, update and entity forwarding
-helper total 880 bounded assembly bytes. The current handoff and saved
-`next-family-selection.json` own exact targets and source/type anchors.
+Research stopped at the user's request for a documentation wrap. The resource
+owners still live entirely in `asm/code_0803A8A4.s`; exact production totals
+above have not increased.
 
-Recover provider/descriptor contracts first, then scratch-prove the bounded
-`0803AC78` destructor as an ownership/ABI oracle. Reuse the proven model across
-siblings; integrate only exact source and publish each verified checkpoint.
+Four methods have linked target proofs in scratch: `0803AC78` destructor
+**96/0**, `0803ACD8` update **382/0**, `0803AE58` forwarding **72/0**, and
+sibling `0803B0A8` destructor **128/0**. The sibling update `0803B128` is
+**382/2**, and constructor `0803AB30` is parked at **316/217** versus 328
+expected. These results are not full-ROM integration proofs.
+
+On resumption, extract the four exact methods using unchanged production
+headers, recheck every final target, then integrate under the isolated and
+production full-ROM gates. Do not restart destructor discovery or broad
+constructor variants. The exact handoff owns commands, symbols and alignment
+bounds; [docs/RESOURCE_OWNERS.md](docs/RESOURCE_OWNERS.md) owns recovered layouts.
+Scratch candidates, 15 result records and artifact hashes are preserved in
+`tools/ches/checkpoints/resource-owner-0803AB30-2026-10-07/`. This directory is
+ignored and local; a fresh clone does not contain those artifacts.
 
 ## Parked work
 

@@ -39,7 +39,7 @@ Authoritative live state is in `START_HERE.md`.
 - The neutral location-bound actor hierarchy and thrown Ball family are bounded at documented scopes.
 - The adjacent Entity38740 controller/strategy neighborhood now owns numerous exact helpers, including nearest-entity selection, region testing, strategy selectors, mode-4 setup, table/mask helpers, the `UnknownEntityThing` factory, and the exact `39F50` destructor.
 - `func_08039E98` is behavior-complete and exact-size in scratch at 0xB8 / 109 but parked on register allocation.
-- The Entity398A4/Entity38740 neighborhood now includes exact `398A4/399C0`, `39A60`, `3A144`, `3A320/334`, `3A350`, `3A798`, and the seven-function helper tail `3A804..3A8A0`. `39E98`, `39F90`, `3A180`, and `3A394` are behavior-complete/bounded parked codegen islands. The 652-byte logical map resolver is now exact source in `src/map_resource.cc`, with the shared interface in `include/map_data.hh`. Continue at `0x0803AB30` in `asm/code_0803A8A4.s`; recover its three-record resource-owner family and provider contracts before candidates.
+- The Entity398A4/Entity38740 neighborhood now includes exact `398A4/399C0`, `39A60`, `3A144`, `3A320/334`, `3A350`, `3A798`, and the seven-function helper tail `3A804..3A8A0`. `39E98`, `39F90`, `3A180`, and `3A394` are behavior-complete/bounded parked codegen islands. The 652-byte logical map resolver is now exact source in `src/map_resource.cc`, with the shared interface in `include/map_data.hh`. The resource-owner families in `asm/code_0803A8A4.s` remain assembly; four methods are target-exact in scratch and await final shared-header proof/full-ROM integration. `docs/RESOURCE_OWNERS.md` records recovered provider, descriptor and owner layouts; the handoff records remaining constructor/update mismatches.
 - The packed bank remains **416 / 493 semantically owned animations**, with the remaining 77 IDs as a parked by-product lane.
 
 Recent readable source in this region includes:
@@ -88,7 +88,7 @@ under `assets/item_icons/`. `tools/packed_sprite_bank.py` rebuilds the
 0x30080-byte bank exactly. The cooking UI owns `gCookingUtensilIconIds`, mapping
 Knife=265, Frying Pan=204, Pot=346, Mixer=64, Whisk=472, Rolling Pin=313,
 Oven=327, and Seasoning Set=400. `func_08092A70` remains parked at `0x260 / 3`.
-That item/tool lane remains behind the whole-game throughput queue. The current retail continuation starts at `0x0803AB30` in `asm/code_0803A8A4.s`, as documented in `START_HERE.md` and the canonical handoff. Product-count growth remains deferred because `ShippingBin::product_stats[NUM_PRODUCTS]` is embedded in persistent state.
+That item/tool lane remains behind the whole-game throughput queue. The saved retail continuation is the four target-exact resource-owner methods in `asm/code_0803A8A4.s`, pending final source proof and integration as documented in `START_HERE.md` and the canonical handoff. Product-count growth remains deferred because `ShippingBin::product_stats[NUM_PRODUCTS]` is embedded in persistent state.
 
 Legacy loader `func_08011650` remains paused. Crop/field semantics,
 dialogue/event registration, and character portrait/display assets remain later
@@ -99,6 +99,7 @@ layouts plus occupied entity selector 43 remain constraints.
 
 Tracked subsystem/domain references currently include:
 - `docs/MAP_DATA.md`: logical/physical map namespaces, seasonal and building variants, mine-floor grouping and matching resolver interface.
+- `docs/RESOURCE_OWNERS.md`: recovered rendering-provider contracts, frame descriptors, 0xA0/0x46C owner layouts and assembly/source integration boundaries.
 - `docs/KEY_INPUT.md`: key-input record and matching input helper architecture.
 - `docs/SAVE_FORMAT.md`: retail save-slot layout, checksum boundary, and extension-space findings.
 - `docs/CHARACTERS.md`: matching name/birthday/NPC interfaces, decoded roster, persistent offsets, schedules, entity/effect lifecycle, and fixed consumers.

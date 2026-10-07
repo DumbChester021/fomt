@@ -69,10 +69,14 @@ Immediately preceding exact promotions include `func_0803A798`, `func_0803A350`,
 
 ## Current frontier
 
-Continue with **`0x0803AB30..0x0803AEA0`** in `asm/code_0803A8A4.s`: four
-resource-owner constructor/destructor/update/forwarding functions, 880 bounded
-bytes, still assembly. Recover provider and descriptor contracts before a
-natural candidate; use existing exact resource and transfer source as oracles.
+Research stopped for the requested documentation wrap. Resource owners in
+`asm/code_0803A8A4.s` remain assembly, with four target-exact scratch proofs:
+**AC78 96/0, ACD8 382/0, AE58 72/0, B0A8 128/0**. These add no production
+coverage. Sibling update B128 is **382/2**; constructor AB30 is parked at
+**316/217** versus 328 expected. Next extract/reprove the four exact methods
+with unchanged production headers before isolated and production full-ROM
+integration. The canonical handoff holds artifacts and bounds;
+[RESOURCE_OWNERS.md](RESOURCE_OWNERS.md) holds stable layouts.
 
 `func_0803A180`, `func_0803A394`, `func_08039F90`, `func_08039E98`, and the other generator-marked parked functions should not be reopened without genuinely new structural evidence.
 

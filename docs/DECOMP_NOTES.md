@@ -31,7 +31,7 @@ Current retail state:
 - Packed-bank ownership remains **416 / 493 animations: 405 / 450 simple and 11 / 43 multi-frame**. The remaining 77 are a parked by-product lane.
 - `func_08092A70`, `func_080455D8`, `func_080CAC7C` / `func_080CAD18`, `func_08092940`, and the documented Entity38740/Ball codegen islands remain parked at their recorded frontiers.
 - Authoritative compiler remains the tracked 13-rule compatibility path, patch SHA256 `aa7cc6df0efbd066e9c33deb887731e1d0210babfaeba4c9b64f3e8bc35c4256`.
-- The Entity38740/Entity398A4 neighborhood now owns exact source through `func_0803A8A0`, including `398A4`, `399C0`, `39A60`, `39DA8`, `39E18`, `39A30`, `39F50`, `3A144`, `3A320/334`, `3A350`, `3A798`, and the seven-helper `3A804..3A8A0` tail. `39E98`, `39F90`, `3A180`, and `3A394` are behavior-complete/bounded parked codegen islands. The logical map resolver at `0x0803A8A4` is now 652 bytes of exact source as `GetMapResourceId`; `docs/MAP_DATA.md` owns its stable logical/physical namespace and variant rules. Continue with the resource-owner family starting at `0x0803AB30` in `asm/code_0803A8A4.s`, recovering real provider/descriptor types before candidates.
+- The Entity38740/Entity398A4 neighborhood now owns exact source through `func_0803A8A0`, including `398A4`, `399C0`, `39A60`, `39DA8`, `39E18`, `39A30`, `39F50`, `3A144`, `3A320/334`, `3A350`, `3A798`, and the seven-helper `3A804..3A8A0` tail. `39E98`, `39F90`, `3A180`, and `3A394` are behavior-complete/bounded parked codegen islands. The logical map resolver at `0x0803A8A4` is now 652 bytes of exact source as `GetMapResourceId`; `docs/MAP_DATA.md` owns its stable logical/physical namespace and variant rules. Resource-owner provider/descriptor and 0xA0/0x46C owner layouts are now recovered in `docs/RESOURCE_OWNERS.md`. Four methods are target-exact in scratch (AC78, ACD8, AE58, B0A8), all still assembly. Research stopped for a documentation wrap; next reprove their final shared-header source and integrate. AB30 constructor source-shape work is parked at 316/217 versus 328; B128 update remains 382/2, with operand-commutation spelling closed.
 - The opening-farm savestate/watchpoint work remains seed infrastructure for later scripted runtime coverage, not the primary queue.
 
 Naming rule:
@@ -41,6 +41,8 @@ Recent reusable lessons:
 - search for existing project types before duplicating a layout;
 - declaration scope and value lifetime can control old-GCC allocation;
 - pointer provenance/expression tree can change literal placement;
+- independent frame/handle expressions and the birth order of a graphics-data pointer and size zero can preserve retail register lifetimes without forcing registers;
+- distinguish true function bodies from following alignment bytes, while preserving both in the full-ROM gate;
 - an inline client getter can preserve the interior-object pointer/value relationship while correcting a previously incomplete call ABI;
 - preserving a small inline initializer can be required even when flattened assignments are semantically identical;
 - shared object layout can often be introduced through inheritance without changing bytes when the original source shape is preserved;

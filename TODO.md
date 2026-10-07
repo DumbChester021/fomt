@@ -4,11 +4,11 @@ Current authoritative dashboard: `START_HERE.md`. Exact continuation: `tools/che
 
 ## Active retail work
 
-- Continue at **`0x0803AB30`** in `asm/code_0803A8A4.s`.
-- Map coherent function/TU/type/vtable families before writing source.
-- Use exact neighboring Entity38740-family source and existing shared types as structural oracles.
-- Scratch-prove one representative, then propagate only evidence-backed shapes across siblings.
-- Integrate exact-only, run the full retail gate, regenerate inventory/queue, update affected docs, and publish the checkpoint.
+- Research is stopped after the requested documentation wrap; resume from the saved resource-owner checkpoint when work continues.
+- Extract the four target-exact methods `0803AC78`, `0803ACD8`, `0803AE58`, and `0803B0A8` with unchanged production headers; reprove their final combined source before integration.
+- Preserve the sibling update `0803B128` at **382/2**; V8's commuted addition produces the same code as V7. Seek real source-boundary evidence or park it instead of spelling variants.
+- Keep constructor `0803AB30` research parked at **316/217** versus 328 expected; `0803AEA0` has no new constructor candidate.
+- Integrate exact-only, run isolated and production full-ROM gates, regenerate inventory/queue after ownership changes, update affected docs, and publish the checkpoint.
 
 ## Do not reopen without new evidence
 
