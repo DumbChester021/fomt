@@ -1,6 +1,6 @@
 # Current FoMT continuation - October 6, 2026
 
-## CURRENT CHECKPOINT - 0x0803A144 production-exact; next target 0x08039F90
+## CURRENT CHECKPOINT - 0x0803A144 production-exact; 39F90 behavior-complete scratch frontier
 
 - Active public retail branch is now **`main`**, local branch tracks `ches/main`, and the former `Live-temp` branch has been deleted both remotely and locally after containment proof. Historical `ches-dev` remains provenance only; custom behavior remains on the separate custom-game worktree/branch.
 - Migration commit: `d34efc5adaad56ce92a41bb354d1882847355438` (`consolidate public decomp documentation on main`). Push `sh_muwzf02b_fea9156d` fast-forwarded `ches/main`; independent verification `sh_muwzf82g_d1c9e8fc` showed remote `main` at the exact same hash.
@@ -23,19 +23,30 @@
 
 ### Exact next action
 
-`func_0803A144`, retail `0x0803A144..0x0803A180` (**0x3C / 60 bytes**), is now production source-owned and exact.
+Production remains exact at published commit `3746b6acbe90b456929e5cbd6235d350acc38b02`: **71,564 / 940,036 = 7.6129% code**, retail SHA1 unchanged. Current work is scratch/research only; no production source changed.
 
-Proof:
-- scratch v3 compare `sh_muxc0kl1_d5ee2156`: **0x3C / 0 differing linked bytes**;
-- production `make -B -j4 compare` `sh_muxc322u_76a0188c`: **`fomt.gba: OK`**;
-- SHA `sh_muxc3kr8_1dd225ea`: `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`;
-- symbol seam `sh_muxc3mx9_fbd2f815`: `func_0803A144` at 0x0803A144 size 0x3C, `func_0803A180` at 0x0803A180;
-- progress `sh_muxc3ohw_4734845e`: **71,564 / 940,036 = 7.6129%**;
-- inventory `sh_muxc3u84_fda36dc7`: **2,338** linked asm functions, **868,472** asm bytes, **867,308** inferred-range bytes.
+Target `func_08039F90`, retail `0x08039F90..0x0803A144` (**0x1B4 / 436 bytes**), is now behavior-mapped and typed end to end.
 
-Exact source shape: treat r2 as signed i8; negative chooses `func_080AB788(3)`; preserve a local `u16 * table = gUnk_080F16C2` for the first lookup while the second lookup remains expressed from the global table. That natural source ordering reproduces retail scheduling exactly without register forcing.
+Recovered semantics/types:
+- shared 8-argument render helper used by at least twelve linkonce wrappers;
+- r0 owner matches the `39E98` family: primary `EntityEffect` at +0x08 and optional child pointer at +0x48;
+- r1 is a polymorphic coordinate source with virtual x/y getters at vtable +0x18/+0x1C;
+- primary path creates a 0x20-byte `SpriteRenderData` temporary, calls ARM/IWRAM `func_030004DC`, then follows the exact existing `EntityEffect` graphics/chunks/active lifecycle;
+- optional child path uses the child inline 0x20-byte render-data block at +0x28 and active byte +0x48;
+- primary y subtracts abs(vertical_offset); child uses unadjusted screen y and runs only when original vertical_offset >= 0;
+- 2-bit draw attribute is replicated with `value | value<<2 | value<<4 | value<<6`, and retail recomputes it independently for the child path.
 
-**Next target:** `func_08039F90`, retail `0x08039F90..0x0803A144` (**0x1B4**), priority 138.25. Start fresh from the retail body and current regional types. No reliable `39F90` scratch candidate was established in this turn. Keep parked `39E98` closed unless new type/compiler evidence appears.
+Saved probes:
+- `candidate-39f90-v1.cc`: compare `sh_muxcppdg_9f356e3f` -> **expected 0x1B4, actual 0x186, 401 differing linked bytes**. Behavior complete, but frame only 0x40 vs retail 0x48.
+- `candidate-39f90-v2.cc`: compare `sh_muxcrqxm_c645be7e` -> **expected 0x1B4, actual 0x1A4, 410 differing linked bytes**. v2 restores the natural 8-byte local pair `{primary_queue, resources}` at stack +0x34 and independently rebuilds child draw attributes. Frame improves to **0x44**, leaving only a **4-byte frame deficit** and **0x10 code-size deficit**.
+
+Strong next source-shape clue:
+- retail has three consecutive i32 locals at **sp+0x3C = screen_x, sp+0x40 = screen_y, sp+0x44 = depth**;
+- v2 spills x/y but keeps depth live in `sl`, which also prevents retail from using `sl` for the owner pointer;
+- this strongly suggests an original/natural 12-byte coordinate value object or equivalent grouped local lifetime.
+
+**Exact next action on Continue:** make v3 from v2 using a natural
+`RenderCoords39F90 { i32 x; i32 y; i32 depth; }` local initialized from the coordinate-source virtuals and `0x8000-y`. Use `coords.x/y/depth` throughout so the compiler has a reason to materialize the contiguous 12-byte stack block at +0x3C/+0x40/+0x44. Keep the existing 8-byte `RenderPair39F90` local immediately before it. Recompare the entire 0x1B4 immediately. Do not register-force. Keep `39E98` and other parked allocation islands closed.
 
 For fresh-conversation automation, do **not** resend a handoff merely because a browser/send command reports an error or omits a reply. Inspect the actual target tab first and confirm whether the user message appeared or a turn started. The previous failure mode produced a real 54-tool-call turn despite a misleading return.
 
