@@ -6458,45 +6458,7 @@ func_0803A180: @ 0x0803A180
     pop {r1}
     bx r1
 
-    .section .text.after_entity3a334, "ax", %progbits
-    thumb_func_start func_0803A350
-func_0803A350: @ 0x0803A350
-    push {r4, r5, r6, lr}
-    adds r6, r1, #0
-    ldr r0, [r0]
-    ldr r1, [r0]
-    movs r2, #0xa6
-    lsls r2, r2, #1
-    adds r1, r1, r2
-    ldr r1, [r1]
-    bl _call_via_r1
-    ldr r4, [r0]
-    ldr r5, [r0, #4]
-    cmp r4, r5
-    beq .L0803A382
-.L0803A36C:
-    ldr r0, [r4]
-    bl func_08008CD0
-    lsls r0, r0, #0x18
-    cmp r0, #0
-    bne .L0803A37C
-    ldr r0, [r4]
-    b .L0803A386
-.L0803A37C:
-    adds r4, #4
-    cmp r4, r5
-    bne .L0803A36C
-.L0803A382:
-    subs r0, r5, #4
-    ldr r0, [r0]
-.L0803A386:
-    lsls r1, r6, #0x10
-    lsrs r1, r1, #0x10
-    bl func_08008B6C
-    pop {r4, r5, r6}
-    pop {r0}
-    bx r0
-
+    .section .text.after_entity3a350, "ax", %progbits
     thumb_func_start func_0803A394
 func_0803A394: @ 0x0803A394
     push {r4, r5, r6, r7, lr}

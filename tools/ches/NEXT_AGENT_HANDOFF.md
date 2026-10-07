@@ -1,5 +1,18 @@
 # Current FoMT continuation - October 7, 2026
 
+## CURRENT TURN CHECKPOINT - 3A180 parked; 3A350 exact production source - October 7, 2026
+
+- Continued from clean published `main` checkpoint `275c938688c427a564ea44d4c8fb5104aea866bf` with the saved V2 research handoff intact.
+- `func_0803A180` is now **behavior-complete and PARKED** after the bounded natural V1-V4 family. V2 remains the best source: **0x19C / 412 bytes vs retail 0x1A0 / 416, 382 differing linked bytes**. The entire 4-byte size gap is explained by allocator ownership: retail keeps `q16_step -> r5` and the long-lived result seed in `r9`, adding `movs r0,#0; mov r9,r0` plus the extra `mov r2,r8` before the terrain virtual call; V2 instead keeps `q16_step -> r9` and result in `r6`.
+- Two final bounded probes did not move codegen: V3 changed the return/result type from `bool` to full-width `u32`; V4 introduced a natural local `step = q16_step`. Both generated **byte-for-byte identical** output to V2 (`0x19C / 382`). The compatibility compiler's allocation trace hook emitted no useful trace. Do not reopen `3A180` without genuinely new original-type/compiler evidence; no register forcing or syntax roulette.
+- Moved forward in the same entity TU to adjacent `func_0803A350`, retail `0x0803A350..0x0803A394` (**0x44 / 68 bytes**). Existing exact-source `src/game_object_discard.cc` supplied the structural oracle: the same `SoundPlayerList`, GameObject virtual +0x14C list accessor, `func_08008CD0` busy test, fallback to the last player, and `func_08008B6C` song start.
+- Scratch V1 recovered exact size **0x44** but had 51 differing linked bytes. The diff proved two source-shape details: the helper's second parameter is full-width and is truncated to `u16` only at the final sound call, and retail branches on the busy case so the free-player selection falls through.
+- Scratch `candidate-3a350-v2.cc` incorporated only those two evidence-backed changes. Compare execution `sh_muxt49u3_2c7b50a3`: **expected 0x44, actual 0x44, differing linked bytes 0**.
+- Integrated `func_0803A350` into `src/entity_unk_08038740.cc` under section `.text.entity3a350_sound`; split `asm/code_entities_08034CEC.s` so assembly now resumes at `func_0803A394` in `.text.after_entity3a350`; updated `fomt.lds` accordingly.
+- Production verification: `git diff --check` execution `sh_muxt65ny_5672f006` PASS. Full rebuild `sh_muxt6agk_2c5de5c4` -> **`fomt.gba: OK`**, preserving retail SHA1 via the repo compare gate. This promotes **68 additional exact source code bytes**. Production code progress is therefore **71,680 / 940,036 = 7.6253%**, with **868,356 assembly code bytes** remaining before inventory regeneration.
+- `func_08039F90` and `func_0803A180` are both parked compiler islands. Do not reopen either from raw queue score.
+- **Exact next action:** checkpoint/push this verified 3A350 promotion if not already published, then inspect `func_0803A394` as the next same-TU target. It is a much larger factory/random-selection routine; recover its table/constructor family from existing vtables and the already-proven 0x64 sibling layout, but keep exact-only production and prefer a coherent constructor-family batch over one-off syntax tuning.
+
 ## CURRENT CHECKPOINT - 3A180 model recovered; natural V1 next - October 7, 2026
 
 - Active branch is **main**, tracking `ches/main`. Latest published code/research checkpoint is **`295880a439b62cf1e25dad495dba40969798f9d9`** (`record 3a180 collision type recovery`). No production code has changed since that checkpoint; this final context-refresh pass only reconciles live documentation before a fresh-conversation handoff.

@@ -202,6 +202,25 @@ struct Entity39F50Owner
     void * vtable_4C;
 };
 
+struct SoundPlayer3A350;
+
+struct SoundPlayerList3A350
+{
+    SoundPlayer3A350 ** begin;
+    SoundPlayer3A350 ** end;
+};
+
+struct GameObjectVtable3A350
+{
+    STRUCT_PAD(0x000, 0x14C);
+    SoundPlayerList3A350 * (*get_object_list)(GameObject *);
+};
+
+struct Entity3A350Owner
+{
+    GameObject * owner_00;
+};
+
 struct Entity38740 : public AEntity
 {
     Entity38740(GameObject *, void *) SECTION(".text.entity38740_ctor");
@@ -254,6 +273,9 @@ EC void func_08039A60(Entity398A4 *, EntityUpdateContext *) SECTION(".text.entit
 EC u32 func_0803A144(void *, u16 *, i8) SECTION(".text.entity3a144_table");
 EC i16 func_0803A320(void *, i16) SECTION(".text.entity3a320_sine");
 EC i16 func_0803A334(void *, i16) SECTION(".text.entity3a334_cosine");
+EC bool IsSoundPlayerBusy3A350(SoundPlayer3A350 *) asm("func_08008CD0");
+EC void StartSongOnPlayer3A350(SoundPlayer3A350 *, u16) asm("func_08008B6C");
+EC void func_0803A350(Entity3A350Owner *, u32) SECTION(".text.entity3a350_sound");
 EC void func_08039DA8(EntityStrategyOwnerView *) SECTION(".text.entity39da8_setup");
 EC void func_08039E18(EntityStrategyOwnerView *) SECTION(".text.entity39e18_setup");
 EC void * vtable_unk_080E76BC[];
@@ -463,6 +485,37 @@ i16 func_0803A320(void *, i16 angle)
 i16 func_0803A334(void *, i16 angle)
 {
     return gUnk_080F16D2[(angle + 0x40) & 0xFF];
+}
+
+void func_0803A350(Entity3A350Owner * self, u32 song_id)
+{
+    GameObject * object = self->owner_00;
+    GameObjectVtable3A350 * vtable =
+        *reinterpret_cast<GameObjectVtable3A350 **>(object);
+    SoundPlayerList3A350 * sound_players = vtable->get_object_list(object);
+    SoundPlayer3A350 ** player = sound_players->begin;
+    SoundPlayer3A350 ** end = sound_players->end;
+    SoundPlayer3A350 * selected_player;
+
+    if (player != end)
+    {
+    scan_player:
+        if (IsSoundPlayerBusy3A350(*player))
+            goto next_player;
+
+        selected_player = *player;
+        goto play_sound;
+
+    next_player:
+        ++player;
+        if (player != end)
+            goto scan_player;
+    }
+
+    selected_player = *(end - 1);
+
+play_sound:
+    StartSongOnPlayer3A350(selected_player, song_id);
 }
 
 u32 func_08039134(
