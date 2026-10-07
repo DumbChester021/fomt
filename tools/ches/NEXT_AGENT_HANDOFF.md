@@ -1,6 +1,6 @@
 # Current FoMT continuation - October 6, 2026
 
-## CURRENT CHECKPOINT - 0x0803A144 production-exact; 39F90 behavior-complete scratch frontier
+## CURRENT CHECKPOINT - 39F90 typed render-helper frontier; production unchanged
 
 - Active public retail branch is now **`main`**, local branch tracks `ches/main`, and the former `Live-temp` branch has been deleted both remotely and locally after containment proof. Historical `ches-dev` remains provenance only; custom behavior remains on the separate custom-game worktree/branch.
 - Migration commit: `d34efc5adaad56ce92a41bb354d1882847355438` (`consolidate public decomp documentation on main`). Push `sh_muwzf02b_fea9156d` fast-forwarded `ches/main`; independent verification `sh_muwzf82g_d1c9e8fc` showed remote `main` at the exact same hash.
@@ -25,28 +25,27 @@
 
 Production remains exact at published commit `3746b6acbe90b456929e5cbd6235d350acc38b02`: **71,564 / 940,036 = 7.6129% code**, retail SHA1 unchanged. Current work is scratch/research only; no production source changed.
 
-Target `func_08039F90`, retail `0x08039F90..0x0803A144` (**0x1B4 / 436 bytes**), is now behavior-mapped and typed end to end.
+Target `func_08039F90`, retail `0x08039F90..0x0803A144` (**0x1B4 / 436 bytes**), is behavior-complete and structurally understood as a shared effect-render helper.
 
-Recovered semantics/types:
-- shared 8-argument render helper used by at least twelve linkonce wrappers;
-- r0 owner matches the `39E98` family: primary `EntityEffect` at +0x08 and optional child pointer at +0x48;
-- r1 is a polymorphic coordinate source with virtual x/y getters at vtable +0x18/+0x1C;
-- primary path creates a 0x20-byte `SpriteRenderData` temporary, calls ARM/IWRAM `func_030004DC`, then follows the exact existing `EntityEffect` graphics/chunks/active lifecycle;
-- optional child path uses the child inline 0x20-byte render-data block at +0x28 and active byte +0x48;
-- primary y subtracts abs(vertical_offset); child uses unadjusted screen y and runs only when original vertical_offset >= 0;
-- 2-bit draw attribute is replicated with `value | value<<2 | value<<4 | value<<6`, and retail recomputes it independently for the child path.
+Progress this turn:
+- v2: **0x1A4 / 410**, 0x44-byte frame.
+- `candidate-39f90-v3.cc`, compare `sh_muxdk91p_00031291`: **0x1A6 / 408**. Grouping screen x/y/depth into a 12-byte local recovers the exact **0x48 frame** but puts locals in the wrong stack order.
+- `candidate-39f90-v4.cc`, compare `sh_muxdldg9_f2229c93`: **0x1B2 / 340**. Declaring the 0x20-byte render-data local first, then separate pair/coords locals, gets within **2 bytes of retail size**. This is the best byte-score candidate, but its pair type is still semantically wrong.
+- `candidate-39f90-v5.cc`, compare `sh_muxdmhno_64bb95ff`: **0x1B0 / 394**. Combining pair+coords into one aggregate proves the exact retail stack layout: render data at sp+0x14, pair at sp+0x34/+0x38, screen_x/y/depth at sp+0x3C/+0x40/+0x44. The aggregate itself is not the original source shape.
+- `candidate-39f90-v6.cc`, compare `sh_muxdqm1z_c9eecee4`: **0x1AC / 356**. This corrects an important type mistake: r2 is the renderer pointer directly and r3 is the transfer-queue pointer directly. Retail's 8-byte local simply stores those two incoming values. There is no extra resources-wrapper dereference.
 
-Saved probes:
-- `candidate-39f90-v1.cc`: compare `sh_muxcppdg_9f356e3f` -> **expected 0x1B4, actual 0x186, 401 differing linked bytes**. Behavior complete, but frame only 0x40 vs retail 0x48.
-- `candidate-39f90-v2.cc`: compare `sh_muxcrqxm_c645be7e` -> **expected 0x1B4, actual 0x1A4, 410 differing linked bytes**. v2 restores the natural 8-byte local pair `{primary_queue, resources}` at stack +0x34 and independently rebuilds child draw attributes. Frame improves to **0x44**, leaving only a **4-byte frame deficit** and **0x10 code-size deficit**.
+Recovered retail facts:
+- stack frame is exactly **0x48**;
+- local render data is 0x20 bytes at sp+0x14..+0x33;
+- local render pair is two direct pointers at sp+0x34/+0x38: transfer queue then renderer;
+- screen_x, screen_y, depth are i32 at sp+0x3C/+0x40/+0x44;
+- retail initially keeps self in `sl`, coordinate source in r4, x/y/vertical_offset in r5/r6/r7, r2 in r9 and r3 in r8;
+- after storing the pair, r9 becomes the pair address;
+- primary and child paths both use pair[1] directly as renderer and pair[0] directly as transfer queue;
+- child path independently rebuilds the replicated 2-bit draw attribute;
+- primary render uses the temporary 0x20-byte SpriteRenderData; child uses its inline render-data block.
 
-Strong next source-shape clue:
-- retail has three consecutive i32 locals at **sp+0x3C = screen_x, sp+0x40 = screen_y, sp+0x44 = depth**;
-- v2 spills x/y but keeps depth live in `sl`, which also prevents retail from using `sl` for the owner pointer;
-- this strongly suggests an original/natural 12-byte coordinate value object or equivalent grouped local lifetime.
-
-**Exact next action on Continue:** make v3 from v2 using a natural
-`RenderCoords39F90 { i32 x; i32 y; i32 depth; }` local initialized from the coordinate-source virtuals and `0x8000-y`. Use `coords.x/y/depth` throughout so the compiler has a reason to materialize the contiguous 12-byte stack block at +0x3C/+0x40/+0x44. Keep the existing 8-byte `RenderPair39F90` local immediately before it. Recompare the entire 0x1B4 immediately. Do not register-force. Keep `39E98` and other parked allocation islands closed.
+**Exact next action on Continue:** make v7 from **v5** because v5 has the exact retail stack layout, then apply only v6's corrected pair/signature model: pair = `{ GraphicsTransferVector * transfer_queue; void * renderer; }`, function r2 = renderer directly, r3 = transfer queue directly, both DrawEffect calls use `pair.renderer`, and both graphics uploads use `pair.transfer_queue`. Recompare the whole 0x1B4 immediately. If that preserves v5's exact stack offsets while removing the false indirections, inspect register ownership next. Do not register-force. Keep `39E98` and other parked allocation islands closed.
 
 For fresh-conversation automation, do **not** resend a handoff merely because a browser/send command reports an error or omits a reply. Inspect the actual target tab first and confirm whether the user message appeared or a turn started. The previous failure mode produced a real 54-tool-call turn despite a misleading return.
 
