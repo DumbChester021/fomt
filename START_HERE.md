@@ -32,7 +32,7 @@ Intentional gameplay/QoL/content changes remain isolated in the separate `custom
 
 ## Current verified retail state
 
-Latest exact source integration in this checkpoint: `Entity398A4::~Entity398A4` replacing retail `func_080399C0` (0x70 / 112 bytes).
+Latest exact source integration in production: `func_0803A144` (0x3C / 60 bytes), immediately after the exact 0x2EC `func_08039A60` owner update. Later commits are research/documentation checkpoints only; production code remains byte-identical.
 
 Retail ROM:
 
@@ -95,7 +95,7 @@ The constructor establishes the owner hierarchy and strategy interface:
 - +0x50: saved facing;
 - owner vtable maps to retail `0x080E74DC`.
 
-`func_08039A60` (0x2EC) and `func_0803A144` (0x3C) are now exact production source. Continue **`func_08039F90`**, retail `0x08039F90..0x0803A144` (**0x1B4**), the larger same-region routine immediately before `3A144`. Keep `39E98` and the other documented codegen-only islands parked.
+`func_08039A60` (0x2EC) and `func_0803A144` (0x3C) are now exact production source. Continue **`func_08039F90`**, retail `0x08039F90..0x0803A144` (**0x1B4**), the larger same-region routine immediately before `3A144`. Its behavior and 0x48-byte frame/value model are recovered; corrected direct-type v8 is 0x1AC / 356, v11 is 0x1AC / 359, and v12-v15 are prepared as isolated lifetime probes. Measure those bounded probes first. If they and the remaining natural resources-pointer lifetime do not produce decisive retail-like prologue convergence, preserve the best candidate and park `39F90` rather than letting allocator archaeology block the TU. Keep `39E98` and the other documented codegen-only islands parked.
 
 ## Parked nearby frontiers
 

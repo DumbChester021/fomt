@@ -55,7 +55,7 @@ The packed item/UI animation bank also has an exact editable pipeline. All 347 r
 
 Work is throughput-first and organized by coherent translation unit, type, vtable, or repeated machine-code family rather than by a fixed function count.
 
-The current entity-family frontier is `func_080399C0` at `0x080399C0..0x08039A30`. Its behavior is already understood; the saved first source probe failed only on two C++ declaration issues. The adjacent `func_08039E98` constructor is behavior-complete and exact-size in scratch but remains assembly because its remaining differences are register/lifetime allocation.
+The current entity-family frontier is `func_08039F90` at `0x08039F90..0x0803A144` (0x1B4). Its behavior and exact 0x48-byte stack/value model are recovered; the remaining mismatch is natural source lifetime/register allocation. Corrected direct-type v8 is 0x1AC / 356 differing linked bytes, while semantically false-wrapper v4 remains the best raw score at 0x1B2 / 340 and is retained only as allocator-pressure evidence. The adjacent `func_08039E98` constructor is behavior-complete and exact-size in scratch but remains assembly because its remaining differences are register/lifetime allocation.
 
 Compiler-sensitive functions that are behavior-complete are parked rather than blocking whole-game progress. The canonical continuation is always in [tools/ches/NEXT_AGENT_HANDOFF.md](tools/ches/NEXT_AGENT_HANDOFF.md).
 

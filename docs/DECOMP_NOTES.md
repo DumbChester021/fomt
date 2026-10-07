@@ -31,7 +31,7 @@ Current retail state:
 - Packed-bank ownership remains **416 / 493 animations: 405 / 450 simple and 11 / 43 multi-frame**. The remaining 77 are a parked by-product lane.
 - `func_08092A70`, `func_080455D8`, `func_080CAC7C` / `func_080CAD18`, `func_08092940`, and the documented Entity38740/Ball codegen islands remain parked at their recorded frontiers.
 - Authoritative compiler remains the tracked 13-rule compatibility path, patch SHA256 `aa7cc6df0efbd066e9c33deb887731e1d0210babfaeba4c9b64f3e8bc35c4256`.
-- The Entity38740/Entity398A4 neighborhood now also has exact `39A60` update logic. `398A4`, `399C0`, `39A60`, `39DA8`, `39E18`, `39A30`, and `39F50` are exact; `39E98` is behavior-complete/exact-size but parked. `func_0803A144` (0x3C) is now exact source; the next same-region target is `func_08039F90` (0x1B4).
+- The Entity38740/Entity398A4 neighborhood now also has exact `39A60` update logic. `398A4`, `399C0`, `39A60`, `39DA8`, `39E18`, `39A30`, `39F50`, and `func_0803A144` are exact. `39E98` is behavior-complete/exact-size but parked. Active same-region target `func_08039F90` (0x1B4) is behavior-complete with the exact 0x48-byte frame/value model; corrected direct-type v8 is 0x1AC/356 and v11 is 0x1AC/359. Its remaining work is a bounded natural lifetime/register-allocation probe, not open-ended syntax or compiler roulette.
 - The opening-farm savestate/watchpoint work remains seed infrastructure for later scripted runtime coverage, not the primary queue.
 
 Naming rule:

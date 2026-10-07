@@ -78,7 +78,7 @@ Other major recovered areas include:
 
 The exact next code target is `func_08039F90` at `0x08039F90..0x0803A144` (0x1B4), the larger same-region routine immediately preceding the now-exact `3A144` helper.
 
-Start from the retail assembly and current same-region types; no `39F90` scratch candidate was established in this turn. See `START_HERE.md` and `tools/ches/NEXT_AGENT_HANDOFF.md` for the exact resume steps.
+`39F90` is behavior-complete in scratch with an exact 0x48-byte frame/value model. Corrected direct-type v8 is **0x1AC / 356**, v11's combined early-copy probe is **0x1AC / 359**, and semantically false-wrapper v4 remains the best raw byte score at **0x1B2 / 340** only as allocator-pressure evidence. The next bounded step is to measure isolated v12-v15 lifetime probes before deciding whether the function should be parked. See `START_HERE.md` and `tools/ches/NEXT_AGENT_HANDOFF.md` for the exact resume steps.
 
 The adjacent `func_08039E98` constructor is behavior-complete and exact-size in scratch at **0xB8 / 109 differing linked bytes**; it is parked on register/lifetime allocation.
 
