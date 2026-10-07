@@ -2926,65 +2926,8 @@ func_0809DA00: @ 0x0809DA00
 
     .section .text.after_mine_floor_helpers, "ax", %progbits
 
-    thumb_func_start func_0809E0AC
-func_0809E0AC: @ 0x0809E0AC
-    push {lr}
-    lsls r3, r2, #3
-    subs r3, r3, r2
-    lsls r3, r3, #3
-    adds r3, #4
-    adds r0, r0, r3
-    lsls r1, r1, #1
-    adds r0, r0, r1
-    ldrh r0, [r0]
-    lsls r0, r0, #0x1c
-    lsrs r0, r0, #0x1c
-    cmp r0, #4
-    bhi .L0809E110
-    lsls r0, r0, #2
-    ldr r1, .L0809E0D0 @ =.L0809E0D4
-    adds r0, r0, r1
-    ldr r0, [r0]
-    mov pc, r0
-    .align 2, 0
-.L0809E0D0: .4byte .L0809E0D4
-.L0809E0D4: @ jump table
-    .4byte .L0809E0E8 @ case 0
-    .4byte .L0809E0F0 @ case 1
-    .4byte .L0809E0F8 @ case 2
-    .4byte .L0809E100 @ case 3
-    .4byte .L0809E108 @ case 4
-.L0809E0E8:
-    ldr r0, .L0809E0EC @ =gUnk_086DC3C4
-    b .L0809E112
-    .align 2, 0
-.L0809E0EC: .4byte gUnk_086DC3C4
-.L0809E0F0:
-    ldr r0, .L0809E0F4 @ =gUnk_086DC3D0
-    b .L0809E112
-    .align 2, 0
-.L0809E0F4: .4byte gUnk_086DC3D0
-.L0809E0F8:
-    ldr r0, .L0809E0FC @ =gUnk_086DC3DC
-    b .L0809E112
-    .align 2, 0
-.L0809E0FC: .4byte gUnk_086DC3DC
-.L0809E100:
-    ldr r0, .L0809E104 @ =gUnk_086DC3E8
-    b .L0809E112
-    .align 2, 0
-.L0809E104: .4byte gUnk_086DC3E8
-.L0809E108:
-    ldr r0, .L0809E10C @ =gUnk_086DC3F4
-    b .L0809E112
-    .align 2, 0
-.L0809E10C: .4byte gUnk_086DC3F4
-.L0809E110:
-    movs r0, #0
-.L0809E112:
-    pop {r1}
-    bx r1
-    .align 2, 0
+    .section .text.after_mine_floor_tile_resource, "ax", %progbits
+
 .L0809E118:
     .byte 0xF0, 0xB5, 0x81, 0xB0, 0x05, 0x1C, 0x0F, 0x1C
     .byte 0x00, 0x26, 0x1E, 0xE0, 0x00, 0x24, 0x73, 0x1C, 0x13, 0xE0, 0x62, 0x00, 0xF0, 0x00, 0x80, 0x1B
@@ -2994,49 +2937,8 @@ func_0809E0AC: @ 0x0809E0AC
     .byte 0x1E, 0x1C, 0x28, 0x1C, 0xFF, 0xF7, 0xA8, 0xFB, 0x86, 0x42, 0xDB, 0xD3, 0x01, 0xB0, 0xF0, 0xBC
     .byte 0x01, 0xBC, 0x00, 0x47
 
-    thumb_func_start func_0809E174
-func_0809E174: @ 0x0809E174
-    ldr r1, .L0809E180 @ =0x00000624
-    adds r0, r0, r1
-    ldrb r0, [r0]
-    lsls r0, r0, #0x1f
-    lsrs r0, r0, #0x1f
-    bx lr
-    .align 2, 0
-.L0809E180: .4byte 0x00000624
+    .section .text.after_mine_floor_progress_flags, "ax", %progbits
 
-    thumb_func_start func_0809E184
-func_0809E184: @ 0x0809E184
-    ldr r1, .L0809E190 @ =0x00000625
-    adds r0, r0, r1
-    ldrb r0, [r0]
-    lsls r0, r0, #0x1d
-    lsrs r0, r0, #0x1f
-    bx lr
-    .align 2, 0
-.L0809E190: .4byte 0x00000625
-
-    thumb_func_start func_0809E194
-func_0809E194: @ 0x0809E194
-    ldr r1, .L0809E1A0 @ =0x00000625
-    adds r0, r0, r1
-    ldrb r0, [r0]
-    lsls r0, r0, #0x1c
-    lsrs r0, r0, #0x1f
-    bx lr
-    .align 2, 0
-.L0809E1A0: .4byte 0x00000625
-
-    thumb_func_start func_0809E1A4
-func_0809E1A4: @ 0x0809E1A4
-    ldr r1, .L0809E1B0 @ =0x00000625
-    adds r0, r0, r1
-    ldrb r0, [r0]
-    lsls r0, r0, #0x1b
-    lsrs r0, r0, #0x1f
-    bx lr
-    .align 2, 0
-.L0809E1B0: .4byte 0x00000625
 .L0809E1B4:
     .byte 0xF0, 0xB5, 0x84, 0xB0, 0x07, 0x1C, 0x0E, 0x1C, 0x1F, 0x48, 0x15, 0x18
     .byte 0x68, 0x46, 0x29, 0x1C, 0x70, 0xF7, 0xAE, 0xFB, 0x68, 0x46, 0x00, 0x88, 0x80, 0x05, 0x1C, 0x49

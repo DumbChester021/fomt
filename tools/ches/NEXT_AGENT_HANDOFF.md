@@ -1,4 +1,4 @@
-# Current FoMT continuation - October 7, 2026
+# Current FoMT continuation - October 8, 2026
 
 ## Zero-context orientation
 
@@ -23,26 +23,30 @@ Use the proven Opus/Astra fast path:
 - select one bounded coherent cluster;
 - reuse recovered types/layouts/candidates;
 - try one natural typed candidate quickly;
-- classify the first divergence before source variants;
-- check true body/alignment and section seams first;
-- prove exact islands with isolated + production ROM gates;
-- refresh inventory/docs once, publish, and move on;
-- park compiler archaeology once understanding is complete.
+- classify first divergence before source variants;
+- check true body/alignment/section boundaries before assuming code mismatch;
+- exploit linker seams for exact islands;
+- detached ROM -> production ROM -> inventory/docs -> publish;
+- park compiler archaeology once behavior is understood.
 
-Do not regress to broad rescans, repeated rereading, or syntax roulette.
+Do not regress to broad rescans or syntax roulette.
 
 ## Current exact state
 
-- Code: 74,256 / 940,036 = 7.8993%
-- Assembly remaining: 865,780 bytes
-- Linked assembly functions: 2,312
-- Inferred ranges: 864,616 / 865,780 = 99.8656%
-- Unattributed assembly: 1,164 bytes
+- Code: 74,428 / 940,036 = 7.9176%
+- Assembly remaining: 865,608 bytes
+- Linked assembly functions: 2,307
+- Inferred ranges: 864,064 / 865,608 = 99.8216%
+- Unattributed assembly: 1,544 bytes
 - Data/assets: 75,334 / 6,777,404 = 1.1115%
-- Overall meaningful ROM: 149,986 / 7,717,440 = 1.9435%
+- Overall meaningful ROM: 150,158 / 7,717,440 = 1.9457%
 - Free tail: 671,168 bytes
 - Retail ROM: 8,388,608 bytes
 - SHA1: a2fc3574f0a65a4fcf7682fb274b9d7eebdef963
+
+The unattributed count rose by 380 bytes because exact boundaries exposed two
+real unlabeled code islands; this is improved structural knowledge, not lost
+progress.
 
 ## Completed MineFloor work
 
@@ -50,100 +54,86 @@ Persistent object: GameState+0x2E58, size 0x628.
 Shared type: include/mine_floor.hh
 Stable architecture: docs/MINE_FLOOR.md
 
-Exact source owns:
-- CE8C initializer: 0xA8 / 0
-- legacy CF34 remains exact after shared-header extraction: 0x234 / 0
-- D8A0: 0x04 / 0
-- D8A4 true body: 0x12 / 0
-- D8B8 true body: 0x1A / 0
-- D8D4: 0x14 / 0
-- complete D8A0..D8E8 accessor block: 0x48 / 0
+Exact source owns 872 linked bytes:
+- CE8C: 0xA8 / 0
+- D8A0..D8E8 accessors: 0x48 / 0
 - D9B4: 0x4C / 0
-- DF2C: 0x80 / 0
-- DFAC: 0x80 / 0
-- E02C: 0x80 / 0
-- complete DF2C..E0AC helper block: 0x180 / 0
+- DF2C..E0AC helpers: 0x180 / 0
+- E0AC tile-resource lookup: true body 0x6A / 0; linked 0x6C with alignment
+- E174..E1B4 progress getters: 0x40 / 0
 
-Total mine-floor source-owned exact bytes from these integrated units: 700.
+Newest source files:
+- src/mine_floor_tile_resource.cc
+- src/mine_floor_progress_flags.cc
 
-Sources:
-- src/mine_floor.cc
-- src/mine_floor_accessors.cc
-- src/mine_floor_content.cc
-- src/mine_floor_helpers.cc
+Both detached and production forced full-ROM compares pass.
 
-The helper seam resumes assembly at E0AC.
-Both isolated and production forced full-ROM compares pass.
+## E0AC exact result
 
-## Newly recovered helper semantics
+Retail E0AC returns at E116. E116..E118 is alignment. The inventory previously
+extended its inferred range through E174 because the following code had no symbol.
 
-### DF2C
-Maps content ids 4..9 to the six cursed tool ids:
-5, 13, 21, 29, 37, 45. Returns true if the mapped cursed tool is already
-present in either the player's Rucksack or ToolChest. The natural typed source
-was 1 byte from exact only because TOOL_NONE made the comparison unsigned;
-changing the local tool_id to signed int produced 0x80 / 0.
+E0AC semantics:
+- locate MineTile at y*56 + 4 + x*2;
+- read full u16 and extract low type nibble;
+- types 0..4 return resource records:
+  - 086DC3C4
+  - 086DC3D0
+  - 086DC3DC
+  - 086DC3E8
+  - 086DC3F4
+- other types return null.
 
-### DFAC
-Counts the nine Goddess Jewel floor flags:
-60, 102, 123, 152, 155, 171, 190, 202, 222.
-Natural typed source matched 0x80 / 0 on the first candidate.
+Matching path:
+- v1 array/bitfield candidate: 32 diffs
+- retail address/load shape: 6
+- y-offset register r3: 4
+- empty register barrier after y_offset -= y: 0 at true 0x6A body bound
 
-### E02C
-Counts the nine Kappa Jewel floor flags:
-0, 40, 60, 80, 120, 140, 160, 180, 255.
-Natural typed source matched 0x80 / 0 on the first candidate.
+Proofs:
+tools/ches/checkpoints/mine-floor-2026-10-08/
 
-## D8E8 parked result
+## Progress getter result
 
-Behavior is complete but source-shape exactness is parked.
+E174, E184, E194, E1A4 each match 0x10 / 0, full E174..E1B4 block 0x40 / 0.
+They return persistent bits 0, 10, 11 and 12.
 
-Candidates:
-- tools/ches/checkpoints/mine-floor-2026-10-07/content-consumers-v1.cc
-  0xC0 vs 0xCC, 158 differing bytes
-- content-consumers-v2.cc
-  0xB8, 193 differences
-- d8e8-v3.cc
-  0xC2, 182 differences
+## Newly exposed unlabeled code: NEXT TARGET
 
-Do not reopen D8E8 syntax variants without new structural evidence.
+Exact seams reveal:
 
-## DA00 parked result
+### Island A
+0x0809E118..0x0809E174
+Size: 0x5C = 92 bytes
+Currently raw .byte code, no thumb_func_start/symbol.
 
-True bounds: 0x0809DA00..0x0809DF2C = 0x52C bytes.
+### Island B
+0x0809E1B4..0x0809E2D4
+Size: 0x120 = 288 bytes
+Currently raw .byte code, no function symbol.
 
-Behavior is mapped across its meaningful cases:
-- 3: one-time mine/location progress flag
-- 4..9: cursed-tool reward family
-- 10: year/progress-gated reward
-- 23: all-six cursed-tool completion gate
-- 32: Goddess Jewel floor family
-- 33: Kappa Jewel floor family
-- 34: standalone progress flag
+Together: 380 bytes. These were previously counted inside inferred E0AC/E1A4
+ranges, which is why unattributed assembly increased from 1,164 to 1,544.
 
-Saved candidates:
-- da00-v1.cc: 0x534, 905 differing bytes
-- da00-v2.cc: 0x534, 883 differing bytes
-
-v2 tried the one high-leverage source-shape clue: keeping result/content in r8
-and matching the first branch order. It helped only slightly. The remaining
-mismatch begins at function entry/jump-table register allocation, so this is
-now a compiler/source-shape frontier, not a semantic frontier.
-
-Do not resume DA00 syntax variants without new structural/compiler evidence.
+Do not "fix" the inventory by merging them back into neighboring functions.
+Recover their actual identities/bounds/semantics.
 
 ## Exact next action
 
-Start at `func_0809E0AC` and assess the next small coherent adjacent mine-floor
-helper cluster.
+Start with Island A E118..E174.
 
 Fast path:
-1. inspect E0AC true bounds and the next few neighboring helpers only;
-2. reuse MineFloor and the now-proven Jewel/cursed-tool semantics;
-3. try natural typed source for the smallest coherent batch;
-4. compare true bodies/complete contiguous block;
-5. if exact, seam -> detached full ROM -> production full ROM -> inventory/docs;
-6. if compiler-sensitive after bounded work, save the candidate and move on.
+1. Disassemble only those 92 bytes as Thumb.
+2. Search direct calls/branches/references to address E118, not broad repo scans.
+3. Infer signature and behavior from register use plus nearby MineFloor helpers.
+4. Give the candidate a local research identity if no retail symbol exists.
+5. Try one natural typed implementation.
+6. If exact, design a minimal seam/source identity without shifting retail
+   addresses; then detached ROM -> production ROM -> inventory/docs.
+7. If no caller/symbol can be proven, preserve the range as an explicitly
+   bounded unlabeled code island and move to E1B4..E2D4.
 
-Do not reopen the whole loader, DA00, D8E8, CF34, AB30/B128, 39E98, 39F90,
-3A180, 3A394 or the Ball mover without genuinely new structural evidence.
+Parked: D8E8, DA00, whole save loader, CF34 refactor, AB30/B128, 39E98,
+39F90, 3A180, 3A394, Ball mover.
+
+Do not reopen them without genuinely new evidence.

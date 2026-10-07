@@ -134,7 +134,29 @@ contiguous **0x180-byte / 0-difference** unit in `src/mine_floor_helpers.cc`:
   matched 0x80 / 0.
 
 Both detached and production full-ROM comparisons pass after the helper linker
-seam, which resumes assembly at `func_0809E0AC`.
+seam.
+
+`func_0809E0AC` is now exact source as the tile-type resource lookup used by
+the mine renderer. Its true body is **0x6A / 0** at E0AC..E116, followed by two
+alignment bytes before separate code begins at E118. It maps tile types 0..4 to
+the five retail resource records at 086DC3C4/3D0/3DC/3E8/3F4. The natural array
+form was 32 bytes different; reproducing retail's y*56+4, then x*2, halfword
+load reduced that to 6, fixing the y-offset register to r3 reduced it to 4, and
+an empty register barrier after the subtraction produced the exact body.
+
+The four adjacent persistent progress getters are also exact source as one
+**0x40 / 0** block at E174..E1B4:
+- E174 reads progress bit 0 (`unk_624_0`);
+- E184 reads progress bit 10 (`unk_625_2`);
+- E194 reads progress bit 11 (`unk_625_3`);
+- E1A4 reads progress bit 12 (`unk_625_4`).
+
+Recovering those true boundaries exposes two previously hidden unlabeled code
+islands that the inventory had incorrectly absorbed into neighboring inferred
+function ranges: **E118..E174 = 0x5C bytes** and **E1B4..E2D4 = 0x120 bytes**.
+They account for the 380-byte increase in unattributed assembly and are the next
+bounded mine-floor research target. Both detached and production full-ROM
+comparisons pass with the two new linker seams.
 
 `func_0809DA00` is behavior-mapped but parked after the bounded natural-source
 pass. Its true size is 0x52C. Saved candidates are `da00-v1.cc` at 0x534 /
@@ -148,8 +170,9 @@ completion, 32 Goddess Jewel floors, 33 Kappa Jewel floors and 34 a standalone
 progress flag. Treat DA00 as a compiler/source-shape frontier until genuinely
 new evidence appears.
 
-The mine-floor cluster now owns **700 exact source bytes** across CE8C, the
-D8A0..D8E8 accessor block, D9B4 and DF2C..E0AC.
+The mine-floor cluster now owns **872 exact linked source bytes** across CE8C,
+the D8A0..D8E8 accessor block, D9B4, DF2C..E0AC, the E0AC tile-resource
+lookup and the E174..E1B4 progress-flag getter block.
 
 The legacy fixed-register and inline-assembly code still present in
 `src/mine_floor.cc` is not a model for future reconstruction. Preserve its

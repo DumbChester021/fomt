@@ -1,6 +1,6 @@
 # FoMT Session Status
 
-## Authoritative current snapshot - October 7, 2026
+## Authoritative current snapshot - October 8, 2026
 
 Retail workspace: /mnt/data/Github/gba/fomt
 Branch: main, tracking ches/main
@@ -8,102 +8,111 @@ Run `git log -1` and `git status` before work. Preserve intentional dirty state.
 
 ## Exact production progress
 
-- Code: 74,256 / 940,036 = 7.8993%
-- Assembly remaining: 865,780 bytes
+- Code: 74,428 / 940,036 = 7.9176%
+- Assembly remaining: 865,608 bytes
 - Data/assets: 75,334 / 6,777,404 = 1.1115%
-- Overall meaningful ROM: 149,986 / 7,717,440 = 1.9435%
+- Overall meaningful ROM: 150,158 / 7,717,440 = 1.9457%
 - Free tail: 671,168 bytes
-- Linked assembly functions: 2,312
-- Inferred function bytes: 864,616 / 865,780 = 99.8656%
-- Unattributed assembly: 1,164 bytes
+- Linked assembly functions: 2,307
+- Inferred function bytes: 864,064 / 865,608 = 99.8216%
+- Unattributed assembly: 1,544 bytes
 - Parked functions: 17
 - Runtime/library functions: 33
 
+The rise in unattributed assembly from 1,164 to 1,544 is intentional structural
+progress, not regression: exact source boundaries exposed 380 bytes that were
+previously hidden inside inferred neighboring function ranges.
+
 ## Latest verified integration
 
-The mine-floor cluster now owns 700 exact source bytes:
+The mine-floor cluster now owns 872 exact linked source bytes:
 
-- func_0809CE8C: 0xA8 / 0, persistent initializer
+- CE8C initializer: 0xA8 / 0
 - D8A0..D8E8 accessor block: 0x48 / 0
-- func_0809D9B4: 0x4C / 0, MineTile bits 4..9 consumer
-- func_0809DF2C: 0x80 / 0, cursed-tool ownership check
-- func_0809DFAC: 0x80 / 0, Goddess Jewel counter
-- func_0809E02C: 0x80 / 0, Kappa Jewel counter
-- complete DF2C..E0AC helper block: 0x180 / 0
+- D9B4 content consumer: 0x4C / 0
+- DF2C..E0AC helper block: 0x180 / 0
+- E0AC tile-resource lookup: true body 0x6A / 0, linked span 0x6C with alignment
+- E174..E1B4 progress-flag getter block: 0x40 / 0
 
-Shared layout: `include/mine_floor.hh`
-Initializer/legacy generation source: `src/mine_floor.cc`
-Accessors: `src/mine_floor_accessors.cc`
-D9B4: `src/mine_floor_content.cc`
-New helper block: `src/mine_floor_helpers.cc`
-Stable architecture: `docs/MINE_FLOOR.md`
+Newest sources:
+- src/mine_floor_tile_resource.cc
+- src/mine_floor_progress_flags.cc
 
-Both detached and production `make -B -j4 compare` pass after the helper seam.
-ROM remains 8,388,608 bytes with SHA1
+Shared layout remains include/mine_floor.hh.
+Stable architecture is docs/MINE_FLOOR.md.
+
+Both detached and production `make -B -j4 compare` pass. Retail ROM remains
+8,388,608 bytes with SHA1
 `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
 
-Inventory removes exactly DF2C, DFAC and E02C from assembly ownership:
-2,315 -> 2,312 linked assembly functions, 866,164 -> 865,780 asm bytes.
+## E0AC matching lesson
 
-## Parked D8E8 frontier
+Inventory originally inferred E0AC through E174, but the real function returns
+at E116 and has two alignment bytes through E118.
 
-`func_0809D8E8` behavior is understood but exact source is parked after bounded
-natural-source attempts. Do not resume syntax roulette without new structural
-evidence.
+Natural typed switch:
+- v1: 0x6A vs apparent 0x6C, 32 differences
+- retail-style y*56+4 then x*2 + halfword load: 6 differences
+- fixed y-offset r3: 4 differences
+- existing-project-style empty register barrier after the subtraction:
+  true body 0x6A / 0
 
-Saved candidates:
-- content-consumers-v1.cc: 0xC0 vs retail 0xCC, 158 differing bytes
-- content-consumers-v2.cc: 0xB8, 193 differences
-- d8e8-v3.cc: 0xC2, 182 differences
+The caller at 0x080A6AC8 passes the returned pointer to func_080AA540 while
+rendering each mine tile. E0AC maps tile types 0..4 to resource records
+086DC3C4, 086DC3D0, 086DC3DC, 086DC3E8 and 086DC3F4.
 
-The function consumes MineTile bits 10..15, calls DA00, changes tile type,
-clears the consumed field, and on one result clears every tile whose same field
-equals 1. The remaining problem is source shape/register allocation, not behavior.
+## Progress flag getters
 
-## Parked DA00 frontier
+E174/E184/E194/E1A4 matched on the first typed candidate. They expose persistent
+MineFloor progress bits 0, 10, 11 and 12 respectively.
 
-`func_0809DA00` true bounds are 0x0809DA00..0x0809DF2C = 0x52C bytes.
-Its behavior/case families are mapped, but exact source is parked after the
-bounded natural-candidate pass.
+## Newly exposed unlabeled code
 
-Saved candidates:
-- da00-v1.cc: 0x534 vs retail 0x52C, 905 differing linked bytes
-- da00-v2.cc: 0x534, 883 differing linked bytes after forcing the persistent
-  result/content value toward r8 and matching the first branch direction
+Exact boundary recovery exposed two real code islands that have no current
+function symbols in the assembly source:
 
-The mismatch begins immediately in register allocation and jump-table layout.
-That makes the current blocker compiler/source shape, not missing semantics.
-Do not reopen DA00 variants without new structural/compiler evidence.
+- 0x0809E118..0x0809E174 = 0x5C bytes
+- 0x0809E1B4..0x0809E2D4 = 0x120 bytes
 
-Mapped DA00 families:
-- content 3: one-time mine progress flag selected by Farmer ActorLocation map
-- content 4..9: six cursed tools; require free tool slot, eligibility state and
-  absence from both rucksack and tool chest
-- content 10: year/progress-gated reward plus free tool slot
-- content 23: cursed-tool completion gate across all six families
-- content 32: nine Goddess Jewel mine floors plus shelf/free-slot constraints
-- content 33: nine Kappa Jewel mine floors plus shelf/free-slot constraints
-- content 34: one standalone persistent progress flag
+Together they are 380 bytes and exactly explain the inventory's new unattributed
+assembly increase.
 
-Proof/candidate directory:
-`tools/ches/checkpoints/mine-floor-2026-10-07/`
+Do not merge these ranges back into E0AC or E1A4. Their code is preserved as raw
+.byte sequences between the new linker seams.
+
+## Parked frontiers
+
+D8E8 remains behavior-complete but source-shape parked:
+- v1 0xC0 / 158 differences
+- v2 0xB8 / 193
+- v3 0xC2 / 182
+
+DA00 remains behavior-mapped but source-shape parked:
+- v1 0x534 vs retail 0x52C / 905 differences
+- v2 0x534 / 883 differences
+
+Do not resume either family without new structural/compiler evidence.
 
 ## Operating strategy
 
 Keep using the Opus/Astra fast path in AGENTS.md and DECOMP_PLAYBOOK.md:
-bounded cluster, reuse structure, one natural candidate, classify mismatch,
-use linker seams, prove isolated+production ROM, refresh inventory/docs once,
-publish, then move on. Park compiler archaeology once behavior is understood.
+bounded cluster, reuse structure, natural candidate first, classify boundaries
+before syntax changes, exploit linker seams, run detached+production ROM gates,
+refresh inventory/docs once, publish, then move on.
 
 ## Exact next action
 
-Continue from `func_0809E0AC` forward as the next bounded mine-floor helper
-cluster. Prefer the smallest coherent adjacent functions that consume the now
-named/understood MineFloor layout. Reuse `include/mine_floor.hh` and
-`src/mine_floor_helpers.cc`; test natural typed source before any compiler
-experiments.
+Research the newly exposed unlabeled mine-floor code islands:
 
-Do not reopen DA00, D8E8, the whole save loader, CF34, AB30/B128 or other
-parked compiler-sensitive families by inertia.
+1. E118..E174 (0x5C) first, because it is small.
+2. Determine real function boundary/callers/semantics from the raw Thumb code.
+3. If coherent, give it a durable internal identity/candidate and try natural
+   source immediately.
+4. Then assess E1B4..E2D4 (0x120) the same way.
+5. Do not let the absence of existing symbols force these bytes back into
+   neighboring functions.
+
+Do not reopen DA00, D8E8, the whole save loader, CF34, AB30/B128 or other parked
+compiler-sensitive families by inertia.
 
 No build or compiler process is currently running.

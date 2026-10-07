@@ -35,30 +35,29 @@ next deliverable, closed paths and fresh-clone artifact limitations.
 
 ## Current exact reconstruction
 
-- Code: **74,256 / 940,036 = 7.8993%**
-- Assembly remaining: **865,780 bytes**
-- Linked assembly functions: **2,312**
-- Inferred ranges: **864,616 / 865,780 = 99.8656%**
-- Unattributed assembly: **1,164 bytes**
+- Code: **74,428 / 940,036 = 7.9176%**
+- Assembly remaining: **865,608 bytes**
+- Linked assembly functions: **2,307**
+- Inferred ranges: **864,064 / 865,608 = 99.8216%**
+- Unattributed assembly: **1,544 bytes**
 - Generated parked functions: **17**
 - Data/assets: **75,334 / 6,777,404 = 1.1115%**
-- Overall meaningful ROM: **149,986 / 7,717,440 = 1.9435%**
+- Overall meaningful ROM: **150,158 / 7,717,440 = 1.9457%**
 - Contiguous free tail: **671,168 bytes = 655.44 KiB**
 
 ## Latest completed unit
 
-The mine-floor save cluster now owns **700 exact source bytes**: initializer
-`func_0809CE8C` (168), the D8A0..D8E8 accessor block (72), D9B4 (76), and
-the contiguous DF2C..E0AC helper block (384). The shared layout is in
-`include/mine_floor.hh`; exact source is split across
-`src/mine_floor.cc`, `src/mine_floor_accessors.cc`,
-`src/mine_floor_content.cc`, and `src/mine_floor_helpers.cc`.
+The mine-floor save cluster now owns **872 exact linked source bytes**:
+initializer `func_0809CE8C` (168), the D8A0..D8E8 accessor block (72),
+D9B4 (76), DF2C..E0AC helpers (384), tile-resource lookup E0AC (0x6A body
+plus 2 linked alignment bytes), and the E174..E1B4 progress-flag block (64).
+The shared layout is in `include/mine_floor.hh`; the two newest source files
+are `src/mine_floor_tile_resource.cc` and
+`src/mine_floor_progress_flags.cc`.
 
-Architecture: docs/MINE_FLOOR.md and docs/SAVE_FORMAT.md. DF2C, DFAC and E02C
-match as one complete **0x180 / 0** block. Isolated and production full-ROM
-builds pass; ROM size/SHA1 and neighbor addresses remain retail-exact. The
-regenerated inventory removes exactly those three additional helpers from
-assembly ownership.
+Architecture: docs/MINE_FLOOR.md and docs/SAVE_FORMAT.md. E0AC is exact at its
+true **0x6A / 0** body bound, and E174..E1B4 is **0x40 / 0**. Detached and
+production full-ROM builds pass; ROM size/SHA1 remain retail-exact.
 
 The preceding fishing-record block (276 linked bytes), four resource-owner
 methods (680 bytes), and map resolver (652 bytes) remain complete. Do not
@@ -66,12 +65,11 @@ repeat their integration.
 
 ## Next direction
 
-`func_0809DA00` is now behavior-mapped but parked after two bounded natural
-candidates stayed at 0x534 versus retail 0x52C with 905/883 linked-byte
-differences beginning at entry/jump-table register allocation. D8E8 remains
-parked for the same source-shape reason. Continue from `func_0809E0AC` with
-the next small coherent mine-floor helper cluster; do not reopen DA00 or D8E8
-without new structural/compiler evidence.
+E0AC and the four E174..E1A4 progress-flag getters are now exact source.
+Recovering their true boundaries exposed two separate unlabeled code islands
+that had been hidden inside inferred function ranges: `E118..E174` (0x5C)
+and `E1B4..E2D4` (0x120). These 380 bytes are now the next bounded mine-floor
+target. DA00 and D8E8 remain parked source-shape/compiler frontiers.
 
 The loader remains parked. Resource-owner constructors and B128 remain parked.
 Local ignored proofs are under tools/ches/checkpoints/mine-floor-2026-10-07/.

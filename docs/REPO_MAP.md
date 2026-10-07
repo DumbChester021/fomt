@@ -27,10 +27,10 @@ subsystem is fully understood.
 Authoritative live state is in `START_HERE.md`.
 
 - Active public retail branch: **`main`**. The former `Live-temp` series is retired; `ches-dev` remains historical.
-- Code reconstruction: **74,256 / 940,036 = 7.8993%**; **865,780 assembly bytes** remain.
-- Remaining linked asm functions: **2,312**; inferred ranges cover **864,616 / 865,780 = 99.8656%**, with **1,164 unattributed bytes** and **17 explicitly parked functions**.
+- Code reconstruction: **74,428 / 940,036 = 7.9176%**; **865,608 assembly bytes** remain.
+- Remaining linked asm functions: **2,307**; inferred ranges cover **864,064 / 865,608 = 99.8216%**, with **1,544 unattributed bytes** and **17 explicitly parked functions**.
 - Data/assets: **75,334 / 6,777,404 = 1.1115%**.
-- Overall meaningful-ROM reconstruction: **149,986 / 7,717,440 = 1.9435%**.
+- Overall meaningful-ROM reconstruction: **150,158 / 7,717,440 = 1.9457%**.
 - Contiguous tail free space: **671,168 bytes = 655.44 KiB**.
 - Retail SHA1: `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`; full compare remains **`fomt.gba: OK`**.
 - Authoritative compiler path is the tracked `tools/install_agbcp.sh` plus `tools/agbcp_fomt_compat.patch`, SHA-256 `aa7cc6df0efbd066e9c33deb887731e1d0210babfaeba4c9b64f3e8bc35c4256`.
@@ -88,7 +88,7 @@ under `assets/item_icons/`. `tools/packed_sprite_bank.py` rebuilds the
 0x30080-byte bank exactly. The cooking UI owns `gCookingUtensilIconIds`, mapping
 Knife=265, Frying Pan=204, Pot=346, Mixer=64, Whisk=472, Rolling Pin=313,
 Oven=327, and Seasoning Set=400. `func_08092A70` remains parked at `0x260 / 3`.
-That item/tool lane remains behind the whole-game throughput queue. The resource-owner exact set is complete. Fishing records are recovered in `include/fishing_records.hh` / `src/fishing_records.cc`, and the mine-floor cluster now owns 700 exact bytes through the exact DF2C..E0AC helper block around the recovered 0x628-byte persistent type in `include/mine_floor.hh`. D8E8 and DA00 are parked source-shape/compiler frontiers; continue from E0AC with the next bounded helper cluster. The compiler-sensitive loader remains parked. Product-count growth remains deferred because `ShippingBin::product_stats[NUM_PRODUCTS]` is embedded in persistent state.
+That item/tool lane remains behind the whole-game throughput queue. The resource-owner exact set is complete. Fishing records are recovered in `include/fishing_records.hh` / `src/fishing_records.cc`, and the mine-floor cluster now owns 872 exact linked bytes through exact E0AC plus the E174..E1B4 progress getters around the recovered 0x628-byte persistent type in `include/mine_floor.hh`. Exact boundaries expose unlabeled code at E118..E174 and E1B4..E2D4 as the next bounded target. D8E8 and DA00 remain parked source-shape/compiler frontiers; the compiler-sensitive loader remains parked. Product-count growth remains deferred because `ShippingBin::product_stats[NUM_PRODUCTS]` is embedded in persistent state.
 
 Legacy loader `func_08011650` remains paused. Crop/field semantics,
 dialogue/event registration, and character portrait/display assets remain later
