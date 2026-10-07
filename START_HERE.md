@@ -32,7 +32,7 @@ Intentional gameplay/QoL/content changes remain isolated in the separate `custom
 
 ## Current verified retail state
 
-Latest exact source integration in production: `func_0803A144` (0x3C / 60 bytes), immediately after the exact 0x2EC `func_08039A60` owner update. Later commits are research/documentation checkpoints only; production code remains byte-identical.
+Latest exact source integration in production: `func_0803A320` (0x14 / 20 bytes) and `func_0803A334` (0x1C / 28 bytes), a paired signed-Q8 sine/cosine lookup family immediately after `func_0803A180`. The full production ROM remains byte-identical.
 
 Retail ROM:
 
@@ -43,13 +43,13 @@ Retail ROM:
 
 Current exact reconstruction:
 
-- code: **71,564 / 940,036 = 7.6129%**
-- assembly remaining: **868,472 bytes**
-- remaining linked assembly functions: **2,338**
-- inferred function ranges: **867,308 / 868,472 = 99.8660%**
+- code: **71,612 / 940,036 = 7.6180%**
+- assembly remaining: **868,424 bytes**
+- remaining linked assembly functions: **2,336**
+- inferred function ranges: **867,260 / 868,424 = 99.8660%**
 - unattributed assembly: **1,164 bytes**
 - data/assets: **75,334 / 6,777,404 = 1.1115%**
-- overall meaningful ROM: **147,294 / 7,717,440 = 1.9086%**
+- overall meaningful ROM: **147,342 / 7,717,440 = 1.9092%**
 - contiguous tail free space: **671,168 bytes = 655.44 KiB**
 
 Use `make progress` after meaningful exact integrations.
@@ -60,6 +60,8 @@ The current Entity38740 neighborhood now includes exact source for the mapped fi
 
 The latest exact promotions are:
 
+- `func_0803A320`: 0x14 / 0, signed-Q8 sine lookup
+- `func_0803A334`: 0x1C / 0, quarter-turn signed-Q8 cosine lookup
 - `func_08039A60`: 0x2EC / 0
 - `func_0803A144`: 0x3C / 0
 - preceding exact batch: `39DA8` 0x70, `39E18` 0x70, `39A30` 0x2C, `39F50` 0x40
@@ -95,12 +97,13 @@ The constructor establishes the owner hierarchy and strategy interface:
 - +0x50: saved facing;
 - owner vtable maps to retail `0x080E74DC`.
 
-`func_08039A60` (0x2EC) and `func_0803A144` (0x3C) are now exact production source. Continue **`func_08039F90`**, retail `0x08039F90..0x0803A144` (**0x1B4**), the larger same-region routine immediately before `3A144`. Its behavior and 0x48-byte frame/value model are recovered; corrected direct-type v8 is 0x1AC / 356, v11 is 0x1AC / 359, and v12-v15 are prepared as isolated lifetime probes. Measure those bounded probes first. If they and the remaining natural resources-pointer lifetime do not produce decisive retail-like prologue convergence, preserve the best candidate and park `39F90` rather than letting allocator archaeology block the TU. Keep `39E98` and the other documented codegen-only islands parked.
+`func_08039F90` is now parked/understood after the bounded v12-v16 lifetime family failed to produce retail-like register ownership. `func_0803A320` and `func_0803A334` are exact production source and prove the adjacent 256-entry signed-Q8 sine/cosine lookup pair. Continue **`func_0803A180`**, retail `0x0803A180..0x0803A320` (**0x1A0 / 416 bytes**). It has eight direct callers in `asm/code_linkonce.s` and calls the exact `SpriteAnimator::Update` path plus the `AB788/AB7A4/AB85C/AB8D0/AB948/AB9C4` movement/collision helpers. First recover its shared movement-state layout from the eight callers and retail assembly, then scratch the smallest natural source. Do not reopen `39F90`, `39E98`, or the other parked codegen islands without genuinely new structural evidence.
 
 ## Parked nearby frontiers
 
 Do not reopen these without genuinely new type/compiler evidence:
 
+- `func_08039F90`: behavior complete, exact 0x48-byte frame/value model; best natural direct-type score v8 0x1AC / 356, best valid isolated-lifetime score v13/v15 0x1B4 / 341, final resources-pointer v16 0x1A8 / 373; parked on register allocation.
 - `func_08039E98`: exact-size 0xB8 / 109, behavior complete; real 8-byte `SpriteAnimation` temporary proven.
 - `func_08039708`: exact-size 0x198 / 290, behavior complete.
 - `func_0803955C`: best natural source 0x194 / 383; behavior complete.

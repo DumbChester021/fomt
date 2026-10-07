@@ -21,10 +21,10 @@ Current exact reconstruction metrics:
 
 | Metric | Current |
 | --- | ---: |
-| Code | **71,564 / 940,036 bytes (7.6129%)** |
-| Assembly remaining | **868,472 bytes** |
+| Code | **71,612 / 940,036 bytes (7.6180%)** |
+| Assembly remaining | **868,424 bytes** |
 | Data/assets | **75,334 / 6,777,404 bytes (1.1115%)** |
-| Overall meaningful ROM | **147,294 / 7,717,440 bytes (1.9086%)** |
+| Overall meaningful ROM | **147,342 / 7,717,440 bytes (1.9092%)** |
 | Contiguous ROM tail free space | **671,168 bytes (655.44 KiB)** |
 
 Run `make progress` for the live report.
@@ -55,7 +55,7 @@ The packed item/UI animation bank also has an exact editable pipeline. All 347 r
 
 Work is throughput-first and organized by coherent translation unit, type, vtable, or repeated machine-code family rather than by a fixed function count.
 
-The current entity-family frontier is `func_08039F90` at `0x08039F90..0x0803A144` (0x1B4). Its behavior and exact 0x48-byte stack/value model are recovered; the remaining mismatch is natural source lifetime/register allocation. Corrected direct-type v8 is 0x1AC / 356 differing linked bytes, while semantically false-wrapper v4 remains the best raw score at 0x1B2 / 340 and is retained only as allocator-pressure evidence. The adjacent `func_08039E98` constructor is behavior-complete and exact-size in scratch but remains assembly because its remaining differences are register/lifetime allocation.
+`func_08039F90` is now behavior-complete and parked after the bounded natural lifetime family failed to reproduce retail register ownership. The adjacent Q8 trigonometric helpers `func_0803A320` and `func_0803A334` are exact source, adding 48 retail bytes; they read a 256-entry signed Q8 sine table, with `3A334` using the quarter-turn cosine phase. The active same-region target is `func_0803A180` (0x1A0), a shared movement/state helper with eight direct callers. `func_08039E98` remains behavior-complete and exact-size in scratch but parked on register/lifetime allocation.
 
 Compiler-sensitive functions that are behavior-complete are parked rather than blocking whole-game progress. The canonical continuation is always in [tools/ches/NEXT_AGENT_HANDOFF.md](tools/ches/NEXT_AGENT_HANDOFF.md).
 

@@ -1,6 +1,21 @@
 # Current FoMT continuation - October 6, 2026
 
-## CURRENT CHECKPOINT - 39F90 render-lifetime frontier; production unchanged
+## CURRENT CHECKPOINT - Q8 trig pair exact; 39F90 parked; 3A180 active - October 7, 2026
+
+- Active branch is **main**, tracking `ches/main`. The current working tree is based on pushed `63e87269762e25b71c1f6ac50ff28ce0c63cfbb4` and contains the verified exact Q8 trig promotion plus the current documentation/inventory refresh.
+- Production source now owns `func_0803A320` **0x14 / 0** and `func_0803A334` **0x1C / 0** in `src/entity_unk_08038740.cc`. Both matched on the first natural typed source.
+- `gUnk_080F16D2` is proven as a 256-entry signed i16 Q8 sine table ranging -256..256. `3A320(angle)` reads sine; `3A334(angle)` reads `(angle + 0x40) & 0xFF`, the quarter-turn cosine phase.
+- Detached integration `/tmp/fomt-trig-integration` passed full ROM compare `sh_muxfembb_0a539932` and retail SHA1 `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`. Production full gate `sh_muxffquf_b89b18e0` also passed `fomt.gba: OK`; SHA proof `sh_muxfgds6_181b86ba` is retail-exact.
+- Current progress is **71,612 / 940,036 = 7.6180% code**, **868,424 asm bytes**, **75,334 data/assets**, **147,342 meaningful-ROM bytes = 1.9092%**, **671,168 free**.
+- Regenerated inventory: **2,336 linked asm functions**, **867,260 / 868,424 inferred range bytes = 99.8660%**, **1,164 unattributed bytes**, **7 explicitly parked functions**. `func_08039F90` was added to the generator's parked set so the queue will not rediscover it as ordinary work.
+- `func_08039F90` is now **behavior-complete and parked**. Final bounded probes: v12 self alias **0x1B4 / 346**; v13 offset alias **0x1B4 / 341**; v14 vertical-offset copy **0x1AC / 359**; v15 y copy **0x1B4 / 341**; v16 delayed resources pointer **0x1A8 / 373**. v13 and v15 generate the same assembly; none reproduces retail's required prologue register ownership. Do not reopen without genuinely new structural evidence.
+- Opus/throughput rule remains authoritative: work coherent TU/type families, use exact neighbors as source-shape oracles, and park behavior-complete allocator/compiler islands instead of syntax roulette or compiler archaeology.
+
+### Exact next action
+
+Continue **`func_0803A180`**, retail `0x0803A180..0x0803A320` (**0x1A0 / 416 bytes**). It has eight direct callers in `asm/code_linkonce.s`: `func_080DD540`, `080DD5E4`, `080DD7E4`, `080DD8BC`, `080DDEC4`, `080DDF68`, `080DE00C`, and `080DE0AC`. Direct callees include exact `SpriteAnimator::Update / func_0805E8F0` plus `func_080AB788`, `080AB7A4`, `080AB85C`, `080AB8D0`, `080AB948`, and `080AB9C4`. First inspect all eight callers together and recover the shared movement-state struct/parameter roles from retail evidence; only then write the smallest natural scratch source. Do not return to `39F90`.
+
+## SUPERSEDED CHECKPOINT - 39F90 render-lifetime frontier; production unchanged
 
 - Active public retail branch is now **`main`**, local branch tracks `ches/main`, and the former `Live-temp` branch has been deleted both remotely and locally after containment proof. Historical `ches-dev` remains provenance only; custom behavior remains on the separate custom-game worktree/branch.
 - Migration commit: `d34efc5adaad56ce92a41bb354d1882847355438` (`consolidate public decomp documentation on main`). Push `sh_muwzf02b_fea9156d` fast-forwarded `ches/main`; independent verification `sh_muwzf82g_d1c9e8fc` showed remote `main` at the exact same hash.

@@ -16,8 +16,8 @@ Current reconstruction:
 
 ```text
 Code reconstruction
-  71564 / 940036 bytes (7.6129%)
-  868472 bytes remain in asm
+  71612 / 940036 bytes (7.6180%)
+  868424 bytes remain in asm
 
 Data/assets reconstruction
   75334 / 6777404 bytes (1.1115%)
@@ -28,7 +28,7 @@ Data/assets reconstruction
   396 additional source-owned ROM-header bytes count only toward overall
 
 Overall meaningful-ROM reconstruction
-  147294 / 7717440 bytes (1.9086%)
+  147342 / 7717440 bytes (1.9092%)
   final ROM padding is excluded from this denominator
 
 ROM space
@@ -36,7 +36,7 @@ ROM space
   671168 bytes free (655.44 KiB, 8.0009%) contiguous tail space
 ```
 
-The code inventory currently reports **2,338 linked assembly functions**, **867,308 bytes** covered by inferred function ranges, and **1,164 unattributed assembly bytes**.
+The code inventory currently reports **2,336 linked assembly functions**, **867,260 bytes** covered by inferred function ranges, **1,164 unattributed assembly bytes**, and **7 explicitly parked functions**.
 
 ## What the metrics mean
 
@@ -52,11 +52,12 @@ Understanding or documenting an opaque `.incbin` does not count as asset/data re
 
 The current Entity38740 strategy/controller run substantially expanded the readable entity family.
 
-The latest exact promotion added **60 retail bytes**:
+The latest exact promotion added **48 retail bytes**:
 
-- `func_0803A144`: 0x3C / 0, a signed-index/table helper using `gUnk_080F16C2`.
+- `func_0803A320`: 0x14 / 0, signed-Q8 sine lookup from the 256-entry `gUnk_080F16D2` table;
+- `func_0803A334`: 0x1C / 0, quarter-turn signed-Q8 cosine lookup from the same table.
 
-Immediately before it, `func_08039A60` added 0x2EC exact source bytes. The adjacent destructor remains exact source at 0x70, and the earlier batch added 332 retail bytes across `39DA8`, `39E18`, `39A30`, and `39F50`.
+Immediately before this pair, `func_0803A144` added 0x3C exact source bytes, and `func_08039A60` added 0x2EC exact source bytes. The adjacent destructor remains exact source at 0x70, and the earlier batch added 332 retail bytes across `39DA8`, `39E18`, `39A30`, and `39F50`.
 
 The broader recent family also promoted exact nearest-entity selection, coordinate-region tests, strategy selectors, state helpers, table/mask lookups, and strategy-pointer selection.
 
@@ -76,9 +77,9 @@ Other major recovered areas include:
 
 ## Current frontier
 
-The exact next code target is `func_08039F90` at `0x08039F90..0x0803A144` (0x1B4), the larger same-region routine immediately preceding the now-exact `3A144` helper.
+The exact next code target is `func_0803A180` at `0x0803A180..0x0803A320` (0x1A0 / 416 bytes), the eight-caller shared movement/state helper immediately preceding the now-exact Q8 sine/cosine pair.
 
-`39F90` is behavior-complete in scratch with an exact 0x48-byte frame/value model. Corrected direct-type v8 is **0x1AC / 356**, v11's combined early-copy probe is **0x1AC / 359**, and semantically false-wrapper v4 remains the best raw byte score at **0x1B2 / 340** only as allocator-pressure evidence. The next bounded step is to measure isolated v12-v15 lifetime probes before deciding whether the function should be parked. See `START_HERE.md` and `tools/ches/NEXT_AGENT_HANDOFF.md` for the exact resume steps.
+`39F90` is now behavior-complete and parked. The bounded isolated probes measured v12 **0x1B4 / 346**, v13 **0x1B4 / 341**, v14 **0x1AC / 359**, v15 **0x1B4 / 341**, and delayed resources-pointer v16 **0x1A8 / 373**. v13 and v15 compile to the same assembly and none reproduces retail's prologue ownership. This is a closed codegen frontier until new structural evidence appears. See `START_HERE.md` and `tools/ches/NEXT_AGENT_HANDOFF.md` for the exact `3A180` resume steps.
 
 The adjacent `func_08039E98` constructor is behavior-complete and exact-size in scratch at **0xB8 / 109 differing linked bytes**; it is parked on register/lifetime allocation.
 

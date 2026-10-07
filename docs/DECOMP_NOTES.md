@@ -25,13 +25,13 @@ live state. This file keeps subsystem/function evidence and matching lessons.
 
 Current retail state:
 - Active public retail branch: `main`; the former `Live-temp` line is retired. Historical `ches-dev` commits remain provenance only.
-- Current exact progress: **71,564 / 940,036 = 7.6129% source** and **868,472 assembly bytes**. Data/assets reconstruction is **75,334 / 6,777,404 = 1.1115%** and overall meaningful-ROM reconstruction is **147,294 / 7,717,440 = 1.9086%**. `make progress` reports `fomt.gba: OK`; retail SHA1 remains `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
-- Remaining linked assembly functions: **2,338**; inferred function ranges cover **867,308 / 868,472 = 99.8660%**, with **1,164 unattributed bytes**.
+- Current exact progress: **71,612 / 940,036 = 7.6180% source** and **868,424 assembly bytes**. Data/assets reconstruction is **75,334 / 6,777,404 = 1.1115%** and overall meaningful-ROM reconstruction is **147,342 / 7,717,440 = 1.9092%**. `make progress` reports `fomt.gba: OK`; retail SHA1 remains `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
+- Remaining linked assembly functions: **2,336**; inferred function ranges cover **867,260 / 868,424 = 99.8660%**, with **1,164 unattributed bytes** and **7 explicitly parked functions**.
 - Shared NPC identity/location/schedule support, all resident constructors, GameObject entity lookup/teardown, and the exact 43-entry metadata table remain complete.
 - Packed-bank ownership remains **416 / 493 animations: 405 / 450 simple and 11 / 43 multi-frame**. The remaining 77 are a parked by-product lane.
 - `func_08092A70`, `func_080455D8`, `func_080CAC7C` / `func_080CAD18`, `func_08092940`, and the documented Entity38740/Ball codegen islands remain parked at their recorded frontiers.
 - Authoritative compiler remains the tracked 13-rule compatibility path, patch SHA256 `aa7cc6df0efbd066e9c33deb887731e1d0210babfaeba4c9b64f3e8bc35c4256`.
-- The Entity38740/Entity398A4 neighborhood now also has exact `39A60` update logic. `398A4`, `399C0`, `39A60`, `39DA8`, `39E18`, `39A30`, `39F50`, and `func_0803A144` are exact. `39E98` is behavior-complete/exact-size but parked. Active same-region target `func_08039F90` (0x1B4) is behavior-complete with the exact 0x48-byte frame/value model; corrected direct-type v8 is 0x1AC/356 and v11 is 0x1AC/359. Its remaining work is a bounded natural lifetime/register-allocation probe, not open-ended syntax or compiler roulette.
+- The Entity38740/Entity398A4 neighborhood now also has exact `39A60` update logic. `398A4`, `399C0`, `39A60`, `39DA8`, `39E18`, `39A30`, `39F50`, `func_0803A144`, `func_0803A320`, and `func_0803A334` are exact. `3A320/3A334` are a 256-entry signed-Q8 sine/cosine lookup pair; cosine is the +0x40 wrapped phase. `39E98` and behavior-complete `39F90` are parked on register allocation. `39F90`'s bounded v12-v16 lifetime family did not converge, so the active same-region target is the eight-caller `func_0803A180` (0x1A0).
 - The opening-farm savestate/watchpoint work remains seed infrastructure for later scripted runtime coverage, not the primary queue.
 
 Naming rule:

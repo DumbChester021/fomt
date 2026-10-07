@@ -1,6 +1,16 @@
 # Ches Session Status — FOMT decomp
 
-## CURRENT SNAPSHOT - 7.6129%; 3A144 table helper exact - October 7, 2026
+## CURRENT SNAPSHOT - 7.6180%; Q8 trig pair exact; 39F90 parked - October 7, 2026
+
+- Active branch is **main**, tracking `ches/main`; current working tree is based on pushed `63e8726`.
+- New exact source: `func_0803A320` **0x14 / 0** and `func_0803A334` **0x1C / 0**, the signed-Q8 sine/cosine lookup pair over `gUnk_080F16D2`.
+- Detached integration and production integration both pass **`fomt.gba: OK`**; production SHA remains `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
+- Current progress: **71,612 / 940,036 = 7.6180% code**, **868,424 asm bytes**, **75,334 data/assets**, **147,342 meaningful-ROM bytes = 1.9092%**, **671,168 free**.
+- Inventory: **2,336 linked asm functions**, **867,260 / 868,424 inferred range bytes = 99.8660%**, **1,164 unattributed**, **7 parked functions**.
+- `func_08039F90` is behavior-complete and parked. Final probes: v12 0x1B4/346, v13 0x1B4/341, v14 0x1AC/359, v15 0x1B4/341, v16 0x1A8/373. No valid natural lifetime reproduces retail prologue ownership.
+- Exact next target: `func_0803A180` (0x1A0 / 416), eight callers in `code_linkonce.s`; recover the shared caller/state model before scratch source work.
+
+## SUPERSEDED SNAPSHOT - 7.6129%; 3A144 table helper exact - October 7, 2026
 
 - Active branch is **`main`**, tracking `ches/main`.
 - `func_0803A144` is production source-owned exact: **0x3C / 0** in scratch v3 (`sh_muxc0kl1_d5ee2156`) and full production ROM exact (`sh_muxc322u_76a0188c` -> `fomt.gba: OK`).
