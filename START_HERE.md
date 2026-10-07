@@ -20,6 +20,19 @@ This is the live dashboard for the US Harvest Moon: Friends of Mineral Town matc
 - Full gate: make -B -j4 compare, ending in **fomt.gba: OK**.
 - Compiler: tracked tools/install_agbcp.sh plus tools/agbcp_fomt_compat.patch; unchanged thirteen-rule wrapper at tools/agbcc/bin/agbcp.
 
+## Handoff readiness
+
+Latest verified code commit: 98c6cd1e203ccc781e4f1a2669cb56a2477c5df5,
+pushed to ches/main. Later documentation-only commits do not change its code
+metrics or ROM proof. The full loader and complete GameState type remain
+unfinished; retail subobject recovery is active and custom extension work is
+deferred. No commands are pending.
+
+For the proven techniques and recommended next approach, read
+docs/DECOMP_PLAYBOOK.md, section "Recover persistent subobjects without blocking
+on the whole loader". NEXT_AGENT_HANDOFF.md includes first commands, exact
+next deliverable, closed paths and fresh-clone artifact limitations.
+
 ## Current exact reconstruction
 
 - Code: **73,556 / 940,036 = 7.8248%**

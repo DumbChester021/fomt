@@ -6,6 +6,19 @@ Retail main tracks ches/main. Run git log -1 for the saved checkpoint.
 This fishing-record unit began at d9e95f5f4ebacc07d3b9f3aabae26f0809d63dd0.
 Custom-game was not modified. Compiler inputs are unchanged.
 
+## Handoff readiness
+
+Latest verified code commit: 98c6cd1e203ccc781e4f1a2669cb56a2477c5df5,
+pushed to ches/main. Later documentation-only commits do not change its code
+metrics or ROM proof. The full loader and complete GameState type remain
+unfinished; retail subobject recovery is active and custom extension work is
+deferred. No commands are pending.
+
+For the proven techniques and recommended next approach, read
+docs/DECOMP_PLAYBOOK.md, section "Recover persistent subobjects without blocking
+on the whole loader". NEXT_AGENT_HANDOFF.md includes first commands, exact
+next deliverable, closed paths and fresh-clone artifact limitations.
+
 ## Exact production progress
 
 - Code: 73,556 / 940,036 = 7.8248%; assembly 866,480 bytes

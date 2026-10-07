@@ -413,6 +413,104 @@ and 6640 while preserving harder neighbors, then pivoted to SpriteAnimator.
 That remains a useful leverage example, but the fixed five-function batch size
 is no longer current policy.
 
+## Recover persistent subobjects without blocking on the whole loader
+
+Save-layout understanding, exact executable-source coverage, and custom-save
+implementation are separate results. Report each explicitly. A recovered
+472-byte RAM/save type does not add 472 source-owned ROM data bytes and does
+not establish a complete GameState declaration or a finished loader.
+
+### What the fishing-record integration demonstrated
+
+1. **Reuse previous evidence before generating variants.** The old
+   DECOMP_NOTES contained seven matching raw-pointer shapes. The current
+   initializer, catch updater, getters and aggregation methods were recovered
+   together as one coherent type. No full-loader candidate was needed.
+2. **Establish semantics from independent consumers.** Both initialization
+   paths pass GameState+0x2C80. The fishing-result caller passes the caught size
+   to the updater; the name table identifies treasures, ordinary fish and
+   Fish Kings. This justified count/max_size names instead of generic statistics.
+   The size unit remains unknown.
+3. **Try the straightforward typed form first.** A two-u32 FishingRecord array
+   matched all eight method bodies with the unchanged current compiler on the
+   first typed candidate. Raw pointer arithmetic from older probes was useful
+   evidence, not a requirement to retain in production.
+4. **Measure actual function bodies and linked ranges separately.** Three
+   initial two-byte deltas had no differing byte positions: symbol sizes
+   excluded normal trailing alignment. Check nm -S, the assembly and mismatch
+   report before calling this a compiler failure. Correct bounds were 30,
+   10 and 74 bytes for CD78, CE24 and CE30. The complete 276-byte block,
+   including six alignment bytes, then matched exactly. Never add padding or
+   discard differing bytes just to make the report pass.
+5. **Integrate exact ranges independently of hard neighbors.** The old C6BC
+   constructor barrier was a layout assumption. A named assembly section after
+   the fishing block and explicit linker ordering preserved all original
+   addresses while C6BC and CE8C stayed assembly. Check literal pools, local
+   references, emitted sections and callable aliases before applying this.
+6. **Prove integration, not only individual functions.** Compare the complete
+   block, then use an isolated checkout and production forced full-ROM builds.
+   Verify ROM equality/size/hash, target and neighbor addresses, body sizes and
+   input hashes. Regenerate the inventory and assert that only the intended
+   methods disappear; other function addresses/sizes must remain unchanged.
+
+The CE30 natural switch now matches. This is a current reproduction result;
+the precise cause of the historical mismatch was not established. Do not
+invent a new compiler fix or claim the old experiment was necessarily wrong.
+Reopen an old result only for a concrete changed context and one bounded check.
+
+### Recommended sequence for the remaining save layout
+
+Start from the loader and new-game initialization call sites, then recover
+one subobject's initializer, readers/writers, copy helpers and related table
+consumers as a cluster. For each field, save offset, width, signedness/bit mask,
+default value, stride/count, observed readers/writers and evidence level.
+Track preserved or unknown bits explicitly. A zeroing loop alone does not
+justify gameplay names or prove that untouched bytes are padding.
+
+For mine-floor CE8C, the immediate deliverable is a checked field-access map
+and candidate type for the recorded GameState+0x2E58..0x3480 span. The shared
+type must respect the existing mine_floor.cc calling conventions and unusual
+byte-base helper. Preserve that legacy exact source while investigating;
+its fixed-register/inline-assembly techniques are not a model for new work.
+Attempt a natural initializer/consumer candidate only after this map is sound.
+
+Use an exact sibling as a source-shape oracle. If a candidate differs, first
+classify the cause: boundary/relocation, wrong layout or behavior, source
+lifetime/ABI, or compiler pass behavior. Preserve a candidate and the first
+proven divergence. Stop a hypothesis family when new spellings reproduce the
+same canonical code or first divergence without new evidence. Save that result
+and move to another useful persistent subobject.
+
+The whole loader remains parked at stock v96 740 bytes / 495 differences.
+To reopen it, require new source-boundary evidence that explains the real
+zero-value ownership across constructor/member lifetimes. A smaller oracle
+or diagnostic compiler flag alone is insufficient. The nested ActorLocation
+six-byte-copy path is closed: retail has no such copy at that boundary.
+Compare initial RTL, first CSE and later lifetime/allocation only after a
+specific structural hypothesis warrants it. Never force registers, add fake
+operations, transplant absent calls, or modify the compiler for this target.
+
+### Validation and artifact discipline
+
+The normal target tool is tools/ches/compare-function.py. Supply true body
+bounds with --symbol for individual methods; omit --symbol to check a complete
+contiguous source block, including its normal alignment and literal pools.
+A former zero-difference body remains useful evidence, but any changed source,
+header, compiler or linker context needs the affected gate repeated.
+
+The fishing isolated build reused the previously verified fresh compiler
+installation; it was a fresh checkout, not a fresh compiler install. Record
+that distinction. A new checkout should follow tools/install_agbcp.sh; do not
+depend on an old /tmp symlink. Compiler changes require the separate existing
+compiler regression process; unchanged-compiler source work does not need
+unrelated compiler experiments.
+
+Keep experiments outside production src/, which is compiled automatically.
+Tracked source, architecture docs and canonical handoff must be sufficient
+to understand the outcome even when ignored local checkpoint artifacts are
+unavailable. Temporary worktrees and old shell execution IDs are historical
+evidence, not instructions to replay mutations.
+
 ## Documentation contract
 
 A no-context agent must be able to answer these questions from files alone:

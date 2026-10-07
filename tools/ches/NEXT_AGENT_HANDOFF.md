@@ -1,9 +1,33 @@
 # Current FoMT continuation - October 7, 2026
 
+## Read-first orientation and verified publication
+
+Workspace: /mnt/data/Github/gba/fomt. Retail branch: main, tracking ches/main.
+Latest verified code commit: 98c6cd1e203ccc781e4f1a2669cb56a2477c5df5
+(decompile fishing records and recover persistent layout), pushed and verified.
+A later docs-only commit may be HEAD. Read git status and git log before work;
+never reset another session's changes to match an expected hash.
+
+Read AGENTS.md, the decompilation skill, START_HERE.md, then the playbook section
+"Recover persistent subobjects without blocking on the whole loader" and the
+current priority map. Continue here with docs/SAVE_FORMAT.md,
+docs/FISHING_RECORDS.md and the named failure records. No chat history is needed.
+
+The goal is whole-game exact decompilation with renewed save-structure recovery.
+Three distinct states matter:
+
+- Slot geometry/checksum/writer and the fishing subobject are recovered.
+- A complete typed GameState and exact legacy loader remain unfinished.
+- The custom extension format is deferred design, not implemented behavior.
+
+This handoff refresh changes documentation only. It does not claim another
+code gain or new mine-floor experiment. There is no outstanding build, provider
+request or unknown mutation to resume.
+
 ## Completed fishing-record unit
 
 Retail main tracks ches/main. This unit began at
-d9e95f5f4ebacc07d3b9f3aabae26f0809d63dd0; git log -1 identifies its checkpoint.
+d9e95f5f4ebacc07d3b9f3aabae26f0809d63dd0; the verified code checkpoint is 98c6cd1e203ccc781e4f1a2669cb56a2477c5df5.
 
 Source: include/fishing_records.hh and src/fishing_records.cc.
 Seams: asm/code_actor_0809BFE8.s and fomt.lds.
@@ -42,7 +66,7 @@ compiler matches the natural CE30 switch without variants or compiler changes.
 - Eight body sizes and twelve function/neighbor addresses PASS.
 - Four integration input hashes saved in isolated/production-proof.json.
 - Only eight intended inventory functions removed; other addresses/sizes unchanged.
-- No commands remain pending. Production execution sh_muy2r4k7_d5f6424d exited0.
+- No commands remain pending. Production execution sh_muy2r4k7_d5f6424d exited 0.
 
 Code 73,556 /940,036 =7.8248%; assembly 866,480. Data 75,334 /6,777,404 =1.1115%.
 Overall 149,286 /7,717,440 =1.9344%. Linked asm functions 2,321; inferred 865,316;
@@ -77,6 +101,50 @@ from /tmp/fomt-resource-owner-integration/tools/agbcc.
    different persistent subobject. Do not reopen the whole loader by inertia.
 
 No mine-floor candidate was created in this checkpoint.
+
+## First inspection and reproducible proof paths
+
+Run from /mnt/data/Github/gba/fomt. Start with these read-only checks:
+
+    git status --short --branch
+    git log -3 --oneline
+    git diff --check
+    rg -n '0809CE8C|0809CF34|MineFloor|mine.floor' docs/DECOMP_NOTES.md docs/DECOMP_PLAYBOOK.md tools/ches/checkpoints/call238/EXPERIMENT_INDEX.md tools/ches/checkpoints/call238/FAILURES_AND_CLOSED_PATHS.md
+
+Before reading large checkpoint trees, use rg --files with relevant filenames,
+then search only those paths. The older save-system offset map is evidence to
+verify, not an authoritative completed type. Inspect the actual constructor
+and consumers at the selected boundary.
+
+The immediate next deliverable is a field-access map for the CE8C object:
+offset, access width/mask, initializer value, readers/writers, evidence level.
+Then decide whether a natural typed initializer/consumer cluster is ready.
+If the old mine-floor source cannot share a type without broad changes, retain
+its exact boundary and preserve the assessment rather than forcing a refactor.
+
+For changed source, use tools/ches/compare-function.py with true symbol bounds,
+then a complete block proof where applicable. Follow with isolated and production
+make -B -j4 compare, ROM hash/size and neighboring-symbol checks.
+Regenerate tools/ches/build_decomp_inventory.py and
+tools/ches/map_npc_entity_classes.py after successful integration. Compare
+inventories to ensure only intended functions changed ownership.
+Do not rerun unchanged builds merely for this documentation refresh.
+
+Local ignored checkpoints hold richer history:
+
+- fishing-records-2026-10-07: typed candidate, whole-block proof, integration/
+  publication records, inventory audit and all 59 record names/offsets.
+- resource-owner-0803AB30-2026-10-07: prior exact owner boundaries and parked work.
+- save-loader-08011650-2026-10-04: authoritative closed loader probes/oracles.
+- save-system-research-2026-10-05: broader offset map with mixed evidence levels.
+- call238/EXPERIMENT_INDEX.md and FAILURES_AND_CLOSED_PATHS.md: lookup/closed paths.
+
+These are under tools/ches/checkpoints/ and are ignored, not published artifacts.
+On a fresh clone, their absence is not a clean slate or permission to repeat
+closed work. Use the tracked source, this handoff and playbook; reacquire missing
+research before any experiment that depends on it. Recreate temporary checkouts
+with the tracked installer if needed. Never replay old integration/promote
+scripts or prior execution IDs.
 
 ## Preserved parked work
 

@@ -88,10 +88,11 @@ that independently use this range.
 
 ## Proposed extension contract
 
-This remains deferred design reference. The retail loader semantics and writer/
-slot geometry are sufficiently bounded for now, and exact loader source matching
-is explicitly **paused** during the whole-game throughput pivot. Resume persistence
-work when custom runtime/content systems are ready to require stored state.
+This custom extension remains deferred design reference. Retail persistent-type
+recovery is active through subobject initializers and consumers, including the
+completed fishing-record block. Exact matching of the whole legacy loader is
+still paused pending new structural evidence. These are independent tasks;
+recovering the retail layout does not implement an extension format.
 
 A separately versioned record in that tail is a candidate for added NPCs,
 quests, or other mod-owned state. No serializer, loader, allocation registry,
