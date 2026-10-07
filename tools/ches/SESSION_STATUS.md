@@ -2,13 +2,15 @@
 
 ## CURRENT SNAPSHOT - 7.6180%; Q8 trig pair exact; 39F90 parked - October 7, 2026
 
-- Active branch is **main**, tracking `ches/main`; current working tree is based on pushed `63e8726`.
+- Active branch is **main**, tracking `ches/main`; current published base is `91ed56a8acc638a27e8d30614b4613d92ae8e3f4`.
 - New exact source: `func_0803A320` **0x14 / 0** and `func_0803A334` **0x1C / 0**, the signed-Q8 sine/cosine lookup pair over `gUnk_080F16D2`.
 - Detached integration and production integration both pass **`fomt.gba: OK`**; production SHA remains `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
 - Current progress: **71,612 / 940,036 = 7.6180% code**, **868,424 asm bytes**, **75,334 data/assets**, **147,342 meaningful-ROM bytes = 1.9092%**, **671,168 free**.
 - Inventory: **2,336 linked asm functions**, **867,260 / 868,424 inferred range bytes = 99.8660%**, **1,164 unattributed**, **7 parked functions**.
 - `func_08039F90` is behavior-complete and parked. Final probes: v12 0x1B4/346, v13 0x1B4/341, v14 0x1AC/359, v15 0x1B4/341, v16 0x1A8/373. No valid natural lifetime reproduces retail prologue ownership.
-- Exact next target: `func_0803A180` (0x1A0 / 416), eight callers in `code_linkonce.s`; recover the shared caller/state model before scratch source work.
+- Trig/docs checkpoint is published at **`91ed56a8acc638a27e8d30614b4613d92ae8e3f4`**, remote-verified on `ches/main`.
+- `func_0803A180` structural pass: all eight callers are the same +0x0C update slot across sibling vtables 76A4/768C/7674/765C/7614/75FC/75E4/75CC, corresponding to factory cases 0-3 and 6-9. Ordinary siblings are 0x64 bytes, derive from the `39E98` base shape, store their vtable at +0x4C, and share a 0x14-byte movement state at +0x50 (direction, signed x/y, Q16 x/y, timer, signed mode/flag).
+- Exact next target remains `func_0803A180` (0x1A0 / 416). Next inspect AB85C/AB8D0/AB948/AB9C4 and the top hidden-struct-return/collision record against existing project types, then write the first natural 0x14-state scratch candidate.
 
 ## SUPERSEDED SNAPSHOT - 7.6129%; 3A144 table helper exact - October 7, 2026
 

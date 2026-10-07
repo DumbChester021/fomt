@@ -2,7 +2,7 @@
 
 ## CURRENT CHECKPOINT - Q8 trig pair exact; 39F90 parked; 3A180 active - October 7, 2026
 
-- Active branch is **main**, tracking `ches/main`. The current working tree is based on pushed `63e87269762e25b71c1f6ac50ff28ce0c63cfbb4` and contains the verified exact Q8 trig promotion plus the current documentation/inventory refresh.
+- Active branch is **main**, tracking `ches/main`. The current published base is `91ed56a8acc638a27e8d30614b4613d92ae8e3f4`; the only new working-tree changes are this `3A180` structural research handoff/status checkpoint.
 - Production source now owns `func_0803A320` **0x14 / 0** and `func_0803A334` **0x1C / 0** in `src/entity_unk_08038740.cc`. Both matched on the first natural typed source.
 - `gUnk_080F16D2` is proven as a 256-entry signed i16 Q8 sine table ranging -256..256. `3A320(angle)` reads sine; `3A334(angle)` reads `(angle + 0x40) & 0xFF`, the quarter-turn cosine phase.
 - Detached integration `/tmp/fomt-trig-integration` passed full ROM compare `sh_muxfembb_0a539932` and retail SHA1 `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`. Production full gate `sh_muxffquf_b89b18e0` also passed `fomt.gba: OK`; SHA proof `sh_muxfgds6_181b86ba` is retail-exact.
@@ -10,10 +10,22 @@
 - Regenerated inventory: **2,336 linked asm functions**, **867,260 / 868,424 inferred range bytes = 99.8660%**, **1,164 unattributed bytes**, **7 explicitly parked functions**. `func_08039F90` was added to the generator's parked set so the queue will not rediscover it as ordinary work.
 - `func_08039F90` is now **behavior-complete and parked**. Final bounded probes: v12 self alias **0x1B4 / 346**; v13 offset alias **0x1B4 / 341**; v14 vertical-offset copy **0x1AC / 359**; v15 y copy **0x1B4 / 341**; v16 delayed resources pointer **0x1A8 / 373**. v13 and v15 generate the same assembly; none reproduces retail's required prologue register ownership. Do not reopen without genuinely new structural evidence.
 - Opus/throughput rule remains authoritative: work coherent TU/type families, use exact neighbors as source-shape oracles, and park behavior-complete allocator/compiler islands instead of syntax roulette or compiler archaeology.
+- Published the completed trig/docs checkpoint as **`91ed56a8acc638a27e8d30614b4613d92ae8e3f4`** (`decompile q8 trig lookup helpers`). Push `sh_muxgxy0k_9d47ea56` succeeded and remote verification `sh_muxgy4of_ad93897a` returned the same hash; the worktree was clean before new research.
+- First structural pass on `func_0803A180` is complete. Its eight direct callers are the **+0x0C virtual update slot** of eight sibling 0x18-byte vtables:
+  - `vtable_unk_080E76A4 -> func_080DE0AC` (factory case 0);
+  - `vtable_unk_080E768C -> func_080DE00C` (case 1);
+  - `vtable_unk_080E7674 -> func_080DDF68` (case 2);
+  - `vtable_unk_080E765C -> func_080DDEC4` (case 3);
+  - `vtable_unk_080E7614 -> func_080DD8BC` (case 6);
+  - `vtable_unk_080E75FC -> func_080DD7E4` (case 7);
+  - `vtable_unk_080E75E4 -> func_080DD5E4` (case 8);
+  - `vtable_unk_080E75CC -> func_080DD540` (case 9).
+  Factory cases 4, 5, 10, and 11 use distinct update paths, so this is a real coherent sibling family rather than an arbitrary caller set.
+- Common family layout is now strongly supported from both factories and updates. Ordinary siblings allocate **0x64 bytes**, call base constructor `func_08039E98`, install the derived vtable at **+0x4C**, and own a **0x14-byte movement/state block at +0x50**. Proven field roles: +0x00 direction/state word; +0x04/+0x06 signed coordinate halfwords; +0x08/+0x0C Q16 coordinate accumulators; +0x10 movement timer; +0x12 signed mode/flag byte. `func_0803A180(self, &state, q16_step)` moves one Q16 axis according to direction 0..3 after collision/bound checks, writes Q16 high halves back to the coordinate halfwords, updates the embedded `SpriteAnimator` at self+0x30 and its change latch, decrements/reseeds the timer, may randomize direction through `func_080AB7A4`, and returns 1 when the timer is reseeded.
 
 ### Exact next action
 
-Continue **`func_0803A180`**, retail `0x0803A180..0x0803A320` (**0x1A0 / 416 bytes**). It has eight direct callers in `asm/code_linkonce.s`: `func_080DD540`, `080DD5E4`, `080DD7E4`, `080DD8BC`, `080DDEC4`, `080DDF68`, `080DE00C`, and `080DE0AC`. Direct callees include exact `SpriteAnimator::Update / func_0805E8F0` plus `func_080AB788`, `080AB7A4`, `080AB85C`, `080AB8D0`, `080AB948`, and `080AB9C4`. First inspect all eight callers together and recover the shared movement-state struct/parameter roles from retail evidence; only then write the smallest natural scratch source. Do not return to `39F90`.
+Continue **`func_0803A180`**, retail `0x0803A180..0x0803A320` (**0x1A0 / 416 bytes**), from the recovered sibling layout above. Before writing source, map the four collision/bound helpers `func_080AB85C / 080AB8D0 / 080AB948 / 080AB9C4` to existing project types and inspect the exact hidden-struct-return call at the top of `3A180` so the stack record uses an existing Box/collision type rather than a guessed duplicate. Then write the smallest natural scratch candidate with the 0x14 movement-state struct and compare it with `tools/ches/compare-function.py`. Do not return to `39F90`.
 
 ## SUPERSEDED CHECKPOINT - 39F90 render-lifetime frontier; production unchanged
 
