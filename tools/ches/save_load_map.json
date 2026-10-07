@@ -1,7 +1,7 @@
 {
   "batch": 14,
   "call": 10,
-  "status": "record geometry and writer recovered; loader parked; persistent-subobject type assessment next",
+  "status": "record geometry, writer and fishing-record subobject recovered; loader parked; adjacent mine-floor type assessment next",
   "goals": [
     "identify physical backup medium/API",
     "identify save/load entrypoints and slot selection",
@@ -116,5 +116,30 @@
     "successful_load_postprocessing": "after the raw payload read, only checksum/error handling occurs inside func_08011650; there is no successful-path field migration/fixup pass",
     "compatibility_consequence": "retail save compatibility depends on exact GameState byte layout and serialized representations; changing the layout or serialized size needs an explicit compatibility layer",
     "failure_safety": "Defaults precede SRAM reads, but partial or invalid payload I/O may overwrite them. Failure does not guarantee usable state; check error output."
+  },
+  "fishing_records": {
+    "payload_offset": "0x2C80",
+    "size": "0x1D8",
+    "next_payload_offset": "0x2E58",
+    "record_count": 59,
+    "record_stride": 8,
+    "count_offset": 0,
+    "max_size_offset": 4,
+    "source": "src/fishing_records.cc",
+    "header": "include/fishing_records.hh",
+    "documentation": "docs/FISHING_RECORDS.md",
+    "status": "eight methods and shared type integrated; full ROM exact",
+    "non_fish_indices_range_inclusive": [
+      0,
+      7
+    ],
+    "ordinary_fish_indices_range_inclusive": [
+      8,
+      52
+    ],
+    "fish_king_indices_range_inclusive": [
+      53,
+      58
+    ]
   }
 }

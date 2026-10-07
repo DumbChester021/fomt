@@ -14,7 +14,7 @@ This is the live dashboard for the US Harvest Moon: Friends of Mineral Town matc
 ## Active branch and build authority
 
 - Retail branch: **main**, tracking **ches/main**. Run git log -1 for this checkpoint's commit.
-- Starting checkpoint for the resource-owner integration: **5cc430c597d063f5e641c2b28943ba515b6353b8**.
+- Starting checkpoint for the fishing-record integration: **d9e95f5f4ebacc07d3b9f3aabae26f0809d63dd0**.
 - Custom gameplay stays in the separate custom-game worktree.
 - ROM: **8,388,608 bytes**, SHA1 **a2fc3574f0a65a4fcf7682fb274b9d7eebdef963**.
 - Full gate: make -B -j4 compare, ending in **fomt.gba: OK**.
@@ -22,49 +22,44 @@ This is the live dashboard for the US Harvest Moon: Friends of Mineral Town matc
 
 ## Current exact reconstruction
 
-- Code: **73,280 / 940,036 = 7.7954%**
-- Assembly remaining: **866,756 bytes**
-- Linked assembly functions: **2,329**
-- Inferred ranges: **865,592 / 866,756 = 99.8657%**
+- Code: **73,556 / 940,036 = 7.8248%**
+- Assembly remaining: **866,480 bytes**
+- Linked assembly functions: **2,321**
+- Inferred ranges: **865,316 / 866,480 = 99.8657%**
 - Unattributed assembly: **1,164 bytes**
 - Generated parked functions: **17**
 - Data/assets: **75,334 / 6,777,404 = 1.1115%**
-- Overall meaningful ROM: **149,010 / 7,717,440 = 1.9308%**
+- Overall meaningful ROM: **149,286 / 7,717,440 = 1.9344%**
 - Contiguous free tail: **671,168 bytes = 655.44 KiB**
 
 ## Latest completed unit
 
-Four rendering-resource-owner methods are integrated: AC78 destructor, ACD8
-graphics update, AE58 renderer forwarding, and B0A8 sibling destructor.
-They add **678 body bytes / 680 linked bytes including alignment**.
+Eight fishing-record methods at 0809CD78..0809CE8C are now exact source,
+adding 270 body bytes plus six alignment bytes, 276 linked bytes.
+The shared type recovers the 472-byte persistent block at GameState+2C80:
+59 catch-count/maximum-size pairs. Indices 0..7 are treasures/junk,
+8..52 ordinary fish, and 53..58 Fish Kings.
 
-Source: include/resource_owners.hh, src/resource_owner_cached.cc and
-src/resource_owner_variable.cc. Stable architecture: docs/RESOURCE_OWNERS.md.
-All four final targets, a fresh isolated compiler/full-ROM build, and the
-production forced full-ROM build pass. Eleven symbol checks and contribution
-input hashes agree; only the four intended functions leave the assembly inventory.
-Existing handle/container headers and the compiler are unchanged.
+Source: include/fishing_records.hh and src/fishing_records.cc.
+Architecture: docs/FISHING_RECORDS.md and docs/SAVE_FORMAT.md.
+All eight target bodies, complete block and isolated/production forced full-ROM
+builds pass. Twelve symbol addresses, eight body sizes and input hashes pass.
+Only those eight functions leave the regenerated inventory. Compiler unchanged.
 
-The prior 652-byte GetMapResourceId resolver and Entity38740-family helpers
-remain complete. Do not repeat their matching or integration.
+The preceding four resource-owner methods (680 bytes) and map resolver
+(652 bytes) remain complete. Do not repeat their integration.
 
 ## Next direction
 
-The user renewed the eventual save-structure recovery goal on October 7.
-Use saved save-system research to select a coherent persistent-subobject/type
-boundary, with initializer/consumer evidence and unchanged GameState offsets.
-Start with the statistics-state cluster around 0809CD78, subject to its saved
-history and current inventory. This can improve save-layout coverage without
-reopening the parked loader's zero-identity/compiler puzzle.
+Assess the adjacent persistent mine-floor initializer/layout around 0809CE8C,
+using saved history and existing src/mine_floor.cc. The old map records
+GameState+2E58..3480 (0x628 bytes). Existing mine-floor source contains private
+incomplete types and legacy assembly-based reconstruction; do not copy those
+techniques or change its ABI without exact proof. No new candidate exists yet.
 
-The current loader error-code mapping was rechecked against assembly; stale
-contradictory research text is corrected. See docs/SAVE_FORMAT.md and the handoff.
-
-Resource-owner constructors remain assembly. AB30 is parked at 316/217 versus
-328 expected; sibling B128 remains 382/2. Their failed source spellings are
-closed. Resource-owner candidates/proofs live locally in the ignored
-tools/ches/checkpoints/resource-owner-0803AB30-2026-10-07/ directory; a fresh
-clone lacks those scratch artifacts but contains the integrated source.
+The loader remains parked. Resource-owner constructors and B128 remain parked.
+Local ignored proofs are under tools/ches/checkpoints/fishing-records-2026-10-07/.
+The canonical handoff supplies the exact continuation and prior failure limits.
 
 ## Parked work and documentation
 

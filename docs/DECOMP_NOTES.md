@@ -25,13 +25,13 @@ live state. This file keeps subsystem/function evidence and matching lessons.
 
 Current retail state:
 - Active public retail branch: `main`; the former `Live-temp` line is retired. Historical `ches-dev` commits remain provenance only.
-- Current exact progress: **73,280 / 940,036 = 7.7954% source** and **866,756 assembly bytes**. Data/assets reconstruction is **75,334 / 6,777,404 = 1.1115%** and overall meaningful-ROM reconstruction is **149,010 / 7,717,440 = 1.9308%**. `make progress` reports `fomt.gba: OK`; retail SHA1 remains `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
-- Remaining linked assembly functions: **2,329**; inferred function ranges cover **865,592 / 866,756 = 99.8657%**, with **1,164 unattributed bytes** and **17 explicitly parked functions**.
+- Current exact progress: **73,556 / 940,036 = 7.8248% source** and **866,480 assembly bytes**. Data/assets reconstruction is **75,334 / 6,777,404 = 1.1115%** and overall meaningful-ROM reconstruction is **149,286 / 7,717,440 = 1.9344%**. `make progress` reports `fomt.gba: OK`; retail SHA1 remains `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
+- Remaining linked assembly functions: **2,321**; inferred function ranges cover **865,316 / 866,480 = 99.8657%**, with **1,164 unattributed bytes** and **17 explicitly parked functions**.
 - Shared NPC identity/location/schedule support, all resident constructors, GameObject entity lookup/teardown, and the exact 43-entry metadata table remain complete.
 - Packed-bank ownership remains **416 / 493 animations: 405 / 450 simple and 11 / 43 multi-frame**. The remaining 77 are a parked by-product lane.
 - `func_08092A70`, `func_080455D8`, `func_080CAC7C` / `func_080CAD18`, `func_08092940`, and the documented Entity38740/Ball codegen islands remain parked at their recorded frontiers.
 - Authoritative compiler remains the tracked 13-rule compatibility path, patch SHA256 `aa7cc6df0efbd066e9c33deb887731e1d0210babfaeba4c9b64f3e8bc35c4256`.
-- The Entity38740/Entity398A4 neighborhood now owns exact source through `func_0803A8A0`, including `398A4`, `399C0`, `39A60`, `39DA8`, `39E18`, `39A30`, `39F50`, `3A144`, `3A320/334`, `3A350`, `3A798`, and the seven-helper `3A804..3A8A0` tail. `39E98`, `39F90`, `3A180`, and `3A394` are behavior-complete/bounded parked codegen islands. The logical map resolver at `0x0803A8A4` is now 652 bytes of exact source as `GetMapResourceId`; `docs/MAP_DATA.md` owns its stable logical/physical namespace and variant rules. Resource-owner provider/descriptor and 0xA0/0x46C owner layouts are now recovered in `docs/RESOURCE_OWNERS.md`. Four methods (AC78, ACD8, AE58, B0A8) are now source-integrated, adding 680 linked bytes. Final production-header targets, fresh isolated compiler/full-ROM build, production full-ROM build, symbol/input hashes and inventory audit all pass. Next assess the persistent statistics-state initializer/consumer family toward save-structure recovery. AB30 constructor source-shape work is parked at 316/217 versus 328; B128 update remains 382/2, with operand-commutation spelling closed.
+- The Entity38740/Entity398A4 neighborhood now owns exact source through `func_0803A8A0`, including `398A4`, `399C0`, `39A60`, `39DA8`, `39E18`, `39A30`, `39F50`, `3A144`, `3A320/334`, `3A350`, `3A798`, and the seven-helper `3A804..3A8A0` tail. `39E98`, `39F90`, `3A180`, and `3A394` are behavior-complete/bounded parked codegen islands. The logical map resolver at `0x0803A8A4` is now 652 bytes of exact source as `GetMapResourceId`; `docs/MAP_DATA.md` owns its stable logical/physical namespace and variant rules. Resource-owner provider/descriptor and 0xA0/0x46C owner layouts are now recovered in `docs/RESOURCE_OWNERS.md`. Four methods (AC78, ACD8, AE58, B0A8) are now source-integrated, adding 680 linked bytes. Final production-header targets, fresh isolated compiler/full-ROM build, production full-ROM build, symbol/input hashes and inventory audit all pass. The eight fishing-record methods are now exact source (276 bytes), with a shared 472-byte persistent type. Next assess the mine-floor initializer/layout around 0809CE8C. AB30 constructor source-shape work is parked at 316/217 versus 328; B128 update remains 382/2, with operand-commutation spelling closed.
 - The opening-farm savestate/watchpoint work remains seed infrastructure for later scripted runtime coverage, not the primary queue.
 
 Naming rule:
@@ -515,123 +515,18 @@ Exact contribution commit for the five head methods: 8c52b9f (`decompile interac
 - Similar masks appear in many game-state field accessors, supporting the packed-field interpretation.
 - Keep semantic names conservative until those accessor groups are mapped to game concepts.
 
-### Statistics helper family at game-state +0x2C80
-Callers and constructors show `func_0809CD78` operates on game-state `+0x2C80` (`0xB2 << 6`), separate from the +0x214C packed state.
+### Fishing records at GameState+0x2C80: integrated
 
-Strong inferred layout:
-- 59 entries (`index 0..58`)
-- each entry = two u32 values, 8 bytes total
-- first u32 behaves as a count, saturating at 1,000,000,000
-- second u32 stores a maximum/high-water value
-- helper `CDCC` checks indices 8..58 all have nonzero count
-- helper `CDEC` sums counts for indices 8..58 with saturation at 1,000,000,000
+The former statistics family is the 59-entry fishing collection. Typed source
+now owns all eight methods at 0809CD78..0809CE8C (276 linked bytes), including
+the natural Fish King switch. Counts/maxima occupy 472 bytes at +2C80..2E58.
+The fishing-result caller and retail name table establish the semantics.
+See FISHING_RECORDS.md for layouts, API contracts and exactness boundaries.
 
-Exact C/C++ shapes discovered but **not yet bankable because C6BC is still asm**:
-
-`func_0809CD78` (32 bytes exact): natural form is sufficient and return type must be pointer/self:
-```cpp
-EC u32 * func_0809CD78(u32 * self)
-{
-    u32 * current = self;
-    int index = 58;
-    do
-    {
-        current[0] = 0;
-        current[1] = 0;
-        current += 2;
-        --index;
-    } while (index != -1);
-    return self;
-}
-```
-
-`func_0809CD98` (52 bytes exact): a clean no-asm form matches when second-field base is expressed separately:
-```cpp
-EC bool func_0809CD98(u32 * self, unsigned int index, u32 value)
-{
-    bool result = false;
-    unsigned int offset = index << 3;
-    u32 * count = (u32 *)((u8 *)self + offset);
-    if (*count <= 999999999)
-        *count = *count + 1;
-    u32 * second = self + 1;
-    u32 * maximum = (u32 *)((u8 *)second + offset);
-    if (value > *maximum)
-    {
-        *maximum = value;
-        result = true;
-    }
-    return result;
-}
-```
-
-`func_0809CDCC` (32 bytes exact):
-```cpp
-EC bool func_0809CDCC(u32 const * self)
-{
-    bool result = true;
-    for (unsigned int index = 8; index <= 58; ++index)
-        if (self[index * 2] == 0)
-            result = false;
-    return result;
-}
-```
-
-`func_0809CDEC` (48 bytes exact):
-```cpp
-EC u32 func_0809CDEC(u32 const * self)
-{
-    u32 result = 0;
-    for (unsigned int index = 8; index <= 58; ++index)
-    {
-        result += self[index * 2];
-        if (result > 999999999)
-            result = 1000000000;
-    }
-    return result;
-}
-```
-
-`func_0809CE1C` (8 bytes exact), pointer-arithmetic form:
-```cpp
-EC u32 func_0809CE1C(u32 const * self, unsigned int index)
-{
-    index <<= 3;
-    return *(u32 const *)((u8 const *)self + index);
-}
-```
-
-`func_0809CE24` (12 bytes exact):
-```cpp
-EC u32 func_0809CE24(u32 const * self, unsigned int index)
-{
-    index <<= 3;
-    self += 1;
-    return *(u32 const *)((u8 const *)self + index);
-}
-```
-
-`func_0809CE7C` (16 bytes exact):
-```cpp
-extern u32 gUnk_08103A18[];
-EC u32 func_0809CE7C(void const *, unsigned int index)
-{
-    return gUnk_08103A18[index];
-}
-```
-
-### `func_0809CE30`
-- Semantics are clear: for input index values 0x35..0x3A, returns `{0xFC,0xF9,0xFE,0xFD,0xFA,0xFB}` respectively; outside range returns 0xFC.
-- Retail is a jump-table switch.
-- Many natural switch forms reach a very close compiler shape but none tested so far are byte-exact.
-- Best structural candidate explicitly includes `case 0x35` and default mapping to 0xFC; generated jump-table ordering/layout still differs.
-- Do not use matching hacks yet. Revisit after C6BC barrier is solved, when neighboring placement/literal-pool effects can be tested in final context.
-
-### Next batch priority
-1. Reconstruct a provisional packed C++ struct for `+0x214C` using `func_080D44D4` as the authoritative field-boundary map.
-2. Generate constructor assignments/default member values matching C6BC semantics.
-3. Test C6BC as one contiguous C++ replacement, iterating on compiler shape.
-4. Once C6BC is exact, immediately bank the already-exact CD78/CD98/CDCC/CDEC/CE1C/CE24/CE7C helpers in address order and then finish CE30.
+The historical C6BC-before-fishing barrier is superseded: a linker section seam
+isolates the complete block. The old CE30 switch mismatch no longer reproduces
+under the unchanged current compiler. Do not repeat those old variants.
+Detailed target proofs are in the fishing-records-2026-10-07 checkpoint.
 
 <!-- CHES_PACKED_NAMESPACE_CORRECTION_BEGIN -->
 ### Packed-state namespace correction

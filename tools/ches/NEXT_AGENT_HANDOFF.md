@@ -1,94 +1,92 @@
 # Current FoMT continuation - October 7, 2026
 
-## Completed production boundary
+## Completed fishing-record unit
 
-Retail main tracks ches/main. This checkpoint began at
-5cc430c597d063f5e641c2b28943ba515b6353b8; git log -1 identifies the saved
-checkpoint. The resource-owner set is now integrated, not just scratch proof.
+Retail main tracks ches/main. This unit began at
+d9e95f5f4ebacc07d3b9f3aabae26f0809d63dd0; git log -1 identifies its checkpoint.
 
-| Function | True body bounds | Result |
-| --- | --- | --- |
-| AC78 destructor | 0803AC78..0803ACD8 | 96 / 0 |
-| ACD8 graphics update | 0803ACD8..0803AE56 | 382 / 0 |
-| AE58 renderer forwarding | 0803AE58..0803AEA0 | 72 / 0 |
-| B0A8 sibling destructor | 0803B0A8..0803B128 | 128 / 0 |
+Source: include/fishing_records.hh and src/fishing_records.cc.
+Seams: asm/code_actor_0809BFE8.s and fomt.lds.
+Stable architecture: docs/FISHING_RECORDS.md and docs/SAVE_FORMAT.md.
 
-- Source: include/resource_owners.hh, src/resource_owner_cached.cc, src/resource_owner_variable.cc.
-- Seam: asm/code_0803A8A4.s and fomt.lds; both constructors and B128 remain assembly.
-- Source gain: 678 body bytes / 680 linked bytes, including AE56..AE58 alignment.
-- Stable architecture: docs/RESOURCE_OWNERS.md.
-- Existing resource_handle.hh, utility/fixed_vec.hh and compiler inputs unchanged.
-- Both destructor aliases preserve the original callers and hidden ABI flags.
+| Function | True body bounds | Exact bytes |
+| --- | --- | ---: |
+| InitFishingRecords | 0809CD78..0809CD96 | 30 |
+| RecordFishingCatch | 0809CD98..0809CDCC | 52 |
+| HasCaughtAllFish | 0809CDCC..0809CDEC | 32 |
+| GetTotalFishCaught | 0809CDEC..0809CE1C | 48 |
+| GetFishingCatchCount | 0809CE1C..0809CE24 | 8 |
+| GetFishingMaxSize | 0809CE24..0809CE2E | 10 |
+| GetFishKingSpriteId | 0809CE30..0809CE7A | 74 |
+| GetFishingRecordName | 0809CE7C..0809CE8C | 16 |
 
-## Verification and current totals
+All eight methods plus six bytes of normal alignment form the exact 276-byte
+block. Initial v1 results counted three alignment gaps as size differences;
+final-results.json proves their true bounds and the full block.
 
-Fresh tracked compiler installation in /tmp/fomt-resource-owner-integration,
-isolated make -B -j4 compare, and production make -B -j4 compare all PASS.
-Both complete ROMs equal retail: 8,388,608 bytes, SHA1
-a2fc3574f0a65a4fcf7682fb274b9d7eebdef963.
-Eleven symbol addresses, four body sizes and all five contribution-file hashes
-are checked. Inventory removes only AC78/ACD8/AE58/B0A8, with no other address
-or size changes. NPC class-map outputs are unchanged.
+The old statistics label is now identified: 59 fishing records, each count u32
+plus maximum size u32, at GameState+2C80 (size 0x1D8), ending at +2E58.
+Indices 0..7 are non-fish catches; 8..52 ordinary fish; 53..58 Fish Kings.
+Both the fishing-result caller and name table prove the role. No size unit is
+claimed. The name table remains binary data.
 
-- Code: **73,280 / 940,036 = 7.7954%**; assembly **866,756 bytes**
-- Data/assets: **75,334 / 6,777,404 = 1.1115%**
-- Overall: **149,010 / 7,717,440 = 1.9308%**
-- Linked asm functions: **2,329**; inferred bytes **865,592**; unattributed **1,164**
-- Generated parked **17**; retained runtime/library **33**
-- Free tail **671,168 bytes**
+Old DECOMP_NOTES claims that C6BC must be solved first are superseded.
+A normal section seam permits this independent exact unit. The current tracked
+compiler matches the natural CE30 switch without variants or compiler changes.
 
-## Durable artifacts and transport recovery
+## Verification
 
-Existing ignored checkpoint:
-tools/ches/checkpoints/resource-owner-0803AB30-2026-10-07/
+- All target bodies and complete linked block PASS.
+- Isolated and production forced full-ROM builds PASS.
+- ROM 8,388,608 bytes; SHA1 a2fc3574f0a65a4fcf7682fb274b9d7eebdef963.
+- Eight body sizes and twelve function/neighbor addresses PASS.
+- Four integration input hashes saved in isolated/production-proof.json.
+- Only eight intended inventory functions removed; other addresses/sizes unchanged.
+- No commands remain pending. Production execution sh_muy2r4k7_d5f6424d exited0.
 
-Final files are resource_owners.hh, resource_owner_cached.cc and
-resource_owner_variable.cc. final-target-results.json records all four final
-comparisons. integration-plan.json, isolated-proof.json, production-proof.json,
-inventory-audit.json and the install/build/progress logs preserve full evidence.
+Code 73,556 /940,036 =7.8248%; assembly 866,480. Data 75,334 /6,777,404 =1.1115%.
+Overall 149,286 /7,717,440 =1.9344%. Linked asm functions 2,321; inferred 865,316;
+unattributed 1,164; parked 17; free tail 671,168.
 
-The MCP 504 happened before production mutation. Recovery found no promotion
-file, no production proof, no live matching process, and unchanged main source.
-The later confirmed production execution sh_muy165st_11ee17fd finished with
-exit 0. No commands remain running; do not replay setup or promotion.
-The isolated worktree remains available at /tmp/fomt-resource-owner-integration.
+Existing local ignored checkpoint:
+tools/ches/checkpoints/fishing-records-2026-10-07/
+contains source, comparison script/results, integration plan, complete build
+logs, proofs, inventory audit and publication record.
+Isolated worktree: /tmp/fomt-fishing-records-integration at the base commit with
+the four contribution files applied. It uses the unchanged verified compiler
+from /tmp/fomt-resource-owner-integration/tools/agbcc.
 
-## Next action: persistent-state type recovery
+## Exact next action: adjacent mine-floor persistent layout
 
-The user renewed eventual save-structure recovery as a goal. Prefer recovered
-subobject initializers and their consumers over repeating the parked whole-loader
-compiler puzzle. Start with a bounded assessment of the statistics-state family:
+1. Read AGENTS, the decompilation skill, current dashboard/playbook/priority map.
+2. Search saved failures/experiments for 0809CE8C, MineFloor, mine-floor and
+   func_0809CF34 before creating a candidate.
+3. Read src/mine_floor.cc, including its private MineFloor/MineTile types and
+   unusual At() byte base. There is no include/mine_floor.hh.
+4. Inspect asm/code_actor_0809BFE8.s at CE8C and downstream field accessors,
+   plus the loader/new-game calls at GameState+2E58. The old map's 0x628 span
+   reaches the cursed-tool state at +3480.
+5. Initial read shows a word at +0, 28x28 two-byte tiles at +4, two bytes at
+   +624/+625, and six individually cleared low bits at +626; do not assign
+   meanings to these tail fields until consumers prove them.
+6. Existing mine_floor.cc contains legacy fixed-register/inline-assembly code
+   and a private incomplete type. Preserve its verified output; do not copy
+   those techniques or force a shared-type refactor without exact evidence.
+   Prefer a coherent typed initializer/consumer unit if naturally matchable.
+7. If bounded effort finds only codegen obstacles, save/close it and assess a
+   different persistent subobject. Do not reopen the whole loader by inertia.
 
-1. Read docs/SAVE_FORMAT.md and the save-system-research-2026-10-05/README.md
-   checkpoint, including its October 7 corrections.
-2. Read the top of save-loader-08011650-2026-10-04/README.md for the current
-   failure boundary. The six-byte-copy microprobe is CLOSED, not untried.
-3. Search those checkpoints, experiment registries and closed-path records for
-   0809CD78 and neighboring statistics methods before creating a candidate.
-4. Inspect the current inventory and asm/code_actor_0809BFE8.s around 0809CD78.
-   Cross-check the loader call at GameState+2C80, the recorded 0x1D8-byte span,
-   initializer, update/getter consumers and the next 2E58 boundary. Treat the
-   older map's field names/counts as claims to verify, not automatic truth.
-5. If coherent and not already closed, recover a shared typed statistics state
-   and its initializer/consumer cluster with normal exact-target and isolated/
-   production full-ROM gates. Otherwise select a higher-leverage persistent
-   subobject from the same saved map. Preserve the 0x34F4 GameState payload ABI.
-6. Update canonical docs and publish verified checkpoints under project rules.
+No mine-floor candidate was created in this checkpoint.
 
-No new statistics candidate was created in this checkpoint.
-The save record geometry, checksum and writer are already source-owned.
-The loader itself is still assembly and compiler-sensitive.
+## Preserved parked work
 
-## Preserved resource-owner research
-
-- AB30 constructor: 328 expected / 316 actual / 217 differences (V2/V3 identical).
-- AEA0 constructor: still assembly, no candidate proof.
-- B128 update: 382 / 2, reversed addition operands at B26A/B26C; V8 commutation
-  is code-identical to V7. No compiler change is justified.
-- Sibling +E6 is a live initialized byte. Existing FixedVec is raw storage;
-  sibling destruction explicitly walks active entries and records.
-- Private default-handle and byte-assignment headers are constructor experiments,
-  not production interfaces.
-
-Do not replay the integrated owner methods, map resolver or completed entity
-tails. Other parked targets remain closed without new structural evidence.
+- Save loader 08011650: stock v96 740/495. Private distinct-zero proof is an
+  oracle only. Nested ActorLocation six-byte-copy mechanism is CLOSED.
+- Loader errors: failed/invalid length or checksum mismatch 0x10000, payload
+  read 0x20000, stored checksum read 0x30000, OR low-level error. Failed payload I/O
+  can overwrite initialized defaults; returned pointer is not a success flag.
+- Resource-owner AB30 ctor 328 expected/316 actual/217 differences.
+- Sibling B128 update 382/2; reversed addition operands, commutation identical.
+- Both owner constructors remain assembly. Four owner methods were already
+  integrated in d9e95f5; do not redo them.
+- Other generator-marked parked functions need new structural evidence.

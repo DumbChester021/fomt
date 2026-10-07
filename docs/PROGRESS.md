@@ -16,8 +16,8 @@ Current reconstruction:
 
 ```text
 Code reconstruction
-  73280 / 940036 bytes (7.7954%)
-  866756 bytes remain in asm
+  73556 / 940036 bytes (7.8248%)
+  866480 bytes remain in asm
 
 Data/assets reconstruction
   75334 / 6777404 bytes (1.1115%)
@@ -28,7 +28,7 @@ Data/assets reconstruction
   396 additional source-owned ROM-header bytes count only toward overall
 
 Overall meaningful-ROM reconstruction
-  149010 / 7717440 bytes (1.9308%)
+  149286 / 7717440 bytes (1.9344%)
   final ROM padding is excluded from this denominator
 
 ROM space
@@ -36,7 +36,7 @@ ROM space
   671168 bytes free (655.44 KiB, 8.0009%) contiguous tail space
 ```
 
-The code inventory currently reports **2,329 linked assembly functions**, **865,592 bytes** covered by inferred function ranges, **1,164 unattributed assembly bytes**, and **17 explicitly parked functions**.
+The code inventory currently reports **2,321 linked assembly functions**, **865,316 bytes** covered by inferred function ranges, **1,164 unattributed assembly bytes**, and **17 explicitly parked functions**.
 
 ## What the metrics mean
 
@@ -50,7 +50,9 @@ Understanding or documenting an opaque `.incbin` does not count as asset/data re
 
 ## Recent exact milestones
 
-The latest exact unit comprises resource-owner methods AC78, ACD8, AE58 and
+The latest exact unit is the eight-method fishing-record collection: **276 linked source bytes**, with a shared **472-byte persistent type**. Complete-block and both full-ROM comparisons pass. See [FISHING_RECORDS.md](FISHING_RECORDS.md).
+
+The preceding exact unit comprises resource-owner methods AC78, ACD8, AE58 and
 B0A8: **678 body bytes / 680 linked bytes including alignment**. Shared types
 and both source files pass fresh isolated and production full-ROM builds,
 eleven symbol checks and an inventory audit. See [RESOURCE_OWNERS.md](RESOURCE_OWNERS.md).
@@ -74,7 +76,7 @@ Immediately preceding exact promotions include `func_0803A798`, `func_0803A350`,
 
 ## Current frontier
 
-The exact resource-owner set is integrated. Constructors and B128 remain assembly; AB30 is parked at 316/217 versus 328, B128 at 382/2. Next assess the persistent statistics-state initializer/consumer family around 0809CD78 toward save-structure recovery. The legacy loader remains parked pending new source-boundary evidence.
+The exact resource-owner set is integrated. Constructors and B128 remain assembly; AB30 is parked at 316/217 versus 328, B128 at 382/2. Eight fishing-record methods now recover the 472-byte persistent block with 276 exact source bytes. Next assess the mine-floor initializer/layout around 0809CE8C. The legacy loader remains parked pending new source-boundary evidence.
 
 `func_0803A180`, `func_0803A394`, `func_08039F90`, `func_08039E98`, and the other generator-marked parked functions should not be reopened without genuinely new structural evidence.
 

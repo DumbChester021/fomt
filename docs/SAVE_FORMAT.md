@@ -68,6 +68,14 @@ to recover and audit before a custom save implementation. Existing social
 records occupy a fixed 0x478-byte block at GameState+0x1CD4; inserting more
 records there would move later serialized fields.
 
+## Recovered fishing subobject
+
+The block at payload+0x2C80..0x2E57 is now typed source: 59 eight-byte records,
+each a catch count and maximum size. It occupies 0x1D8 bytes and ends exactly
+at the next object at +0x2E58. Eight associated methods are retail-exact source.
+See [FISHING_RECORDS.md](FISHING_RECORDS.md) for index groups and slot-relative
+offsets. This advances the payload layout without changing the parked loader.
+
 ## Proven unused tail
 
 The static SRAM census covered all 17 high-level proxy calls (8 writes and 9
