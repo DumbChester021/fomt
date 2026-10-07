@@ -27,10 +27,10 @@ subsystem is fully understood.
 Authoritative live state is in `START_HERE.md`.
 
 - Active public retail branch: **`main`**. The former `Live-temp` series is retired; `ches-dev` remains historical.
-- Code reconstruction: **73,556 / 940,036 = 7.8248%**; **866,480 assembly bytes** remain.
-- Remaining linked asm functions: **2,321**; inferred ranges cover **865,316 / 866,480 = 99.8657%**, with **1,164 unattributed bytes** and **17 explicitly parked functions**.
+- Code reconstruction: **73,796 / 940,036 = 7.8503%**; **866,240 assembly bytes** remain.
+- Remaining linked asm functions: **2,316**; inferred ranges cover **865,076 / 866,240 = 99.8656%**, with **1,164 unattributed bytes** and **17 explicitly parked functions**.
 - Data/assets: **75,334 / 6,777,404 = 1.1115%**.
-- Overall meaningful-ROM reconstruction: **149,286 / 7,717,440 = 1.9344%**.
+- Overall meaningful-ROM reconstruction: **149,526 / 7,717,440 = 1.9375%**.
 - Contiguous tail free space: **671,168 bytes = 655.44 KiB**.
 - Retail SHA1: `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`; full compare remains **`fomt.gba: OK`**.
 - Authoritative compiler path is the tracked `tools/install_agbcp.sh` plus `tools/agbcp_fomt_compat.patch`, SHA-256 `aa7cc6df0efbd066e9c33deb887731e1d0210babfaeba4c9b64f3e8bc35c4256`.
@@ -88,7 +88,7 @@ under `assets/item_icons/`. `tools/packed_sprite_bank.py` rebuilds the
 0x30080-byte bank exactly. The cooking UI owns `gCookingUtensilIconIds`, mapping
 Knife=265, Frying Pan=204, Pot=346, Mixer=64, Whisk=472, Rolling Pin=313,
 Oven=327, and Seasoning Set=400. `func_08092A70` remains parked at `0x260 / 3`.
-That item/tool lane remains behind the whole-game throughput queue. The resource-owner exact set is complete. The fishing-record type and eight methods are now recovered in include/fishing_records.hh and src/fishing_records.cc. See docs/FISHING_RECORDS.md. Next assess the adjacent mine-floor initializer/layout around 0809CE8C; the compiler-sensitive loader remains parked. Product-count growth remains deferred because `ShippingBin::product_stats[NUM_PRODUCTS]` is embedded in persistent state.
+That item/tool lane remains behind the whole-game throughput queue. The resource-owner exact set is complete. Fishing records are recovered in `include/fishing_records.hh` / `src/fishing_records.cc`, and the mine-floor initializer plus D8A0..D8D4 accessors now own 240 exact bytes around the recovered 0x628-byte persistent type in `include/mine_floor.hh`. Continue with D8E8/D9B4; the compiler-sensitive loader remains parked. Product-count growth remains deferred because `ShippingBin::product_stats[NUM_PRODUCTS]` is embedded in persistent state.
 
 Legacy loader `func_08011650` remains paused. Crop/field semantics,
 dialogue/event registration, and character portrait/display assets remain later
@@ -101,7 +101,8 @@ Tracked subsystem/domain references currently include:
 - `docs/MAP_DATA.md`: logical/physical map namespaces, seasonal and building variants, mine-floor grouping and matching resolver interface.
 - `docs/RESOURCE_OWNERS.md`: recovered rendering-provider contracts, frame descriptors, 0xA0/0x46C owner layouts and assembly/source integration boundaries.
 - `docs/KEY_INPUT.md`: key-input record and matching input helper architecture.
-- `docs/SAVE_FORMAT.md`: retail save-slot layout, checksum boundary, and extension-space findings.
+- `docs/SAVE_FORMAT.md`: retail save-slot layout, checksum boundary, recovered persistent subobjects, and extension-space findings.
+- `docs/MINE_FLOOR.md`: GameState+0x2E58 mine-floor persistent layout, packed tile fields, Jewel/progress flags, and exact integration boundary.
 - `docs/CHARACTERS.md`: matching name/birthday/NPC interfaces, decoded roster, persistent offsets, schedules, entity/effect lifecycle, and fixed consumers.
 - `docs/CUSTOM_CHARACTERS.md`: character-specific expansion stages, separate ID domains, asset/dialogue work, and first-NPC acceptance criteria.
 - `docs/CUSTOM_GAME_EXPANSION.md`: custom-game readiness roadmap for characters, items/tools, crops, events/dialogue, assets and runtime registration; retail execution order comes from the throughput priority map.

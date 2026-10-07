@@ -75,6 +75,41 @@ For custom characters, use `docs/CHARACTERS.md`, `docs/CUSTOM_CHARACTERS.md` and
 prototype, then apply the ordinary exact-ROM gates to every retail recovery.
 Docs-only checkpoints verify changed paths, links and preservation of code/build inputs; rerun full builds when actual build inputs change. Every durable checkpoint is committed and pushed to `ches/main` after diff verification. The former `Live-temp` publication branch is retired; `main` now carries the public retail reconstruction and its durable coordination history.
 
+## Fast-path operating method
+
+This section captures the successful recent Opus/Astra working pattern in a
+model-agnostic form. It is the preferred execution style for normal exact retail
+work because it maximizes recovered bytes per unit time while preserving every
+verification gate.
+
+**Fast path:**
+
+1. Load the current handoff and only the authority files it names.
+2. Select one bounded coherent cluster with strong existing evidence.
+3. Reuse proven types/layouts/candidates instead of rebuilding context.
+4. Write the smallest obvious natural typed candidate and compare immediately.
+5. If it misses, classify the first divergence before trying variants:
+   boundary/alignment, relocation/section, wrong structure/behavior, ABI/lifetime,
+   or compiler allocation/codegen.
+6. Check body bounds before source changes. In particular, an expected-size
+   delta with no differing byte positions must be treated as likely trailing
+   alignment until disproven.
+7. When the code is already exact, use a linker/section seam rather than waiting
+   for a difficult adjacent function.
+8. Verify the full contiguous block, then run isolated and production full-ROM
+   gates back-to-back.
+9. Regenerate inventory once, assert only intended ownership changed, update the
+   small set of canonical docs whose truth changed, review the contribution diff,
+   commit/push, and immediately record the next bounded target.
+10. Stop syntax roulette early. If understanding is complete and the remaining
+    delta is old-GCC source-shape/codegen archaeology, preserve the best candidate,
+    mark the family parked, and take the next high-leverage cluster.
+
+This is deliberately faster than the older workflow that repeatedly rescanned
+the repository, kept exact islands blocked behind hard neighbors, or tried many
+source spellings before checking boundaries. Fishing records and the mine-floor
+initializer/accessor work are current reference examples.
+
 ## Standard decompilation workflow
 
 ### 1. Orient before editing
@@ -467,12 +502,18 @@ default value, stride/count, observed readers/writers and evidence level.
 Track preserved or unknown bits explicitly. A zeroing loop alone does not
 justify gameplay names or prove that untouched bytes are padding.
 
-For mine-floor CE8C, the immediate deliverable is a checked field-access map
-and candidate type for the recorded GameState+0x2E58..0x3480 span. The shared
-type must respect the existing mine_floor.cc calling conventions and unusual
-byte-base helper. Preserve that legacy exact source while investigating;
-its fixed-register/inline-assembly techniques are not a model for new work.
-Attempt a natural initializer/consumer candidate only after this map is sound.
+Mine-floor CE8C is now a completed example of this method. Consumer mapping
+proved a 0x628-byte object with a 28x28 two-byte tile grid and one packed
+32-bit progress word. The natural 4/6/6 tile bitfields and 22 individually
+initialized progress bits reproduce the full 0xA8 initializer exactly. A first
+candidate that modeled the tail as unrelated bytes compiled shorter and was
+rejected; a raw/bitfield tile union with an unpacked nested struct changed the
+tile stride from two to four and exposed the layout error immediately.
+
+When preserving a raw view beside packed fields, prove the nested type's size
+and alignment rather than assuming a union keeps the old stride. Keep existing
+legacy exact callers intact while replacing adjacent helpers independently;
+their fixed-register/inline-assembly techniques are evidence, not a template.
 
 Use an exact sibling as a source-shape oracle. If a candidate differs, first
 classify the cause: boundary/relocation, wrong layout or behavior, source
@@ -570,7 +611,7 @@ When a batch materially recovers a subsystem architecture, the batch is not full
 
 ## Current strategic direction
 
-The active public retail branch is `main`. Current exact reconstruction is **73,556 / 940,036 = 7.8248% source**, **75,334 data/asset bytes**, and **149,286 / 7,717,440 = 1.9344% overall meaningful-ROM bytes**, with **866,480 assembly bytes** remaining and the retail ROM still exact. The remaining-function database/ranked queue and resident-NPC class map regenerate from the current build. The Entity38740/Entity398A4 region has advanced through exact `3A804..3A8A0`; behavior-complete `3A180`, `3A394`, `39F90`, `39E98`, and other documented compiler islands remain parked. The logical map resolver at `0x0803A8A4` is now exact source as `GetMapResourceId`, adding 652 bytes. Four resource-owner methods are now integrated with both full-ROM gates, adding 680 linked bytes. Eight fishing-record methods and the shared persistent type are integrated, adding 276 exact source bytes. Next assess the mine-floor initializer/layout around 0809CE8C; do not repeat the parked loader's closed compiler/source families. The handoff owns exact active commands/artifacts; the priority map owns target selection; dated checkpoints and Git history own detailed chronology.
+The active public retail branch is `main`. Current verified working reconstruction is **73,796 / 940,036 = 7.8503% source**, **75,334 data/asset bytes**, and **149,526 / 7,717,440 = 1.9375% overall meaningful-ROM bytes**, with **866,240 assembly bytes** remaining and the retail ROM still exact. The remaining-function database/ranked queue and resident-NPC class map regenerate from the current build. The Entity38740/Entity398A4 region has advanced through exact `3A804..3A8A0`; behavior-complete `3A180`, `3A394`, `39F90`, `39E98`, and other documented compiler islands remain parked. The logical map resolver adds 652 exact bytes; four resource-owner methods add 680 linked bytes; fishing records add 276 exact bytes; the mine-floor cluster owns 240 exact bytes through D8A0..D8D4 and recovers its shared 0x628-byte persistent type. Continue with D8E8/D9B4; do not repeat the parked loader's closed compiler/source families. The handoff owns exact active commands/artifacts; the priority map owns target selection; dated checkpoints and Git history own detailed chronology.
 
 Preserved renderer candidates remain:
 - `func_080A5CC0`: expected 0x54, v1 actual 0x58, 72 differing linked bytes;

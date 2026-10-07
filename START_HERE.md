@@ -14,7 +14,7 @@ This is the live dashboard for the US Harvest Moon: Friends of Mineral Town matc
 ## Active branch and build authority
 
 - Retail branch: **main**, tracking **ches/main**. Run git log -1 for this checkpoint's commit.
-- Starting checkpoint for the fishing-record integration: **d9e95f5f4ebacc07d3b9f3aabae26f0809d63dd0**.
+- Starting checkpoint for the mine-floor integration: **0d2ec08a9f52c397ccaee89fc3bfcb53caf6daed**.
 - Custom gameplay stays in the separate custom-game worktree.
 - ROM: **8,388,608 bytes**, SHA1 **a2fc3574f0a65a4fcf7682fb274b9d7eebdef963**.
 - Full gate: make -B -j4 compare, ending in **fomt.gba: OK**.
@@ -22,11 +22,11 @@ This is the live dashboard for the US Harvest Moon: Friends of Mineral Town matc
 
 ## Handoff readiness
 
-Latest verified code commit: 98c6cd1e203ccc781e4f1a2669cb56a2477c5df5,
-pushed to ches/main. Later documentation-only commits do not change its code
-metrics or ROM proof. The full loader and complete GameState type remain
-unfinished; retail subobject recovery is active and custom extension work is
-deferred. No commands are pending.
+The latest verified checkpoint includes the mine-floor initializer, shared
+persistent type, and D8A0..D8D4 accessor block. Run `git log -1` for the
+published commit and `git status` before work; never reset a dirty tree merely
+to match an expected hash. The full loader and complete GameState type remain
+unfinished. No build or compiler command is pending.
 
 For the proven techniques and recommended next approach, read
 docs/DECOMP_PLAYBOOK.md, section "Recover persistent subobjects without blocking
@@ -35,43 +35,44 @@ next deliverable, closed paths and fresh-clone artifact limitations.
 
 ## Current exact reconstruction
 
-- Code: **73,556 / 940,036 = 7.8248%**
-- Assembly remaining: **866,480 bytes**
-- Linked assembly functions: **2,321**
-- Inferred ranges: **865,316 / 866,480 = 99.8657%**
+- Code: **73,796 / 940,036 = 7.8503%**
+- Assembly remaining: **866,240 bytes**
+- Linked assembly functions: **2,316**
+- Inferred ranges: **865,076 / 866,240 = 99.8656%**
 - Unattributed assembly: **1,164 bytes**
 - Generated parked functions: **17**
 - Data/assets: **75,334 / 6,777,404 = 1.1115%**
-- Overall meaningful ROM: **149,286 / 7,717,440 = 1.9344%**
+- Overall meaningful ROM: **149,526 / 7,717,440 = 1.9375%**
 - Contiguous free tail: **671,168 bytes = 655.44 KiB**
 
 ## Latest completed unit
 
-Eight fishing-record methods at 0809CD78..0809CE8C are now exact source,
-adding 270 body bytes plus six alignment bytes, 276 linked bytes.
-The shared type recovers the 472-byte persistent block at GameState+2C80:
-59 catch-count/maximum-size pairs. Indices 0..7 are treasures/junk,
-8..52 ordinary fish, and 53..58 Fish Kings.
+The mine-floor save cluster now owns **240 exact source bytes**: initializer
+`func_0809CE8C` (168 bytes) plus accessors `D8A0/D8A4/D8B8/D8D4`
+(72-byte linked block including alignment). The shared layout is now in
+`include/mine_floor.hh`; accessors are in `src/mine_floor_accessors.cc`.
 
-Source: include/fishing_records.hh and src/fishing_records.cc.
-Architecture: docs/FISHING_RECORDS.md and docs/SAVE_FORMAT.md.
-All eight target bodies, complete block and isolated/production forced full-ROM
-builds pass. Twelve symbol addresses, eight body sizes and input hashes pass.
-Only those eight functions leave the regenerated inventory. Compiler unchanged.
+Architecture: docs/MINE_FLOOR.md and docs/SAVE_FORMAT.md. CE8C remains
+0xA8 / 0, legacy CF34 remains 0x234 / 0 after the shared-header extraction,
+and the full D8A0..D8E8 accessor block is 0x48 / 0. Isolated and production
+full-ROM builds pass; ROM size/SHA1 and neighbor addresses remain retail-exact.
+The regenerated inventory removes exactly CE8C plus the four accessors from
+assembly ownership.
 
-The preceding four resource-owner methods (680 bytes) and map resolver
-(652 bytes) remain complete. Do not repeat their integration.
+The preceding fishing-record block (276 linked bytes), four resource-owner
+methods (680 bytes), and map resolver (652 bytes) remain complete. Do not
+repeat their integration.
 
 ## Next direction
 
-Assess the adjacent persistent mine-floor initializer/layout around 0809CE8C,
-using saved history and existing src/mine_floor.cc. The old map records
-GameState+2E58..3480 (0x628 bytes). Existing mine-floor source contains private
-incomplete types and legacy assembly-based reconstruction; do not copy those
-techniques or change its ABI without exact proof. No new candidate exists yet.
+Continue the same mine-floor translation-unit cluster with
+`func_0809D8E8` and `func_0809D9B4`, which consume the two proven six-bit
+MineTile content/state fields. Use their shared structure/calls into the mine
+content handler as the next bounded typed cluster. Do not reopen the legacy
+loader or refactor CF34 merely by association.
 
 The loader remains parked. Resource-owner constructors and B128 remain parked.
-Local ignored proofs are under tools/ches/checkpoints/fishing-records-2026-10-07/.
+Local ignored proofs are under tools/ches/checkpoints/mine-floor-2026-10-07/.
 The canonical handoff supplies the exact continuation and prior failure limits.
 
 ## Parked work and documentation

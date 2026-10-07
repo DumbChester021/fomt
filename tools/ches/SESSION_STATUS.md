@@ -2,61 +2,73 @@
 
 ## Authoritative current snapshot - October 7, 2026
 
-Retail main tracks ches/main. Run git log -1 for the saved checkpoint.
-This fishing-record unit began at d9e95f5f4ebacc07d3b9f3aabae26f0809d63dd0.
-Custom-game was not modified. Compiler inputs are unchanged.
-
-## Handoff readiness
-
-Latest verified code commit: 98c6cd1e203ccc781e4f1a2669cb56a2477c5df5,
-pushed to ches/main. Later documentation-only commits do not change its code
-metrics or ROM proof. The full loader and complete GameState type remain
-unfinished; retail subobject recovery is active and custom extension work is
-deferred. No commands are pending.
-
-For the proven techniques and recommended next approach, read
-docs/DECOMP_PLAYBOOK.md, section "Recover persistent subobjects without blocking
-on the whole loader". NEXT_AGENT_HANDOFF.md includes first commands, exact
-next deliverable, closed paths and fresh-clone artifact limitations.
+Retail workspace: /mnt/data/Github/gba/fomt
+Branch: main, tracking ches/main
+Run `git log -1` for the published checkpoint and `git status` before
+work. Preserve any intentional dirty state rather than resetting to an expected
+hash. Custom-game was not modified.
 
 ## Exact production progress
 
-- Code: 73,556 / 940,036 = 7.8248%; assembly 866,480 bytes
+- Code: 73,796 / 940,036 = 7.8503%
+- Assembly remaining: 866,240 bytes
 - Data/assets: 75,334 / 6,777,404 = 1.1115%
-- Overall meaningful ROM: 149,286 / 7,717,440 = 1.9344%
+- Overall meaningful ROM: 149,526 / 7,717,440 = 1.9375%
 - Free tail: 671,168 bytes
-- Linked assembly functions: 2,321; inferred bytes 865,316 (99.8657%)
-- Unattributed bytes: 1,164; parked functions 17; runtime/library 33
-- Regions 151; shape clusters 184, members 864, exact normalized clusters 176
+- Linked assembly functions: 2,316
+- Inferred function bytes: 865,076 / 866,240 = 99.8656%
+- Unattributed assembly: 1,164 bytes
+- Parked functions: 17
+- Runtime/library functions: 33
 
-## Latest integrated source
+## Latest verified integration
 
-Eight fishing-record methods at 0809CD78..0809CE8C add 276 linked bytes.
-The typed 59-entry block occupies GameState+2C80..2E58 (472 bytes).
-Header: include/fishing_records.hh. Source: src/fishing_records.cc.
-Architecture: docs/FISHING_RECORDS.md.
+The mine-floor save cluster now owns 240 exact source bytes:
 
-All eight true bodies and the complete linked block match. Isolated and
-production make -B -j4 compare PASS. ROM size 8,388,608; SHA1
-a2fc3574f0a65a4fcf7682fb274b9d7eebdef963. Twelve function/neighbor addresses
-and eight body sizes pass. Production execution sh_muy2r4k7_d5f6424d completed
-with exit 0; no build remains running.
+- func_0809CE8C: 0xA8 / 0, persistent initializer
+- func_0809D8A0: 0x04 / 0, layout getter
+- func_0809D8A4: true body 0x12 / 0, width-like dimension helper
+- func_0809D8B8: true body 0x1A / 0, height-like dimension helper
+- func_0809D8D4: 0x14 / 0, tile-type getter
+- complete D8A0..D8E8 linked block: 0x48 / 0 including alignment
 
-The isolated checkout uses the unchanged compiler installed and verified in
-the preceding resource-owner checkpoint. No fresh compiler change was needed.
-Only the eight intended functions leave the assembly inventory.
+The shared 0x628-byte type is now in include/mine_floor.hh. Initializer/legacy
+generation source remains in src/mine_floor.cc; the four accessors are in
+src/mine_floor_accessors.cc.
 
-## Continuation
+Important lesson: the first D8A4/D8B8 reports were 2 bytes short with zero
+differing positions. Their source was already exact; the two bytes were normal
+trailing alignment. This is now part of the project fast-path method.
 
-The old C6BC-before-fishing integration barrier is obsolete. The natural
-Fish King switch now matches; do not replay old switch variants.
+Verification:
 
-Next assess the adjacent persistent mine-floor initializer 0809CE8C and its
-0x628-byte layout, starting with saved failures and existing mine_floor.cc.
-That existing source has private incomplete types and legacy fixed-register/
-inline-assembly reconstruction; do not copy those techniques or silently change
-its ABI. Recover field boundaries from initializer and consumers before naming.
+- CE8C still 0xA8 / 0 after shared-header extraction
+- legacy CF34 still 0x234 / 0
+- accessor block D8A0..D8E8: 0x48 / 0
+- detached full-ROM compare: PASS
+- production full-ROM compare: PASS
+- ROM size: 8,388,608 bytes
+- SHA1: a2fc3574f0a65a4fcf7682fb274b9d7eebdef963
+- addresses D8A0/D8A4/D8B8/D8D4/D8E8 unchanged
+- regenerated inventory removes exactly four more assembly functions
 
-The full save loader remains parked. Resource-owner constructors/B128 remain
-parked at prior documented mismatches. NEXT_AGENT_HANDOFF.md owns next actions.
-Local proofs are in tools/ches/checkpoints/fishing-records-2026-10-07/.
+## Operating strategy
+
+AGENTS.md and docs/DECOMP_PLAYBOOK.md now carry the successful Opus/Astra
+fast-path pattern as the default model-agnostic workflow: trust the handoff,
+reuse recovered structure, try one natural typed candidate, classify mismatches
+before editing source, check body/alignment boundaries first, use linker seams,
+prove the block, run isolated+production gates, refresh inventory/docs once,
+publish, then move directly to the next bounded cluster.
+
+## Exact next action
+
+Stay in the same MineFloor cluster. Assess func_0809D8E8 and func_0809D9B4,
+which consume the two proven six-bit MineTile content/state fields and feed the
+mine-content handler. Reuse include/mine_floor.hh. Start with the smallest
+natural typed source and compare immediately.
+
+Do not reopen the whole save loader, CF34 refactoring, or parked compiler
+families by inertia.
+
+No build or compiler process is currently running.

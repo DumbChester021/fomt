@@ -62,6 +62,50 @@ resource family at a time.
   source-shape archaeology rather than missing behavior. Preserve the best
   candidate and cause, then move to higher-throughput work.
 
+### Proven fast-path execution loop (Opus/Astra pattern)
+
+Recent successful Opus/Astra sessions established a much higher-throughput
+working style. Treat this as the default model-agnostic execution loop for
+ordinary retail decompilation. Do not fall back to slow syntax-poking or broad
+rediscovery unless evidence requires it.
+
+1. **Trust the saved handoff first.** Read the canonical current state and the
+   specific subsystem/failure records it names. Do not reread the whole repo or
+   repeat closed experiments just to become comfortable.
+2. **Choose one bounded coherent cluster.** Prefer an already-anchored
+   subobject, translation-unit island, repeated family, or small accessor/helper
+   group with known exact bounds and useful shared types.
+3. **Reuse recovered structure immediately.** Start from proven types, offsets,
+   callers, tables and old exact candidates. Do not rediscover semantics already
+   established on disk.
+4. **Try the obvious natural typed source first.** One credible candidate is
+   more valuable than many speculative spellings. Compile/compare immediately.
+5. **Classify a mismatch before editing source.** Check true body bounds,
+   trailing alignment, literal pools, relocation/section seams and object layout
+   before assuming codegen or behavior is wrong. A size delta with no differing
+   byte positions is usually a boundary/alignment question, not a reason for
+   syntax roulette.
+6. **Exploit linker seams.** An exact island does not need to wait for a hard
+   neighboring constructor/function. Split sections and preserve addresses when
+   that is sufficient and reviewable.
+7. **Prove the whole coherent block.** Once individual bodies match, compare the
+   contiguous block including normal alignment/padding.
+8. **Run the integration ladder without ceremony.** Isolated full-ROM proof,
+   production full-ROM proof, ROM hash/size and neighbor symbols, inventory
+   regeneration, then inspect that only intended ownership changed.
+9. **Document once at the end of the batch.** Update only canonical docs whose
+   answers changed, plus one subsystem page when architecture materially
+   advanced. Do not pause a proven integration for repeated documentation passes.
+10. **Publish and move on.** Under the standing exact-retail authorization,
+    review the narrow diff, commit/push the coherent checkpoint, record the next
+    bounded target, and continue. Timebox compiler/source-shape archaeology and
+    park it when the remaining problem is codegen rather than understanding.
+
+Operationally, prefer milestone updates over narrating every read/search. The
+goal is the same pattern that made the fishing-record recovery fast: handoff ->
+typed candidate -> exact body/block proof -> linker seam -> isolated ROM ->
+production ROM -> inventory/docs -> commit/push -> next cluster.
+
 ### Runtime and asset role
 
 Runtime work is now **bulk evidence collection**, not manual gameplay-driven

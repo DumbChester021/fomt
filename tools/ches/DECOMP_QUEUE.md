@@ -5,14 +5,14 @@ Region/TU hints and scores are heuristics, not claims about original source-file
 
 ## Inventory summary
 
-- remaining linked assembly functions: **2,321**
-- canonical linked assembly code: **866,480 bytes**
-- bytes covered by inferred function ranges: **865,316** (**99.8657%** of linked asm code)
+- remaining linked assembly functions: **2,316**
+- canonical linked assembly code: **866,240 bytes**
+- bytes covered by inferred function ranges: **865,076** (**99.8656%** of linked asm code)
 - assembly code not assigned to a function range: **1,164 bytes**
 - asm definitions present in source but not linked as asm code: **2**
 - coarse TU/region hints: **151**
 - repeated opcode-shape clusters: **184**
-- functions in repeated opcode-shape clusters: **864**
+- functions in repeated opcode-shape clusters: **863**
 - exact normalized-body clusters: **176**
 - explicitly parked functions: **17**
 - runtime/library functions retained in inventory: **33**
@@ -21,10 +21,10 @@ Region/TU hints and scores are heuristics, not claims about original source-file
 
 | Rank | Region | Score | Funcs | Bytes | Tractable | Large | Repeated | Source anchors | Cross-region callers |
 | ---: | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| 1 | asm/game_state.s:08011650-0801468C | 16978.0 | 115 | 12348 | 12348 | 0 | 59 | 39 | 9 |
+| 1 | asm/game_state.s:08011650-0801468C | 17002.0 | 115 | 12348 | 12348 | 0 | 59 | 40 | 9 |
 | 2 | asm/code_0803EE94.s:08092D64-08095D80 | 15501.0 | 75 | 12316 | 10536 | 1 | 52 | 43 | 5 |
 | 3 | asm/code_0803EE94.s:0804E0F8-08051320 | 15454.0 | 84 | 12840 | 9776 | 1 | 34 | 46 | 51 |
-| 4 | asm/game_state.s:0801468C-080179CC | 14601.0 | 61 | 13120 | 10732 | 1 | 29 | 51 | 6 |
+| 4 | asm/game_state.s:0801468C-080179CC | 14625.0 | 61 | 13120 | 10732 | 1 | 29 | 52 | 6 |
 | 5 | asm/code_linkonce.s:080DFE84-080E2EA4 | 14413.0 | 81 | 12260 | 10096 | 1 | 43 | 32 | 8 |
 | 6 | asm/code_linkonce.s:080E2EA4-080E59CC | 14344.0 | 84 | 11048 | 11048 | 0 | 39 | 16 | 13 |
 | 7 | asm/code_linkonce.s:080DC96C-080DFE84 | 14295.0 | 103 | 13592 | 6444 | 1 | 83 | 30 | 1 |
@@ -57,7 +57,7 @@ Region/TU hints and scores are heuristics, not claims about original source-file
 | 34 | asm/code_0803EE94.s:0808DD54-08090E54 | 8155.0 | 18 | 12544 | 4548 | 3 | 8 | 43 | 2 |
 | 35 | asm/code_809E804.s:080B34DC-080B7164 | 8025.0 | 27 | 15496 | 3764 | 3 | 11 | 22 | 3 |
 | 36 | asm/code_809E804.s:080BDF40-080C12B8 | 7855.0 | 21 | 13176 | 5068 | 3 | 4 | 17 | 3 |
-| 37 | asm/game_state.s:0801A8E0-0801D7B0 | 7702.0 | 11 | 11984 | 5816 | 2 | 0 | 13 | 1 |
+| 37 | asm/game_state.s:0801A8E0-0801D7B0 | 7774.0 | 11 | 11984 | 5816 | 2 | 0 | 16 | 1 |
 | 38 | asm/code_entities.s:0802DBF0-08031D74 | 7675.0 | 6 | 16772 | 2552 | 3 | 0 | 64 | 1 |
 | 39 | asm/code_0803EE94.s:08051320-08054D34 | 7472.0 | 16 | 14868 | 3268 | 4 | 5 | 25 | 12 |
 | 40 | asm/code_0803EE94.s:080709D8-08075220 | 7451.0 | 11 | 18504 | 2540 | 2 | 4 | 25 | 2 |

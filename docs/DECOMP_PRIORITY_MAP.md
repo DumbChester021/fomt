@@ -11,12 +11,12 @@ The project already has strong foundational types and APIs. The next phase is to
 exploit them across the remaining assembly instead of making an individual
 resource family the main queue.
 
-Current exact `main` state:
-- code: **73,556 / 940,036 = 7.8248%**;
-- assembly remaining: **866,480 bytes**;
-- remaining linked assembly functions: **2,321**;
+Current verified working state on `main`:
+- code: **73,796 / 940,036 = 7.8503%**;
+- assembly remaining: **866,240 bytes**;
+- remaining linked assembly functions: **2,316**;
 - data/assets: **75,334 / 6,777,404 = 1.1115%**;
-- overall meaningful ROM: **149,286 / 7,717,440 = 1.9344%**;
+- overall meaningful ROM: **149,526 / 7,717,440 = 1.9375%**;
 - packed bank: **416 / 493 semantically owned animations**;
 - retail ROM remains exact at SHA1 `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
 
@@ -55,21 +55,21 @@ but its score is no longer an execution order.
 
 The throughput pipeline is operational. The Ball family remains parked at its documented mover seam. The adjacent `vtable_unk_080E7380` family now owns **316 exact retail bytes** in source: 224 bytes of entity surface plus 92 bytes of controller helpers. Controller constructor `0x08038820` is behavior-complete and exact-size but bounded by register-lifetime codegen.
 
-The raw queue can still rank parked work highly, so score is not execution order. The Entity38740/Entity398A4 region now owns exact source through the seven-helper tail `3A804..3A8A0`, including preceding exact `3A798`, `3A350`, `3A320/334`, `39A60`, `3A144`, `398A4/399C0`, and related strategy helpers. `39E98`, `39F90`, `3A180`, and `3A394` are explicitly parked after bounded natural-source work. The 652-byte logical map resolver at `0x0803A8A4` is now exact source as `GetMapResourceId`. Four resource-owner methods AC78/ACD8/AE58/B0A8 are integrated, adding 680 linked bytes after both full-ROM gates. Constructors and B128 remain assembly; AB30 is parked at 316/217 versus 328, B128 at 382/2. The eight fishing-record methods are now exact source, adding 276 linked bytes and recovering the 472-byte persistent block. Next assess the adjacent mine-floor initializer/layout around 0809CE8C using saved history. The whole-loader compiler puzzle remains parked.
+The raw queue can still rank parked work highly, so score is not execution order. The Entity38740/Entity398A4 region now owns exact source through the seven-helper tail `3A804..3A8A0`, including preceding exact `3A798`, `3A350`, `3A320/334`, `39A60`, `3A144`, `398A4/399C0`, and related strategy helpers. `39E98`, `39F90`, `3A180`, and `3A394` are explicitly parked after bounded natural-source work. The 652-byte logical map resolver at `0x0803A8A4` is exact source. Four resource-owner methods AC78/ACD8/AE58/B0A8 are integrated, adding 680 linked bytes. The eight fishing-record methods add 276 linked bytes and recover the 472-byte persistent block. The mine-floor cluster now owns 240 exact bytes through CE8C plus D8A0..D8D4 and proves the adjacent 0x628-byte persistent object. Continue the same TU with D8E8/D9B4 before returning to broader queue work. The whole-loader compiler puzzle remains parked.
 
 ### Save recovery selection rule
 
 Persistent subobject recovery is active; the whole-loader matching puzzle and
 custom extension implementation are separate, deferred work. Fishing provides
-a successful example: 472 bytes of typed save layout and 276 bytes of exact
-code recovered without solving the loader or neighboring constructors.
+one successful example: 472 bytes of typed save layout and 276 bytes of exact
+code recovered without solving the loader. Mine-floor CE8C now provides a
+second: a 0x628-byte persistent object and 168 exact initializer bytes.
 
-CE8C is the next assessment because both state initializers anchor its offset,
-its initialization exposes a bounded 28x28 grid plus tail fields, and an existing
-consumer supplies cross-checks. Adjacency alone is not the reason. If history or
-field analysis reveals only a repeated compiler obstacle or a broad legacy-type
-refactor, preserve the result and rank other persistent subobjects by type
-readiness, caller/consumer evidence and downstream value.
+The next bounded assessment stays in that mine-floor translation unit because
+the proven layout now constrains D8E8/D9B4 strongly. If those field consumers
+reveal a repeated compiler obstacle or require broad legacy refactoring, save
+the result and rank other persistent subobjects by type readiness,
+caller/consumer evidence and downstream value.
 
 The concrete method and stop conditions are in DECOMP_PLAYBOOK.md under
 "Recover persistent subobjects without blocking on the whole loader".

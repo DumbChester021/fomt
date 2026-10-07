@@ -74,7 +74,23 @@ The block at payload+0x2C80..0x2E57 is now typed source: 59 eight-byte records,
 each a catch count and maximum size. It occupies 0x1D8 bytes and ends exactly
 at the next object at +0x2E58. Eight associated methods are retail-exact source.
 See [FISHING_RECORDS.md](FISHING_RECORDS.md) for index groups and slot-relative
-offsets. This advances the payload layout without changing the parked loader.
+offsets.
+
+## Recovered mine-floor subobject
+
+The next block at payload+0x2E58..0x347F is now structurally recovered as a
+0x628-byte mine-floor state. It contains a four-byte layout/mode word, 784
+two-byte packed tiles, and a four-byte packed mine-progress word. The tile
+layout is 4/6/6 bits; the two six-bit fields remain conservatively unnamed.
+
+Within the progress word, nine bits track the known Kappa Jewel floors and nine
+track the known Goddess Jewel floors. Four additional mine-progress bits remain
+semantically unresolved and ten high bits are preserved by the initializer.
+`func_0809CE8C` is retail-exact source. See
+[MINE_FLOOR.md](MINE_FLOOR.md) for the field and bit map.
+
+These recovered subobjects advance the payload layout without changing the
+parked whole-save loader.
 
 ## Proven unused tail
 

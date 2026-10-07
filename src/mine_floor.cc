@@ -1,4 +1,5 @@
 #include "prelude.h"
+#include "mine_floor.hh"
 
 #include <stdlib.h>
 
@@ -6,11 +7,6 @@ struct ALIGN(4) MinePoint
 {
     u8 x;
     u8 y;
-};
-
-struct PACKED ALIGN(2) MineTile
-{
-    u16 raw;
 };
 
 static inline void SetMineTileType(MineTile & tile, u8 type)
@@ -23,16 +19,45 @@ static inline void SetMineTileType(MineTile & tile, u8 type)
     raw[4] = mask;
 }
 
-struct MineFloor
+EC MineFloor * func_0809CE8C(MineFloor * self)
 {
-    u32 layout;
-    MineTile tiles[28][28];
+    self->layout = 0;
 
-    MineTile & At(u32 x, u32 y)
+    self->unk_624_0 = 0;
+    self->kappa_jewel_floor_0 = 0;
+    self->kappa_jewel_floor_40 = 0;
+    self->kappa_jewel_floor_60 = 0;
+    self->kappa_jewel_floor_80 = 0;
+    self->kappa_jewel_floor_120 = 0;
+    self->kappa_jewel_floor_140 = 0;
+    self->kappa_jewel_floor_160 = 0;
+    self->kappa_jewel_floor_180 = 0;
+    self->kappa_jewel_floor_255 = 0;
+    self->unk_625_2 = 0;
+    self->unk_625_3 = 0;
+    self->unk_625_4 = 0;
+    self->goddess_jewel_floor_60 = 0;
+    self->goddess_jewel_floor_102 = 0;
+    self->goddess_jewel_floor_123 = 0;
+    self->goddess_jewel_floor_152 = 0;
+    self->goddess_jewel_floor_155 = 0;
+    self->goddess_jewel_floor_171 = 0;
+    self->goddess_jewel_floor_190 = 0;
+    self->goddess_jewel_floor_202 = 0;
+    self->goddess_jewel_floor_222 = 0;
+
+    for (u32 y = 0; y < 28; ++y)
     {
-        return *(MineTile *)((u8 *)this + (x + y * 28) * sizeof(MineTile));
+        for (u32 x = 0; x < 28; ++x)
+        {
+            self->tiles[y][x].bits.type = 0;
+            self->tiles[y][x].bits.unk_04 = 0;
+            self->tiles[y][x].bits.unk_0A = 0;
+        }
     }
-};
+
+    return self;
+}
 
 EC u32 func_0809D8A4(MineFloor const * floor);
 EC u32 func_0809D8B8(MineFloor const * floor);
