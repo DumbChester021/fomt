@@ -65,11 +65,17 @@ repeat their integration.
 
 ## Next direction
 
-E0AC and the four E174..E1A4 progress-flag getters are now exact source.
-Recovering their true boundaries exposed two separate unlabeled code islands
-that had been hidden inside inferred function ranges: `E118..E174` (0x5C)
-and `E1B4..E2D4` (0x120). These 380 bytes are now the next bounded mine-floor
-target. DA00 and D8E8 remain parked source-shape/compiler frontiers.
+The two unlabeled mine-floor islands exposed by the E0AC/E1A4 boundary work
+are now behavior-recovered and deliberately parked after bounded natural-source
+attempts. E118..E174 is a 92-byte two-field histogram helper; E1B4..E2D4 is a
+288-byte location-dependent mine table-copy helper. Neither has a direct BL or
+ROM function-pointer reference, and both remain compiler/source-shape sensitive.
+
+The adjacent persistent block at `GameState+0x3480` is now a proven typed
+`CursedToolState`: 18 meaningful bytes plus 2 padding bytes, ending exactly
+before the next initialized block at +0x3494. Continue with the bounded
+`+0x3494..+0x34C4` persistent block, whose initializer already exposes three
+0x10-stride records. DA00 and D8E8 remain parked source-shape/compiler frontiers.
 
 The loader remains parked. Resource-owner constructors and B128 remain parked.
 Local ignored proofs are under tools/ches/checkpoints/mine-floor-2026-10-07/.

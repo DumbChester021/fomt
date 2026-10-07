@@ -151,12 +151,48 @@ The four adjacent persistent progress getters are also exact source as one
 - E194 reads progress bit 11 (`unk_625_3`);
 - E1A4 reads progress bit 12 (`unk_625_4`).
 
-Recovering those true boundaries exposes two previously hidden unlabeled code
+Recovering those true boundaries exposed two previously hidden unlabeled code
 islands that the inventory had incorrectly absorbed into neighboring inferred
 function ranges: **E118..E174 = 0x5C bytes** and **E1B4..E2D4 = 0x120 bytes**.
-They account for the 380-byte increase in unattributed assembly and are the next
-bounded mine-floor research target. Both detached and production full-ROM
-comparisons pass with the two new linker seams.
+They account for the 380-byte increase in unattributed assembly. Both detached
+and production full-ROM comparisons pass with the two linker seams.
+
+Both islands have now received a bounded fast-path assessment and are parked:
+
+### E118..E174, 0x5C
+
+Behavior is recovered as a two-field histogram helper. It takes a MineFloor
+pointer and a byte-count table, loops over the active width/height, and
+increments one bucket for each tile's bits 4..9 field and one for its bits
+10..15 field. This independently confirms both packed six-bit fields are used
+as 0..63 content/state ids.
+
+No direct BL or literal Thumb-pointer reference to E118/E119 exists in the ROM.
+Saved candidates under `tools/ches/checkpoints/mine-floor-2026-10-08/`:
+- `island-e118-v1.cc`: 0x66 versus retail 0x5C, 88 differing bytes;
+- `island-e118-v2.cc`: 0x54, 84 differing bytes after matching the obvious
+  register/address shape.
+
+The remaining mismatch is broad register/control-flow source shape, not missing
+behavior. Do not resume syntax variants without new structural evidence.
+
+### E1B4..E2D4, 0x120
+
+Behavior is recovered as a location-dependent mine table-copy helper. It takes
+a MineFloor pointer, destination byte buffer and state/context pointer, obtains
+the Farmer at context+0x1BD8, reads ActorLocation, chooses one of two mine
+namespaces, calls D79C/D7D8 or D418/D470 to classify the level, then copies
+small table-driven byte patterns into destination offsets.
+
+No direct BL or literal Thumb-pointer reference to E1B4/E1B5 exists in the ROM.
+Saved candidates:
+- `island-e1b4-v1.cc`: 0x118 versus retail 0x120, 211 differing bytes;
+- `island-e1b4-v2.cc`: 0x114, 214 differing bytes after preserving the
+  strongest retail register/lifetime clues.
+
+The second refinement did not improve matching, so this island is also parked.
+Do not merge either island back into E0AC/E1A4 simply to reduce unattributed
+assembly; their separate boundaries are proven structural knowledge.
 
 `func_0809DA00` is behavior-mapped but parked after the bounded natural-source
 pass. Its true size is 0x52C. Saved candidates are `da00-v1.cc` at 0x534 /

@@ -1,6 +1,7 @@
 #include "prelude.h"
 
 #include "actor.hh"
+#include "cursed_tool_state.hh"
 #include "item.hh"
 
 struct Unk_Actor_0809BFE8 : Actor
@@ -85,17 +86,15 @@ EC void func_0809C0D4(Unk_Actor_0809BFE8 & self)
     self.unk_08_0 = 100;
 }
 
-EC u8 * func_0809C144(u8 * self)
+EC CursedToolState * func_0809C144(CursedToolState * self)
 {
     unsigned int i = 0;
     unsigned int zero = 0;
-    u8 * p = self;
     do
     {
-        p[0] = zero;
-        p[12] = zero;
-        p[6] = zero;
-        ++p;
+        self->active[i] = zero;
+        self->count[i] = zero;
+        self->completed[i] = zero;
         ++i;
     } while (i <= 5);
     return self;

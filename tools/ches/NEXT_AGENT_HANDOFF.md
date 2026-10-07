@@ -98,42 +98,83 @@ tools/ches/checkpoints/mine-floor-2026-10-08/
 E174, E184, E194, E1A4 each match 0x10 / 0, full E174..E1B4 block 0x40 / 0.
 They return persistent bits 0, 10, 11 and 12.
 
-## Newly exposed unlabeled code: NEXT TARGET
+## Exposed unlabeled mine-floor islands: PARKED
 
-Exact seams reveal:
+Exact seams still preserve these as separate raw Thumb ranges:
 
-### Island A
-0x0809E118..0x0809E174
-Size: 0x5C = 92 bytes
-Currently raw .byte code, no thumb_func_start/symbol.
+### Island A: E118..E174, 0x5C
 
-### Island B
-0x0809E1B4..0x0809E2D4
-Size: 0x120 = 288 bytes
-Currently raw .byte code, no function symbol.
+Behavior is recovered as a MineFloor two-field histogram helper. It loops the
+active width/height and increments a caller-provided byte count table once for
+tile bits 4..9 and once for tile bits 10..15. This independently confirms both
+six-bit tile fields are 0..63 content/state ids.
 
-Together: 380 bytes. These were previously counted inside inferred E0AC/E1A4
-ranges, which is why unattributed assembly increased from 1,164 to 1,544.
+No direct BL or literal Thumb-pointer reference to E118/E119 exists in retail.
+Bounded candidates:
+- island-e118-v1.cc: 0x66 vs 0x5C, 88 differing bytes
+- island-e118-v2.cc: 0x54, 84 differing bytes after the obvious
+  register/address-shape rewrite
 
-Do not "fix" the inventory by merging them back into neighboring functions.
-Recover their actual identities/bounds/semantics.
+Parked because the mismatch remains broad register/control-flow source shape.
+
+### Island B: E1B4..E2D4, 0x120
+
+Behavior is recovered as a location-dependent mine table-copy helper. It takes
+MineFloor, a destination byte buffer and context/state; obtains Farmer at
+context+0x1BD8; reads ActorLocation; selects one of two mine namespaces; calls
+D79C/D7D8 or D418/D470; then copies table-driven byte patterns into destination
+offsets.
+
+No direct BL or literal Thumb-pointer reference to E1B4/E1B5 exists in retail.
+Bounded candidates:
+- island-e1b4-v1.cc: 0x118 vs 0x120, 211 differing bytes
+- island-e1b4-v2.cc: 0x114, 214 differing bytes after preserving the strongest
+  retail register/lifetime clues
+
+The second refinement did not improve matching, so park it. Do not merge either
+island into E0AC/E1A4 merely to reduce unattributed assembly.
+
+Proofs/candidates:
+tools/ches/checkpoints/mine-floor-2026-10-08/
+
+## Newly proven CursedToolState subobject
+
+GameState+0x3480..+0x3493 is now a proven typed 0x14-byte persistent subobject:
+- +0x00..+0x05 active/progression-enabled[6]
+- +0x06..+0x0B completed/blessed[6]
+- +0x0C..+0x11 count[6]
+- +0x12..+0x13 alignment/padding
+
+Both GameState initialization paths call func_0809C144 at +0x3480. The next
+independently initialized block starts at +0x3494.
+
+Shared type: include/cursed_tool_state.hh
+Typed initializer: src/code_actor_0809BFE8.cc
+func_0809C144 true body C144..C15E: 0x1A / 0
+C15E..C160: function alignment
+Detached and production full-ROM compares both PASS.
+
+Code coverage metrics do not change because this helper was already source-owned.
 
 ## Exact next action
 
-Start with Island A E118..E174.
+Assess the adjacent persistent block at GameState+0x3494..+0x34C4.
+
+Known starting evidence:
+- both GameState initialization paths begin at +0x3494;
+- initializer touches three records at +0x3494, +0x34A4 and +0x34B4;
+- stride is 0x10 bytes;
+- each touched first byte is ANDed with 0xF0, clearing its low nibble;
+- the next independently accessed state begins at +0x34C4.
 
 Fast path:
-1. Disassemble only those 92 bytes as Thumb.
-2. Search direct calls/branches/references to address E118, not broad repo scans.
-3. Infer signature and behavior from register use plus nearby MineFloor helpers.
-4. Give the candidate a local research identity if no retail symbol exists.
-5. Try one natural typed implementation.
-6. If exact, design a minimal seam/source identity without shifting retail
-   addresses; then detached ROM -> production ROM -> inventory/docs.
-7. If no caller/symbol can be proven, preserve the range as an explicitly
-   bounded unlabeled code island and move to E1B4..E2D4.
+1. map readers/writers of +0x3494/+0x34A4/+0x34B4 and their 0x10-byte records;
+2. identify any existing helper/type family before inventing names;
+3. build a checked field-access map and one natural typed candidate if coherent;
+4. if exact, detached ROM -> production ROM -> docs/publish;
+5. if compiler-sensitive after bounded work, save the frontier and move on.
 
-Parked: D8E8, DA00, whole save loader, CF34 refactor, AB30/B128, 39E98,
-39F90, 3A180, 3A394, Ball mover.
+Parked: E118 island, E1B4 island, D8E8, DA00, whole save loader, CF34 refactor,
+AB30/B128, 39E98, 39F90, 3A180, 3A394, Ball mover.
 
-Do not reopen them without genuinely new evidence.
+Do not reopen parked families without genuinely new structural evidence.

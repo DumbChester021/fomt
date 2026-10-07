@@ -89,6 +89,20 @@ semantically unresolved and ten high bits are preserved by the initializer.
 `func_0809CE8C` is retail-exact source. See
 [MINE_FLOOR.md](MINE_FLOOR.md) for the field and bit map.
 
+The next payload block at **+0x3480..+0x3493** is now structurally recovered
+as a **0x14-byte `CursedToolState`**:
+
+- `+0x00..+0x05`: six active/progression-enabled bytes;
+- `+0x06..+0x0B`: six completed/blessed bytes;
+- `+0x0C..+0x11`: six progression counters;
+- `+0x12..+0x13`: alignment/padding.
+
+Both GameState initialization paths call `func_0809C144` at exactly +0x3480,
+and the next independently initialized persistent block starts at +0x3494.
+The typed initializer is retail-exact at its true **0x1A / 0** body bound
+(C144..C15E), followed by two function-alignment bytes. The shared type is
+`include/cursed_tool_state.hh`.
+
 These recovered subobjects advance the payload layout without changing the
 parked whole-save loader.
 

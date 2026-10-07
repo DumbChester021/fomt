@@ -66,19 +66,49 @@ rendering each mine tile. E0AC maps tile types 0..4 to resource records
 E174/E184/E194/E1A4 matched on the first typed candidate. They expose persistent
 MineFloor progress bits 0, 10, 11 and 12 respectively.
 
-## Newly exposed unlabeled code
+## Exposed unlabeled mine-floor code: bounded and parked
 
-Exact boundary recovery exposed two real code islands that have no current
-function symbols in the assembly source:
+The two exact-seam islands remain separate structural ranges:
 
-- 0x0809E118..0x0809E174 = 0x5C bytes
-- 0x0809E1B4..0x0809E2D4 = 0x120 bytes
+- E118..E174 = 0x5C bytes
+- E1B4..E2D4 = 0x120 bytes
 
-Together they are 380 bytes and exactly explain the inventory's new unattributed
-assembly increase.
+E118 is behavior-recovered as a two-field MineTile histogram helper. It counts
+bits 4..9 and bits 10..15 into a caller-provided byte table. No direct BL or
+literal Thumb-pointer reference exists. Candidates:
+- v1 0x66 / 88 differing bytes
+- v2 0x54 / 84 differing bytes
 
-Do not merge these ranges back into E0AC or E1A4. Their code is preserved as raw
-.byte sequences between the new linker seams.
+E1B4 is behavior-recovered as a location-dependent mine table-copy helper using
+Farmer at context+0x1BD8, ActorLocation, D79C/D7D8 or D418/D470, and table
+copies into destination byte offsets. No direct BL or literal Thumb-pointer
+reference exists. Candidates:
+- v1 0x118 / 211 differing bytes
+- v2 0x114 / 214 differing bytes
+
+The second E1B4 refinement regressed matching, so both islands are parked. Do
+not merge them back into neighboring functions to manipulate inventory coverage.
+
+Proofs: tools/ches/checkpoints/mine-floor-2026-10-08/
+
+## Newly proven CursedToolState subobject
+
+GameState+0x3480..+0x3493 is a typed 0x14-byte persistent object:
+- active[6] at +0x00
+- completed[6] at +0x06
+- count[6] at +0x0C
+- padding[2] at +0x12
+
+Both GameState initialization paths call func_0809C144 at +0x3480. The next
+independently initialized persistent block begins at +0x3494.
+
+Shared type: include/cursed_tool_state.hh
+Typed initializer: src/code_actor_0809BFE8.cc
+C144 true body: 0x1A / 0 at C144..C15E
+C15E..C160: alignment bytes
+Detached and production forced full-ROM comparisons PASS.
+
+Coverage metrics remain unchanged because C144 was already source-owned.
 
 ## Parked frontiers
 
@@ -91,28 +121,30 @@ DA00 remains behavior-mapped but source-shape parked:
 - v1 0x534 vs retail 0x52C / 905 differences
 - v2 0x534 / 883 differences
 
-Do not resume either family without new structural/compiler evidence.
+E118 and E1B4 are now also parked at the candidate frontiers above.
+
+Do not resume these families without new structural/compiler evidence.
 
 ## Operating strategy
 
 Keep using the Opus/Astra fast path in AGENTS.md and DECOMP_PLAYBOOK.md:
 bounded cluster, reuse structure, natural candidate first, classify boundaries
 before syntax changes, exploit linker seams, run detached+production ROM gates,
-refresh inventory/docs once, publish, then move on.
+refresh docs once, publish, then move on.
 
 ## Exact next action
 
-Research the newly exposed unlabeled mine-floor code islands:
+Assess GameState+0x3494..+0x34C4 as the next persistent subobject.
 
-1. E118..E174 (0x5C) first, because it is small.
-2. Determine real function boundary/callers/semantics from the raw Thumb code.
-3. If coherent, give it a durable internal identity/candidate and try natural
-   source immediately.
-4. Then assess E1B4..E2D4 (0x120) the same way.
-5. Do not let the absence of existing symbols force these bytes back into
-   neighboring functions.
+Known facts:
+- both GameState initialization paths start at +0x3494;
+- touched record starts are +0x3494, +0x34A4 and +0x34B4;
+- record stride is 0x10;
+- initializer clears the low nibble of the first byte with AND 0xF0;
+- next independently accessed state starts at +0x34C4.
 
-Do not reopen DA00, D8E8, the whole save loader, CF34, AB30/B128 or other parked
-compiler-sensitive families by inertia.
+Build a checked reader/writer/field map first, reuse any existing helper/type
+family, then try one natural typed representation only if the evidence is
+coherent. Park on repeated compiler/source-shape drift.
 
 No build or compiler process is currently running.

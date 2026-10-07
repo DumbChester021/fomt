@@ -78,7 +78,7 @@ Immediately preceding exact promotions include `func_0803A798`, `func_0803A350`,
 
 ## Current frontier
 
-The exact resource-owner set is integrated. Constructors and B128 remain assembly; AB30 is parked at 316/217 versus 328, B128 at 382/2. Fishing records recover the 472-byte block with 276 exact source bytes, and the mine-floor cluster now owns 872 linked source bytes around the adjacent 0x628-byte persistent object. E0AC and the four progress-flag getters are exact. Their true boundaries expose two unlabeled code islands, E118..E174 (0x5C) and E1B4..E2D4 (0x120), as the next bounded mine-floor target. D8E8 and DA00 remain parked compiler/source-shape frontiers. The legacy loader remains parked pending new source-boundary evidence.
+The exact resource-owner set is integrated. Constructors and B128 remain assembly; AB30 is parked at 316/217 versus 328, B128 at 382/2. Fishing records recover the 472-byte block with 276 exact source bytes, and the mine-floor cluster owns 872 linked source bytes around the adjacent 0x628-byte persistent object. E0AC and the four progress-flag getters are exact. The exposed E118..E174 (0x5C) and E1B4..E2D4 (0x120) islands are behavior-recovered but parked after bounded source-shape attempts. The following GameState+0x3480 block is now a typed 0x14-byte CursedToolState with exact typed initializer; next assess +0x3494..+0x34C4. D8E8 and DA00 remain parked compiler/source-shape frontiers. The legacy loader remains parked pending new source-boundary evidence.
 
 `func_0803A180`, `func_0803A394`, `func_08039F90`, `func_08039E98`, and the other generator-marked parked functions should not be reopened without genuinely new structural evidence.
 
