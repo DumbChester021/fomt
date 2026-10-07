@@ -25,8 +25,8 @@ live state. This file keeps subsystem/function evidence and matching lessons.
 
 Current retail state:
 - Active public retail branch: `main`; the former `Live-temp` line is retired. Historical `ches-dev` commits remain provenance only.
-- Current exact progress: **74,428 / 940,036 = 7.9176% source** and **865,608 assembly bytes**. Data/assets reconstruction is **75,334 / 6,777,404 = 1.1115%** and overall meaningful-ROM reconstruction is **150,158 / 7,717,440 = 1.9457%**. Forced detached and production ROM comparisons report `fomt.gba: OK`; retail SHA1 remains `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
-- Remaining linked assembly functions: **2,307**; inferred function ranges cover **864,064 / 865,608 = 99.8216%**, with **1,544 unattributed bytes** and **17 explicitly parked functions**. The extra 380 unattributed bytes are the newly exposed E118..E174 and E1B4..E2D4 unlabeled code islands.
+- Current exact progress: **75,460 / 940,036 = 8.0274% source** and **864,576 assembly bytes**. Data/assets reconstruction is **75,334 / 6,777,404 = 1.1115%** and overall meaningful-ROM reconstruction is **151,190 / 7,717,440 = 1.9591%**. Forced detached and production ROM comparisons report `fomt.gba: OK`; retail SHA1 remains `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
+- Remaining linked assembly functions: **2,303**; inferred function ranges cover **863,032 / 864,576 = 99.8214%**, with **1,544 unattributed bytes** and **17 explicitly parked functions**. The extra 380 unattributed bytes are the newly exposed E118..E174 and E1B4..E2D4 unlabeled code islands.
 - Shared NPC identity/location/schedule support, all resident constructors, GameObject entity lookup/teardown, and the exact 43-entry metadata table remain complete.
 - Packed-bank ownership remains **416 / 493 animations: 405 / 450 simple and 11 / 43 multi-frame**. The remaining 77 are a parked by-product lane.
 - `func_08092A70`, `func_080455D8`, `func_080CAC7C` / `func_080CAD18`, `func_08092940`, and the documented Entity38740/Ball codegen islands remain parked at their recorded frontiers.
@@ -1187,3 +1187,9 @@ First source-candidate target should be the high-fanout accessor API, using this
 ## Range/release/pool boundary — October 3, 2026
 
 Stable contracts and source ranges are in `docs/RESOURCE_HANDLES.md`. Private source/lifetime evidence is in `tools/ches/checkpoints/resource-allocator-08007A28-2026-10-03/README.md`. Partial ranges, conditional child release, raw byte getters and backward entry initialization are proven; reservation parameter aggregation is only a hypothesis. The unchanged 13-rule compiler independently passes this496-byte source gain. Order-9 fill148/0 is saved privately for the next unit.
+
+
+Latest recovered GroundPickupState: +0x34C8..+0x34D7, 56 availability
+bits and fifteen packed three-bit durability fields. Four exact functions
+add 1,032 linked bytes. A1EA8 is parked. See docs/GROUND_PICKUP_STATE.md.
+Next persistent target is +0x34D8..+0x34DB.

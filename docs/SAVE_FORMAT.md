@@ -158,3 +158,11 @@ the checksum/size/writer block occupies 0x08011588..0x0801164F between sections
 of `asm/game_state.s`. The loader starts at its original 0x08011650 address.
 Run `make compare` and `sha1sum -c fomt.sha1` after source/interface changes.
 Documentation-only changes do not require rebuilding unchanged code.
+
+
+## Ground pickup and resource state
+
+GameState+0x34C8..+0x34D7 is a recovered 16-byte GroundPickupState:
+56 availability bits and fifteen three-bit durability counters, with 116
+actual twelve-byte table records. See GROUND_PICKUP_STATE.md.
+Next independent four-byte state begins at +0x34D8, actor state at +0x34DC.

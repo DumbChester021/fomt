@@ -507,6 +507,10 @@ SECTIONS
         asm/code_809E804.o(.text.before_character_social);
         src/character_social.o(.text);
         asm/code_809E804.o(.text.after_character_social);
+        src/ground_pickup_state.o(.text.ground_pickup_state_init);
+        asm/code_809E804.o(.text.after_ground_pickup_state_init);
+        src/ground_pickup_state.o(.text.ground_pickup_state_durability);
+        asm/code_809E804.o(.text.after_ground_pickup_state_durability);
         src/water_region.o(.text);
         src/code_080A4650.o(.text);
         src/map_data.o(.text);

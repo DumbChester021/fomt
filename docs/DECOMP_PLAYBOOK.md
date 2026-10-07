@@ -611,7 +611,7 @@ When a batch materially recovers a subsystem architecture, the batch is not full
 
 ## Current strategic direction
 
-The active public retail branch is `main`. Current verified working reconstruction is **74,428 / 940,036 = 7.9176% source**, **75,334 data/asset bytes**, and **150,158 / 7,717,440 = 1.9457% overall meaningful-ROM bytes**, with **865,608 assembly bytes** remaining and the retail ROM still exact. The remaining-function database/ranked queue and resident-NPC class map regenerate from the current build. The Entity38740/Entity398A4 region has advanced through exact `3A804..3A8A0`; behavior-complete `3A180`, `3A394`, `39F90`, `39E98`, and other documented compiler islands remain parked. The logical map resolver adds 652 exact bytes; four resource-owner methods add 680 linked bytes; fishing records add 276 exact bytes; the mine-floor cluster owns 872 exact linked bytes through E0AC plus E174..E1B4 and recovers its shared 0x628-byte persistent type. The exposed E118..E174 and E1B4..E2D4 islands are behavior-recovered but parked. The adjacent +0x3480 persistent block is now a typed 0x14-byte `CursedToolState`; continue at +0x3494..+0x34C4. D8E8 and DA00 remain parked source-shape/compiler frontiers; do not repeat the parked loader's closed compiler/source families. The handoff owns exact active commands/artifacts; the priority map owns target selection; dated checkpoints and Git history own detailed chronology.
+The active public retail branch is `main`. Current verified working reconstruction is **75,460 / 940,036 = 8.0274% source**, **75,334 data/asset bytes**, and **151,190 / 7,717,440 = 1.9591% overall meaningful-ROM bytes**, with **864,576 assembly bytes** remaining and the retail ROM still exact. The remaining-function database/ranked queue and resident-NPC class map regenerate from the current build. The Entity38740/Entity398A4 region has advanced through exact `3A804..3A8A0`; behavior-complete `3A180`, `3A394`, `39F90`, `39E98`, and other documented compiler islands remain parked. The logical map resolver adds 652 exact bytes; four resource-owner methods add 680 linked bytes; fishing records add 276 exact bytes; the mine-floor cluster owns 872 exact linked bytes through E0AC plus E174..E1B4 and recovers its shared 0x628-byte persistent type. The exposed E118..E174 and E1B4..E2D4 islands are behavior-recovered but parked. The adjacent +0x3480 persistent block is now a typed 0x14-byte `CursedToolState`; the +0x3494 three-record block is conservatively opaque, GroundPickupState +0x34C8 is now exact source, and the next target is +0x34D8..+0x34DB. D8E8 and DA00 remain parked source-shape/compiler frontiers; do not repeat the parked loader's closed compiler/source families. The handoff owns exact active commands/artifacts; the priority map owns target selection; dated checkpoints and Git history own detailed chronology.
 
 Preserved renderer candidates remain:
 - `func_080A5CC0`: expected 0x54, v1 actual 0x58, 72 differing linked bytes;
@@ -699,3 +699,9 @@ and the table/name-pool addresses before changing source or compiler behavior.
 Keep failed layout evidence, correct only the responsible seam, and rerun the
 forced full-ROM gate. A data-only unit is measured as typed data recovery and
 adds no executable-source percentage.
+
+
+Latest recovered GroundPickupState: +0x34C8..+0x34D7, 56 availability
+bits and fifteen packed three-bit durability fields. Four exact functions
+add 1,032 linked bytes. A1EA8 is parked. See docs/GROUND_PICKUP_STATE.md.
+Next persistent target is +0x34D8..+0x34DB.

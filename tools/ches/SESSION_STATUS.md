@@ -8,13 +8,13 @@ Run `git log -1` and `git status` before work. Preserve intentional dirty state.
 
 ## Exact production progress
 
-- Code: 74,428 / 940,036 = 7.9176%
-- Assembly remaining: 865,608 bytes
+- Code: 75,460 / 940,036 = 8.0274%
+- Assembly remaining: 864,576 bytes
 - Data/assets: 75,334 / 6,777,404 = 1.1115%
-- Overall meaningful ROM: 150,158 / 7,717,440 = 1.9457%
+- Overall meaningful ROM: 151,190 / 7,717,440 = 1.9591%
 - Free tail: 671,168 bytes
-- Linked assembly functions: 2,307
-- Inferred function bytes: 864,064 / 865,608 = 99.8216%
+- Linked assembly functions: 2,303
+- Inferred function bytes: 863,032 / 864,576 = 99.8214%
 - Unattributed assembly: 1,544 bytes
 - Parked functions: 17
 - Runtime/library functions: 33
@@ -141,10 +141,39 @@ Known facts:
 - touched record starts are +0x3494, +0x34A4 and +0x34B4;
 - record stride is 0x10;
 - initializer clears the low nibble of the first byte with AND 0xF0;
+- asm/code_linkonce.s copies exactly 0x30 bytes at +0x3494 via four 12-byte
+  LDM/STM chunks, proving the object span is exactly +0x3494..+0x34C3;
 - next independently accessed state starts at +0x34C4.
 
-Build a checked reader/writer/field map first, reuse any existing helper/type
-family, then try one natural typed representation only if the evidence is
-coherent. Park on repeated compiler/source-shape drift.
+Result:
+- +0x3494..+0x34C3 is exactly three 0x10-byte records;
+- only init and whole-GameState copy are proven active accesses;
+- no consumer reaches it through +0x3480 either;
+- dormant func_0803A798/func_080DCFE0 code uses an analogous three-record
+  0x10-stride format with a byte-0 low-nibble discriminator and fields at
+  +4/+8/+0xA, but the factory has no retail xref, so identity is unproven.
+
+Keep the save block opaque for now. Do not promote the dormant record format
+without a real pointer link.
+
+Live persistent state findings:
+
+- +0x34C4 is an active boolean time/clock-advancement inhibit gate.
+  func_080142F0 sets it; func_08014304 clears it; normal clock advancement
+  requires it to be zero.
+- +0x34C5 is a one-shot shipping-value modifier flag. func_0801140C applies
+  ShippingBin shipped value once normally, applies it a second time when this
+  flag is set, clears the flag, then resets ShippingBin value shipped. A
+  shipping/statistics UI/event path sets the flag to 1. Stronger player-facing
+  naming remains unresolved.
+- +0x34C8..+0x34D7 is recovered as GroundPickupState:
+  56 availability bits, fifteen three-bit durability fields, 116 real table
+  records. A1A48/A1A4C/A1EF4/A1FC4 add 1,032 exact source bytes.
+  Production retail-ROM comparison passes.
+- A1EA8 effective-season mapper is source-shape parked; see
+  docs/GROUND_PICKUP_STATE.md.
+
+Exact next action: map GameState+0x34D8..+0x34DB, C4E4/C5EC initialization,
+and the actor-state boundary at +0x34DC. Do not restart parked families.
 
 No build or compiler process is currently running.

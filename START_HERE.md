@@ -35,47 +35,28 @@ next deliverable, closed paths and fresh-clone artifact limitations.
 
 ## Current exact reconstruction
 
-- Code: **74,428 / 940,036 = 7.9176%**
-- Assembly remaining: **865,608 bytes**
-- Linked assembly functions: **2,307**
-- Inferred ranges: **864,064 / 865,608 = 99.8216%**
+- Code: **75,460 / 940,036 = 8.0274%**
+- Assembly remaining: **864,576 bytes**
+- Linked assembly functions: **2,303**
+- Inferred ranges: **863,032 / 864,576 = 99.8214%**
 - Unattributed assembly: **1,544 bytes**
 - Generated parked functions: **17**
 - Data/assets: **75,334 / 6,777,404 = 1.1115%**
-- Overall meaningful ROM: **150,158 / 7,717,440 = 1.9457%**
+- Overall meaningful ROM: **151,190 / 7,717,440 = 1.9591%**
 - Contiguous free tail: **671,168 bytes = 655.44 KiB**
 
 ## Latest completed unit
 
-The mine-floor save cluster now owns **872 exact linked source bytes**:
-initializer `func_0809CE8C` (168), the D8A0..D8E8 accessor block (72),
-D9B4 (76), DF2C..E0AC helpers (384), tile-resource lookup E0AC (0x6A body
-plus 2 linked alignment bytes), and the E174..E1B4 progress-flag block (64).
-The shared layout is in `include/mine_floor.hh`; the two newest source files
-are `src/mine_floor_tile_resource.cc` and
-`src/mine_floor_progress_flags.cc`.
-
-Architecture: docs/MINE_FLOOR.md and docs/SAVE_FORMAT.md. E0AC is exact at its
-true **0x6A / 0** body bound, and E174..E1B4 is **0x40 / 0**. Detached and
-production full-ROM builds pass; ROM size/SHA1 remain retail-exact.
-
-The preceding fishing-record block (276 linked bytes), four resource-owner
-methods (680 bytes), and map resolver (652 bytes) remain complete. Do not
-repeat their integration.
+The recovered 0x10-byte GroundPickupState at GameState+0x34C8..+0x34D7
+holds 56 availability bits and 15 packed three-bit durability counters.
+A1A48/A1A4C/A1EF4/A1FC4 add **1,032 exact source bytes**. The production
+ROM comparison passes. See docs/GROUND_PICKUP_STATE.md.
 
 ## Next direction
 
-The two unlabeled mine-floor islands exposed by the E0AC/E1A4 boundary work
-are now behavior-recovered and deliberately parked after bounded natural-source
-attempts. E118..E174 is a 92-byte two-field histogram helper; E1B4..E2D4 is a
-288-byte location-dependent mine table-copy helper. Neither has a direct BL or
-ROM function-pointer reference, and both remain compiler/source-shape sensitive.
-
-The adjacent persistent block at `GameState+0x3480` is now a proven typed
-`CursedToolState`: 18 meaningful bytes plus 2 padding bytes, ending exactly
-before the next initialized block at +0x3494. Continue with the bounded
-`+0x3494..+0x34C4` persistent block, whose initializer already exposes three
-0x10-stride records. DA00 and D8E8 remain parked source-shape/compiler frontiers.
+Map the separate 4-byte state at GameState+0x34D8..+0x34DB, initialized
+by C4E4 and reset by C5EC. Next actor state starts at +0x34DC.
+A1EA8 is source-shape parked; follow the Opus/Astra bounded fast path.
 
 The loader remains parked. Resource-owner constructors and B128 remain parked.
 Local ignored proofs are under tools/ches/checkpoints/mine-floor-2026-10-07/.

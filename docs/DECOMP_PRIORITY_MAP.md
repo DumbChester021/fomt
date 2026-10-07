@@ -12,11 +12,11 @@ exploit them across the remaining assembly instead of making an individual
 resource family the main queue.
 
 Current verified working state on `main`:
-- code: **74,428 / 940,036 = 7.9176%**;
-- assembly remaining: **865,608 bytes**;
-- remaining linked assembly functions: **2,307**;
+- code: **75,460 / 940,036 = 8.0274%**;
+- assembly remaining: **864,576 bytes**;
+- remaining linked assembly functions: **2,303**;
 - data/assets: **75,334 / 6,777,404 = 1.1115%**;
-- overall meaningful ROM: **150,158 / 7,717,440 = 1.9457%**;
+- overall meaningful ROM: **151,190 / 7,717,440 = 1.9591%**;
 - packed bank: **416 / 493 semantically owned animations**;
 - retail ROM remains exact at SHA1 `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
 
@@ -493,3 +493,9 @@ At that historical checkpoint there was no production integration yet; the instr
 ### SpriteAnimator allocator-isolation update - October 2, 2026
 
 At this historical checkpoint SpriteAnimator was the immediate priority and was 4/5 exact. `func_0805E8F0` had been isolated to a descriptor/count lifetime plus allocator-ordering problem rather than unknown high-level behavior. The batch was subsequently completed; do not resume it from this chronology.
+
+
+Latest recovered GroundPickupState: +0x34C8..+0x34D7, 56 availability
+bits and fifteen packed three-bit durability fields. Four exact functions
+add 1,032 linked bytes. A1EA8 is parked. See docs/GROUND_PICKUP_STATE.md.
+Next persistent target is +0x34D8..+0x34DB.

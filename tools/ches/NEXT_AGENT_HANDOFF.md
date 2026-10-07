@@ -33,13 +33,13 @@ Do not regress to broad rescans or syntax roulette.
 
 ## Current exact state
 
-- Code: 74,428 / 940,036 = 7.9176%
-- Assembly remaining: 865,608 bytes
-- Linked assembly functions: 2,307
-- Inferred ranges: 864,064 / 865,608 = 99.8216%
+- Code: 75,460 / 940,036 = 8.0274%
+- Assembly remaining: 864,576 bytes
+- Linked assembly functions: 2,303
+- Inferred ranges: 863,032 / 864,576 = 99.8214%
 - Unattributed assembly: 1,544 bytes
 - Data/assets: 75,334 / 6,777,404 = 1.1115%
-- Overall meaningful ROM: 150,158 / 7,717,440 = 1.9457%
+- Overall meaningful ROM: 151,190 / 7,717,440 = 1.9591%
 - Free tail: 671,168 bytes
 - Retail ROM: 8,388,608 bytes
 - SHA1: a2fc3574f0a65a4fcf7682fb274b9d7eebdef963
@@ -165,16 +165,69 @@ Known starting evidence:
 - initializer touches three records at +0x3494, +0x34A4 and +0x34B4;
 - stride is 0x10 bytes;
 - each touched first byte is ANDed with 0xF0, clearing its low nibble;
+- the GameState copy routine in asm/code_linkonce.s copies exactly 0x30 bytes
+  from source+0x3494 to destination+0x3494 using four 12-byte LDM/STM chunks;
+- therefore this persistent object is exactly +0x3494..+0x34C3, with no gap;
 - the next independently accessed state begins at +0x34C4.
 
-Fast path:
-1. map readers/writers of +0x3494/+0x34A4/+0x34B4 and their 0x10-byte records;
-2. identify any existing helper/type family before inventing names;
-3. build a checked field-access map and one natural typed candidate if coherent;
-4. if exact, detached ROM -> production ROM -> docs/publish;
-5. if compiler-sensitive after bounded work, save the frontier and move on.
+Result for +0x3494..+0x34C3:
+- exact size is 0x30 = three 0x10-byte records;
+- both GameState init paths clear only the low nibble of record byte 0;
+- GameState copy preserves the full 0x30 bytes;
+- no active runtime read/write xref to this GameState block was found, including
+  no consumer reached via the preceding +0x3480 CursedToolState base;
+- a dormant/unreferenced entity subsystem (func_0803A798 -> virtual
+  func_080DCFE0) uses an analogous array of three 0x10-byte records whose byte-0
+  low nibble is a 1..12 discriminator and whose writers fill +4, +8 and +0xA,
+  but func_0803A798 itself has no retail branch/function-pointer xref, so this
+  is structural analogy only, not identity proof.
 
-Parked: E118 island, E1B4 island, D8E8, DA00, whole save loader, CF34 refactor,
-AB30/B128, 39E98, 39F90, 3A180, 3A394, Ball mover.
+Do not invent semantics or merge that dormant family into the save type without
+a real pointer link.
 
-Do not reopen parked families without genuinely new structural evidence.
+Live +0x34C4 block result:
+
+### GameState+0x34C4
+
+This is an active one-byte boolean gate. func_080142F0 sets it to 1 and
+func_08014304 clears it to 0. Existing clock/day-transition evidence shows the
+normal clock increment path requires GameState+0x34C4 == 0, alongside other
+map/gameplay predicates. Conservatively treat it as a time/clock-advancement
+inhibit flag; do not assign a stronger retail name yet.
+
+### GameState+0x34C5
+
+This is an active one-shot shipping-value modifier flag. func_0801140C:
+- obtains ShippingBin value shipped;
+- applies that value through func_0809ABD8 once;
+- if +0x34C5 != 0, applies the same shipped value through func_0809ABD8 a
+  second time, then clears +0x34C5 to 0;
+- resets ShippingBin value shipped.
+
+A writer in asm/code_0803EE94.s sets +0x34C5 = 1 inside a shipping/statistics
+UI/event path. The exact player-facing meaning of the bonus/modifier is not yet
+proven, so keep the semantic name conservative.
+
+### Recovered GroundPickupState
+
+GameState+0x34C8..+0x34D7 is typed in include/ground_pickup_state.hh
+and src/ground_pickup_state.cc. Seven availability bytes encode 56 ground
+item presence bits; fifteen packed three-bit fields encode durability
+(counters 0..12 default 6; 13..14 default 1). gUnk_081043BC holds
+116 actual twelve-byte ground pickup records, followed by unrelated
+bad_alloc string bytes.
+
+Exactly integrated: A1A48 (4 linked), A1A4C (236), A1EF4 (208),
+A1FC4 (584): **1,032 linked bytes**. Production make compare passes retail
+SHA1. See docs/GROUND_PICKUP_STATE.md for semantics and exact proof.
+
+A1EA8 is a behavior-understood effective-season index mapper but remains
+assembly because bounded source candidates did not match. Do not resume
+compiler syntax roulette. Other spawn helpers remain assembly.
+
+### Exact next action
+
+Map GameState+0x34D8..+0x34DB (4 bytes): C4E4 initializes and C5EC
+resets. Actor state starts at +0x34DC. Trace concrete readers/writers
+and recover the smallest natural exact helper cluster. Use Opus/Astra
+fast path and preserve all parked boundaries.
