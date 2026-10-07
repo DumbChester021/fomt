@@ -49,8 +49,18 @@ length/generic/checksum failure, `0x20000` for payload-read failure, or
 `0x30000` for stored-checksum-read failure. `func_080006E4` is the
 four-argument read primitive used for all three reads. A successful 0x34F4-byte
 payload load has no migration/fixup pass afterward. The pre-read half builds a
-complete fallback/default state; that initializer is still private matching
-research, not completed source.
+complete default state; that initializer is still private matching research,
+not completed source. Once payload I/O starts, partial or invalid payload bytes
+may overwrite those defaults. Failure does not guarantee a usable fallback;
+callers must check the error output before using the returned state.
+
+Each failure stage sets the flag below, ORed with the low-level error value.
+
+| Failure | Stage flag | Assembly evidence |
+| --- | --- | --- |
+| Size read fails, size is invalid, or checksum differs | 0x10000 | Shared branch at 0801190E, 0x80 shifted by 9 |
+| Payload read fails | 0x20000 | Payload failure path, 0x80 shifted by 10 |
+| Stored-checksum read fails | 0x30000 | Checksum failure path, 0xC0 shifted by 10 |
 
 In [new_game.s](../asm/new_game.s), `func_08003F9C` calls the writer;
 `func_080040A0` and `func_080041DC` call the loader. These are integration seams

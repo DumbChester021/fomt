@@ -12,11 +12,11 @@ exploit them across the remaining assembly instead of making an individual
 resource family the main queue.
 
 Current exact `main` state:
-- code: **72,600 / 940,036 = 7.7231%**;
-- assembly remaining: **867,436 bytes**;
-- remaining linked assembly functions: **2,333**;
+- code: **73,280 / 940,036 = 7.7954%**;
+- assembly remaining: **866,756 bytes**;
+- remaining linked assembly functions: **2,329**;
 - data/assets: **75,334 / 6,777,404 = 1.1115%**;
-- overall meaningful ROM: **148,330 / 7,717,440 = 1.9220%**;
+- overall meaningful ROM: **149,010 / 7,717,440 = 1.9308%**;
 - packed bank: **416 / 493 semantically owned animations**;
 - retail ROM remains exact at SHA1 `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
 
@@ -55,7 +55,7 @@ but its score is no longer an execution order.
 
 The throughput pipeline is operational. The Ball family remains parked at its documented mover seam. The adjacent `vtable_unk_080E7380` family now owns **316 exact retail bytes** in source: 224 bytes of entity surface plus 92 bytes of controller helpers. Controller constructor `0x08038820` is behavior-complete and exact-size but bounded by register-lifetime codegen.
 
-The raw queue can still rank parked work highly, so score is not execution order. The Entity38740/Entity398A4 region now owns exact source through the seven-helper tail `3A804..3A8A0`, including preceding exact `3A798`, `3A350`, `3A320/334`, `39A60`, `3A144`, `398A4/399C0`, and related strategy helpers. `39E98`, `39F90`, `3A180`, and `3A394` are explicitly parked after bounded natural-source work. The 652-byte logical map resolver at `0x0803A8A4` is now exact source as `GetMapResourceId`. Resource-owner research now has four target-exact methods: AC78, ACD8, AE58 and sibling B0A8 (678 body bytes, 680 bounded bytes including alignment). All remain assembly. Prefer extracting/reproving this coherent exact set with unchanged production headers before more constructor work. AB30 is parked at 316/217 versus 328; sibling B128 is 382/2 after an operand-commutation variant canonicalized. Preserve those artifacts and resume only on new source-boundary evidence; their remaining deltas should not stall the exact set. Research stopped for the user's documentation wrap; the handoff owns the resumption sequence.
+The raw queue can still rank parked work highly, so score is not execution order. The Entity38740/Entity398A4 region now owns exact source through the seven-helper tail `3A804..3A8A0`, including preceding exact `3A798`, `3A350`, `3A320/334`, `39A60`, `3A144`, `398A4/399C0`, and related strategy helpers. `39E98`, `39F90`, `3A180`, and `3A394` are explicitly parked after bounded natural-source work. The 652-byte logical map resolver at `0x0803A8A4` is now exact source as `GetMapResourceId`. Four resource-owner methods AC78/ACD8/AE58/B0A8 are integrated, adding 680 linked bytes after both full-ROM gates. Constructors and B128 remain assembly; AB30 is parked at 316/217 versus 328, B128 at 382/2. Next assess the persistent statistics-state initializer/consumer family around 0809CD78 toward eventual save-structure recovery, using saved history and the current inventory. The whole-loader compiler puzzle remains parked.
 
 ### 1. Keep the function/TU inventory current
 

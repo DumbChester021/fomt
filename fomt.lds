@@ -17,6 +17,8 @@ gXcmdTable = 0x08139D30;
 __vt_7UnkPoly = vtable_unk_080E82D8;
 func_08007874 = __13UnkHandleBase;
 func_080079E8 = _._13UnkHandleBase;
+func_0803AC78 = _._12Unk_0803AB30;
+func_0803B0A8 = _._12Unk_0803AEA0;
 func_080A47B4 = _._7UnkPoly;
 __vt_18UnknownEntityThing = vtable_unk_080E68B4;
 __vt_22UnknownEntityThingBase = vtable_unk_080E65E0;
@@ -438,6 +440,10 @@ SECTIONS
 
         src/map_resource.o(.text);
         asm/code_0803A8A4.o(.text.after_map_resource);
+        src/resource_owner_cached.o(.text);
+        asm/code_0803A8A4.o(.text.resource_owner_variable_ctor);
+        src/resource_owner_variable.o(.text);
+        asm/code_0803A8A4.o(.text.after_resource_owner_dtors);
         src/character_schedule.o(.text);
         asm/code_0803A8A4.o(.text.after_character_schedules);
         src/script_engine.o(.text);

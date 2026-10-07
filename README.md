@@ -21,10 +21,10 @@ Current exact reconstruction metrics:
 
 | Metric | Current |
 | --- | ---: |
-| Code | **72,600 / 940,036 bytes (7.7231%)** |
-| Assembly remaining | **867,436 bytes** |
+| Code | **73,280 / 940,036 bytes (7.7954%)** |
+| Assembly remaining | **866,756 bytes** |
 | Data/assets | **75,334 / 6,777,404 bytes (1.1115%)** |
-| Overall meaningful ROM | **148,330 / 7,717,440 bytes (1.9220%)** |
+| Overall meaningful ROM | **149,010 / 7,717,440 bytes (1.9308%)** |
 | Contiguous ROM tail free space | **671,168 bytes (655.44 KiB)** |
 
 Run `make progress` for the live report.
@@ -55,7 +55,7 @@ The packed item/UI animation bank also has an exact editable pipeline. All 347 r
 
 Work is throughput-first and organized by coherent translation unit, type, vtable, or repeated machine-code family rather than by a fixed function count.
 
-The Entity38740 neighborhood now owns the exact helper tail `func_0803A804..func_0803A8A0`, a seven-function API over the common embedded `EntityEffect` / `SpriteAnimator`, adding 160 exact source bytes. The preceding `func_0803A798`, `func_0803A350`, and Q8 trig pair `func_0803A320/334` are also exact source. Behavior-complete compiler/codegen islands including `func_0803A180`, `func_0803A394`, `func_08039F90`, and `func_08039E98` are parked. The logical map resolver is now exact source as `GetMapResourceId`, adding 652 bytes and exposing season, building-upgrade and mine-floor selection through a shared map interface. The resource-owner family at `0x0803AB30` and its sibling now have four target-exact scratch methods, but remain assembly in production. Research stopped for a documentation wrap; next extract those methods with unchanged shared headers and reprove them before full-ROM integration. The constructor and sibling update retain documented mismatches. See [docs/RESOURCE_OWNERS.md](docs/RESOURCE_OWNERS.md) for recovered layouts.
+The Entity38740 neighborhood now owns the exact helper tail `func_0803A804..func_0803A8A0`, a seven-function API over the common embedded `EntityEffect` / `SpriteAnimator`, adding 160 exact source bytes. The preceding `func_0803A798`, `func_0803A350`, and Q8 trig pair `func_0803A320/334` are also exact source. Behavior-complete compiler/codegen islands including `func_0803A180`, `func_0803A394`, `func_08039F90`, and `func_08039E98` are parked. The logical map resolver is now exact source as `GetMapResourceId`, adding 652 bytes and exposing season, building-upgrade and mine-floor selection through a shared map interface. The resource-owner family at `0x0803AB30` and its sibling now have four integrated exact methods, adding 680 linked source bytes after isolated and production full-ROM verification. Their constructors and the sibling update retain documented mismatches. The next assessment targets persistent-state subobjects toward the user's eventual save-structure recovery goal; the parked loader's failed source variants remain closed. See [docs/RESOURCE_OWNERS.md](docs/RESOURCE_OWNERS.md) for recovered layouts.
 
 Compiler-sensitive functions that are behavior-complete are parked rather than blocking whole-game progress. The canonical continuation is always in [tools/ches/NEXT_AGENT_HANDOFF.md](tools/ches/NEXT_AGENT_HANDOFF.md).
 

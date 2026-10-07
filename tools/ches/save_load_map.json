@@ -1,7 +1,7 @@
 {
   "batch": 14,
   "call": 10,
-  "status": "entrypoint discovery in progress",
+  "status": "record geometry and writer recovered; loader parked; persistent-subobject type assessment next",
   "goals": [
     "identify physical backup medium/API",
     "identify save/load entrypoints and slot selection",
@@ -20,7 +20,7 @@
       "repo contains dedicated sram_proxy_1, sram_proxy_2, and code_lib_sram objects linked into retail ROM",
       "ROM/library signature identifies SRAM implementation; exact proxy/library semantics traced separately"
     ],
-    "status": "binary/source-layout anchored; save-slot structure still under investigation"
+    "status": "SRAM and two-slot record geometry proven; see docs/SAVE_FORMAT.md"
   },
   "sram_geometry": {
     "total_bytes": "0x8000",
@@ -112,9 +112,9 @@
   "serialization_abi": {
     "gamestate_size": "0x34F4 bytes",
     "save_behavior": "func_080115B0 serializes the complete GameState memory image verbatim rather than field-by-field",
-    "load_behavior": "func_08011650 constructs/reset-initializes a fallback GameState first, then successful loading overwrites all 0x34F4 bytes directly from SRAM and validates the checksum",
+    "load_behavior": "func_08011650 constructs/reset-initializes a default GameState first, then successful loading overwrites all 0x34F4 bytes directly from SRAM and validates the checksum",
     "successful_load_postprocessing": "after the raw payload read, only checksum/error handling occurs inside func_08011650; there is no successful-path field migration/fixup pass",
     "compatibility_consequence": "retail save compatibility depends on exact GameState byte layout and serialized representations; changing the layout or serialized size needs an explicit compatibility layer",
-    "failure_safety": "the constructor/reset work before SRAM reads provides a valid fallback object when size/read/checksum validation fails"
+    "failure_safety": "Defaults precede SRAM reads, but partial or invalid payload I/O may overwrite them. Failure does not guarantee usable state; check error output."
   }
 }

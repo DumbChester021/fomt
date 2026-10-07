@@ -2,8 +2,10 @@
 
 Two related owners in `asm/code_0803A8A4.s` manage sprite frame descriptors,
 resource-handle clients, provider values and queued graphics transfers. Their
-constructors begin at `0x0803AB30` and `0x0803AEA0`. Both remain assembly in
-the production build. This page records recovered interfaces and layouts;
+constructors begin at `0x0803AB30` and `0x0803AEA0` and remain assembly.
+The first owner's destructor, graphics update and renderer forwarding, plus
+the sibling destructor, are now exact source in `src/resource_owner_cached.cc`
+and `src/resource_owner_variable.cc`, with shared `include/resource_owners.hh`. This page records recovered interfaces and layouts;
 candidate versions and matching results belong in the research checkpoint.
 
 The names below describe observed roles, not established original class names
@@ -62,8 +64,9 @@ member-array destruction releases the three handle clients backwards. Preserve
 the old compiler's hidden destructor flags and base-destructor calls when
 introducing source aliases.
 
-`func_0803ACD8` processes the three records, skips absent or zero-sized graphics,
-and appends `GraphicsTransfer` descriptors to OBJ VRAM at
+`func_0803ACD8` processes all three records and appends a `GraphicsTransfer`
+descriptor for each, using size zero when the graphics pointer is absent.
+The destination is OBJ VRAM at
 `0x06010000 + (handle.GetStart() << 5)`. Its vector-growth algorithm is already
 represented by exact source in `src/code_080A480C.cc`. The final provider +0x54
 call uses the first record's span +0x10 and the first stored value.
@@ -117,6 +120,7 @@ Reuse the existing handle, fixed-vector, animation and hardware-transfer types.
 Private default-handle/byte-assignment constructor experiments are not changes
 to those production interfaces. Before replacing assembly, require final
 combined-source target proofs, an isolated build with the tracked compiler,
-and the production full-ROM compare/hash. Exact progress counts only integrated
-source. See [MAP_DATA.md](MAP_DATA.md) for the preceding completed resolver and
+and the production full-ROM compare/hash. These gates now pass for AC78,
+ACD8, AE58 and B0A8, adding 680 linked source bytes including alignment.
+Exact progress counts only integrated source. See [MAP_DATA.md](MAP_DATA.md) for the preceding completed resolver and
 [NEXT_AGENT_HANDOFF.md](../tools/ches/NEXT_AGENT_HANDOFF.md) for continuation.

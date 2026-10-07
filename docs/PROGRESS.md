@@ -16,8 +16,8 @@ Current reconstruction:
 
 ```text
 Code reconstruction
-  72600 / 940036 bytes (7.7231%)
-  867436 bytes remain in asm
+  73280 / 940036 bytes (7.7954%)
+  866756 bytes remain in asm
 
 Data/assets reconstruction
   75334 / 6777404 bytes (1.1115%)
@@ -28,7 +28,7 @@ Data/assets reconstruction
   396 additional source-owned ROM-header bytes count only toward overall
 
 Overall meaningful-ROM reconstruction
-  148330 / 7717440 bytes (1.9220%)
+  149010 / 7717440 bytes (1.9308%)
   final ROM padding is excluded from this denominator
 
 ROM space
@@ -36,7 +36,7 @@ ROM space
   671168 bytes free (655.44 KiB, 8.0009%) contiguous tail space
 ```
 
-The code inventory currently reports **2,333 linked assembly functions**, **866,272 bytes** covered by inferred function ranges, **1,164 unattributed assembly bytes**, and **17 explicitly parked functions**.
+The code inventory currently reports **2,329 linked assembly functions**, **865,592 bytes** covered by inferred function ranges, **1,164 unattributed assembly bytes**, and **17 explicitly parked functions**.
 
 ## What the metrics mean
 
@@ -50,7 +50,12 @@ Understanding or documenting an opaque `.incbin` does not count as asset/data re
 
 ## Recent exact milestones
 
-The latest exact unit is `GetMapResourceId` / `func_0803A8A4`, the complete
+The latest exact unit comprises resource-owner methods AC78, ACD8, AE58 and
+B0A8: **678 body bytes / 680 linked bytes including alignment**. Shared types
+and both source files pass fresh isolated and production full-ROM builds,
+eleven symbol checks and an inventory audit. See [RESOURCE_OWNERS.md](RESOURCE_OWNERS.md).
+
+The preceding exact unit is `GetMapResourceId` / `func_0803A8A4`, the complete
 **652-byte logical map resolver**. Shared declarations and the renderer caller
 preserve its original symbol and ABI. Fresh isolated and production forced
 full-ROM builds pass; stable architecture is in [MAP_DATA.md](MAP_DATA.md).
@@ -69,14 +74,7 @@ Immediately preceding exact promotions include `func_0803A798`, `func_0803A350`,
 
 ## Current frontier
 
-Research stopped for the requested documentation wrap. Resource owners in
-`asm/code_0803A8A4.s` remain assembly, with four target-exact scratch proofs:
-**AC78 96/0, ACD8 382/0, AE58 72/0, B0A8 128/0**. These add no production
-coverage. Sibling update B128 is **382/2**; constructor AB30 is parked at
-**316/217** versus 328 expected. Next extract/reprove the four exact methods
-with unchanged production headers before isolated and production full-ROM
-integration. The canonical handoff holds artifacts and bounds;
-[RESOURCE_OWNERS.md](RESOURCE_OWNERS.md) holds stable layouts.
+The exact resource-owner set is integrated. Constructors and B128 remain assembly; AB30 is parked at 316/217 versus 328, B128 at 382/2. Next assess the persistent statistics-state initializer/consumer family around 0809CD78 toward save-structure recovery. The legacy loader remains parked pending new source-boundary evidence.
 
 `func_0803A180`, `func_0803A394`, `func_08039F90`, `func_08039E98`, and the other generator-marked parked functions should not be reopened without genuinely new structural evidence.
 
