@@ -77,7 +77,7 @@ Other major recovered areas include:
 
 ## Current frontier
 
-The exact next code target is `func_0803A180` at `0x0803A180..0x0803A320` (0x1A0 / 416 bytes), the eight-caller shared movement/state helper immediately preceding the now-exact Q8 sine/cosine pair.
+The exact next code target is `func_0803A180` at `0x0803A180..0x0803A320` (0x1A0 / 416 bytes), the eight-caller shared movement/state helper immediately preceding the now-exact Q8 sine/cosine pair. Its sibling update family, 0x14 movement state, existing `Entity398A4Collision`, directional bound helpers, and `EntityEffect`/`SpriteAnimator` ownership are recovered; the next executable step is to write and measure `candidate-3a180-v1.cc`.
 
 `39F90` is now behavior-complete and parked. The bounded isolated probes measured v12 **0x1B4 / 346**, v13 **0x1B4 / 341**, v14 **0x1AC / 359**, v15 **0x1B4 / 341**, and delayed resources-pointer v16 **0x1A8 / 373**. v13 and v15 compile to the same assembly and none reproduces retail's prologue ownership. This is a closed codegen frontier until new structural evidence appears. See `START_HERE.md` and `tools/ches/NEXT_AGENT_HANDOFF.md` for the exact `3A180` resume steps.
 

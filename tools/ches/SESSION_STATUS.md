@@ -1,8 +1,8 @@
 # Ches Session Status — FOMT decomp
 
-## CURRENT SNAPSHOT - 7.6180%; Q8 trig pair exact; 39F90 parked - October 7, 2026
+## CURRENT SNAPSHOT - 7.6180%; 3A180 model recovered; V1 next - October 7, 2026
 
-- Active branch is **main**, tracking `ches/main`; published base entering this checkpoint is `4dc79fd5b261621ae174f3f5281920721565c4d4`.
+- Active branch is **main**, tracking `ches/main`; latest published code/research checkpoint is `295880a439b62cf1e25dad495dba40969798f9d9`. This context-refresh pass changes documentation only.
 - New exact source: `func_0803A320` **0x14 / 0** and `func_0803A334` **0x1C / 0**, the signed-Q8 sine/cosine lookup pair over `gUnk_080F16D2`.
 - Detached integration and production integration both pass **`fomt.gba: OK`**; production SHA remains `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
 - Current progress: **71,612 / 940,036 = 7.6180% code**, **868,424 asm bytes**, **75,334 data/assets**, **147,342 meaningful-ROM bytes = 1.9092%**, **671,168 free**.

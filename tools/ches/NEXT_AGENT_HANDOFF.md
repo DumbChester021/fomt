@@ -1,8 +1,8 @@
-# Current FoMT continuation - October 6, 2026
+# Current FoMT continuation - October 7, 2026
 
-## CURRENT CHECKPOINT - Q8 trig pair exact; 39F90 parked; 3A180 active - October 7, 2026
+## CURRENT CHECKPOINT - 3A180 model recovered; natural V1 next - October 7, 2026
 
-- Active branch is **main**, tracking `ches/main`. The published base entering this checkpoint is `4dc79fd5b261621ae174f3f5281920721565c4d4`; current changes are documentation of the newly recovered `3A180` collision/effect type model.
+- Active branch is **main**, tracking `ches/main`. Latest published code/research checkpoint is **`295880a439b62cf1e25dad495dba40969798f9d9`** (`record 3a180 collision type recovery`). No production code has changed since that checkpoint; this final context-refresh pass only reconciles live documentation before a fresh-conversation handoff.
 - Production source now owns `func_0803A320` **0x14 / 0** and `func_0803A334` **0x1C / 0** in `src/entity_unk_08038740.cc`. Both matched on the first natural typed source.
 - `gUnk_080F16D2` is proven as a 256-entry signed i16 Q8 sine table ranging -256..256. `3A320(angle)` reads sine; `3A334(angle)` reads `(angle + 0x40) & 0xFF`, the quarter-turn cosine phase.
 - Detached integration `/tmp/fomt-trig-integration` passed full ROM compare `sh_muxfembb_0a539932` and retail SHA1 `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`. Production full gate `sh_muxffquf_b89b18e0` also passed `fomt.gba: OK`; SHA proof `sh_muxfgds6_181b86ba` is retail-exact.
@@ -10,6 +10,7 @@
 - Regenerated inventory: **2,336 linked asm functions**, **867,260 / 868,424 inferred range bytes = 99.8660%**, **1,164 unattributed bytes**, **7 explicitly parked functions**. `func_08039F90` was added to the generator's parked set so the queue will not rediscover it as ordinary work.
 - `func_08039F90` is now **behavior-complete and parked**. Final bounded probes: v12 self alias **0x1B4 / 346**; v13 offset alias **0x1B4 / 341**; v14 vertical-offset copy **0x1AC / 359**; v15 y copy **0x1B4 / 341**; v16 delayed resources pointer **0x1A8 / 373**. v13 and v15 generate the same assembly; none reproduces retail's required prologue register ownership. Do not reopen without genuinely new structural evidence.
 - Opus/throughput rule remains authoritative: work coherent TU/type families, use exact neighbors as source-shape oracles, and park behavior-complete allocator/compiler islands instead of syntax roulette or compiler archaeology.
+- End-of-context documentation audit on October 7 re-read `AGENTS.md`, the Ches decompilation skill, all root/onboarding Markdown, every live `docs/*.md`, the canonical Ches queue/handoff/status/class-map files, and the unique historical checkpoint research notes. Stable subsystem docs and frozen historical/snapshot copies were left unchanged intentionally. Live frontier wording was reconciled so README/START_HERE/TODO/PROGRESS/REPO_MAP/DECOMP_NOTES/DECOMP_PLAYBOOK/DECOMP_PRIORITY_MAP all point to the same next step: write and measure `candidate-3a180-v1.cc`.
 - Published the completed trig/docs checkpoint as **`91ed56a8acc638a27e8d30614b4613d92ae8e3f4`** (`decompile q8 trig lookup helpers`). Push `sh_muxgxy0k_9d47ea56` succeeded and remote verification `sh_muxgy4of_ad93897a` returned the same hash; the worktree was clean before new research.
 - First structural pass on `func_0803A180` is complete. Its eight direct callers are the **+0x0C virtual update slot** of eight sibling 0x18-byte vtables:
   - `vtable_unk_080E76A4 -> func_080DE0AC` (factory case 0);

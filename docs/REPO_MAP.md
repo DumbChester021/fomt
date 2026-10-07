@@ -39,7 +39,7 @@ Authoritative live state is in `START_HERE.md`.
 - The neutral location-bound actor hierarchy and thrown Ball family are bounded at documented scopes.
 - The adjacent Entity38740 controller/strategy neighborhood now owns numerous exact helpers, including nearest-entity selection, region testing, strategy selectors, mode-4 setup, table/mask helpers, the `UnknownEntityThing` factory, and the exact `39F50` destructor.
 - `func_08039E98` is behavior-complete and exact-size in scratch at 0xB8 / 109 but parked on register allocation.
-- `func_080398A4` and `func_080399C0` are exact source as the Entity398A4 constructor/destructor pair. That class's `func_08039A60` vtable +0x18 override and `func_0803A144` are exact source. `func_0803A320/334` are now exact signed-Q8 sine/cosine lookup helpers. `func_08039F90` is behavior-complete and parked after bounded lifetime probes; the exact next target is `func_0803A180` (0x1A0).
+- `func_080398A4` and `func_080399C0` are exact source as the Entity398A4 constructor/destructor pair. That class's `func_08039A60` vtable +0x18 override and `func_0803A144` are exact source. `func_0803A320/334` are now exact signed-Q8 sine/cosine lookup helpers. `func_08039F90` is behavior-complete and parked after bounded lifetime probes; the exact next target is `func_0803A180` (0x1A0). Its sibling-vtable family, shared 0x14 movement state, existing collision type/helpers, and effect/animator ownership are recovered, so continuation starts with the first natural V1 compile/compare.
 - The packed bank remains **416 / 493 semantically owned animations**, with the remaining 77 IDs as a parked by-product lane.
 
 Recent readable source in this region includes:
