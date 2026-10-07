@@ -2,7 +2,7 @@
 
 ## CURRENT SNAPSHOT - 7.6180%; Q8 trig pair exact; 39F90 parked - October 7, 2026
 
-- Active branch is **main**, tracking `ches/main`; current published base is `91ed56a8acc638a27e8d30614b4613d92ae8e3f4`.
+- Active branch is **main**, tracking `ches/main`; published base entering this checkpoint is `4dc79fd5b261621ae174f3f5281920721565c4d4`.
 - New exact source: `func_0803A320` **0x14 / 0** and `func_0803A334` **0x1C / 0**, the signed-Q8 sine/cosine lookup pair over `gUnk_080F16D2`.
 - Detached integration and production integration both pass **`fomt.gba: OK`**; production SHA remains `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
 - Current progress: **71,612 / 940,036 = 7.6180% code**, **868,424 asm bytes**, **75,334 data/assets**, **147,342 meaningful-ROM bytes = 1.9092%**, **671,168 free**.
@@ -10,7 +10,8 @@
 - `func_08039F90` is behavior-complete and parked. Final probes: v12 0x1B4/346, v13 0x1B4/341, v14 0x1AC/359, v15 0x1B4/341, v16 0x1A8/373. No valid natural lifetime reproduces retail prologue ownership.
 - Trig/docs checkpoint is published at **`91ed56a8acc638a27e8d30614b4613d92ae8e3f4`**, remote-verified on `ches/main`.
 - `func_0803A180` structural pass: all eight callers are the same +0x0C update slot across sibling vtables 76A4/768C/7674/765C/7614/75FC/75E4/75CC, corresponding to factory cases 0-3 and 6-9. Ordinary siblings are 0x64 bytes, derive from the `39E98` base shape, store their vtable at +0x4C, and share a 0x14-byte movement state at +0x50 (direction, signed x/y, Q16 x/y, timer, signed mode/flag).
-- Exact next target remains `func_0803A180` (0x1A0 / 416). Next inspect AB85C/AB8D0/AB948/AB9C4 and the top hidden-struct-return/collision record against existing project types, then write the first natural 0x14-state scratch candidate.
+- `3A180` type recovery is complete enough for source: the hidden-return is existing `TerrainMapView`; the local box is `Box(x,y,16,16)`; the stack collision object is existing `Entity398A4Collision`; AB85C/AB8D0/AB948/AB9C4 refresh its four directional bounds/validity bytes. The owner naturally reuses `GameObject* + EntityEffect`, placing animator/active/reset at object +30/+44/+47 exactly.
+- Exact next target remains `func_0803A180` (0x1A0 / 416). Write `candidate-3a180-v1.cc` with the recovered 0x14 movement state and real collision/effect types, run compare-function, then inspect the first measured assembly diff before varying source shape.
 
 ## SUPERSEDED SNAPSHOT - 7.6129%; 3A144 table helper exact - October 7, 2026
 
