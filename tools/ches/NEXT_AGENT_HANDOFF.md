@@ -1,6 +1,6 @@
 # Current FoMT continuation - October 6, 2026
 
-## CURRENT CHECKPOINT - 39F90 typed render-helper frontier; production unchanged
+## CURRENT CHECKPOINT - 39F90 render-lifetime frontier; production unchanged
 
 - Active public retail branch is now **`main`**, local branch tracks `ches/main`, and the former `Live-temp` branch has been deleted both remotely and locally after containment proof. Historical `ches-dev` remains provenance only; custom behavior remains on the separate custom-game worktree/branch.
 - Migration commit: `d34efc5adaad56ce92a41bb354d1882847355438` (`consolidate public decomp documentation on main`). Push `sh_muwzf02b_fea9156d` fast-forwarded `ches/main`; independent verification `sh_muwzf82g_d1c9e8fc` showed remote `main` at the exact same hash.
@@ -25,27 +25,26 @@
 
 Production remains exact at published commit `3746b6acbe90b456929e5cbd6235d350acc38b02`: **71,564 / 940,036 = 7.6129% code**, retail SHA1 unchanged. Current work is scratch/research only; no production source changed.
 
-Target `func_08039F90`, retail `0x08039F90..0x0803A144` (**0x1B4 / 436 bytes**), is behavior-complete and structurally understood as a shared effect-render helper.
+Target `func_08039F90`, retail `0x08039F90..0x0803A144` (**0x1B4 / 436 bytes**), remains behavior-complete. The stack/value model is known; the remaining mismatch is source lifetime/register allocation.
 
-Progress this turn:
-- v2: **0x1A4 / 410**, 0x44-byte frame.
-- `candidate-39f90-v3.cc`, compare `sh_muxdk91p_00031291`: **0x1A6 / 408**. Grouping screen x/y/depth into a 12-byte local recovers the exact **0x48 frame** but puts locals in the wrong stack order.
-- `candidate-39f90-v4.cc`, compare `sh_muxdldg9_f2229c93`: **0x1B2 / 340**. Declaring the 0x20-byte render-data local first, then separate pair/coords locals, gets within **2 bytes of retail size**. This is the best byte-score candidate, but its pair type is still semantically wrong.
-- `candidate-39f90-v5.cc`, compare `sh_muxdmhno_64bb95ff`: **0x1B0 / 394**. Combining pair+coords into one aggregate proves the exact retail stack layout: render data at sp+0x14, pair at sp+0x34/+0x38, screen_x/y/depth at sp+0x3C/+0x40/+0x44. The aggregate itself is not the original source shape.
-- `candidate-39f90-v6.cc`, compare `sh_muxdqm1z_c9eecee4`: **0x1AC / 356**. This corrects an important type mistake: r2 is the renderer pointer directly and r3 is the transfer-queue pointer directly. Retail's 8-byte local simply stores those two incoming values. There is no extra resources-wrapper dereference.
+New probes this turn:
+- `candidate-39f90-v7.cc`, compare `sh_muxdwzi9_eb1a6c9e`: **0x1A6 / 402**. Combining v5's aggregate stack model with v6's corrected direct pointer pair regresses. Reject the aggregate as original source shape.
+- `candidate-39f90-v8.cc`, compare `sh_muxdyf4h_ad6694ed`: **0x1AC / 356**. Separate locals plus corrected direct renderer/queue types. Correct semantics, but GCC still keeps self in r7 and delays stack-arg loads instead of retail's sl/r5/r6/r7 ownership.
+- `candidate-39f90-v9.cc`, compare `sh_muxe03ds_de6d6780`: **0x1A0 / 407**. Adding a natural two-pointer constructor by itself regresses strongly.
+- `candidate-39f90-v10.cc`, compare `sh_muxe1lqd_587b749e`: **0x1AA / 398**. Rebuilt around the exact neighboring `func_08032690` source style (`RenderResources`, `DrawEffectBase`, `QueueEffectGraphics`) but still not the target lifetime shape.
+- Best byte-score remains **v4: 0x1B2 / 340**, only 2 bytes short, but its extra resources-wrapper indirection is semantically false and only appears to create useful compiler pressure accidentally.
 
-Recovered retail facts:
-- stack frame is exactly **0x48**;
-- local render data is 0x20 bytes at sp+0x14..+0x33;
-- local render pair is two direct pointers at sp+0x34/+0x38: transfer queue then renderer;
-- screen_x, screen_y, depth are i32 at sp+0x3C/+0x40/+0x44;
-- retail initially keeps self in `sl`, coordinate source in r4, x/y/vertical_offset in r5/r6/r7, r2 in r9 and r3 in r8;
-- after storing the pair, r9 becomes the pair address;
-- primary and child paths both use pair[1] directly as renderer and pair[0] directly as transfer queue;
-- child path independently rebuilds the replicated 2-bit draw attribute;
-- primary render uses the temporary 0x20-byte SpriteRenderData; child uses its inline render-data block.
+Important confirmed model:
+- r2 is renderer directly; r3 is transfer queue directly.
+- Retail stores local `RenderResources`-equivalent pair at sp+0x34/+0x38 as **queue then renderer**.
+- Retail screen_x/screen_y/depth are sp+0x3C/+0x40/+0x44.
+- 0x20-byte SpriteRenderData is sp+0x14..+0x33.
+- Frame is exactly 0x48.
+- Retail prologue register ownership: self -> sl, coordinate source -> r4, x/y/vertical_offset -> r5/r6/r7, r2 -> r9, r3 -> r8; after pair construction r9 becomes &pair.
+- `src/entity_effect.cc::func_08032690` is an exact source analogue that proves the same real `RenderResources(queue, renderer)` value-object pattern and nearly identical effect upload lifecycle. Its retail stack layout is resources at sp+0x34, x/y/depth at +0x40/+0x44/+0x48 with a 0x50 frame. Directly copying its surrounding source style into 39F90 (v10) is insufficient, so do not repeat that experiment unchanged.
+- Fresh `git fetch origin main` succeeded; upstream `origin/main` is `b8471ae065744869f64283473ed68372f82321c9`, and `func_08039F90` is still assembly there. Historical commits also keep it in asm, so there is no upstream source shortcut.
 
-**Exact next action on Continue:** make v7 from **v5** because v5 has the exact retail stack layout, then apply only v6's corrected pair/signature model: pair = `{ GraphicsTransferVector * transfer_queue; void * renderer; }`, function r2 = renderer directly, r3 = transfer queue directly, both DrawEffect calls use `pair.renderer`, and both graphics uploads use `pair.transfer_queue`. Recompare the whole 0x1B4 immediately. If that preserves v5's exact stack offsets while removing the false indirections, inspect register ownership next. Do not register-force. Keep `39E98` and other parked allocation islands closed.
+**Exact next action on Continue:** stay on corrected direct types and compare **v4 vs v8** specifically to identify which false wrapper-induced lifetimes caused v4 to load all three stack arguments early and grow to 0x1B2. Recreate that pressure naturally, not by restoring the false wrapper. Focus on long-lived aliases consistent with known exact renderer style: an early `Obj39F90 * current = self`, early `RenderOffset39F90 * current_offset = offset`, explicit local copies of x/y/vertical_offset before the virtual calls, and a `RenderResources * resources_ptr` whose address remains live across both render paths. Probe one minimal lifetime change at a time against v8 and watch for the retail prologue target: `mov sl,r0; add r4,r1,#0; ldr r5/r6/r7` before the first virtual call. Do not register-force. Keep `39E98` and other parked allocation islands closed.
 
 For fresh-conversation automation, do **not** resend a handoff merely because a browser/send command reports an error or omits a reply. Inspect the actual target tab first and confirm whether the user message appeared or a turn started. The previous failure mode produced a real 54-tool-call turn despite a misleading return.
 
