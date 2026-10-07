@@ -4,71 +4,78 @@
 
 Retail workspace: /mnt/data/Github/gba/fomt
 Branch: main, tracking ches/main
-Run `git log -1` for the published checkpoint and `git status` before
-work. Preserve any intentional dirty state rather than resetting to an expected
-hash. Custom-game was not modified.
+Run `git log -1` and `git status` before work. Preserve intentional dirty state.
 
 ## Exact production progress
 
-- Code: 73,796 / 940,036 = 7.8503%
-- Assembly remaining: 866,240 bytes
+- Code: 73,872 / 940,036 = 7.8584%
+- Assembly remaining: 866,164 bytes
 - Data/assets: 75,334 / 6,777,404 = 1.1115%
-- Overall meaningful ROM: 149,526 / 7,717,440 = 1.9375%
+- Overall meaningful ROM: 149,602 / 7,717,440 = 1.9385%
 - Free tail: 671,168 bytes
-- Linked assembly functions: 2,316
-- Inferred function bytes: 865,076 / 866,240 = 99.8656%
+- Linked assembly functions: 2,315
+- Inferred function bytes: 865,000 / 866,164 = 99.8656%
 - Unattributed assembly: 1,164 bytes
 - Parked functions: 17
 - Runtime/library functions: 33
 
 ## Latest verified integration
 
-The mine-floor save cluster now owns 240 exact source bytes:
+The mine-floor cluster now owns 316 exact source bytes:
 
 - func_0809CE8C: 0xA8 / 0, persistent initializer
-- func_0809D8A0: 0x04 / 0, layout getter
-- func_0809D8A4: true body 0x12 / 0, width-like dimension helper
-- func_0809D8B8: true body 0x1A / 0, height-like dimension helper
-- func_0809D8D4: 0x14 / 0, tile-type getter
-- complete D8A0..D8E8 linked block: 0x48 / 0 including alignment
+- D8A0..D8E8 accessor block: 0x48 / 0
+- func_0809D9B4: 0x4C / 0, consumes MineTile bits 4..9
 
-The shared 0x628-byte type is now in include/mine_floor.hh. Initializer/legacy
-generation source remains in src/mine_floor.cc; the four accessors are in
-src/mine_floor_accessors.cc.
+Shared layout: `include/mine_floor.hh`
+Initializer/legacy generation source: `src/mine_floor.cc`
+Accessors: `src/mine_floor_accessors.cc`
+D9B4: `src/mine_floor_content.cc`
+Stable architecture: `docs/MINE_FLOOR.md`
 
-Important lesson: the first D8A4/D8B8 reports were 2 bytes short with zero
-differing positions. Their source was already exact; the two bytes were normal
-trailing alignment. This is now part of the project fast-path method.
+D9B4 required two source-shape facts to match naturally:
+1. compute x*2 and y*56 separately, then add them before the floor base;
+2. extract the low tile-type nibble with the retail left/right shift pair.
 
-Verification:
+Both detached and production `make -B -j4 compare` pass.
+ROM size is 8,388,608 bytes and SHA1 remains
+`a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
+Addresses remain D8E8=0809D8E8, D9B4=0809D9B4 and DA00=0809DA00.
 
-- CE8C still 0xA8 / 0 after shared-header extraction
-- legacy CF34 still 0x234 / 0
-- accessor block D8A0..D8E8: 0x48 / 0
-- detached full-ROM compare: PASS
-- production full-ROM compare: PASS
-- ROM size: 8,388,608 bytes
-- SHA1: a2fc3574f0a65a4fcf7682fb274b9d7eebdef963
-- addresses D8A0/D8A4/D8B8/D8D4/D8E8 unchanged
-- regenerated inventory removes exactly four more assembly functions
+## Parked D8E8 frontier
+
+`func_0809D8E8` behavior is understood but exact source is parked after bounded
+natural-source attempts. Do not resume syntax roulette without new structural
+evidence.
+
+Saved candidates:
+- content-consumers-v1.cc: 0xC0 vs retail 0xCC, 158 differing bytes
+- content-consumers-v2.cc: 0xB8, 193 differences
+- d8e8-v3.cc: 0xC2, 182 differences
+
+The function consumes MineTile bits 10..15, calls DA00, changes tile type,
+clears the consumed field, and on one result clears every tile whose same field
+equals 1. The remaining problem is source shape/register allocation, not behavior.
+
+Proof/candidate directory:
+`tools/ches/checkpoints/mine-floor-2026-10-07/`
 
 ## Operating strategy
 
-AGENTS.md and docs/DECOMP_PLAYBOOK.md now carry the successful Opus/Astra
-fast-path pattern as the default model-agnostic workflow: trust the handoff,
-reuse recovered structure, try one natural typed candidate, classify mismatches
-before editing source, check body/alignment boundaries first, use linker seams,
-prove the block, run isolated+production gates, refresh inventory/docs once,
-publish, then move directly to the next bounded cluster.
+Keep using the Opus/Astra fast-path in AGENTS.md and DECOMP_PLAYBOOK.md:
+bounded cluster, reuse structure, one natural candidate, classify mismatch,
+use seams, prove isolated+production ROM, refresh docs/inventory once, publish,
+then move on.
 
 ## Exact next action
 
-Stay in the same MineFloor cluster. Assess func_0809D8E8 and func_0809D9B4,
-which consume the two proven six-bit MineTile content/state fields and feed the
-mine-content handler. Reuse include/mine_floor.hh. Start with the smallest
-natural typed source and compare immediately.
+Assess adjacent `func_0809DA00` as a separate high-leverage mine-content
+handler. It is the sole callee used by both D8E8 and D9B4 and owns the content
+codes that feed persistent mine progress. Start with semantics/case grouping and
+existing saved evidence, then decide whether it is a natural exact source unit
+or should be split/parked.
 
-Do not reopen the whole save loader, CF34 refactoring, or parked compiler
-families by inertia.
+Do not reopen D8E8, the whole save loader, CF34, AB30/B128 or other parked
+compiler-sensitive families by inertia.
 
 No build or compiler process is currently running.

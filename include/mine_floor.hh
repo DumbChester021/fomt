@@ -54,3 +54,4 @@ EC u32 func_0809D8A0(MineFloor const * floor);
 EC u32 func_0809D8A4(MineFloor const * floor);
 EC u32 func_0809D8B8(MineFloor const * floor);
 EC u32 func_0809D8D4(MineFloor const * floor, u32 x, u32 y);
+EC u32 func_0809D9B4(MineFloor * floor, u32 x, u32 y, void * context);

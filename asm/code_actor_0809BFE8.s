@@ -2262,45 +2262,7 @@ func_0809D8E8: @ 0x0809D8E8
     pop {r1}
     bx r1
 
-    thumb_func_start func_0809D9B4
-func_0809D9B4: @ 0x0809D9B4
-    push {r4, r5, r6, lr}
-    adds r5, r0, #0
-    movs r6, #0
-    lsls r1, r1, #1
-    lsls r0, r2, #3
-    subs r0, r0, r2
-    lsls r0, r0, #3
-    adds r1, r1, r0
-    adds r4, r5, r1
-    ldrb r0, [r4, #4]
-    lsls r0, r0, #0x1c
-    lsrs r0, r0, #0x1c
-    cmp r0, #4
-    bne .L0809D9F2
-    ldrh r1, [r4, #4]
-    lsls r1, r1, #0x16
-    lsrs r1, r1, #0x1a
-    adds r0, r5, #0
-    adds r2, r3, #0
-    bl func_0809DA00
-    adds r6, r0, #0
-    ldrb r1, [r4, #4]
-    movs r0, #0x10
-    rsbs r0, r0, #0
-    ands r0, r1
-    strb r0, [r4, #4]
-    ldrh r1, [r4, #4]
-    ldr r0, .L0809D9FC @ =0xFFFFFC0F
-    ands r0, r1
-    strh r0, [r4, #4]
-.L0809D9F2:
-    adds r0, r6, #0
-    pop {r4, r5, r6}
-    pop {r1}
-    bx r1
-    .align 2, 0
-.L0809D9FC: .4byte 0xFFFFFC0F
+    .section .text.after_mine_floor_content, "ax", %progbits
 
     thumb_func_start func_0809DA00
 func_0809DA00: @ 0x0809DA00

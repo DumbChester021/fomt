@@ -104,6 +104,20 @@ Validation for the integrated initializer/accessor cluster:
 - ROM remains 8,388,608 bytes, SHA1
   `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
 - Addresses remain D8A0, D8A4, D8B8, D8D4 and D8E8 exactly.
+- `func_0809D9B4` is now exact source at 0x4C / 0 differences. It consumes
+  MineTile bits 4..9, calls DA00, then clears tile type and the consumed field.
+  Its exact source uses separate x*2 / y*56 temporaries and the retail nibble
+  shift pair before the type comparison.
+- Both detached and production full-ROM comparisons still pass after the D9B4
+  linker seam; DA00 remains at 0x0809DA00.
+
+`func_0809D8E8` is behavior-complete but parked after bounded natural-source
+work. Saved candidates are under
+`tools/ches/checkpoints/mine-floor-2026-10-07/`: v1 is 0xC0 / 158 differing
+bytes, v2 0xB8 / 193, and v3 0xC2 / 182 against retail 0xCC. It consumes bits
+10..15, changes tile type, and conditionally clears that field across active
+tiles. The remaining problem is source shape/register allocation, not behavior;
+do not resume syntax roulette without new structural evidence.
 
 The legacy fixed-register and inline-assembly code still present in
 `src/mine_floor.cc` is not a model for future reconstruction. Preserve its
