@@ -22,15 +22,15 @@ the separate custom-game worktree.
 This is a practical map of the current reconstruction, not a claim that every
 subsystem is fully understood.
 
-## Current reconstruction snapshot - October 6, 2026
+## Current reconstruction snapshot - October 7, 2026
 
 Authoritative live state is in `START_HERE.md`.
 
 - Active public retail branch: **`main`**. The former `Live-temp` series is retired; `ches-dev` remains historical.
-- Code reconstruction: **71,948 / 940,036 = 7.6537%**; **868,088 assembly bytes** remain.
-- Remaining linked asm functions: **2,334**; inferred ranges cover **866,924 / 868,088 = 99.8659%**, with **1,164 unattributed bytes** and **17 explicitly parked functions**.
+- Code reconstruction: **72,600 / 940,036 = 7.7231%**; **867,436 assembly bytes** remain.
+- Remaining linked asm functions: **2,333**; inferred ranges cover **866,272 / 867,436 = 99.8658%**, with **1,164 unattributed bytes** and **17 explicitly parked functions**.
 - Data/assets: **75,334 / 6,777,404 = 1.1115%**.
-- Overall meaningful-ROM reconstruction: **147,678 / 7,717,440 = 1.9136%**.
+- Overall meaningful-ROM reconstruction: **148,330 / 7,717,440 = 1.9220%**.
 - Contiguous tail free space: **671,168 bytes = 655.44 KiB**.
 - Retail SHA1: `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`; full compare remains **`fomt.gba: OK`**.
 - Authoritative compiler path is the tracked `tools/install_agbcp.sh` plus `tools/agbcp_fomt_compat.patch`, SHA-256 `aa7cc6df0efbd066e9c33deb887731e1d0210babfaeba4c9b64f3e8bc35c4256`.
@@ -39,7 +39,7 @@ Authoritative live state is in `START_HERE.md`.
 - The neutral location-bound actor hierarchy and thrown Ball family are bounded at documented scopes.
 - The adjacent Entity38740 controller/strategy neighborhood now owns numerous exact helpers, including nearest-entity selection, region testing, strategy selectors, mode-4 setup, table/mask helpers, the `UnknownEntityThing` factory, and the exact `39F50` destructor.
 - `func_08039E98` is behavior-complete and exact-size in scratch at 0xB8 / 109 but parked on register allocation.
-- The Entity398A4/Entity38740 neighborhood now includes exact `398A4/399C0`, `39A60`, `3A144`, `3A320/334`, `3A350`, `3A798`, and the seven-function helper tail `3A804..3A8A0`. `39E98`, `39F90`, `3A180`, and `3A394` are behavior-complete/bounded parked codegen islands. The active continuation begins at `0x0803A8A4` in `asm/code_0803A8A4.s`; map the next coherent function/TU/type family before writing candidates.
+- The Entity398A4/Entity38740 neighborhood now includes exact `398A4/399C0`, `39A60`, `3A144`, `3A320/334`, `3A350`, `3A798`, and the seven-function helper tail `3A804..3A8A0`. `39E98`, `39F90`, `3A180`, and `3A394` are behavior-complete/bounded parked codegen islands. The 652-byte logical map resolver is now exact source in `src/map_resource.cc`, with the shared interface in `include/map_data.hh`. Continue at `0x0803AB30` in `asm/code_0803A8A4.s`; recover its three-record resource-owner family and provider contracts before candidates.
 - The packed bank remains **416 / 493 semantically owned animations**, with the remaining 77 IDs as a parked by-product lane.
 
 Recent readable source in this region includes:
@@ -88,7 +88,7 @@ under `assets/item_icons/`. `tools/packed_sprite_bank.py` rebuilds the
 0x30080-byte bank exactly. The cooking UI owns `gCookingUtensilIconIds`, mapping
 Knife=265, Frying Pan=204, Pot=346, Mixer=64, Whisk=472, Rolling Pin=313,
 Oven=327, and Seasoning Set=400. `func_08092A70` remains parked at `0x260 / 3`.
-That item/tool lane remains behind the whole-game throughput queue. The current retail continuation starts at `0x0803A8A4` in `asm/code_0803A8A4.s`, as documented in `START_HERE.md` and the canonical handoff. Product-count growth remains deferred because `ShippingBin::product_stats[NUM_PRODUCTS]` is embedded in persistent state.
+That item/tool lane remains behind the whole-game throughput queue. The current retail continuation starts at `0x0803AB30` in `asm/code_0803A8A4.s`, as documented in `START_HERE.md` and the canonical handoff. Product-count growth remains deferred because `ShippingBin::product_stats[NUM_PRODUCTS]` is embedded in persistent state.
 
 Legacy loader `func_08011650` remains paused. Crop/field semantics,
 dialogue/event registration, and character portrait/display assets remain later
@@ -98,6 +98,7 @@ layouts plus occupied entity selector 43 remain constraints.
 ## Documentation map
 
 Tracked subsystem/domain references currently include:
+- `docs/MAP_DATA.md`: logical/physical map namespaces, seasonal and building variants, mine-floor grouping and matching resolver interface.
 - `docs/KEY_INPUT.md`: key-input record and matching input helper architecture.
 - `docs/SAVE_FORMAT.md`: retail save-slot layout, checksum boundary, and extension-space findings.
 - `docs/CHARACTERS.md`: matching name/birthday/NPC interfaces, decoded roster, persistent offsets, schedules, entity/effect lifecycle, and fixed consumers.

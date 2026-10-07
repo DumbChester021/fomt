@@ -7,7 +7,7 @@ import re
 import subprocess
 
 ROOT = Path(__file__).resolve().parents[2]
-DEFAULT_COMPILER = ROOT / "tools/ches/checkpoints/call238/compat-compiler/cc1plus"
+DEFAULT_COMPILER = ROOT / "tools/agbcc/bin/agbcp"
 DEFAULT_OUT = ROOT / "tools/ches/function-match-artifacts"
 
 CXXFLAGS = [

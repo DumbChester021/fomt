@@ -25,13 +25,13 @@ live state. This file keeps subsystem/function evidence and matching lessons.
 
 Current retail state:
 - Active public retail branch: `main`; the former `Live-temp` line is retired. Historical `ches-dev` commits remain provenance only.
-- Current exact progress: **71,948 / 940,036 = 7.6537% source** and **868,088 assembly bytes**. Data/assets reconstruction is **75,334 / 6,777,404 = 1.1115%** and overall meaningful-ROM reconstruction is **147,678 / 7,717,440 = 1.9136%**. `make progress` reports `fomt.gba: OK`; retail SHA1 remains `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
-- Remaining linked assembly functions: **2,334**; inferred function ranges cover **866,924 / 868,088 = 99.8659%**, with **1,164 unattributed bytes** and **17 explicitly parked functions**.
+- Current exact progress: **72,600 / 940,036 = 7.7231% source** and **867,436 assembly bytes**. Data/assets reconstruction is **75,334 / 6,777,404 = 1.1115%** and overall meaningful-ROM reconstruction is **148,330 / 7,717,440 = 1.9220%**. `make progress` reports `fomt.gba: OK`; retail SHA1 remains `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
+- Remaining linked assembly functions: **2,333**; inferred function ranges cover **866,272 / 867,436 = 99.8658%**, with **1,164 unattributed bytes** and **17 explicitly parked functions**.
 - Shared NPC identity/location/schedule support, all resident constructors, GameObject entity lookup/teardown, and the exact 43-entry metadata table remain complete.
 - Packed-bank ownership remains **416 / 493 animations: 405 / 450 simple and 11 / 43 multi-frame**. The remaining 77 are a parked by-product lane.
 - `func_08092A70`, `func_080455D8`, `func_080CAC7C` / `func_080CAD18`, `func_08092940`, and the documented Entity38740/Ball codegen islands remain parked at their recorded frontiers.
 - Authoritative compiler remains the tracked 13-rule compatibility path, patch SHA256 `aa7cc6df0efbd066e9c33deb887731e1d0210babfaeba4c9b64f3e8bc35c4256`.
-- The Entity38740/Entity398A4 neighborhood now owns exact source through `func_0803A8A0`, including `398A4`, `399C0`, `39A60`, `39DA8`, `39E18`, `39A30`, `39F50`, `3A144`, `3A320/334`, `3A350`, `3A798`, and the seven-helper `3A804..3A8A0` tail. `39E98`, `39F90`, `3A180`, and `3A394` are behavior-complete/bounded parked codegen islands. The active regional continuation starts at `0x0803A8A4` in `asm/code_0803A8A4.s`; map the next coherent function/TU/type family before writing candidates.
+- The Entity38740/Entity398A4 neighborhood now owns exact source through `func_0803A8A0`, including `398A4`, `399C0`, `39A60`, `39DA8`, `39E18`, `39A30`, `39F50`, `3A144`, `3A320/334`, `3A350`, `3A798`, and the seven-helper `3A804..3A8A0` tail. `39E98`, `39F90`, `3A180`, and `3A394` are behavior-complete/bounded parked codegen islands. The logical map resolver at `0x0803A8A4` is now 652 bytes of exact source as `GetMapResourceId`; `docs/MAP_DATA.md` owns its stable logical/physical namespace and variant rules. Continue with the resource-owner family starting at `0x0803AB30` in `asm/code_0803A8A4.s`, recovering real provider/descriptor types before candidates.
 - The opening-farm savestate/watchpoint work remains seed infrastructure for later scripted runtime coverage, not the primary queue.
 
 Naming rule:
@@ -942,6 +942,15 @@ Retail event-script queries route relationship checks through the six `Bachelore
 `func_080455D8` is a tri-state threshold gate. It first checks an interaction/state bit: if already set it returns 1. If the bit is clear, it resolves the selected bachelorette and compares either player- or rival-event count against the requested threshold, returning 2 when the count is at least the threshold and 0 otherwise. Rival threshold-5 selectors are reachable through the raw counter because `RivalEventUpdate()` allows `rival_events` to reach 5; the return-1 state-bit path is still semantically distinct from the return-2 numeric-threshold path. Scratch V4/V6 match the exact 0x60-byte size and all body instructions after setup; only five linked bytes differ because the tracked compiler schedules one three-instruction stack-argument/event-ID setup in a different order. Treat that as parked compiler/source spelling, not a semantic blocker.
 
 The player threshold families use six stages (thresholds 1 through 6) for Karen, Popuri, Ann, Mary, and Elli; Harvest Goddess appears separately at selectors `0x172`/`0x173` for thresholds 5/6. The rival families exist for the five normal heroines only. Exact selector-to-threshold tables are kept in `tools/ches/progression_event_gates_map.json`.
+
+## Logical map resource resolver
+
+`GetMapResourceId` / `func_0803A8A4` is now matching source in
+`src/map_resource.cc`, exposed by `include/map_data.hh`. Its complete 652-byte
+range and both full-ROM gates are exact under the unchanged tracked compiler.
+The renderer caller uses the named interface without changing bytes. Stable
+namespace, variant and mine-floor rules are in `docs/MAP_DATA.md`; candidate
+history and proof artifacts remain in the map-resolver checkpoint.
 
 ## Batch 16 - Map metadata, terrain event scripts, and player location persistence
 

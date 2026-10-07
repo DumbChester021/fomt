@@ -16,8 +16,8 @@ Current reconstruction:
 
 ```text
 Code reconstruction
-  71948 / 940036 bytes (7.6537%)
-  868088 bytes remain in asm
+  72600 / 940036 bytes (7.7231%)
+  867436 bytes remain in asm
 
 Data/assets reconstruction
   75334 / 6777404 bytes (1.1115%)
@@ -28,7 +28,7 @@ Data/assets reconstruction
   396 additional source-owned ROM-header bytes count only toward overall
 
 Overall meaningful-ROM reconstruction
-  147678 / 7717440 bytes (1.9136%)
+  148330 / 7717440 bytes (1.9220%)
   final ROM padding is excluded from this denominator
 
 ROM space
@@ -36,7 +36,7 @@ ROM space
   671168 bytes free (655.44 KiB, 8.0009%) contiguous tail space
 ```
 
-The code inventory currently reports **2,334 linked assembly functions**, **866,924 bytes** covered by inferred function ranges, **1,164 unattributed assembly bytes**, and **17 explicitly parked functions**.
+The code inventory currently reports **2,333 linked assembly functions**, **866,272 bytes** covered by inferred function ranges, **1,164 unattributed assembly bytes**, and **17 explicitly parked functions**.
 
 ## What the metrics mean
 
@@ -50,7 +50,12 @@ Understanding or documenting an opaque `.incbin` does not count as asset/data re
 
 ## Recent exact milestones
 
-The latest published exact batch is the seven-function helper tail `0x0803A804..0x0803A8A4` in the Entity38740 neighborhood. It adds **160 retail source bytes** and uses the existing embedded `EntityEffect` / `SpriteAnimator` model:
+The latest exact unit is `GetMapResourceId` / `func_0803A8A4`, the complete
+**652-byte logical map resolver**. Shared declarations and the renderer caller
+preserve its original symbol and ABI. Fresh isolated and production forced
+full-ROM builds pass; stable architecture is in [MAP_DATA.md](MAP_DATA.md).
+
+The preceding exact batch is the seven-function helper tail `0x0803A804..0x0803A8A4` in the Entity38740 neighborhood. It adds **160 retail source bytes** and uses the existing embedded `EntityEffect` / `SpriteAnimator` model:
 
 - `func_0803A804`: get animator step;
 - `func_0803A80C`: set animator step;
@@ -64,7 +69,10 @@ Immediately preceding exact promotions include `func_0803A798`, `func_0803A350`,
 
 ## Current frontier
 
-Continue at **`0x0803A8A4`** in `asm/code_0803A8A4.s`. Map exact function boundaries, callers/callees, vtables, globals/tables, and likely TU/type ownership before choosing a candidate. Use existing source types and exact neighboring Entity38740 code as structural oracles.
+Continue with **`0x0803AB30..0x0803AEA0`** in `asm/code_0803A8A4.s`: four
+resource-owner constructor/destructor/update/forwarding functions, 880 bounded
+bytes, still assembly. Recover provider and descriptor contracts before a
+natural candidate; use existing exact resource and transfer source as oracles.
 
 `func_0803A180`, `func_0803A394`, `func_08039F90`, `func_08039E98`, and the other generator-marked parked functions should not be reopened without genuinely new structural evidence.
 

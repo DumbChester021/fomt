@@ -21,10 +21,10 @@ Current exact reconstruction metrics:
 
 | Metric | Current |
 | --- | ---: |
-| Code | **71,948 / 940,036 bytes (7.6537%)** |
-| Assembly remaining | **868,088 bytes** |
+| Code | **72,600 / 940,036 bytes (7.7231%)** |
+| Assembly remaining | **867,436 bytes** |
 | Data/assets | **75,334 / 6,777,404 bytes (1.1115%)** |
-| Overall meaningful ROM | **147,678 / 7,717,440 bytes (1.9136%)** |
+| Overall meaningful ROM | **148,330 / 7,717,440 bytes (1.9220%)** |
 | Contiguous ROM tail free space | **671,168 bytes (655.44 KiB)** |
 
 Run `make progress` for the live report.
@@ -55,7 +55,7 @@ The packed item/UI animation bank also has an exact editable pipeline. All 347 r
 
 Work is throughput-first and organized by coherent translation unit, type, vtable, or repeated machine-code family rather than by a fixed function count.
 
-The Entity38740 neighborhood now owns the exact helper tail `func_0803A804..func_0803A8A0`, a seven-function API over the common embedded `EntityEffect` / `SpriteAnimator`, adding 160 exact source bytes. The preceding `func_0803A798`, `func_0803A350`, and Q8 trig pair `func_0803A320/334` are also exact source. Behavior-complete compiler/codegen islands including `func_0803A180`, `func_0803A394`, `func_08039F90`, and `func_08039E98` are parked. The active continuation begins at `0x0803A8A4` in `asm/code_0803A8A4.s`, where the next coherent function/TU/type family should be mapped before writing candidates.
+The Entity38740 neighborhood now owns the exact helper tail `func_0803A804..func_0803A8A0`, a seven-function API over the common embedded `EntityEffect` / `SpriteAnimator`, adding 160 exact source bytes. The preceding `func_0803A798`, `func_0803A350`, and Q8 trig pair `func_0803A320/334` are also exact source. Behavior-complete compiler/codegen islands including `func_0803A180`, `func_0803A394`, `func_08039F90`, and `func_08039E98` are parked. The logical map resolver is now exact source as `GetMapResourceId`, adding 652 bytes and exposing season, building-upgrade and mine-floor selection through a shared map interface. The next coherent boundary begins at `0x0803AB30` in `asm/code_0803A8A4.s`; recover its three-record resource-owner family before writing candidates.
 
 Compiler-sensitive functions that are behavior-complete are parked rather than blocking whole-game progress. The canonical continuation is always in [tools/ches/NEXT_AGENT_HANDOFF.md](tools/ches/NEXT_AGENT_HANDOFF.md).
 
@@ -116,7 +116,7 @@ Start here:
 - [docs/DECOMP_PRIORITY_MAP.md](docs/DECOMP_PRIORITY_MAP.md) - throughput-first target strategy
 - [docs/ASSET_DECOMPILATION.md](docs/ASSET_DECOMPILATION.md) - asset/data counting and authoring policy
 
-Stable subsystem documentation includes [CHARACTERS.md](docs/CHARACTERS.md), [ENTITY_BALL.md](docs/ENTITY_BALL.md), [ENTITY_EFFECTS.md](docs/ENTITY_EFFECTS.md), [HARDWARE.md](docs/HARDWARE.md), [HARDWARE_TRANSFER.md](docs/HARDWARE_TRANSFER.md), [INTRUSIVE_CALLBACK_LIST.md](docs/INTRUSIVE_CALLBACK_LIST.md), [KEY_INPUT.md](docs/KEY_INPUT.md), [RESOURCE_HANDLES.md](docs/RESOURCE_HANDLES.md), [SAVE_FORMAT.md](docs/SAVE_FORMAT.md), and [SPRITE_ANIMATOR.md](docs/SPRITE_ANIMATOR.md).
+Stable subsystem documentation includes [MAP_DATA.md](docs/MAP_DATA.md), [CHARACTERS.md](docs/CHARACTERS.md), [ENTITY_BALL.md](docs/ENTITY_BALL.md), [ENTITY_EFFECTS.md](docs/ENTITY_EFFECTS.md), [HARDWARE.md](docs/HARDWARE.md), [HARDWARE_TRANSFER.md](docs/HARDWARE_TRANSFER.md), [INTRUSIVE_CALLBACK_LIST.md](docs/INTRUSIVE_CALLBACK_LIST.md), [KEY_INPUT.md](docs/KEY_INPUT.md), [RESOURCE_HANDLES.md](docs/RESOURCE_HANDLES.md), [SAVE_FORMAT.md](docs/SAVE_FORMAT.md), and [SPRITE_ANIMATOR.md](docs/SPRITE_ANIMATOR.md).
 
 ## Branch policy
 

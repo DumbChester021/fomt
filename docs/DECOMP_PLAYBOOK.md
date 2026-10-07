@@ -29,7 +29,7 @@ For a fresh agent with no conversation context, read in this order:
 3. `START_HERE.md`: authoritative live dashboard.
 4. `docs/DECOMP_PLAYBOOK.md`: this durable process manual.
 5. `tools/ches/NEXT_AGENT_HANDOFF.md`: exact next task and preserved candidate state.
-6. `tools/ches/SESSION_STATUS.md`: current snapshot plus chronology.
+6. `tools/ches/SESSION_STATUS.md`: concise current snapshot; chronology stays in dated checkpoints and Git.
 7. Relevant subsystem docs, experiment index, and failure ledger.
 
 For compiler-sensitive work, especially when a current target depends on previously reconstructed compatibility behavior, also read:
@@ -135,7 +135,9 @@ Keep unfinished candidates under `tools/ches/checkpoints/.../` or another scratc
 
 ### 5. Compare the exact target
 
-Use `tools/ches/compare-function.py` with the authoritative compatibility compiler path when needed.
+Use `tools/ches/compare-function.py`; its default compiler is the tracked
+`tools/agbcc/bin/agbcp` wrapper. Select a different compiler with `--compiler`
+only for an explicitly recorded diagnostic comparison.
 
 Always record:
 - expected size
@@ -470,7 +472,7 @@ When a batch materially recovers a subsystem architecture, the batch is not full
 
 ## Current strategic direction
 
-The active public retail branch is `main`. Current exact reconstruction is **71,948 / 940,036 = 7.6537% source**, **75,334 data/asset bytes**, and **147,678 / 7,717,440 = 1.9136% overall meaningful-ROM bytes**, with **868,088 assembly bytes** remaining and the retail ROM still exact. The remaining-function database/ranked queue and resident-NPC class map regenerate from the current build. The Entity38740/Entity398A4 region has advanced through exact `3A804..3A8A0`; behavior-complete `3A180`, `3A394`, `39F90`, `39E98`, and other documented compiler islands remain parked. The active continuation begins at `0x0803A8A4` in `asm/code_0803A8A4.s`. The handoff owns exact active commands/artifacts; the priority map owns target selection; dated checkpoints and Git history own detailed chronology.
+The active public retail branch is `main`. Current exact reconstruction is **72,600 / 940,036 = 7.7231% source**, **75,334 data/asset bytes**, and **148,330 / 7,717,440 = 1.9220% overall meaningful-ROM bytes**, with **867,436 assembly bytes** remaining and the retail ROM still exact. The remaining-function database/ranked queue and resident-NPC class map regenerate from the current build. The Entity38740/Entity398A4 region has advanced through exact `3A804..3A8A0`; behavior-complete `3A180`, `3A394`, `39F90`, `39E98`, and other documented compiler islands remain parked. The logical map resolver at `0x0803A8A4` is now exact source as `GetMapResourceId`, adding 652 bytes. Continue with the resource-owner family at `0x0803AB30` in `asm/code_0803A8A4.s`. The handoff owns exact active commands/artifacts; the priority map owns target selection; dated checkpoints and Git history own detailed chronology.
 
 Preserved renderer candidates remain:
 - `func_080A5CC0`: expected 0x54, v1 actual 0x58, 72 differing linked bytes;

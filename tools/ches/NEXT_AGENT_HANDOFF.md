@@ -1,114 +1,75 @@
 # Current FoMT continuation - October 7, 2026
 
-## Current repository state
+## Current exact checkpoint
 
-- Workspace: `/mnt/data/Github/gba/fomt`
-- Retail branch: **`main`**, tracking **`ches/main`**
-- Latest published exact code checkpoint: **`7900f82e7ba18688dd7705efc2b143d4bc89f42c`** (`decompile entity animation helpers`)
-- Remote `ches/main` was explicitly verified at the same hash.
-- Retail SHA1: **`a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`**
-- Last full production gate for the code batch: `make -B -j4 compare` -> **`fomt.gba: OK`**
-- Exact code progress: **71,948 / 940,036 = 7.6537%**
-- Assembly remaining: **868,088 bytes**
-- Data/assets: **75,334 / 6,777,404 = 1.1115%**
-- Overall meaningful ROM: **147,678 / 7,717,440 = 1.9136%**
-- Free tail: **671,168 bytes**
+- Retail branch: **`main`**, tracking **`ches/main`**.
+- Latest exact code checkpoint: **45dfb3f06eb800a152e967daa3f1a2a0efd2a561** (`decompile logical map resource resolver`).
+- Base repository checkpoint: `07755a233018e46801a5e43c79a8a5c2cfe83b22`.
+- `GetMapResourceId` / `func_0803A8A4` is exact source over **`0x0803A8A4..0x0803AB30`, 652 bytes**.
+- Shared declarations: `include/map_data.hh`; source: `src/map_resource.cc`; stable architecture: `docs/MAP_DATA.md`.
+- The renderer caller uses the named interface. Original assembly symbol and all neighboring positions remain intact.
+- Fresh tracked compiler installation and detached `make -B -j4 compare`: **PASS**.
+- Production `make -B -j4 compare`, full-byte verifier, `make progress`: **PASS**.
+- Retail ROM: **8,388,608 bytes**, SHA1 **`a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`**.
+- Compiler unchanged: tracked installer plus thirteen-rule patch, SHA256 `aa7cc6df0efbd066e9c33deb887731e1d0210babfaeba4c9b64f3e8bc35c4256`.
 
-## Current generated inventory
+## Exact progress and inventory
 
-`tools/ches/build_decomp_inventory.py` was reconciled with the documented parked set and regenerated successfully:
-
-- linked assembly functions: **2,334**
-- function-range bytes: **866,924 / 868,088 = 99.8659%**
-- unattributed assembly bytes: **1,164**
-- explicitly parked functions: **17**
-- runtime/library functions retained: **33**
-- repeated opcode-shape clusters: **184**
-- functions in repeated shape clusters: **864**
+- code: **72,600 / 940,036 = 7.7231%**
+- assembly remaining: **867,436 bytes**
+- data/assets: **75,334 / 6,777,404 = 1.1115%**
+- overall meaningful ROM: **148,330 / 7,717,440 = 1.9220%**
+- free tail: **671,168 bytes**
+- linked assembly functions: **2,333**
+- inferred ranges: **866,272 / 867,436 = 99.8658%**
+- unattributed assembly: **1,164 bytes**
+- parked functions: **17**; retained runtime/library functions: **33**
+- repeated shape clusters: **184**, containing **864** functions
 - exact normalized clusters: **176**
 
-The generated queue and NPC class map were regenerated after this change.
+Inventory, queue and NPC class map were regenerated. The only removed assembly
+function is `func_0803A8A4`; every other function address and size is unchanged.
+The NPC class-map outputs are unchanged.
 
-## Latest completed exact batch
+## Proof and closed work
 
-The complete retail tail `0x0803A804..0x0803A8A4` is now source-owned in `src/entity_unk_08038740.cc`.
+Checkpoint: `tools/ches/checkpoints/map-resolver-0803A8A4-2026-10-07/`.
 
-Exact functions:
+- V1: 652 bytes / 217 differences; V2: 652 / 24; V3: **652 / 0**.
+- V3 inverts only eight seasonal ternaries and retains case 2. The named final source uses the existing `SEASON_WINTER` constant.
+- Both the older private compiler and the explicit tracked compiler produce exact V3. The matcher now defaults to `tools/agbcc/bin/agbcp`; keep diagnostic compiler selection explicit.
+- `isolated-proof.json` and `production-proof.json` record whole-ROM equality, six symbol checks and matching contribution-input hashes.
+- Logs: `isolated-compiler-install.log`, `isolated-compare.log`, `production-compare.log`, `production-progress.log`.
+- `inventory-audit.json` confirms only the intended function removal.
+- Detached `/tmp/fomt-map-resolver-integration` preserves the isolated proof.
+- `handoff-before-final.md` preserves the prior local handoff, including the original V2 research. No original research or custom-game work was discarded.
 
-| Function | Retail role |
-| --- | --- |
-| `func_0803A804` | return embedded `SpriteAnimator::step` |
-| `func_0803A80C` | set `SpriteAnimator::step` |
-| `func_0803A814` | return `SpriteAnimator::WillFinish()` |
-| `func_0803A820` | true when frame timer and step are both nonzero |
-| `func_0803A840` | update embedded effect/animator and active/reset state |
-| `func_0803A870` | switch animation and refresh/reset effect state when ID changes |
-| `func_0803A8A0` | return owner `GameObject *` |
-
-The seven functions add **160 exact source bytes**. Integration uses individual source sections immediately before `asm/code_0803A8A4.o(.text)`; ordinary section alignment reproduces the retail padding halfwords.
-
-Verification:
-- full compare execution `sh_muxvkcw1_1312ecc4`: **`fomt.gba: OK`**
-- production diff hygiene after the EOF cleanup: PASS
-- commit: **`7900f82e7ba18688dd7705efc2b143d4bc89f42c`**
-- push: `sh_muxvlfhh_e9f624c1`
-- explicit remote verification: `sh_muxvlnp2_9f20d1c0`
-
-## Important parked work
-
-The following are behavior-complete or otherwise bounded and must not be selected as ordinary queue work without new structural evidence:
-
-- `func_0803A394`: weighted entity factory, retail 0x404 bytes. Natural candidates recover semantics/layout but remain a codegen island.
-- `func_0803A180`: shared movement/state helper, retail 0x1A0. Best natural V2 is 0x19C / 382 differing linked bytes; remaining size/register gap is allocator ownership.
-- `func_08039F90`: behavior complete after bounded lifetime probes.
-- `func_08039E98`: constructor behavior complete, exact-size 0xB8 / 109 in scratch.
-- `func_08039708`, `func_0803955C`, `func_08039310`, `func_08039204`.
-- controller `func_08038820`, collection builder `func_08038EE0`.
-- Ball mover `func_08038110`.
-- legacy save/UI/compiler islands already listed in the generated `PARKED` set.
-
-Use `tools/ches/DECOMP_QUEUE.md` only together with the parked status. Raw score is not execution order.
+Do not rematch the resolver, rerun its compiler install, or replay its completed
+integration. No compiler behavior change, fixed register, padding, volatile or
+inline assembly was introduced.
 
 ## Exact next action
 
-Start the next coherent frontier at **`0x0803A8A4`** in `asm/code_0803A8A4.s`.
+Continue with the coherent **`0x0803AB30..0x0803AEA0` resource-owner family**
+in `asm/code_0803A8A4.s`, now `.text.after_map_resource`:
 
-Ordered continuation:
+| Target | Bounded size | Role evidence |
+| --- | ---: | --- |
+| `func_0803AB30` | 328 | Constructor initializes three 0x2C-stride records and shared provider/value state |
+| `func_0803AC78` | 96 | Destructor releases the provider value and destroys three handle clients backwards |
+| `func_0803ACD8` | 384 | Update/resource-transfer path, called by GameObject update |
+| `func_0803AE58` | 72 | Entity-facing virtual forwarding helper |
 
-1. Confirm current branch/dirty state and do not discard the documentation/inventory cleanup if it is still uncommitted.
-2. Map `asm/code_0803A8A4.s` function boundaries, sizes, direct callers/callees, vtable references, globals/tables, and section/TU seams.
-3. Search existing headers/source and exact neighboring Entity38740-family code for real type and source-shape anchors.
-4. Identify the first coherent repeated family or small API, not merely the first address.
-5. Write one natural scratch candidate and compare it with `tools/ches/compare-function.py`.
-6. Inspect generated assembly before variants. If credible variants canonicalize or the function becomes a pure allocator island, document/park it and continue the family.
-7. Integrate only exact source.
-8. Run target checks, full `make -B -j4 compare`, SHA1/progress, inventory regeneration when ownership changes, and `git diff --check`.
-9. Update only the canonical docs whose current truth changed.
-10. Commit/push each durable exact checkpoint to `ches/main` under the standing repository authorization.
+These **880 bounded bytes remain assembly**; no new candidate or gain is claimed.
+`next-family-selection.json` records exact bounds, callers/callees and source anchors.
 
-## Documentation cleanup verification
+1. Inspect current dirty state and the saved selection before new work.
+2. Recover provider virtual contracts, the 0x20-byte descriptor fields and the 0x2C record layout from callers and existing exact resource/transfer code. Keep gameplay identity neutral until proven.
+3. Start with the bounded `0803AC78` destructor as an ownership/ABI oracle; account for hidden destructor flags and the backward three-element walk before a natural scratch candidate.
+4. Compare with the tracked compiler; then reuse the proven type/ownership model for `AB30`, `ACD8`, `AE58` and the related `0803B128` path.
+5. Integrate only exact coherent source. Preserve parked codegen islands and rotate if source variants canonicalize.
+6. Require full ROM/hash/progress, regenerate inventory when ownership changes, update concise canonical state, review explicit paths, commit/push to `ches/main` and verify the remote ref.
 
-The full maintained-document audit and coordination-layer compaction are complete.
-
-Cleanup scope:
-- compacted `START_HERE.md`, `TODO.md`, `tools/ches/NEXT_AGENT_HANDOFF.md`, and `tools/ches/SESSION_STATUS.md`;
-- reconciled current-state sections in `README.md`, `AGENTS.md`, progress/repo/priority/playbook/asset/character/compiler/decomp docs;
-- updated `tools/ches/build_decomp_inventory.py` parked metadata;
-- regenerated `decomp_inventory.json`, `DECOMP_QUEUE.md`, and NPC class-map outputs.
-
-Final validation:
-- stale-current sweep execution `sh_muxvxx1l_2beee413`: **zero matches** for the old 71,612 / 868,424 / 2,336 / 3A180-frontier markers;
-- `make progress` execution `sh_muxvx2rb_3284bdae`: **71,948 / 940,036 = 7.6537%**, `fomt.gba: OK`;
-- full rebuild execution `sh_muxvxgkc_224efb9d`: **`fomt.gba: OK`**;
-- `git diff --check` execution `sh_muxvxtwp_44bd28a2`: PASS;
-- inventory delta audit: only exact-source removals `func_0803A350` and `func_0803A798`, plus the 10 intended assembly -> parked status changes; no unexpected function additions/removals;
-- generated summary: 2,334 linked asm functions, 868,088 asm bytes, 866,924 inferred range bytes, 1,164 unattributed bytes, 17 parked functions;
-- class-map regeneration only renumbered Child's repeated-shape label from shape0041 to shape0039 because the inventory changed.
-
-For a fresh continuation: if this cleanup is still dirty, publish it first. If the worktree is clean and the compact docs are present, continue directly at `0x0803A8A4`.
-
-## Documentation cleanup state
-
-A full maintained-document audit was completed before this compaction. Stable subsystem documentation was preserved. Current-state files are intentionally being reduced so a fresh model does not have to infer truth from hundreds of KB of duplicated chronology.
-
-Detailed old session history belongs in Git history and the dated checkpoint/experiment directories. Do not re-expand this file by appending chronological session transcripts.
+Custom-game remains separate at `60eacca`; its existing documentation changes
+remain untouched. Do not reopen `3A180`, `3A394`, `39F90`, `39E98`, the legacy
+save/UI islands or other parked work without new structural evidence.

@@ -4,7 +4,7 @@ Current authoritative dashboard: `START_HERE.md`. Exact continuation: `tools/che
 
 ## Active retail work
 
-- Continue at **`0x0803A8A4`** in `asm/code_0803A8A4.s`.
+- Continue at **`0x0803AB30`** in `asm/code_0803A8A4.s`.
 - Map coherent function/TU/type/vtable families before writing source.
 - Use exact neighboring Entity38740-family source and existing shared types as structural oracles.
 - Scratch-prove one representative, then propagate only evidence-backed shapes across siblings.

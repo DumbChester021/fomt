@@ -4,8 +4,6 @@ This file is the live dashboard for the US Harvest Moon: Friends of Mineral Town
 
 ## Read this in order
 
-For normal retail decompilation work:
-
 1. `AGENTS.md`
 2. `/mnt/data/Ches/codex-bridge-home/skills/decompilation/SKILL.md`
 3. this file
@@ -14,81 +12,76 @@ For normal retail decompilation work:
 6. `tools/ches/NEXT_AGENT_HANDOFF.md`
 7. only the subsystem docs and checkpoint/failure ledgers named by the handoff
 
-For compiler-sensitive work, search the relevant checkpoint registry and failure ledger before starting a new experiment family. Do not broadly reread historical checkpoints when the handoff already contains the needed current state.
+Search the relevant experiment registry and failure ledger before a new compiler
+or source-shape family. Older chronological next-action text is historical.
 
 ## Active branch and build authority
 
-- Retail-matching branch: **`main`**, tracking **`ches/main`**.
-- Latest published exact code checkpoint: **`7900f82e7ba18688dd7705efc2b143d4bc89f42c`** (`decompile entity animation helpers`).
-- Intentional QoL/content work stays isolated in the separate `custom-game` worktree/branch.
+- Retail branch: **`main`**, tracking **`ches/main`**.
+- Latest exact code checkpoint: **45dfb3f06eb800a152e967daa3f1a2a0efd2a561** (`decompile logical map resource resolver`).
+- Custom behavior remains in the separate `custom-game` worktree/branch.
 - Retail ROM SHA1: **`a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`**.
-- Full validation gate: `make -B -j4 compare` -> **`fomt.gba: OK`**.
-- Authoritative compiler path: `tools/install_agbcp.sh` plus `tools/agbcp_fomt_compat.patch`.
+- Full gate: `make -B -j4 compare` -> **`fomt.gba: OK`**.
+- Compiler authority: `tools/install_agbcp.sh` plus `tools/agbcp_fomt_compat.patch`.
+- Function matching defaults to the installed tracked `tools/agbcc/bin/agbcp` wrapper.
 
 ## Current exact reconstruction
 
-Measured after the latest exact source batch:
-
-- code: **71,948 / 940,036 = 7.6537%**
-- assembly remaining: **868,088 bytes**
-- remaining linked assembly functions: **2,334**
-- inferred function ranges: **866,924 / 868,088 = 99.8659%**
+- code: **72,600 / 940,036 = 7.7231%**
+- assembly remaining: **867,436 bytes**
+- linked assembly functions: **2,333**
+- inferred ranges: **866,272 / 867,436 = 99.8658%**
 - unattributed assembly: **1,164 bytes**
-- explicitly parked functions in the generated inventory: **17**
+- parked functions: **17**
 - data/assets: **75,334 / 6,777,404 = 1.1115%**
-- overall meaningful ROM: **147,678 / 7,717,440 = 1.9136%**
-- contiguous retail tail free space: **671,168 bytes = 655.44 KiB**
+- overall meaningful ROM: **148,330 / 7,717,440 = 1.9220%**
+- contiguous free tail: **671,168 bytes = 655.44 KiB**
 
-Run `make progress` after meaningful exact integrations and regenerate the inventory/queue when code ownership changes.
+Run `make progress` after exact integrations. Regenerate inventory/queue/class
+maps when code ownership changes.
 
-## Latest exact Entity38740-family work
+## Latest exact source
 
-The latest published batch moved the complete raw retail tail `0x0803A804..0x0803A8A4` into exact source as seven coherent helpers over the common owner with embedded `EntityEffect` / `SpriteAnimator`:
+`GetMapResourceId` / `func_0803A8A4` is the complete **652-byte logical map
+resolver** at `0x0803A8A4..0x0803AB30`. It maps logical locations onto 66 physical
+MapData resources, selecting Winter variants, building upgrades and mine-floor
+families. The original symbol and renderer caller remain byte-exact.
 
-- `func_0803A804`: get animator step
-- `func_0803A80C`: set animator step
-- `func_0803A814`: `WillFinish()`
-- `func_0803A820`: moving/timer predicate
-- `func_0803A840`: effect update wrapper
-- `func_0803A870`: animation-change/reset wrapper
-- `func_0803A8A0`: return owning `GameObject *`
+- source: `src/map_resource.cc`
+- shared interface: `include/map_data.hh`
+- architecture: [docs/MAP_DATA.md](docs/MAP_DATA.md)
+- isolated fresh compiler + forced full ROM: PASS
+- production forced full ROM, SHA1, symbol/input-hash checks: PASS
+- inventory delta: only the resolver leaves assembly; other addresses/sizes unchanged
 
-This batch added **160 exact source bytes** and preserved the retail ROM exactly.
-
-Immediately preceding exact promotions include `func_0803A798`, `func_0803A350`, `func_0803A320`, and `func_0803A334`.
-
-## Parked nearby compiler/codegen islands
-
-Do not reopen these without genuinely new type, source-shape, or compiler evidence:
-
-- `func_0803A394`: weighted entity-factory behavior/layout complete; bounded natural candidates do not reproduce retail codegen.
-- `func_0803A180`: shared movement/state helper behavior complete; best natural candidate is 0x19C vs retail 0x1A0 and the remaining gap is allocator ownership.
-- `func_08039F90`, `func_08039E98`, `func_08039708`, `func_0803955C`, `func_08039310`, `func_08039204`, controller `08038820` / `08038EE0`, and Ball mover `08038110` are also documented parked islands.
-- The generated inventory is authoritative for the complete current parked set.
+Earlier exact Entity38740-family helpers through `3A8A0`, including `3A798`,
+`3A350` and `3A320/334`, remain complete. Do not replay their matching/integration.
 
 ## Exact next action
 
-Continue at the next coherent retail frontier beginning at **`0x0803A8A4`** in `asm/code_0803A8A4.s`.
+Recover the coherent **`0x0803AB30..0x0803AEA0` resource-owner family** in
+`asm/code_0803A8A4.s`. Its constructor, destructor, update and entity forwarding
+helper total 880 bounded assembly bytes. The current handoff and saved
+`next-family-selection.json` own exact targets and source/type anchors.
 
-Before writing candidates:
+Recover provider/descriptor contracts first, then scratch-prove the bounded
+`0803AC78` destructor as an ownership/ABI oracle. Reuse the proven model across
+siblings; integrate only exact source and publish each verified checkpoint.
 
-1. map exact named function boundaries and linked sizes from the current ELF/assembly;
-2. map callers, callees, vtables, globals/tables, and likely class/TU ownership;
-3. search existing project types and exact neighboring source for structural oracles;
-4. group repeated methods/functions into a coherent family;
-5. scratch-compare one natural representative first;
-6. propagate a proven source shape to siblings and integrate only 0-diff source.
+## Parked work
 
-Do not go back to `3A180`, `3A394`, or other parked islands just because a raw queue score is high.
+Do not reopen `3A180`, `3A394`, `39F90`, `39E98`, the Ball mover, legacy save/UI
+islands or other generated `PARKED` entries without new structural evidence.
+A high raw queue score does not override a parked status.
 
 ## Documentation ownership
 
-- `START_HERE.md`: live dashboard and broad next direction.
-- `tools/ches/NEXT_AGENT_HANDOFF.md`: exact continuation state and ordered next steps.
-- `tools/ches/SESSION_STATUS.md`: concise current snapshot and verification state.
-- `docs/DECOMP_PLAYBOOK.md`: durable matching process.
-- `docs/DECOMP_PRIORITY_MAP.md`: target-selection strategy.
-- dedicated subsystem docs: stable recovered architecture.
-- checkpoint directories, experiment registries, failure ledgers, and Git history: detailed chronology and rejected experiments.
+- `START_HERE.md`: live dashboard and broad direction.
+- `tools/ches/NEXT_AGENT_HANDOFF.md`: exact continuation.
+- `tools/ches/SESSION_STATUS.md`: concise current verification state.
+- `docs/DECOMP_PLAYBOOK.md`: durable workflow.
+- `docs/DECOMP_PRIORITY_MAP.md`: target strategy.
+- subsystem docs: stable architecture.
+- dated checkpoints, experiment/failure ledgers and Git: detailed history.
 
-Current-state files should stay concise. Do not append session-by-session history to them.
+Keep current-state files concise; preserve chronology in the dated checkpoints.
