@@ -436,7 +436,8 @@ SECTIONS
         src/entity_unk_08038740.o(.text.entity3a870_set_animation);
         src/entity_unk_08038740.o(.text.entity3a8a0_game_object);
 
-        asm/code_0803A8A4.o(.text);
+        src/map_resource.o(.text);
+        asm/code_0803A8A4.o(.text.after_map_resource);
         src/character_schedule.o(.text);
         asm/code_0803A8A4.o(.text.after_character_schedules);
         src/script_engine.o(.text);
