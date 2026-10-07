@@ -428,7 +428,13 @@ SECTIONS
         src/entity_unk_08038740.o(.text.entity3a350_sound);
         asm/code_entities_08034CEC.o(.text.after_entity3a350);
         src/entity_unk_08038740.o(.text.entity3a798_factory);
-        asm/code_entities_08034CEC.o(.text.after_entity3a798);
+        src/entity_unk_08038740.o(.text.entity3a804_get_step);
+        src/entity_unk_08038740.o(.text.entity3a80c_set_step);
+        src/entity_unk_08038740.o(.text.entity3a814_will_finish);
+        src/entity_unk_08038740.o(.text.entity3a820_is_moving);
+        src/entity_unk_08038740.o(.text.entity3a840_update_effect);
+        src/entity_unk_08038740.o(.text.entity3a870_set_animation);
+        src/entity_unk_08038740.o(.text.entity3a8a0_game_object);
 
         asm/code_0803A8A4.o(.text);
         src/character_schedule.o(.text);

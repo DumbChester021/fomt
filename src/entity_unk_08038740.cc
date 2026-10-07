@@ -202,6 +202,16 @@ struct Entity39F50Owner
     void * vtable_4C;
 };
 
+struct Entity3A804Owner
+{
+    GameObject * owner_00;
+    u16 animation_id_04;
+    u16 pad_06;
+    EntityEffect effect_08;
+    Entity39F50Child * child_48;
+    void * vtable_4C;
+};
+
 struct SoundPlayer3A350;
 
 struct SoundPlayerList3A350
@@ -285,6 +295,13 @@ EC void * vtable_unk_080E7568[];
 EC void AEntityCtor3A798(AEntity *, GameObject *, Location const &)
     asm("__7AEntityP10GameObjectRC8Location");
 EC Entity3A798Raw * func_0803A798(GameObject *, void *) SECTION(".text.entity3a798_factory");
+EC i16 func_0803A804(Entity3A804Owner *) SECTION(".text.entity3a804_get_step");
+EC void func_0803A80C(Entity3A804Owner *, i16) SECTION(".text.entity3a80c_set_step");
+EC bool func_0803A814(Entity3A804Owner *) SECTION(".text.entity3a814_will_finish");
+EC bool func_0803A820(Entity3A804Owner *) SECTION(".text.entity3a820_is_moving");
+EC void func_0803A840(Entity3A804Owner *) SECTION(".text.entity3a840_update_effect");
+EC void func_0803A870(Entity3A804Owner *, u32) SECTION(".text.entity3a870_set_animation");
+EC GameObject * func_0803A8A0(Entity3A804Owner *) SECTION(".text.entity3a8a0_game_object");
 EC void func_08039DA8(EntityStrategyOwnerView *) SECTION(".text.entity39da8_setup");
 EC void func_08039E18(EntityStrategyOwnerView *) SECTION(".text.entity39e18_setup");
 EC void * vtable_unk_080E76BC[];
@@ -542,6 +559,62 @@ Entity3A798Raw * func_0803A798(GameObject * game_object, void * state)
     result->bytes[0x1C] = 1;
 
     return result;
+}
+
+i16 func_0803A804(Entity3A804Owner * self)
+{
+    SpriteAnimator * animator = &self->effect_08.animator;
+    return animator->step;
+}
+
+void func_0803A80C(Entity3A804Owner * self, i16 step)
+{
+    SpriteAnimator * animator = &self->effect_08.animator;
+    animator->step = step;
+}
+
+bool func_0803A814(Entity3A804Owner * self)
+{
+    return self->effect_08.animator.WillFinish();
+}
+
+bool func_0803A820(Entity3A804Owner * self)
+{
+    SpriteAnimator * animator = &self->effect_08.animator;
+    return animator->frame_timer != 0 && animator->step != 0;
+}
+
+void func_0803A840(Entity3A804Owner * self)
+{
+    EntityEffect & effect = self->effect_08;
+
+    if (effect.reset_update == 0)
+    {
+        u32 animator_result = effect.animator.Update();
+        if ((i32)(animator_result << 30) < 0)
+            effect.active = 1;
+    }
+    else
+    {
+        effect.reset_update = false;
+    }
+}
+
+void func_0803A870(Entity3A804Owner * self, u32 animation_id)
+{
+    if (self->animation_id_04 != animation_id)
+    {
+        self->effect_08.animator.SetAnimation(animation_id);
+        self->effect_08.active = 1;
+        self->effect_08.unk_3E = 0;
+        self->effect_08.reset_update = true;
+        self->animation_id_04 = animation_id;
+    }
+}
+
+GameObject * func_0803A8A0(Entity3A804Owner * self)
+{
+    return self->owner_00;
 }
 
 u32 func_08039134(
