@@ -35,28 +35,29 @@ next deliverable, closed paths and fresh-clone artifact limitations.
 
 ## Current exact reconstruction
 
-- Code: **73,872 / 940,036 = 7.8584%**
-- Assembly remaining: **866,164 bytes**
-- Linked assembly functions: **2,315**
-- Inferred ranges: **865,000 / 866,164 = 99.8656%**
+- Code: **74,256 / 940,036 = 7.8993%**
+- Assembly remaining: **865,780 bytes**
+- Linked assembly functions: **2,312**
+- Inferred ranges: **864,616 / 865,780 = 99.8656%**
 - Unattributed assembly: **1,164 bytes**
 - Generated parked functions: **17**
 - Data/assets: **75,334 / 6,777,404 = 1.1115%**
-- Overall meaningful ROM: **149,602 / 7,717,440 = 1.9385%**
+- Overall meaningful ROM: **149,986 / 7,717,440 = 1.9435%**
 - Contiguous free tail: **671,168 bytes = 655.44 KiB**
 
 ## Latest completed unit
 
-The mine-floor save cluster now owns **316 exact source bytes**: initializer
-`func_0809CE8C` (168 bytes) plus accessors `D8A0/D8A4/D8B8/D8D4`
-(72-byte linked block including alignment). The shared layout is now in
-`include/mine_floor.hh`; accessors are in `src/mine_floor_accessors.cc`.
+The mine-floor save cluster now owns **700 exact source bytes**: initializer
+`func_0809CE8C` (168), the D8A0..D8E8 accessor block (72), D9B4 (76), and
+the contiguous DF2C..E0AC helper block (384). The shared layout is in
+`include/mine_floor.hh`; exact source is split across
+`src/mine_floor.cc`, `src/mine_floor_accessors.cc`,
+`src/mine_floor_content.cc`, and `src/mine_floor_helpers.cc`.
 
-Architecture: docs/MINE_FLOOR.md and docs/SAVE_FORMAT.md. CE8C remains
-0xA8 / 0, legacy CF34 remains 0x234 / 0 after the shared-header extraction,
-and the full D8A0..D8E8 accessor block is 0x48 / 0. Isolated and production
-full-ROM builds pass; ROM size/SHA1 and neighbor addresses remain retail-exact.
-The regenerated inventory removes exactly CE8C plus the four accessors from
+Architecture: docs/MINE_FLOOR.md and docs/SAVE_FORMAT.md. DF2C, DFAC and E02C
+match as one complete **0x180 / 0** block. Isolated and production full-ROM
+builds pass; ROM size/SHA1 and neighbor addresses remain retail-exact. The
+regenerated inventory removes exactly those three additional helpers from
 assembly ownership.
 
 The preceding fishing-record block (276 linked bytes), four resource-owner
@@ -65,12 +66,12 @@ repeat their integration.
 
 ## Next direction
 
-`func_0809D9B4` is now exact source (0x4C / 0) using the proven
-MineTile 4/6/6 layout and a linker seam. `func_0809D8E8` is behavior-complete
-but parked at a compiler-sensitive source-shape frontier after bounded natural
-attempts. Next assess the adjacent mine-content handler `func_0809DA00` as a
-separate high-leverage unit; do not reopen D8E8 syntax variants without new
-structural evidence.
+`func_0809DA00` is now behavior-mapped but parked after two bounded natural
+candidates stayed at 0x534 versus retail 0x52C with 905/883 linked-byte
+differences beginning at entry/jump-table register allocation. D8E8 remains
+parked for the same source-shape reason. Continue from `func_0809E0AC` with
+the next small coherent mine-floor helper cluster; do not reopen DA00 or D8E8
+without new structural/compiler evidence.
 
 The loader remains parked. Resource-owner constructors and B128 remain parked.
 Local ignored proofs are under tools/ches/checkpoints/mine-floor-2026-10-07/.

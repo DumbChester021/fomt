@@ -490,6 +490,8 @@ SECTIONS
         asm/code_actor_0809BFE8.o(.text.after_mine_floor_accessors);
         src/mine_floor_content.o(.text);
         asm/code_actor_0809BFE8.o(.text.after_mine_floor_content);
+        src/mine_floor_helpers.o(.text);
+        asm/code_actor_0809BFE8.o(.text.after_mine_floor_helpers);
         src/npc.o(.text);
         src/bachelorette.o(.text);
         src/harvest_sprite.o(.text);

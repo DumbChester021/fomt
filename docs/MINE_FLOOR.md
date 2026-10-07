@@ -119,6 +119,38 @@ bytes, v2 0xB8 / 193, and v3 0xC2 / 182 against retail 0xCC. It consumes bits
 tiles. The remaining problem is source shape/register allocation, not behavior;
 do not resume syntax roulette without new structural evidence.
 
+The adjacent helper block `0x0809DF2C..0x0809E0AC` is now exact source as one
+contiguous **0x180-byte / 0-difference** unit in `src/mine_floor_helpers.cc`:
+
+- `func_0809DF2C` maps content ids 4..9 to the six cursed tools and returns
+  whether that tool already exists in either the Rucksack or ToolChest.
+  Natural typed source was one byte from exact until the mapped tool id local
+  was made signed, reproducing retail's signed compare against `TOOL_NONE`.
+- `func_0809DFAC` counts the nine Goddess Jewel flags for floors
+  60, 102, 123, 152, 155, 171, 190, 202 and 222. The first typed candidate
+  matched 0x80 / 0.
+- `func_0809E02C` counts the nine Kappa Jewel flags for floors
+  0, 40, 60, 80, 120, 140, 160, 180 and 255. The first typed candidate
+  matched 0x80 / 0.
+
+Both detached and production full-ROM comparisons pass after the helper linker
+seam, which resumes assembly at `func_0809E0AC`.
+
+`func_0809DA00` is behavior-mapped but parked after the bounded natural-source
+pass. Its true size is 0x52C. Saved candidates are `da00-v1.cc` at 0x534 /
+905 differing linked bytes and `da00-v2.cc` at 0x534 / 883 differences.
+The v2 experiment applied the one high-leverage register clue, keeping the
+persistent result/content value toward r8 and matching the first branch order;
+the mismatch still begins immediately in entry/jump-table register allocation.
+Its meaningful cases are now mapped: 3 one-time mine/location progress,
+4..9 cursed-tool rewards, 10 year/progress-gated reward, 23 all-six cursed-tool
+completion, 32 Goddess Jewel floors, 33 Kappa Jewel floors and 34 a standalone
+progress flag. Treat DA00 as a compiler/source-shape frontier until genuinely
+new evidence appears.
+
+The mine-floor cluster now owns **700 exact source bytes** across CE8C, the
+D8A0..D8E8 accessor block, D9B4 and DF2C..E0AC.
+
 The legacy fixed-register and inline-assembly code still present in
 `src/mine_floor.cc` is not a model for future reconstruction. Preserve its
 exact output until each remaining helper is replaced by independently proven

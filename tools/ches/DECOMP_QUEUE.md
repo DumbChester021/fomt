@@ -5,12 +5,12 @@ Region/TU hints and scores are heuristics, not claims about original source-file
 
 ## Inventory summary
 
-- remaining linked assembly functions: **2,315**
-- canonical linked assembly code: **866,164 bytes**
-- bytes covered by inferred function ranges: **865,000** (**99.8656%** of linked asm code)
+- remaining linked assembly functions: **2,312**
+- canonical linked assembly code: **865,780 bytes**
+- bytes covered by inferred function ranges: **864,616** (**99.8656%** of linked asm code)
 - assembly code not assigned to a function range: **1,164 bytes**
 - asm definitions present in source but not linked as asm code: **2**
-- coarse TU/region hints: **152**
+- coarse TU/region hints: **153**
 - repeated opcode-shape clusters: **184**
 - functions in repeated opcode-shape clusters: **863**
 - exact normalized-body clusters: **176**
@@ -29,7 +29,7 @@ Region/TU hints and scores are heuristics, not claims about original source-file
 | 6 | asm/code_linkonce.s:080E2EA4-080E59CC | 14344.0 | 84 | 11048 | 11048 | 0 | 39 | 16 | 13 |
 | 7 | asm/code_linkonce.s:080DC96C-080DFE84 | 14295.0 | 103 | 13592 | 6444 | 1 | 83 | 30 | 1 |
 | 8 | asm/code_809E804.s:080CDC00-080D0C10 | 14113.0 | 63 | 12304 | 10736 | 1 | 5 | 51 | 50 |
-| 9 | asm/code_entities.s:0802AA84-0802DBF0 | 13964.0 | 32 | 12652 | 12652 | 0 | 2 | 44 | 4 |
+| 9 | asm/code_entities.s:0802AA84-0802DBF0 | 14012.0 | 32 | 12652 | 12652 | 0 | 2 | 46 | 4 |
 | 10 | asm/new_game.s:08003788-08006858 | 13920.0 | 38 | 12496 | 12496 | 0 | 11 | 26 | 3 |
 | 11 | asm/code_entities.s:08023308-0802634C | 13894.0 | 47 | 12356 | 10556 | 1 | 16 | 71 | 5 |
 | 12 | asm/code_809E804.s:080CABA0-080CDC00 | 13850.0 | 50 | 12384 | 12384 | 0 | 10 | 19 | 16 |

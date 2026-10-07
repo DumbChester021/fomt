@@ -16,8 +16,8 @@ Current reconstruction:
 
 ```text
 Code reconstruction
-  73872 / 940036 bytes (7.8584%)
-  866164 bytes remain in asm
+  74256 / 940036 bytes (7.8993%)
+  865780 bytes remain in asm
 
 Data/assets reconstruction
   75334 / 6777404 bytes (1.1115%)
@@ -28,7 +28,7 @@ Data/assets reconstruction
   396 additional source-owned ROM-header bytes count only toward overall
 
 Overall meaningful-ROM reconstruction
-  149602 / 7717440 bytes (1.9385%)
+  149986 / 7717440 bytes (1.9435%)
   final ROM padding is excluded from this denominator
 
 ROM space
@@ -36,7 +36,7 @@ ROM space
   671168 bytes free (655.44 KiB, 8.0009%) contiguous tail space
 ```
 
-The code inventory currently reports **2,315 linked assembly functions**, **865,000 bytes** covered by inferred function ranges, **1,164 unattributed assembly bytes**, and **17 explicitly parked functions**.
+The code inventory currently reports **2,312 linked assembly functions**, **864,616 bytes** covered by inferred function ranges, **1,164 unattributed assembly bytes**, and **17 explicitly parked functions**.
 
 ## What the metrics mean
 
@@ -50,7 +50,7 @@ Understanding or documenting an opaque `.incbin` does not count as asset/data re
 
 ## Recent exact milestones
 
-The latest exact mine-floor unit now totals **316 source bytes**: initializer `func_0809CE8C` (168 bytes) plus the **72-byte D8A0..D8E8 accessor block**. The shared 0x628-byte persistent type now lives in `include/mine_floor.hh`. Scratch/block, isolated and production full-ROM comparisons pass. See [MINE_FLOOR.md](MINE_FLOOR.md).
+The latest exact mine-floor unit now totals **700 source bytes**: CE8C (168), the **72-byte D8A0..D8E8 accessor block**, D9B4 (76), and the exact **0x180-byte DF2C..E0AC helper block**. The shared 0x628-byte persistent type lives in `include/mine_floor.hh`. Detached and production full-ROM comparisons pass. See [MINE_FLOOR.md](MINE_FLOOR.md).
 
 The preceding exact unit is the eight-method fishing-record collection: **276 linked source bytes**, with a shared **472-byte persistent type**. Complete-block and both full-ROM comparisons pass. See [FISHING_RECORDS.md](FISHING_RECORDS.md).
 
@@ -78,7 +78,7 @@ Immediately preceding exact promotions include `func_0803A798`, `func_0803A350`,
 
 ## Current frontier
 
-The exact resource-owner set is integrated. Constructors and B128 remain assembly; AB30 is parked at 316/217 versus 328, B128 at 382/2. Fishing records recover the 472-byte block with 276 exact source bytes, and the mine-floor cluster now recovers the adjacent 0x628-byte persistent object with 240 exact source bytes. D9B4 is now exact source; D8E8 is behavior-complete but parked at its compiler-sensitive source-shape frontier. Next assess the adjacent DA00 mine-content handler as a separate high-leverage unit. The legacy loader remains parked pending new source-boundary evidence.
+The exact resource-owner set is integrated. Constructors and B128 remain assembly; AB30 is parked at 316/217 versus 328, B128 at 382/2. Fishing records recover the 472-byte block with 276 exact source bytes, and the mine-floor cluster now owns 700 exact source bytes around the adjacent 0x628-byte persistent object. D8E8 and DA00 are behavior-complete but parked at compiler/source-shape frontiers. Continue from E0AC with the next bounded mine-floor helper cluster. The legacy loader remains parked pending new source-boundary evidence.
 
 `func_0803A180`, `func_0803A394`, `func_08039F90`, `func_08039E98`, and the other generator-marked parked functions should not be reopened without genuinely new structural evidence.
 
