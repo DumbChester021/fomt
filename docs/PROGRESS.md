@@ -16,8 +16,8 @@ Current reconstruction:
 
 ```text
 Code reconstruction
-  71612 / 940036 bytes (7.6180%)
-  868424 bytes remain in asm
+  71948 / 940036 bytes (7.6537%)
+  868088 bytes remain in asm
 
 Data/assets reconstruction
   75334 / 6777404 bytes (1.1115%)
@@ -28,7 +28,7 @@ Data/assets reconstruction
   396 additional source-owned ROM-header bytes count only toward overall
 
 Overall meaningful-ROM reconstruction
-  147342 / 7717440 bytes (1.9092%)
+  147678 / 7717440 bytes (1.9136%)
   final ROM padding is excluded from this denominator
 
 ROM space
@@ -36,7 +36,7 @@ ROM space
   671168 bytes free (655.44 KiB, 8.0009%) contiguous tail space
 ```
 
-The code inventory currently reports **2,336 linked assembly functions**, **867,260 bytes** covered by inferred function ranges, **1,164 unattributed assembly bytes**, and **7 explicitly parked functions**.
+The code inventory currently reports **2,334 linked assembly functions**, **866,924 bytes** covered by inferred function ranges, **1,164 unattributed assembly bytes**, and **17 explicitly parked functions**.
 
 ## What the metrics mean
 
@@ -50,38 +50,23 @@ Understanding or documenting an opaque `.incbin` does not count as asset/data re
 
 ## Recent exact milestones
 
-The current Entity38740 strategy/controller run substantially expanded the readable entity family.
+The latest published exact batch is the seven-function helper tail `0x0803A804..0x0803A8A4` in the Entity38740 neighborhood. It adds **160 retail source bytes** and uses the existing embedded `EntityEffect` / `SpriteAnimator` model:
 
-The latest exact promotion added **48 retail bytes**:
+- `func_0803A804`: get animator step;
+- `func_0803A80C`: set animator step;
+- `func_0803A814`: `WillFinish()`;
+- `func_0803A820`: movement/timer predicate;
+- `func_0803A840`: effect update wrapper;
+- `func_0803A870`: animation-change/reset wrapper;
+- `func_0803A8A0`: owner `GameObject *` getter.
 
-- `func_0803A320`: 0x14 / 0, signed-Q8 sine lookup from the 256-entry `gUnk_080F16D2` table;
-- `func_0803A334`: 0x1C / 0, quarter-turn signed-Q8 cosine lookup from the same table.
-
-Immediately before this pair, `func_0803A144` added 0x3C exact source bytes, and `func_08039A60` added 0x2EC exact source bytes. The adjacent destructor remains exact source at 0x70, and the earlier batch added 332 retail bytes across `39DA8`, `39E18`, `39A30`, and `39F50`.
-
-The broader recent family also promoted exact nearest-entity selection, coordinate-region tests, strategy selectors, state helpers, table/mask lookups, and strategy-pointer selection.
-
-Other major recovered areas include:
-
-| Area | Current state |
-| --- | --- |
-| Build/toolchain | Reproducible pinned FoMT compatibility compiler and exact retail build |
-| Input/hardware | Key input, Hardware context accessors, DMA/transfer queue, VBlank infrastructure |
-| Containers/resources | Intrusive callback list and substantial resource-handle/allocation logic |
-| Animation/effects | SpriteAnimator, packed provider parsing, EntityEffect lifecycle |
-| Characters | 43-entry character metadata, identity/social/location/schedule helpers, all 35 resident constructors |
-| Entity system | GameObject indexed lookup/teardown, Ball entity, substantial adjacent strategy/controller family |
-| Economy/items | MoneyState, typed shop catalogs, article interaction paths |
-| Editable graphics | 347 retail Tool/Food/Article icons plus code-proven special families |
-| Save format | Exact checksum/writer/slot geometry; loader research bounded and parked |
+Immediately preceding exact promotions include `func_0803A798`, `func_0803A350`, and the signed-Q8 trig pair `func_0803A320/334`.
 
 ## Current frontier
 
-The exact next code target is `func_0803A180` at `0x0803A180..0x0803A320` (0x1A0 / 416 bytes), the eight-caller shared movement/state helper immediately preceding the now-exact Q8 sine/cosine pair. Its sibling update family, 0x14 movement state, existing `Entity398A4Collision`, directional bound helpers, and `EntityEffect`/`SpriteAnimator` ownership are recovered; the next executable step is to write and measure `candidate-3a180-v1.cc`.
+Continue at **`0x0803A8A4`** in `asm/code_0803A8A4.s`. Map exact function boundaries, callers/callees, vtables, globals/tables, and likely TU/type ownership before choosing a candidate. Use existing source types and exact neighboring Entity38740 code as structural oracles.
 
-`39F90` is now behavior-complete and parked. The bounded isolated probes measured v12 **0x1B4 / 346**, v13 **0x1B4 / 341**, v14 **0x1AC / 359**, v15 **0x1B4 / 341**, and delayed resources-pointer v16 **0x1A8 / 373**. v13 and v15 compile to the same assembly and none reproduces retail's prologue ownership. This is a closed codegen frontier until new structural evidence appears. See `START_HERE.md` and `tools/ches/NEXT_AGENT_HANDOFF.md` for the exact `3A180` resume steps.
-
-The adjacent `func_08039E98` constructor is behavior-complete and exact-size in scratch at **0xB8 / 109 differing linked bytes**; it is parked on register/lifetime allocation.
+`func_0803A180`, `func_0803A394`, `func_08039F90`, `func_08039E98`, and the other generator-marked parked functions should not be reopened without genuinely new structural evidence.
 
 ## Asset status
 

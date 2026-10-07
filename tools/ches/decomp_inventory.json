@@ -3,17 +3,17 @@
   "note": "TU/region and priority fields are heuristic; addresses/calls are repository-derived evidence.",
   "summary": {
     "asm_files": 22,
-    "unresolved_functions": 2336,
-    "canonical_asm_code_bytes": 868424,
-    "function_range_bytes": 867260,
+    "unresolved_functions": 2334,
+    "canonical_asm_code_bytes": 868088,
+    "function_range_bytes": 866924,
     "unattributed_asm_code_bytes": 1164,
-    "function_range_coverage_pct": 99.866,
+    "function_range_coverage_pct": 99.8659,
     "unlinked_asm_definitions_skipped": 2,
     "unlinked_asm_definition_names": [
       "func_0802A7E0_asm",
       "func_0809CF34_asm"
     ],
-    "parked_functions": 7,
+    "parked_functions": 17,
     "runtime_library_functions": 33,
     "regions": 148,
     "repeated_shape_clusters": 184,
@@ -5252,7 +5252,7 @@
       "data_refs": [
         "gSongTable"
       ],
-      "direct_calls_in": 279,
+      "direct_calls_in": 278,
       "unique_callers": [
         "func_08000E1C",
         "func_08000FF8",
@@ -5293,7 +5293,6 @@
         "func_0802DE94",
         "func_0802E0FC",
         "func_0802EC00",
-        "func_0803A350",
         "func_0803C028",
         "func_0804F7A4",
         "func_08051504",
@@ -5366,24 +5365,23 @@
         "sub_080C4AE0",
         "sub_080C4BBC"
       ],
-      "unique_caller_count": 111,
+      "unique_caller_count": 110,
       "caller_files": [
         "asm/code_0803A8A4.s",
         "asm/code_0803EE94.s",
         "asm/code_809E804.s",
         "asm/code_entities.s",
-        "asm/code_entities_08034CEC.s",
         "asm/code_linkonce.s",
         "asm/game_state.s",
         "asm/intro_scene.s",
         "asm/new_game.s"
       ],
-      "caller_file_count": 9,
+      "caller_file_count": 8,
       "source_anchor_callees": [
         "m4aMPlayStart"
       ],
       "region_id": "asm/hardware.s:0800894C-08008E64",
-      "priority_score": 936.75
+      "priority_score": 923.75
     },
     {
       "symbol": "func_08008B88",
@@ -5820,7 +5818,7 @@
       "normalized_signature": "1718acfe441c3e4b35293dd4f2a30807e3fb1957",
       "direct_callees": [],
       "data_refs": [],
-      "direct_calls_in": 71,
+      "direct_calls_in": 70,
       "unique_callers": [
         "func_08012464",
         "func_08016784",
@@ -5856,25 +5854,23 @@
         "func_0802E0FC",
         "func_0802EC00",
         "func_0802F0EC",
-        "func_0803A350",
         "func_0804F7A4",
         "func_080DE298",
         "sub_0802FBFC",
         "sub_08031D74",
         "sub_080DA76C"
       ],
-      "unique_caller_count": 40,
+      "unique_caller_count": 39,
       "caller_files": [
         "asm/code_0803EE94.s",
         "asm/code_entities.s",
-        "asm/code_entities_08034CEC.s",
         "asm/code_linkonce.s",
         "asm/game_state.s"
       ],
-      "caller_file_count": 5,
+      "caller_file_count": 4,
       "source_anchor_callees": [],
       "region_id": "asm/hardware.s:0800894C-08008E64",
-      "priority_score": 351.75
+      "priority_score": 338.75
     },
     {
       "symbol": "func_08008D3C",
@@ -26427,7 +26423,7 @@
       "asm_file": "asm/code_entities_08034CEC.s",
       "line": 3359,
       "linked_section": ".text.after_ball_run1",
-      "status": "assembly",
+      "status": "parked",
       "runtime_library": false,
       "instruction_count": 219,
       "opcode_signature": "a95a1f5b020dea1bdfa1282cdf50440aa6e5e448",
@@ -26455,7 +26451,7 @@
         "_call_via_r3"
       ],
       "region_id": "asm/code_entities_08034CEC.s:08038110-08038300",
-      "priority_score": 37.0
+      "priority_score": -23.0
     },
     {
       "symbol": "func_08038398",
@@ -26571,7 +26567,7 @@
       "asm_file": "asm/code_entities_08034CEC.s",
       "line": 3989,
       "linked_section": ".text.after_entity38740_0c",
-      "status": "assembly",
+      "status": "parked",
       "runtime_library": false,
       "instruction_count": 118,
       "opcode_signature": "f7eb07d93a00ef2305d43cb74e970290f814f486",
@@ -26602,7 +26598,7 @@
         "func_080A4740"
       ],
       "region_id": "asm/code_entities_08034CEC.s:08038820-08038E90",
-      "priority_score": 26.5
+      "priority_score": -33.5
     },
     {
       "symbol": "func_08038928",
@@ -26723,7 +26719,7 @@
       "asm_file": "asm/code_entities_08034CEC.s",
       "line": 4831,
       "linked_section": ".text.after_entity38740_eb8",
-      "status": "assembly",
+      "status": "parked",
       "runtime_library": false,
       "instruction_count": 218,
       "opcode_signature": "1931ae94cb422b5c397b4441348c3a0cb18d7fb9",
@@ -26753,7 +26749,7 @@
         "func_080A4A00"
       ],
       "region_id": "asm/code_entities_08034CEC.s:08038EE0-080390D0",
-      "priority_score": 41.0
+      "priority_score": -19.0
     },
     {
       "symbol": "func_08039204",
@@ -26764,7 +26760,7 @@
       "asm_file": "asm/code_entities_08034CEC.s",
       "line": 5091,
       "linked_section": ".text.after_entity39200",
-      "status": "assembly",
+      "status": "parked",
       "runtime_library": false,
       "instruction_count": 125,
       "opcode_signature": "9a1ebdf351fb507736caef5c84121a674a97febd",
@@ -26790,7 +26786,7 @@
         "func_0809C098"
       ],
       "region_id": "asm/code_entities_08034CEC.s:08039204-0803930C",
-      "priority_score": 24.5
+      "priority_score": -35.5
     },
     {
       "symbol": "func_08039310",
@@ -26801,7 +26797,7 @@
       "asm_file": "asm/code_entities_08034CEC.s",
       "line": 5232,
       "linked_section": ".text.after_entity3930c",
-      "status": "assembly",
+      "status": "parked",
       "runtime_library": false,
       "instruction_count": 255,
       "opcode_signature": "1594188d83931edd41e7134f5f8438a17e08619a",
@@ -26838,7 +26834,7 @@
         "func_0809C0BC"
       ],
       "region_id": "asm/code_entities_08034CEC.s:08039310-080396F4",
-      "priority_score": 54.75
+      "priority_score": -5.25
     },
     {
       "symbol": "func_0803955C",
@@ -26849,7 +26845,7 @@
       "asm_file": "asm/code_entities_08034CEC.s",
       "line": 5525,
       "linked_section": ".text.after_entity3930c",
-      "status": "assembly",
+      "status": "parked",
       "runtime_library": false,
       "instruction_count": 173,
       "opcode_signature": "33caad8e1d7e0aaca52d0cab73f07ab1f89385e4",
@@ -26883,7 +26879,7 @@
         "func_0809C0BC"
       ],
       "region_id": "asm/code_entities_08034CEC.s:08039310-080396F4",
-      "priority_score": 41.5
+      "priority_score": -18.5
     },
     {
       "symbol": "func_08039708",
@@ -26894,7 +26890,7 @@
       "asm_file": "asm/code_entities_08034CEC.s",
       "line": 5725,
       "linked_section": ".text.after_entity396f4",
-      "status": "assembly",
+      "status": "parked",
       "runtime_library": false,
       "instruction_count": 176,
       "opcode_signature": "2a54d786c524bb5fe480953562c4fdf82be2e686",
@@ -26929,7 +26925,7 @@
         "func_0809C0BC"
       ],
       "region_id": "asm/code_entities_08034CEC.s:08039708-080398A0",
-      "priority_score": 41.5
+      "priority_score": -18.5
     },
     {
       "symbol": "func_08039E98",
@@ -26940,7 +26936,7 @@
       "asm_file": "asm/code_entities_08034CEC.s",
       "line": 5932,
       "linked_section": ".text.after_entity39e8c",
-      "status": "assembly",
+      "status": "parked",
       "runtime_library": false,
       "instruction_count": 78,
       "opcode_signature": "7308ab13b983b230ce367bffc952d5f12a2398cb",
@@ -26975,7 +26971,7 @@
         "func_080A4A00"
       ],
       "region_id": "asm/code_entities_08034CEC.s:08039E98-08039F50",
-      "priority_score": 47.5
+      "priority_score": -12.5
     },
     {
       "symbol": "func_08039F90",
@@ -27038,7 +27034,7 @@
       "asm_file": "asm/code_entities_08034CEC.s",
       "line": 6240,
       "linked_section": ".text.after_entity3a144",
-      "status": "assembly",
+      "status": "parked",
       "runtime_library": false,
       "instruction_count": 199,
       "opcode_signature": "3d8ed513c39d7b247c5aa5bdb61343b8fbaff46f",
@@ -27075,43 +27071,7 @@
         "func_0805E8F0"
       ],
       "region_id": "asm/code_entities_08034CEC.s:0803A180-0803A320",
-      "priority_score": 99.0
-    },
-    {
-      "symbol": "func_0803A350",
-      "address": 134456144,
-      "address_hex": "0x0803A350",
-      "size": 68,
-      "size_hex": "0x44",
-      "asm_file": "asm/code_entities_08034CEC.s",
-      "line": 6462,
-      "linked_section": ".text.after_entity3a334",
-      "status": "assembly",
-      "runtime_library": false,
-      "instruction_count": 31,
-      "opcode_signature": "fd6963319acc88e9c81bfa0939e26f40882bc6c4",
-      "normalized_signature": "aef357384e6f880ca82d6be2be26a27bc842f0f8",
-      "direct_callees": [
-        "_call_via_r1",
-        "func_08008B6C",
-        "func_08008CD0"
-      ],
-      "data_refs": [],
-      "direct_calls_in": 2,
-      "unique_callers": [
-        "func_080DD460",
-        "func_080DD9CC"
-      ],
-      "unique_caller_count": 2,
-      "caller_files": [
-        "asm/code_linkonce.s"
-      ],
-      "caller_file_count": 1,
-      "source_anchor_callees": [
-        "_call_via_r1"
-      ],
-      "region_id": "asm/code_entities_08034CEC.s:0803A350-0803A8A4",
-      "priority_score": 27.25
+      "priority_score": 39.0
     },
     {
       "symbol": "func_0803A394",
@@ -27120,9 +27080,9 @@
       "size": 1028,
       "size_hex": "0x404",
       "asm_file": "asm/code_entities_08034CEC.s",
-      "line": 6500,
-      "linked_section": ".text.after_entity3a334",
-      "status": "assembly",
+      "line": 6462,
+      "linked_section": ".text.after_entity3a350",
+      "status": "parked",
       "runtime_library": false,
       "instruction_count": 399,
       "opcode_signature": "a90d09df3c8b6583b9849b6e05e7cf4f5d6c95ce",
@@ -27162,41 +27122,8 @@
         "__builtin_new",
         "func_0803A144"
       ],
-      "region_id": "asm/code_entities_08034CEC.s:0803A350-0803A8A4",
-      "priority_score": 81.25
-    },
-    {
-      "symbol": "func_0803A798",
-      "address": 134457240,
-      "address_hex": "0x0803A798",
-      "size": 268,
-      "size_hex": "0x10C",
-      "asm_file": "asm/code_entities_08034CEC.s",
-      "line": 6989,
-      "linked_section": ".text.after_entity3a334",
-      "status": "assembly",
-      "runtime_library": false,
-      "instruction_count": 47,
-      "opcode_signature": "0c095cccce6ed639d2ebdb1b8820ccb9b808fb39",
-      "normalized_signature": "65f1562304fe9a0a448b6a9588ea9c383a5e0876",
-      "direct_callees": [
-        "__7AEntityP10GameObjectRC8Location",
-        "__builtin_new"
-      ],
-      "data_refs": [
-        "vtable_unk_080E7568"
-      ],
-      "direct_calls_in": 0,
-      "unique_callers": [],
-      "unique_caller_count": 0,
-      "caller_files": [],
-      "caller_file_count": 0,
-      "source_anchor_callees": [
-        "__7AEntityP10GameObjectRC8Location",
-        "__builtin_new"
-      ],
-      "region_id": "asm/code_entities_08034CEC.s:0803A350-0803A8A4",
-      "priority_score": 20.75
+      "region_id": "asm/code_entities_08034CEC.s:0803A394-0803A798",
+      "priority_score": 21.25
     },
     {
       "symbol": "func_0803A8A4",
@@ -86722,10 +86649,11 @@
       "caller_files": [],
       "caller_file_count": 0,
       "source_anchor_callees": [
+        "func_0803A350",
         "func_0805E8F0"
       ],
       "region_id": "asm/code_linkonce.s:080DC96C-080DFE84",
-      "priority_score": 10.25
+      "priority_score": 12.25
     },
     {
       "symbol": "func_080DD4E4",
@@ -87348,11 +87276,12 @@
       "caller_file_count": 0,
       "source_anchor_callees": [
         "func_0803A144",
+        "func_0803A350",
         "func_0805E860",
         "func_0805E8F0"
       ],
       "region_id": "asm/code_linkonce.s:080DC96C-080DFE84",
-      "priority_score": 42.75
+      "priority_score": 44.75
     },
     {
       "symbol": "func_080DDC18",
@@ -94891,6 +94820,7 @@
         "func_0803A144",
         "func_0803A320",
         "func_0803A334",
+        "func_0803A350",
         "func_0805E860",
         "func_0805E8F0",
         "func_080A4A00",
@@ -94898,7 +94828,7 @@
       ],
       "incoming_cross_region_count": 1,
       "median_function_size": 20,
-      "priority_score": 14271.0
+      "priority_score": 14295.0
     },
     {
       "region_id": "asm/code_809E804.s:080CDC00-080D0C10",
@@ -99427,9 +99357,9 @@
         "m4aSoundVSyncOff",
         "m4aSoundVSyncOn"
       ],
-      "incoming_cross_region_count": 50,
+      "incoming_cross_region_count": 49,
       "median_function_size": 28,
-      "priority_score": 4584.0
+      "priority_score": 4552.0
     },
     {
       "region_id": "asm/code_0803EE94.s:08065B14-08069C34",
@@ -100029,41 +99959,6 @@
       "priority_score": 2302.0
     },
     {
-      "region_id": "asm/code_entities_08034CEC.s:08038820-08038E90",
-      "asm_file": "asm/code_entities_08034CEC.s",
-      "start": 134449184,
-      "end": 134450832,
-      "functions": [
-        "func_08038820",
-        "func_08038928",
-        "func_08038A70",
-        "func_08038DF0"
-      ],
-      "function_count": 4,
-      "total_function_bytes": 1648,
-      "tractable_bytes": 1648,
-      "large_function_bytes": 0,
-      "large_function_count": 0,
-      "parked_bytes": 0,
-      "runtime_library_bytes": 0,
-      "repeated_family_functions": 0,
-      "source_anchor_callees": [
-        "__builtin_delete",
-        "__builtin_new",
-        "_call_via_r1",
-        "_call_via_r2",
-        "_call_via_r3",
-        "_call_via_r4",
-        "func_0805E8F0",
-        "func_080A4740",
-        "func_080A480C",
-        "func_080A4944"
-      ],
-      "incoming_cross_region_count": 0,
-      "median_function_size": 296,
-      "priority_score": 1888.0
-    },
-    {
       "region_id": "asm/code_0803EE94.s:0807D218-0807DE0C",
       "asm_file": "asm/code_0803EE94.s",
       "start": 134730264,
@@ -100116,6 +100011,41 @@
       "incoming_cross_region_count": 2,
       "median_function_size": 64,
       "priority_score": 1852.0
+    },
+    {
+      "region_id": "asm/code_entities_08034CEC.s:08038820-08038E90",
+      "asm_file": "asm/code_entities_08034CEC.s",
+      "start": 134449184,
+      "end": 134450832,
+      "functions": [
+        "func_08038820",
+        "func_08038928",
+        "func_08038A70",
+        "func_08038DF0"
+      ],
+      "function_count": 4,
+      "total_function_bytes": 1648,
+      "tractable_bytes": 1648,
+      "large_function_bytes": 0,
+      "large_function_count": 0,
+      "parked_bytes": 264,
+      "runtime_library_bytes": 0,
+      "repeated_family_functions": 0,
+      "source_anchor_callees": [
+        "__builtin_delete",
+        "__builtin_new",
+        "_call_via_r1",
+        "_call_via_r2",
+        "_call_via_r3",
+        "_call_via_r4",
+        "func_0805E8F0",
+        "func_080A4740",
+        "func_080A480C",
+        "func_080A4944"
+      ],
+      "incoming_cross_region_count": 0,
+      "median_function_size": 296,
+      "priority_score": 1756.0
     },
     {
       "region_id": "asm/code_entities_08034CEC.s:08037C08-08038028",
@@ -100196,34 +100126,6 @@
       "priority_score": 1628.0
     },
     {
-      "region_id": "asm/code_entities_08034CEC.s:0803A350-0803A8A4",
-      "asm_file": "asm/code_entities_08034CEC.s",
-      "start": 134456144,
-      "end": 134457508,
-      "functions": [
-        "func_0803A350",
-        "func_0803A394",
-        "func_0803A798"
-      ],
-      "function_count": 3,
-      "total_function_bytes": 1364,
-      "tractable_bytes": 1364,
-      "large_function_bytes": 0,
-      "large_function_count": 0,
-      "parked_bytes": 0,
-      "runtime_library_bytes": 0,
-      "repeated_family_functions": 0,
-      "source_anchor_callees": [
-        "__7AEntityP10GameObjectRC8Location",
-        "__builtin_new",
-        "_call_via_r1",
-        "func_0803A144"
-      ],
-      "incoming_cross_region_count": 1,
-      "median_function_size": 268,
-      "priority_score": 1492.0
-    },
-    {
       "region_id": "asm/code_809E804.s:080A5AB0-080A5EA0",
       "asm_file": "asm/code_809E804.s",
       "start": 134896304,
@@ -100283,39 +100185,6 @@
       "incoming_cross_region_count": 12,
       "median_function_size": 116,
       "priority_score": 1244.0
-    },
-    {
-      "region_id": "asm/code_entities_08034CEC.s:08039310-080396F4",
-      "asm_file": "asm/code_entities_08034CEC.s",
-      "start": 134451984,
-      "end": 134452980,
-      "functions": [
-        "func_08039310",
-        "func_0803955C"
-      ],
-      "function_count": 2,
-      "total_function_bytes": 996,
-      "tractable_bytes": 996,
-      "large_function_bytes": 0,
-      "large_function_count": 0,
-      "parked_bytes": 0,
-      "runtime_library_bytes": 0,
-      "repeated_family_functions": 0,
-      "source_anchor_callees": [
-        "SetAnimFacing__12AActorEntityUi",
-        "_call_via_r1",
-        "_call_via_r2",
-        "func_08039134",
-        "func_080391C0",
-        "func_0809C060",
-        "func_0809C068",
-        "func_0809C0A0",
-        "func_0809C0AC",
-        "func_0809C0BC"
-      ],
-      "incoming_cross_region_count": 0,
-      "median_function_size": 498,
-      "priority_score": 1236.0
     },
     {
       "region_id": "asm/code_0803EE94.s:0809ADA8-0809B104",
@@ -100555,6 +100424,39 @@
       "priority_score": 844.0
     },
     {
+      "region_id": "asm/code_entities_08034CEC.s:08039310-080396F4",
+      "asm_file": "asm/code_entities_08034CEC.s",
+      "start": 134451984,
+      "end": 134452980,
+      "functions": [
+        "func_08039310",
+        "func_0803955C"
+      ],
+      "function_count": 2,
+      "total_function_bytes": 996,
+      "tractable_bytes": 996,
+      "large_function_bytes": 0,
+      "large_function_count": 0,
+      "parked_bytes": 996,
+      "runtime_library_bytes": 0,
+      "repeated_family_functions": 0,
+      "source_anchor_callees": [
+        "SetAnimFacing__12AActorEntityUi",
+        "_call_via_r1",
+        "_call_via_r2",
+        "func_08039134",
+        "func_080391C0",
+        "func_0809C060",
+        "func_0809C068",
+        "func_0809C0A0",
+        "func_0809C0AC",
+        "func_0809C0BC"
+      ],
+      "incoming_cross_region_count": 0,
+      "median_function_size": 498,
+      "priority_score": 738.0
+    },
+    {
       "region_id": "asm/game_state.s:080179CC-08017C00",
       "asm_file": "asm/game_state.s",
       "start": 134314444,
@@ -100580,33 +100482,6 @@
       "incoming_cross_region_count": 0,
       "median_function_size": 564,
       "priority_score": 684.0
-    },
-    {
-      "region_id": "asm/code_entities_08034CEC.s:08038EE0-080390D0",
-      "asm_file": "asm/code_entities_08034CEC.s",
-      "start": 134450912,
-      "end": 134451408,
-      "functions": [
-        "func_08038EE0"
-      ],
-      "function_count": 1,
-      "total_function_bytes": 496,
-      "tractable_bytes": 496,
-      "large_function_bytes": 0,
-      "large_function_count": 0,
-      "parked_bytes": 0,
-      "runtime_library_bytes": 0,
-      "repeated_family_functions": 0,
-      "source_anchor_callees": [
-        "__builtin_delete",
-        "__builtin_new",
-        "_call_via_r1",
-        "_call_via_r2",
-        "func_080A4A00"
-      ],
-      "incoming_cross_region_count": 0,
-      "median_function_size": 496,
-      "priority_score": 616.0
     },
     {
       "region_id": "asm/more_items.s:0800FF8C-0801004C",
@@ -100637,34 +100512,28 @@
       "priority_score": 608.0
     },
     {
-      "region_id": "asm/code_entities_08034CEC.s:08039708-080398A0",
+      "region_id": "asm/code_entities_08034CEC.s:0803A394-0803A798",
       "asm_file": "asm/code_entities_08034CEC.s",
-      "start": 134453000,
-      "end": 134453408,
+      "start": 134456212,
+      "end": 134457240,
       "functions": [
-        "func_08039708"
+        "func_0803A394"
       ],
       "function_count": 1,
-      "total_function_bytes": 408,
-      "tractable_bytes": 408,
+      "total_function_bytes": 1028,
+      "tractable_bytes": 1028,
       "large_function_bytes": 0,
       "large_function_count": 0,
-      "parked_bytes": 0,
+      "parked_bytes": 1028,
       "runtime_library_bytes": 0,
       "repeated_family_functions": 0,
       "source_anchor_callees": [
-        "SetAnimFacing__12AActorEntityUi",
-        "_call_via_r2",
-        "func_080323C8",
-        "func_08039134",
-        "func_0809C060",
-        "func_0809C0A0",
-        "func_0809C0AC",
-        "func_0809C0BC"
+        "__builtin_new",
+        "func_0803A144"
       ],
-      "incoming_cross_region_count": 0,
-      "median_function_size": 408,
-      "priority_score": 600.0
+      "incoming_cross_region_count": 1,
+      "median_function_size": 1028,
+      "priority_score": 594.0
     },
     {
       "region_id": "asm/code_809E804.s:080A6474-080A6640",
@@ -100741,31 +100610,6 @@
       "incoming_cross_region_count": 10,
       "median_function_size": 4,
       "priority_score": 588.0
-    },
-    {
-      "region_id": "asm/code_entities_08034CEC.s:08038110-08038300",
-      "asm_file": "asm/code_entities_08034CEC.s",
-      "start": 134447376,
-      "end": 134447872,
-      "functions": [
-        "func_08038110"
-      ],
-      "function_count": 1,
-      "total_function_bytes": 496,
-      "tractable_bytes": 496,
-      "large_function_bytes": 0,
-      "large_function_count": 0,
-      "parked_bytes": 0,
-      "runtime_library_bytes": 0,
-      "repeated_family_functions": 0,
-      "source_anchor_callees": [
-        "GetLocation__C7AEntity",
-        "_call_via_r2",
-        "_call_via_r3"
-      ],
-      "incoming_cross_region_count": 0,
-      "median_function_size": 496,
-      "priority_score": 568.0
     },
     {
       "region_id": "asm/code_809E804.s:080A4F50-080A5670",
@@ -100917,30 +100761,6 @@
       "incoming_cross_region_count": 0,
       "median_function_size": 86,
       "priority_score": 500.0
-    },
-    {
-      "region_id": "asm/code_entities_08034CEC.s:0803A180-0803A320",
-      "asm_file": "asm/code_entities_08034CEC.s",
-      "start": 134455680,
-      "end": 134456096,
-      "functions": [
-        "func_0803A180"
-      ],
-      "function_count": 1,
-      "total_function_bytes": 416,
-      "tractable_bytes": 416,
-      "large_function_bytes": 0,
-      "large_function_count": 0,
-      "parked_bytes": 0,
-      "runtime_library_bytes": 0,
-      "repeated_family_functions": 0,
-      "source_anchor_callees": [
-        "_call_via_r3",
-        "func_0805E8F0"
-      ],
-      "incoming_cross_region_count": 1,
-      "median_function_size": 416,
-      "priority_score": 496.0
     },
     {
       "region_id": "asm/interrupt.s:080004C4-0800059C",
@@ -101199,6 +101019,36 @@
       "priority_score": 404.0
     },
     {
+      "region_id": "asm/code_entities_08034CEC.s:08039708-080398A0",
+      "asm_file": "asm/code_entities_08034CEC.s",
+      "start": 134453000,
+      "end": 134453408,
+      "functions": [
+        "func_08039708"
+      ],
+      "function_count": 1,
+      "total_function_bytes": 408,
+      "tractable_bytes": 408,
+      "large_function_bytes": 0,
+      "large_function_count": 0,
+      "parked_bytes": 408,
+      "runtime_library_bytes": 0,
+      "repeated_family_functions": 0,
+      "source_anchor_callees": [
+        "SetAnimFacing__12AActorEntityUi",
+        "_call_via_r2",
+        "func_080323C8",
+        "func_08039134",
+        "func_0809C060",
+        "func_0809C0A0",
+        "func_0809C0AC",
+        "func_0809C0BC"
+      ],
+      "incoming_cross_region_count": 0,
+      "median_function_size": 408,
+      "priority_score": 396.0
+    },
+    {
       "region_id": "asm/main.s:0800018C-080002E0",
       "asm_file": "asm/main.s",
       "start": 134218124,
@@ -101273,30 +101123,30 @@
       "priority_score": 370.0
     },
     {
-      "region_id": "asm/code_entities_08034CEC.s:08039E98-08039F50",
+      "region_id": "asm/code_entities_08034CEC.s:08038EE0-080390D0",
       "asm_file": "asm/code_entities_08034CEC.s",
-      "start": 134454936,
-      "end": 134455120,
+      "start": 134450912,
+      "end": 134451408,
       "functions": [
-        "func_08039E98"
+        "func_08038EE0"
       ],
       "function_count": 1,
-      "total_function_bytes": 184,
-      "tractable_bytes": 184,
+      "total_function_bytes": 496,
+      "tractable_bytes": 496,
       "large_function_bytes": 0,
       "large_function_count": 0,
-      "parked_bytes": 0,
+      "parked_bytes": 496,
       "runtime_library_bytes": 0,
       "repeated_family_functions": 0,
       "source_anchor_callees": [
+        "__builtin_delete",
         "__builtin_new",
         "_call_via_r1",
-        "_call_via_r3",
-        "func_080A4740",
+        "_call_via_r2",
         "func_080A4A00"
       ],
-      "incoming_cross_region_count": 2,
-      "median_function_size": 184,
+      "incoming_cross_region_count": 0,
+      "median_function_size": 496,
       "priority_score": 368.0
     },
     {
@@ -101323,32 +101173,6 @@
       "incoming_cross_region_count": 6,
       "median_function_size": 68,
       "priority_score": 364.0
-    },
-    {
-      "region_id": "asm/code_entities_08034CEC.s:08039204-0803930C",
-      "asm_file": "asm/code_entities_08034CEC.s",
-      "start": 134451716,
-      "end": 134451980,
-      "functions": [
-        "func_08039204"
-      ],
-      "function_count": 1,
-      "total_function_bytes": 264,
-      "tractable_bytes": 264,
-      "large_function_bytes": 0,
-      "large_function_count": 0,
-      "parked_bytes": 0,
-      "runtime_library_bytes": 0,
-      "repeated_family_functions": 0,
-      "source_anchor_callees": [
-        "SetAnimFacing__12AActorEntityUi",
-        "SetMap__7AEntityUi",
-        "func_080391C0",
-        "func_0809C098"
-      ],
-      "incoming_cross_region_count": 0,
-      "median_function_size": 264,
-      "priority_score": 360.0
     },
     {
       "region_id": "asm/code_entities_08034CEC.s:08036900-080369E0",
@@ -101429,6 +101253,31 @@
       "priority_score": 336.0
     },
     {
+      "region_id": "asm/code_entities_08034CEC.s:08038110-08038300",
+      "asm_file": "asm/code_entities_08034CEC.s",
+      "start": 134447376,
+      "end": 134447872,
+      "functions": [
+        "func_08038110"
+      ],
+      "function_count": 1,
+      "total_function_bytes": 496,
+      "tractable_bytes": 496,
+      "large_function_bytes": 0,
+      "large_function_count": 0,
+      "parked_bytes": 496,
+      "runtime_library_bytes": 0,
+      "repeated_family_functions": 0,
+      "source_anchor_callees": [
+        "GetLocation__C7AEntity",
+        "_call_via_r2",
+        "_call_via_r3"
+      ],
+      "incoming_cross_region_count": 0,
+      "median_function_size": 496,
+      "priority_score": 320.0
+    },
+    {
       "region_id": "asm/scene.s:0800082C-08000914",
       "asm_file": "asm/scene.s",
       "start": 134219820,
@@ -101477,6 +101326,30 @@
       "priority_score": 296.0
     },
     {
+      "region_id": "asm/code_entities_08034CEC.s:0803A180-0803A320",
+      "asm_file": "asm/code_entities_08034CEC.s",
+      "start": 134455680,
+      "end": 134456096,
+      "functions": [
+        "func_0803A180"
+      ],
+      "function_count": 1,
+      "total_function_bytes": 416,
+      "tractable_bytes": 416,
+      "large_function_bytes": 0,
+      "large_function_count": 0,
+      "parked_bytes": 416,
+      "runtime_library_bytes": 0,
+      "repeated_family_functions": 0,
+      "source_anchor_callees": [
+        "_call_via_r3",
+        "func_0805E8F0"
+      ],
+      "incoming_cross_region_count": 1,
+      "median_function_size": 416,
+      "priority_score": 288.0
+    },
+    {
       "region_id": "asm/code_lib_sram.s:080D3778-080D390C",
       "asm_file": "asm/code_lib_sram.s",
       "start": 135083896,
@@ -101503,6 +101376,33 @@
       "incoming_cross_region_count": 1,
       "median_function_size": 60,
       "priority_score": 285.0
+    },
+    {
+      "region_id": "asm/code_entities_08034CEC.s:08039E98-08039F50",
+      "asm_file": "asm/code_entities_08034CEC.s",
+      "start": 134454936,
+      "end": 134455120,
+      "functions": [
+        "func_08039E98"
+      ],
+      "function_count": 1,
+      "total_function_bytes": 184,
+      "tractable_bytes": 184,
+      "large_function_bytes": 0,
+      "large_function_count": 0,
+      "parked_bytes": 184,
+      "runtime_library_bytes": 0,
+      "repeated_family_functions": 0,
+      "source_anchor_callees": [
+        "__builtin_new",
+        "_call_via_r1",
+        "_call_via_r3",
+        "func_080A4740",
+        "func_080A4A00"
+      ],
+      "incoming_cross_region_count": 2,
+      "median_function_size": 184,
+      "priority_score": 276.0
     },
     {
       "region_id": "asm/game_state.s:0801FD3C-0801FD78",
@@ -101650,6 +101550,32 @@
       "incoming_cross_region_count": 0,
       "median_function_size": 164,
       "priority_score": 236.0
+    },
+    {
+      "region_id": "asm/code_entities_08034CEC.s:08039204-0803930C",
+      "asm_file": "asm/code_entities_08034CEC.s",
+      "start": 134451716,
+      "end": 134451980,
+      "functions": [
+        "func_08039204"
+      ],
+      "function_count": 1,
+      "total_function_bytes": 264,
+      "tractable_bytes": 264,
+      "large_function_bytes": 0,
+      "large_function_count": 0,
+      "parked_bytes": 264,
+      "runtime_library_bytes": 0,
+      "repeated_family_functions": 0,
+      "source_anchor_callees": [
+        "SetAnimFacing__12AActorEntityUi",
+        "SetMap__7AEntityUi",
+        "func_080391C0",
+        "func_0809C098"
+      ],
+      "incoming_cross_region_count": 0,
+      "median_function_size": 264,
+      "priority_score": 228.0
     },
     {
       "region_id": "asm/code_entities_08034CEC.s:08036BB0-08036C48",

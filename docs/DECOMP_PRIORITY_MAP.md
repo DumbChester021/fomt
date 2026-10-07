@@ -12,11 +12,11 @@ exploit them across the remaining assembly instead of making an individual
 resource family the main queue.
 
 Current exact `main` state:
-- code: **71,612 / 940,036 = 7.6180%**;
-- assembly remaining: **868,424 bytes**;
-- remaining linked assembly functions: **2,336**;
+- code: **71,948 / 940,036 = 7.6537%**;
+- assembly remaining: **868,088 bytes**;
+- remaining linked assembly functions: **2,334**;
 - data/assets: **75,334 / 6,777,404 = 1.1115%**;
-- overall meaningful ROM: **147,342 / 7,717,440 = 1.9092%**;
+- overall meaningful ROM: **147,678 / 7,717,440 = 1.9136%**;
 - packed bank: **416 / 493 semantically owned animations**;
 - retail ROM remains exact at SHA1 `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
 
@@ -55,7 +55,7 @@ but its score is no longer an execution order.
 
 The throughput pipeline is operational. The Ball family remains parked at its documented mover seam. The adjacent `vtable_unk_080E7380` family now owns **316 exact retail bytes** in source: 224 bytes of entity surface plus 92 bytes of controller helpers. Controller constructor `0x08038820` is behavior-complete and exact-size but bounded by register-lifetime codegen.
 
-The raw queue still begins with deliberately parked work, so score is not execution order. The full five-slot Entity38740 strategy interface is mapped; paired mode-4 setup helpers `39DA8/39E18`, factory `39A30`, destructor `39F50`, owner constructor/destructor `398A4/399C0`, `39A60`, and `3A144` are exact. Constructor `39E98` and behavior-complete `39F90` are parked on register allocation. The adjacent Q8 lookup pair `3A320/3A334` is now exact source on the first natural typed model. Structural continuity is the eight-caller `func_0803A180` (0x1A0); its sibling-vtable family, 0x14 movement state, `Entity398A4Collision`, directional bound helpers, and `EntityEffect`/`SpriteAnimator` ownership are recovered. Write and measure the first natural V1 before any source-shape variants.
+The raw queue can still rank parked work highly, so score is not execution order. The Entity38740/Entity398A4 region now owns exact source through the seven-helper tail `3A804..3A8A0`, including preceding exact `3A798`, `3A350`, `3A320/334`, `39A60`, `3A144`, `398A4/399C0`, and related strategy helpers. `39E98`, `39F90`, `3A180`, and `3A394` are explicitly parked after bounded natural-source work. Structural continuity now moves to `0x0803A8A4` in `asm/code_0803A8A4.s`; map the next coherent TU/type/repeated family and solve one representative before propagation.
 
 ### 1. Keep the function/TU inventory current
 

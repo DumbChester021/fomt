@@ -1,6 +1,6 @@
 # FoMT Project Charter for Coding Agents
 
-Read this file before changing the repository. It records the standing goals and working rules for this local project. For decompilation or matching work, also read `/mnt/data/Ches/codex-bridge-home/skills/decompilation/SKILL.md`; that reusable skill owns the generic reverse-engineering workflow. Then read `START_HERE.md` for authoritative live state, `docs/DECOMP_PLAYBOOK.md` for the FoMT-specific process and proven lessons, `docs/DECOMP_PRIORITY_MAP.md` for leverage-first target selection, and `tools/ches/NEXT_AGENT_HANDOFF.md` for the exact next work. `tools/ches/SESSION_STATUS.md` keeps the current snapshot plus chronology. For Call238/compiler-sensitive work, `tools/ches/checkpoints/call238/EXPERIMENT_INDEX.md` and `FAILURES_AND_CLOSED_PATHS.md` are mandatory anti-rediscovery reading before any new experiment.
+Read this file before changing the repository. It records the standing goals and working rules for this local project. For decompilation or matching work, also read `/mnt/data/Ches/codex-bridge-home/skills/decompilation/SKILL.md`; that reusable skill owns the generic reverse-engineering workflow. Then read `START_HERE.md` for authoritative live state, `docs/DECOMP_PLAYBOOK.md` for the FoMT-specific process and proven lessons, `docs/DECOMP_PRIORITY_MAP.md` for leverage-first target selection, and `tools/ches/NEXT_AGENT_HANDOFF.md` for the exact next work. `tools/ches/SESSION_STATUS.md` keeps a concise current snapshot. Detailed chronology belongs in Git history and dated checkpoint/experiment files. For Call238/compiler-sensitive work, `tools/ches/checkpoints/call238/EXPERIMENT_INDEX.md` and `FAILURES_AND_CLOSED_PATHS.md` are mandatory anti-rediscovery reading before any new experiment.
 
 This is a project coordination file carried on the public fork. Do not include agent/research coordination material in an upstream pull request unless the user explicitly requests that.
 
@@ -173,7 +173,7 @@ The documentation is deliberately layered. Do not make a fresh agent infer curre
 - `docs/DECOMP_PLAYBOOK.md` owns the durable process: definition of done, exact validation ladder, do/don't rules, proven source-shape lessons, integration discipline, documentation duties, and commit/push rules.
 - `docs/DECOMP_PRIORITY_MAP.md` owns leverage-first roadmap decisions, fan-out evidence, architectural target tiers, and why a non-adjacent target may supersede the nearest address.
 - `tools/ches/NEXT_AGENT_HANDOFF.md` owns the exact next task: current candidates, exact mismatch counts, next hypothesis, and ordered execution sequence.
-- `tools/ches/SESSION_STATUS.md` owns current snapshot plus historical chronology. The authoritative snapshot at its top supersedes older “current” paragraphs below.
+- `tools/ches/SESSION_STATUS.md` owns a concise current snapshot and verification state. Do not append session chronology to it; use Git history and dated checkpoints.
 - `docs/DECOMP_NOTES.md` owns cross-cutting function/subsystem semantics and matching lessons that do not yet merit a stable dedicated architecture page.
 - Dedicated tracked subsystem docs such as `docs/KEY_INPUT.md`, `docs/SAVE_FORMAT.md`, and `docs/CHARACTERS.md` own stable human-facing architecture for their respective domains. Continue creating/updating this class of document when a recovered subsystem or shared type becomes durable enough to stand on its own.
 - `docs/REPO_MAP.md` owns repository/module orientation and the index of important subsystem docs.
@@ -181,7 +181,7 @@ The documentation is deliberately layered. Do not make a fresh agent infer curre
 - `EXPERIMENT_INDEX.md` owns experiment/result lookup.
 - `FAILURES_AND_CLOSED_PATHS.md` owns anti-rediscovery failures and reopened-path criteria.
 
-Documentation is part of completion, not optional bookkeeping. For each exact function/batch record what was tried, exact measured results, why failed variants failed, what is proven, what remains inferred, what should not be repeated, reusable process lessons, integration/full-ROM proof, progress, commit/push evidence, and the exact next action.
+Documentation is part of completion, not optional bookkeeping. Keep canonical current-state files concise: record proven architecture, current exact measurements, integration/full-ROM proof, parked/reopen criteria, and the exact next action. Put detailed variant chronology, failed experiments, allocator/compiler traces, and superseded measurements in dated checkpoints, experiment registries, failure ledgers, and Git history instead of appending them to live dashboards.
 
 A no-context agent must be able to answer from files alone: project goals, current state, exact ROM status, progress, compiler authority, latest commit, active targets, saved candidate state, failed paths, validation commands, commit rules, local-only files if any, and next step.
 

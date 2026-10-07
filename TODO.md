@@ -1,46 +1,34 @@
-# TODO
+# FoMT TODO
 
-## Active retail-decomp priority
+Current authoritative dashboard: `START_HERE.md`. Exact continuation: `tools/ches/NEXT_AGENT_HANDOFF.md`.
 
-- stop treating the remaining **77 packed-sprite animations** as the primary
-  work queue. Preserve the open list and current family evidence, but resolve
-  those IDs as a by-product of decompiling their owning systems;
-- keep `tools/ches/decomp_inventory.json` / `DECOMP_QUEUE.md` regenerated after meaningful exact integrations; the unified remaining-function inventory, similarity clustering, and first class-map pipeline are already live;
-- continue enriching TU/type/vtable/data ownership only when it improves the next coherent target rather than treating classification as an end in itself;
-- use the resident-NPC integration as the model family workflow: prove one representative, parameterize siblings, batch scratch-compare, then promote only the exact family;
-- current structural-continuity target: `func_0803A180` (retail 0x1A0 / 416 bytes), the eight-caller shared movement/state helper immediately before the now-exact Q8 sine/cosine pair `3A320/3A334`. Its sibling-vtable family, 0x14 movement-state layout, existing `Entity398A4Collision` stack record, directional bound helpers, and `EntityEffect`/`SpriteAnimator` ownership are recovered. Write `candidate-3a180-v1.cc`, run `tools/ches/compare-function.py` over `0x0803A180..0x0803A320`, and inspect the first measured size/linked-byte/assembly diff before varying source shape. `39F90` is behavior-complete and parked after bounded v12-v16 lifetime probes failed to converge; do not reopen it without new structural evidence. `39A60`, `3A144`, `3A320`, `3A334`, `398A4`, `399C0`, `39DA8/39E18`, `39A30`, and `39F50` are exact; constructor `39E98` remains parked at 0xB8/109;
-- Child's +0x30 virtual at `0x08036F0C` remains understood but nonmatching assembly. Do not block throughput on it; return only if new structural/compiler evidence appears;
-- re-rank after the next adjacent-entity integration or whenever a meaningful integration changes the inventory;
-- use the ranked queue rather than a fixed five-function batch size. Complete as
-  much of one coherent TU/cluster as remains high-throughput, parking individual
-  compiler-sensitive islands with preserved candidates/evidence;
-- keep production `src/` exact-only. Track semantically reconstructed but
-  nonmatching functions separately in private research until an explicit
-  supported NONMATCHING convention is deliberately adopted;
-- retain `/mnt/data/Ches/runtime-saves/fomt/opening-farm.ss1` as the first
-  runtime-scenario asset. Build deterministic savestate + scripted-input
-  coverage collection so emulator work records function hits, indirect
-  caller/callee targets, and targeted RAM changes in bulk;
-- use watchpoints only for focused ownership/field questions. Do not manually
-  wander gameplay waiting for one unknown resource ID;
-- for data/assets, bulk-catalog recognizable pointer tables, fixed-stride
-  records, palettes, tile banks, script tables, and resource headers when cheap,
-  then use their consumers to establish semantics and ownership;
-- keep asset progress honest: opaque copied blobs do not count, and anonymous
-  packed-sprite promotion remains prohibited;
-- keep `func_08011650`, `func_080455D8`, `func_08092A70`,
-  `func_080CAC7C` / `func_080CAD18`, and `func_08092940` parked unless new
-  structural evidence makes them high-value again;
-- preserve all completed packed-sprite families and the exact current ownership
-  total (**416 / 493 = 405 / 450 simple + 11 / 43 multi-frame**). The direct
-  provider/consumer census, Mary namespace-collision result, and OnCall-320
-  resource-ID result remain closed evidence, not active rediscovery tasks;
-- after the database/TU/similarity/classification pipeline exists, select the
-  highest-ranked coherent units and resume exact retail decompilation from that
-  queue.
+## Active retail work
 
-## Longer-term cleanup
+- Continue at **`0x0803A8A4`** in `asm/code_0803A8A4.s`.
+- Map coherent function/TU/type/vtable families before writing source.
+- Use exact neighboring Entity38740-family source and existing shared types as structural oracles.
+- Scratch-prove one representative, then propagate only evidence-backed shapes across siblings.
+- Integrate exact-only, run the full retail gate, regenerate inventory/queue, update affected docs, and publish the checkpoint.
 
-- remove/replace "libsix" and "libagbc++";
-- maybe replace offset labels in m4a as they are from pokeemerald;
-- decompile the rest of the game.
+## Do not reopen without new evidence
+
+- `func_0803A394`
+- `func_0803A180`
+- `func_08039F90`
+- `func_08039E98`
+- `func_08039708`
+- `func_0803955C`
+- `func_08039310`
+- `func_08039204`
+- `func_08038820`
+- `func_08038EE0`
+- `func_08038110`
+- other functions marked parked by `tools/ches/build_decomp_inventory.py`
+
+## Ongoing project lanes
+
+- Keep the machine-readable function/TU inventory and class maps current after meaningful integrations.
+- Recover assets/data through their consuming code and count only editable byte-exact project-side representations.
+- Keep runtime tracing as scripted bulk evidence infrastructure, not manual one-off exploration.
+- Keep intentional gameplay/QoL changes isolated on the custom-game track.
+- Resume persistence/save expansion only when a concrete custom runtime feature requires stored state.

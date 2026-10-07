@@ -5,16 +5,16 @@ Region/TU hints and scores are heuristics, not claims about original source-file
 
 ## Inventory summary
 
-- remaining linked assembly functions: **2,336**
-- canonical linked assembly code: **868,424 bytes**
-- bytes covered by inferred function ranges: **867,260** (**99.8660%** of linked asm code)
+- remaining linked assembly functions: **2,334**
+- canonical linked assembly code: **868,088 bytes**
+- bytes covered by inferred function ranges: **866,924** (**99.8659%** of linked asm code)
 - assembly code not assigned to a function range: **1,164 bytes**
 - asm definitions present in source but not linked as asm code: **2**
 - coarse TU/region hints: **148**
 - repeated opcode-shape clusters: **184**
 - functions in repeated opcode-shape clusters: **864**
 - exact normalized-body clusters: **176**
-- explicitly parked functions: **7**
+- explicitly parked functions: **17**
 - runtime/library functions retained in inventory: **33**
 
 ## Highest-ranked coherent regions
@@ -27,7 +27,7 @@ Region/TU hints and scores are heuristics, not claims about original source-file
 | 4 | asm/game_state.s:0801468C-080179CC | 14601.0 | 61 | 13120 | 10732 | 1 | 29 | 51 | 6 |
 | 5 | asm/code_linkonce.s:080DFE84-080E2EA4 | 14413.0 | 81 | 12260 | 10096 | 1 | 43 | 32 | 8 |
 | 6 | asm/code_linkonce.s:080E2EA4-080E59CC | 14344.0 | 84 | 11048 | 11048 | 0 | 39 | 16 | 13 |
-| 7 | asm/code_linkonce.s:080DC96C-080DFE84 | 14271.0 | 103 | 13592 | 6444 | 1 | 83 | 29 | 1 |
+| 7 | asm/code_linkonce.s:080DC96C-080DFE84 | 14295.0 | 103 | 13592 | 6444 | 1 | 83 | 30 | 1 |
 | 8 | asm/code_809E804.s:080CDC00-080D0C10 | 14113.0 | 63 | 12304 | 10736 | 1 | 5 | 51 | 50 |
 | 9 | asm/code_entities.s:0802AA84-0802DBF0 | 13940.0 | 32 | 12652 | 12652 | 0 | 2 | 43 | 4 |
 | 10 | asm/new_game.s:08003788-08006858 | 13920.0 | 38 | 12496 | 12496 | 0 | 11 | 26 | 3 |
@@ -132,7 +132,7 @@ Region/TU hints and scores are heuristics, not claims about original source-file
 | Rank | Function | Score | Size | Callers | Files | Shape family | Source anchors | Definition |
 | ---: | --- | ---: | ---: | ---: | ---: | ---: | ---: | --- |
 | 1 | func_080D3BC0 | 1039.5 | 40 | 125 | 7 | 1 | 1 | asm/code_linkonce.s:7 |
-| 2 | func_08008B6C | 936.8 | 28 | 111 | 9 | 1 | 1 | asm/hardware.s:1659 |
+| 2 | func_08008B6C | 923.8 | 28 | 110 | 8 | 1 | 1 | asm/hardware.s:1659 |
 | 3 | func_080088B8 | 681.8 | 12 | 58 | 5 | 49 | 0 | asm/hardware.s:1357 |
 | 4 | func_080087C8 | 648.0 | 240 | 75 | 5 | 1 | 4 | asm/hardware.s:1254 |
 | 5 | func_080074C0 | 547.0 | 80 | 64 | 6 | 1 | 0 | asm/hardware.s:192 |
@@ -144,8 +144,8 @@ Region/TU hints and scores are heuristics, not claims about original source-file
 | 11 | func_08008DE8 | 415.8 | 124 | 2 | 2 | 96 | 1 | asm/hardware.s:1937 |
 | 12 | func_080073E0 | 403.8 | 124 | 47 | 4 | 1 | 0 | asm/hardware.s:67 |
 | 13 | func_080088CC | 388.5 | 8 | 45 | 4 | 3 | 0 | asm/hardware.s:1372 |
-| 14 | func_08008CD0 | 351.8 | 108 | 40 | 5 | 1 | 0 | asm/hardware.s:1848 |
-| 15 | func_08050DC8 | 346.0 | 16 | 39 | 5 | 3 | 0 | asm/code_0803EE94.s:33112 |
+| 14 | func_08050DC8 | 346.0 | 16 | 39 | 5 | 3 | 0 | asm/code_0803EE94.s:33112 |
+| 15 | func_08008CD0 | 338.8 | 108 | 39 | 4 | 1 | 0 | asm/hardware.s:1848 |
 | 16 | func_08050D3C | 330.0 | 32 | 38 | 4 | 2 | 0 | asm/code_0803EE94.s:33026 |
 | 17 | func_0805E99C | 327.5 | 648 | 34 | 3 | 1 | 0 | asm/code_0803EE94.s:59517 |
 | 18 | func_0800894C | 327.2 | 52 | 38 | 4 | 1 | 0 | asm/hardware.s:1400 |
