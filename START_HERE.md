@@ -28,19 +28,19 @@ For the proven techniques and recommended next approach, read the "Fast-path ope
 
 ## Current exact reconstruction
 
-- Code: **75,856 / 940,036 = 8.0695%**
-- Assembly remaining: **864,180 bytes**
-- Linked assembly functions: **2,270**
-- Inferred ranges: **862,636 / 864,180 = 99.8213%**
+- Code: **75,904 / 940,036 = 8.0746%**
+- Assembly remaining: **864,132 bytes**
+- Linked assembly functions: **2,266**
+- Inferred ranges: **862,588 / 864,132 = 99.8213%**
 - Unattributed assembly: **1,544 bytes**
 - Generated parked functions: **17**
 - Data/assets: **75,334 / 6,777,404 = 1.1115%**
-- Overall meaningful ROM: **151,586 / 7,717,440 = 1.9642%**
+- Overall meaningful ROM: **151,634 / 7,717,440 = 1.9648%**
 - Contiguous free tail: **671,168 bytes = 655.44 KiB**
 
 ## Latest completed unit
 
-The contiguous NPC base-destructor ABI thunk island at `0x080DC9C0..0x080DCB4C` is now exact source: **33 functions / 396 linked bytes**. Each retail slot is a 10-byte body plus 2-byte alignment. Production and detached forced ROM comparisons both pass. The key ABI lesson is recorded in `docs/DECOMP_NOTES.md`; exact continuation is in `tools/ches/NEXT_AGENT_HANDOFF.md`.
+The contiguous destructor-ABI thunk lane at `0x080DC9C0..0x080DCB7C` now owns **37 exact functions / 444 linked bytes**: 33 raw thunks to `ANpcEntity::~ANpcEntity` plus 4 raw thunks to `UnkEntity37008::~UnkEntity37008`. Both production and detached forced ROM comparisons pass. The one-argument assembler-bound call shape is required; ordinary C++ destructor calls inject the old-GCC in-charge argument and do not match.
 
 ## Next direction
 

@@ -5,14 +5,14 @@ Region/TU hints and scores are heuristics, not claims about original source-file
 
 ## Inventory summary
 
-- remaining linked assembly functions: **2,270**
-- canonical linked assembly code: **864,180 bytes**
-- bytes covered by inferred function ranges: **862,636** (**99.8213%** of linked asm code)
+- remaining linked assembly functions: **2,266**
+- canonical linked assembly code: **864,132 bytes**
+- bytes covered by inferred function ranges: **862,588** (**99.8213%** of linked asm code)
 - assembly code not assigned to a function range: **1,544 bytes**
 - asm definitions present in source but not linked as asm code: **2**
 - coarse TU/region hints: **154**
 - repeated opcode-shape clusters: **183**
-- functions in repeated opcode-shape clusters: **825**
+- functions in repeated opcode-shape clusters: **821**
 - exact normalized-body clusters: **175**
 - explicitly parked functions: **17**
 - runtime/library functions retained in inventory: **33**
@@ -35,8 +35,8 @@ Region/TU hints and scores are heuristics, not claims about original source-file
 | 12 | asm/code_0803EE94.s:08075220-080782C4 | 12773.0 | 43 | 12452 | 10640 | 1 | 8 | 26 | 17 |
 | 13 | asm/code_0803EE94.s:08095D80-08099000 | 12294.0 | 16 | 12928 | 10728 | 1 | 0 | 41 | 1 |
 | 14 | asm/code_linkonce.s:080DA76C-080DC8F8 | 11812.0 | 84 | 8588 | 6156 | 1 | 69 | 17 | 7 |
-| 15 | asm/code_linkonce.s:080DCB4C-080DFE84 | 11615.0 | 69 | 13112 | 5964 | 1 | 49 | 29 | 1 |
-| 16 | asm/code_entities.s:0802634C-08029558 | 11486.0 | 10 | 12812 | 10180 | 1 | 2 | 19 | 2 |
+| 15 | asm/code_entities.s:0802634C-08029558 | 11486.0 | 10 | 12812 | 10180 | 1 | 2 | 19 | 2 |
+| 16 | asm/code_linkonce.s:080DCB7C-080DFE84 | 11311.0 | 65 | 13064 | 5916 | 1 | 45 | 29 | 1 |
 | 17 | asm/code_0803EE94.s:0808114C-08084228 | 11148.0 | 30 | 12508 | 7356 | 2 | 13 | 67 | 2 |
 | 18 | asm/code_0803A8A4.s:0803B128-0803D688 | 11072.0 | 55 | 9568 | 9568 | 0 | 14 | 16 | 7 |
 | 19 | asm/code_entities_080320DC.s:08032900-08034CEC | 10980.0 | 25 | 9196 | 9196 | 0 | 1 | 61 | 8 |
@@ -90,10 +90,10 @@ Region/TU hints and scores are heuristics, not claims about original source-file
 | 12 | shape0008 | 17 | 1072 | 13 | 1 | func_08069E98, func_0807565C, func_0807DDA8, func_0807E4B8, func_0807EE84, func_0807F5F0 |
 | 13 | shape0025 | 6 | 984 | 73 | 1 | func_08012C50, func_08013364, func_080139F0, func_08013A94, func_08013B38, func_08013DC8 |
 | 14 | shape0137 | 2 | 984 | 179 | 1 | func_0808BDA0, func_08091094 |
-| 15 | shape0001 | 63 | 952 | 4 | 5 | func_08005254, func_08008D84, func_08008D90, func_08008DE8, func_080124C4, func_080AE6C0 |
-| 16 | shape0133 | 2 | 952 | 169 | 1 | func_08088318, func_0808C664 |
-| 17 | shape0121 | 2 | 928 | 210 | 1 | func_080579B4, func_0805C63C |
-| 18 | shape0066 | 3 | 912 | 132 | 1 | func_0808BF8C, func_08091280, func_08092940 |
+| 15 | shape0133 | 2 | 952 | 169 | 1 | func_08088318, func_0808C664 |
+| 16 | shape0121 | 2 | 928 | 210 | 1 | func_080579B4, func_0805C63C |
+| 17 | shape0066 | 3 | 912 | 132 | 1 | func_0808BF8C, func_08091280, func_08092940 |
+| 18 | shape0001 | 59 | 904 | 4 | 5 | func_08005254, func_08008D84, func_08008D90, func_08008DE8, func_080124C4, func_080AE6C0 |
 | 19 | shape0012 | 14 | 784 | 19 | 4 | func_0800371C, func_08004BDC, func_080059D0, func_080070A4, func_0806D918, func_0806EA00 |
 | 20 | shape0009 | 16 | 768 | 20 | 2 | func_0805218C, func_080755EC, func_0807DD38, func_0807EE14, func_0807F580, func_0808045C |
 | 21 | shape0027 | 6 | 764 | 10 | 1 | func_08021620, func_08022320, func_08022334, func_08022B5C, func_080244C4, func_080244D8 |
@@ -150,9 +150,9 @@ Region/TU hints and scores are heuristics, not claims about original source-file
 | 17 | func_0800894C | 327.2 | 52 | 38 | 4 | 1 | 0 | asm/hardware.s:1400 |
 | 18 | func_0800736C | 306.2 | 116 | 33 | 7 | 1 | 0 | asm/hardware.s:4 |
 | 19 | func_0804EC84 | 299.2 | 164 | 33 | 5 | 1 | 0 | asm/code_0803EE94.s:28819 |
-| 20 | func_08008DE8 | 283.8 | 124 | 2 | 2 | 63 | 1 | asm/hardware.s:1937 |
-| 21 | func_08050D0C | 281.5 | 40 | 31 | 5 | 2 | 1 | asm/code_0803EE94.s:32996 |
-| 22 | func_0803D52C | 270.5 | 280 | 31 | 1 | 1 | 0 | asm/code_0803A8A4.s:4791 |
+| 20 | func_08050D0C | 281.5 | 40 | 31 | 5 | 2 | 1 | asm/code_0803EE94.s:32996 |
+| 21 | func_0803D52C | 270.5 | 280 | 31 | 1 | 1 | 0 | asm/code_0803A8A4.s:4791 |
+| 22 | func_08008DE8 | 267.8 | 124 | 2 | 2 | 59 | 1 | asm/hardware.s:1937 |
 | 23 | func_0804E958 | 265.0 | 112 | 31 | 2 | 1 | 0 | asm/code_0803EE94.s:28531 |
 | 24 | func_0804E9F4 | 264.2 | 100 | 31 | 2 | 1 | 0 | asm/code_0803EE94.s:28609 |
 | 25 | func_08050DF0 | 253.8 | 28 | 29 | 4 | 1 | 0 | asm/code_0803EE94.s:33140 |

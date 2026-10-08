@@ -25,8 +25,12 @@ live state. This file keeps subsystem/function evidence and matching lessons.
 
 Current retail state:
 - Active public retail branch: `main`; the former `Live-temp` line is retired. Historical `ches-dev` commits remain provenance only.
-- Current exact progress: **75,856 / 940,036 = 8.0695% source** and **864,180 assembly bytes**. Data/assets reconstruction is **75,334 / 6,777,404 = 1.1115%** and overall meaningful-ROM reconstruction is **151,586 / 7,717,440 = 1.9642%**. Forced detached and production ROM comparisons report `fomt.gba: OK`; retail SHA1 remains `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
-- Remaining linked assembly functions: **2,270**; inferred function ranges cover **862,636 / 864,180 = 99.8213%**, with **1,544 unattributed bytes** and **17 explicitly parked functions**. The extra 380 unattributed bytes are the newly exposed E118..E174 and E1B4..E2D4 unlabeled code islands.
+- Current exact progress: **75,904 / 940,036 = 8.0746% source** and **864,132 assembly bytes**. Data/assets reconstruction is **75,334 / 6,777,404 = 1.1115%** and overall meaningful-ROM reconstruction is **151,634 / 7,717,440 = 1.9648%**. Forced detached and production ROM comparisons report `fomt.gba: OK`; retail SHA1 remains `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
+- Remaining linked assembly functions: **2,266**; inferred function ranges cover **862,588 / 864,132 = 99.8213%**, with **1,544 unattributed bytes** and **17 explicitly parked functions**. The extra 380 unattributed bytes are the newly exposed E118..E174 and E1B4..E2D4 unlabeled code islands.
+
+### 2026-10-08 UnkEntity37008 destructor ABI thunk follow-up
+
+Immediately after the 33-function ANpcEntity thunk island, `0x080DCB4C..0x080DCB7C` contributes four more exact 12-byte slots (48 linked bytes). The callee `func_08037048` is linker-aliased to `_._14UnkEntity37008`; a one-argument assembler-bound declaration again emits the exact 10-byte body plus 2-byte alignment. Production and detached forced ROM comparisons pass. The combined adjacent destructor-thunk lane is now 37 functions / 444 linked bytes.
 
 ### 2026-10-08 NPC base-destructor ABI thunk island
 

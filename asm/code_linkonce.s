@@ -16759,37 +16759,7 @@ func_080DC96C: @ 0x080DC96C
 
     .section .text.after_npc_entity_dtor_thunks, "ax", %progbits
 
-	thumb_func_start func_080DCB4C
-func_080DCB4C: @ 0x080DCB4C
-	push {lr}
-	bl func_08037048
-	pop {r0}
-	bx r0
-	.align 2, 0
-
-	thumb_func_start func_080DCB58
-func_080DCB58: @ 0x080DCB58
-	push {lr}
-	bl func_08037048
-	pop {r0}
-	bx r0
-	.align 2, 0
-
-	thumb_func_start func_080DCB64
-func_080DCB64: @ 0x080DCB64
-	push {lr}
-	bl func_08037048
-	pop {r0}
-	bx r0
-	.align 2, 0
-
-	thumb_func_start func_080DCB70
-func_080DCB70: @ 0x080DCB70
-	push {lr}
-	bl func_08037048
-	pop {r0}
-	bx r0
-	.align 2, 0
+    .section .text.after_entity37008_dtor_thunks, "ax", %progbits
 
 	thumb_func_start func_080DCB7C
 func_080DCB7C: @ 0x080DCB7C

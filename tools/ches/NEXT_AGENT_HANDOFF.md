@@ -1,64 +1,36 @@
 # Current FoMT continuation - October 8, 2026
 
-## LATEST CHECKPOINT — 2026-10-08 — NPC base-destructor ABI thunk island
+## LATEST CHECKPOINT — 2026-10-08 — UnkEntity37008 destructor ABI thunk follow-up
 
-Current branch: main, tracking ches/main. This checkpoint is the published NPC base-destructor ABI thunk island. Run `git log -1` and `git status` to obtain the exact commit and confirm local/remote parity before new work.
+Current branch: main, tracking ches/main. This checkpoint extends the immediately preceding NPC destructor-thunk island. Run `git log -1` and `git status` to obtain the exact published commit and confirm local/remote parity before new work.
 
-Completed exact source island:
-- retail range 0x080DC9C0..0x080DCB4C = 0x18C = 396 linked bytes;
-- exactly 33 consecutive functions, func_080DC9C0 through func_080DCB40;
-- each retail slot is 12 bytes: 10-byte body plus 2-byte alignment;
-- every thunk forwards unchanged ABI registers to assembler symbol
-  _._10ANpcEntity and returns;
-- func_080DCB4C is NOT part of the batch; it calls func_08037048 and remains asm.
+Completed exact follow-up:
+- retail range `0x080DCB4C..0x080DCB7C` = 0x30 = 48 linked bytes;
+- exactly four functions: DCB4C/DCB58/DCB64/DCB70;
+- each slot is a 10-byte body plus 2-byte alignment;
+- all four forward unchanged ABI registers to `func_08037048`, which the linker aliases to `_._14UnkEntity37008`;
+- `func_080DCB7C` remains assembly and is the next non-thunk function.
 
-New source:
-- src/npc_entity_dtor_thunks.cc
-- uses one-argument assembler-bound declaration:
-  extern void ANpcEntityDtorRaw(ANpcEntity *) asm("_._10ANpcEntity");
-- ordinary C++ self->ANpcEntity::~ANpcEntity() is NOT equivalent because agbcc
-  inserts destructor in-charge argument r1=2; the raw ABI wrapper is the proven
-  source shape.
-- a three-function scratch proof reproduced exact 0x0C spacing before integration.
-
-Integration:
-- asm/code_linkonce.s removes only DC9C0..DCB4C and resumes at DCB4C in
-  .text.after_npc_entity_dtor_thunks;
-- fomt.lds interleaves src/npc_entity_dtor_thunks.o between the two asm sections.
+New source: `src/entity37008_dtor_thunks.cc`. The exact source shape uses a one-argument assembler-bound declaration of `_._14UnkEntity37008`; the same destructor in-charge ABI lesson from the 33-function ANpcEntity block applies.
 
 Verification:
-- production make -j4 compare: PASS, retail SHA1 exact;
-- detached forced make -B -j4 compare in /tmp/fomt-npc-dtor-thunks-20261008:
-  PASS, retail SHA1 exact;
-- inventory regenerated successfully;
-- NPC class map regenerated successfully, still maps 35 resident NPC classes.
+- production `make -j4 compare`: PASS;
+- detached forced `make -B -j4 compare` in `/tmp/fomt-entity37008-dtor-thunks-20261008`: PASS;
+- retail SHA1 remains exact.
 
-Exact new metrics:
-- code: 75,856 / 940,036 = 8.0695%;
-- assembly remaining: 864,180 bytes;
-- remaining linked asm functions: 2,270;
-- inferred function bytes: 862,636 / 864,180 = 99.8213%;
-- unattributed asm: 1,544 bytes;
-- overall meaningful ROM: 151,586 / 7,717,440 = 1.9642%.
-
-Important decisions from this turn:
-- GameState+0x34D8 is already fully source-owned as the 14-bit persistent map
-  stamp mask API (C4E4/C4EC/C510/C5B4/C5D0/C5EC/C5F4); no new code coverage.
-- GameState+0x34DC is already source-owned as the 24-byte
-  Unk_Actor_0809BFE8 object; no new code coverage.
-- func_0809C6BC is a 0x6BC-byte constructor for the 0x80-byte packed state at
-  GameState+0x214C. It has strong structural evidence but no ready source
-  candidate; write-map confirms dozens of overlapping packed writes. Park it
-  rather than grind compiler/source-shape work without a stronger schema.
-- repeated tiny opcode-shape clusters are now a preferred fast path.
+Current exact metrics:
+- code: 75,904 / 940,036 = 8.0746%;
+- assembly remaining: 864,132 bytes;
+- linked assembly functions: 2,266;
+- inferred function bytes: 862,588 / 864,132 = 99.8213%;
+- unattributed assembly: 1,544 bytes;
+- overall meaningful ROM: 151,634 / 7,717,440 = 1.9648%.
 
 EXACT NEXT ACTION:
-1. Confirm `git status` is clean and `HEAD == ches/main`; do not redo the completed thunk proofs.
-2. Continue the repeated-small-function fast path from the regenerated queue.
-3. Prefer one bounded contiguous family with uniform callee/ABI semantics; shape0001/shape0002 are the first hunting ground.
-4. Prove one natural source shape, expand to the coherent family, then detached ROM -> production ROM -> inventory/docs -> publish.
-5. Keep C6BC parked unless stronger packed-layout evidence appears.
-
+1. Confirm the published tree is clean and `HEAD == ches/main`; do not redo either completed destructor-thunk proof.
+2. Continue the regenerated repeated-small-function queue.
+3. Prefer the next bounded contiguous same-callee family from shape0001/shape0002; prove one natural source shape, then expand the family.
+4. Keep C6BC parked unless stronger packed-layout evidence appears.
 
 ## Zero-context orientation
 
@@ -93,13 +65,13 @@ Do not regress to broad rescans or syntax roulette.
 
 ## Current exact state
 
-- Code: 75,856 / 940,036 = 8.0695%
-- Assembly remaining: 864,180 bytes
-- Linked assembly functions: 2,270
-- Inferred ranges: 862,636 / 864,180 = 99.8213%
+- Code: 75,904 / 940,036 = 8.0746%
+- Assembly remaining: 864,132 bytes
+- Linked assembly functions: 2,266
+- Inferred ranges: 862,588 / 864,132 = 99.8213%
 - Unattributed assembly: 1,544 bytes
 - Data/assets: 75,334 / 6,777,404 = 1.1115%
-- Overall meaningful ROM: 151,586 / 7,717,440 = 1.9642%
+- Overall meaningful ROM: 151,634 / 7,717,440 = 1.9648%
 - Free tail: 671,168 bytes
 - Retail ROM: 8,388,608 bytes
 - SHA1: a2fc3574f0a65a4fcf7682fb274b9d7eebdef963
