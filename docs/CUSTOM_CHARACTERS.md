@@ -114,7 +114,7 @@ the native GameObject entity lookups and teardown. The exact October 5 worktree
 adds the early 0x1C0-byte social resolver block to `src/character_info.cc`, the
 later 0x36C-byte NPC/bachelorette/Harvest-Sprite resolver block to
 `src/character_social.cc`, and `func_08045584` to `src/heart_event_days.cc`.
-Current verified executable progress is **75,460 / 940,036 = 8.0274%** and the retail
+Current verified executable progress is **75,856 / 940,036 = 8.0695%** and the retail
 ROM remains exact. The active public retail line is `main`; the former
 `Live-temp` series has been folded into it, while `ches-dev` remains historical.
 

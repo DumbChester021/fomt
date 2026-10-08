@@ -16,7 +16,7 @@ Current reconstruction:
 
 ```text
 Code reconstruction
-  75460 / 940036 bytes (8.0274%)
+  75856 / 940036 bytes (8.0695%)
   864576 bytes remain in asm
 
 Data/assets reconstruction
@@ -28,7 +28,7 @@ Data/assets reconstruction
   396 additional source-owned ROM-header bytes count only toward overall
 
 Overall meaningful-ROM reconstruction
-  151190 / 7717440 bytes (1.9591%)
+  151586 / 7717440 bytes (1.9642%)
   final ROM padding is excluded from this denominator
 
 ROM space
@@ -36,7 +36,7 @@ ROM space
   671168 bytes free (655.44 KiB, 8.0009%) contiguous tail space
 ```
 
-The code inventory currently reports **2,303 linked assembly functions**, **863,032 bytes** covered by inferred function ranges, **1,544 unattributed assembly bytes**, and **17 explicitly parked functions**. The unattributed increase is structural: exact E0AC/E174..E1A4 boundaries exposed previously hidden code at E118..E174 and E1B4..E2D4.
+The code inventory currently reports **2,270 linked assembly functions**, **862,636 bytes** covered by inferred function ranges, **1,544 unattributed assembly bytes**, and **17 explicitly parked functions**. The unattributed increase is structural: exact E0AC/E174..E1A4 boundaries exposed previously hidden code at E118..E174 and E1B4..E2D4.
 
 ## What the metrics mean
 
@@ -109,4 +109,4 @@ The reported **671,168 bytes** are the contiguous final tail after linked conten
 Latest recovered GroundPickupState: +0x34C8..+0x34D7, 56 availability
 bits and fifteen packed three-bit durability fields. Four exact functions
 add 1,032 linked bytes. A1EA8 is parked. See docs/GROUND_PICKUP_STATE.md.
-Next persistent target is +0x34D8..+0x34DB.
+The +0x34D8 mask and +0x34DC actor state are already source-owned. Active throughput target: coherent repeated-small-function families; keep C6BC parked.

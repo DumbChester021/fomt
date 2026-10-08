@@ -25,8 +25,12 @@ live state. This file keeps subsystem/function evidence and matching lessons.
 
 Current retail state:
 - Active public retail branch: `main`; the former `Live-temp` line is retired. Historical `ches-dev` commits remain provenance only.
-- Current exact progress: **75,460 / 940,036 = 8.0274% source** and **864,576 assembly bytes**. Data/assets reconstruction is **75,334 / 6,777,404 = 1.1115%** and overall meaningful-ROM reconstruction is **151,190 / 7,717,440 = 1.9591%**. Forced detached and production ROM comparisons report `fomt.gba: OK`; retail SHA1 remains `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
-- Remaining linked assembly functions: **2,303**; inferred function ranges cover **863,032 / 864,576 = 99.8214%**, with **1,544 unattributed bytes** and **17 explicitly parked functions**. The extra 380 unattributed bytes are the newly exposed E118..E174 and E1B4..E2D4 unlabeled code islands.
+- Current exact progress: **75,856 / 940,036 = 8.0695% source** and **864,180 assembly bytes**. Data/assets reconstruction is **75,334 / 6,777,404 = 1.1115%** and overall meaningful-ROM reconstruction is **151,586 / 7,717,440 = 1.9642%**. Forced detached and production ROM comparisons report `fomt.gba: OK`; retail SHA1 remains `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
+- Remaining linked assembly functions: **2,270**; inferred function ranges cover **862,636 / 864,180 = 99.8213%**, with **1,544 unattributed bytes** and **17 explicitly parked functions**. The extra 380 unattributed bytes are the newly exposed E118..E174 and E1B4..E2D4 unlabeled code islands.
+
+### 2026-10-08 NPC base-destructor ABI thunk island
+
+The contiguous retail block 0x080DC9C0..0x080DCB4C is now exact source: 33 functions / 396 linked bytes. Each slot is a 10-byte body plus 2-byte alignment and forwards the incoming ABI registers unchanged to assembler symbol _._10ANpcEntity. The exact C++ shape uses a one-argument assembler-bound declaration; an ordinary self->ANpcEntity::~ANpcEntity() call is not equivalent because agbcc injects the destructor in-charge argument r1 = 2. func_080DCB4C is outside the batch and remains assembly because it calls func_08037048. Production and detached forced ROM comparisons both pass. Repeated tiny-wrapper families are therefore a proven throughput path and should be preferred over reopening the large packed-state constructor func_0809C6BC without stronger structural evidence.
 - Shared NPC identity/location/schedule support, all resident constructors, GameObject entity lookup/teardown, and the exact 43-entry metadata table remain complete.
 - Packed-bank ownership remains **416 / 493 animations: 405 / 450 simple and 11 / 43 multi-frame**. The remaining 77 are a parked by-product lane.
 - `func_08092A70`, `func_080455D8`, `func_080CAC7C` / `func_080CAD18`, `func_08092940`, and the documented Entity38740/Ball codegen islands remain parked at their recorded frontiers.
@@ -1192,4 +1196,4 @@ Stable contracts and source ranges are in `docs/RESOURCE_HANDLES.md`. Private so
 Latest recovered GroundPickupState: +0x34C8..+0x34D7, 56 availability
 bits and fifteen packed three-bit durability fields. Four exact functions
 add 1,032 linked bytes. A1EA8 is parked. See docs/GROUND_PICKUP_STATE.md.
-Next persistent target is +0x34D8..+0x34DB.
+The +0x34D8 mask and +0x34DC actor state are already source-owned. Active throughput target: coherent repeated-small-function families; keep C6BC parked.

@@ -22,40 +22,29 @@ This is the live dashboard for the US Harvest Moon: Friends of Mineral Town matc
 
 ## Handoff readiness
 
-The latest verified checkpoint includes the mine-floor initializer, shared
-persistent type, D8A0..D8D4 accessor block, and exact D9B4 content consumer. Run `git log -1` for the
-published commit and `git status` before work; never reset a dirty tree merely
-to match an expected hash. The full loader and complete GameState type remain
-unfinished. No build or compiler command is pending.
+The latest verified checkpoint recovers the 33-function NPC base-destructor ABI thunk island at 0x080DC9C0..0x080DCB4C. Both production and detached forced ROM comparisons pass. Run `git log -1` and `git status` before work; never reset a dirty tree merely to match an expected hash. The full loader and complete GameState type remain unfinished. No build or compiler command is pending.
 
-For the proven techniques and recommended next approach, read
-docs/DECOMP_PLAYBOOK.md, section "Recover persistent subobjects without blocking
-on the whole loader". NEXT_AGENT_HANDOFF.md includes first commands, exact
-next deliverable, closed paths and fresh-clone artifact limitations.
+For the proven techniques and recommended next approach, read the "Fast-path operating method" in docs/DECOMP_PLAYBOOK.md. NEXT_AGENT_HANDOFF.md includes first commands, exact next deliverable, closed paths and fresh-clone artifact limitations.
 
 ## Current exact reconstruction
 
-- Code: **75,460 / 940,036 = 8.0274%**
-- Assembly remaining: **864,576 bytes**
-- Linked assembly functions: **2,303**
-- Inferred ranges: **863,032 / 864,576 = 99.8214%**
+- Code: **75,856 / 940,036 = 8.0695%**
+- Assembly remaining: **864,180 bytes**
+- Linked assembly functions: **2,270**
+- Inferred ranges: **862,636 / 864,180 = 99.8213%**
 - Unattributed assembly: **1,544 bytes**
 - Generated parked functions: **17**
 - Data/assets: **75,334 / 6,777,404 = 1.1115%**
-- Overall meaningful ROM: **151,190 / 7,717,440 = 1.9591%**
+- Overall meaningful ROM: **151,586 / 7,717,440 = 1.9642%**
 - Contiguous free tail: **671,168 bytes = 655.44 KiB**
 
 ## Latest completed unit
 
-The recovered 0x10-byte GroundPickupState at GameState+0x34C8..+0x34D7
-holds 56 availability bits and 15 packed three-bit durability counters.
-A1A48/A1A4C/A1EF4/A1FC4 add **1,032 exact source bytes**. The production
-ROM comparison passes. See docs/GROUND_PICKUP_STATE.md.
+The contiguous NPC base-destructor ABI thunk island at `0x080DC9C0..0x080DCB4C` is now exact source: **33 functions / 396 linked bytes**. Each retail slot is a 10-byte body plus 2-byte alignment. Production and detached forced ROM comparisons both pass. The key ABI lesson is recorded in `docs/DECOMP_NOTES.md`; exact continuation is in `tools/ches/NEXT_AGENT_HANDOFF.md`.
 
 ## Next direction
 
-Map the separate 4-byte state at GameState+0x34D8..+0x34DB, initialized
-by C4E4 and reset by C5EC. Next actor state starts at +0x34DC.
+The +0x34D8 four-byte map-stamp mask and +0x34DC 24-byte actor state are already source-owned. Continue with the repeated-small-function fast path from the ranked queue; keep C6BC parked.
 A1EA8 is source-shape parked; follow the Opus/Astra bounded fast path.
 
 The loader remains parked. Resource-owner constructors and B128 remain parked.

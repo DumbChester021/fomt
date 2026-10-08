@@ -12,11 +12,11 @@ exploit them across the remaining assembly instead of making an individual
 resource family the main queue.
 
 Current verified working state on `main`:
-- code: **75,460 / 940,036 = 8.0274%**;
-- assembly remaining: **864,576 bytes**;
-- remaining linked assembly functions: **2,303**;
+- code: **75,856 / 940,036 = 8.0695%**;
+- assembly remaining: **864,180 bytes**;
+- remaining linked assembly functions: **2,270**;
 - data/assets: **75,334 / 6,777,404 = 1.1115%**;
-- overall meaningful ROM: **151,190 / 7,717,440 = 1.9591%**;
+- overall meaningful ROM: **151,586 / 7,717,440 = 1.9642%**;
 - packed bank: **416 / 493 semantically owned animations**;
 - retail ROM remains exact at SHA1 `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
 
@@ -498,4 +498,4 @@ At this historical checkpoint SpriteAnimator was the immediate priority and was 
 Latest recovered GroundPickupState: +0x34C8..+0x34D7, 56 availability
 bits and fifteen packed three-bit durability fields. Four exact functions
 add 1,032 linked bytes. A1EA8 is parked. See docs/GROUND_PICKUP_STATE.md.
-Next persistent target is +0x34D8..+0x34DB.
+The +0x34D8 mask and +0x34DC actor state are already source-owned. Active throughput target: coherent repeated-small-function families; keep C6BC parked.

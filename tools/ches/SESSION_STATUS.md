@@ -1,5 +1,65 @@
 # FoMT Session Status
 
+## LATEST CHECKPOINT — 2026-10-08 — NPC base-destructor ABI thunk island
+
+Current branch: main, tracking ches/main. This checkpoint is the published NPC base-destructor ABI thunk island. Run `git log -1` and `git status` to obtain the exact commit and confirm local/remote parity before new work.
+
+Completed exact source island:
+- retail range 0x080DC9C0..0x080DCB4C = 0x18C = 396 linked bytes;
+- exactly 33 consecutive functions, func_080DC9C0 through func_080DCB40;
+- each retail slot is 12 bytes: 10-byte body plus 2-byte alignment;
+- every thunk forwards unchanged ABI registers to assembler symbol
+  _._10ANpcEntity and returns;
+- func_080DCB4C is NOT part of the batch; it calls func_08037048 and remains asm.
+
+New source:
+- src/npc_entity_dtor_thunks.cc
+- uses one-argument assembler-bound declaration:
+  extern void ANpcEntityDtorRaw(ANpcEntity *) asm("_._10ANpcEntity");
+- ordinary C++ self->ANpcEntity::~ANpcEntity() is NOT equivalent because agbcc
+  inserts destructor in-charge argument r1=2; the raw ABI wrapper is the proven
+  source shape.
+- a three-function scratch proof reproduced exact 0x0C spacing before integration.
+
+Integration:
+- asm/code_linkonce.s removes only DC9C0..DCB4C and resumes at DCB4C in
+  .text.after_npc_entity_dtor_thunks;
+- fomt.lds interleaves src/npc_entity_dtor_thunks.o between the two asm sections.
+
+Verification:
+- production make -j4 compare: PASS, retail SHA1 exact;
+- detached forced make -B -j4 compare in /tmp/fomt-npc-dtor-thunks-20261008:
+  PASS, retail SHA1 exact;
+- inventory regenerated successfully;
+- NPC class map regenerated successfully, still maps 35 resident NPC classes.
+
+Exact new metrics:
+- code: 75,856 / 940,036 = 8.0695%;
+- assembly remaining: 864,180 bytes;
+- remaining linked asm functions: 2,270;
+- inferred function bytes: 862,636 / 864,180 = 99.8213%;
+- unattributed asm: 1,544 bytes;
+- overall meaningful ROM: 151,586 / 7,717,440 = 1.9642%.
+
+Important decisions from this turn:
+- GameState+0x34D8 is already fully source-owned as the 14-bit persistent map
+  stamp mask API (C4E4/C4EC/C510/C5B4/C5D0/C5EC/C5F4); no new code coverage.
+- GameState+0x34DC is already source-owned as the 24-byte
+  Unk_Actor_0809BFE8 object; no new code coverage.
+- func_0809C6BC is a 0x6BC-byte constructor for the 0x80-byte packed state at
+  GameState+0x214C. It has strong structural evidence but no ready source
+  candidate; write-map confirms dozens of overlapping packed writes. Park it
+  rather than grind compiler/source-shape work without a stronger schema.
+- repeated tiny opcode-shape clusters are now a preferred fast path.
+
+EXACT NEXT ACTION:
+1. Confirm `git status` is clean and `HEAD == ches/main`; do not redo the completed thunk proofs.
+2. Continue the repeated-small-function fast path from the regenerated queue.
+3. Prefer one bounded contiguous family with uniform callee/ABI semantics; shape0001/shape0002 are the first hunting ground.
+4. Prove one natural source shape, expand to the coherent family, then detached ROM -> production ROM -> inventory/docs -> publish.
+5. Keep C6BC parked unless stronger packed-layout evidence appears.
+
+
 ## Authoritative current snapshot - October 8, 2026
 
 Retail workspace: /mnt/data/Github/gba/fomt
@@ -8,13 +68,13 @@ Run `git log -1` and `git status` before work. Preserve intentional dirty state.
 
 ## Exact production progress
 
-- Code: 75,460 / 940,036 = 8.0274%
-- Assembly remaining: 864,576 bytes
+- Code: 75,856 / 940,036 = 8.0695%
+- Assembly remaining: 864,180 bytes
 - Data/assets: 75,334 / 6,777,404 = 1.1115%
-- Overall meaningful ROM: 151,190 / 7,717,440 = 1.9591%
+- Overall meaningful ROM: 151,586 / 7,717,440 = 1.9642%
 - Free tail: 671,168 bytes
-- Linked assembly functions: 2,303
-- Inferred function bytes: 863,032 / 864,576 = 99.8214%
+- Linked assembly functions: 2,270
+- Inferred function bytes: 862,636 / 864,180 = 99.8213%
 - Unattributed assembly: 1,544 bytes
 - Parked functions: 17
 - Runtime/library functions: 33
@@ -173,7 +233,7 @@ Live persistent state findings:
 - A1EA8 effective-season mapper is source-shape parked; see
   docs/GROUND_PICKUP_STATE.md.
 
-Exact next action: map GameState+0x34D8..+0x34DB, C4E4/C5EC initialization,
+Exact next action: publish the NPC destructor-thunk checkpoint, then continue the repeated-small-function fast path; +0x34D8/+0x34DC are already source-owned and C6BC remains parked.
 and the actor-state boundary at +0x34DC. Do not restart parked families.
 
 No build or compiler process is currently running.

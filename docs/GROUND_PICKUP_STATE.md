@@ -33,4 +33,4 @@ These represent persistent ground pickups and resource nodes, not general invent
 
 `func_080A1EA8` is understood as the effective-season index mapper but remains assembly: bounded natural candidates retained source-shape differences. Do not repeat syntax roulette. Other related availability/spawn helpers remain in assembly, including A1ED4, A1C94, A1B38, A1CBC and A1D20.
 
-Next adjacent persistent object: **GameState+0x34D8..+0x34DB** (four bytes), initializer `func_0809C4E4`; next large actor state begins at +0x34DC. Map its exact readers/writers before inventing a type.
+The adjacent **GameState+0x34D8..+0x34DB** four-byte map-stamp mask is now structurally closed in exact source, and the +0x34DC 24-byte actor state is already source-owned as well.

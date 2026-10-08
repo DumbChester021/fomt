@@ -575,6 +575,8 @@ SECTIONS
         asm/code_linkonce.o(.text.code_080D7CFC);
         src/entity_effect_dtor.o(.text);
         asm/code_linkonce.o(.text.after_func_080DC8F8);
+        src/npc_entity_dtor_thunks.o(.text.npc_entity_dtor_thunks);
+        asm/code_linkonce.o(.text.after_npc_entity_dtor_thunks);
         *(.gnu.linkonce.t.__lower_bound__H4ZPC12JumpTableEntZiZ28ScriptJumpTableSearchCompareZl_X01T0RCX11X21PX31_X01);
         asm/code_linkonce.o(.text.code_080E0EF0);
 
