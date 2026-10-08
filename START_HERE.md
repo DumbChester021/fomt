@@ -28,19 +28,19 @@ For the proven techniques and recommended next approach, read the "Fast-path ope
 
 ## Current exact reconstruction
 
-- Code: **75,904 / 940,036 = 8.0746%**
-- Assembly remaining: **864,132 bytes**
-- Linked assembly functions: **2,266**
-- Inferred ranges: **862,588 / 864,132 = 99.8213%**
+- Code: **76,132 / 940,036 = 8.0988%**
+- Assembly remaining: **863,904 bytes**
+- Linked assembly functions: **2,247**
+- Inferred ranges: **862,360 / 863,904 = 99.8213%**
 - Unattributed assembly: **1,544 bytes**
 - Generated parked functions: **17**
 - Data/assets: **75,334 / 6,777,404 = 1.1115%**
-- Overall meaningful ROM: **151,634 / 7,717,440 = 1.9648%**
+- Overall meaningful ROM: **151,862 / 7,717,440 = 1.9678%**
 - Contiguous free tail: **671,168 bytes = 655.44 KiB**
 
 ## Latest completed unit
 
-The contiguous destructor-ABI thunk lane at `0x080DC9C0..0x080DCB7C` now owns **37 exact functions / 444 linked bytes**: 33 raw thunks to `ANpcEntity::~ANpcEntity` plus 4 raw thunks to `UnkEntity37008::~UnkEntity37008`. Both production and detached forced ROM comparisons pass. The one-argument assembler-bound call shape is required; ordinary C++ destructor calls inject the old-GCC in-charge argument and do not match.
+The repeated-small-function fast path has now recovered the remaining **19 contiguous shape0001 ABI thunks / 228 linked bytes** across seven islands in `asm/code_linkonce.s`. Four callee families were proven with the same natural one-argument raw wrapper shape: `func_0800080C`, `func_080098AC`, `func_08076E0C`, and `func_08070C88`. Production and detached forced ROM comparisons both pass. Together with the immediately preceding destructor-thunk batches, the recent raw-ABI work accounts for **56 exact functions / 672 linked bytes**.
 
 ## Next direction
 

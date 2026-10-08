@@ -551,6 +551,8 @@ SECTIONS
         asm/code_libc_string.o(.text);
 
         asm/code_linkonce.o(.text.code_080D3BC0);
+        src/raw_abi_thunks.o(.text.raw_thunks_d3c60);
+        asm/code_linkonce.o(.text.after_raw_thunks_d3c60);
         *(.gnu.linkonce.t.__as__6AnimalRC6Animal);
         asm/code_linkonce.o(.text.code_080D68C0);
         src/resource_handle.o(.text.resource_subtree_fill_all);
@@ -565,6 +567,10 @@ SECTIONS
         src/resource_handle.o(.text.resource_child_free);
         src/resource_handle.o(.text.resource_entry_pool_init);
         asm/code_linkonce.o(.text.after_resource_entry_pool_init);
+        src/raw_abi_thunks.o(.text.raw_thunks_d7868);
+        asm/code_linkonce.o(.text.after_raw_thunks_d7868);
+        src/raw_abi_thunks.o(.text.raw_thunks_d7b2c);
+        asm/code_linkonce.o(.text.after_raw_thunks_d7b2c);
         *(.gnu.linkonce.t.__as__5SheepRC5Sheep);
         *(.gnu.linkonce.t.__as__3CowRC3Cow);
         *(.gnu.linkonce.t.__as__9LivestockRC9Livestock);
@@ -578,8 +584,16 @@ SECTIONS
         src/npc_entity_dtor_thunks.o(.text.npc_entity_dtor_thunks);
         src/entity37008_dtor_thunks.o(.text.entity37008_dtor_thunks);
         asm/code_linkonce.o(.text.after_entity37008_dtor_thunks);
+        src/raw_abi_thunks.o(.text.raw_thunks_e0a7c);
+        asm/code_linkonce.o(.text.after_raw_thunks_e0a7c);
         *(.gnu.linkonce.t.__lower_bound__H4ZPC12JumpTableEntZiZ28ScriptJumpTableSearchCompareZl_X01T0RCX11X21PX31_X01);
         asm/code_linkonce.o(.text.code_080E0EF0);
+        src/raw_abi_thunks.o(.text.raw_thunks_e1018);
+        asm/code_linkonce.o(.text.after_raw_thunks_e1018);
+        src/raw_abi_thunks.o(.text.raw_thunks_e1d8c);
+        asm/code_linkonce.o(.text.after_raw_thunks_e1d8c);
+        src/raw_abi_thunks.o(.text.raw_thunks_e20f8);
+        asm/code_linkonce.o(.text.after_raw_thunks_e20f8);
 
         *(.gnu.linkonce.d.__vt_6AScene);
         *(.gnu.linkonce.d.__vt_13AUnk_0800080C);

@@ -89,21 +89,7 @@ func_080D3C24: @ 0x080D3C24
 	pop {r1}
 	bx r1
 
-	thumb_func_start func_080D3C60
-func_080D3C60: @ 0x080D3C60
-	push {lr}
-	bl func_0800080C
-	pop {r0}
-	bx r0
-	.align 2, 0
-
-	thumb_func_start func_080D3C6C
-func_080D3C6C: @ 0x080D3C6C
-	push {lr}
-	bl func_0800080C
-	pop {r0}
-	bx r0
-	.align 2, 0
+    .section .text.after_raw_thunks_d3c60, "ax", %progbits
 
 	thumb_func_start func_080D3C78
 func_080D3C78: @ 0x080D3C78
@@ -7502,21 +7488,7 @@ func_080D782C: @ 0x080D782C
 	bx r1
 	.align 2, 0
 
-	thumb_func_start func_080D7868
-func_080D7868: @ 0x080D7868
-	push {lr}
-	bl func_080098AC
-	pop {r0}
-	bx r0
-	.align 2, 0
-
-	thumb_func_start func_080D7874
-func_080D7874: @ 0x080D7874
-	push {lr}
-	bl func_080098AC
-	pop {r0}
-	bx r0
-	.align 2, 0
+    .section .text.after_raw_thunks_d7868, "ax", %progbits
 
 	thumb_func_start func_080D7880
 func_080D7880: @ 0x080D7880
@@ -7726,29 +7698,7 @@ func_080D7B04: @ 0x080D7B04
 .L080D7B24: .4byte vtable_unk_080E5B54
 .L080D7B28: .4byte gUnk_03000410
 
-	thumb_func_start func_080D7B2C
-func_080D7B2C: @ 0x080D7B2C
-	push {lr}
-	bl func_080098AC
-	pop {r0}
-	bx r0
-	.align 2, 0
-
-	thumb_func_start func_080D7B38
-func_080D7B38: @ 0x080D7B38
-	push {lr}
-	bl func_080098AC
-	pop {r0}
-	bx r0
-	.align 2, 0
-
-	thumb_func_start func_080D7B44
-func_080D7B44: @ 0x080D7B44
-	push {lr}
-	bl func_080098AC
-	pop {r0}
-	bx r0
-	.align 2, 0
+    .section .text.after_raw_thunks_d7b2c, "ax", %progbits
 
 	.section ".text.code_080D7CFC"
 
@@ -24756,21 +24706,7 @@ func_080E0A08: @ 0x080E0A08
 	pop {r1}
 	bx r1
 
-	thumb_func_start func_080E0A7C
-func_080E0A7C: @ 0x080E0A7C
-	push {lr}
-	bl func_080098AC
-	pop {r0}
-	bx r0
-	.align 2, 0
-
-	thumb_func_start func_080E0A88
-func_080E0A88: @ 0x080E0A88
-	push {lr}
-	bl func_080098AC
-	pop {r0}
-	bx r0
-	.align 2, 0
+    .section .text.after_raw_thunks_e0a7c, "ax", %progbits
 
 	thumb_func_start func_080E0A94
 func_080E0A94: @ 0x080E0A94
@@ -25444,29 +25380,7 @@ func_080E0F90: @ 0x080E0F90
 	.align 2, 0
 .L080E1014: .4byte 0x06010000
 
-	thumb_func_start func_080E1018
-func_080E1018: @ 0x080E1018
-	push {lr}
-	bl func_080098AC
-	pop {r0}
-	bx r0
-	.align 2, 0
-
-	thumb_func_start func_080E1024
-func_080E1024: @ 0x080E1024
-	push {lr}
-	bl func_080098AC
-	pop {r0}
-	bx r0
-	.align 2, 0
-
-	thumb_func_start func_080E1030
-func_080E1030: @ 0x080E1030
-	push {lr}
-	bl func_080098AC
-	pop {r0}
-	bx r0
-	.align 2, 0
+    .section .text.after_raw_thunks_e1018, "ax", %progbits
 
 	thumb_func_start func_080E103C
 func_080E103C: @ 0x080E103C
@@ -27110,37 +27024,7 @@ func_080E1D54: @ 0x080E1D54
 .L080E1D84: .4byte 0x00002164
 .L080E1D88: .4byte 0x00002168
 
-	thumb_func_start func_080E1D8C
-func_080E1D8C: @ 0x080E1D8C
-	push {lr}
-	bl func_08076E0C
-	pop {r0}
-	bx r0
-	.align 2, 0
-
-	thumb_func_start func_080E1D98
-func_080E1D98: @ 0x080E1D98
-	push {lr}
-	bl func_08076E0C
-	pop {r0}
-	bx r0
-	.align 2, 0
-
-	thumb_func_start func_080E1DA4
-func_080E1DA4: @ 0x080E1DA4
-	push {lr}
-	bl func_08076E0C
-	pop {r0}
-	bx r0
-	.align 2, 0
-
-	thumb_func_start func_080E1DB0
-func_080E1DB0: @ 0x080E1DB0
-	push {lr}
-	bl func_08076E0C
-	pop {r0}
-	bx r0
-	.align 2, 0
+    .section .text.after_raw_thunks_e1d8c, "ax", %progbits
 
 	thumb_func_start func_080E1DBC
 func_080E1DBC: @ 0x080E1DBC
@@ -27555,29 +27439,7 @@ func_080E20C0: @ 0x080E20C0
 	pop {r0}
 	bx r0
 
-	thumb_func_start func_080E20F8
-func_080E20F8: @ 0x080E20F8
-	push {lr}
-	bl func_08070C88
-	pop {r0}
-	bx r0
-	.align 2, 0
-
-	thumb_func_start func_080E2104
-func_080E2104: @ 0x080E2104
-	push {lr}
-	bl func_08070C88
-	pop {r0}
-	bx r0
-	.align 2, 0
-
-	thumb_func_start func_080E2110
-func_080E2110: @ 0x080E2110
-	push {lr}
-	bl func_08070C88
-	pop {r0}
-	bx r0
-	.align 2, 0
+    .section .text.after_raw_thunks_e20f8, "ax", %progbits
 
 	thumb_func_start func_080E211C
 func_080E211C: @ 0x080E211C

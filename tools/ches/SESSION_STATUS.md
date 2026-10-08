@@ -1,36 +1,39 @@
 # FoMT Session Status
 
-## LATEST CHECKPOINT — 2026-10-08 — UnkEntity37008 destructor ABI thunk follow-up
+## LATEST CHECKPOINT — 2026-10-08 — remaining shape0001 raw ABI thunks
 
-Current branch: main, tracking ches/main. This checkpoint extends the immediately preceding NPC destructor-thunk island. Run `git log -1` and `git status` to obtain the exact published commit and confirm local/remote parity before new work.
+Current branch: main, tracking ches/main. This checkpoint recovers every remaining bounded contiguous same-callee group from shape0001. Run `git log -1` and `git status` to obtain the exact published commit and confirm local/remote parity before new work.
 
-Completed exact follow-up:
-- retail range `0x080DCB4C..0x080DCB7C` = 0x30 = 48 linked bytes;
-- exactly four functions: DCB4C/DCB58/DCB64/DCB70;
-- each slot is a 10-byte body plus 2-byte alignment;
-- all four forward unchanged ABI registers to `func_08037048`, which the linker aliases to `_._14UnkEntity37008`;
-- `func_080DCB7C` remains assembly and is the next non-thunk function.
+Exact source: `src/raw_abi_thunks.cc`. A generic one-argument raw wrapper compiles to the retail 10-byte `push {lr}; bl target; pop {r0}; bx r0` body plus 2-byte alignment for all four tested callees. Seven linker/assembly seams preserve unresolved code between islands.
 
-New source: `src/entity37008_dtor_thunks.cc`. The exact source shape uses a one-argument assembler-bound declaration of `_._14UnkEntity37008`; the same destructor in-charge ABI lesson from the 33-function ANpcEntity block applies.
+Recovered islands (19 functions / 228 linked bytes):
+- D3C60/D3C6C -> `func_0800080C`;
+- D7868/D7874 -> `func_080098AC`;
+- D7B2C/D7B38/D7B44 -> `func_080098AC`;
+- E0A7C/E0A88 -> `func_080098AC`;
+- E1018/E1024/E1030 -> `func_080098AC`;
+- E1D8C/E1D98/E1DA4/E1DB0 -> `func_08076E0C`;
+- E20F8/E2104/E2110 -> `func_08070C88`.
 
 Verification:
 - production `make -j4 compare`: PASS;
-- detached forced `make -B -j4 compare` in `/tmp/fomt-entity37008-dtor-thunks-20261008`: PASS;
-- retail SHA1 remains exact.
+- detached forced `make -B -j4 compare` in `/tmp/fomt-shape0001-thunks-20261008`: PASS;
+- retail SHA1 remains exact;
+- inventory regenerated; NPC map still maps 35 resident classes.
 
 Current exact metrics:
-- code: 75,904 / 940,036 = 8.0746%;
-- assembly remaining: 864,132 bytes;
-- linked assembly functions: 2,266;
-- inferred function bytes: 862,588 / 864,132 = 99.8213%;
+- code: 76,132 / 940,036 = 8.0988%;
+- assembly remaining: 863,904 bytes;
+- linked assembly functions: 2,247;
+- inferred function bytes: 862,360 / 863,904 = 99.8213%;
 - unattributed assembly: 1,544 bytes;
-- overall meaningful ROM: 151,634 / 7,717,440 = 1.9648%.
+- overall meaningful ROM: 151,862 / 7,717,440 = 1.9678%.
 
 EXACT NEXT ACTION:
-1. Confirm the published tree is clean and `HEAD == ches/main`; do not redo either completed destructor-thunk proof.
-2. Continue the regenerated repeated-small-function queue.
-3. Prefer the next bounded contiguous same-callee family from shape0001/shape0002; prove one natural source shape, then expand the family.
-4. Keep C6BC parked unless stronger packed-layout evidence appears.
+1. Confirm published tree clean and `HEAD == ches/main`; do not redo shape0001 raw-thunk proofs.
+2. Re-rank the regenerated repeated-shape clusters; shape0002 or the next coherent same-callee family is the preferred fast path.
+3. For any candidate family, prove one natural source shape first, then batch only functions sharing the exact ABI/callee semantics.
+4. Keep C6BC and other recorded compiler-sensitive families parked unless new structural evidence appears.
 
 ## Authoritative current snapshot - October 8, 2026
 
@@ -40,13 +43,13 @@ Run `git log -1` and `git status` before work. Preserve intentional dirty state.
 
 ## Exact production progress
 
-- Code: 75,904 / 940,036 = 8.0746%
-- Assembly remaining: 864,132 bytes
+- Code: 76,132 / 940,036 = 8.0988%
+- Assembly remaining: 863,904 bytes
 - Data/assets: 75,334 / 6,777,404 = 1.1115%
-- Overall meaningful ROM: 151,634 / 7,717,440 = 1.9648%
+- Overall meaningful ROM: 151,862 / 7,717,440 = 1.9678%
 - Free tail: 671,168 bytes
-- Linked assembly functions: 2,266
-- Inferred function bytes: 862,588 / 864,132 = 99.8213%
+- Linked assembly functions: 2,247
+- Inferred function bytes: 862,360 / 863,904 = 99.8213%
 - Unattributed assembly: 1,544 bytes
 - Parked functions: 17
 - Runtime/library functions: 33
