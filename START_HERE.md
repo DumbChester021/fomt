@@ -44,8 +44,7 @@ The four-function flag-setter quartet at `0x08010F24..0x08010F54` is now exact s
 
 ## Next direction
 
-The +0x34D8 four-byte map-stamp mask and +0x34DC 24-byte actor state are already source-owned. Continue with the repeated-small-function fast path from the ranked queue; keep C6BC parked.
-A1EA8 is source-shape parked; follow the Opus/Astra bounded fast path.
+The +0x34D8 four-byte map-stamp mask and +0x34DC 24-byte actor state are already source-owned. The 20-member scene-change family now has a bounded layout/ownership candidate; its matching remains unfinished. Next recover its simpler request-owned destructor family as an ABI oracle, following NEXT_AGENT_HANDOFF.md. Keep C6BC and A1EA8 parked.
 
 The loader remains parked. Resource-owner constructors and B128 remain parked.
 Local ignored proofs are under tools/ches/checkpoints/mine-floor-2026-10-07/.

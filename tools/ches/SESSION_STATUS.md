@@ -31,10 +31,25 @@ Current exact metrics:
 - overall meaningful ROM: 151,910 / 7,717,440 = 1.9684%.
 
 EXACT NEXT ACTION:
-1. Confirm published tree clean and `HEAD == ches/main`; do not redo this flag-setter proof.
-2. Re-rank the regenerated repeated clusters. The large repeated allocator/constructor families (for example shape0005) are now candidates, but first verify shared semantics/type ownership before batching.
-3. Prefer bounded coherent exact families over parked C6BC/compiler archaeology.
-4. Use the same ladder: one natural candidate -> family proof -> production/detached ROM -> inventory/docs -> publish.
+The flag-setter checkpoint is published as 4881ff9. Follow the active scene-request continuation below; do not redo the completed proof or select shape0005 blindly.
+
+
+## Active continuation - 2026-10-09 - scene request ownership
+
+Exact flag-setter source is published as 4881ff9; both forced ROM builds pass.
+The next shape0005 family contains 20 functions / 2,960 bytes. Its representative
+12BBC proves owner+0x8C context, +0x9C state and +0xA4 pending request. Complete
+owner identity and the other members still need verification.
+
+Best bounded scene candidate: scene-change-v3.cc, 0xA4 vs 0x94 / 157 differences.
+A related natural derived destructor emits 0x30 vs retail 0x28 because it rewrites
+the vtable. Neither candidate is promoted. Local candidates and comparisons are
+under tools/ches/checkpoints/scene-change-2026-10-09/.
+
+Next: test the structured two-argument ABI helper for DB2EC, then use exact
+siblings as a type/ownership oracle before returning to the larger constructors.
+NEXT_AGENT_HANDOFF.md owns the complete findings, closed shapes and exact test.
+No background executions remain.
 
 ## Authoritative current snapshot - October 9, 2026
 

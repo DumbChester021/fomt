@@ -28,6 +28,28 @@ Current retail state:
 - Current exact progress: **76,180 / 940,036 = 8.1039% source** and **863,856 assembly bytes**. Data/assets reconstruction is **75,334 / 6,777,404 = 1.1115%** and overall meaningful-ROM reconstruction is **151,910 / 7,717,440 = 1.9684%**. Forced detached and production ROM comparisons report `fomt.gba: OK`; retail SHA1 remains `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
 - Remaining linked assembly functions: **2,243**; inferred function ranges cover **862,312 / 863,856 = 99.8213%**, with **1,544 unattributed bytes** and **17 explicitly parked functions**. The extra 380 unattributed bytes are the newly exposed E118..E174 and E1B4..E2D4 unlabeled code islands.
 
+### 2026-10-09 scene-request ownership boundary
+
+The shape0005 family has 20 members. Representative 12BBC allocates a
+20-byte polymorphic request containing context at +4 and a three-word argument
+record at +8, transfers it into a 12-byte wrapper, replaces/deletes the pending
+request at owner+0xA4, and writes owner+0x9C state. Owner+0x8C supplies context. The owner itself is reached from
+the caller object's +4 field; its complete identity remains unresolved.
+
+Both vtables derive from the existing AUnk_0800080C scene-transition interface.
+E5E74 uses DC288 (base destructor) and DC244 (scene factory through 11DC4).
+E5E34 uses DC1A0 (owned member at +4 plus base destructor) and DC158 (transfer
+into scene constructor 7DD38). The existing SmartPtr models the nullable
+deletion and ownership transfer. This is structural evidence, not new exact
+production source.
+
+The candidate initially placed pending at +0xA0; corrected v3 uses +0xA4.
+Bounded source attempts remain nonmatching because aggregate/address lifetimes
+differ. A natural related derived destructor also adds a vtable rewrite absent
+from retail. Saved candidate results and the exact next ABI test are in
+NEXT_AGENT_HANDOFF.md and the local scene-change-2026-10-09 checkpoint.
+Do not repeat those attempts or promote their unresolved class identities.
+
 ### 2026-10-08 four GameState flag setters
 
 The contiguous `0x08010F24..0x08010F54` quartet is exact source in `src/game_state_flag_setters.cc`. Each helper ORs one low-nibble mask (1, 2, 4, 8) into byte 0 of a shared state pointer. Natural `*state |= mask` source compiles to the exact 10-byte retail body plus 2-byte alignment. Production and detached forced ROM comparisons pass. Keep the owning-state semantics unnamed until surrounding structure proves the field identity.
