@@ -12,11 +12,11 @@ exploit them across the remaining assembly instead of making an individual
 resource family the main queue.
 
 Current verified working state on `main`:
-- code: **81,428 / 940,036 = 8.6622%**;
-- assembly remaining: **858,608 bytes**;
-- remaining linked assembly functions: **2,133**;
+- code: **81,848 / 940,036 = 8.7069%**;
+- assembly remaining: **858,188 bytes**;
+- remaining linked assembly functions: **2,130**;
 - data/assets: **75,334 / 6,777,404 = 1.1115%**;
-- overall meaningful ROM: **157,158 / 7,717,440 = 2.0364%**;
+- overall meaningful ROM: **157,578 / 7,717,440 = 2.0418%**;
 - packed bank: **416 / 493 semantically owned animations**;
 - retail ROM remains exact at SHA1 `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
 
@@ -53,7 +53,7 @@ but its score is no longer an execution order.
 
 ## Current priority: work the live queue and preserve family-level leverage
 
-Latest coherent promotion: Scenes, complex Run 83B2C. func_08083B2C adds 168 exact linked source bytes with the retail 24-byte frame and branch-local ownership-transfer cleanup preserved. func_08092604 is also exact at 60 bytes. func_08092570 remains behavior-complete and exact-size at 0x54 but parked on a four-linked-byte r0/r1 codegen frontier. Next work is func_080881EC, the sole remaining complex scene Run. Shape cluster IDs renumber after inventory regeneration; use symbols. Stable evidence: docs/SCENES.md.
+Latest coherent promotion: Scenes, complex Run 881EC, adds 192 exact linked bytes and completes all 25 scene Runs. The scene lifetime layer now owns 74 functions / 4,108 bytes. Fresh isolated and forced production ROM comparisons pass with the unchanged compiler. Constructor 92570 remains parked at 0x54 / four r0/r1 bytes. Next is the bounded 85EC4/85EEC controller helper pair, anchored by the exact 881EC caller; defer the large 86A08 routine until controller layout evidence improves. Shape cluster IDs renumber after inventory regeneration; use symbols. Stable evidence: docs/SCENES.md.
 
 The larger 20-member scene-change constructor family remains bounded but nonmatching. Do not repeat its closed aggregate-lifetime candidates merely because the queue ranks it highly. NEXT_AGENT_HANDOFF.md owns the active continuation.
 
@@ -503,4 +503,4 @@ At this historical checkpoint SpriteAnimator was the immediate priority and was 
 Latest recovered GroundPickupState: +0x34C8..+0x34D7, 56 availability
 bits and fifteen packed three-bit durability fields. Four exact functions
 add 1,032 linked bytes. A1EA8 is parked. See docs/GROUND_PICKUP_STATE.md.
-The +0x34D8 mask and +0x34DC actor state are already source-owned. Active subsystem target: scene constructors with additional inputs; keep C6BC parked.
+The +0x34D8 mask and +0x34DC actor state are already source-owned. Active subsystem target: controller result/scaling helpers 85EC4/85EEC; keep C6BC parked.

@@ -124,6 +124,97 @@ struct SceneRequestTransfer83
     }
 };
 
+// Local moving-copy and return-storage view used by 881EC.
+template <typename T>
+struct SceneMovePtr881
+{
+    T * inner;
+
+    SceneMovePtr881()
+    {
+    }
+
+    explicit SceneMovePtr881(T * value)
+        : inner(value)
+    {
+    }
+
+    SceneMovePtr881(SceneMovePtr881 & source)
+        : inner(source.Move())
+    {
+    }
+
+    ~SceneMovePtr881()
+    {
+        delete inner;
+    }
+
+    T * Move()
+    {
+        T * value = inner;
+        inner = 0;
+        return value;
+    }
+};
+
+static inline u32 InnerSceneRequestMode881(int state)
+{
+    u32 mode = 1;
+    if (state != 0)
+        mode = 2;
+    return mode;
+}
+
+extern u32 vtable_unk_080E5D94[];
+extern u32 vtable_unk_080E5C64[];
+
+struct InnerSceneRequest881
+{
+    u32 * vtable;
+    SceneMovePtr881<AUnk_0800080C> continuation;
+    void * context;
+    u32 mode;
+
+    InnerSceneRequest881(SceneMovePtr881<AUnk_0800080C> continuation_, void * context_, u32 mode_)
+        : vtable(vtable_unk_080E5D94)
+        , continuation(continuation_)
+        , context(context_)
+        , mode(mode_)
+    {
+    }
+};
+
+struct OuterSceneRequest881
+{
+    u32 * vtable;
+    SceneMovePtr881<AUnk_0800080C> inner;
+    void * context;
+    u32 mode;
+    u8 status;
+
+    OuterSceneRequest881(SceneMovePtr881<AUnk_0800080C> inner_, void * context_, u32 mode_, u8 status_)
+        : vtable(vtable_unk_080E5C64)
+        , inner(inner_)
+        , context(context_)
+        , mode(mode_)
+        , status(status_)
+    {
+    }
+};
+
+struct SceneRequestTransfer881
+{
+    SceneMovePtr881<AUnk_0800080C> * source;
+    AUnk_0800080C * request;
+
+    SceneRequestTransfer881(SceneMovePtr881<AUnk_0800080C> * source_, AUnk_0800080C * request_)
+        : source(source_)
+        , request(request_)
+    {
+        source->inner = 0;
+    }
+};
+
 extern SmartPtr<AUnk_0800080C> RunController51504(SceneController *) asm("func_08051504");
 extern SmartPtr<AUnk_0800080C> RunController52984(SceneController *) asm("func_08052984");
 extern SmartPtr<AUnk_0800080C> RunController588AC(SceneController *) asm("func_080588AC");
@@ -139,6 +230,9 @@ extern void RunController8114C(SceneController *) asm("func_0808114C");
 extern void RunController81BBC(SceneController *) asm("func_08081BBC");
 extern int RunController82CEC(SceneController *) asm("func_08082CEC");
 extern void RunController84228(SceneController *) asm("func_08084228");
+extern int RunController86A08(SceneController *) asm("func_08086A08");
+extern int RunController85EEC(SceneController *) asm("func_08085EEC");
+
 extern void RunController8A55C(SceneController *) asm("func_0808A55C");
 extern void RunController8C0BC(SceneController *) asm("func_0808C0BC");
 extern void RunController8E6FC(SceneController *) asm("func_0808E6FC");
@@ -294,6 +388,38 @@ SceneRequestResult * func_08085568(SceneRequestResult * result, SceneOwner85528 
 {
     RunController84228(self->controller.Get());
     result->request = self->continuation.Move();
+    return result;
+}
+
+EC SceneRequestResult * func_080881EC(SceneRequestResult *, SceneOwner881AC *) SECTION(".text.scene_run_881ec");
+SceneRequestResult * func_080881EC(SceneRequestResult * result, SceneOwner881AC * self)
+{
+    SceneMovePtr881<AUnk_0800080C> * continuation =
+        reinterpret_cast<SceneMovePtr881<AUnk_0800080C> *>(&self->continuation);
+
+    int status = RunController86A08(self->controller.Get());
+
+    if (status != -1) {
+        int state = RunController85EEC(self->controller.Get());
+
+        u32 outerMode = 1;
+        if (state != 0)
+            outerMode = 2;
+
+        SceneMovePtr881<AUnk_0800080C> innerOwner(
+            reinterpret_cast<AUnk_0800080C *>(
+                new InnerSceneRequest881(*continuation, self->unk_10, InnerSceneRequestMode881(state))));
+
+        SceneMovePtr881<AUnk_0800080C> returnSource;
+        OuterSceneRequest881 * outer = new OuterSceneRequest881(
+            innerOwner, self->unk_10, outerMode, status);
+        AUnk_0800080C * moved = reinterpret_cast<AUnk_0800080C *>(outer);
+        SceneRequestTransfer881 transfer(&returnSource, moved);
+        result->request = moved;
+    } else {
+        result->request = continuation->Move();
+    }
+
     return result;
 }
 

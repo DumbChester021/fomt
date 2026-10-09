@@ -1,6 +1,6 @@
 # Scenes: construction, cleanup and continuation transfer
 
-The shared scene lifetime layer is exact in `include/scene_owners.hh` and `src/scene_owners.cc`: 24 constructors, 25 destructors and 24 `Run()` entries, totaling **73 source functions / 3,916 linked retail bytes**. These are scene lifetime and transition mechanics. Concrete screen identities and controller implementations remain incomplete.
+The shared scene lifetime layer is exact in `include/scene_owners.hh` and `src/scene_owners.cc`: 24 constructors, 25 destructors and all 25 `Run()` entries, totaling **74 source functions / 4,108 linked retail bytes**. These are scene lifetime and transition mechanics. Concrete screen identities and controller implementations remain incomplete.
 
 ## Ownership layout
 
@@ -23,6 +23,30 @@ For 16 recovered `Run()` entries, the scene calls its controller, moves the cont
 The old aggregate-return ABI passes the one-pointer result slot in r0 and the scene in r1. Explicit ABI helpers use a one-pointer result-storage view while retaining typed scene ownership and normal `SmartPtr::Move()`. Typed virtual member names are bound to those entries through linker aliases. Existing retail vtables remain authoritative.
 
 `func_08083B2C` proves a second old auto_ptr-style pattern. The continuation uses a one-word moving-copy slot, while each allocating branch owns a request temporary plus a two-word transfer proxy. The exact source assigns the outer result inside the branch, lets the branch-local owner destruct, and only then joins at one common return. Direct returns from both allocating branches cause GCC to tail-merge those cleanups and do not match retail.
+
+## Nested request contract in 881EC
+
+`func_080881EC` calls controller `func_08086A08`. Status -1 moves the
+continuation directly. Otherwise it queries `func_08085EEC`, choosing mode 1
+for zero and mode 2 for any other result, and creates two nested requests:
+
+| Offset | Inner request, 16 bytes | Outer request, 20 bytes |
+| --- | --- | --- |
+| +0 | Vtable 080E5D94 | Vtable 080E5C64 |
+| +4 | Moved scene continuation | Moved inner request |
+| +8 | Scene context at owner +0x10 | Same context |
+| +0xC | Mode 1 or 2 | Same mode |
+| +0x10 | Outside this object | First-controller status byte |
+
+The outer pointer transfers to the caller result; the cleared inner owner
+then destructs before the common return. The owner word at +0x0C is not read
+by this Run.
+
+The local `SceneMovePtr881` describes moving-copy and return-source ABI
+storage without changing global SmartPtr. The default-created return source
+is not read before its proxy sets the word to null. The allocated outer pointer
+flows directly to the proxy and result. This view preserves the observed
+lifetime and is not a general default-initialized smart pointer.
 
 ## Constructor contract
 
@@ -79,7 +103,7 @@ All destructors below are 64 bytes. Parenthesized constructor sizes mark recover
 | `SceneOwner82144` | `func_08082114` (48) | `vtable_unk_080E7CD8` | `func_08082184` | 28 | `func_08081BBC` |
 | `SceneOwner83AEC` | `func_08083A7C` (112) | `vtable_unk_080E7D04` | `func_08083B2C` | 168 | `func_08082CEC` |
 | `SceneOwner85528` | `func_080854F4` (52) | `vtable_unk_080E7D20` | `func_08085568` | 28 | `func_08084228` |
-| `SceneOwner881AC` | `func_08088168` (68) | `vtable_unk_080E7D3C` | `func_080881EC` | assembly | `unresolved` |
+| `SceneOwner881AC` | `func_08088168` (68) | `vtable_unk_080E7D3C` | `func_080881EC` | 192 | `func_08086A08`, `func_08085EEC` |
 | `SceneOwner8AB68` | `func_0808AB38` (48) | `vtable_unk_080E7D58` | `func_0808ABA8` | 28 | `func_0808A55C` |
 | `SceneOwner8C59C` | `func_0808C56C` (48) | `vtable_unk_080E7D74` | `func_0808C5DC` | 28 | `func_0808C0BC` |
 | `SceneOwner8ED08` | `func_0808ECD8` (48) | `vtable_unk_080E7D90` | `func_0808ED48` | 28 | `func_0808E6FC` |
@@ -89,13 +113,13 @@ All destructors below are 64 bytes. Parenthesized constructor sizes mark recover
 | `SceneOwner93A88` | `func_08093A58` (48) | `vtable_unk_080E8018` | `func_08093AD4` | 28 | `func_08093364` |
 | `SceneOwner9A518` | `func_0809A4D4` (68) | `vtable_unk_080E824C` | `func_0809A558` | 52 | `func_08094F6C` |
 
-## Remaining scene methods
+## Recovered complex Runs
 
 - `func_08083B2C`: now exact source. Controller status 0 moves the continuation directly; status 1/fallback allocate the same 16-byte request wrapper with scene context at +1C and flags 0/1, then transfer ownership through branch-local proxies.
-- `func_080881EC`: controller status selects direct transfer or nested 16-/20-byte requests with context at +10 and additional state.
+- `func_080881EC`: exact source. Status -1 moves the continuation directly; other statuses create the nested requests described above.
 - `func_08092604`: exact source. It obtains a controller request through caller-supplied aggregate-return storage and transfers that temporary to the outer result through the recovered two-word `auto_ptr_ref`-style proxy.
 
-Only one complex Run remains assembly: `func_080881EC`. Constructor `92570`, controller constructors and controller logic also remain assembly. Nearby shop/catalog or rucksack data is useful evidence but does not establish a specific screen name.
+All 25 scene Runs are now exact source. Constructor `92570`, controller constructors and controller logic remain assembly. Nearby shop/catalog or rucksack data is useful evidence but does not establish a specific screen name.
 
 ## True boundaries and verification
 
@@ -112,10 +136,12 @@ Six formerly inferred Run ranges also contained unnamed neighboring code. Only t
 
 The **596 bytes** remain unchanged assembly and now count as unattributed. Run 93AD4 follows the separate 12-byte helper at 93AC8; destructor adjacency alone does not establish its address.
 
-All 73 source-owned scene functions match retail, and the forced production full-ROM comparison passes with the unchanged tracked compiler. The newest Run, `func_08083B2C`, matches scratch and production-shaped candidates at 0xA8 / 0 differences. Original entry aliases, symbol addresses and all 25 destructor/Run vtable slot pairs are preserved. Regenerated inventory reports 2,131 linked assembly functions, 858,380 assembly bytes and the unchanged 2,696 unattributed bytes.
+All 74 source-owned scene functions match retail. The newest Run, `func_080881EC`, matches scratch, production-shaped and complete-TU proofs at 0xC0 / 0 differences. A fresh tracked compiler install, isolated full-ROM comparison and forced production full-ROM comparison pass. Original entry aliases, target/neighbor addresses and all 25 destructor/Run vtable slot pairs are preserved. Regenerated inventory reports 2,130 linked assembly functions, 858,188 assembly bytes and the unchanged 2,696 unattributed bytes.
 
 ROM: **8,388,608 bytes**, SHA1 `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
 
-The ignored proof checkpoint is `tools/ches/checkpoints/scene-owners-2026-10-09/`. It contains the audited manifest, matcher results, reviewed integration inputs, both full build logs and verification/inventory snapshots. `tools/ches/NEXT_AGENT_HANDOFF.md` owns the constructor continuation.
+The ignored proof checkpoint is `tools/ches/checkpoints/scene-owners-2026-10-09/`. It contains the audited manifest, matcher results, reviewed integration inputs, both full build logs and verification/inventory snapshots. `tools/ches/NEXT_AGENT_HANDOFF.md` owns the current controller-helper continuation.
 
 Constructor proofs are under `tools/ches/checkpoints/scene-constructors-2026-10-09/`: audited manifest, caller evidence, individual matches, reviewed final integration inputs, expanded full build logs and verification/inventory snapshots.
+
+Nested Run proofs and reviewed integration inputs are under `tools/ches/checkpoints/scene-complex-runs-2026-10-09/`. The canonical handoff owns the bounded controller-helper continuation.

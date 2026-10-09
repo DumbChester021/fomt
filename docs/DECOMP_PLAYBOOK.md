@@ -611,7 +611,7 @@ When a batch materially recovers a subsystem architecture, the batch is not full
 
 ## Current strategic direction
 
-The active public retail branch is `main`. Current verified working reconstruction is **81,428 / 940,036 = 8.6622% source**, **75,334 data/asset bytes**, and **157,158 / 7,717,440 = 2.0364% overall meaningful-ROM bytes**, with **858,608 assembly bytes** remaining and the retail ROM still exact. The remaining-function database/ranked queue and resident-NPC class map regenerate from the current build. The Entity38740/Entity398A4 region has advanced through exact `3A804..3A8A0`; behavior-complete `3A180`, `3A394`, `39F90`, `39E98`, and other documented compiler islands remain parked. The logical map resolver adds 652 exact bytes; four resource-owner methods add 680 linked bytes; fishing records add 276 exact bytes; the mine-floor cluster owns 872 exact linked bytes through E0AC plus E174..E1B4 and recovers its shared 0x628-byte persistent type. The exposed E118..E174 and E1B4..E2D4 islands are behavior-recovered but parked. The adjacent +0x3480 persistent block is now a typed 0x14-byte `CursedToolState`; the +0x3494 three-record block is conservatively opaque, GroundPickupState +0x34C8 is now exact source, and the the +0x34D8 mask and +0x34DC actor state are already source-owned; active scene work is constructors with additional inputs. D8E8 and DA00 remain parked source-shape/compiler frontiers; do not repeat the parked loader's closed compiler/source families. The handoff owns exact active commands/artifacts; the priority map owns target selection; dated checkpoints and Git history own detailed chronology.
+The active public retail branch is `main`. Current verified working reconstruction is **81,848 / 940,036 = 8.7069% source**, **75,334 data/asset bytes**, and **157,578 / 7,717,440 = 2.0418% overall meaningful-ROM bytes**, with **858,188 assembly bytes** remaining and the retail ROM still exact. The remaining-function database/ranked queue and resident-NPC class map regenerate from the current build. The Entity38740/Entity398A4 region has advanced through exact `3A804..3A8A0`; behavior-complete `3A180`, `3A394`, `39F90`, `39E98`, and other documented compiler islands remain parked. The logical map resolver adds 652 exact bytes; four resource-owner methods add 680 linked bytes; fishing records add 276 exact bytes; the mine-floor cluster owns 872 exact linked bytes through E0AC plus E174..E1B4 and recovers its shared 0x628-byte persistent type. The exposed E118..E174 and E1B4..E2D4 islands are behavior-recovered but parked. The adjacent +0x3480 persistent block is now a typed 0x14-byte `CursedToolState`; the +0x3494 three-record block is conservatively opaque, GroundPickupState +0x34C8 is now exact source, and the the +0x34D8 mask and +0x34DC actor state are already source-owned; all scene Runs are exact; next are the controller result/scaling helpers 85EC4/85EEC. D8E8 and DA00 remain parked source-shape/compiler frontiers; do not repeat the parked loader's closed compiler/source families. The handoff owns exact active commands/artifacts; the priority map owns target selection; dated checkpoints and Git history own detailed chronology.
 
 Preserved renderer candidates remain:
 - `func_080A5CC0`: expected 0x54, v1 actual 0x58, 72 differing linked bytes;
@@ -704,7 +704,7 @@ adds no executable-source percentage.
 Latest recovered GroundPickupState: +0x34C8..+0x34D7, 56 availability
 bits and fifteen packed three-bit durability fields. Four exact functions
 add 1,032 linked bytes. A1EA8 is parked. See docs/GROUND_PICKUP_STATE.md.
-The +0x34D8 mask and +0x34DC actor state are already source-owned. Active subsystem target: scene constructors with additional inputs; keep C6BC parked.
+The +0x34D8 mask and +0x34DC actor state are already source-owned. Active subsystem target: controller result/scaling helpers 85EC4/85EEC; keep C6BC parked.
 
 ### October 9, 2026: destructor ABI and inferred-range boundaries
 
@@ -723,3 +723,14 @@ For one-pointer aggregate returns, distinguish the ABI result storage from a fre
 The scene constructors match natural member initializers once controller allocation and continuation transfer are typed. Keep a controller's shared deletion prefix separate from its full allocation size; an audited assembly-bound constructor can preserve that runtime boundary while the complete type remains unresolved.
 
 Normalized instruction groups can split one semantic constructor pattern when a larger allocation constant uses a literal pool instead of immediate/shift instructions. Audit the neighboring ownership contract before leaving such siblings behind. Factory callers also matter: DC3A0 constructs its scene on the stack, while the other audited callers allocate it. Inspect emitted constructor symbols rather than guessing old-GCC template mangling.
+
+### October 9, 2026: return-source storage and nested moving copies
+
+The exact 881EC Run distinguishes a moving-copy owner from default-created
+ABI return-source storage. Initializing that source word to zero can supersede
+the earlier continuation-copy clear; declaring it only after allocation can
+collapse a live stack slot. Keep its observed scope and initialize it through
+the transfer proxy before any read or destructor. The outer allocation pointer
+flows directly to the proxy/result. A local ABI view preserves this contract
+without changing global SmartPtr or the compiler. Reprove the complete TU and
+both ROM builds when integrating such ownership views.

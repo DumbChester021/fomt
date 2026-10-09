@@ -16,8 +16,8 @@ Current reconstruction:
 
 ```text
 Code reconstruction
-  80976 / 940036 bytes (8.6141%)
-  859060 bytes remain in asm
+  81848 / 940036 bytes (8.7069%)
+  858188 bytes remain in asm
 
 Data/assets reconstruction
   75334 / 6777404 bytes (1.1115%)
@@ -28,7 +28,7 @@ Data/assets reconstruction
   396 additional source-owned ROM-header bytes count only toward overall
 
 Overall meaningful-ROM reconstruction
-  156706 / 7717440 bytes (2.0305%)
+  157578 / 7717440 bytes (2.0418%)
   final ROM padding is excluded from this denominator
 
 ROM space
@@ -36,7 +36,7 @@ ROM space
   671168 bytes free (655.44 KiB, 8.0009%) contiguous tail space
 ```
 
-The code inventory currently reports **2,139 linked assembly functions**, **856,364 bytes** covered by inferred function ranges, **2,696 unattributed assembly bytes**, and **17 explicitly parked functions**. The total includes prior exposed islands plus 596 bytes of unnamed neighbors revealed by six scene Run seams. Only their true 28-byte Run bodies are source-owned; the neighboring code remains unchanged assembly.
+The code inventory currently reports **2,130 linked assembly functions**, **855,492 bytes** covered by inferred function ranges, **2,696 unattributed assembly bytes**, and **17 explicitly parked functions**. The total includes prior exposed islands plus 596 bytes of unnamed neighbors revealed by six scene Run seams. Only their true 28-byte Run bodies are source-owned; the neighboring code remains unchanged assembly.
 
 ## What the metrics mean
 
@@ -50,7 +50,9 @@ Understanding or documenting an opaque `.incbin` does not count as asset/data re
 
 ## Recent exact milestones
 
-The newest unit is **Scenes: constructors and controller creation, 18 natural constructors / 876 linked source bytes**. Every audited controller allocation and continuation transfer matches; both expanded full-ROM builds and all 65 source-owned scene spans pass. See [SCENES.md](SCENES.md).
+The newest unit is **Scenes: complex Run 881EC / 192 linked source bytes**. All 25 Runs are now source-owned; the scene lifetime layer totals 74 functions / 4,108 bytes. Fresh isolated and production full-ROM comparisons pass. See [SCENES.md](SCENES.md).
+
+The earlier constructor unit is **Scenes: controller creation, 18 natural constructors / 876 linked source bytes**. Every audited controller allocation and continuation transfer matches; both expanded full-ROM builds and all 65 source-owned scene spans pass. See [SCENES.md](SCENES.md).
 
 The preceding scene unit is **Scenes: cleanup and continuation transfer, 47 functions / 2,360 linked source bytes**. It recovers 25 natural derived destructors and 22 Run entries, preserving original vtable slots and exact retail addresses. Both forced full-ROM builds pass. See [SCENES.md](SCENES.md).
 
@@ -85,7 +87,7 @@ Immediately preceding exact promotions include `func_0803A798`, `func_0803A350`,
 
 ## Current frontier
 
-The single-owned-member destructor family is complete. Next audit the 25-member two-owned-member scene cleanup family beginning at func_080521BC. Its second owned object's vtable is at +4, so do not assume the same concrete type or layout as the recovered +0-vtable prefix.
+The scene cleanup and all 25 Run entries are exact. Next audit controller result/scaling helpers 85EC4/85EEC using the exact 881EC caller and +0x43D8 writers. Constructor 92570 remains parked at four codegen bytes.
 
 The 20 scene-change helpers remain bounded but nonmatching at their aggregate/ownership lifetime seam. Resource-owner constructors/B128, mine-floor D8E8/DA00 and the exposed E118/E1B4 islands, the legacy loader, and the other documented parked functions remain closed until new structural evidence changes their leverage. NEXT_AGENT_HANDOFF.md owns the exact next action.
 
@@ -116,4 +118,4 @@ The reported **671,168 bytes** are the contiguous final tail after linked conten
 Latest recovered GroundPickupState: +0x34C8..+0x34D7, 56 availability
 bits and fifteen packed three-bit durability fields. Four exact functions
 add 1,032 linked bytes. A1EA8 is parked. See docs/GROUND_PICKUP_STATE.md.
-The +0x34D8 mask and +0x34DC actor state are already source-owned. Active subsystem target: scene constructors with additional inputs; keep C6BC parked.
+The +0x34D8 mask and +0x34DC actor state are already source-owned. Active subsystem target: controller result/scaling helpers 85EC4/85EEC; keep C6BC parked.
