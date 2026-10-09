@@ -12,11 +12,11 @@ exploit them across the remaining assembly instead of making an individual
 resource family the main queue.
 
 Current verified working state on `main`:
-- code: **76,180 / 940,036 = 8.1039%**;
-- assembly remaining: **863,856 bytes**;
-- remaining linked assembly functions: **2,243**;
+- code: **77,740 / 940,036 = 8.2699%**;
+- assembly remaining: **862,296 bytes**;
+- remaining linked assembly functions: **2,204**;
 - data/assets: **75,334 / 6,777,404 = 1.1115%**;
-- overall meaningful ROM: **151,910 / 7,717,440 = 1.9684%**;
+- overall meaningful ROM: **153,470 / 7,717,440 = 1.9886%**;
 - packed bank: **416 / 493 semantically owned animations**;
 - retail ROM remains exact at SHA1 `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
 
@@ -52,6 +52,11 @@ The old direct-call leverage analyzer remains useful input:
 but its score is no longer an execution order.
 
 ## Current priority: work the live queue and preserve family-level leverage
+
+Latest coherent promotion: 39 one-owned-member destructor entries / 1,560 linked source bytes, with exact isolated and production ROMs. Next audit the 25-member two-owned-member cleanup family beginning with func_080521BC; verify its +4-vtable child layout and true bounds before selecting a credible candidate. Shape cluster IDs renumber when the inventory regenerates, so identify families by representative symbols.
+
+The larger 20-member scene-change constructor family remains bounded but nonmatching. Do not repeat its closed aggregate-lifetime candidates merely because the queue ranks it highly. NEXT_AGENT_HANDOFF.md owns the active continuation.
+
 
 The throughput pipeline is operational. The Ball family remains parked at its documented mover seam. The adjacent `vtable_unk_080E7380` family now owns **316 exact retail bytes** in source: 224 bytes of entity surface plus 92 bytes of controller helpers. Controller constructor `0x08038820` is behavior-complete and exact-size but bounded by register-lifetime codegen.
 

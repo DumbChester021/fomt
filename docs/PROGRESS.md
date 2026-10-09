@@ -16,8 +16,8 @@ Current reconstruction:
 
 ```text
 Code reconstruction
-  76180 / 940036 bytes (8.1039%)
-  863856 bytes remain in asm
+  77740 / 940036 bytes (8.2699%)
+  862296 bytes remain in asm
 
 Data/assets reconstruction
   75334 / 6777404 bytes (1.1115%)
@@ -28,7 +28,7 @@ Data/assets reconstruction
   396 additional source-owned ROM-header bytes count only toward overall
 
 Overall meaningful-ROM reconstruction
-  151910 / 7717440 bytes (1.9684%)
+  153470 / 7717440 bytes (1.9886%)
   final ROM padding is excluded from this denominator
 
 ROM space
@@ -36,7 +36,7 @@ ROM space
   671168 bytes free (655.44 KiB, 8.0009%) contiguous tail space
 ```
 
-The code inventory currently reports **2,243 linked assembly functions**, **862,312 bytes** covered by inferred function ranges, **1,544 unattributed assembly bytes**, and **17 explicitly parked functions**. The unattributed increase is structural: exact E0AC/E174..E1A4 boundaries exposed previously hidden code at E118..E174 and E1B4..E2D4.
+The code inventory currently reports **2,204 linked assembly functions**, **860,196 bytes** covered by inferred function ranges, **2,100 unattributed assembly bytes**, and **17 explicitly parked functions**. The unattributed total includes the previously exposed mine-floor islands plus 556 bytes of unnamed neighboring code at DB404..DB630. The latter were formerly swallowed by the inferred DB3DC range; only its true 40-byte aligned body is source-owned.
 
 ## What the metrics mean
 
@@ -49,6 +49,9 @@ The project keeps separate dimensions rather than combining unlike work into one
 Understanding or documenting an opaque `.incbin` does not count as asset/data reconstruction. Editable project-side source must regenerate the retail bytes exactly.
 
 ## Recent exact milestones
+
+The newest unit is **39 owned-polymorphic destructor entries / 1,560 linked source bytes**. Typed prefix views recover nullable deletion and explicit destructor-mode forwarding without inventing complete class identities. All 39 retail bodies and original symbol addresses match; isolated and production forced full-ROM comparisons pass. See [POLYMORPHIC_OWNERS.md](POLYMORPHIC_OWNERS.md).
+
 
 The latest exact mine-floor unit now totals **872 linked source bytes**: CE8C (168), the **72-byte D8A0..D8E8 accessor block**, D9B4 (76), the exact **0x180-byte DF2C..E0AC helper block**, E0AC (0x6A body plus 2 linked alignment bytes), and the **0x40-byte E174..E1B4 progress-flag block**. The shared 0x628-byte persistent type lives in `include/mine_floor.hh`. Detached and production full-ROM comparisons pass. See [MINE_FLOOR.md](MINE_FLOOR.md).
 
@@ -78,9 +81,9 @@ Immediately preceding exact promotions include `func_0803A798`, `func_0803A350`,
 
 ## Current frontier
 
-The exact resource-owner set is integrated. Constructors and B128 remain assembly; AB30 is parked at 316/217 versus 328, B128 at 382/2. Fishing records recover the 472-byte block with 276 exact source bytes, and the mine-floor cluster owns 872 linked source bytes around the adjacent 0x628-byte persistent object. E0AC and the four progress-flag getters are exact. The exposed E118..E174 (0x5C) and E1B4..E2D4 (0x120) islands are behavior-recovered but parked after bounded source-shape attempts. The following GameState+0x3480 block is now a typed 0x14-byte CursedToolState with exact typed initializer; next assess +0x3494..+0x34C4. D8E8 and DA00 remain parked compiler/source-shape frontiers. The legacy loader remains parked pending new source-boundary evidence.
+The single-owned-member destructor family is complete. Next audit the 25-member two-owned-member scene cleanup family beginning at func_080521BC. Its second owned object's vtable is at +4, so do not assume the same concrete type or layout as the recovered +0-vtable prefix.
 
-`func_0803A180`, `func_0803A394`, `func_08039F90`, `func_08039E98`, and the other generator-marked parked functions should not be reopened without genuinely new structural evidence.
+The 20 scene-change helpers remain bounded but nonmatching at their aggregate/ownership lifetime seam. Resource-owner constructors/B128, mine-floor D8E8/DA00 and the exposed E118/E1B4 islands, the legacy loader, and the other documented parked functions remain closed until new structural evidence changes their leverage. NEXT_AGENT_HANDOFF.md owns the exact next action.
 
 ## Asset status
 

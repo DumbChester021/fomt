@@ -22,29 +22,31 @@ This is the live dashboard for the US Harvest Moon: Friends of Mineral Town matc
 
 ## Handoff readiness
 
-The latest verified checkpoint recovers four GameState flag setters at 0x08010F24..0x08010F54. Fresh production and detached forced ROM comparisons passed on October 9, 2026, using the tracked compiler installer. Run `git log -1` and `git status` before work; never reset a dirty tree merely to match an expected hash. The full loader and complete GameState type remain unfinished. No build or compiler command is pending.
+The latest verified checkpoint recovers 39 owned-polymorphic destructor entries, adding 1,560 linked source bytes. Production and isolated forced ROM comparisons passed on October 9, 2026, using the unchanged tracked compiler. Run `git log -1` and `git status` before work; never reset a dirty tree merely to match an expected hash. The full loader and complete GameState type remain unfinished. No build or compiler command is pending.
 
 For the proven techniques and recommended next approach, read the "Fast-path operating method" in docs/DECOMP_PLAYBOOK.md. NEXT_AGENT_HANDOFF.md includes first commands, exact next deliverable, closed paths and fresh-clone artifact limitations.
 
 ## Current exact reconstruction
 
-- Code: **76,180 / 940,036 = 8.1039%**
-- Assembly remaining: **863,856 bytes**
-- Linked assembly functions: **2,243**
-- Inferred ranges: **862,312 / 863,856 = 99.8213%**
-- Unattributed assembly: **1,544 bytes**
+- Code: **77,740 / 940,036 = 8.2699%**
+- Assembly remaining: **862,296 bytes**
+- Linked assembly functions: **2,204**
+- Inferred ranges: **860,196 / 862,296 = 99.7565%**
+- Unattributed assembly: **2,100 bytes**
 - Generated parked functions: **17**
 - Data/assets: **75,334 / 6,777,404 = 1.1115%**
-- Overall meaningful ROM: **151,910 / 7,717,440 = 1.9684%**
+- Overall meaningful ROM: **153,470 / 7,717,440 = 1.9886%**
 - Contiguous free tail: **671,168 bytes = 655.44 KiB**
 
 ## Latest completed unit
 
-The four-function flag-setter quartet at `0x08010F24..0x08010F54` is now exact source in `src/game_state_flag_setters.cc`, adding **48 linked bytes**. The natural old-GCC source is simply `*state |= 1/2/4/8`, producing four 10-byte bodies plus 2-byte alignment. Production and detached forced ROM comparisons both pass.
+The 39-function cleanup family is exact source in `src/owned_polymorphic_dtors.cc`, adding **1,560 linked bytes**. Each entry deletes one nullable owned polymorphic member at +4 or +8 and forwards the original object and incoming destructor mode to the scene or scene-request base. Every 38-byte body plus 2-byte alignment matches retail; both full-ROM builds pass. See [POLYMORPHIC_OWNERS.md](docs/POLYMORPHIC_OWNERS.md).
+
+The DB3DC seam exposes 556 bytes of previously swallowed neighboring code at DB404..DB630. Those bytes remain assembly and now count as unattributed, so the inventory does not inflate source progress.
 
 ## Next direction
 
-The +0x34D8 four-byte map-stamp mask and +0x34DC 24-byte actor state are already source-owned. The 20-member scene-change family now has a bounded layout/ownership candidate; its matching remains unfinished. Next recover its simpler request-owned destructor family as an ABI oracle, following NEXT_AGENT_HANDOFF.md. Keep C6BC and A1EA8 parked.
+The +0x34D8 four-byte map-stamp mask and +0x34DC 24-byte actor state are already source-owned. The 20-member scene-change family remains bounded but nonmatching. Its simpler owned-member destructor ABI is now exact. Next audit the 25-member two-owned-member cleanup family beginning with func_080521BC, following NEXT_AGENT_HANDOFF.md. Keep C6BC and A1EA8 parked.
 
 The loader remains parked. Resource-owner constructors and B128 remain parked.
 Local ignored proofs are under tools/ches/checkpoints/mine-floor-2026-10-07/.

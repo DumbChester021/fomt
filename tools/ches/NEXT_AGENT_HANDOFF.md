@@ -1,120 +1,103 @@
 # Current FoMT continuation - October 9, 2026
 
-## Latest checkpoint - 2026-10-09 - four GameState flag setters
+## Latest verified checkpoint: owned-polymorphic destructor family
 
-Current branch: main, tracking ches/main. Run `git log -1` and `git status` to obtain the exact published commit and confirm local/remote parity before new work.
+Workspace: /mnt/data/Github/gba/fomt
+Public retail branch: main, tracking ches/main.
+Run `git log -1` and `git status` before new work. Preserve unrelated changes.
 
-Exact source: `src/game_state_flag_setters.cc`. Retail range `0x08010F24..0x08010F54` contains four 12-byte slots:
-- `func_08010F24`: OR byte-0 mask 1;
-- `func_08010F30`: OR byte-0 mask 2;
-- `func_08010F3C`: OR byte-0 mask 4;
-- `func_08010F48`: OR byte-0 mask 8.
+New exact source: src/owned_polymorphic_dtors.cc, 39 original entries / 1,560 linked bytes.
+Every 38-byte body plus two alignment bytes matches retail; isolated and production
+forced ROM comparisons pass, original symbols remain at their retail addresses.
+ROM: 8,388,608 bytes, SHA1 a2fc3574f0a65a4fcf7682fb274b9d7eebdef963.
+No background executions remain. The tracked compiler/wrapper is unchanged.
 
-Natural source `*state |= mask` compiles instruction-for-instruction to retail (10-byte body + 2-byte alignment per function). The four functions are live; callers pass the same state pointer. Keep the semantic name conservative until the owning byte/bitfield is structurally identified.
+Current metrics:
+- Code: 77,740 / 940,036 = 8.2699%.
+- Assembly: 862,296 bytes; 2,204 linked functions.
+- Inferred function ranges: 860,196 / 862,296 = 99.7565%.
+- Unattributed assembly: 2,100 bytes; 17 parked functions.
+- Overall meaningful ROM: 153,470 / 7,717,440 = 1.9886%.
 
-Verification:
-- complete 48-byte block: expected 0x30, actual 0x30, zero differing linked bytes;
-- fresh production `make -B -j4 compare progress`: PASS (October 9);
-- fresh detached `make -B -j4 compare`: PASS with a fresh tracked compiler installation;
-- detached proof worktree `/mnt/waydroid-hdd/home-chester-waydroid/fomt-integrations/flag-setters-20261009`;
-- durable local proofs/logs: `tools/ches/checkpoints/flag-setters-2026-10-09/`;
-- retail SHA1 exact; inventory removes only the four promoted functions.
+## Proven cleanup ABI
 
-The former `/tmp` logs/worktree were absent after restart. Their old claims were reverified before publication; do not depend on those temporary paths.
+33 entries delete a pointer at +4 then forward mode to base func_0800080C.
+DB2EC/DC21C/DC474 use +8 with the same base.
+DC404/E41E8/E4210 use +4 and scene base func_080007EC.
+The member virtual destructor receives mode 3; the base receives the original
+incoming owner mode. Prefix views deliberately leave complete class identities
+and concrete owned types unresolved. No extra derived-vtable store is present.
 
-Current exact metrics:
-- code: 76,180 / 940,036 = 8.1039%;
-- assembly remaining: 863,856 bytes;
-- linked assembly functions: 2,243;
-- inferred function bytes: 862,312 / 863,856 = 99.8213%;
-- unattributed assembly: 1,544 bytes;
-- overall meaningful ROM: 151,910 / 7,717,440 = 1.9684%.
+DB3DC's true range is DB3DC..DB404, 40 aligned bytes. Preserve the unnamed
+DB404..DB630 neighbor (556 bytes) in assembly. Inventory originally swallowed
+it into DB3DC; exposing it explains the larger unattributed total.
 
-EXACT NEXT ACTION:
-The flag-setter checkpoint is published as 4881ff9. Follow the active scene-request continuation below; do not redo the completed proof or select shape0005 blindly.
+Local durable ignored proofs:
+tools/ches/checkpoints/scene-change-2026-10-09/owned-dtors/
+Contains candidate, audited manifest, per-symbol comparisons, complete aligned
+span checks, integration inputs, both build logs and verification summaries.
+The matcher `--symbol` excludes trailing alignment by ELF symbol size; use
+the full correctly linked 40-byte span when checking a complete retail range.
+Stable evidence: docs/POLYMORPHIC_OWNERS.md.
 
+## Exact next action
 
-## Active continuation - 2026-10-09 - scene request ownership
+Audit the repeated two-owned-member cleanup family beginning at func_080521BC
+in asm/code_0803EE94.s. Current regenerated family: 25 functions / 1,600 bytes,
+27 instructions each. Cluster IDs renumber after regeneration, so locate it
+by representative symbol rather than assuming the previous shape number.
 
-Published exact source checkpoint: 4881ff98af583fdd71800f3af2e918702dd8cd79
-(decompile GameState flag setter quartet). Local/remote parity and clean state
-were verified after push. Production and fresh detached forced ROM builds pass.
-Exact reconstruction remains 76,180 / 940,036 = 8.1039%; no new scene code is
-promoted. There are no running build/search executions.
+Representative 521BC..521FC is 64 bytes:
+1. Save the original owner and incoming destructor mode.
+2. Write vtable_unk_080E7934 into the owner.
+3. Delete the nullable member at owner+8 using its vtable at object+0.
+4. Delete the nullable member at owner+4 using its vtable at object+4.
+5. Forward owner and original mode to func_080007EC.
 
-### Proven scene-request structure and bounded candidates
+The second owned object has a different polymorphic prefix. Do not call it
+GameObject or AUnk_0800080C solely from similar delete code. Audit neighboring
+constructors/factories, existing class interfaces and each member's vtable/
+offset/base before writing one credible source candidate. Keep candidates in
+an ignored checkpoint until exact; classify the first divergence instead of
+looping spellings. A true old-ABI data-bearing virtual interface may explain
+the +4 vtable, but verify it rather than assuming modern object layout.
 
-The current shape0005 family has 20 functions / 2,960 linked bytes in
-asm/game_state.s. Representative: func_08012BBC, 08012BBC..08012C50 = 0x94.
-The representative allocates a 0x14-byte request with vtable_unk_080E5E74, context at +4,
-and a copied 12-byte argument record at +8. Only the first argument word
-is assigned in the representative (10); the other words remain unassigned
-by this helper. It then allocates a 0x0C-byte wrapper, transfers ownership,
-replaces/deletes the old pending request, and sets state 24.
-
-The owner pointer comes from the caller object at +4. Proven owner fields:
-+0x8C context; +0x9C state; +0xA4 pending polymorphic request. The v1/v2
-candidate pending offset +0xA0 was wrong; v3 corrects it. Do not repeat that
-layout mistake. The prefix's concrete type and the intermediate fields are
-unresolved; do not equate this view with the complete serialized GameState.
-
-Both request vtables use the already-source-owned AUnk_0800080C base:
-- 080E5E74: destructor DC288 -> base 0080C; factory DC244 creates an
-  8-byte AScene through 11DC4 using context and the three-word argument record.
-- 080E5E34: destructor DC1A0 deletes the request at +4 then calls base 0080C;
-  factory DC158 transfers the request to scene constructor 7DD38.
-
-Local candidates/proofs: tools/ches/checkpoints/scene-change-2026-10-09/
-- scene-change-v1.cc: 0xB4 vs 0x94, 172 differing linked bytes.
-  A named moved SmartPtr adds an extra end-of-scope destructor.
-- scene-change-v2.cc: by-value SmartPtr constructor argument removes that
-  extra cleanup; 0xA4 vs 0x94, 157 differences, but pending layout is wrong.
-- scene-change-v3.cc: correct +0xA4 layout; 0xA4 / 157 differences.
-  A live aggregate-copy pointer and the context/pending address lifetimes
-  induce r8 use. The remaining frontier is source/aggregate lifetime shape.
-  Do not batch the 20 callers or reopen compiler work from this evidence.
-- request-dtor-v1.cc: natural derived destructor emits 0x30 bytes instead of
-  retail 0x28, adding a derived-vtable store and literal before member cleanup.
-  Its matcher stopped at linking because __vt_16SceneRequestB2EC was unbound.
-  Base _._13AUnk_0800080C is already exported at 0800080C.
-  The missing binding is a local proof setup issue, not a transport problem.
-  The object/assembly already show why it is not the exact retail entry.
-
-### Exact next action
-
-Use the simpler related request-owned destructor family (current shape0003)
-as the next bounded source/ABI oracle. Representative DB2EC has a true 0x28-byte
-body at 080DB2EC..080DB314: delete the nullable polymorphic member at +8,
-then forward the original object and incoming destructor mode to base 0080C.
-DC1A0 is the analogous +4 variant used by the outer scene wrapper.
-
-Try a readable structured object-view helper with an explicit two-argument
-assembler-bound base-destructor call, preserving the incoming mode and the
-retail absence of a derived-vtable rewrite. Compare with the existing matcher;
-inspect both generated bytes and ownership semantics. Keep it in this checkpoint
-until exact. If successful, recover only siblings with the same proven ABI,
-field offset and true boundaries; inventory ranges may include unnamed neighbors.
-
-Create request-dtor-v2.cc in the existing local checkpoint with a structured
-+8 member view, delete of the AUnk_0800080C pointer, and the two-argument
-base-destructor forwarding call. Then run:
-
-```sh
-python3 tools/ches/compare-function.py tools/ches/checkpoints/scene-change-2026-10-09/request-dtor-v2.cc request-dtor-v2 --start 0x080DB2EC --end 0x080DB314 --out-dir tools/ches/checkpoints/scene-change-2026-10-09/request-dtor-v2
-```
-
-One credible candidate, then classify the first divergence. Keep scene-change-v3
-as the layout/ownership reference. Do not force registers, use empty asm barriers,
-alter the compiler, or loop source spellings. Preserve all existing parked paths.
-After an exact family: isolated integration using the existing fresh compiler
-worktree -> production forced compare -> inventory/docs -> commit/push.
+Use existing compare-function.py and then the normal ladder:
+isolated full-ROM -> production forced compare/progress -> symbol/inventory
+audit -> canonical docs -> narrow reviewed commit/push to ches/main.
 
 Reusable isolated worktree:
  /mnt/waydroid-hdd/home-chester-waydroid/fomt-integrations/flag-setters-20261009
-It is detached at the previous b11a48e baseline plus the exact flag-setter
-source/asm/linker changes; it has a fresh pinned compiler and matching ROM.
-Advance it to the intended baseline safely or copy only reviewed new integration
-inputs; do not discard unrelated work. The old /tmp proof paths are absent.
+Detached b11a48e baseline plus verified flag-setter and owned-destructor source,
+assembly and linker inputs; compiler was freshly installed in the previous
+checkpoint. Compare reviewed baseline inputs before reusing it. Do not reset
+or overwrite unrelated changes. Old /tmp proof paths are absent.
+
+## Larger scene-change family: preserved frontier
+
+The 20-member family represented by func_08012BBC (12BBC..12C50 = 0x94)
+allocates a 20-byte request, wraps/transfers it, replaces a pending request
+and sets state. Proven owner prefix: +0x8C context, +0x9C state, +0xA4 pending;
+owner itself is reached through caller+4. Do not substitute +0xA0 or assume
+the whole serialized GameState type.
+
+Request vtable E5E74: DC288 base destructor, DC244 factory through 11DC4.
+Wrapper vtable E5E34: DC1A0 (now exact source) and DC158 transfer through 7DD38.
+Candidate artifacts remain at tools/ches/checkpoints/scene-change-2026-10-09/:
+- v1: 0xB4 vs 0x94 / 172 differences, extra moved-SmartPtr cleanup.
+- v2: 0xA4 / 157 differences, wrong pending +0xA0.
+- v3: corrected +0xA4, still 0xA4 / 157; aggregate/address lifetimes induce r8.
+- natural request-dtor-v1: adds a derived-vtable rewrite absent from retail.
+- explicit request-dtor-v2: exact 0x28, successfully generalized to all 39.
+
+Do not redo these closed shapes, force registers, add empty asm barriers or
+edit the compiler. Existing loader/C6BC/A1EA8/resource-owner/mine-floor/entity
+parked work stays parked without materially new structural evidence.
+
+## Historical orientation and prior bounded work
+
+The following retained orientation belongs to older completed/parked units.
+The current frontier and commands above take precedence over old next actions.
 
 ## Zero-context orientation
 
@@ -149,13 +132,13 @@ Do not regress to broad rescans or syntax roulette.
 
 ## Current exact state
 
-- Code: 76,180 / 940,036 = 8.1039%
-- Assembly remaining: 863,856 bytes
-- Linked assembly functions: 2,243
-- Inferred ranges: 862,312 / 863,856 = 99.8213%
-- Unattributed assembly: 1,544 bytes
+- Code: 77,740 / 940,036 = 8.2699%
+- Assembly remaining: 862,296 bytes
+- Linked assembly functions: 2,204
+- Inferred ranges: 860,196 / 862,296 = 99.7565%
+- Unattributed assembly: 2,100 bytes
 - Data/assets: 75,334 / 6,777,404 = 1.1115%
-- Overall meaningful ROM: 151,910 / 7,717,440 = 1.9684%
+- Overall meaningful ROM: 153,470 / 7,717,440 = 1.9886%
 - Free tail: 671,168 bytes
 - Retail ROM: 8,388,608 bytes
 - SHA1: a2fc3574f0a65a4fcf7682fb274b9d7eebdef963

@@ -22,15 +22,15 @@ the separate custom-game worktree.
 This is a practical map of the current reconstruction, not a claim that every
 subsystem is fully understood.
 
-## Current reconstruction snapshot - October 7, 2026
+## Current reconstruction snapshot - October 9, 2026
 
 Authoritative live state is in `START_HERE.md`.
 
 - Active public retail branch: **`main`**. The former `Live-temp` series is retired; `ches-dev` remains historical.
-- Code reconstruction: **76,180 / 940,036 = 8.1039%**; **863,856 assembly bytes** remain.
-- Remaining linked asm functions: **2,243**; inferred ranges cover **862,312 / 863,856 = 99.8213%**, with **1,544 unattributed bytes** and **17 explicitly parked functions**.
+- Code reconstruction: **77,740 / 940,036 = 8.2699%**; **862,296 assembly bytes** remain.
+- Remaining linked asm functions: **2,204**; inferred ranges cover **860,196 / 862,296 = 99.7565%**, with **2,100 unattributed bytes** and **17 explicitly parked functions**.
 - Data/assets: **75,334 / 6,777,404 = 1.1115%**.
-- Overall meaningful-ROM reconstruction: **151,910 / 7,717,440 = 1.9684%**.
+- Overall meaningful-ROM reconstruction: **153,470 / 7,717,440 = 1.9886%**.
 - Contiguous tail free space: **671,168 bytes = 655.44 KiB**.
 - Retail SHA1: `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`; full compare remains **`fomt.gba: OK`**.
 - Authoritative compiler path is the tracked `tools/install_agbcp.sh` plus `tools/agbcp_fomt_compat.patch`, SHA-256 `aa7cc6df0efbd066e9c33deb887731e1d0210babfaeba4c9b64f3e8bc35c4256`.
@@ -41,6 +41,8 @@ Authoritative live state is in `START_HERE.md`.
 - `func_08039E98` is behavior-complete and exact-size in scratch at 0xB8 / 109 but parked on register allocation.
 - The Entity398A4/Entity38740 neighborhood now includes exact `398A4/399C0`, `39A60`, `3A144`, `3A320/334`, `3A350`, `3A798`, and the seven-function helper tail `3A804..3A8A0`. `39E98`, `39F90`, `3A180`, and `3A394` are behavior-complete/bounded parked codegen islands. The 652-byte logical map resolver is now exact source in `src/map_resource.cc`, with the shared interface in `include/map_data.hh`. Four resource-owner methods are now integrated in `src/resource_owner_cached.cc` and `src/resource_owner_variable.cc`, with shared `include/resource_owners.hh`, adding 680 linked bytes after both full-ROM gates. Constructors and sibling B128 remain assembly. `docs/RESOURCE_OWNERS.md` records recovered provider, descriptor and owner layouts; the handoff records remaining constructor/update mismatches.
 - The packed bank remains **416 / 493 semantically owned animations**, with the remaining 77 IDs as a parked by-product lane.
+
+The 39-member owned-polymorphic cleanup family is exact in `src/owned_polymorphic_dtors.cc`. Its prefix views and explicit destructor ABI preserve 1,560 retail bytes without asserting unknown complete classes. Stable evidence is in `docs/POLYMORPHIC_OWNERS.md`.
 
 Recent readable source in this region includes:
 - `include/entity_unk_08037008.hh` / `src/entity_unk_08037008.cc`;

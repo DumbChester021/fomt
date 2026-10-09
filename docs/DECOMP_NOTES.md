@@ -25,8 +25,16 @@ live state. This file keeps subsystem/function evidence and matching lessons.
 
 Current retail state:
 - Active public retail branch: `main`; the former `Live-temp` line is retired. Historical `ches-dev` commits remain provenance only.
-- Current exact progress: **76,180 / 940,036 = 8.1039% source** and **863,856 assembly bytes**. Data/assets reconstruction is **75,334 / 6,777,404 = 1.1115%** and overall meaningful-ROM reconstruction is **151,910 / 7,717,440 = 1.9684%**. Forced detached and production ROM comparisons report `fomt.gba: OK`; retail SHA1 remains `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
-- Remaining linked assembly functions: **2,243**; inferred function ranges cover **862,312 / 863,856 = 99.8213%**, with **1,544 unattributed bytes** and **17 explicitly parked functions**. The extra 380 unattributed bytes are the newly exposed E118..E174 and E1B4..E2D4 unlabeled code islands.
+- Current exact progress: **77,740 / 940,036 = 8.2699% source** and **862,296 assembly bytes**. Data/assets reconstruction is **75,334 / 6,777,404 = 1.1115%** and overall meaningful-ROM reconstruction is **153,470 / 7,717,440 = 1.9886%**. Forced detached and production ROM comparisons report `fomt.gba: OK`; retail SHA1 remains `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
+- Remaining linked assembly functions: **2,204**; inferred function ranges cover **860,196 / 862,296 = 99.7565%**, with **2,100 unattributed bytes** and **17 explicitly parked functions**. The total includes 380 exposed mine-floor bytes and the new 556-byte DB404..DB630 unnamed neighbor.
+
+### 2026-10-09 owned-polymorphic destructor family
+
+The structured two-argument ABI helper matches DB2EC immediately. Audit and batch proof recover all 39 repeated entries in `src/owned_polymorphic_dtors.cc`: 33 owned pointers at +4 with base 0080C; three at +8 with base 0080C; three at +4 with base 007EC. They delete the nullable member through virtual slot +8 with mode 3, then forward the incoming owner mode to the base. Prefix views keep concrete member and owner identities unresolved.
+
+Each real body is 38 bytes plus two alignment bytes, totaling 1,560 linked source bytes. The inferred DB3DC range also contained DB404..DB630 (556 bytes), which remains unchanged assembly. Isolated and production forced full-ROM builds pass, all source entries retain their retail addresses, and inventory removes only these 39 functions.
+
+Matcher `--symbol` uses the ELF symbol size and excludes trailing alignment. The batch proof therefore also extracts the full 40-byte aligned span from each correctly linked binary; all 39 spans have zero differences. This distinction is a proof boundary, not a compiler mismatch. Stable behavior/validation is in POLYMORPHIC_OWNERS.md.
 
 ### 2026-10-09 scene-request ownership boundary
 
@@ -40,13 +48,12 @@ Both vtables derive from the existing AUnk_0800080C scene-transition interface.
 E5E74 uses DC288 (base destructor) and DC244 (scene factory through 11DC4).
 E5E34 uses DC1A0 (owned member at +4 plus base destructor) and DC158 (transfer
 into scene constructor 7DD38). The existing SmartPtr models the nullable
-deletion and ownership transfer. This is structural evidence, not new exact
-production source.
+deletion and ownership transfer. The related one-member destructor family is now exact production source; these allocation/transfer helpers remain nonmatching.
 
 The candidate initially placed pending at +0xA0; corrected v3 uses +0xA4.
 Bounded source attempts remain nonmatching because aggregate/address lifetimes
 differ. A natural related derived destructor also adds a vtable rewrite absent
-from retail. Saved candidate results and the exact next ABI test are in
+from retail. Saved candidate results and completed ABI proofs are in
 NEXT_AGENT_HANDOFF.md and the local scene-change-2026-10-09 checkpoint.
 Do not repeat those attempts or promote their unresolved class identities.
 
