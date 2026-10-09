@@ -28,10 +28,10 @@ For the proven techniques and recommended next approach, read the "Fast-path ope
 
 ## Current exact reconstruction
 
-- Code: **81,428 / 940,036 = 8.6622%**
-- Assembly remaining: **858,608 bytes**
-- Linked assembly functions: **2,133**
-- Inferred ranges: **855,912 / 858,608 = 99.6860%**
+- Code: **81,488 / 940,036 = 8.6686%**
+- Assembly remaining: **858,548 bytes**
+- Linked assembly functions: **2,132**
+- Inferred ranges: **855,852 / 858,548 = 99.6860%**
 - Unattributed assembly: **2,696 bytes**
 - Generated parked functions: **17**
 - Data/assets: **75,334 / 6,777,404 = 1.1115%**

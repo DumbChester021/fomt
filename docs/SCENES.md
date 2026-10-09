@@ -1,6 +1,6 @@
 # Scenes: construction, cleanup and continuation transfer
 
-The shared scene lifetime layer is exact in `include/scene_owners.hh` and `src/scene_owners.cc`: 24 constructors, 25 destructors and 22 `Run()` entries, totaling **71 source functions / 3,688 linked retail bytes**. These are scene lifetime and transition mechanics. Concrete screen identities and controller implementations remain incomplete.
+The shared scene lifetime layer is exact in `include/scene_owners.hh` and `src/scene_owners.cc`: 24 constructors, 25 destructors and 23 `Run()` entries, totaling **72 source functions / 3,748 linked retail bytes**. These are scene lifetime and transition mechanics. Concrete screen identities and controller implementations remain incomplete.
 
 ## Ownership layout
 
@@ -82,7 +82,7 @@ All destructors below are 64 bytes. Parenthesized constructor sizes mark recover
 | `SceneOwner8C59C` | `func_0808C56C` (48) | `vtable_unk_080E7D74` | `func_0808C5DC` | 28 | `func_0808C0BC` |
 | `SceneOwner8ED08` | `func_0808ECD8` (48) | `vtable_unk_080E7D90` | `func_0808ED48` | 28 | `func_0808E6FC` |
 | `SceneOwner90E84` | `func_08090E54` (48) | `vtable_unk_080E7DAC` | `func_08090EC4` | 28 | `func_08090960` |
-| `SceneOwner925C4` | `func_08092570` | `vtable_unk_080E7DC8` | `func_08092604` | assembly | `unresolved` |
+| `SceneOwner925C4` | `func_08092570` | `vtable_unk_080E7DC8` | `func_08092604` | 60 | `func_0809152C` |
 | `SceneOwner931E0` | `func_080931B0` (48) | `vtable_unk_080E7DE4` | `func_08093220` | 28 | `func_08092D64` |
 | `SceneOwner93A88` | `func_08093A58` (48) | `vtable_unk_080E8018` | `func_08093AD4` | 28 | `func_08093364` |
 | `SceneOwner9A518` | `func_0809A4D4` (68) | `vtable_unk_080E824C` | `func_0809A558` | 52 | `func_08094F6C` |
@@ -91,9 +91,9 @@ All destructors below are 64 bytes. Parenthesized constructor sizes mark recover
 
 - `func_08083B2C`: a controller status selects direct continuation transfer or a new 16-byte request wrapper with scene context at +1C.
 - `func_080881EC`: controller status selects direct transfer or nested 16-/20-byte requests with context at +10 and additional state.
-- `func_08092604`: obtains a new request from its controller and transfers it through additional temporary-lifetime machinery.
+- `func_08092604`: now exact source. It obtains a controller request through caller-supplied aggregate-return storage and transfers that temporary to the outer result through the recovered two-word `auto_ptr_ref`-style proxy.
 
-All three complex Runs remain assembly. Only constructor `92570`, controller constructors and controller logic remain assembly. Nearby shop/catalog or rucksack data is useful evidence but does not establish a specific screen name.
+Two complex Runs remain assembly: `func_08083B2C` and `func_080881EC`. Constructor `92570`, controller constructors and controller logic also remain assembly. Nearby shop/catalog or rucksack data is useful evidence but does not establish a specific screen name.
 
 ## True boundaries and verification
 

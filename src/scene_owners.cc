@@ -34,6 +34,30 @@ struct SceneRequestResult
     AUnk_0800080C * request;
 };
 
+// Old auto_ptr-style return transfer used by the 925C4 controller path.
+struct ControllerRunResult925
+{
+    AUnk_0800080C * request;
+
+    ~ControllerRunResult925()
+    {
+        delete request;
+    }
+};
+
+struct ControllerRunTransfer925
+{
+    ControllerRunResult925 * source;
+    AUnk_0800080C * request;
+
+    ControllerRunTransfer925(ControllerRunResult925 * source_, AUnk_0800080C * request_)
+        : source(source_)
+        , request(request_)
+    {
+        source->request = 0;
+    }
+};
+
 extern SmartPtr<AUnk_0800080C> RunController51504(SceneController *) asm("func_08051504");
 extern SmartPtr<AUnk_0800080C> RunController52984(SceneController *) asm("func_08052984");
 extern SmartPtr<AUnk_0800080C> RunController588AC(SceneController *) asm("func_080588AC");
@@ -52,6 +76,7 @@ extern void RunController8A55C(SceneController *) asm("func_0808A55C");
 extern void RunController8C0BC(SceneController *) asm("func_0808C0BC");
 extern void RunController8E6FC(SceneController *) asm("func_0808E6FC");
 extern void RunController90960(SceneController *) asm("func_08090960");
+extern ControllerRunResult925 * RunController9152C(ControllerRunResult925 *, SceneController *) asm("func_0809152C");
 extern void RunController92D64(SceneController *) asm("func_08092D64");
 extern void RunController93364(SceneController *) asm("func_08093364");
 extern SmartPtr<AUnk_0800080C> RunController94F6C(SceneController *) asm("func_08094F6C");
@@ -205,6 +230,17 @@ SceneRequestResult * func_08090EC4(SceneRequestResult * result, SceneOwner90E84 
 {
     RunController90960(self->controller.Get());
     result->request = self->continuation.Move();
+    return result;
+}
+
+EC SceneRequestResult * func_08092604(SceneRequestResult *, SceneOwner925C4 *) SECTION(".text.scene_run_92604");
+SceneRequestResult * func_08092604(SceneRequestResult * result, SceneOwner925C4 * self)
+{
+    ControllerRunResult925 next;
+    RunController9152C(&next, self->controller.Get());
+    AUnk_0800080C * moved = next.request;
+    ControllerRunTransfer925 transfer(&next, moved);
+    result->request = moved;
     return result;
 }
 

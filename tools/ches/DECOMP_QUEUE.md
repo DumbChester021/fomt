@@ -5,14 +5,14 @@ Region/TU hints and scores are heuristics, not claims about original source-file
 
 ## Inventory summary
 
-- remaining linked assembly functions: **2,133**
-- canonical linked assembly code: **858,608 bytes**
-- bytes covered by inferred function ranges: **855,912** (**99.6860%** of linked asm code)
+- remaining linked assembly functions: **2,132**
+- canonical linked assembly code: **858,548 bytes**
+- bytes covered by inferred function ranges: **855,852** (**99.6860%** of linked asm code)
 - assembly code not assigned to a function range: **2,696 bytes**
 - asm definitions present in source but not linked as asm code: **2**
 - coarse TU/region hints: **216**
 - repeated opcode-shape clusters: **174**
-- functions in repeated opcode-shape clusters: **685**
+- functions in repeated opcode-shape clusters: **684**
 - exact normalized-body clusters: **166**
 - explicitly parked functions: **17**
 - runtime/library functions retained in inventory: **33**
@@ -93,9 +93,9 @@ Region/TU hints and scores are heuristics, not claims about original source-file
 | 15 | shape0008 | 14 | 784 | 19 | 4 | func_0800371C, func_08004BDC, func_080059D0, func_080070A4, func_0806D918, func_0806EA00 |
 | 16 | shape0022 | 6 | 764 | 10 | 1 | func_08021620, func_08022320, func_08022334, func_08022B5C, func_080244C4, func_080244D8 |
 | 17 | shape0059 | 3 | 756 | 98 | 1 | func_080A3900, func_080A39FC, func_080A3AF8 |
-| 18 | shape0009 | 12 | 732 | 27 | 5 | func_0800374C, func_08004C0C, func_08005A00, func_080070D4, func_08012028, func_0806D948 |
-| 19 | shape0032 | 4 | 720 | 66 | 1 | func_08035C04, func_08036084, func_08036430, func_080365CC |
-| 20 | shape0002 | 40 | 676 | 4 | 5 | func_08005254, func_08008D84, func_08008D90, func_08008DE8, func_080124C4, func_080AE6C0 |
+| 18 | shape0032 | 4 | 720 | 66 | 1 | func_08035C04, func_08036084, func_08036430, func_080365CC |
+| 19 | shape0002 | 40 | 676 | 4 | 5 | func_08005254, func_08008D84, func_08008D90, func_08008DE8, func_080124C4, func_080AE6C0 |
+| 20 | shape0010 | 11 | 672 | 27 | 5 | func_0800374C, func_08004C0C, func_08005A00, func_080070D4, func_08012028, func_0806D948 |
 | 21 | shape0097 | 2 | 592 | 88 | 1 | func_08025E38, func_08025FC4 |
 | 22 | shape0064 | 3 | 576 | 90 | 1 | func_080E2294, func_080E27FC, func_080E54F0 |
 | 23 | shape0007 | 15 | 560 | 12 | 2 | func_08093DCC, func_08094268, func_080D3ED4, func_080DE220, func_080E103C, func_080E10F8 |
@@ -118,7 +118,7 @@ Region/TU hints and scores are heuristics, not claims about original source-file
 | 40 | shape0091 | 2 | 336 | 59 | 1 | func_08021130, func_08021FAC |
 | 41 | shape0114 | 2 | 336 | 80 | 1 | func_0805A63C, func_0805DEC0 |
 | 42 | shape0139 | 2 | 304 | 58 | 1 | func_08094110, func_080945B0 |
-| 43 | shape0010 | 12 | 288 | 10 | 1 | func_08014034, func_0801404C, func_08014064, func_0801407C, func_08014094, func_080140AC |
+| 43 | shape0009 | 12 | 288 | 10 | 1 | func_08014034, func_0801404C, func_08014064, func_0801407C, func_08014094, func_080140AC |
 | 44 | shape0042 | 4 | 288 | 33 | 1 | func_080DBB2C, func_080DBCE8, func_080DBD58, func_080DC0E8 |
 | 45 | shape0115 | 2 | 288 | 68 | 1 | func_08069D84, func_0807555C |
 | 46 | shape0038 | 4 | 272 | 26 | 1 | func_080A61F0, func_080A6234, func_080A6278, func_080A62BC |
@@ -197,7 +197,7 @@ Region/TU hints and scores are heuristics, not claims about original source-file
 | 64 | func_08075C88 | 133.0 | 304 | 13 | 2 | 1 | 0 | asm/code_0803EE94.s:107437 |
 | 65 | func_08000528 | 132.5 | 24 | 13 | 5 | 1 | 1 | asm/interrupt.s:56 |
 | 66 | func_080CCDEC | 131.8 | 108 | 15 | 1 | 1 | 0 | asm/code_809E804.s:91769 |
-| 67 | func_08099144 | 129.5 | 1288 | 4 | 1 | 1 | 6 | asm/code_0803EE94.s:172750 |
+| 67 | func_08099144 | 129.5 | 1288 | 4 | 1 | 1 | 6 | asm/code_0803EE94.s:172720 |
 | 68 | func_08075DEC | 128.5 | 56 | 5 | 3 | 18 | 1 | asm/code_0803EE94.s:107637 |
 | 69 | func_080CABEC | 125.2 | 132 | 14 | 1 | 1 | 0 | asm/code_809E804.s:87250 |
 | 70 | func_0807EF90 | 125.0 | 1520 | 0 | 0 | 1 | 15 | asm/code_0803EE94.s:125017 |
@@ -205,7 +205,7 @@ Region/TU hints and scores are heuristics, not claims about original source-file
 | 72 | func_0807B920 | 122.2 | 1364 | 2 | 1 | 1 | 8 | asm/code_0803EE94.s:118734 |
 | 73 | func_080CABA0 | 121.8 | 76 | 14 | 1 | 1 | 0 | asm/code_809E804.s:87216 |
 | 74 | func_080C8550 | 121.0 | 80 | 13 | 2 | 1 | 1 | asm/code_809E804.s:82130 |
-| 75 | func_080983E8 | 120.2 | 1524 | 1 | 1 | 1 | 6 | asm/code_0803EE94.s:171099 |
+| 75 | func_080983E8 | 120.2 | 1524 | 1 | 1 | 1 | 6 | asm/code_0803EE94.s:171069 |
 | 76 | func_0803C7C8 | 120.2 | 1412 | 2 | 2 | 1 | 3 | asm/code_0803A8A4.s:3137 |
 | 77 | func_0807A98C | 119.8 | 1516 | 1 | 1 | 1 | 6 | asm/code_0803EE94.s:116766 |
 | 78 | func_080CB63C | 119.8 | 780 | 8 | 1 | 1 | 1 | asm/code_809E804.s:88613 |

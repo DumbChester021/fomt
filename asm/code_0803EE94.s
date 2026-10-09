@@ -160220,37 +160220,7 @@ func_08092570: @ 0x08092570
 
 .section .text.after_scene_owner_925c4, "ax", %progbits
 
-	thumb_func_start func_08092604
-func_08092604: @ 0x08092604
-	push {r4, lr}
-	sub sp, #0xc
-	adds r4, r0, #0
-	ldr r1, [r1, #4]
-	mov r0, sp
-	bl func_0809152C
-	ldr r2, [sp]
-	mov r0, sp
-	str r0, [sp, #4]
-	str r2, [sp, #8]
-	adds r1, r0, #0
-	movs r0, #0
-	str r0, [r1]
-	str r2, [r4]
-	ldr r1, [sp]
-	cmp r1, #0
-	beq .L08092634
-	ldr r0, [r1]
-	ldr r2, [r0, #8]
-	adds r0, r1, #0
-	movs r1, #3
-	bl _call_via_r2
-.L08092634:
-	adds r0, r4, #0
-	add sp, #0xc
-	pop {r4}
-	pop {r1}
-	bx r1
-	.align 2, 0
+.section .text.after_scene_run_92604, "ax", %progbits
 
 	thumb_func_start func_08092640
 func_08092640: @ 0x08092640

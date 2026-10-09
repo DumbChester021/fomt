@@ -691,6 +691,8 @@ SECTIONS
         asm/code_0803EE94.o(.text.after_scene_run_90ec4);
         src/scene_owners.o(.text.scene_owner_925c4);
         asm/code_0803EE94.o(.text.after_scene_owner_925c4);
+        src/scene_owners.o(.text.scene_run_92604);
+        asm/code_0803EE94.o(.text.after_scene_run_92604);
         src/rucksack_item_render.o(.text);
         asm/code_0803EE94.o(.text.after_rucksack_item_renderer);
         src/rucksack_wrapping.o(.text);
