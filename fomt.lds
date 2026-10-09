@@ -14,6 +14,12 @@ gCgb3Vol = 0x08139CEC;
 gClockTable = 0x08139CFC;
 gXcmdTable = 0x08139D30;
 
+__15ControllerC7F58Pv = func_080C7F58;
+_._15ControllerC7F58 = func_080C8360;
+__vt_19LivestockController = vtable_unk_080E7D30;
+func_08085584 = __19LivestockControllerPvUi;
+func_0808562C = _._19LivestockController;
+
 func_0805218C = __15SceneOwner521BCRt8SmartPtr1Z13AUnk_0800080CPv;
 func_08057DD8 = __15SceneOwner57E1CRt8SmartPtr1Z13AUnk_0800080CPvUc;
 func_0805CEB8 = __15SceneOwner5CEFCRt8SmartPtr1Z13AUnk_0800080CPvUc;
@@ -662,7 +668,8 @@ SECTIONS
         src/scene_owners.o(.text.scene_owner_85528);
         asm/code_0803EE94.o(.text.after_scene_owner_85528);
         src/scene_owners.o(.text.scene_run_85568);
-        asm/code_0803EE94.o(.text.after_scene_run_85568);
+        src/livestock_controller.o(.text.livestock_controller_lifecycle);
+        asm/code_0803EE94.o(.text.after_livestock_controller_lifecycle);
         src/livestock_controller.o(.text.livestock_controller_results);
         asm/code_0803EE94.o(.text.after_livestock_controller_results);
         src/livestock_controller.o(.text.livestock_controller_stats);

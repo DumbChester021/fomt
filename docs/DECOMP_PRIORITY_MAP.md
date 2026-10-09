@@ -12,11 +12,11 @@ exploit them across the remaining assembly instead of making an individual
 resource family the main queue.
 
 Current verified working state on `main`:
-- code: **82,208 / 940,036 = 8.7452%**;
-- assembly remaining: **857,828 bytes**;
-- remaining linked assembly functions: **2,126**;
+- code: **82,396 / 940,036 = 8.7652%**;
+- assembly remaining: **857,640 bytes**;
+- remaining linked assembly functions: **2,124**;
 - data/assets: **75,554 / 6,777,404 = 1.1148%**;
-- overall meaningful ROM: **158,158 / 7,717,440 = 2.0494%**;
+- overall meaningful ROM: **158,346 / 7,717,440 = 2.0518%**;
 - packed bank: **416 / 493 semantically owned animations**;
 - retail ROM remains exact at SHA1 `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
 
@@ -53,7 +53,7 @@ but its score is no longer an execution order.
 
 ## Current priority: work the live queue and preserve family-level leverage
 
-Latest coherent promotion: Livestock shop helpers and catalog, 360 exact linked code bytes plus 220 typed data bytes. Animal hearts, purchased species, sale pricing and pregnant-livestock count use proven local ABI views and existing Barn types. Isolated and forced production ROM comparisons pass with the unchanged compiler. All 25 scene Runs remain exact. Next is controller constructor 85584 (168 bytes) and destructor 8562C (20 bytes), with fixed-string/base-ABI audit first; keep large 86A08 separate. Constructor 92570 remains parked at 0x54 / four r0/r1 bytes. Use symbols after queue regeneration. Stable evidence: docs/LIVESTOCK_SHOP.md and docs/SCENES.md.
+Latest coherent promotion: Livestock controller construction/cleanup, 188 additional exact bytes. The recovered 0x43E0 controller extent uses 17 menu records, FixedStr<127>/FixedStr<99> and 16 animal records; opaque base/record internals remain unclaimed. Six exact controller functions own 548 linked bytes, and the catalog owns 220 typed bytes. Isolated and forced production ROM comparisons pass with the unchanged compiler. All 25 scene Runs remain exact. Next is offer-list builder 85640..8586C (556 bytes), with shared descriptor/list types audited first; keep large 86A08 separate. Constructor 92570 remains parked at 0x54 / four r0/r1 bytes. Stable evidence: docs/LIVESTOCK_SHOP.md and docs/SCENES.md.
 
 The larger 20-member scene-change constructor family remains bounded but nonmatching. Do not repeat its closed aggregate-lifetime candidates merely because the queue ranks it highly. NEXT_AGENT_HANDOFF.md owns the active continuation.
 
@@ -503,4 +503,4 @@ At this historical checkpoint SpriteAnimator was the immediate priority and was 
 Latest recovered GroundPickupState: +0x34C8..+0x34D7, 56 availability
 bits and fifteen packed three-bit durability fields. Four exact functions
 add 1,032 linked bytes. A1EA8 is parked. See docs/GROUND_PICKUP_STATE.md.
-The +0x34D8 mask and +0x34DC actor state are already source-owned. Active subsystem target: livestock controller constructor 85584 / destructor 8562C; keep C6BC parked.
+The +0x34D8 mask and +0x34DC actor state are already source-owned. Active subsystem target: livestock offer-list builder 85640..8586C; keep C6BC parked.

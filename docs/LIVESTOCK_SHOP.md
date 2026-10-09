@@ -1,24 +1,59 @@
-# Livestock shop: offers, animal results and barn queries
+# Livestock shop: controller, offers and barn queries
 
-Controller 85584 handles livestock purchase and sale offers. Its helper
-contracts and catalog are exact source. The complete screen controller,
-base class and virtual hierarchy remain incomplete.
+Controller 85584 handles livestock purchase and sale offers. Its construction,
+cleanup, helper contracts and catalog are exact source. The complete screen
+implementation and shared base internals remain incomplete.
 
 ## Exact source boundaries
 
-| Helper | Retail range | Linked bytes | Behavior |
+| Entry | Retail range | Linked bytes | Behavior |
 | --- | --- | ---: | --- |
+| LivestockController constructor | 08085584..0808562C | 168 | Base construction and screen fields |
+| LivestockController destructor | 0808562C..08085640 | 20 | Derived vtable and base cleanup |
 | GetAnimalHeartCount | 08085EC4..08085EEC | 40 | min(10, unsigned affection / 25) |
 | GetPurchasedAnimalType | 08085EEC..08085F08 | 28 | Purchase type 0/1, otherwise 999 |
 | GetAnimalSalePrice | 080868E4..080869A0 | 188 | Species/rank sale price |
 | CountPregnantAnimals | 080869A0..08086A08 | 104 | Pregnant livestock across Barn capacity |
 
 include/livestock_controller.hh and src/livestock_controller.cc preserve the
-original function symbols. The 360 linked bytes include two alignment bytes
-after the heart and pregnancy helpers; those bodies are 38 and 102 bytes.
+original function symbols. The six functions own 548 linked bytes: 188 for
+construction/cleanup and 360 for helpers. The helper spans include two alignment
+bytes after the heart and pregnancy helpers; those bodies are 38 and 102 bytes.
 Complete linked blocks are the matching authority.
 
-## Controller views and results
+## Controller construction and layout
+
+LivestockController derives from ControllerC7F58, whose proven extent is
+0x6A4. That base derives from the existing eight-byte SceneController deletion
+prefix. Its context pointer is at +8; the remaining base fields are opaque.
+Base construction and cleanup still call assembly at 080C7F58 and 080C8360.
+
+| Offset | Field or extent | Constructor behavior |
+| --- | --- | --- |
+| +0x6A4 | u32 state | Input 0/1/other selects 0/5/6 |
+| +0x6A8 | Byte flag | Clears |
+| +0x6AC..+0x72B | Opaque 128-byte range | No derived initialization |
+| +0x72C | u32 field | Clears |
+| +0x730..+0x76F | Opaque 64-byte range | No derived initialization |
+| +0x770 | 17 menu records, stride 0x304 | Empty default construction |
+| +0x3AB4 | FixedStr<127> title | Copies gUnk_080FFC6C with length cap |
+| +0x3B34 | FixedStr<99> message | Clears first byte |
+| +0x3B98 | 16 animal records, stride 0x84 | Clears each string's first byte |
+| +0x43D8/+0x43DC | Purchase type/slot | No constructor initialization |
+
+Menu-record consumers prove the 0x304 stride and 0x300-byte interior range
+at +4. Their empty default constructors naturally retain the retail loop:
+the counter starts at 16 and decrements until -1, for seventeen iterations.
+The contents remain opaque. Each animal record has an uninitialized word at
++0 and FixedStr<127> at +4. The array ends exactly at the purchase result tail.
+Description concatenation proves the message capacity of 99 characters;
+this field occupies 100 bytes and does not overlap the animal records.
+
+The destructor installs vtable 080E7D30 at +4 and forwards the incoming
+destructor mode to the base. Normal compiler ABI and linker aliases retain
+the original retail entry labels; no generated vtable copy is emitted.
+
+## Controller context and results
 
 | Offset | Proven contract |
 | --- | --- |
@@ -37,8 +72,9 @@ Scene Run 881EC selects nested mode 1 for zero and mode 2 for every other
 result. Its source uses the semantic getter; its 192-byte span and ownership
 transfers remain exact. See [SCENES.md](SCENES.md).
 
-Local views establish only observed fields. They do not claim complete
-GameState/controller inheritance layouts. Existing Barn, Cow, Sheep and
+The controller extent and initialization fields are proven, while the base
+and menu interiors remain opaque. The context view does not claim a complete
+GameState layout. Existing Barn, Cow, Sheep and
 BarnAnimal interfaces remain authoritative.
 
 ## Animal display and sale contracts
@@ -101,13 +137,14 @@ establish the owning section.
 
 ## Verification and remaining boundaries
 
-Four natural helpers, complete blocks/TU slices and all 220 relocated catalog
-bytes match. Final isolated and forced production full-ROM comparisons pass
-with the unchanged tracked compiler.
+Natural construction/cleanup, four helpers, complete blocks/TU slices and
+all 220 relocated catalog bytes match. Final isolated and forced production
+full-ROM comparisons pass with the unchanged tracked compiler.
 ROM: 8,388,608 bytes; SHA1 a2fc3574f0a65a4fcf7682fb274b9d7eebdef963.
 
-Only four helpers leave the inventory; every other remaining assembly
-address/size is unchanged. Labels, controller ctor 85584, dtor 8562C,
-render/description routines and the large Run remain assembly.
-A specific named store/location and complete controller layout remain
+The lifecycle promotion removes only ctor 85584 and dtor 8562C from the
+remaining-function inventory; every other assembly address/size is unchanged.
+Offer builder 85640, renderer 8586C, description 85F08 and Run 86A08 remain
+assembly. The next bounded unit is offer-list construction at 85640..8586C.
+A specific named store/location and opaque base/record semantics remain
 unclaimed. NEXT_AGENT_HANDOFF.md owns the continuation.

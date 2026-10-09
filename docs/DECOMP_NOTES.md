@@ -18,7 +18,7 @@ indirect-call collection rather than manual resource hunting.
 
 Custom behavior still belongs only in the separate custom-game worktree.
 
-## Livestock shop helpers and catalog
+## Livestock controller, helpers and catalog
 
 Four helpers in src/livestock_controller.cc own 360 linked bytes: animal
 affection hearts, purchased cow/sheep type, sale pricing and pregnancy count.
@@ -27,7 +27,11 @@ Local views establish controller +8, Barn at context +0x5F0, and purchase
 result/slot +0x43D8/+0x43DC without claiming complete layouts.
 Natural source, blocks/TU slices, relocated pointers, isolated and production
 ROM comparisons match. Stable evidence: [Livestock shop](LIVESTOCK_SHOP.md).
-Construction/cleanup is next; all 25 scene Runs remain exact.
+Natural construction/cleanup now add 188 exact bytes. LivestockController
+recovers the 0x43E0 extent, 17 menu records, FixedStr<127> title, FixedStr<99>
+message and 16 animal records. Base/record contents remain opaque. All six
+controller bodies and both full-ROM comparisons pass; all 25 scene Runs remain
+exact. Offer-list construction at 85640..8586C is next.
 
 ## CURRENT DECOMP NOTE POLICY
 
@@ -36,8 +40,8 @@ live state. This file keeps subsystem/function evidence and matching lessons.
 
 Current retail state:
 - Active public retail branch: `main`; the former `Live-temp` line is retired. Historical `ches-dev` commits remain provenance only.
-- Current exact progress: **82,208 / 940,036 = 8.7452% source** and **857,828 assembly bytes**. Data/assets reconstruction is **75,554 / 6,777,404 = 1.1148%** and overall meaningful-ROM reconstruction is **158,158 / 7,717,440 = 2.0494%**. Forced production ROM comparison reports `fomt.gba: OK`; retail SHA1 remains `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
-- Remaining linked assembly functions: **2,126**; inferred function ranges cover **855,132 / 857,828 = 99.6857%**, with **2,696 unattributed bytes** and **17 explicitly parked functions**. The total includes the prior exposed islands and 596 additional unnamed bytes preserved beside six scene Run entries.
+- Current exact progress: **82,396 / 940,036 = 8.7652% source** and **857,640 assembly bytes**. Data/assets reconstruction is **75,554 / 6,777,404 = 1.1148%** and overall meaningful-ROM reconstruction is **158,346 / 7,717,440 = 2.0518%**. Forced production ROM comparison reports `fomt.gba: OK`; retail SHA1 remains `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
+- Remaining linked assembly functions: **2,124**; inferred function ranges cover **854,944 / 857,640 = 99.6856%**, with **2,696 unattributed bytes** and **17 explicitly parked functions**. The total includes the prior exposed islands and 596 additional unnamed bytes preserved beside six scene Run entries.
 
 ### 2026-10-09 Scenes: complex Runs complete
 
@@ -1280,4 +1284,4 @@ Stable contracts and source ranges are in `docs/RESOURCE_HANDLES.md`. Private so
 Latest recovered GroundPickupState: +0x34C8..+0x34D7, 56 availability
 bits and fifteen packed three-bit durability fields. Four exact functions
 add 1,032 linked bytes. A1EA8 is parked. See docs/GROUND_PICKUP_STATE.md.
-The +0x34D8 mask and +0x34DC actor state are already source-owned. Active livestock-shop work is controller constructor 85584 / destructor 8562C; keep C6BC parked.
+The +0x34D8 mask and +0x34DC actor state are already source-owned. Active livestock-shop work is offer-list builder 85640..8586C; keep C6BC parked.
