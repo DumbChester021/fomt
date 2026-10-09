@@ -165,6 +165,8 @@ assembly. Builder recovery is parked on frame-copy and list-lifetime contracts.
 The packed frame getter 5E790 is now parked at 140 bytes / 34 differences,
 reproducing its historical middle schedule. The sprite/animation count accessors
 at 5E81C/5E820 add eight exact source bytes; shared frame-copy/list lifetimes
-remain unresolved. Next bounded work is menu OAM factory 4EA94..4EB64.
+remain unresolved. Related menu callbacks/text streams now add fourteen
+exact functions/ 576 bytes. OAM EA94 is parked; next recover the 756-byte
+shared glyph backend family. See [MENU_TEXT.md](MENU_TEXT.md).
 A specific named store/location and opaque base/record semantics remain
 unclaimed. NEXT_AGENT_HANDOFF.md owns the continuation.

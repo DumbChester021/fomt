@@ -559,8 +559,18 @@ SECTIONS
         asm/code_0803EE94.o(.text);
         src/heart_event_days.o(.text);
         asm/code_0803EE94.o(.text.after_heart_event_days);
+        src/menu_text.o(.text.menu_text_streams);
+        asm/code_0803EE94.o(.text.after_menu_text_streams);
         src/menu_tilemap.o(.text.menu_tilemap_rectangle);
         asm/code_0803EE94.o(.text.after_menu_tilemap_rectangle);
+        src/menu_draw_nodes.o(.text.menu_tilemap_rect_node);
+        asm/code_0803EE94.o(.text.after_menu_tilemap_rect_node);
+        src/menu_draw_nodes.o(.text.menu_tilemap_wide_node);
+        asm/code_0803EE94.o(.text.after_menu_tilemap_wide_node);
+        src/menu_draw_nodes.o(.text.menu_tilemap_tall_node);
+        asm/code_0803EE94.o(.text.after_menu_tilemap_tall_node);
+        src/menu_draw_nodes.o(.text.menu_tilemap_draw_nodes);
+        asm/code_0803EE94.o(.text.after_menu_tilemap_draw_nodes);
         src/scene_owners.o(.text.scene_ctor_5218c);
         asm/code_0803EE94.o(.text.after_scene_ctor_5218c);
         src/scene_owners.o(.text.scene_owner_521bc);

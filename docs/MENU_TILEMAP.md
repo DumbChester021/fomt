@@ -1,8 +1,9 @@
-# Menu tilemaps: entry rectangles and prices
+# Menu tilemaps: entry rectangles, prices and draw callbacks
 
 Shop menus draw entry backgrounds and decimal prices into a u16 tilemap.
-The shared rectangle helper is exact source. Decimal tile drawing and signed
-integer text formatting remain assembly with their behavior recovered.
+The rectangle helper and twelve callback-node methods are exact source.
+Decimal primitives and signed integer formatting remain assembly with their
+behavior recovered. Encoded glyph text is covered in [MENU_TEXT.md](MENU_TEXT.md).
 
 ## Boundaries
 
@@ -11,14 +12,60 @@ integer text formatting remain assembly with their behavior recovered.
 | FillSequentialTileRect / func_0804E9F4 | 0804E9F4..0804EA58 | 100 exact linked source bytes |
 | Integer text formatter / func_0804EC84 | 0804EC84..0804ED28 | 164 linked assembly bytes |
 | Wide decimal drawer / func_0804ED28 | 0804ED28..0804ED7C | 84-byte assembly body |
-| Wide-drawer anonymous successor | 0804ED7C..0804EDA0 | Separate 36-byte assembly routine |
+| InitWideNumberDrawNode | 0804ED7C..0804EDA0 | 36 exact source bytes |
 | Decimal number drawer / func_0804EDB4 | 0804EDB4..0804EDF8 | 68-byte assembly body |
-| Anonymous successor | 0804EDF8..0804EE1C | Separate 36-byte assembly routine |
+| InitTallNumberDrawNode | 0804EDF8..0804EE1C | 36 exact source bytes |
+| Single decimal drawer / func_0804EE30 | 0804EE30..0804EE64 | 52 assembly bytes |
 
-include/menu_tilemap.hh declares the rectangle interface; src/menu_tilemap.cc
-implements it while retaining the original symbol. Its body occupies 98 bytes,
-followed by two alignment bytes. The number drawer's inferred inventory span
-also includes the anonymous successor; those extra bytes are executable code.
+include/menu_tilemap.hh declares the rectangle and three decimal interfaces.
+src/menu_tilemap.cc implements the rectangle with its original symbol:
+98 body bytes plus two alignment bytes. ED7C/EDF8 are now separately
+source-owned constructors; inferred primitive ranges are their true 84/68 bytes.
+
+## Exact draw-node family
+
+include/menu_draw_nodes.hh / src/menu_draw_nodes.cc own twelve methods,
+360 linked bytes, retaining their original func_080xxxxx symbols.
+Recovered storage views describe behavior without claiming original class names.
+
+| Methods | Retail range | Bytes |
+| --- | --- | ---: |
+| Rectangle initializer/cleanup | 0804EA58..0804EA94 | 40 + 20 |
+| Wide-number initializer/cleanup | 0804ED7C..0804EDB4 | 36 + 20 |
+| Tall-number initializer/cleanup | 0804EDF8..0804EE30 | 36 + 20 |
+| Single-number initializer/cleanup | 0804EE64..0804EE9C | 36 + 20 |
+| Single draw callback | 0804EE9C..0804EEBC | 32 |
+| Tall draw callback | 0804EEBC..0804EEDC | 32 |
+| Wide draw callback | 0804EEDC..0804EEFC | 32 |
+| Rectangle draw callback | 0804EEFC..0804EF20 | 36 |
+
+Allocation callers prove both extents. Each record starts with the existing
+12-byte IntrusiveCallbackNode: pprev+0, next+4 and vtable+8.
+
+| Record | Offset | Field |
+| --- | --- | --- |
+| TileRectDrawNode, 0x20 bytes | +C | u16 destination pointer |
+| Rectangle | +10 / +12 | u16 palette / first_tile |
+| Rectangle | +14 / +18 / +1C | u32 width / height / row stride |
+| NumberDrawNode, 0x1C bytes | +C / +10 | u32 value / u16 destination pointer |
+| Decimal | +14 / +16 / +18 | u16 first_tile / palette, u32 row stride |
+
+Initializers clear both list links, install the variant vtable and store
+parameters. Cleanup installs the same vtable and forwards flags to
+DestroyIntrusiveCallbackNode, which owns detachment and conditional deletion.
+Callbacks invoke the matching primitive and return zero.
+
+| Variant | Existing vtable | Run entry | Cleanup entry |
+| --- | --- | --- | --- |
+| Single, one tile per digit | 080E7838 | 0804EE9C | 0804EE88 |
+| Tall, one-by-two tiles | 080E7848 | 0804EEBC | 0804EE1C |
+| Wide, two-by-two tiles | 080E7858 | 0804EEDC | 0804EDA0 |
+| Rectangle | 080E7868 | 0804EEFC | 0804EA80 |
+
+Run is vtable+8 and cleanup+0xC. Stored table bases and Thumb slot pointers
+remain unchanged readonly assembly data. No generated duplicate is emitted.
+The single decimal primitive accepts the common stride argument but does not
+use it; it emits first_tile+digit and moves left one element, including zero.
 
 ## Rectangle contract
 
@@ -49,8 +96,9 @@ See [LIVESTOCK_SHOP.md](LIVESTOCK_SHOP.md) for catalog and controller contracts.
 
 ## Verification and unresolved work
 
-The first natural rectangle candidate, realistic section and both forced
-full-ROM comparisons match. ROM size is 8,388,608 bytes; SHA1 is
+The rectangle and all twelve draw-node bodies match. Both forced isolated
+and production full-ROM comparisons pass with the unchanged compiler.
+All four vtables and original/neighboring addresses are preserved. ROM size is 8,388,608 bytes; SHA1 is
 a2fc3574f0a65a4fcf7682fb274b9d7eebdef963. Original and neighboring entry
 addresses are retained. No compiler or shared pointer changes were needed.
 
@@ -83,7 +131,7 @@ For tile=first_tile+digit*4, destination points at the top-right tile:
 top-left uses tile, top-right tile+1, bottom-left tile+2, bottom-right tile+3.
 All four receive palette bits; the bottom row uses the supplied element stride.
 Zero draws one digit and the destination moves left by two elements each time.
-Its true 84-byte body excludes the separate 36-byte anonymous successor.
+Its true 84-byte body ends at the exact source-owned wide initializer ED7C.
 
 ## Adjacent packed OAM factory
 
@@ -94,4 +142,5 @@ their bit fields. The parameter widths and bit 12 role still require caller
 cross-checks before a typed source interface is promoted.
 The inferred 496-byte range also contains the separate 288-byte routine at
 0804EB64..0804EC84; those bytes are executable code and must be preserved.
-This factory is the next bounded menu/graphics recovery unit.
+The factory is parked after natural bitfield and word-helper candidates fail.
+Next recover the shared glyph backend family using [MENU_TEXT.md](MENU_TEXT.md).

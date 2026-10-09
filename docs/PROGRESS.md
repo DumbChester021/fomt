@@ -16,8 +16,8 @@ Current reconstruction:
 
 ```text
 Code reconstruction
-  82504 / 940036 bytes (8.7767%)
-  857532 bytes remain in asm
+  83080 / 940036 bytes (8.8380%)
+  856956 bytes remain in asm
 
 Data/assets reconstruction
   75554 / 6777404 bytes (1.1148%)
@@ -28,7 +28,7 @@ Data/assets reconstruction
   396 additional source-owned ROM-header bytes count only toward overall
 
 Overall meaningful-ROM reconstruction
-  158454 / 7717440 bytes (2.0532%)
+  159030 / 7717440 bytes (2.0607%)
   final ROM padding is excluded from this denominator
 
 ROM space
@@ -36,7 +36,7 @@ ROM space
   671168 bytes free (655.44 KiB, 8.0009%) contiguous tail space
 ```
 
-The code inventory currently reports **2,123 linked assembly functions**, **854,836 bytes** covered by inferred function ranges, **2,696 unattributed assembly bytes**, and **22 explicitly parked functions**. The total includes prior exposed islands plus 596 bytes of unnamed neighbors revealed by six scene Run seams. Only their true 28-byte Run bodies are source-owned; the neighboring code remains unchanged assembly.
+The code inventory currently reports **2,111 linked assembly functions**, **854,260 bytes** covered by inferred function ranges, **2,696 unattributed assembly bytes**, and **23 explicitly parked functions**. The total includes prior exposed islands plus 596 bytes of unnamed neighbors revealed by six scene Run seams. Only their true 28-byte Run bodies are source-owned; the neighboring code remains unchanged assembly.
 
 ## What the metrics mean
 
@@ -50,7 +50,15 @@ Understanding or documenting an opaque `.incbin` does not count as asset/data re
 
 ## Recent exact milestones
 
-The newest unit is **Packed sprite-provider count accessors: eight exact bytes**.
+The newest batch is **Menu drawing callbacks and text streams: 14 functions /
+576 exact linked bytes**. Twelve callback methods own 360 bytes; two encoded
+streams own 216. Allocation layouts, four existing vtables and glyph protocol
+are recovered. Both forced full-ROM gates pass. Twelve named entries leave
+the inventory; two formerly anonymous constructors shrink ED28/EDB4 to84/68.
+Other ranges and unattributed bytes are unchanged.
+See [MENU_TILEMAP.md](MENU_TILEMAP.md) and [MENU_TEXT.md](MENU_TEXT.md).
+
+The preceding unit is **Packed sprite-provider count accessors: eight exact bytes**.
 GetSpriteCount / 5E81C and GetAnimationCount / 5E820 return counts[1] and counts[0].
 The combined matcher and both forced full-ROM gates pass. Only the inferred
 frame-getter range shrinks 148 to 140; no named assembly entry leaves the inventory.

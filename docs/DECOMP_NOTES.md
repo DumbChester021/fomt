@@ -56,7 +56,24 @@ Integer formatter 4EC84 has a counter-copy/loop-placement frontier:
 v3 is 164/ 34 with a head test; v4/v5/v6 are 160/ 97 with one coalesced copy.
 Stop canonical spelling variants. Stable descriptor/format behavior is in
 SPRITE_ANIMATOR.md, RESOURCE_OWNERS.md and MENU_TILEMAP.md.
-Next bounded target is the 208-byte OAM factory 4EA94..4EB64.
+The later OAM assessment is parked after two natural source candidates.
+
+## Menu drawing callbacks and encoded text streams
+
+Fourteen functions/ 576 bytes are exact: twelve draw-node methods/ 360 and
+two stream walkers/ 216. Callers prove 0x20 rectangle and 0x1C decimal records
+around IntrusiveCallbackNode. Four existing vtables remain unchanged.
+Anonymous constructors ED7C/EDF8 become source, shrinking ED28/EDB4 to84/68.
+Twelve named entries leave the inventory; no other surviving range changes.
+
+MenuTextSize proves a four-byte by-value record. Preserving the observed
+current-byte cache across glyph calls makes the complete text block exact;
+re-reading the pointer changed register/evaluation scheduling.
+Stable contracts: MENU_TILEMAP.md and MENU_TEXT.md.
+Both forced ROM gates pass with the same compiler.
+OAM bitfield v1 is204/198; word-helper v2 is100/201 after zero propagation.
+Park those shapes and preserve the separate 288-byte successor.
+Next shared glyph backend pair E4AC/E5AC totals 756 bytes.
 
 ## CURRENT DECOMP NOTE POLICY
 
@@ -65,8 +82,8 @@ live state. This file keeps subsystem/function evidence and matching lessons.
 
 Current retail state:
 - Active public retail branch: `main`; the former `Live-temp` line is retired. Historical `ches-dev` commits remain provenance only.
-- Current exact progress: **82,504 / 940,036 = 8.7767% source** and **857,532 assembly bytes**. Data/assets reconstruction is **75,554 / 6,777,404 = 1.1148%** and overall meaningful-ROM reconstruction is **158,454 / 7,717,440 = 2.0532%**. Forced production ROM comparison reports `fomt.gba: OK`; retail SHA1 remains `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
-- Remaining linked assembly functions: **2,123**; inferred function ranges cover **854,836 / 857,532 = 99.6856%**, with **2,696 unattributed bytes** and **22 explicitly parked functions**. The total includes the prior exposed islands and 596 additional unnamed bytes preserved beside six scene Run entries.
+- Current exact progress: **83,080 / 940,036 = 8.8380% source** and **856,956 assembly bytes**. Data/assets reconstruction is **75,554 / 6,777,404 = 1.1148%** and overall meaningful-ROM reconstruction is **159,030 / 7,717,440 = 2.0607%**. Forced production ROM comparison reports `fomt.gba: OK`; retail SHA1 remains `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
+- Remaining linked assembly functions: **2,111**; inferred function ranges cover **854,260 / 856,956 = 99.6854%**, with **2,696 unattributed bytes** and **23 explicitly parked functions**. The total includes the prior exposed islands and 596 additional unnamed bytes preserved beside six scene Run entries.
 
 ### 2026-10-09 Scenes: complex Runs complete
 

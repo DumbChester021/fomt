@@ -4,188 +4,157 @@
 
 Workspace: /mnt/data/Github/gba/fomt
 Branch: main, tracking ches/main.
-Starting pushed checkpoint for this unit: 688a625 decompile menu tilemap rectangle drawing.
+Starting pushed checkpoint: a714171 decompile packed sprite provider counts.
 Run git log -1, git status and git rev-parse ches/main for the completed identity.
-Current verified unit: sprite-provider sprite/animation count accessors.
 Standing authorization: review, commit and push exact checkpoints to public ches/main.
+Current batch: fourteen menu drawing functions / 576 exact linked source bytes.
 
-Code: 82,504 / 940,036 = 8.7767%.
-Assembly: 857,532 bytes; 2,123 linked functions.
-Inferred ranges: 854,836 / 857,532 = 99.6856%.
-Unattributed: 2,696 bytes. Explicit parked queue entries: 22.
+Code: 83,080 / 940,036 = 8.8380%.
+Assembly: 856,956 bytes; 2,111 linked functions.
+Inferred ranges: 854,260 / 856,956 = 99.6854%.
+Unattributed: 2,696 bytes. Explicit parked entries: 23.
 Data/assets: 75,554 / 6,777,404 = 1.1148%.
-Overall: 158,454 / 7,717,440 = 2.0532%.
-Free tail: 671,168 bytes.
+Overall: 159,030 / 7,717,440 = 2.0607%. Free tail: 671,168 bytes.
 ROM: 8,388,608 bytes; SHA1 a2fc3574f0a65a4fcf7682fb274b9d7eebdef963.
 Both forced isolated and production make -B -j4 compare pass: fomt.gba: OK.
-Tracked compiler installation and all thirteen compatibility rules are unchanged.
-Whole save loader and complete GameState/controller implementations are unfinished.
+Whitespace-only final source/seam alignment also passes both incremental gates.
+Tracked compiler and thirteen compatibility rules remain unchanged.
+Whole save loader, complete GameState and controller implementations remain unfinished.
 
-## Latest exact source
+## Latest exact family
 
-PackedSpriteAnimationProvider::GetSpriteCount / func_0805E81C returns counts[1].
-GetAnimationCount / func_0805E820 returns counts[0].
-Both four-byte bodies match retail at 0805E81C..0805E824.
-The methods use .text.sprite_animation_provider_counts in the existing
-include/sprite_animation_provider.hh / src/sprite_animation_provider.cc unit.
-Link order: provider parser/animation lookup, assembly frame getter,
-source count accessors, then the existing exact SpriteAnimator.
-No vtable or frame-descriptor implementation changes.
+include/menu_draw_nodes.hh / src/menu_draw_nodes.cc own twelve methods / 360
+bytes. The first natural typed candidate matches every selected body.
 
-These were anonymous assembly bytes included in the inferred 5E790 range.
-That range shrinks from 148 to its true 140 bytes; no named assembly entry
-leaves the inventory. Other address/size pairs and 2,696 unattributed bytes
-are unchanged. 5E790 and 4EC84 now have explicit parked status: 20 to 22
-is metadata, separate from the eight recovered code bytes.
+| Source group | Retail range | Bytes |
+| --- | --- | ---: |
+| Rectangle initializer/cleanup | 0804EA58..0804EA94 | 60 |
+| Wide initializer/cleanup | 0804ED7C..0804EDB4 | 56 |
+| Tall initializer/cleanup | 0804EDF8..0804EE30 | 56 |
+| Single initializer/cleanup and four draw callbacks | 0804EE64..0804EF20 | 188 |
 
-Earlier exact units remain unchanged:
-- Menu FillSequentialTileRect / 4E9F4..4EA58: 98 body + two alignment bytes.
-- Livestock controller: six functions / 548 bytes, catalog 11x20 = 220 bytes.
-- Controller extent 0x43E0, base 0x6A4, 17 records of stride 0x304,
-  FixedStr<127> title, FixedStr<99> message, 16 records of stride 0x84.
-- Shared base ctor C7F58/dtor C8360 and opaque record interiors remain assembly.
-- Scene lifetime: 74 functions / 4,108 bytes, all 25 Runs exact.
-Stable evidence: SPRITE_ANIMATOR.md, MENU_TILEMAP.md, LIVESTOCK_SHOP.md, SCENES.md.
+TileRectDrawNode is 0x20 bytes: callback prefix +0, destination +C,
+palette/first_tile +10/+12, width/height/stride +14/+18/+1C.
+NumberDrawNode is 0x1C bytes: prefix +0, value +C, destination +10,
+first_tile/palette +14/+16, stride +18. Allocation callers prove both extents.
+These are shared storage views, not claimed original class identities.
+Initializers clear list links and install the existing vtable. Cleanup forwards
+flags to DestroyIntrusiveCallbackNode. Draw callbacks invoke the primitive and return zero.
+include/menu_tilemap.hh now declares the three assembly decimal primitives.
 
-## Proofs and working state
+Existing vtables 080E7838/48/58/68 retain Run +8 and cleanup +C:
+EE9C/EE88, EEBC/EE1C, EEDC/EDA0, EEFC/EA80 respectively.
+No duplicate vtable/linkonce/data bytes are generated.
 
-Ignored root: tools/ches/checkpoints/packed-sprite-frame-2026-10-09/.
-- provider-counts-v1.cc and provider-counts-v1/: exact eight-byte comparison.
-- counts-before/, counts-integration-proof.json: four reviewed integration inputs.
-- counts-isolated-compare.log, counts-isolated-object-sections.txt,
-  counts-isolated-proof.json and counts-production-compare.log.
-- counts-production-proof.json: ROM equality with baserom and isolated build,
-  unchanged target/neighbors, hashes, inventory ranges and parked-status changes.
-- counts-progress.txt and counts-docs-before/ preserve reporting evidence.
-- frame-v1..v6.cc, v1..v6/ and status.json hold the parked getter research.
-Menu research: tools/ches/checkpoints/menu-numbers-2026-10-09/.
-No build or compiler execution remains.
+include/menu_text.hh / src/menu_text.cc own 216 linked bytes:
+DrawMenuText E8F0..E958 (102 body + two alignment) and
+DrawStyledMenuText E958..E9C8 (110 body + two alignment).
+MenuTextSize is two u16 tile dimensions, passed as a four-byte value.
+Both cache the current byte and accumulate codes; backend result 0 accumulates,
+1 clears code and advances x eight pixels, 2 sixteen; other results stop.
+NUL or x >= width*8 stops too. Styled rendering forwards both colors.
+text-stream-v1 re-read the byte: eighteen symbol-byte differences per routine.
+text-stream-v2 caches it once: complete 216-byte block, zero binary differences.
+Its disassembly-only trailing NOP difference is boundary presentation.
+
+## Ownership and proofs
+
+Twelve named assembly entries leave the inventory. Anonymous constructors
+ED7C/EDF8 instead shrink surviving ED28/EDB4 ranges 120->84 and 104->68.
+No other surviving address/size changes; unattributed bytes remain 2696.
+Only EA94 gains parked metadata, 22->23. Data/assets are unchanged.
+Link order: assembly through E8F0; text source through E9C8; stubs/clear
+through E9F4; existing rectangle through EA58; rectangle-node source through EA94;
+assembly through ED7C; wide-node source through EDB4; tall primitive through EDF8;
+tall-node source through EE30; single primitive through EE64;
+remaining node source through EF20; remaining assembly.
+fomt.lds and asm/code_0803EE94.s own the reviewed section seams.
+
+Ignored root: tools/ches/checkpoints/menu-graphics-batch-2026-10-09/.
+- draw-nodes-v1.cc, nodes-v1-results.json and twelve nodes-* matcher directories.
+- text-stream-v2.cc / text-stream-v2/: complete exact text block.
+- before/, integration-inputs/, integration-manifest.json: seven build inputs.
+- isolated-build.log, isolated-proof.json and object-section reports.
+- production-build.log, production-proof.json: retail/isolated ROM equality,
+  fourteen aliases/ranges, four vtables and input hashes.
+- inventory-before.json, inventory-proof.json, progress.txt and status.json.
+- isolated-formatting-compare.log / production-formatting-compare.log.
+- docs-before/ and docs-manifest.json: consolidated documentation evidence.
+No build or compiler execution is pending.
 
 Integration worktree:
 /mnt/waydroid-hdd/home-chester-waydroid/fomt-integrations/scene-run-881ec-20261009.
-Detached at 8174a61 with intentional exact 881EC, both livestock units,
-menu rectangle and provider count inputs applied. Do not reset/discard it.
-Selected tracked build inputs agreed with production before this integration;
-all four integration hashes and complete ROMs agree after it.
-Its compiler was installed by the tracked pinned installer.
-Before reuse, audit current production build-input hashes again.
-Fresh clones must supply baserom.gba and install the tracked compiler locally.
-Ignored checkpoints and the integration worktree are not cloned automatically.
-Use these tracked facts if artifacts are absent; missing ROM/compiler inputs
-are environment failures, not candidate mismatches.
-If publication is still pending, commit/push the reviewed source, inventory and docs.
+Detached at 8174a61 with intentional exact scene, livestock, rectangle, provider and
+current menu inputs applied. Do not reset, clean, stash or discard it.
+Before integration 224 tracked build inputs agreed with production; afterward
+all seven changed input hashes and complete ROMs agree. Compiler installed
+using the tracked pinned installer. Audit current inputs again before reuse.
+Fresh clones need baserom.gba and the tracked compiler; ignored proofs and
+integration worktrees are not cloned. Missing inputs are environment failures.
 
-## Parked packed frame getter
+Earlier exact units remain: provider counts eight bytes; rectangle 100;
+livestock six functions/ 548 and catalog 220; scene 74/ 4,108 including all 25 Runs.
+Stable contracts: MENU_TILEMAP.md, MENU_TEXT.md, LIVESTOCK_SHOP.md,
+SPRITE_ANIMATOR.md and SCENES.md.
 
-func_0805E790: 0805E790..0805E81C, 0x8C / 140 bytes.
-The old handoff missed prior October 5 candidates documented in SPRITE_ANIMATOR.md:
-custom-expansion-2026-10-05/candidate-sprite-resource-lookup-v1.cc and v2.cc.
-Saved matcher results: function-match-artifacts/sprite-resource-lookup-v1/v2 files.
-Old v1 symbol 0x8A / 36 differences included an omitted alignment halfword;
-full linked .text is 0x8C / 34 genuine middle-schedule differences.
-Old explicit-local v2 is 0x92 / 126 and rejected. Do not repeat it.
-Current best: packed-sprite-frame-2026-10-09/frame-v3.cc, 0x8C / 34.
-It reproduces the old natural constructor-return frontier.
+## Parked source contracts
 
-Closed current probes:
-- v1 shared POD local return: 0x88 / 138, adds a 32-byte stack return copy.
-- v2 widened constructor sizes: 0x8C / 55.
-- v4 count scaling inside outer constructor: 0x8C / 64.
-- v5 inline pointer helpers: 0x8C / 58.
-- v6 inline numeric-address helpers: 0x8C / 59.
-No compiler, global SmartPtr or production SpriteFrameData changes.
-Stop scalar/constructor/helper spelling; reopen only with structural source,
-aggregate/inline-lifetime or pass evidence that changes the middle schedule.
+OAM EA94: true 208 bytes, separate anonymous 288-byteEB64..EC84 successor.
+Hidden r0 returns eight packed bytes; clears two words, enables bit 12 and adds
+masked y/x/tile/palette/priority/shape/size fields. OamShadow remains opaque.
+menu-graphics-batch-2026-10-09/oam-v1 native bitfields: 204/198;
+oam-v2 word helpers: 100/201, zero propagation removes field accesses.
+Close these shapes; reopen only with genuine record/lifetime evidence.
 
-ABI: hidden result r0, provider r1, sprite ID r2.
-Valid index < counts[1]; pools[1] holds 16-byte index records:
-+0 parts count, +2 first part in eight-byte units;
-+4 tile count, +6 first tile in 32-byte units;
-+8 palette count, +A first palette in 32-byte units;
-+C fourth-span count, +E first fourth-span record in eight-byte units.
-Return spans use pools[2..5], with pointer and u16 size/count per eight-byte span.
-Parts/fourth counts remain record counts; graphics/palette sizes are counts*32,
-truncated to u16. The fourth span's transform meaning remains a hypothesis.
-Invalid index clears each pointer/size, not the two-byte span padding.
-Retail computes graphics/palette addresses before loading their counts;
-v3 loads all index/count values and computes addresses later.
+Frame 5E790: true 140 bytes, best packed-sprite-frame-2026-10-09/frame-v3: 140/34.
+Old October 5 custom-expansion-2026-10-05/candidate-sprite-resource-lookup-v1
+already reaches the same linked frontier; old explicit-local v2: 146/126.
+Current v1 POD return: 136/138 with 32-byte copy; v2/v4/v5/v6: 140 with 55/64/58/59.
+Retail computes graphics/palette addresses before loading counts; current
+natural source loads index/count values earlier. Stop canonical spelling variants.
+Stable provider/descriptor evidence: SPRITE_ANIMATOR.md and RESOURCE_OWNERS.md.
 
-## Parked integer text formatter
+Integer 4EC84: 164 linked bytes. menu-numbers-2026-10-09/format-v3: 164/34
+with wrong head test; v4/v5/v6: 160/97 coalesce retail loop-foot increment/copy.
+v1/v2: 156/119 and 160/116. Reopen only on counter lifetime/type evidence.
 
-func_0804EC84: 0804EC84..0804ED28, 0xA4 / 164 linked bytes.
-Root: menu-numbers-2026-10-09/, format-v1..v6.cc and result directories.
-Signed value, char destination, unsigned field width; reverse decimal buffer,
-signed modulus/division by ten, at most ten digits, optional left padding,
-sign prepended after padding, then output reversal and NUL.
-Width zero uses natural length; smaller width keeps least-significant digits.
-The routine has no width clamp or special INT_MIN handling.
-See MENU_TILEMAP.md for behavior; no source was promoted.
+Tall primitive EDB4: 68 bytes, now followed by exact source initializerEDF8.
+menu-tilemap-2026-10-09/number-v2: 68/eight; v1: 68/ten; v3/v4 canonicalize;
+separate modulo/division v5: 80/74. Numeric-address v1: 68/nine, v2: 68/eight.
+Stop this family without a factual signature change. Behavior: MENU_TILEMAP.md.
 
-v1: 0x9C / 119; v2: 0xA0 / 116.
-v3: 0xA4 / 34, but places the limit test at the loop head.
-Best retail control-flow shape v4: 0xA0 / 97.
-v5 ordinal=count+1 and v6 signed reverse index canonicalize to v4.
-Retail emits adds r0,r4,#1; adds r6,r0,#0; cmp r6,#10 at the loop foot.
-The candidates coalesce the first two instructions into adds r6,r4,#1.
-The missing copy shifts otherwise matching code and final alignment.
-Do not force registers, add fake padding, or repeat scalar counter spellings.
-Reopen on evidence for the actual counter lifetime/type or allocator input.
+Offer 85640: 556 retail bytes; livestock-offer-builder-2026-10-09/v2: 528/482,
+frame 0xEC. v1: 544/514; v3 fails compilation. Capacity 40 list and frame-copy
+lifetimes unresolved.98 _call_via_r3 sites followed by 32-byte memcpy support
+a shared return/copy contract.8586C/85F08/86A08 are separately bounded.
+Ctor 92570: 84/four. Whole loader, resource constructors/B128, twenty scene-change
+constructors and mine-floor islands require new structural evidence.
 
-## Parked decimal tile drawer
+## Exact next action: shared menu glyph renderers
 
-func_0804EDB4 true body: 0804EDB4..0804EDF8, 0x44 / 68 bytes.
-Its inferred inventory range also includes an anonymous 36-byte executable
-routine at 0804EDF8..0804EE1C. Preserve it.
-Best menu-tilemap-2026-10-09/number-v2.cc: 0x44 / eight entry-scheduling differences.
-Complete right-to-left two-row digit loop matches; zero draws one digit.
-v1 OR order: ten differences; v3 palette caching and v4 widened parameters
-canonicalize to eight; v5 modulo/division separates libcalls: 0x50 / 74.
-Current number-address-v1: 0x44 / nine, with changed register allocation.
-number-address-v2: 0x44 / eight, canonicalizes to the prior entry mismatch.
-Numeric-address spelling supplies no factual signature change. Stop this family.
+DrawMenuGlyph / func_0804E4AC: 0804E4AC..0804E5AC, 256 bytes.
+DrawStyledMenuGlyph / func_0804E5AC: 0804E5AC..0804E7A0, 500 bytes.
+Treat the combined 756-byte family as one work unit. No earlier probes were
+found in the Call238 records during this batch.
 
-## Parked offer builder and other frontiers
-
-85640: 08085640..0808586C, 556 retail bytes.
-Root: livestock-offer-builder-2026-10-09/.
-offers-v1: 544 / 514, frame 0xEC; best v2: 528 / 482, frame 0xEC.
-v3 fails compilation (_Destroy undeclared); partial output proves no match.
-Retail clears a capacity-40 16-byte descriptor list at base +20/+24,
-iterates IDs from +2A4/+2A8, builds Article/Tool icons and two-row entry tiles,
-and draws prices for IDs <=6. Shared frame-copy/list lifetimes remain unresolved.
-There are 98 _call_via_r3 sites with a following 32-byte memcpy within 14 lines.
-This supports a shared return/copy contract, not an ad hoc target self-copy.
-Renderer 8586C (0x658), description 85F08 (0x9A0) and Run 86A08 (0xD08)
-are separately bounded. Constructor 92570 stays at 0x54 / four r0/r1 differences.
-Whole loader, resource constructors/B128, twenty scene-change constructors,
-mine-floor islands and other closed frontiers require new structural evidence.
-
-## Exact next action
-
-Recover the adjacent menu OAM descriptor factory func_0804EA94.
-True body: 0804EA94..0804EB64, 0xD0 / 208 bytes.
-The inferred inventory range is 496 bytes because it also includes the separate
-anonymous string/glyph routine at 0804EB64..0804EC84, 288 bytes. Preserve it.
-Inventory finds 18 direct calls from 12 callers across 3 assembly files.
-No earlier factory probes were found in the Call238 ledgers.
-There is no existing typed OAM attribute record in include/; OamShadow is opaque.
-
-First read the body, several callers and packed_sprite_bank.py's OBJ decoding.
-The factory returns an eight-byte packed value through hidden r0.
-It zeroes both words, enables bit 12, then adds y, x, tile, palette, priority,
-shape and size into their masked fields. Confirm explicit parameter widths,
-stack order and the bit 12 role against consumers before semantic naming.
-Use a credible packed record/helper source; test one natural candidate promptly.
-Do not transcribe masks merely to force scheduling. If the same old compiler
-frontier appears, record it and rank a different typed menu/graphics boundary.
+Both use MenuTextSize and a128-byte four-tile glyph buffer.
+Shared decoder func_080D0D28 is404 bytes, calling _call_via_r2,
+func_080D0CD4 and memset. Aligned paths copy eight words per tile.
+Styled words use 0x11111111, color 1's low nibble and color 2-color 1 delta;
+confirm remaining packed shadow/color semantics before further naming.
+Preserve unaligned stubs E9C8/E9CC and anonymous clear helper E9D0..E9F4.
+Adjacent E7A0 is only 60 bytes ending E7DC, not all intervening bytes through E8F0.
 
 First commands:
-rg -n 'func_0804EA94|L0804EB64|func_0804EC84' asm/code_0803EE94.s
-rg -n '4EA94|OAM' tools/ches/checkpoints/call238/EXPERIMENT_INDEX.md tools/ches/checkpoints/call238/FAILURES_AND_CLOSED_PATHS.md tools/ches/checkpoints/call238/FAILURE_LEDGER.md
-python3 tools/ches/compare-function.py <candidate.cc> <name> --start 0x0804EA94 --end 0x0804EB64 --out-dir <checkpoint>
+rg -n 'func_0804E4AC|func_0804E5AC|func_0804E7A0|func_080D0D28' asm include src
+rg -n '4E4AC|4E5AC|D0D28' tools/ches/checkpoints/call 238/EXPERIMENT_INDEX.md tools/ches/checkpoints/call 238/FAILURES_AND_CLOSED_PATHS.md tools/ches/checkpoints/call 238/FAILURE_LEDGER.md
+python 3 tools/ches/compare-function.py <candidate.cc> <name> --start 0x0804E4AC --end 0x0804E5AC --out-dir <checkpoint>
 
-Then realistic object/ABI proof, isolated forced ROM, production forced ROM,
-hash/size, inventory/progress, reviewed docs, explicit stage, commit/push ches/main.
+Recover the shared record/ABI from both backends and callers. Compare the
+first natural family candidate promptly, park hard neighbors, then run one
+isolated/production forced gate pair and one inventory/docs/publication pass.
+A fixed small function count is not the batch unit. No forced registers,
+volatile/barriers, compiler changes or global SmartPtr changes.
 Compiler authority: tools/install_agbcp.sh and tools/agbcp_fomt_compat.patch.
 Closed records: tools/ches/checkpoints/call238/EXPERIMENT_INDEX.md,
 FAILURES_AND_CLOSED_PATHS.md and FAILURE_LEDGER.md.

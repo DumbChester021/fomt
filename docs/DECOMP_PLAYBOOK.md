@@ -110,6 +110,21 @@ the repository, kept exact islands blocked behind hard neighbors, or tried many
 source spellings before checking boundaries. Fishing records and the mine-floor
 initializer/accessor work are current reference examples.
 
+### Coherent family batches
+
+Recover repeated methods around a shared layout/API together. Batch boundaries
+follow the useful family rather than a fixed small function count.
+Compare natural candidates promptly, preserve exact methods and park hard
+neighbors. After body/block proofs use one isolated/production forced-ROM pair,
+one inventory/canonical-docs pass and one publication for the coherent batch.
+Menu drawing is a reference: twelve callbacks and two related stream walkers,
+fourteen functions/ 576 bytes, in one publication.
+
+Observed loads constrain source too. If input bytes are cached before the
+loop and after pointer advancement, retain that cache across the glyph call.
+Re-reading the pointer can change alias/evaluation scheduling.
+Use the observed data lifetime before trying register-oriented spellings.
+
 ## Standard decompilation workflow
 
 ### 1. Orient before editing

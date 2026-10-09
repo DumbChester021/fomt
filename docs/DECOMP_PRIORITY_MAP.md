@@ -12,11 +12,11 @@ exploit them across the remaining assembly instead of making an individual
 resource family the main queue.
 
 Current verified working state on `main`:
-- code: **82,504 / 940,036 = 8.7767%**;
-- assembly remaining: **857,532 bytes**;
-- remaining linked assembly functions: **2,123**;
+- code: **83,080 / 940,036 = 8.8380%**;
+- assembly remaining: **856,956 bytes**;
+- remaining linked assembly functions: **2,111**;
 - data/assets: **75,554 / 6,777,404 = 1.1148%**;
-- overall meaningful ROM: **158,454 / 7,717,440 = 2.0532%**;
+- overall meaningful ROM: **159,030 / 7,717,440 = 2.0607%**;
 - packed bank: **416 / 493 semantically owned animations**;
 - retail ROM remains exact at SHA1 `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
 
@@ -53,20 +53,24 @@ but its score is no longer an execution order.
 
 ## Current priority: work the live queue and preserve family-level leverage
 
-Latest coherent promotion: two packed sprite-provider count accessors, eight
-exact bytes, with both forced full-ROM gates passing. Menu rectangle drawing
-remains 100 exact bytes, livestock controller 548 bytes and catalog 220 typed bytes;
-all 25 scene Runs remain exact.
-Frame getter 5E790 is parked at 140/ 34, reproducing the historical October 5
-middle schedule. Integer formatter 4EC84 v4/v5/v6 canonicalize at 160/ 97;
-v3 has 164/ 34 but the wrong loop-test placement. Number drawer 4EDB4 remains
-68/eight and builder 85640 remains parked on shared frame-copy/list lifetimes.
-The queue now has 22 explicit parked entries, a metadata count.
-Next assess OAM factory 4EA94..4EB64 (208 true bytes), its packed eight-byte
-return record and 18 direct calls from 12 callers. Preserve the anonymous
-288-byte successor 4EB64..4EC84; the raw inventory range includes it.
-Read SPRITE_ANIMATOR.md, MENU_TILEMAP.md and NEXT_AGENT_HANDOFF.md.
-Avoid more canonicalized scalar/constructor spellings without new evidence.
+Latest promotion: **14 menu drawing functions / 576 exact bytes**, twelve
+shared-layout callbacks and two encoded streams. Both forced ROM gates pass.
+Twelve named entries leave the inventory; two anonymous constructors shrink
+ED28/EDB4 ranges to84/68. Vtables, original addresses and other ranges stay intact.
+Earlier provider counts, rectangle, livestock and all 25 scene Runs remain exact.
+
+The user requested larger batches. Select whole shared-layout/API families,
+compare natural candidates promptly and park hard neighbors. Use one isolated/
+production gate pair, one inventory/docs pass and one publication per family.
+A fixed small function count is not the work unit.
+
+Next shared glyph backends E4AC..E5AC (256)/E5AC..E7A0 (500) form a756-byte
+family around MenuTextSize, the four-tile buffer and shared decoder.
+Preserve unaligned stubs and the separate anonymous clear helper.
+OAM EA94 is parked: 208 true bytes plus a separate 288-byte successor.
+Frame getter 5E790, formatter 4EC84, tall decimal EDB4 and builder 85640 retain
+their documented scheduling/lifetime frontiers. Queue parked count is23.
+Read MENU_TILEMAP.md, MENU_TEXT.md and NEXT_AGENT_HANDOFF.md.
 
 The larger 20-member scene-change constructor family remains bounded but nonmatching. Do not repeat its closed aggregate-lifetime candidates merely because the queue ranks it highly. NEXT_AGENT_HANDOFF.md owns the active continuation.
 
