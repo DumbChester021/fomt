@@ -12,11 +12,11 @@ exploit them across the remaining assembly instead of making an individual
 resource family the main queue.
 
 Current verified working state on `main`:
-- code: **82,396 / 940,036 = 8.7652%**;
-- assembly remaining: **857,640 bytes**;
-- remaining linked assembly functions: **2,124**;
+- code: **82,496 / 940,036 = 8.7758%**;
+- assembly remaining: **857,540 bytes**;
+- remaining linked assembly functions: **2,123**;
 - data/assets: **75,554 / 6,777,404 = 1.1148%**;
-- overall meaningful ROM: **158,346 / 7,717,440 = 2.0518%**;
+- overall meaningful ROM: **158,446 / 7,717,440 = 2.0531%**;
 - packed bank: **416 / 493 semantically owned animations**;
 - retail ROM remains exact at SHA1 `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
 
@@ -53,7 +53,16 @@ but its score is no longer an execution order.
 
 ## Current priority: work the live queue and preserve family-level leverage
 
-Latest coherent promotion: Livestock controller construction/cleanup, 188 additional exact bytes. The recovered 0x43E0 controller extent uses 17 menu records, FixedStr<127>/FixedStr<99> and 16 animal records; opaque base/record internals remain unclaimed. Six exact controller functions own 548 linked bytes, and the catalog owns 220 typed bytes. Isolated and forced production ROM comparisons pass with the unchanged compiler. All 25 scene Runs remain exact. Next is offer-list builder 85640..8586C (556 bytes), with shared descriptor/list types audited first; keep large 86A08 separate. Constructor 92570 remains parked at 0x54 / four r0/r1 bytes. Stable evidence: docs/LIVESTOCK_SHOP.md and docs/SCENES.md.
+Latest coherent promotion: menu tilemap rectangle drawing, 100 exact linked
+bytes. The first natural source and both forced full-ROM gates pass. Livestock
+controller code remains 548 linked bytes and the catalog 220 typed bytes;
+all 25 scene Runs remain exact. Offer builder 85640 is parked after bounded
+frame-copy/list-lifetime probes. Number drawer 4EDB4 is parked on eight entry
+scheduling bytes. Their queue status and previously documented constructor
+92570 now make 20 explicit parked entries. Next recover packed frame getter
+5E790..5E81C (140 bytes) to strengthen the shared graphics return/copy boundary
+before reopening the builder. Preserve its anonymous eight-byte successor.
+Stable evidence: docs/MENU_TILEMAP.md, LIVESTOCK_SHOP.md and SCENES.md.
 
 The larger 20-member scene-change constructor family remains bounded but nonmatching. Do not repeat its closed aggregate-lifetime candidates merely because the queue ranks it highly. NEXT_AGENT_HANDOFF.md owns the active continuation.
 

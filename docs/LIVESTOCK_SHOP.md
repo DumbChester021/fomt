@@ -135,6 +135,22 @@ Source follows that prefix, then remaining assembly follows in
 .rodata.after_livestock_shop_catalog. Address adjacency alone does not
 establish the owning section.
 
+## Offer-list inputs and tilemap drawing
+
+Builder 85640 resets a capacity-40 list whose count is at base +0x20 and
+whose 16-byte descriptor array begins at +0x24. The offer-ID count is at
++0x2A4, followed by forty u32 IDs at +0x2A8. Base +0x1C stores a
+tilemap-owner pointer; the owner stores the u16 tile pointer at +0x18.
+
+For Article/Tool kinds, the builder uses existing icon IDs and packed sprite
+bank gUnk_086678A0. It registers graphics/palette pointers from a returned
+32-byte frame descriptor. Source ownership and copy lifetimes are unresolved;
+the observed post-getter copy needs a shared interface explanation.
+
+Entries occupy two tile rows. FillSequentialTileRect is exact source, and
+the price-number drawer remains assembly. Offer IDs <=6 draw unit_price.
+See [MENU_TILEMAP.md](MENU_TILEMAP.md) for rectangles, digits and column offsets.
+
 ## Verification and remaining boundaries
 
 Natural construction/cleanup, four helpers, complete blocks/TU slices and
@@ -145,6 +161,7 @@ ROM: 8,388,608 bytes; SHA1 a2fc3574f0a65a4fcf7682fb274b9d7eebdef963.
 The lifecycle promotion removes only ctor 85584 and dtor 8562C from the
 remaining-function inventory; every other assembly address/size is unchanged.
 Offer builder 85640, renderer 8586C, description 85F08 and Run 86A08 remain
-assembly. The next bounded unit is offer-list construction at 85640..8586C.
+assembly. Builder recovery is parked on frame-copy and list-lifetime contracts.
+Next recover the packed frame getter 5E790..5E81C to strengthen shared types.
 A specific named store/location and opaque base/record semantics remain
 unclaimed. NEXT_AGENT_HANDOFF.md owns the continuation.

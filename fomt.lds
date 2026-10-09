@@ -559,6 +559,8 @@ SECTIONS
         asm/code_0803EE94.o(.text);
         src/heart_event_days.o(.text);
         asm/code_0803EE94.o(.text.after_heart_event_days);
+        src/menu_tilemap.o(.text.menu_tilemap_rectangle);
+        asm/code_0803EE94.o(.text.after_menu_tilemap_rectangle);
         src/scene_owners.o(.text.scene_ctor_5218c);
         asm/code_0803EE94.o(.text.after_scene_ctor_5218c);
         src/scene_owners.o(.text.scene_owner_521bc);

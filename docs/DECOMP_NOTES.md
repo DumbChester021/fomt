@@ -31,7 +31,17 @@ Natural construction/cleanup now add 188 exact bytes. LivestockController
 recovers the 0x43E0 extent, 17 menu records, FixedStr<127> title, FixedStr<99>
 message and 16 animal records. Base/record contents remain opaque. All six
 controller bodies and both full-ROM comparisons pass; all 25 scene Runs remain
-exact. Offer-list construction at 85640..8586C is next.
+exact. Offer-list construction at 85640..8586C is parked on shared frame-copy
+and list-lifetime contracts. Recover packed frame getter 5E790..5E81C next.
+
+## Menu tilemap rectangle drawing
+
+FillSequentialTileRect at 4E9F4..4EA58 adds 100 exact linked source bytes.
+The first natural candidate and isolated/production forced ROM gates pass.
+Sequential tile values, palette bits and caller row stride are recovered; the
+price-number drawer remains assembly. See [MENU_TILEMAP.md](MENU_TILEMAP.md).
+Number drawer 4EDB4 and builder 85640 are bounded nonmatching frontiers.
+The queue now explicitly parks those two plus the known 92570 constructor.
 
 ## CURRENT DECOMP NOTE POLICY
 
@@ -40,8 +50,8 @@ live state. This file keeps subsystem/function evidence and matching lessons.
 
 Current retail state:
 - Active public retail branch: `main`; the former `Live-temp` line is retired. Historical `ches-dev` commits remain provenance only.
-- Current exact progress: **82,396 / 940,036 = 8.7652% source** and **857,640 assembly bytes**. Data/assets reconstruction is **75,554 / 6,777,404 = 1.1148%** and overall meaningful-ROM reconstruction is **158,346 / 7,717,440 = 2.0518%**. Forced production ROM comparison reports `fomt.gba: OK`; retail SHA1 remains `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
-- Remaining linked assembly functions: **2,124**; inferred function ranges cover **854,944 / 857,640 = 99.6856%**, with **2,696 unattributed bytes** and **17 explicitly parked functions**. The total includes the prior exposed islands and 596 additional unnamed bytes preserved beside six scene Run entries.
+- Current exact progress: **82,496 / 940,036 = 8.7758% source** and **857,540 assembly bytes**. Data/assets reconstruction is **75,554 / 6,777,404 = 1.1148%** and overall meaningful-ROM reconstruction is **158,446 / 7,717,440 = 2.0531%**. Forced production ROM comparison reports `fomt.gba: OK`; retail SHA1 remains `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
+- Remaining linked assembly functions: **2,123**; inferred function ranges cover **854,844 / 857,540 = 99.6856%**, with **2,696 unattributed bytes** and **20 explicitly parked functions**. The total includes the prior exposed islands and 596 additional unnamed bytes preserved beside six scene Run entries.
 
 ### 2026-10-09 Scenes: complex Runs complete
 
@@ -1284,4 +1294,4 @@ Stable contracts and source ranges are in `docs/RESOURCE_HANDLES.md`. Private so
 Latest recovered GroundPickupState: +0x34C8..+0x34D7, 56 availability
 bits and fifteen packed three-bit durability fields. Four exact functions
 add 1,032 linked bytes. A1EA8 is parked. See docs/GROUND_PICKUP_STATE.md.
-The +0x34D8 mask and +0x34DC actor state are already source-owned. Active livestock-shop work is offer-list builder 85640..8586C; keep C6BC parked.
+The +0x34D8 mask and +0x34DC actor state are already source-owned. Active livestock-shop work is packed frame getter 5E790..5E81C; offer builder 85640 and C6BC remain parked.
