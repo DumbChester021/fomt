@@ -48,9 +48,23 @@ is not read before its proxy sets the word to null. The allocated outer pointer
 flows directly to the proxy and result. This view preserves the observed
 lifetime and is not a general default-initialized smart pointer.
 
+## Livestock shop controller results
+
+Controller 85584 handles cow/sheep purchases and sales. Its exact
+GetPurchasedAnimalType / 85EEC returns the successful insertion type at
++0x43D8: cow 0, sheep 1, otherwise 999. Run 881EC maps zero to mode 1 and
+every nonzero value to mode 2, preserving the nested transfers. The inserted
+barn slot is at +0x43DC; allocation is 0x43E0. Complete layout remains unclaimed.
+
+GetAnimalHeartCount / 85EC4 turns Animal::GetAffection results into at most
+ten hearts. Sale pricing and pregnancy counting use existing Barn types
+through controller +8 and Barn at context +0x5F0. These four helpers own
+360 linked bytes separately from the 74-function scene lifetime total.
+Catalog and controller contracts: [LIVESTOCK_SHOP.md](LIVESTOCK_SHOP.md).
+
 ## Constructor contract
 
-The first 18 recovered natural constructors take a mutable continuation reference and an opaque context pointer. Four 68-byte constructors, `func_08057DD8`, `func_0805CEB8`, `func_08069E14`, and `func_0809A4D4`, take the same pair plus an unsigned byte. `func_08083A7C` additionally takes four u32 values and stores them at +0x0C/+0x10/+0x14/+0x18 while retaining context at +0x1C. `func_08088168` takes one u32 value and stores it at +0x0C with context at +0x10. All 24 exact constructors install the original scene vtable and preserve the observed ownership transfer. Controller implementations remain assembly-bound.
+The first 18 recovered natural constructors take a mutable continuation reference and an opaque context pointer. Four 68-byte constructors, `func_08057DD8`, `func_0805CEB8`, `func_08069E14`, and `func_0809A4D4`, take the same pair plus an unsigned byte. `func_08083A7C` additionally takes four u32 values and stores them at +0x0C/+0x10/+0x14/+0x18 while retaining context at +0x1C. `func_08088168` takes one u32 value and stores it at +0x0C with context at +0x10. All 24 exact constructors install the original scene vtable and preserve the observed ownership transfer. Most controller logic remains assembly-bound; the livestock helpers above are exact source.
 
 The 18 scenes have a 12-byte ownership layout. Seventeen audited factories allocate that scene on the heap. Factory DC3A0 constructs SceneOwner93A88 on the stack with a null continuation, runs its controller/accessor path and then destroys the temporary with mode 2.
 
@@ -119,7 +133,7 @@ All destructors below are 64 bytes. Parenthesized constructor sizes mark recover
 - `func_080881EC`: exact source. Status -1 moves the continuation directly; other statuses create the nested requests described above.
 - `func_08092604`: exact source. It obtains a controller request through caller-supplied aggregate-return storage and transfers that temporary to the outer result through the recovered two-word `auto_ptr_ref`-style proxy.
 
-All 25 scene Runs are now exact source. Constructor `92570`, controller constructors and controller logic remain assembly. Nearby shop/catalog or rucksack data is useful evidence but does not establish a specific screen name.
+All 25 scene Runs are now exact source. Constructor `92570`, controller constructors and most controller logic remain assembly. Nearby shop/catalog or rucksack data is useful evidence but does not establish a specific screen name.
 
 ## True boundaries and verification
 
@@ -136,12 +150,12 @@ Six formerly inferred Run ranges also contained unnamed neighboring code. Only t
 
 The **596 bytes** remain unchanged assembly and now count as unattributed. Run 93AD4 follows the separate 12-byte helper at 93AC8; destructor adjacency alone does not establish its address.
 
-All 74 source-owned scene functions match retail. The newest Run, `func_080881EC`, matches scratch, production-shaped and complete-TU proofs at 0xC0 / 0 differences. A fresh tracked compiler install, isolated full-ROM comparison and forced production full-ROM comparison pass. Original entry aliases, target/neighbor addresses and all 25 destructor/Run vtable slot pairs are preserved. Regenerated inventory reports 2,130 linked assembly functions, 858,188 assembly bytes and the unchanged 2,696 unattributed bytes.
+All 74 source-owned scene functions match retail. The newest Run, `func_080881EC`, matches scratch, production-shaped and complete-TU proofs at 0xC0 / 0 differences. A fresh tracked compiler install, isolated full-ROM comparison and forced production full-ROM comparison pass. Original entry aliases, target/neighbor addresses and all 25 destructor/Run vtable slot pairs are preserved. Regenerated inventory reports 2,126 linked assembly functions, 857,828 assembly bytes and the unchanged 2,696 unattributed bytes.
 
 ROM: **8,388,608 bytes**, SHA1 `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
 
-The ignored proof checkpoint is `tools/ches/checkpoints/scene-owners-2026-10-09/`. It contains the audited manifest, matcher results, reviewed integration inputs, both full build logs and verification/inventory snapshots. `tools/ches/NEXT_AGENT_HANDOFF.md` owns the current controller-helper continuation.
+The ignored proof checkpoint is `tools/ches/checkpoints/scene-owners-2026-10-09/`. It contains the audited manifest, matcher results, reviewed integration inputs, both full build logs and verification/inventory snapshots. `tools/ches/NEXT_AGENT_HANDOFF.md` owns the current livestock controller construction/cleanup continuation.
 
 Constructor proofs are under `tools/ches/checkpoints/scene-constructors-2026-10-09/`: audited manifest, caller evidence, individual matches, reviewed final integration inputs, expanded full build logs and verification/inventory snapshots.
 
-Nested Run proofs and reviewed integration inputs are under `tools/ches/checkpoints/scene-complex-runs-2026-10-09/`. The canonical handoff owns the bounded controller-helper continuation.
+Nested Run proofs and reviewed integration inputs are under `tools/ches/checkpoints/scene-complex-runs-2026-10-09/`. The canonical handoff owns the bounded livestock controller construction/cleanup continuation.

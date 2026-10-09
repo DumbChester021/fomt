@@ -1422,9 +1422,7 @@ gUnk_080FFB3C:
 gUnk_080FFB60:
 	.incbin "baserom.gba", 0xFFB60, 0x30
 
-	.global gUnk_080FFB90
-gUnk_080FFB90:
-	.incbin "baserom.gba", 0xFFB90, 0xDC
+.section .rodata.after_livestock_shop_catalog, "a", %progbits
 
 	.global gUnk_080FFC6C
 gUnk_080FFC6C:

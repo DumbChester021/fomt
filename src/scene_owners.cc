@@ -1,4 +1,5 @@
 #include "scene_owners.hh"
+#include "livestock_controller.hh"
 #include <new>
 
 SceneOwner521BC::~SceneOwner521BC() {}
@@ -231,7 +232,6 @@ extern void RunController81BBC(SceneController *) asm("func_08081BBC");
 extern int RunController82CEC(SceneController *) asm("func_08082CEC");
 extern void RunController84228(SceneController *) asm("func_08084228");
 extern int RunController86A08(SceneController *) asm("func_08086A08");
-extern int RunController85EEC(SceneController *) asm("func_08085EEC");
 
 extern void RunController8A55C(SceneController *) asm("func_0808A55C");
 extern void RunController8C0BC(SceneController *) asm("func_0808C0BC");
@@ -400,15 +400,15 @@ SceneRequestResult * func_080881EC(SceneRequestResult * result, SceneOwner881AC 
     int status = RunController86A08(self->controller.Get());
 
     if (status != -1) {
-        int state = RunController85EEC(self->controller.Get());
+        u32 animalType = GetPurchasedAnimalType(self->controller.Get());
 
         u32 outerMode = 1;
-        if (state != 0)
+        if (animalType != 0)
             outerMode = 2;
 
         SceneMovePtr881<AUnk_0800080C> innerOwner(
             reinterpret_cast<AUnk_0800080C *>(
-                new InnerSceneRequest881(*continuation, self->unk_10, InnerSceneRequestMode881(state))));
+                new InnerSceneRequest881(*continuation, self->unk_10, InnerSceneRequestMode881(animalType))));
 
         SceneMovePtr881<AUnk_0800080C> returnSource;
         OuterSceneRequest881 * outer = new OuterSceneRequest881(

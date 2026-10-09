@@ -663,6 +663,10 @@ SECTIONS
         asm/code_0803EE94.o(.text.after_scene_owner_85528);
         src/scene_owners.o(.text.scene_run_85568);
         asm/code_0803EE94.o(.text.after_scene_run_85568);
+        src/livestock_controller.o(.text.livestock_controller_results);
+        asm/code_0803EE94.o(.text.after_livestock_controller_results);
+        src/livestock_controller.o(.text.livestock_controller_stats);
+        asm/code_0803EE94.o(.text.after_livestock_controller_stats);
         src/scene_owners.o(.text.scene_ctor_88168);
         asm/code_0803EE94.o(.text.after_scene_ctor_88168);
         src/scene_owners.o(.text.scene_owner_881ac);
@@ -958,6 +962,8 @@ SECTIONS
         asm/data/data_080F9EB8.o(.rodata.after_winery_catalog);
         src/data_shop_catalog.o(.rodata.shop_catalog_fe8fc);
         asm/data/data_080F9EB8.o(.rodata.after_record_article_catalog);
+        src/data_shop_catalog.o(.rodata.livestock_shop_ffb90);
+        asm/data/data_080F9EB8.o(.rodata.after_livestock_shop_catalog);
         src/data_livestock_day_update_info.o(.rodata);
         src/data_cursed_tool_requirements.o(.rodata);
         asm/data/data_080F9EB8.o(.rodata.after_cursed_tool_requirements);
