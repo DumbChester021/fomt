@@ -27,10 +27,10 @@ subsystem is fully understood.
 Authoritative live state is in `START_HERE.md`.
 
 - Active public retail branch: **`main`**. The former `Live-temp` series is retired; `ches-dev` remains historical.
-- Code reconstruction: **80,976 / 940,036 = 8.6141%**; **859,060 assembly bytes** remain.
-- Remaining linked asm functions: **2,139**; inferred ranges cover **856,364 / 859,060 = 99.6862%**, with **2,696 unattributed bytes** and **17 explicitly parked functions**.
+- Code reconstruction: **81,180 / 940,036 = 8.6358%**; **858,856 assembly bytes** remain.
+- Remaining linked asm functions: **2,136**; inferred ranges cover **856,160 / 858,856 = 99.6861%**, with **2,696 unattributed bytes** and **17 explicitly parked functions**.
 - Data/assets: **75,334 / 6,777,404 = 1.1115%**.
-- Overall meaningful-ROM reconstruction: **156,706 / 7,717,440 = 2.0305%**.
+- Overall meaningful-ROM reconstruction: **156,910 / 7,717,440 = 2.0332%**.
 - Contiguous tail free space: **671,168 bytes = 655.44 KiB**.
 - Retail SHA1: `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`; full compare remains **`fomt.gba: OK`**.
 - Authoritative compiler path is the tracked `tools/install_agbcp.sh` plus `tools/agbcp_fomt_compat.patch`, SHA-256 `aa7cc6df0efbd066e9c33deb887731e1d0210babfaeba4c9b64f3e8bc35c4256`.

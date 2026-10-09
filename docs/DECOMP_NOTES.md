@@ -25,8 +25,12 @@ live state. This file keeps subsystem/function evidence and matching lessons.
 
 Current retail state:
 - Active public retail branch: `main`; the former `Live-temp` line is retired. Historical `ches-dev` commits remain provenance only.
-- Current exact progress: **80,976 / 940,036 = 8.6141% source** and **859,060 assembly bytes**. Data/assets reconstruction is **75,334 / 6,777,404 = 1.1115%** and overall meaningful-ROM reconstruction is **156,706 / 7,717,440 = 2.0305%**. Forced detached and production ROM comparisons report `fomt.gba: OK`; retail SHA1 remains `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
-- Remaining linked assembly functions: **2,139**; inferred function ranges cover **856,364 / 859,060 = 99.6862%**, with **2,696 unattributed bytes** and **17 explicitly parked functions**. The total includes the prior exposed islands and 596 additional unnamed bytes preserved beside six scene Run entries.
+- Current exact progress: **81,180 / 940,036 = 8.6358% source** and **858,856 assembly bytes**. Data/assets reconstruction is **75,334 / 6,777,404 = 1.1115%** and overall meaningful-ROM reconstruction is **156,910 / 7,717,440 = 2.0332%**. Forced production ROM comparison reports `fomt.gba: OK`; retail SHA1 remains `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
+- Remaining linked assembly functions: **2,136**; inferred function ranges cover **856,160 / 858,856 = 99.6861%**, with **2,696 unattributed bytes** and **17 explicitly parked functions**. The total includes the prior exposed islands and 596 additional unnamed bytes preserved beside six scene Run entries.
+
+### 2026-10-09 Scenes: constructors with additional inputs
+
+Three 68-byte constructors, 57DD8, 5CEB8 and 69E14, naturally match with the existing continuation/context constructor shape plus one `u8` argument. Their factories load the byte from request +0x0C; each constructor zero-extends it and forwards it to its original controller constructor. Scratch comparison is 0x44 / 0 for all three. Production integration required only the normal old-address aliases for the emitted `PvUc` constructor manglings and passes the forced full-ROM gate. This adds 204 exact code bytes and reduces linked assembly functions from 2,139 to 2,136. Next audit 9A4D4 separately.
 
 ### 2026-10-09 Scenes: constructors and controller creation
 

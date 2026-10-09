@@ -1,6 +1,6 @@
 # Scenes: construction, cleanup and continuation transfer
 
-The shared scene lifetime layer is exact in `include/scene_owners.hh` and `src/scene_owners.cc`: 18 constructors, 25 destructors and 22 `Run()` entries, totaling **65 source functions / 3,236 linked retail bytes**. These are scene lifetime and transition mechanics. Concrete screen identities and controller implementations remain incomplete.
+The shared scene lifetime layer is exact in `include/scene_owners.hh` and `src/scene_owners.cc`: 21 constructors, 25 destructors and 22 `Run()` entries, totaling **68 source functions / 3,440 linked retail bytes**. These are scene lifetime and transition mechanics. Concrete screen identities and controller implementations remain incomplete.
 
 ## Ownership layout
 
@@ -24,7 +24,7 @@ The old aggregate-return ABI passes the one-pointer result slot in r0 and the sc
 
 ## Constructor contract
 
-The 18 recovered natural constructors take a mutable continuation reference and an opaque context pointer. Each installs the original scene vtable, allocates its controller, calls the original controller constructor, stores the returned controller at +4 and moves/clears the continuation into +8. The controller implementations remain assembly-bound.
+The first 18 recovered natural constructors take a mutable continuation reference and an opaque context pointer. The newest three, `func_08057DD8`, `func_0805CEB8` and `func_08069E14`, take the same pair plus an unsigned byte. Their factories load that byte from request +0x0C; the constructor zero-extends it and forwards it to the original controller constructor. All 21 install the original scene vtable, store the returned controller at +4 and move/clear the continuation into +8. The controller implementations remain assembly-bound.
 
 The 18 scenes have a 12-byte ownership layout. Seventeen audited factories allocate that scene on the heap. Factory DC3A0 constructs SceneOwner93A88 on the stack with a null continuation, runs its controller/accessor path and then destroys the temporary with mode 2.
 
@@ -53,7 +53,7 @@ Controller allocation sizes are independent of the shared deletion-prefix size:
 
 Fifteen scene constructor bodies are 48 bytes. The 5E624, 5FCD0 and 854F4 entries are 52 bytes because their allocation constants use literal pools. The same natural source expresses both forms.
 
-Seven scene constructors remain assembly. The 57DD8, 5CEB8 and 69E14 entries additionally forward an unsigned byte to the controller; the byte's meaning remains unresolved. Complete controller layouts and concrete screen names remain unresolved.
+Four scene constructors remain assembly: 83A7C, 88168, 92570 and 9A4D4. The recovered 57DD8, 5CEB8 and 69E14 entries forward an unsigned byte to the controller; the byte's meaning remains unresolved. Complete controller layouts and concrete screen names remain unresolved.
 
 ## Recovered entries
 
@@ -62,11 +62,11 @@ All destructors below are 64 bytes. Parenthesized constructor sizes mark recover
 | Scene class / destructor | Scene constructor (bytes) | Vtable | Run entry | Run bytes | Controller hook |
 | --- | --- | --- | --- | ---: | --- |
 | `SceneOwner521BC` | `func_0805218C` (48) | `vtable_unk_080E7934` | `func_080521FC` | 52 | `func_08051504` |
-| `SceneOwner57E1C` | `func_08057DD8` | `vtable_unk_080E7960` | `func_08057E5C` | 52 | `func_08052984` |
-| `SceneOwner5CEFC` | `func_0805CEB8` | `vtable_unk_080E798C` | `func_0805CF3C` | 52 | `func_080588AC` |
+| `SceneOwner57E1C` | `func_08057DD8` (68) | `vtable_unk_080E7960` | `func_08057E5C` | 52 | `func_08052984` |
+| `SceneOwner5CEFC` | `func_0805CEB8` (68) | `vtable_unk_080E798C` | `func_0805CF3C` | 52 | `func_080588AC` |
 | `SceneOwner5E658` | `func_0805E624` (52) | `vtable_unk_080E79B8` | `func_0805E698` | 52 | `func_0805D170` |
 | `SceneOwner5FD04` | `func_0805FCD0` (52) | `vtable_unk_080E79F8` | `func_0805FD44` | 52 | `func_0805EE44` |
-| `SceneOwner69E58` | `func_08069E14` | `vtable_unk_080E7A98` | `func_08069E98` | 28 | `func_080769A0` |
+| `SceneOwner69E58` | `func_08069E14` (68) | `vtable_unk_080E7A98` | `func_08069E98` | 28 | `func_080769A0` |
 | `SceneOwner7561C` | `func_080755EC` (48) | `vtable_unk_080E7B4C` | `func_0807565C` | 28 | `func_080769A0` |
 | `SceneOwner7DD68` | `func_0807DD38` (48) | `vtable_unk_080E7C30` | `func_0807DDA8` | 28 | `func_0807D218` |
 | `SceneOwner7EE44` | `func_0807EE14` (48) | `vtable_unk_080E7C4C` | `func_0807EE84` | 28 | `func_0807E558` |
@@ -93,7 +93,7 @@ All destructors below are 64 bytes. Parenthesized constructor sizes mark recover
 - `func_080881EC`: controller status selects direct transfer or nested 16-/20-byte requests with context at +10 and additional state.
 - `func_08092604`: obtains a new request from its controller and transfers it through additional temporary-lifetime machinery.
 
-All three remain assembly. Seven scene constructors, controller constructors and controller logic also remain assembly. Nearby shop/catalog or rucksack data is useful evidence but does not establish a specific screen name.
+All three complex Runs remain assembly. Four scene constructors, controller constructors and controller logic also remain assembly. Nearby shop/catalog or rucksack data is useful evidence but does not establish a specific screen name.
 
 ## True boundaries and verification
 
@@ -110,7 +110,7 @@ Six formerly inferred Run ranges also contained unnamed neighboring code. Only t
 
 The **596 bytes** remain unchanged assembly and now count as unattributed. Run 93AD4 follows the separate 12-byte helper at 93AC8; destructor adjacency alone does not establish its address.
 
-All 65 source-owned scene spans match retail. Expanded isolated and production forced full-ROM comparisons pass with the unchanged tracked compiler. Original entry addresses, symbol sizes and all 25 destructor/Run vtable slot pairs are preserved. The constructor checkpoint adds 18 entries / 876 bytes; reversing its bounded assembly seams reproduces the prior assembly file exactly. Inventory removes exactly those 18 entries and preserves all other addresses/statuses.
+All 68 source-owned scene spans match retail. The newest three 68-byte constructors each matched scratch at 0x44 / 0 differences, and the forced production full-ROM comparison passes with the unchanged tracked compiler. Original entry aliases, symbol addresses and all 25 destructor/Run vtable slot pairs are preserved. The extra-input checkpoint adds 3 entries / 204 bytes; regenerated inventory removes exactly those three linked assembly functions and preserves the 2,696 unattributed bytes.
 
 ROM: **8,388,608 bytes**, SHA1 `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
 

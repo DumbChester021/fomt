@@ -233,6 +233,9 @@ SceneRequestResult * func_0809A558(SceneRequestResult * result, SceneOwner9A518 
 }
 
 extern SceneController * ConstructController5143C(void *, void *) asm("func_0805143C");
+extern SceneController * ConstructController522F8(void *, void *, u8) asm("func_080522F8");
+extern SceneController * ConstructController5806C(void *, void *, u8) asm("func_0805806C");
+extern SceneController * ConstructController5FD78(void *, void *, u8) asm("func_0805FD78");
 extern SceneController * ConstructController5CF70(void *, void *) asm("func_0805CF70");
 extern SceneController * ConstructController5ED4C(void *, void *) asm("func_0805ED4C");
 extern SceneController * ConstructController70B70(void *, void *) asm("func_08070B70");
@@ -257,6 +260,18 @@ SceneOwner521BC::SceneOwner521BC(SmartPtr<AUnk_0800080C> & next, void * context)
 {
 }
 
+SceneOwner57E1C::SceneOwner57E1C(SmartPtr<AUnk_0800080C> & next, void * context, u8 value)
+    : controller(ConstructController522F8(operator new(0x23a8), context, value))
+    , continuation(next.Move())
+{
+}
+
+SceneOwner5CEFC::SceneOwner5CEFC(SmartPtr<AUnk_0800080C> & next, void * context, u8 value)
+    : controller(ConstructController5806C(operator new(0x14fc), context, value))
+    , continuation(next.Move())
+{
+}
+
 SceneOwner5E658::SceneOwner5E658(SmartPtr<AUnk_0800080C> & next, void * context)
     : controller(ConstructController5CF70(operator new(0xaf4), context))
     , continuation(next.Move())
@@ -265,6 +280,12 @@ SceneOwner5E658::SceneOwner5E658(SmartPtr<AUnk_0800080C> & next, void * context)
 
 SceneOwner5FD04::SceneOwner5FD04(SmartPtr<AUnk_0800080C> & next, void * context)
     : controller(ConstructController5ED4C(operator new(0x6430), context))
+    , continuation(next.Move())
+{
+}
+
+SceneOwner69E58::SceneOwner69E58(SmartPtr<AUnk_0800080C> & next, void * context, u8 value)
+    : controller(ConstructController5FD78(operator new(0x164), context, value))
     , continuation(next.Move())
 {
 }

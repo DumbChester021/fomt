@@ -1,37 +1,42 @@
 # Current FoMT continuation - October 9, 2026
 
-## Latest verified checkpoint: Scenes: constructors and controller creation
+## Latest verified checkpoint: Scenes: constructors with additional inputs
 
 Workspace: /mnt/data/Github/gba/fomt
 Public retail branch: main, tracking ches/main.
 Run `git log -1` and `git status` before new work. Preserve unrelated changes.
 
-New exact source: 18 natural constructors in src/scene_owners.cc, with typed
-declarations in include/scene_owners.hh. They add 876 linked retail bytes:
-15 entries of 48 bytes and three of 52 bytes.
-All individual matches, original symbol addresses/sizes, all 25 existing
-destructor/Run vtable slot pairs and bounded assembly inverse checks pass.
-All 65 source-owned scene spans / 3,236 bytes match retail.
-Expanded isolated and production forced full-ROM comparisons pass.
+New exact source: three 68-byte scene constructors in src/scene_owners.cc,
+with typed u8 declarations in include/scene_owners.hh. func_08057DD8,
+func_0805CEB8 and func_08069E14 add 204 linked retail bytes. All three natural
+scratch candidates matched immediately at 0x44 / 0 differences. Production
+integration preserves the old address aliases and existing scene vtables.
+The forced full-ROM comparison passes and the regenerated inventory removes
+exactly three linked assembly functions. The shared scene lifetime layer now
+owns 68 source functions / 3,440 bytes: 21 constructors, 25 destructors and
+22 Run entries.
 ROM: 8,388,608 bytes, SHA1 a2fc3574f0a65a4fcf7682fb274b9d7eebdef963.
 No background executions remain. The tracked compiler/wrapper is unchanged.
 
 Current metrics:
-- Code: 80,976 / 940,036 = 8.6141%.
-- Assembly: 859,060 bytes; 2,139 linked functions.
-- Inferred function ranges: 856,364 / 859,060 = 99.6862%.
+- Code: 81,180 / 940,036 = 8.6358%.
+- Assembly: 858,856 bytes; 2,136 linked functions.
+- Inferred function ranges: 856,160 / 858,856 = 99.6861%.
 - Unattributed assembly: 2,696 bytes; 17 parked functions.
 - Data/assets: 75,334 / 6,777,404 = 1.1115%.
-- Overall meaningful ROM: 156,706 / 7,717,440 = 2.0305%.
+- Overall meaningful ROM: 156,910 / 7,717,440 = 2.0332%.
 
 ## Proven constructor contract
 
-All 18 constructors take a mutable one-pointer continuation reference and
-an opaque context pointer. The natural derived constructor installs its
-existing scene vtable, allocates the exact controller size, calls the bound
-original controller constructor, stores that returned controller at +4 and
-moves/clears the continuation into +8. It returns the scene through the old
-constructor ABI. Complete controller types are not invented.
+The first 18 recovered constructors take a mutable one-pointer continuation
+reference and an opaque context pointer. The newest 57DD8, 5CEB8 and 69E14
+constructors take the same pair plus an unsigned byte. Their factories load
+that byte from request +0x0C, and the constructor zero-extends it before
+forwarding it to the bound controller constructor. Do not rename the byte
+until its gameplay meaning is proven. Every recovered constructor installs
+its existing scene vtable, stores the returned controller at +4 and
+moves/clears the continuation into +8. Complete controller types are not
+invented.
 
 The SceneController declaration is an 8-byte deletion prefix only: data +0,
 vtable +4 under this compiler. Its concrete allocations range from 0x10C to
@@ -52,44 +57,42 @@ ownership layout, all entry mappings and controller allocation table:
 docs/SCENES.md. Concrete screen identities and controller behavior remain
 unresolved; use subsystem titles rather than inventing screen names.
 
-## Exact next action: Scenes, constructors with additional inputs
+## Exact next action: audit scene constructor 9A4D4 separately
 
-Representative func_08057DD8..08057E1C is 68 bytes. Audit its DB96C factory
-caller and controller constructor 522F8 before the first natural candidate.
-Observed registers:
-- r0 scene, r1 continuation reference, r2 context.
-- r3 is masked to eight unsigned bits before controller construction.
-- Controller allocation is 0x23A8; the controller receives context and that byte.
-- It stores controller +4, moves/clears continuation +8 and returns the scene.
+Do not assume func_0809A4D4 belongs to the recovered extra-u8 trio. Audit its
+factory caller, controller constructor, allocation size and complete register
+inputs first. Then write one natural typed constructor candidate using the
+existing controller/continuation ownership layout and compare its true body.
 
-Add only the proven extra byte parameter to SceneOwner57E1C's declaration.
-Try the same natural controller/continuation initializer shape, using an
-audited three-argument controller-constructor bridge. Establish the byte's
-meaning from controller/callers before naming it. A boolean meaning is not
-proven by the zero-extension alone.
-Compare 5CEB8 (allocation 0x14FC, controller 5806C) and 69E14 (allocation
-0x164, controller 5FD78) after the representative is exact. Both are 68 bytes
-and have the same observed byte-forwarding shape. Check 9A4D4 separately
-before claiming it belongs to this group. No extra-input candidate was tried.
+The completed extra-u8 trio is:
+- 57DD8: allocation 0x23A8, controller 522F8, factory DB96C.
+- 5CEB8: allocation 0x14FC, controller 5806C, factory DBA4C.
+- 69E14: allocation 0x164, controller 5FD78, factory DC50C.
+All three are 68 bytes and matched naturally with a u8 third semantic input
+after the continuation/context pair.
 
-Seven constructors remain assembly: 57DD8, 5CEB8, 69E14, 83A7C, 88168,
-92570 and 9A4D4. The three complex Runs 83B2C, 881EC and 92604 also remain
-assembly, mapped in docs/SCENES.md. The larger scene-change family stays
-bounded at its existing nonmatching frontier.
+Four constructors remain assembly: 83A7C, 88168, 92570 and 9A4D4. The first
+three have larger proven scene layouts and/or complex Run partners, so keep
+them separate until their inputs are fully audited. The three complex Runs
+83B2C, 881EC and 92604 also remain assembly, mapped in docs/SCENES.md. The
+larger scene-change family stays bounded at its existing nonmatching frontier.
 
 ## Proofs and closed assumptions
 
-Current ignored checkpoint:
+Current ignored checkpoints:
+tools/ches/checkpoints/scene-extra-input-constructors-2026-10-09/
+- extra-input-v1.* plus 57dd8-v1/: first natural 57DD8 candidate, 0x44 / 0.
+- 5ceb8.* plus 5ceb8-v1/: natural 5CEB8 candidate, 0x44 / 0.
+- 69e14.* plus 69e14-v1/: natural 69E14 candidate, 0x44 / 0.
+- The production integration needed old-address linker aliases for the emitted
+  constructor manglings ending in PvUc. Read nm output instead of guessing.
+
 tools/ches/checkpoints/scene-constructors-2026-10-09/
-- manifest.json: 18 constructors, exact spans, allocation sizes and seams.
-- constructor-batch.cc / scene-constructors-batch.hh: flat matcher candidate.
+- manifest.json: prior 18 constructors, exact spans, allocation sizes and seams.
 - constructor-results.json and constructors/: all 18 exact comparisons.
 - caller-evidence.json: all 18 factories, including the stack temporary.
-- integration-inputs/: the four reviewed final production files.
+- integration-inputs/: reviewed prior production files.
 - isolated-complete-build.log / production-complete-build.log: expanded ROM gates.
-- verification.json / inventory-before.json / inventory-after.json: final audits.
-- verified-15-inputs/ and the shorter build logs are the superseded intermediate
-  subset. Do not substitute them for the final 18-entry inputs.
 
 The first representative source compiled correctly. Its initial matcher call
 guessed the wrong template mangling. The emitted constructor symbol is:

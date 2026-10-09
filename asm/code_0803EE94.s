@@ -46513,39 +46513,7 @@ func_08057D34: @ 0x08057D34
 	.align 2, 0
 .L08057DD4: .4byte 0x00002334
 
-	thumb_func_start func_08057DD8
-func_08057DD8: @ 0x08057DD8
-	push {r4, r5, r6, lr}
-	mov r6, r8
-	push {r6}
-	adds r5, r0, #0
-	mov r8, r1
-	adds r6, r2, #0
-	lsls r4, r3, #0x18
-	lsrs r4, r4, #0x18
-	ldr r0, .L08057E14 @ =vtable_unk_080E7960
-	str r0, [r5]
-	ldr r0, .L08057E18 @ =0x000023A8
-	bl __builtin_new
-	adds r1, r6, #0
-	adds r2, r4, #0
-	bl func_080522F8
-	str r0, [r5, #4]
-	mov r0, r8
-	ldr r1, [r0]
-	movs r0, #0
-	mov r2, r8
-	str r0, [r2]
-	str r1, [r5, #8]
-	adds r0, r5, #0
-	pop {r3}
-	mov r8, r3
-	pop {r4, r5, r6}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.L08057E14: .4byte vtable_unk_080E7960
-.L08057E18: .4byte 0x000023A8
+.section .text.after_scene_ctor_57dd8, "ax", %progbits
 
 .section .text.after_scene_owner_57e1c, "ax", %progbits
 
@@ -56350,39 +56318,7 @@ func_0805C96C: @ 0x0805C96C
 .L0805CEB0: .4byte 0x000013EA
 .L0805CEB4: .4byte 0x000013EE
 
-	thumb_func_start func_0805CEB8
-func_0805CEB8: @ 0x0805CEB8
-	push {r4, r5, r6, lr}
-	mov r6, r8
-	push {r6}
-	adds r5, r0, #0
-	mov r8, r1
-	adds r6, r2, #0
-	lsls r4, r3, #0x18
-	lsrs r4, r4, #0x18
-	ldr r0, .L0805CEF4 @ =vtable_unk_080E798C
-	str r0, [r5]
-	ldr r0, .L0805CEF8 @ =0x000014FC
-	bl __builtin_new
-	adds r1, r6, #0
-	adds r2, r4, #0
-	bl func_0805806C
-	str r0, [r5, #4]
-	mov r0, r8
-	ldr r1, [r0]
-	movs r0, #0
-	mov r2, r8
-	str r0, [r2]
-	str r1, [r5, #8]
-	adds r0, r5, #0
-	pop {r3}
-	mov r8, r3
-	pop {r4, r5, r6}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.L0805CEF4: .4byte vtable_unk_080E798C
-.L0805CEF8: .4byte 0x000014FC
+.section .text.after_scene_ctor_5ceb8, "ax", %progbits
 
 .section .text.after_scene_owner_5cefc, "ax", %progbits
 
@@ -83100,39 +83036,7 @@ func_08069D84: @ 0x08069D84
 	pop {r0}
 	bx r0
 
-	thumb_func_start func_08069E14
-func_08069E14: @ 0x08069E14
-	push {r4, r5, r6, lr}
-	mov r6, r8
-	push {r6}
-	adds r5, r0, #0
-	mov r8, r1
-	adds r6, r2, #0
-	lsls r4, r3, #0x18
-	lsrs r4, r4, #0x18
-	ldr r0, .L08069E54 @ =vtable_unk_080E7A98
-	str r0, [r5]
-	movs r0, #0xb2
-	lsls r0, r0, #1
-	bl __builtin_new
-	adds r1, r6, #0
-	adds r2, r4, #0
-	bl func_0805FD78
-	str r0, [r5, #4]
-	mov r0, r8
-	ldr r1, [r0]
-	movs r0, #0
-	mov r2, r8
-	str r0, [r2]
-	str r1, [r5, #8]
-	adds r0, r5, #0
-	pop {r3}
-	mov r8, r3
-	pop {r4, r5, r6}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.L08069E54: .4byte vtable_unk_080E7A98
+.section .text.after_scene_ctor_69e14, "ax", %progbits
 
 .section .text.after_scene_owner_69e58, "ax", %progbits
 

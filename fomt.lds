@@ -15,7 +15,10 @@ gClockTable = 0x08139CFC;
 gXcmdTable = 0x08139D30;
 
 func_0805218C = __15SceneOwner521BCRt8SmartPtr1Z13AUnk_0800080CPv;
+func_08057DD8 = __15SceneOwner57E1CRt8SmartPtr1Z13AUnk_0800080CPvUc;
+func_0805CEB8 = __15SceneOwner5CEFCRt8SmartPtr1Z13AUnk_0800080CPvUc;
 func_0805E624 = __15SceneOwner5E658Rt8SmartPtr1Z13AUnk_0800080CPv;
+func_08069E14 = __15SceneOwner69E58Rt8SmartPtr1Z13AUnk_0800080CPvUc;
 func_0805FCD0 = __15SceneOwner5FD04Rt8SmartPtr1Z13AUnk_0800080CPv;
 func_080755EC = __15SceneOwner7561CRt8SmartPtr1Z13AUnk_0800080CPv;
 func_0807DD38 = __15SceneOwner7DD68Rt8SmartPtr1Z13AUnk_0800080CPv;
@@ -553,10 +556,14 @@ SECTIONS
         asm/code_0803EE94.o(.text.after_scene_owner_521bc);
         src/scene_owners.o(.text.scene_run_521fc);
         asm/code_0803EE94.o(.text.after_scene_run_521fc);
+        src/scene_owners.o(.text.scene_ctor_57dd8);
+        asm/code_0803EE94.o(.text.after_scene_ctor_57dd8);
         src/scene_owners.o(.text.scene_owner_57e1c);
         asm/code_0803EE94.o(.text.after_scene_owner_57e1c);
         src/scene_owners.o(.text.scene_run_57e5c);
         asm/code_0803EE94.o(.text.after_scene_run_57e5c);
+        src/scene_owners.o(.text.scene_ctor_5ceb8);
+        asm/code_0803EE94.o(.text.after_scene_ctor_5ceb8);
         src/scene_owners.o(.text.scene_owner_5cefc);
         asm/code_0803EE94.o(.text.after_scene_owner_5cefc);
         src/scene_owners.o(.text.scene_run_5cf3c);
@@ -577,6 +584,8 @@ SECTIONS
         asm/code_0803EE94.o(.text.after_scene_owner_5fd04);
         src/scene_owners.o(.text.scene_run_5fd44);
         asm/code_0803EE94.o(.text.after_scene_run_5fd44);
+        src/scene_owners.o(.text.scene_ctor_69e14);
+        asm/code_0803EE94.o(.text.after_scene_ctor_69e14);
         src/scene_owners.o(.text.scene_owner_69e58);
         asm/code_0803EE94.o(.text.after_scene_owner_69e58);
         src/scene_owners.o(.text.scene_run_69e98);

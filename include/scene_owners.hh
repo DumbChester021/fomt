@@ -33,12 +33,22 @@ struct SceneController
         SmartPtr<AUnk_0800080C> continuation; \
     };
 
+#define DECLARE_SCENE_OWNER_CTOR_U8(name, ctor_section, dtor_section) \
+    struct name : public AScene \
+    { \
+        name(SmartPtr<AUnk_0800080C> &, void *, u8) SECTION(ctor_section); \
+        virtual ~name() SECTION(dtor_section); \
+        virtual SmartPtr<AUnk_0800080C> Run(); \
+        SmartPtr<SceneController> controller; \
+        SmartPtr<AUnk_0800080C> continuation; \
+    };
+
 DECLARE_SCENE_OWNER_CTOR(SceneOwner521BC, ".text.scene_ctor_5218c", ".text.scene_owner_521bc")
-DECLARE_SCENE_OWNER(SceneOwner57E1C, ".text.scene_owner_57e1c")
-DECLARE_SCENE_OWNER(SceneOwner5CEFC, ".text.scene_owner_5cefc")
+DECLARE_SCENE_OWNER_CTOR_U8(SceneOwner57E1C, ".text.scene_ctor_57dd8", ".text.scene_owner_57e1c")
+DECLARE_SCENE_OWNER_CTOR_U8(SceneOwner5CEFC, ".text.scene_ctor_5ceb8", ".text.scene_owner_5cefc")
 DECLARE_SCENE_OWNER_CTOR(SceneOwner5E658, ".text.scene_ctor_5e624", ".text.scene_owner_5e658")
 DECLARE_SCENE_OWNER_CTOR(SceneOwner5FD04, ".text.scene_ctor_5fcd0", ".text.scene_owner_5fd04")
-DECLARE_SCENE_OWNER(SceneOwner69E58, ".text.scene_owner_69e58")
+DECLARE_SCENE_OWNER_CTOR_U8(SceneOwner69E58, ".text.scene_ctor_69e14", ".text.scene_owner_69e58")
 DECLARE_SCENE_OWNER_CTOR(SceneOwner7561C, ".text.scene_ctor_755ec", ".text.scene_owner_7561c")
 DECLARE_SCENE_OWNER_CTOR(SceneOwner7DD68, ".text.scene_ctor_7dd38", ".text.scene_owner_7dd68")
 DECLARE_SCENE_OWNER_CTOR(SceneOwner7EE44, ".text.scene_ctor_7ee14", ".text.scene_owner_7ee44")
@@ -82,6 +92,7 @@ DECLARE_SCENE_OWNER_CTOR(SceneOwner931E0, ".text.scene_ctor_931b0", ".text.scene
 DECLARE_SCENE_OWNER_CTOR(SceneOwner93A88, ".text.scene_ctor_93a58", ".text.scene_owner_93a88")
 DECLARE_SCENE_OWNER(SceneOwner9A518, ".text.scene_owner_9a518")
 
+#undef DECLARE_SCENE_OWNER_CTOR_U8
 #undef DECLARE_SCENE_OWNER_CTOR
 #undef DECLARE_SCENE_OWNER
 

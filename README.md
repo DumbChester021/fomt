@@ -21,10 +21,10 @@ Current exact reconstruction metrics:
 
 | Metric | Current |
 | --- | ---: |
-| Code | **73,556 / 940,036 bytes (7.8248%)** |
-| Assembly remaining | **866,480 bytes** |
+| Code | **81,180 / 940,036 bytes (8.6358%)** |
+| Assembly remaining | **858,856 bytes** |
 | Data/assets | **75,334 / 6,777,404 bytes (1.1115%)** |
-| Overall meaningful ROM | **149,286 / 7,717,440 bytes (1.9344%)** |
+| Overall meaningful ROM | **156,910 / 7,717,440 bytes (2.0332%)** |
 | Contiguous ROM tail free space | **671,168 bytes (655.44 KiB)** |
 
 Run `make progress` for the live report.
@@ -55,7 +55,7 @@ The packed item/UI animation bank also has an exact editable pipeline. All 347 r
 
 Work is throughput-first and organized by coherent translation unit, type, vtable, or repeated machine-code family rather than by a fixed function count.
 
-The Entity38740 neighborhood now owns the exact helper tail `func_0803A804..func_0803A8A0`, a seven-function API over the common embedded `EntityEffect` / `SpriteAnimator`, adding 160 exact source bytes. The preceding `func_0803A798`, `func_0803A350`, and Q8 trig pair `func_0803A320/334` are also exact source. Behavior-complete compiler/codegen islands including `func_0803A180`, `func_0803A394`, `func_08039F90`, and `func_08039E98` are parked. The logical map resolver is now exact source as `GetMapResourceId`, adding 652 bytes and exposing season, building-upgrade and mine-floor selection through a shared map interface. The resource-owner family at `0x0803AB30` and its sibling now have four integrated exact methods, adding 680 linked source bytes after isolated and production full-ROM verification. Their constructors and the sibling update retain documented mismatches. The fishing-record collection is now a shared typed 472-byte save subobject with eight exact methods, adding 276 source bytes. See [docs/FISHING_RECORDS.md](docs/FISHING_RECORDS.md). Next assess the adjacent mine-floor initializer/layout; the parked loader's failed source variants remain closed. See [docs/RESOURCE_OWNERS.md](docs/RESOURCE_OWNERS.md) for recovered layouts.
+The active frontier is the scene lifetime layer. It now owns 21 exact constructors, 25 destructors and 22 `Run()` entries, totaling 68 source functions / 3,440 linked retail bytes. The newest three constructors, `func_08057DD8`, `func_0805CEB8` and `func_08069E14`, naturally take an extra `u8` forwarded to their controller constructors and add 204 exact source bytes. Four scene constructors and three complex `Run()` entries remain assembly; audit `func_0809A4D4` separately next before grouping it with any recovered constructor family. Stable evidence is in [docs/SCENES.md](docs/SCENES.md).
 
 Compiler-sensitive functions that are behavior-complete are parked rather than blocking whole-game progress. The canonical continuation is always in [tools/ches/NEXT_AGENT_HANDOFF.md](tools/ches/NEXT_AGENT_HANDOFF.md).
 
