@@ -1,14 +1,17 @@
 # Menu tilemaps: entry rectangles and prices
 
 Shop menus draw entry backgrounds and decimal prices into a u16 tilemap.
-The shared rectangle helper is exact source. The price-number drawer remains
-assembly with its behavior understood.
+The shared rectangle helper is exact source. Decimal tile drawing and signed
+integer text formatting remain assembly with their behavior recovered.
 
 ## Boundaries
 
 | Function | Retail range | Ownership |
 | --- | --- | --- |
 | FillSequentialTileRect / func_0804E9F4 | 0804E9F4..0804EA58 | 100 exact linked source bytes |
+| Integer text formatter / func_0804EC84 | 0804EC84..0804ED28 | 164 linked assembly bytes |
+| Wide decimal drawer / func_0804ED28 | 0804ED28..0804ED7C | 84-byte assembly body |
+| Wide-drawer anonymous successor | 0804ED7C..0804EDA0 | Separate 36-byte assembly routine |
 | Decimal number drawer / func_0804EDB4 | 0804EDB4..0804EDF8 | 68-byte assembly body |
 | Anonymous successor | 0804EDF8..0804EE1C | Separate 36-byte assembly routine |
 
@@ -55,3 +58,40 @@ The number drawer's entry scheduling and the offer builder's graphics-copy
 and list-lifetime source contracts remain unresolved. Their candidates,
 measured differences and reopening criteria belong to NEXT_AGENT_HANDOFF.md
 and the ignored research ledgers.
+
+## Signed integer text contract
+
+The formatter takes a signed value, char destination and unsigned field width.
+It extracts magnitude digits with signed division/modulus by ten into a reverse
+stack buffer, stopping after at most ten digits. Zero emits one digit.
+Width 0 uses the natural digit count. A smaller nonzero width keeps the
+least-significant digits; a larger width adds spaces before the magnitude.
+The minus sign is added after padding in the reverse buffer, so value -42,
+width 4 produces "-  42". It reverses the selected characters into the caller's
+destination and writes a terminating NUL.
+The retail routine does not clamp width or special-case signed INT_MIN.
+
+The 12-byte stack frame and output behavior are recovered, but the original
+counter lifetime/type remains unresolved. The retail loop foot has two
+increment/copy instructions that natural probes coalesce. Scalar counter
+spellings have canonicalized; the function is parked and no source is promoted.
+
+## Wide decimal tile contract
+
+func_0804ED28 draws each unsigned digit into a 2x2 tile block, right to left.
+For tile=first_tile+digit*4, destination points at the top-right tile:
+top-left uses tile, top-right tile+1, bottom-left tile+2, bottom-right tile+3.
+All four receive palette bits; the bottom row uses the supplied element stride.
+Zero draws one digit and the destination moves left by two elements each time.
+Its true 84-byte body excludes the separate 36-byte anonymous successor.
+
+## Adjacent packed OAM factory
+
+func_0804EA94 has a 208-byte body at 0804EA94..0804EB64, returning an eight-byte
+packed record through a hidden result pointer. It starts with two zero words,
+enables bit 12 and adds coordinates, tile, palette, priority, shape and size into
+their bit fields. The parameter widths and bit 12 role still require caller
+cross-checks before a typed source interface is promoted.
+The inferred 496-byte range also contains the separate 288-byte routine at
+0804EB64..0804EC84; those bytes are executable code and must be preserved.
+This factory is the next bounded menu/graphics recovery unit.

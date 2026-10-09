@@ -152,7 +152,7 @@ Six formerly inferred Run ranges also contained unnamed neighboring code. Only t
 
 The **596 bytes** remain unchanged assembly and now count as unattributed. Run 93AD4 follows the separate 12-byte helper at 93AC8; destructor adjacency alone does not establish its address.
 
-All 74 source-owned scene functions match retail. The newest Run, `func_080881EC`, matches scratch, production-shaped and complete-TU proofs at 0xC0 / 0 differences. A fresh tracked compiler install, isolated full-ROM comparison and forced production full-ROM comparison pass. Original entry aliases, target/neighbor addresses and all 25 destructor/Run vtable slot pairs are preserved. Regenerated inventory reports 2,123 linked assembly functions, 857,540 assembly bytes and the unchanged 2,696 unattributed bytes.
+All 74 source-owned scene functions match retail. The newest Run, `func_080881EC`, matches scratch, production-shaped and complete-TU proofs at 0xC0 / 0 differences. A fresh tracked compiler install, isolated full-ROM comparison and forced production full-ROM comparison pass. Original entry aliases, target/neighbor addresses and all 25 destructor/Run vtable slot pairs are preserved. Regenerated inventory reports 2,123 linked assembly functions, 857,532 assembly bytes and the unchanged 2,696 unattributed bytes.
 
 ROM: **8,388,608 bytes**, SHA1 `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
 

@@ -42,6 +42,16 @@ types separate. Existing source in `src/code_080A46AC.cc`,
 ABI evidence. Historical MFoMT notes are type hints; FoMT addresses, consumers
 and return conventions remain authoritative.
 
+The concrete packed-provider getter 5E790 constrains span units further:
+span 0 points to eight-byte part records and stores a record count; spans +8/+10
+use 32-byte tile/palette units and store byte sizes truncated to u16; span +18
+points to eight-byte records and stores a count, with detailed meaning unresolved.
+Invalid sprite IDs clear pointer/size fields, not padding.
+GetSpriteCount / 5E81C and GetAnimationCount / 5E820 are exact source. The descriptor
+getter remains parked on its historical middle schedule; neither this layout
+nor the count methods resolves the observed post-getter 32-byte memcpy.
+See [SPRITE_ANIMATOR.md](SPRITE_ANIMATOR.md) for the concrete packed-index table.
+
 ## Three-record owner at 0x0803AB30
 
 Constructor/allocation callers establish an object size of **0xA0**.

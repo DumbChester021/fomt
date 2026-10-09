@@ -16,8 +16,8 @@ Current reconstruction:
 
 ```text
 Code reconstruction
-  82496 / 940036 bytes (8.7758%)
-  857540 bytes remain in asm
+  82504 / 940036 bytes (8.7767%)
+  857532 bytes remain in asm
 
 Data/assets reconstruction
   75554 / 6777404 bytes (1.1148%)
@@ -28,7 +28,7 @@ Data/assets reconstruction
   396 additional source-owned ROM-header bytes count only toward overall
 
 Overall meaningful-ROM reconstruction
-  158446 / 7717440 bytes (2.0531%)
+  158454 / 7717440 bytes (2.0532%)
   final ROM padding is excluded from this denominator
 
 ROM space
@@ -36,7 +36,7 @@ ROM space
   671168 bytes free (655.44 KiB, 8.0009%) contiguous tail space
 ```
 
-The code inventory currently reports **2,123 linked assembly functions**, **854,844 bytes** covered by inferred function ranges, **2,696 unattributed assembly bytes**, and **20 explicitly parked functions**. The total includes prior exposed islands plus 596 bytes of unnamed neighbors revealed by six scene Run seams. Only their true 28-byte Run bodies are source-owned; the neighboring code remains unchanged assembly.
+The code inventory currently reports **2,123 linked assembly functions**, **854,836 bytes** covered by inferred function ranges, **2,696 unattributed assembly bytes**, and **22 explicitly parked functions**. The total includes prior exposed islands plus 596 bytes of unnamed neighbors revealed by six scene Run seams. Only their true 28-byte Run bodies are source-owned; the neighboring code remains unchanged assembly.
 
 ## What the metrics mean
 
@@ -50,7 +50,13 @@ Understanding or documenting an opaque `.incbin` does not count as asset/data re
 
 ## Recent exact milestones
 
-The newest unit is **Menu tilemap rectangle drawing: 100 linked bytes**, comprising a 98-byte body and two alignment bytes. The first natural candidate and both forced full-ROM comparisons match; every other assembly address/size pair is unchanged. See [MENU_TILEMAP.md](MENU_TILEMAP.md).
+The newest unit is **Packed sprite-provider count accessors: eight exact bytes**.
+GetSpriteCount / 5E81C and GetAnimationCount / 5E820 return counts[1] and counts[0].
+The combined matcher and both forced full-ROM gates pass. Only the inferred
+frame-getter range shrinks 148 to 140; no named assembly entry leaves the inventory.
+See [SPRITE_ANIMATOR.md](SPRITE_ANIMATOR.md).
+
+The preceding unit is **Menu tilemap rectangle drawing: 100 linked bytes**, comprising a 98-byte body and two alignment bytes. The first natural candidate and both forced full-ROM comparisons match; every other assembly address/size pair is unchanged. See [MENU_TILEMAP.md](MENU_TILEMAP.md).
 
 The preceding unit is **Livestock controller construction/cleanup: two natural functions / 188 linked bytes**. The controller now owns six exact functions / 548 linked bytes. Its extent, two FixedStr capacities and menu/animal record arrays are recovered; both forced full-ROM comparisons pass. See [LIVESTOCK_SHOP.md](LIVESTOCK_SHOP.md).
 
@@ -93,7 +99,8 @@ Immediately preceding exact promotions include `func_0803A798`, `func_0803A350`,
 
 ## Current frontier
 
-The scene cleanup and all 25 Run entries are exact. Livestock construction/cleanup, helpers, catalog and the shared menu rectangle helper are exact. Recover packed frame getter 5E790..5E81C before reopening the parked offer builder. Constructor 92570 remains parked at four codegen bytes.
+The scene cleanup and all 25 Run entries are exact. Livestock construction/cleanup, helpers, catalog and the shared menu rectangle helper are exact. Frame getter 5E790 and integer formatter 4EC84 are parked after bounded probes;
+count accessors 5E81C/5E820 are exact. Next assess menu OAM factory 4EA94..4EB64. Constructor 92570 remains parked at four codegen bytes.
 
 The 20 scene-change helpers remain bounded but nonmatching at their aggregate/ownership lifetime seam. Resource-owner constructors/B128, mine-floor D8E8/DA00 and the exposed E118/E1B4 islands, the legacy loader, and the other documented parked functions remain closed until new structural evidence changes their leverage. NEXT_AGENT_HANDOFF.md owns the exact next action.
 
@@ -124,4 +131,4 @@ The reported **671,168 bytes** are the contiguous final tail after linked conten
 Latest recovered GroundPickupState: +0x34C8..+0x34D7, 56 availability
 bits and fifteen packed three-bit durability fields. Four exact functions
 add 1,032 linked bytes. A1EA8 is parked. See docs/GROUND_PICKUP_STATE.md.
-The +0x34D8 mask and +0x34DC actor state are already source-owned. Active subsystem target: packed sprite frame getter 5E790..5E81C; offer builder 85640 and C6BC remain parked.
+The +0x34D8 mask and +0x34DC actor state are already source-owned. Next bounded target: menu OAM factory 4EA94..4EB64; frame getter 5E790, offer builder 85640 and C6BC remain parked.

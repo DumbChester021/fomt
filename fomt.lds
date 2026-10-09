@@ -587,6 +587,7 @@ SECTIONS
         asm/code_0803EE94.o(.text.after_scene_run_5e698);
         src/sprite_animation_provider.o(.text);
         asm/code_0803EE94.o(.text.after_animation_provider);
+        src/sprite_animation_provider.o(.text.sprite_animation_provider_counts);
         src/sprite_animator.o(.text);
         asm/code_0803EE94.o(.text.after_sprite_animator);
         src/scene_owners.o(.text.scene_ctor_5fcd0);

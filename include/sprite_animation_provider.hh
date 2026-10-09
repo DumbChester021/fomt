@@ -1,7 +1,7 @@
 #ifndef SPRITE_ANIMATION_PROVIDER_HH
 #define SPRITE_ANIMATION_PROVIDER_HH
 
-#include "types.h"
+#include "prelude.h"
 
 struct PackedSpriteAnimationFrame
 {
@@ -34,6 +34,8 @@ struct PackedSpriteAnimationProvider
     /* +20 */ u16 counts[7];
 
     PackedSpriteAnimation GetAnimation(u32 index) const asm("func_0805E760");
+    u16 GetSpriteCount() const asm("func_0805E81C") SECTION(".text.sprite_animation_provider_counts");
+    u16 GetAnimationCount() const asm("func_0805E820") SECTION(".text.sprite_animation_provider_counts");
 };
 
 extern "C" PackedSpriteAnimationProvider * func_0805E6CC(

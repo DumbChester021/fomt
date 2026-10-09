@@ -32,7 +32,8 @@ recovers the 0x43E0 extent, 17 menu records, FixedStr<127> title, FixedStr<99>
 message and 16 animal records. Base/record contents remain opaque. All six
 controller bodies and both full-ROM comparisons pass; all 25 scene Runs remain
 exact. Offer-list construction at 85640..8586C is parked on shared frame-copy
-and list-lifetime contracts. Recover packed frame getter 5E790..5E81C next.
+and list-lifetime contracts. Frame getter 5E790 is also parked on its historical
+middle schedule; count accessors 5E81C/5E820 are now exact source.
 
 ## Menu tilemap rectangle drawing
 
@@ -41,7 +42,21 @@ The first natural candidate and isolated/production forced ROM gates pass.
 Sequential tile values, palette bits and caller row stride are recovered; the
 price-number drawer remains assembly. See [MENU_TILEMAP.md](MENU_TILEMAP.md).
 Number drawer 4EDB4 and builder 85640 are bounded nonmatching frontiers.
-The queue now explicitly parks those two plus the known 92570 constructor.
+The queue explicitly parks those two, constructor 92570, frame getter 5E790
+and integer formatter 4EC84. No nonmatching source is promoted.
+
+## Packed provider accessors and closed source probes
+
+GetSpriteCount / 5E81C and GetAnimationCount / 5E820 add eight exact source bytes.
+Combined matcher, realistic section and both forced full-ROM gates pass.
+The inferred 5E790 range shrinks 148 to 140; all other ranges are unchanged.
+Its middle schedule still differs in 34 bytes. October 5 probes were found in
+SPRITE_ANIMATOR.md; the prior handoff's search was incomplete.
+Integer formatter 4EC84 has a counter-copy/loop-placement frontier:
+v3 is 164/ 34 with a head test; v4/v5/v6 are 160/ 97 with one coalesced copy.
+Stop canonical spelling variants. Stable descriptor/format behavior is in
+SPRITE_ANIMATOR.md, RESOURCE_OWNERS.md and MENU_TILEMAP.md.
+Next bounded target is the 208-byte OAM factory 4EA94..4EB64.
 
 ## CURRENT DECOMP NOTE POLICY
 
@@ -50,8 +65,8 @@ live state. This file keeps subsystem/function evidence and matching lessons.
 
 Current retail state:
 - Active public retail branch: `main`; the former `Live-temp` line is retired. Historical `ches-dev` commits remain provenance only.
-- Current exact progress: **82,496 / 940,036 = 8.7758% source** and **857,540 assembly bytes**. Data/assets reconstruction is **75,554 / 6,777,404 = 1.1148%** and overall meaningful-ROM reconstruction is **158,446 / 7,717,440 = 2.0531%**. Forced production ROM comparison reports `fomt.gba: OK`; retail SHA1 remains `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
-- Remaining linked assembly functions: **2,123**; inferred function ranges cover **854,844 / 857,540 = 99.6856%**, with **2,696 unattributed bytes** and **20 explicitly parked functions**. The total includes the prior exposed islands and 596 additional unnamed bytes preserved beside six scene Run entries.
+- Current exact progress: **82,504 / 940,036 = 8.7767% source** and **857,532 assembly bytes**. Data/assets reconstruction is **75,554 / 6,777,404 = 1.1148%** and overall meaningful-ROM reconstruction is **158,454 / 7,717,440 = 2.0532%**. Forced production ROM comparison reports `fomt.gba: OK`; retail SHA1 remains `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
+- Remaining linked assembly functions: **2,123**; inferred function ranges cover **854,836 / 857,532 = 99.6856%**, with **2,696 unattributed bytes** and **22 explicitly parked functions**. The total includes the prior exposed islands and 596 additional unnamed bytes preserved beside six scene Run entries.
 
 ### 2026-10-09 Scenes: complex Runs complete
 
@@ -792,7 +807,7 @@ Corrected proven generic-action selector counts for the packed-field targets:
 - `func_0800EA68(Farmer &, int)` is the core fatigue delta routine. Positive gains are doubled when `unk_44_04` is clear; negative deltas are doubled in magnitude; storage clamps to `0..200`. `func_0800EAD4` is the decrease wrapper and `func_0800EAE0` clears fatigue.
 - `func_0800E53C` returns `unk_44_04`, and `func_0800EAF0` sets it. The existing header comment `ate_mysterious_berry?` is behaviorally plausible but still not promoted beyond comment-level semantics.
 - Query dispatcher `func_0804590C` is directly proven: `0x0A` -> current stamina (`func_0800E4F0`), `0x0B` -> max stamina (`func_0800E51C`), `0x0C` -> fatigue/2 (`func_0800E4FC`), `0x0D` -> `unk_44_04` (`func_0800E53C`), `0x2D` -> step count (`func_0800E958`).
-- Proven retail constant-query usage from the script corpus: `0x0A` 4 calls in script 483; `0x0B` 4 in 483; `0x0C` 19 across scripts 350/483/978/986; `0x2D` 1 in script 571. No constant `0x0D` query was proven by that pass.
+- Proven retail constant-query usage from the script corpus: `0x0A` 4 calls in script 483; `0x0B` 4 in 483; `0x0C` 19 across scripts 350/483/ 978/986; `0x2D` 1 in script 571. No constant `0x0D` query was proven by that pass.
 - `func_0800ED8C` increments `step_count` only while below `1,000,000,000` and only when a pedometer is equipped or present in the rucksack.
 - `func_08025068` is a verified entity-level vitals wrapper: argument 2 is passed to `func_0800E9E4`, argument 3 to `func_0800EA68`, and the `Farmer *` comes from entity offset `+0x38`. It samples stamina/fatigue before and after applying the deltas and performs entity-state reactions. Its Thumb pointer `0x08025069` occurs at ROM `0x080E66BC`; if the surrounding dense callback table begins at `0x080E6658`, this is slot `+0x64`. Keep that table-base/type attribution explicitly provisional until constructor or symbol-boundary evidence proves it.
 <!-- CHES_FARMER_VITALS_END -->
@@ -1294,4 +1309,4 @@ Stable contracts and source ranges are in `docs/RESOURCE_HANDLES.md`. Private so
 Latest recovered GroundPickupState: +0x34C8..+0x34D7, 56 availability
 bits and fifteen packed three-bit durability fields. Four exact functions
 add 1,032 linked bytes. A1EA8 is parked. See docs/GROUND_PICKUP_STATE.md.
-The +0x34D8 mask and +0x34DC actor state are already source-owned. Active livestock-shop work is packed frame getter 5E790..5E81C; offer builder 85640 and C6BC remain parked.
+The +0x34D8 mask and +0x34DC actor state are already source-owned. Next bounded work is menu OAM factory 4EA94..4EB64; frame getter 5E790, offer builder 85640 and C6BC remain parked.

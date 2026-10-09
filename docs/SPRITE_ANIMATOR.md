@@ -119,10 +119,43 @@ descriptor 499, so the top of the animation/frame/descriptor namespaces is
 fully occupied. New unique item art requires extending the packed bank; existing
 icon IDs may be reused or edited without changing the provider.
 
-`func_0805E790`, the sprite-descriptor lookup, is structurally understood but
-remains assembly. Its best natural candidate is two bytes short in symbol size
-and differs only in the middle evaluation/register schedule; an explicit-local
-rewrite regressed and should not be repeated without new evidence.
+func_0805E790, the sprite-descriptor lookup, remains assembly at
+0805E790..0805E81C, 140 linked bytes. Full linked comparison reproduces
+34 middle evaluation/register-schedule differences. The older two-byte
+symbol-size shortfall was ordinary alignment; an explicit-local rewrite
+regressed. Further constructor/helper spellings reproduced or worsened the
+same frontier. This target is parked until new structural evidence appears.
+
+On October 9, 2026, the following two accessors became exact source in the provider unit:
+
+| Method | Retail range | Return |
+| --- | --- | --- |
+| GetSpriteCount / func_0805E81C | 0805E81C..0805E820 | counts[1] |
+| GetAnimationCount / func_0805E820 | 0805E820..0805E824 | counts[0] |
+
+They own eight bytes in .text.sprite_animation_provider_counts, between the
+assembly descriptor getter and exact SpriteAnimator. Both forced isolated and
+production full-ROM comparisons pass. The inventory formerly included these
+anonymous bytes in the getter range; that range now describes its true 140 bytes.
+
+### Packed sprite descriptor return
+
+The concrete getter uses a 16-byte pool 1 index record with four count/offset
+pairs. Each returned span is eight bytes: pointer, u16 size/count, two padding
+bytes. The complete returned value is 32 bytes, matching SpriteFrameData.
+
+| Index fields | Pool | Offset unit | Returned u16 size |
+| --- | --- | --- | --- |
+| +0 count, +2 first part | 2 | eight-byte part records | part count |
+| +4 count, +6 first tile | 3 | 32-byte tiles | count * 32, truncated to u16 |
+| +8 count, +A first palette | 4 | 32-byte palettes | count * 32, truncated to u16 |
+| +C count, +E first fourth-span record | 5 | eight-byte records | record count |
+
+An out-of-range sprite ID clears all four pointers and size/count fields.
+Span padding is not initialized. Pool 5 is unused by the item bank; its
+transform interpretation remains a hypothesis.
+This packed-provider layout does not resolve the shared post-getter memcpy
+observed in resource owners and the livestock offer builder.
 
 ## Item icon PNG round trip - October 5, 2026
 

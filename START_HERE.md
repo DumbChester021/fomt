@@ -14,7 +14,7 @@ This is the live dashboard for the US Harvest Moon: Friends of Mineral Town matc
 ## Active branch and build authority
 
 - Retail branch: **main**, tracking **ches/main**. Run git log -1 for this checkpoint's commit.
-- Starting checkpoint for the menu tilemap unit: **9d9c9df**.
+- Starting checkpoint for the provider count unit: **688a625**.
 - Custom gameplay stays in the separate custom-game worktree.
 - ROM: **8,388,608 bytes**, SHA1 **a2fc3574f0a65a4fcf7682fb274b9d7eebdef963**.
 - Full gate: make -B -j4 compare, ending in **fomt.gba: OK**.
@@ -22,10 +22,10 @@ This is the live dashboard for the US Harvest Moon: Friends of Mineral Town matc
 
 ## Handoff readiness
 
-Latest verified checkpoint: Menu tilemap rectangle drawing, 100 additional
-exact linked code bytes. Livestock controller code remains six source functions /
-548 linked bytes, with 220 catalog bytes. The offer builder and price-number
-drawer are documented, nonmatching research boundaries.
+Latest verified unit: packed sprite-provider count accessors, eight additional
+exact code bytes. The larger frame getter and integer formatter are parked
+after bounded probes. Livestock controller code remains six source functions /
+548 linked bytes, with 220 catalog bytes.
 Isolated and forced production full-ROM comparisons pass on October 9, 2026.
 Run git log -1 and git status before work; preserve intentional dirty files.
 The full loader and complete GameState type remain unfinished.
@@ -36,20 +36,26 @@ NEXT_AGENT_HANDOFF.md owns exact bounds, first commands and closed paths.
 
 ## Current exact reconstruction
 
-- Code: **82,496 / 940,036 = 8.7758%**.
-- Assembly: **857,540 bytes; 2,123 linked functions**.
-- Inferred ranges: **854,844 / 857,540 = 99.6856%**.
-- Unattributed assembly: **2,696 bytes; 20 parked functions**.
+- Code: **82,504 / 940,036 = 8.7767%**.
+- Assembly: **857,532 bytes; 2,123 linked functions**.
+- Inferred ranges: **854,836 / 857,532 = 99.6856%**.
+- Unattributed assembly: **2,696 bytes; 22 parked functions**.
 - Data/assets: **75,554 / 6,777,404 = 1.1148%**.
-- Overall meaningful ROM: **158,446 / 7,717,440 = 2.0531%**.
+- Overall meaningful ROM: **158,454 / 7,717,440 = 2.0532%**.
 - Free tail: **671,168 bytes**.
 
 ## Latest completed unit
 
-FillSequentialTileRect fills consecutive tile values across menu rows with
+PackedSpriteAnimationProvider::GetSpriteCount and GetAnimationCount are exact
+at 0805E81C..0805E824, four bytes each. They return counts[1] and counts[0].
+The inferred frame-getter assembly range shrinks 148 to 140 bytes; no named
+assembly function leaves the inventory and other ranges remain unchanged.
+See [SPRITE_ANIMATOR.md](docs/SPRITE_ANIMATOR.md).
+
+The earlier FillSequentialTileRect unit fills consecutive tile values across menu rows with
 palette bits and a caller-supplied row stride. Its 98-byte body and two
-alignment bytes match retail at 0804E9F4..0804EA58. Only that function leaves
-the assembly inventory; every other address/size pair is preserved.
+alignment bytes match retail at 0804E9F4..0804EA58. That checkpoint removed
+only 4E9F4 from the inventory and preserved the other address/size pairs.
 See [MENU_TILEMAP.md](docs/MENU_TILEMAP.md).
 
 Livestock controller construction and cleanup are exact source. The recovered
@@ -67,17 +73,23 @@ controller logic remain assembly. See [SCENES.md](docs/SCENES.md).
 
 ## Next direction
 
-Next: recover the packed sprite frame getter at 0805E790..0805E81C
-(140 bytes). Use its four pointer/size spans to strengthen the shared graphics
-interfaces before reopening offer builder 85640. Preserve the anonymous
-eight-byte successor at 0805E81C..0805E824.
-The builder's frame-copy and list-lifetime contract remains unresolved.
-The number drawer at 4EDB4 is 68 bytes / eight entry-scheduling differences;
-constructor 92570 stays at 0x54 / four r0/r1 bytes. The large 86A08 Run is separate.
+Next: recover the menu OAM descriptor factory at 0804EA94..0804EB64,
+208 bytes, around its eight-byte packed return record and caller contract.
+Preserve the separate 288-byte anonymous routine at 0804EB64..0804EC84.
+The raw 496-byte inventory range includes that successor.
 
-The loader, resource-owner constructors and B128 remain parked.
-Current ignored proofs: tools/ches/checkpoints/menu-tilemap-2026-10-09/.
-Builder research: tools/ches/checkpoints/livestock-offer-builder-2026-10-09/.
+Frame getter 5E790 is parked at 140 bytes / 34 differences. The old October 5
+probes were found and the current natural candidate reproduces that schedule.
+Integer formatter 4EC84 is parked on the counter-copy/loop placement frontier;
+v4/v5/v6 canonicalize at 160 bytes / 97 differences. No nonmatching source is promoted.
+Number drawer 4EDB4 stays 68/eight and constructor 92570 stays 0x54/four.
+Offer builder 85640 remains parked on shared frame-copy/list lifetimes.
+The whole loader, resource-owner constructors and B128 remain parked.
+Whole save recovery is unfinished despite exact persistent subobjects.
+
+Current proofs: tools/ches/checkpoints/packed-sprite-frame-2026-10-09/.
+Menu probes: tools/ches/checkpoints/menu-numbers-2026-10-09/.
+Builder probes: tools/ches/checkpoints/livestock-offer-builder-2026-10-09/.
 The canonical handoff supplies exact commands and fresh-clone limitations.
 
 ## Parked work and documentation

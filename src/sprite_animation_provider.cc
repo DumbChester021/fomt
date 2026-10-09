@@ -84,3 +84,13 @@ PackedSpriteAnimation PackedSpriteAnimationProvider::GetAnimation(u32 index) con
 
     return PackedSpriteAnimation(0, 0);
 }
+
+u16 PackedSpriteAnimationProvider::GetSpriteCount() const
+{
+    return counts[1];
+}
+
+u16 PackedSpriteAnimationProvider::GetAnimationCount() const
+{
+    return counts[0];
+}

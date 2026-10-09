@@ -27,10 +27,10 @@ subsystem is fully understood.
 Authoritative live state is in `START_HERE.md`.
 
 - Active public retail branch: **`main`**. The former `Live-temp` series is retired; `ches-dev` remains historical.
-- Code reconstruction: **82,496 / 940,036 = 8.7758%**; **857,540 assembly bytes** remain.
-- Remaining linked asm functions: **2,123**; inferred ranges cover **854,844 / 857,540 = 99.6856%**, with **2,696 unattributed bytes** and **20 explicitly parked functions**.
+- Code reconstruction: **82,504 / 940,036 = 8.7767%**; **857,532 assembly bytes** remain.
+- Remaining linked asm functions: **2,123**; inferred ranges cover **854,836 / 857,532 = 99.6856%**, with **2,696 unattributed bytes** and **22 explicitly parked functions**.
 - Data/assets: **75,554 / 6,777,404 = 1.1148%**.
-- Overall meaningful-ROM reconstruction: **158,446 / 7,717,440 = 2.0531%**.
+- Overall meaningful-ROM reconstruction: **158,454 / 7,717,440 = 2.0532%**.
 - Contiguous tail free space: **671,168 bytes = 655.44 KiB**.
 - Retail SHA1: `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`; full compare remains **`fomt.gba: OK`**.
 - Authoritative compiler path is the tracked `tools/install_agbcp.sh` plus `tools/agbcp_fomt_compat.patch`, SHA-256 `aa7cc6df0efbd066e9c33deb887731e1d0210babfaeba4c9b64f3e8bc35c4256`.
@@ -42,7 +42,7 @@ Authoritative live state is in `START_HERE.md`.
 - The Entity398A4/Entity38740 neighborhood now includes exact `398A4/399C0`, `39A60`, `3A144`, `3A320/334`, `3A350`, `3A798`, and the seven-function helper tail `3A804..3A8A0`. `39E98`, `39F90`, `3A180`, and `3A394` are behavior-complete/bounded parked codegen islands. The 652-byte logical map resolver is now exact source in `src/map_resource.cc`, with the shared interface in `include/map_data.hh`. Four resource-owner methods are now integrated in `src/resource_owner_cached.cc` and `src/resource_owner_variable.cc`, with shared `include/resource_owners.hh`, adding 680 linked bytes after both full-ROM gates. Constructors and sibling B128 remain assembly. `docs/RESOURCE_OWNERS.md` records recovered provider, descriptor and owner layouts; the handoff records remaining constructor/update mismatches.
 - The packed bank remains **416 / 493 semantically owned animations**, with the remaining 77 IDs as a parked by-product lane.
 
-The scene lifetime layer is exact in `include/scene_owners.hh` and `src/scene_owners.cc`: 24 natural constructors, 25 natural destructors and all 25 Run entries, totaling 74 functions / 4,108 linked bytes. Constructor 92570, controller implementations and concrete screen identities remain incomplete. Livestock construction/cleanup and helpers own 548 exact linked bytes, and the eleven-entry catalog owns 220 typed bytes; the offer builder is parked on shared graphics-copy/list lifetimes. Menu rectangle drawing owns 100 exact linked bytes in include/menu_tilemap.hh and src/menu_tilemap.cc. The price-number drawer remains assembly; next recover packed frame getter 5E790..5E81C. Stable evidence is in docs/SCENES.md, docs/LIVESTOCK_SHOP.md and docs/MENU_TILEMAP.md.
+The scene lifetime layer is exact in `include/scene_owners.hh` and `src/scene_owners.cc`: 24 natural constructors, 25 natural destructors and all 25 Run entries, totaling 74 functions / 4,108 linked bytes. Constructor 92570, controller implementations and concrete screen identities remain incomplete. Livestock construction/cleanup and helpers own 548 exact linked bytes, and the eleven-entry catalog owns 220 typed bytes; the offer builder is parked on shared graphics-copy/list lifetimes. Menu rectangle drawing owns 100 exact linked bytes in include/menu_tilemap.hh and src/menu_tilemap.cc. Provider count accessors 5E81C/5E820 add eight exact bytes. The frame getter and integer/price formatting remain parked assembly; next assess menu OAM factory 4EA94..4EB64. Stable evidence is in docs/SCENES.md, docs/LIVESTOCK_SHOP.md and docs/MENU_TILEMAP.md.
 
 The prior 39-member single-owned-polymorphic cleanup family remains exact in `src/owned_polymorphic_dtors.cc`, with stable evidence in `docs/POLYMORPHIC_OWNERS.md`.
 
@@ -92,7 +92,7 @@ under `assets/item_icons/`. `tools/packed_sprite_bank.py` rebuilds the
 0x30080-byte bank exactly. The cooking UI owns `gCookingUtensilIconIds`, mapping
 Knife=265, Frying Pan=204, Pot=346, Mixer=64, Whisk=472, Rolling Pin=313,
 Oven=327, and Seasoning Set=400. `func_08092A70` remains parked at `0x260 / 3`.
-That item/tool lane remains behind the whole-game throughput queue. The resource-owner exact set is complete. Fishing records are recovered in `include/fishing_records.hh` / `src/fishing_records.cc`, and the mine-floor cluster owns 872 exact linked bytes through exact E0AC plus the E174..E1B4 progress getters around the recovered 0x628-byte persistent type in `include/mine_floor.hh`. The exposed E118..E174 and E1B4..E2D4 islands are behavior-recovered but parked after bounded source-shape attempts. The adjacent GameState+0x3480 block is now a typed 0x14-byte `CursedToolState`; the +0x3494..+0x34C3 block is conservatively opaque; GroundPickupState at +0x34C8 is now exact source; the +0x34D8 mask and +0x34DC actor state are already source-owned; active livestock-shop work is packed frame getter 5E790..5E81C, with offer builder 85640 parked. D8E8 and DA00 remain parked source-shape/compiler frontiers; the compiler-sensitive loader remains parked. Product-count growth remains deferred because `ShippingBin::product_stats[NUM_PRODUCTS]` is embedded in persistent state.
+That item/tool lane remains behind the whole-game throughput queue. The resource-owner exact set is complete. Fishing records are recovered in `include/fishing_records.hh` / `src/fishing_records.cc`, and the mine-floor cluster owns 872 exact linked bytes through exact E0AC plus the E174..E1B4 progress getters around the recovered 0x628-byte persistent type in `include/mine_floor.hh`. The exposed E118..E174 and E1B4..E2D4 islands are behavior-recovered but parked after bounded source-shape attempts. The adjacent GameState+0x3480 block is now a typed 0x14-byte `CursedToolState`; the +0x3494..+0x34C3 block is conservatively opaque; GroundPickupState at +0x34C8 is now exact source; the +0x34D8 mask and +0x34DC actor state are already source-owned; frame getter 5E790 and offer builder 85640 are parked; the next bounded unit is menu OAM factory 4EA94..4EB64. D8E8 and DA00 remain parked source-shape/compiler frontiers; the compiler-sensitive loader remains parked. Product-count growth remains deferred because `ShippingBin::product_stats[NUM_PRODUCTS]` is embedded in persistent state.
 
 Legacy loader `func_08011650` remains paused. Crop/field semantics,
 dialogue/event registration, and character portrait/display assets remain later
@@ -389,4 +389,4 @@ Historical shared-type continuation at the October 2 checkpoint:
 Latest recovered GroundPickupState: +0x34C8..+0x34D7, 56 availability
 bits and fifteen packed three-bit durability fields. Four exact functions
 add 1,032 linked bytes. A1EA8 is parked. See docs/GROUND_PICKUP_STATE.md.
-The +0x34D8 mask and +0x34DC actor state are already source-owned. Active livestock-shop work is packed frame getter 5E790..5E81C; offer builder 85640 and C6BC remain parked.
+The +0x34D8 mask and +0x34DC actor state are already source-owned. Next bounded work is menu OAM factory 4EA94..4EB64; frame getter 5E790, offer builder 85640 and C6BC remain parked.

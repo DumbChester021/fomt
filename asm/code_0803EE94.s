@@ -59113,9 +59113,6 @@ func_0805E790: @ 0x0805E790
 	pop {r1}
 	bx r1
 	.align 2, 0
-.L0805E81C:
-	.byte 0x40, 0x8C, 0x70, 0x47
-	.byte 0x00, 0x8C, 0x70, 0x47
 
 	.section .text.after_sprite_animator, "ax", %progbits
 	thumb_func_start func_0805E99C

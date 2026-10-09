@@ -12,11 +12,11 @@ exploit them across the remaining assembly instead of making an individual
 resource family the main queue.
 
 Current verified working state on `main`:
-- code: **82,496 / 940,036 = 8.7758%**;
-- assembly remaining: **857,540 bytes**;
+- code: **82,504 / 940,036 = 8.7767%**;
+- assembly remaining: **857,532 bytes**;
 - remaining linked assembly functions: **2,123**;
 - data/assets: **75,554 / 6,777,404 = 1.1148%**;
-- overall meaningful ROM: **158,446 / 7,717,440 = 2.0531%**;
+- overall meaningful ROM: **158,454 / 7,717,440 = 2.0532%**;
 - packed bank: **416 / 493 semantically owned animations**;
 - retail ROM remains exact at SHA1 `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
 
@@ -53,16 +53,20 @@ but its score is no longer an execution order.
 
 ## Current priority: work the live queue and preserve family-level leverage
 
-Latest coherent promotion: menu tilemap rectangle drawing, 100 exact linked
-bytes. The first natural source and both forced full-ROM gates pass. Livestock
-controller code remains 548 linked bytes and the catalog 220 typed bytes;
-all 25 scene Runs remain exact. Offer builder 85640 is parked after bounded
-frame-copy/list-lifetime probes. Number drawer 4EDB4 is parked on eight entry
-scheduling bytes. Their queue status and previously documented constructor
-92570 now make 20 explicit parked entries. Next recover packed frame getter
-5E790..5E81C (140 bytes) to strengthen the shared graphics return/copy boundary
-before reopening the builder. Preserve its anonymous eight-byte successor.
-Stable evidence: docs/MENU_TILEMAP.md, LIVESTOCK_SHOP.md and SCENES.md.
+Latest coherent promotion: two packed sprite-provider count accessors, eight
+exact bytes, with both forced full-ROM gates passing. Menu rectangle drawing
+remains 100 exact bytes, livestock controller 548 bytes and catalog 220 typed bytes;
+all 25 scene Runs remain exact.
+Frame getter 5E790 is parked at 140/ 34, reproducing the historical October 5
+middle schedule. Integer formatter 4EC84 v4/v5/v6 canonicalize at 160/ 97;
+v3 has 164/ 34 but the wrong loop-test placement. Number drawer 4EDB4 remains
+68/eight and builder 85640 remains parked on shared frame-copy/list lifetimes.
+The queue now has 22 explicit parked entries, a metadata count.
+Next assess OAM factory 4EA94..4EB64 (208 true bytes), its packed eight-byte
+return record and 18 direct calls from 12 callers. Preserve the anonymous
+288-byte successor 4EB64..4EC84; the raw inventory range includes it.
+Read SPRITE_ANIMATOR.md, MENU_TILEMAP.md and NEXT_AGENT_HANDOFF.md.
+Avoid more canonicalized scalar/constructor spellings without new evidence.
 
 The larger 20-member scene-change constructor family remains bounded but nonmatching. Do not repeat its closed aggregate-lifetime candidates merely because the queue ranks it highly. NEXT_AGENT_HANDOFF.md owns the active continuation.
 

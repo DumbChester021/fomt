@@ -162,6 +162,9 @@ The lifecycle promotion removes only ctor 85584 and dtor 8562C from the
 remaining-function inventory; every other assembly address/size is unchanged.
 Offer builder 85640, renderer 8586C, description 85F08 and Run 86A08 remain
 assembly. Builder recovery is parked on frame-copy and list-lifetime contracts.
-Next recover the packed frame getter 5E790..5E81C to strengthen shared types.
+The packed frame getter 5E790 is now parked at 140 bytes / 34 differences,
+reproducing its historical middle schedule. The sprite/animation count accessors
+at 5E81C/5E820 add eight exact source bytes; shared frame-copy/list lifetimes
+remain unresolved. Next bounded work is menu OAM factory 4EA94..4EB64.
 A specific named store/location and opaque base/record semantics remain
 unclaimed. NEXT_AGENT_HANDOFF.md owns the continuation.

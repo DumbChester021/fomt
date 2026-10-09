@@ -6,15 +6,15 @@ Region/TU hints and scores are heuristics, not claims about original source-file
 ## Inventory summary
 
 - remaining linked assembly functions: **2,123**
-- canonical linked assembly code: **857,540 bytes**
-- bytes covered by inferred function ranges: **854,844** (**99.6856%** of linked asm code)
+- canonical linked assembly code: **857,532 bytes**
+- bytes covered by inferred function ranges: **854,836** (**99.6856%** of linked asm code)
 - assembly code not assigned to a function range: **2,696 bytes**
 - asm definitions present in source but not linked as asm code: **2**
 - coarse TU/region hints: **219**
 - repeated opcode-shape clusters: **174**
 - functions in repeated opcode-shape clusters: **683**
 - exact normalized-body clusters: **166**
-- explicitly parked functions: **20**
+- explicitly parked functions: **22**
 - runtime/library functions retained in inventory: **33**
 
 ## Highest-ranked coherent regions
@@ -27,7 +27,7 @@ Region/TU hints and scores are heuristics, not claims about original source-file
 | 4 | asm/code_809E804.s:080CDC00-080D0C10 | 14561.0 | 63 | 12304 | 10736 | 1 | 5 | 51 | 64 |
 | 5 | asm/code_809E804.s:080CABA0-080CDC00 | 14138.0 | 50 | 12384 | 12384 | 0 | 10 | 19 | 25 |
 | 6 | asm/code_entities.s:0802AA84-0802DBF0 | 14108.0 | 32 | 12652 | 12652 | 0 | 2 | 50 | 4 |
-| 7 | asm/code_0803EE94.s:0804EA58-08051D30 | 14034.0 | 72 | 13016 | 8352 | 2 | 30 | 25 | 64 |
+| 7 | asm/code_0803EE94.s:0804EA58-08051D30 | 13952.0 | 72 | 13016 | 8352 | 2 | 30 | 25 | 64 |
 | 8 | asm/new_game.s:08003788-08006858 | 13920.0 | 38 | 12496 | 12496 | 0 | 11 | 26 | 3 |
 | 9 | asm/code_entities.s:08023308-0802634C | 13894.0 | 47 | 12356 | 10556 | 1 | 16 | 71 | 5 |
 | 10 | asm/code_0803EE94.s:080756B0-08078E40 | 13198.0 | 38 | 14224 | 10392 | 2 | 3 | 37 | 24 |
@@ -146,68 +146,68 @@ Region/TU hints and scores are heuristics, not claims about original source-file
 | 13 | func_08050DC8 | 346.0 | 16 | 39 | 5 | 3 | 0 | asm/code_0803EE94.s:33058 |
 | 14 | func_08008CD0 | 338.8 | 108 | 39 | 4 | 1 | 0 | asm/hardware.s:1848 |
 | 15 | func_08050D3C | 330.0 | 32 | 38 | 4 | 2 | 0 | asm/code_0803EE94.s:32972 |
-| 16 | func_0805E99C | 327.5 | 648 | 34 | 3 | 1 | 0 | asm/code_0803EE94.s:59121 |
+| 16 | func_0805E99C | 327.5 | 648 | 34 | 3 | 1 | 0 | asm/code_0803EE94.s:59118 |
 | 17 | func_0800894C | 327.2 | 52 | 38 | 4 | 1 | 0 | asm/hardware.s:1400 |
 | 18 | func_0800736C | 306.2 | 116 | 33 | 7 | 1 | 0 | asm/hardware.s:4 |
-| 19 | func_0804EC84 | 299.2 | 164 | 33 | 5 | 1 | 0 | asm/code_0803EE94.s:28765 |
-| 20 | func_08050D0C | 281.5 | 40 | 31 | 5 | 2 | 1 | asm/code_0803EE94.s:32942 |
-| 21 | func_0803D52C | 270.5 | 280 | 31 | 1 | 1 | 0 | asm/code_0803A8A4.s:4791 |
-| 22 | func_0804E958 | 265.0 | 112 | 31 | 2 | 1 | 0 | asm/code_0803EE94.s:28531 |
-| 23 | func_08050DF0 | 253.8 | 28 | 29 | 4 | 1 | 0 | asm/code_0803EE94.s:33086 |
-| 24 | func_08008364 | 243.8 | 108 | 26 | 5 | 1 | 2 | asm/hardware.s:813 |
-| 25 | func_08007714 | 242.8 | 92 | 26 | 5 | 1 | 2 | asm/hardware.s:322 |
-| 26 | func_0803D644 | 241.2 | 68 | 29 | 1 | 1 | 0 | asm/code_0803A8A4.s:4940 |
-| 27 | func_08050CC0 | 239.8 | 76 | 26 | 5 | 1 | 1 | asm/code_0803EE94.s:32904 |
-| 28 | func_0800770C | 237.5 | 8 | 26 | 5 | 2 | 0 | asm/hardware.s:315 |
-| 29 | func_08008B54 | 236.5 | 24 | 25 | 7 | 1 | 0 | asm/hardware.s:1645 |
-| 30 | func_080086BC | 230.5 | 104 | 25 | 4 | 1 | 2 | asm/hardware.s:1156 |
-| 31 | func_08050D34 | 225.5 | 8 | 24 | 5 | 3 | 0 | asm/code_0803EE94.s:32965 |
-| 32 | func_08050D8C | 216.2 | 20 | 25 | 3 | 1 | 0 | asm/code_0803EE94.s:33022 |
-| 33 | func_080CE184 | 206.5 | 24 | 25 | 1 | 1 | 0 | asm/code_809E804.s:94293 |
-| 34 | func_08075E24 | 202.5 | 88 | 24 | 1 | 1 | 0 | asm/code_0803EE94.s:107598 |
-| 35 | Unpack | 195.2 | 196 | 21 | 3 | 1 | 0 | asm/code_809E804.s:100268 |
-| 36 | func_080AB788 | 194.8 | 28 | 21 | 5 | 1 | 0 | asm/code_809E804.s:23178 |
-| 37 | func_08008DE8 | 191.8 | 124 | 2 | 2 | 40 | 1 | asm/hardware.s:1937 |
-| 38 | func_0805E790 | 186.2 | 148 | 19 | 5 | 1 | 0 | asm/code_0803EE94.s:59042 |
-| 39 | func_0804E8F0 | 181.5 | 104 | 20 | 3 | 1 | 0 | asm/code_0803EE94.s:28471 |
-| 40 | func_080CB304 | 178.5 | 824 | 15 | 1 | 1 | 1 | asm/code_809E804.s:88174 |
-| 41 | func_080CC728 | 178.5 | 792 | 15 | 1 | 1 | 2 | asm/code_809E804.s:90858 |
-| 42 | func_080C7F58 | 167.5 | 1032 | 11 | 1 | 1 | 5 | asm/code_809E804.s:81444 |
-| 43 | func_0807DE3C | 158.8 | 1532 | 1 | 1 | 1 | 25 | asm/code_0803EE94.s:122982 |
-| 44 | func_08008444 | 156.5 | 152 | 15 | 5 | 1 | 1 | asm/hardware.s:933 |
-| 45 | func_080CAE60 | 153.8 | 140 | 17 | 1 | 1 | 2 | asm/code_809E804.s:87557 |
-| 46 | func_080A0490 | 153.2 | 116 | 15 | 4 | 2 | 1 | asm/code_809E804.s:2850 |
-| 47 | func_08076EA8 | 148.0 | 1344 | 6 | 2 | 1 | 3 | asm/code_0803EE94.s:109730 |
-| 48 | func_0804EA94 | 142.0 | 496 | 12 | 3 | 1 | 0 | asm/code_0803EE94.s:28646 |
-| 49 | func_08051320 | 141.8 | 284 | 13 | 4 | 1 | 0 | asm/code_0803EE94.s:33304 |
-| 50 | func_080A5BD8 | 141.5 | 232 | 15 | 1 | 1 | 1 | asm/code_809E804.s:11366 |
-| 51 | func_080CBAF0 | 141.2 | 740 | 11 | 1 | 1 | 1 | asm/code_809E804.s:89234 |
-| 52 | func_08088688 | 138.5 | 1304 | 2 | 1 | 1 | 18 | asm/code_0803EE94.s:141595 |
-| 53 | func_080AC070 | 138.2 | 180 | 14 | 3 | 1 | 0 | asm/code_809E804.s:24439 |
-| 54 | func_0808AC28 | 137.2 | 1348 | 2 | 1 | 1 | 16 | asm/code_0803EE94.s:145884 |
-| 55 | func_0804E5AC | 137.2 | 500 | 12 | 2 | 1 | 0 | asm/code_0803EE94.s:28023 |
-| 56 | func_08010F54 | 136.5 | 1208 | 1 | 1 | 1 | 24 | asm/game_state.s:1486 |
-| 57 | func_0808C9D0 | 136.2 | 1268 | 2 | 1 | 1 | 18 | asm/code_0803EE94.s:149288 |
-| 58 | func_0802A588 | 136.0 | 592 | 8 | 1 | 1 | 15 | asm/code_entities.s:16913 |
-| 59 | func_080CF67C | 134.8 | 956 | 5 | 1 | 1 | 15 | asm/code_809E804.s:96972 |
-| 60 | func_0803436C | 133.2 | 1492 | 0 | 0 | 1 | 20 | asm/code_entities_080320DC.s:2829 |
-| 61 | func_08032BB4 | 133.0 | 1344 | 1 | 1 | 1 | 18 | asm/code_entities_080320DC.s:516 |
-| 62 | func_08075C88 | 133.0 | 304 | 13 | 2 | 1 | 0 | asm/code_0803EE94.s:107383 |
-| 63 | func_08000528 | 132.5 | 24 | 13 | 5 | 1 | 1 | asm/interrupt.s:56 |
-| 64 | func_080CCDEC | 131.8 | 108 | 15 | 1 | 1 | 0 | asm/code_809E804.s:91769 |
-| 65 | func_08099144 | 129.5 | 1288 | 4 | 1 | 1 | 6 | asm/code_0803EE94.s:172215 |
-| 66 | func_0807EF90 | 127.0 | 1520 | 0 | 0 | 1 | 16 | asm/code_0803EE94.s:124963 |
-| 67 | func_08070DE4 | 125.5 | 1480 | 1 | 1 | 1 | 10 | asm/code_0803EE94.s:97212 |
-| 68 | func_080CABEC | 125.2 | 132 | 14 | 1 | 1 | 0 | asm/code_809E804.s:87250 |
-| 69 | func_08075DEC | 124.5 | 56 | 5 | 3 | 17 | 1 | asm/code_0803EE94.s:107583 |
-| 70 | func_0807B920 | 122.2 | 1364 | 2 | 1 | 1 | 8 | asm/code_0803EE94.s:118680 |
-| 71 | func_080CABA0 | 121.8 | 76 | 14 | 1 | 1 | 0 | asm/code_809E804.s:87216 |
-| 72 | func_080C8550 | 121.0 | 80 | 13 | 2 | 1 | 1 | asm/code_809E804.s:82130 |
-| 73 | func_080983E8 | 120.2 | 1524 | 1 | 1 | 1 | 6 | asm/code_0803EE94.s:170564 |
-| 74 | func_0803C7C8 | 120.2 | 1412 | 2 | 2 | 1 | 3 | asm/code_0803A8A4.s:3137 |
-| 75 | func_0807A98C | 119.8 | 1516 | 1 | 1 | 1 | 6 | asm/code_0803EE94.s:116712 |
-| 76 | func_080CB63C | 119.8 | 780 | 8 | 1 | 1 | 1 | asm/code_809E804.s:88613 |
-| 77 | func_080CB090 | 118.5 | 600 | 9 | 1 | 1 | 2 | asm/code_809E804.s:87845 |
-| 78 | func_080330F4 | 118.0 | 1168 | 2 | 1 | 1 | 12 | asm/code_entities_080320DC.s:1209 |
-| 79 | func_080CBA60 | 118.0 | 144 | 13 | 1 | 1 | 0 | asm/code_809E804.s:89165 |
-| 80 | func_08004570 | 117.5 | 1512 | 1 | 1 | 1 | 5 | asm/new_game.s:1710 |
+| 19 | func_08050D0C | 281.5 | 40 | 31 | 5 | 2 | 1 | asm/code_0803EE94.s:32942 |
+| 20 | func_0803D52C | 270.5 | 280 | 31 | 1 | 1 | 0 | asm/code_0803A8A4.s:4791 |
+| 21 | func_0804E958 | 265.0 | 112 | 31 | 2 | 1 | 0 | asm/code_0803EE94.s:28531 |
+| 22 | func_08050DF0 | 253.8 | 28 | 29 | 4 | 1 | 0 | asm/code_0803EE94.s:33086 |
+| 23 | func_08008364 | 243.8 | 108 | 26 | 5 | 1 | 2 | asm/hardware.s:813 |
+| 24 | func_08007714 | 242.8 | 92 | 26 | 5 | 1 | 2 | asm/hardware.s:322 |
+| 25 | func_0803D644 | 241.2 | 68 | 29 | 1 | 1 | 0 | asm/code_0803A8A4.s:4940 |
+| 26 | func_08050CC0 | 239.8 | 76 | 26 | 5 | 1 | 1 | asm/code_0803EE94.s:32904 |
+| 27 | func_0800770C | 237.5 | 8 | 26 | 5 | 2 | 0 | asm/hardware.s:315 |
+| 28 | func_08008B54 | 236.5 | 24 | 25 | 7 | 1 | 0 | asm/hardware.s:1645 |
+| 29 | func_080086BC | 230.5 | 104 | 25 | 4 | 1 | 2 | asm/hardware.s:1156 |
+| 30 | func_08050D34 | 225.5 | 8 | 24 | 5 | 3 | 0 | asm/code_0803EE94.s:32965 |
+| 31 | func_08050D8C | 216.2 | 20 | 25 | 3 | 1 | 0 | asm/code_0803EE94.s:33022 |
+| 32 | func_080CE184 | 206.5 | 24 | 25 | 1 | 1 | 0 | asm/code_809E804.s:94293 |
+| 33 | func_08075E24 | 202.5 | 88 | 24 | 1 | 1 | 0 | asm/code_0803EE94.s:107595 |
+| 34 | Unpack | 195.2 | 196 | 21 | 3 | 1 | 0 | asm/code_809E804.s:100268 |
+| 35 | func_080AB788 | 194.8 | 28 | 21 | 5 | 1 | 0 | asm/code_809E804.s:23178 |
+| 36 | func_08008DE8 | 191.8 | 124 | 2 | 2 | 40 | 1 | asm/hardware.s:1937 |
+| 37 | func_0804E8F0 | 181.5 | 104 | 20 | 3 | 1 | 0 | asm/code_0803EE94.s:28471 |
+| 38 | func_080CB304 | 178.5 | 824 | 15 | 1 | 1 | 1 | asm/code_809E804.s:88174 |
+| 39 | func_080CC728 | 178.5 | 792 | 15 | 1 | 1 | 2 | asm/code_809E804.s:90858 |
+| 40 | func_080C7F58 | 167.5 | 1032 | 11 | 1 | 1 | 5 | asm/code_809E804.s:81444 |
+| 41 | func_0807DE3C | 158.8 | 1532 | 1 | 1 | 1 | 25 | asm/code_0803EE94.s:122979 |
+| 42 | func_08008444 | 156.5 | 152 | 15 | 5 | 1 | 1 | asm/hardware.s:933 |
+| 43 | func_080CAE60 | 153.8 | 140 | 17 | 1 | 1 | 2 | asm/code_809E804.s:87557 |
+| 44 | func_080A0490 | 153.2 | 116 | 15 | 4 | 2 | 1 | asm/code_809E804.s:2850 |
+| 45 | func_08076EA8 | 148.0 | 1344 | 6 | 2 | 1 | 3 | asm/code_0803EE94.s:109727 |
+| 46 | func_0804EA94 | 142.0 | 496 | 12 | 3 | 1 | 0 | asm/code_0803EE94.s:28646 |
+| 47 | func_08051320 | 141.8 | 284 | 13 | 4 | 1 | 0 | asm/code_0803EE94.s:33304 |
+| 48 | func_080A5BD8 | 141.5 | 232 | 15 | 1 | 1 | 1 | asm/code_809E804.s:11366 |
+| 49 | func_080CBAF0 | 141.2 | 740 | 11 | 1 | 1 | 1 | asm/code_809E804.s:89234 |
+| 50 | func_08088688 | 138.5 | 1304 | 2 | 1 | 1 | 18 | asm/code_0803EE94.s:141592 |
+| 51 | func_080AC070 | 138.2 | 180 | 14 | 3 | 1 | 0 | asm/code_809E804.s:24439 |
+| 52 | func_0808AC28 | 137.2 | 1348 | 2 | 1 | 1 | 16 | asm/code_0803EE94.s:145881 |
+| 53 | func_0804E5AC | 137.2 | 500 | 12 | 2 | 1 | 0 | asm/code_0803EE94.s:28023 |
+| 54 | func_08010F54 | 136.5 | 1208 | 1 | 1 | 1 | 24 | asm/game_state.s:1486 |
+| 55 | func_0808C9D0 | 136.2 | 1268 | 2 | 1 | 1 | 18 | asm/code_0803EE94.s:149285 |
+| 56 | func_0802A588 | 136.0 | 592 | 8 | 1 | 1 | 15 | asm/code_entities.s:16913 |
+| 57 | func_080CF67C | 134.8 | 956 | 5 | 1 | 1 | 15 | asm/code_809E804.s:96972 |
+| 58 | func_0803436C | 133.2 | 1492 | 0 | 0 | 1 | 20 | asm/code_entities_080320DC.s:2829 |
+| 59 | func_08032BB4 | 133.0 | 1344 | 1 | 1 | 1 | 18 | asm/code_entities_080320DC.s:516 |
+| 60 | func_08075C88 | 133.0 | 304 | 13 | 2 | 1 | 0 | asm/code_0803EE94.s:107380 |
+| 61 | func_08000528 | 132.5 | 24 | 13 | 5 | 1 | 1 | asm/interrupt.s:56 |
+| 62 | func_080CCDEC | 131.8 | 108 | 15 | 1 | 1 | 0 | asm/code_809E804.s:91769 |
+| 63 | func_08099144 | 129.5 | 1288 | 4 | 1 | 1 | 6 | asm/code_0803EE94.s:172212 |
+| 64 | func_0807EF90 | 127.0 | 1520 | 0 | 0 | 1 | 16 | asm/code_0803EE94.s:124960 |
+| 65 | func_08070DE4 | 125.5 | 1480 | 1 | 1 | 1 | 10 | asm/code_0803EE94.s:97209 |
+| 66 | func_080CABEC | 125.2 | 132 | 14 | 1 | 1 | 0 | asm/code_809E804.s:87250 |
+| 67 | func_08075DEC | 124.5 | 56 | 5 | 3 | 17 | 1 | asm/code_0803EE94.s:107580 |
+| 68 | func_0807B920 | 122.2 | 1364 | 2 | 1 | 1 | 8 | asm/code_0803EE94.s:118677 |
+| 69 | func_080CABA0 | 121.8 | 76 | 14 | 1 | 1 | 0 | asm/code_809E804.s:87216 |
+| 70 | func_080C8550 | 121.0 | 80 | 13 | 2 | 1 | 1 | asm/code_809E804.s:82130 |
+| 71 | func_080983E8 | 120.2 | 1524 | 1 | 1 | 1 | 6 | asm/code_0803EE94.s:170561 |
+| 72 | func_0803C7C8 | 120.2 | 1412 | 2 | 2 | 1 | 3 | asm/code_0803A8A4.s:3137 |
+| 73 | func_0807A98C | 119.8 | 1516 | 1 | 1 | 1 | 6 | asm/code_0803EE94.s:116709 |
+| 74 | func_080CB63C | 119.8 | 780 | 8 | 1 | 1 | 1 | asm/code_809E804.s:88613 |
+| 75 | func_080CB090 | 118.5 | 600 | 9 | 1 | 1 | 2 | asm/code_809E804.s:87845 |
+| 76 | func_080330F4 | 118.0 | 1168 | 2 | 1 | 1 | 12 | asm/code_entities_080320DC.s:1209 |
+| 77 | func_080CBA60 | 118.0 | 144 | 13 | 1 | 1 | 0 | asm/code_809E804.s:89165 |
+| 78 | func_08004570 | 117.5 | 1512 | 1 | 1 | 1 | 5 | asm/new_game.s:1710 |
+| 79 | func_08005278 | 117.5 | 1416 | 1 | 1 | 1 | 8 | asm/new_game.s:3300 |
+| 80 | func_08081BBC | 117.5 | 1368 | 0 | 0 | 1 | 16 | asm/code_0803EE94.s:130020 |
