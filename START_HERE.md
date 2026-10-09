@@ -22,34 +22,34 @@ This is the live dashboard for the US Harvest Moon: Friends of Mineral Town matc
 
 ## Handoff readiness
 
-The latest verified checkpoint is Scenes: constructors with additional inputs. Three natural 68-byte constructors, `func_08057DD8`, `func_0805CEB8` and `func_08069E14`, add 204 exact linked source bytes using a proven extra `u8` controller input. The forced production ROM comparison passes on October 9, 2026, using the unchanged tracked compiler. Run `git log -1` and `git status` before work; never reset a dirty tree merely to match an expected hash. The full loader and complete GameState type remain unfinished. No build or compiler command is pending.
+The latest verified checkpoint is Scenes: extended constructors. `func_0809A4D4` (68 bytes), `func_08083A7C` (112 bytes), and `func_08088168` (68 bytes) are now exact source, adding 248 linked bytes. The forced production ROM comparison passes on October 9, 2026, using the unchanged tracked compiler. Run `git log -1` and `git status` before work; never reset a dirty tree merely to match an expected hash. The full loader and complete GameState type remain unfinished. No build or compiler command is pending.
 
 For the proven techniques and recommended next approach, read the "Fast-path operating method" in docs/DECOMP_PLAYBOOK.md. NEXT_AGENT_HANDOFF.md includes first commands, exact next deliverable, closed paths and fresh-clone artifact limitations.
 
 ## Current exact reconstruction
 
-- Code: **81,180 / 940,036 = 8.6358%**
-- Assembly remaining: **858,856 bytes**
-- Linked assembly functions: **2,136**
-- Inferred ranges: **856,160 / 858,856 = 99.6861%**
+- Code: **81,428 / 940,036 = 8.6622%**
+- Assembly remaining: **858,608 bytes**
+- Linked assembly functions: **2,133**
+- Inferred ranges: **855,912 / 858,608 = 99.6860%**
 - Unattributed assembly: **2,696 bytes**
 - Generated parked functions: **17**
 - Data/assets: **75,334 / 6,777,404 = 1.1115%**
-- Overall meaningful ROM: **156,910 / 7,717,440 = 2.0332%**
+- Overall meaningful ROM: **157,158 / 7,717,440 = 2.0364%**
 - Contiguous free tail: **671,168 bytes = 655.44 KiB**
 
 ## Latest completed unit
 
-Scenes: constructors with additional inputs adds **3 natural constructors / 204 linked bytes** in `include/scene_owners.hh` and `src/scene_owners.cc`. Each takes the existing continuation/context pair plus a proven `u8` forwarded to its original controller constructor. The forced production ROM comparison passes; original symbols and vtable slots remain preserved. See [SCENES.md](docs/SCENES.md).
+Scenes: extended constructors adds **3 exact constructors / 248 linked bytes**. `9A4D4` extends the proven continuation/context/u8 family; `83A7C` naturally forwards a u8 plus four u32 values and stores the extended owner fields; `88168` naturally forwards one u32 and stores its owner state. The forced production ROM comparison passes and the original entry aliases/vtables are preserved. See [SCENES.md](docs/SCENES.md).
 
-The shared scene lifetime layer now contains **68 source functions / 3,440 bytes**: 21 constructors, 25 destructors and 22 Run entries. Controller logic, four constructors and three complex Runs remain assembly.
+The shared scene lifetime layer now contains **71 source functions / 3,688 bytes**: 24 constructors, 25 destructors and 22 Run entries. Only constructor `92570` and complex Runs `83B2C`, `881EC`, and `92604` remain assembly.
 
 ## Next direction
 
-Next: audit `func_0809A4D4` separately. It is the remaining ordinary-looking scene constructor that was deliberately not grouped with the recovered extra-`u8` trio. Establish its caller/controller inputs and natural source shape before claiming family membership. NEXT_AGENT_HANDOFF.md owns the exact continuation. Keep C6BC and A1EA8 parked.
+Next: `func_08092604` (60 bytes), the smallest remaining complex scene Run. Reuse the proven explicit aggregate-return/result-storage technique around controller helper `func_0809152C`. Constructor `92570` is behavior-complete at exact size 0x54 but parked at a four-byte r0/r1 codegen frontier after bounded variants v3-v7.
 
 The loader remains parked. Resource-owner constructors and B128 remain parked.
-Current ignored proofs are under `tools/ches/checkpoints/scene-extra-input-constructors-2026-10-09/` and `tools/ches/checkpoints/scene-constructors-2026-10-09/`.
+Current ignored proofs include `tools/ches/checkpoints/scene-large-constructors-2026-10-09/`, `tools/ches/checkpoints/scene-extra-input-constructors-2026-10-09/`, and `tools/ches/checkpoints/scene-constructors-2026-10-09/`.
 The canonical handoff supplies the exact continuation and prior failure limits.
 
 ## Parked work and documentation

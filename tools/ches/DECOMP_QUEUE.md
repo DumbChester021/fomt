@@ -5,15 +5,15 @@ Region/TU hints and scores are heuristics, not claims about original source-file
 
 ## Inventory summary
 
-- remaining linked assembly functions: **2,136**
-- canonical linked assembly code: **858,856 bytes**
-- bytes covered by inferred function ranges: **856,160** (**99.6861%** of linked asm code)
+- remaining linked assembly functions: **2,133**
+- canonical linked assembly code: **858,608 bytes**
+- bytes covered by inferred function ranges: **855,912** (**99.6860%** of linked asm code)
 - assembly code not assigned to a function range: **2,696 bytes**
 - asm definitions present in source but not linked as asm code: **2**
 - coarse TU/region hints: **216**
-- repeated opcode-shape clusters: **175**
-- functions in repeated opcode-shape clusters: **687**
-- exact normalized-body clusters: **167**
+- repeated opcode-shape clusters: **174**
+- functions in repeated opcode-shape clusters: **685**
+- exact normalized-body clusters: **166**
 - explicitly parked functions: **17**
 - runtime/library functions retained in inventory: **33**
 
@@ -23,7 +23,7 @@ Region/TU hints and scores are heuristics, not claims about original source-file
 | ---: | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
 | 1 | asm/game_state.s:08011650-0801468C | 17090.0 | 115 | 12348 | 12348 | 0 | 59 | 41 | 11 |
 | 2 | asm/code_0803EE94.s:0804E0F8-08051320 | 15902.0 | 84 | 12840 | 9776 | 1 | 34 | 46 | 65 |
-| 3 | asm/code_0803EE94.s:08093C3C-08096EE8 | 15442.0 | 67 | 12972 | 10772 | 1 | 45 | 45 | 5 |
+| 3 | asm/code_0803EE94.s:08093C3C-08096EE8 | 15410.0 | 67 | 12972 | 10772 | 1 | 45 | 45 | 4 |
 | 4 | asm/game_state.s:0801468C-080179CC | 14673.0 | 61 | 13120 | 10732 | 1 | 29 | 54 | 6 |
 | 5 | asm/code_809E804.s:080CDC00-080D0C10 | 14529.0 | 63 | 12304 | 10736 | 1 | 5 | 51 | 63 |
 | 6 | asm/code_entities.s:0802AA84-0802DBF0 | 14108.0 | 32 | 12652 | 12652 | 0 | 2 | 50 | 4 |
@@ -67,16 +67,16 @@ Region/TU hints and scores are heuristics, not claims about original source-file
 | 44 | asm/code_0803EE94.s:08052230-08055264 | 5608.0 | 10 | 12340 | 2340 | 3 | 2 | 24 | 2 |
 | 45 | asm/code_entities.s:08029558-0802A7E0 | 5568.0 | 9 | 4744 | 4744 | 0 | 1 | 25 | 5 |
 | 46 | asm/code_0803EE94.s:080455D8-08048FEC | 5548.0 | 3 | 14868 | 820 | 1 | 0 | 50 | 2 |
-| 47 | asm/code_0803EE94.s:080821D0-08083AEC | 5467.0 | 11 | 6428 | 3568 | 1 | 1 | 44 | 2 |
-| 48 | asm/code_0803EE94.s:08085584-080881AC | 5310.0 | 14 | 11304 | 1232 | 4 | 2 | 57 | 2 |
-| 49 | asm/intro_scene.s:08000914-08003788 | 5286.0 | 11 | 11892 | 2220 | 3 | 2 | 19 | 2 |
-| 50 | asm/game_state.s:0801D8CC-0801EE00 | 5214.0 | 21 | 5428 | 3436 | 1 | 11 | 20 | 3 |
+| 47 | asm/code_0803EE94.s:080821D0-08083A7C | 5323.0 | 10 | 6316 | 3456 | 1 | 1 | 44 | 1 |
+| 48 | asm/intro_scene.s:08000914-08003788 | 5286.0 | 11 | 11892 | 2220 | 3 | 2 | 19 | 2 |
+| 49 | asm/game_state.s:0801D8CC-0801EE00 | 5214.0 | 21 | 5428 | 3436 | 1 | 11 | 20 | 3 |
+| 50 | asm/code_0803EE94.s:0805CF70-0805E624 | 5204.0 | 9 | 5812 | 4180 | 1 | 1 | 23 | 0 |
 
 ## Largest repeated opcode-shape families
 
 | Rank | Cluster | Members | Total bytes | Instructions/member | Files | Sample members |
 | ---: | --- | ---: | ---: | ---: | ---: | --- |
-| 1 | shape0126 | 2 | 3000 | 622 | 1 | func_0808A55C, func_0808E6FC |
+| 1 | shape0125 | 2 | 3000 | 622 | 1 | func_0808A55C, func_0808E6FC |
 | 2 | shape0003 | 20 | 2960 | 66 | 1 | func_08012BBC, func_08012CF4, func_08012D88, func_08012EC0, func_08012F54, func_08013080 |
 | 3 | shape0098 | 2 | 2504 | 452 | 1 | func_0802634C, func_08026830 |
 | 4 | shape0053 | 3 | 2476 | 9 | 1 | func_080229A4, func_08023400, func_080240BC |
@@ -86,8 +86,8 @@ Region/TU hints and scores are heuristics, not claims about original source-file
 | 8 | shape0005 | 18 | 1296 | 32 | 1 | func_080DB394, func_080DB6CC, func_080DB73C, func_080DB7AC, func_080DB81C, func_080DB88C |
 | 9 | shape0001 | 49 | 1156 | 5 | 5 | func_080088B8, func_08008BE0, func_08008CC4, func_0801DD18, func_0801DD24, func_0801DD30 |
 | 10 | shape0020 | 6 | 984 | 73 | 1 | func_08012C50, func_08013364, func_080139F0, func_08013A94, func_08013B38, func_08013DC8 |
-| 11 | shape0129 | 2 | 984 | 179 | 1 | func_0808BDA0, func_08091094 |
-| 12 | shape0125 | 2 | 952 | 169 | 1 | func_08088318, func_0808C664 |
+| 11 | shape0128 | 2 | 984 | 179 | 1 | func_0808BDA0, func_08091094 |
+| 12 | shape0124 | 2 | 952 | 169 | 1 | func_08088318, func_0808C664 |
 | 13 | shape0113 | 2 | 928 | 210 | 1 | func_080579B4, func_0805C63C |
 | 14 | shape0058 | 3 | 912 | 132 | 1 | func_0808BF8C, func_08091280, func_08092940 |
 | 15 | shape0008 | 14 | 784 | 19 | 4 | func_0800371C, func_08004BDC, func_080059D0, func_080070A4, func_0806D918, func_0806EA00 |
@@ -104,28 +104,28 @@ Region/TU hints and scores are heuristics, not claims about original source-file
 | 26 | shape0006 | 15 | 524 | 1 | 6 | func_0800063C, func_08012218, func_080202C4, func_080202C8, func_0802C2DC, func_08093C3C |
 | 27 | shape0036 | 4 | 496 | 48 | 1 | func_0806EA78, func_0806EAF4, func_08077CE0, func_08077D5C |
 | 28 | shape0052 | 3 | 448 | 7 | 1 | func_08012ACC, func_0801D9A8, func_0801DB44 |
-| 29 | shape0162 | 2 | 448 | 102 | 1 | func_080D6DB8, func_080D772C |
+| 29 | shape0161 | 2 | 448 | 102 | 1 | func_080D6DB8, func_080D772C |
 | 30 | shape0013 | 10 | 440 | 21 | 1 | func_080DD3A8, func_080DD434, func_080DD514, func_080DD5B8, func_080DD7B8, func_080DD890 |
 | 31 | shape0033 | 4 | 440 | 0 | 1 | func_08036F0C, func_08036F68, func_08037C08, func_08037C68 |
 | 32 | shape0026 | 5 | 432 | 19 | 1 | func_080DC57C, func_080E2B5C, func_080E2B88, func_080E2E78, func_080E54C4 |
-| 33 | shape0128 | 2 | 416 | 85 | 1 | func_0808BCD0, func_0808EDCC |
-| 34 | shape0132 | 2 | 408 | 96 | 1 | func_08093E20, func_080942BC |
+| 33 | shape0127 | 2 | 416 | 85 | 1 | func_0808BCD0, func_0808EDCC |
+| 34 | shape0131 | 2 | 408 | 96 | 1 | func_08093E20, func_080942BC |
 | 35 | shape0004 | 18 | 396 | 6 | 2 | func_08004C54, func_0804EA80, func_0804EDA0, func_0804EE1C, func_0804EE88, func_08075DEC |
 | 36 | shape0037 | 4 | 368 | 35 | 1 | func_080A6138, func_080A6194, func_080A6300, func_080A635C |
 | 37 | shape0014 | 10 | 360 | 17 | 1 | func_080DD410, func_080DD4F0, func_080DD594, func_080DD794, func_080DD86C, func_080DDC24 |
 | 38 | shape0025 | 5 | 360 | 33 | 1 | func_080DB96C, func_080DBA4C, func_080DBABC, func_080DC50C, func_080E3494 |
-| 39 | shape0117 | 2 | 360 | 28 | 1 | func_0807D070, func_08088168 |
-| 40 | shape0100 | 2 | 352 | 80 | 1 | func_08037568, func_08037714 |
-| 41 | shape0091 | 2 | 336 | 59 | 1 | func_08021130, func_08021FAC |
-| 42 | shape0114 | 2 | 336 | 80 | 1 | func_0805A63C, func_0805DEC0 |
-| 43 | shape0140 | 2 | 304 | 58 | 1 | func_08094110, func_080945B0 |
-| 44 | shape0010 | 12 | 288 | 10 | 1 | func_08014034, func_0801404C, func_08014064, func_0801407C, func_08014094, func_080140AC |
-| 45 | shape0042 | 4 | 288 | 33 | 1 | func_080DBB2C, func_080DBCE8, func_080DBD58, func_080DC0E8 |
-| 46 | shape0115 | 2 | 288 | 68 | 1 | func_08069D84, func_0807555C |
-| 47 | shape0038 | 4 | 272 | 26 | 1 | func_080A61F0, func_080A6234, func_080A6278, func_080A62BC |
-| 48 | shape0015 | 9 | 252 | 12 | 1 | func_080142B8, func_080142D4, func_08014694, func_080146B0, func_08016BA4, func_08016BC0 |
-| 49 | shape0054 | 3 | 252 | 9 | 2 | func_0802C210, func_08037CF0, func_08037E9C |
-| 50 | shape0121 | 2 | 248 | 56 | 1 | func_0807EF14, func_08081B40 |
+| 39 | shape0100 | 2 | 352 | 80 | 1 | func_08037568, func_08037714 |
+| 40 | shape0091 | 2 | 336 | 59 | 1 | func_08021130, func_08021FAC |
+| 41 | shape0114 | 2 | 336 | 80 | 1 | func_0805A63C, func_0805DEC0 |
+| 42 | shape0139 | 2 | 304 | 58 | 1 | func_08094110, func_080945B0 |
+| 43 | shape0010 | 12 | 288 | 10 | 1 | func_08014034, func_0801404C, func_08014064, func_0801407C, func_08014094, func_080140AC |
+| 44 | shape0042 | 4 | 288 | 33 | 1 | func_080DBB2C, func_080DBCE8, func_080DBD58, func_080DC0E8 |
+| 45 | shape0115 | 2 | 288 | 68 | 1 | func_08069D84, func_0807555C |
+| 46 | shape0038 | 4 | 272 | 26 | 1 | func_080A61F0, func_080A6234, func_080A6278, func_080A62BC |
+| 47 | shape0015 | 9 | 252 | 12 | 1 | func_080142B8, func_080142D4, func_08014694, func_080146B0, func_08016BA4, func_08016BC0 |
+| 48 | shape0054 | 3 | 252 | 9 | 2 | func_0802C210, func_08037CF0, func_08037E9C |
+| 49 | shape0120 | 2 | 248 | 56 | 1 | func_0807EF14, func_08081B40 |
+| 50 | shape0170 | 2 | 248 | 55 | 1 | func_080DD8BC, func_080DE0AC |
 
 ## Highest-ranked tractable representatives
 
@@ -184,12 +184,12 @@ Region/TU hints and scores are heuristics, not claims about original source-file
 | 51 | func_08051320 | 141.8 | 284 | 13 | 4 | 1 | 0 | asm/code_0803EE94.s:33358 |
 | 52 | func_080A5BD8 | 141.5 | 232 | 15 | 1 | 1 | 1 | asm/code_809E804.s:11366 |
 | 53 | func_080CBAF0 | 141.2 | 740 | 11 | 1 | 1 | 1 | asm/code_809E804.s:89234 |
-| 54 | func_08088688 | 138.5 | 1304 | 2 | 1 | 1 | 18 | asm/code_0803EE94.s:142185 |
+| 54 | func_08088688 | 138.5 | 1304 | 2 | 1 | 1 | 18 | asm/code_0803EE94.s:142100 |
 | 55 | func_080AC070 | 138.2 | 180 | 14 | 3 | 1 | 0 | asm/code_809E804.s:24439 |
-| 56 | func_0808AC28 | 137.2 | 1348 | 2 | 1 | 1 | 16 | asm/code_0803EE94.s:146474 |
+| 56 | func_0808AC28 | 137.2 | 1348 | 2 | 1 | 1 | 16 | asm/code_0803EE94.s:146389 |
 | 57 | func_0804E5AC | 137.2 | 500 | 12 | 2 | 1 | 0 | asm/code_0803EE94.s:28023 |
 | 58 | func_08010F54 | 136.5 | 1208 | 1 | 1 | 1 | 24 | asm/game_state.s:1486 |
-| 59 | func_0808C9D0 | 136.2 | 1268 | 2 | 1 | 1 | 18 | asm/code_0803EE94.s:149878 |
+| 59 | func_0808C9D0 | 136.2 | 1268 | 2 | 1 | 1 | 18 | asm/code_0803EE94.s:149793 |
 | 60 | func_0802A588 | 136.0 | 592 | 8 | 1 | 1 | 15 | asm/code_entities.s:16913 |
 | 61 | func_080CF67C | 134.8 | 956 | 5 | 1 | 1 | 15 | asm/code_809E804.s:96972 |
 | 62 | func_0803436C | 133.2 | 1492 | 0 | 0 | 1 | 20 | asm/code_entities_080320DC.s:2829 |
@@ -197,7 +197,7 @@ Region/TU hints and scores are heuristics, not claims about original source-file
 | 64 | func_08075C88 | 133.0 | 304 | 13 | 2 | 1 | 0 | asm/code_0803EE94.s:107437 |
 | 65 | func_08000528 | 132.5 | 24 | 13 | 5 | 1 | 1 | asm/interrupt.s:56 |
 | 66 | func_080CCDEC | 131.8 | 108 | 15 | 1 | 1 | 0 | asm/code_809E804.s:91769 |
-| 67 | func_08099144 | 129.5 | 1288 | 4 | 1 | 1 | 6 | asm/code_0803EE94.s:172835 |
+| 67 | func_08099144 | 129.5 | 1288 | 4 | 1 | 1 | 6 | asm/code_0803EE94.s:172750 |
 | 68 | func_08075DEC | 128.5 | 56 | 5 | 3 | 18 | 1 | asm/code_0803EE94.s:107637 |
 | 69 | func_080CABEC | 125.2 | 132 | 14 | 1 | 1 | 0 | asm/code_809E804.s:87250 |
 | 70 | func_0807EF90 | 125.0 | 1520 | 0 | 0 | 1 | 15 | asm/code_0803EE94.s:125017 |
@@ -205,7 +205,7 @@ Region/TU hints and scores are heuristics, not claims about original source-file
 | 72 | func_0807B920 | 122.2 | 1364 | 2 | 1 | 1 | 8 | asm/code_0803EE94.s:118734 |
 | 73 | func_080CABA0 | 121.8 | 76 | 14 | 1 | 1 | 0 | asm/code_809E804.s:87216 |
 | 74 | func_080C8550 | 121.0 | 80 | 13 | 2 | 1 | 1 | asm/code_809E804.s:82130 |
-| 75 | func_080983E8 | 120.2 | 1524 | 1 | 1 | 1 | 6 | asm/code_0803EE94.s:171184 |
+| 75 | func_080983E8 | 120.2 | 1524 | 1 | 1 | 1 | 6 | asm/code_0803EE94.s:171099 |
 | 76 | func_0803C7C8 | 120.2 | 1412 | 2 | 2 | 1 | 3 | asm/code_0803A8A4.s:3137 |
 | 77 | func_0807A98C | 119.8 | 1516 | 1 | 1 | 1 | 6 | asm/code_0803EE94.s:116766 |
 | 78 | func_080CB63C | 119.8 | 780 | 8 | 1 | 1 | 1 | asm/code_809E804.s:88613 |

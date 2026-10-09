@@ -21,10 +21,10 @@ Current exact reconstruction metrics:
 
 | Metric | Current |
 | --- | ---: |
-| Code | **81,180 / 940,036 bytes (8.6358%)** |
-| Assembly remaining | **858,856 bytes** |
+| Code | **81,428 / 940,036 bytes (8.6622%)** |
+| Assembly remaining | **858,608 bytes** |
 | Data/assets | **75,334 / 6,777,404 bytes (1.1115%)** |
-| Overall meaningful ROM | **156,910 / 7,717,440 bytes (2.0332%)** |
+| Overall meaningful ROM | **157,158 / 7,717,440 bytes (2.0364%)** |
 | Contiguous ROM tail free space | **671,168 bytes (655.44 KiB)** |
 
 Run `make progress` for the live report.
@@ -55,7 +55,7 @@ The packed item/UI animation bank also has an exact editable pipeline. All 347 r
 
 Work is throughput-first and organized by coherent translation unit, type, vtable, or repeated machine-code family rather than by a fixed function count.
 
-The active frontier is the scene lifetime layer. It now owns 21 exact constructors, 25 destructors and 22 `Run()` entries, totaling 68 source functions / 3,440 linked retail bytes. The newest three constructors, `func_08057DD8`, `func_0805CEB8` and `func_08069E14`, naturally take an extra `u8` forwarded to their controller constructors and add 204 exact source bytes. Four scene constructors and three complex `Run()` entries remain assembly; audit `func_0809A4D4` separately next before grouping it with any recovered constructor family. Stable evidence is in [docs/SCENES.md](docs/SCENES.md).
+The active frontier is the scene lifetime layer. It now owns 24 exact constructors, 25 destructors and 22 `Run()` entries, totaling 71 source functions / 3,688 linked retail bytes. The latest exact constructors are `func_0809A4D4` (68 bytes), `func_08083A7C` (112 bytes), and `func_08088168` (68 bytes), adding 248 exact source bytes. Only constructor `func_08092570` and the three complex `Run()` entries remain assembly; `92570` is parked at an exact-size four-byte register-allocation frontier. Next is `func_08092604`. Stable evidence is in [docs/SCENES.md](docs/SCENES.md).
 
 Compiler-sensitive functions that are behavior-complete are parked rather than blocking whole-game progress. The canonical continuation is always in [tools/ches/NEXT_AGENT_HANDOFF.md](tools/ches/NEXT_AGENT_HANDOFF.md).
 

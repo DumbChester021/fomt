@@ -1,30 +1,29 @@
 # Current FoMT continuation - October 9, 2026
 
-## Latest verified checkpoint: Scenes: constructors with additional inputs
+## Latest verified checkpoint: Scenes: extended constructors
 
 Workspace: /mnt/data/Github/gba/fomt
 Public retail branch: main, tracking ches/main.
 Run `git log -1` and `git status` before new work. Preserve unrelated changes.
 
-New exact source: three 68-byte scene constructors in src/scene_owners.cc,
-with typed u8 declarations in include/scene_owners.hh. func_08057DD8,
-func_0805CEB8 and func_08069E14 add 204 linked retail bytes. All three natural
-scratch candidates matched immediately at 0x44 / 0 differences. Production
-integration preserves the old address aliases and existing scene vtables.
-The forced full-ROM comparison passes and the regenerated inventory removes
-exactly three linked assembly functions. The shared scene lifetime layer now
-owns 68 source functions / 3,440 bytes: 21 constructors, 25 destructors and
-22 Run entries.
+New exact source this checkpoint: three scene constructors / 248 linked bytes.
+- func_0809A4D4: 68 bytes, continuation/context/u8, controller 94AC0, allocation 0x33E0.
+- func_08083A7C: 112 bytes, continuation/context/u8 plus four u32 inputs, controller 821D0, allocation 0x48E8; owner fields +0x0C/+0x10/+0x14/+0x18 and context +0x1C are proven.
+- func_08088168: 68 bytes, continuation/context/u32, controller 85584, allocation 0x43E0; owner word +0x0C and context +0x10 are proven.
+All three natural candidates matched immediately. Production forced full-ROM
+comparison passes and regenerated inventory removes exactly these three linked
+assembly functions. The shared scene lifetime layer now owns 71 source
+functions / 3,688 bytes: 24 constructors, 25 destructors and 22 Run entries.
 ROM: 8,388,608 bytes, SHA1 a2fc3574f0a65a4fcf7682fb274b9d7eebdef963.
 No background executions remain. The tracked compiler/wrapper is unchanged.
 
 Current metrics:
-- Code: 81,180 / 940,036 = 8.6358%.
-- Assembly: 858,856 bytes; 2,136 linked functions.
-- Inferred function ranges: 856,160 / 858,856 = 99.6861%.
+- Code: 81,428 / 940,036 = 8.6622%.
+- Assembly: 858,608 bytes; 2,133 linked functions.
+- Inferred function ranges: 855,912 / 858,608 = 99.6860%.
 - Unattributed assembly: 2,696 bytes; 17 parked functions.
 - Data/assets: 75,334 / 6,777,404 = 1.1115%.
-- Overall meaningful ROM: 156,910 / 7,717,440 = 2.0332%.
+- Overall meaningful ROM: 157,158 / 7,717,440 = 2.0364%.
 
 ## Proven constructor contract
 
@@ -57,25 +56,24 @@ ownership layout, all entry mappings and controller allocation table:
 docs/SCENES.md. Concrete screen identities and controller behavior remain
 unresolved; use subsystem titles rather than inventing screen names.
 
-## Exact next action: audit scene constructor 9A4D4 separately
+## Exact next action: complex scene Run 92604
 
-Do not assume func_0809A4D4 belongs to the recovered extra-u8 trio. Audit its
-factory caller, controller constructor, allocation size and complete register
-inputs first. Then write one natural typed constructor candidate using the
-existing controller/continuation ownership layout and compare its true body.
+Start with func_08092604 (60 bytes), the smallest remaining complex Run.
+It calls func_0809152C using caller-provided temporary result storage, transfers
+that request into the Run result slot, and destroys the cleared temporary.
+Reuse the already proven explicit aggregate-return/result-storage technique
+before trying broader class reconstruction.
 
-The completed extra-u8 trio is:
-- 57DD8: allocation 0x23A8, controller 522F8, factory DB96C.
-- 5CEB8: allocation 0x14FC, controller 5806C, factory DBA4C.
-- 69E14: allocation 0x164, controller 5FD78, factory DC50C.
-All three are 68 bytes and matched naturally with a u8 third semantic input
-after the continuation/context pair.
+Constructor func_08092570 remains assembly but is behavior-complete and
+exact-size 0x54 in scratch. The transfer-slot candidate v3 reaches only four
+linked-byte differences, all r0/r1 selection in the final null continuation
+transfer; v4-v7 preserve the same frontier. Do not force registers, change the
+compiler, or broaden SmartPtr solely to chase those four bytes. smart_ptr.hh
+was temporarily tested and restored exactly.
 
-Four constructors remain assembly: 83A7C, 88168, 92570 and 9A4D4. The first
-three have larger proven scene layouts and/or complex Run partners, so keep
-them separate until their inputs are fully audited. The three complex Runs
-83B2C, 881EC and 92604 also remain assembly, mapped in docs/SCENES.md. The
-larger scene-change family stays bounded at its existing nonmatching frontier.
+Remaining scene assembly at this checkpoint: constructor 92570 plus complex
+Runs 83B2C, 881EC and 92604. The larger scene-change family stays bounded at
+its existing nonmatching frontier.
 
 ## Proofs and closed assumptions
 

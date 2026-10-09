@@ -28,13 +28,16 @@ func_0808045C = __15SceneOwner8048CRt8SmartPtr1Z13AUnk_0800080CPv;
 func_08080D94 = __15SceneOwner80DC4Rt8SmartPtr1Z13AUnk_0800080CPv;
 func_08081A40 = __15SceneOwner81A70Rt8SmartPtr1Z13AUnk_0800080CPv;
 func_08082114 = __15SceneOwner82144Rt8SmartPtr1Z13AUnk_0800080CPv;
+func_08083A7C = __15SceneOwner83AECRt8SmartPtr1Z13AUnk_0800080CPvUcUiUiUiUi;
 func_080854F4 = __15SceneOwner85528Rt8SmartPtr1Z13AUnk_0800080CPv;
+func_08088168 = __15SceneOwner881ACRt8SmartPtr1Z13AUnk_0800080CPvUi;
 func_0808AB38 = __15SceneOwner8AB68Rt8SmartPtr1Z13AUnk_0800080CPv;
 func_0808C56C = __15SceneOwner8C59CRt8SmartPtr1Z13AUnk_0800080CPv;
 func_0808ECD8 = __15SceneOwner8ED08Rt8SmartPtr1Z13AUnk_0800080CPv;
 func_08090E54 = __15SceneOwner90E84Rt8SmartPtr1Z13AUnk_0800080CPv;
 func_080931B0 = __15SceneOwner931E0Rt8SmartPtr1Z13AUnk_0800080CPv;
 func_08093A58 = __15SceneOwner93A88Rt8SmartPtr1Z13AUnk_0800080CPv;
+func_0809A4D4 = __15SceneOwner9A518Rt8SmartPtr1Z13AUnk_0800080CPvUc;
 
 __vt_15SceneOwner521BC = vtable_unk_080E7934;
 func_080521BC = _._15SceneOwner521BC;
@@ -648,6 +651,8 @@ SECTIONS
         asm/code_0803EE94.o(.text.after_scene_owner_82144);
         src/scene_owners.o(.text.scene_run_82184);
         asm/code_0803EE94.o(.text.after_scene_run_82184);
+        src/scene_owners.o(.text.scene_ctor_83a7c);
+        asm/code_0803EE94.o(.text.after_scene_ctor_83a7c);
         src/scene_owners.o(.text.scene_owner_83aec);
         asm/code_0803EE94.o(.text.after_scene_owner_83aec);
         src/scene_owners.o(.text.scene_ctor_854f4);
@@ -656,6 +661,8 @@ SECTIONS
         asm/code_0803EE94.o(.text.after_scene_owner_85528);
         src/scene_owners.o(.text.scene_run_85568);
         asm/code_0803EE94.o(.text.after_scene_run_85568);
+        src/scene_owners.o(.text.scene_ctor_88168);
+        asm/code_0803EE94.o(.text.after_scene_ctor_88168);
         src/scene_owners.o(.text.scene_owner_881ac);
         asm/code_0803EE94.o(.text.after_scene_owner_881ac);
         src/scene_owners.o(.text.scene_ctor_8ab38);
@@ -700,6 +707,8 @@ SECTIONS
         asm/code_0803EE94.o(.text.after_scene_owner_93a88);
         src/scene_owners.o(.text.scene_run_93ad4);
         asm/code_0803EE94.o(.text.after_scene_run_93ad4);
+        src/scene_owners.o(.text.scene_ctor_9a4d4);
+        asm/code_0803EE94.o(.text.after_scene_ctor_9a4d4);
         src/scene_owners.o(.text.scene_owner_9a518);
         asm/code_0803EE94.o(.text.after_scene_owner_9a518);
         src/scene_owners.o(.text.scene_run_9a558);

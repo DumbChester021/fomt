@@ -1,6 +1,6 @@
 # Scenes: construction, cleanup and continuation transfer
 
-The shared scene lifetime layer is exact in `include/scene_owners.hh` and `src/scene_owners.cc`: 21 constructors, 25 destructors and 22 `Run()` entries, totaling **68 source functions / 3,440 linked retail bytes**. These are scene lifetime and transition mechanics. Concrete screen identities and controller implementations remain incomplete.
+The shared scene lifetime layer is exact in `include/scene_owners.hh` and `src/scene_owners.cc`: 24 constructors, 25 destructors and 22 `Run()` entries, totaling **71 source functions / 3,688 linked retail bytes**. These are scene lifetime and transition mechanics. Concrete screen identities and controller implementations remain incomplete.
 
 ## Ownership layout
 
@@ -24,7 +24,7 @@ The old aggregate-return ABI passes the one-pointer result slot in r0 and the sc
 
 ## Constructor contract
 
-The first 18 recovered natural constructors take a mutable continuation reference and an opaque context pointer. The newest three, `func_08057DD8`, `func_0805CEB8` and `func_08069E14`, take the same pair plus an unsigned byte. Their factories load that byte from request +0x0C; the constructor zero-extends it and forwards it to the original controller constructor. All 21 install the original scene vtable, store the returned controller at +4 and move/clear the continuation into +8. The controller implementations remain assembly-bound.
+The first 18 recovered natural constructors take a mutable continuation reference and an opaque context pointer. Four 68-byte constructors, `func_08057DD8`, `func_0805CEB8`, `func_08069E14`, and `func_0809A4D4`, take the same pair plus an unsigned byte. `func_08083A7C` additionally takes four u32 values and stores them at +0x0C/+0x10/+0x14/+0x18 while retaining context at +0x1C. `func_08088168` takes one u32 value and stores it at +0x0C with context at +0x10. All 24 exact constructors install the original scene vtable and preserve the observed ownership transfer. Controller implementations remain assembly-bound.
 
 The 18 scenes have a 12-byte ownership layout. Seventeen audited factories allocate that scene on the heap. Factory DC3A0 constructs SceneOwner93A88 on the stack with a null continuation, runs its controller/accessor path and then destroys the temporary with mode 2.
 
@@ -53,7 +53,7 @@ Controller allocation sizes are independent of the shared deletion-prefix size:
 
 Fifteen scene constructor bodies are 48 bytes. The 5E624, 5FCD0 and 854F4 entries are 52 bytes because their allocation constants use literal pools. The same natural source expresses both forms.
 
-Four scene constructors remain assembly: 83A7C, 88168, 92570 and 9A4D4. The recovered 57DD8, 5CEB8 and 69E14 entries forward an unsigned byte to the controller; the byte's meaning remains unresolved. Complete controller layouts and concrete screen names remain unresolved.
+Only scene constructor `92570` remains assembly. It is behavior-complete at exact size 0x54 with a four-linked-byte r0/r1 codegen frontier after bounded transfer-slot variants. The recovered 57DD8, 5CEB8, 69E14 and 9A4D4 entries forward an unsigned byte to the controller; the byte's meaning remains unresolved. Complete controller layouts and concrete screen names remain unresolved.
 
 ## Recovered entries
 
@@ -75,9 +75,9 @@ All destructors below are 64 bytes. Parenthesized constructor sizes mark recover
 | `SceneOwner80DC4` | `func_08080D94` (48) | `vtable_unk_080E7CA0` | `func_08080E04` | 28 | `func_08080540` |
 | `SceneOwner81A70` | `func_08081A40` (48) | `vtable_unk_080E7CBC` | `func_08081AB0` | 28 | `func_0808114C` |
 | `SceneOwner82144` | `func_08082114` (48) | `vtable_unk_080E7CD8` | `func_08082184` | 28 | `func_08081BBC` |
-| `SceneOwner83AEC` | `func_08083A7C` | `vtable_unk_080E7D04` | `func_08083B2C` | assembly | `unresolved` |
+| `SceneOwner83AEC` | `func_08083A7C` (112) | `vtable_unk_080E7D04` | `func_08083B2C` | assembly | `unresolved` |
 | `SceneOwner85528` | `func_080854F4` (52) | `vtable_unk_080E7D20` | `func_08085568` | 28 | `func_08084228` |
-| `SceneOwner881AC` | `func_08088168` | `vtable_unk_080E7D3C` | `func_080881EC` | assembly | `unresolved` |
+| `SceneOwner881AC` | `func_08088168` (68) | `vtable_unk_080E7D3C` | `func_080881EC` | assembly | `unresolved` |
 | `SceneOwner8AB68` | `func_0808AB38` (48) | `vtable_unk_080E7D58` | `func_0808ABA8` | 28 | `func_0808A55C` |
 | `SceneOwner8C59C` | `func_0808C56C` (48) | `vtable_unk_080E7D74` | `func_0808C5DC` | 28 | `func_0808C0BC` |
 | `SceneOwner8ED08` | `func_0808ECD8` (48) | `vtable_unk_080E7D90` | `func_0808ED48` | 28 | `func_0808E6FC` |
@@ -85,7 +85,7 @@ All destructors below are 64 bytes. Parenthesized constructor sizes mark recover
 | `SceneOwner925C4` | `func_08092570` | `vtable_unk_080E7DC8` | `func_08092604` | assembly | `unresolved` |
 | `SceneOwner931E0` | `func_080931B0` (48) | `vtable_unk_080E7DE4` | `func_08093220` | 28 | `func_08092D64` |
 | `SceneOwner93A88` | `func_08093A58` (48) | `vtable_unk_080E8018` | `func_08093AD4` | 28 | `func_08093364` |
-| `SceneOwner9A518` | `func_0809A4D4` | `vtable_unk_080E824C` | `func_0809A558` | 52 | `func_08094F6C` |
+| `SceneOwner9A518` | `func_0809A4D4` (68) | `vtable_unk_080E824C` | `func_0809A558` | 52 | `func_08094F6C` |
 
 ## Remaining scene methods
 
@@ -93,7 +93,7 @@ All destructors below are 64 bytes. Parenthesized constructor sizes mark recover
 - `func_080881EC`: controller status selects direct transfer or nested 16-/20-byte requests with context at +10 and additional state.
 - `func_08092604`: obtains a new request from its controller and transfers it through additional temporary-lifetime machinery.
 
-All three complex Runs remain assembly. Four scene constructors, controller constructors and controller logic also remain assembly. Nearby shop/catalog or rucksack data is useful evidence but does not establish a specific screen name.
+All three complex Runs remain assembly. Only constructor `92570`, controller constructors and controller logic remain assembly. Nearby shop/catalog or rucksack data is useful evidence but does not establish a specific screen name.
 
 ## True boundaries and verification
 

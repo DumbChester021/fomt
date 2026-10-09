@@ -25,8 +25,12 @@ live state. This file keeps subsystem/function evidence and matching lessons.
 
 Current retail state:
 - Active public retail branch: `main`; the former `Live-temp` line is retired. Historical `ches-dev` commits remain provenance only.
-- Current exact progress: **81,180 / 940,036 = 8.6358% source** and **858,856 assembly bytes**. Data/assets reconstruction is **75,334 / 6,777,404 = 1.1115%** and overall meaningful-ROM reconstruction is **156,910 / 7,717,440 = 2.0332%**. Forced production ROM comparison reports `fomt.gba: OK`; retail SHA1 remains `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
-- Remaining linked assembly functions: **2,136**; inferred function ranges cover **856,160 / 858,856 = 99.6861%**, with **2,696 unattributed bytes** and **17 explicitly parked functions**. The total includes the prior exposed islands and 596 additional unnamed bytes preserved beside six scene Run entries.
+- Current exact progress: **81,428 / 940,036 = 8.6622% source** and **858,608 assembly bytes**. Data/assets reconstruction is **75,334 / 6,777,404 = 1.1115%** and overall meaningful-ROM reconstruction is **157,158 / 7,717,440 = 2.0364%**. Forced production ROM comparison reports `fomt.gba: OK`; retail SHA1 remains `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
+- Remaining linked assembly functions: **2,133**; inferred function ranges cover **855,912 / 858,608 = 99.6860%**, with **2,696 unattributed bytes** and **17 explicitly parked functions**. The total includes the prior exposed islands and 596 additional unnamed bytes preserved beside six scene Run entries.
+
+### 2026-10-09 Scenes: extended constructors
+
+Three more scene constructors are exact source: 9A4D4 (68 bytes), 83A7C (112 bytes), and 88168 (68 bytes), adding 248 linked bytes. All three matched the first natural typed candidate and the forced production ROM remains exact. 83A7C proves its four extra words at owner +0x0C/+0x10/+0x14/+0x18 with context +0x1C; 88168 proves one word at +0x0C with context +0x10. Constructor 92570 is behavior-complete at exact size 0x54 but remains parked on four r0/r1 codegen bytes after bounded variants v3-v7. Next is complex Run 92604.
 
 ### 2026-10-09 Scenes: constructors with additional inputs
 
