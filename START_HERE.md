@@ -22,25 +22,25 @@ This is the live dashboard for the US Harvest Moon: Friends of Mineral Town matc
 
 ## Handoff readiness
 
-The latest verified checkpoint recovers the 33-function NPC base-destructor ABI thunk island at 0x080DC9C0..0x080DCB4C. Both production and detached forced ROM comparisons pass. Run `git log -1` and `git status` before work; never reset a dirty tree merely to match an expected hash. The full loader and complete GameState type remain unfinished. No build or compiler command is pending.
+The latest verified checkpoint recovers four GameState flag setters at 0x08010F24..0x08010F54. Fresh production and detached forced ROM comparisons passed on October 9, 2026, using the tracked compiler installer. Run `git log -1` and `git status` before work; never reset a dirty tree merely to match an expected hash. The full loader and complete GameState type remain unfinished. No build or compiler command is pending.
 
 For the proven techniques and recommended next approach, read the "Fast-path operating method" in docs/DECOMP_PLAYBOOK.md. NEXT_AGENT_HANDOFF.md includes first commands, exact next deliverable, closed paths and fresh-clone artifact limitations.
 
 ## Current exact reconstruction
 
-- Code: **76,132 / 940,036 = 8.0988%**
-- Assembly remaining: **863,904 bytes**
-- Linked assembly functions: **2,247**
-- Inferred ranges: **862,360 / 863,904 = 99.8213%**
+- Code: **76,180 / 940,036 = 8.1039%**
+- Assembly remaining: **863,856 bytes**
+- Linked assembly functions: **2,243**
+- Inferred ranges: **862,312 / 863,856 = 99.8213%**
 - Unattributed assembly: **1,544 bytes**
 - Generated parked functions: **17**
 - Data/assets: **75,334 / 6,777,404 = 1.1115%**
-- Overall meaningful ROM: **151,862 / 7,717,440 = 1.9678%**
+- Overall meaningful ROM: **151,910 / 7,717,440 = 1.9684%**
 - Contiguous free tail: **671,168 bytes = 655.44 KiB**
 
 ## Latest completed unit
 
-The repeated-small-function fast path has now recovered the remaining **19 contiguous shape0001 ABI thunks / 228 linked bytes** across seven islands in `asm/code_linkonce.s`. Four callee families were proven with the same natural one-argument raw wrapper shape: `func_0800080C`, `func_080098AC`, `func_08076E0C`, and `func_08070C88`. Production and detached forced ROM comparisons both pass. Together with the immediately preceding destructor-thunk batches, the recent raw-ABI work accounts for **56 exact functions / 672 linked bytes**.
+The four-function flag-setter quartet at `0x08010F24..0x08010F54` is now exact source in `src/game_state_flag_setters.cc`, adding **48 linked bytes**. The natural old-GCC source is simply `*state |= 1/2/4/8`, producing four 10-byte bodies plus 2-byte alignment. Production and detached forced ROM comparisons both pass.
 
 ## Next direction
 

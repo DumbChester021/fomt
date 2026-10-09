@@ -12,11 +12,11 @@ exploit them across the remaining assembly instead of making an individual
 resource family the main queue.
 
 Current verified working state on `main`:
-- code: **76,132 / 940,036 = 8.0988%**;
-- assembly remaining: **863,904 bytes**;
-- remaining linked assembly functions: **2,247**;
+- code: **76,180 / 940,036 = 8.1039%**;
+- assembly remaining: **863,856 bytes**;
+- remaining linked assembly functions: **2,243**;
 - data/assets: **75,334 / 6,777,404 = 1.1115%**;
-- overall meaningful ROM: **151,862 / 7,717,440 = 1.9678%**;
+- overall meaningful ROM: **151,910 / 7,717,440 = 1.9684%**;
 - packed bank: **416 / 493 semantically owned animations**;
 - retail ROM remains exact at SHA1 `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
 

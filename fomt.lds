@@ -298,6 +298,8 @@ SECTIONS
         asm/more_items.o(.text);
         asm/game_scene.o(.text);
         asm/game_state.o(.text);
+        src/game_state_flag_setters.o(.text.game_state_flag_setters);
+        asm/game_state.o(.text.after_game_state_flag_setters);
         src/save_format.o(.text.save_record);
         asm/game_state.o(.text.after_save_record);
         src/code_08017C00.o(.text);

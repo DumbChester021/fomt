@@ -1,39 +1,40 @@
-# Current FoMT continuation - October 8, 2026
+# Current FoMT continuation - October 9, 2026
 
-## LATEST CHECKPOINT — 2026-10-08 — remaining shape0001 raw ABI thunks
+## Latest checkpoint - 2026-10-09 - four GameState flag setters
 
-Current branch: main, tracking ches/main. This checkpoint recovers every remaining bounded contiguous same-callee group from shape0001. Run `git log -1` and `git status` to obtain the exact published commit and confirm local/remote parity before new work.
+Current branch: main, tracking ches/main. Run `git log -1` and `git status` to obtain the exact published commit and confirm local/remote parity before new work.
 
-Exact source: `src/raw_abi_thunks.cc`. A generic one-argument raw wrapper compiles to the retail 10-byte `push {lr}; bl target; pop {r0}; bx r0` body plus 2-byte alignment for all four tested callees. Seven linker/assembly seams preserve unresolved code between islands.
+Exact source: `src/game_state_flag_setters.cc`. Retail range `0x08010F24..0x08010F54` contains four 12-byte slots:
+- `func_08010F24`: OR byte-0 mask 1;
+- `func_08010F30`: OR byte-0 mask 2;
+- `func_08010F3C`: OR byte-0 mask 4;
+- `func_08010F48`: OR byte-0 mask 8.
 
-Recovered islands (19 functions / 228 linked bytes):
-- D3C60/D3C6C -> `func_0800080C`;
-- D7868/D7874 -> `func_080098AC`;
-- D7B2C/D7B38/D7B44 -> `func_080098AC`;
-- E0A7C/E0A88 -> `func_080098AC`;
-- E1018/E1024/E1030 -> `func_080098AC`;
-- E1D8C/E1D98/E1DA4/E1DB0 -> `func_08076E0C`;
-- E20F8/E2104/E2110 -> `func_08070C88`.
+Natural source `*state |= mask` compiles instruction-for-instruction to retail (10-byte body + 2-byte alignment per function). The four functions are live; callers pass the same state pointer. Keep the semantic name conservative until the owning byte/bitfield is structurally identified.
 
 Verification:
-- production `make -j4 compare`: PASS;
-- detached forced `make -B -j4 compare` in `/tmp/fomt-shape0001-thunks-20261008`: PASS;
-- retail SHA1 remains exact;
-- inventory regenerated; NPC map still maps 35 resident classes.
+- complete 48-byte block: expected 0x30, actual 0x30, zero differing linked bytes;
+- fresh production `make -B -j4 compare progress`: PASS (October 9);
+- fresh detached `make -B -j4 compare`: PASS with a fresh tracked compiler installation;
+- detached proof worktree `/mnt/waydroid-hdd/home-chester-waydroid/fomt-integrations/flag-setters-20261009`;
+- durable local proofs/logs: `tools/ches/checkpoints/flag-setters-2026-10-09/`;
+- retail SHA1 exact; inventory removes only the four promoted functions.
+
+The former `/tmp` logs/worktree were absent after restart. Their old claims were reverified before publication; do not depend on those temporary paths.
 
 Current exact metrics:
-- code: 76,132 / 940,036 = 8.0988%;
-- assembly remaining: 863,904 bytes;
-- linked assembly functions: 2,247;
-- inferred function bytes: 862,360 / 863,904 = 99.8213%;
+- code: 76,180 / 940,036 = 8.1039%;
+- assembly remaining: 863,856 bytes;
+- linked assembly functions: 2,243;
+- inferred function bytes: 862,312 / 863,856 = 99.8213%;
 - unattributed assembly: 1,544 bytes;
-- overall meaningful ROM: 151,862 / 7,717,440 = 1.9678%.
+- overall meaningful ROM: 151,910 / 7,717,440 = 1.9684%.
 
 EXACT NEXT ACTION:
-1. Confirm published tree clean and `HEAD == ches/main`; do not redo shape0001 raw-thunk proofs.
-2. Re-rank the regenerated repeated-shape clusters; shape0002 or the next coherent same-callee family is the preferred fast path.
-3. For any candidate family, prove one natural source shape first, then batch only functions sharing the exact ABI/callee semantics.
-4. Keep C6BC and other recorded compiler-sensitive families parked unless new structural evidence appears.
+1. Confirm published tree clean and `HEAD == ches/main`; do not redo this flag-setter proof.
+2. Re-rank the regenerated repeated clusters. The large repeated allocator/constructor families (for example shape0005) are now candidates, but first verify shared semantics/type ownership before batching.
+3. Prefer bounded coherent exact families over parked C6BC/compiler archaeology.
+4. Use the same ladder: one natural candidate -> family proof -> production/detached ROM -> inventory/docs -> publish.
 
 ## Zero-context orientation
 
@@ -68,13 +69,13 @@ Do not regress to broad rescans or syntax roulette.
 
 ## Current exact state
 
-- Code: 76,132 / 940,036 = 8.0988%
-- Assembly remaining: 863,904 bytes
-- Linked assembly functions: 2,247
-- Inferred ranges: 862,360 / 863,904 = 99.8213%
+- Code: 76,180 / 940,036 = 8.1039%
+- Assembly remaining: 863,856 bytes
+- Linked assembly functions: 2,243
+- Inferred ranges: 862,312 / 863,856 = 99.8213%
 - Unattributed assembly: 1,544 bytes
 - Data/assets: 75,334 / 6,777,404 = 1.1115%
-- Overall meaningful ROM: 151,862 / 7,717,440 = 1.9678%
+- Overall meaningful ROM: 151,910 / 7,717,440 = 1.9684%
 - Free tail: 671,168 bytes
 - Retail ROM: 8,388,608 bytes
 - SHA1: a2fc3574f0a65a4fcf7682fb274b9d7eebdef963
@@ -260,9 +261,6 @@ A1EA8 is a behavior-understood effective-season index mapper but remains
 assembly because bounded source candidates did not match. Do not resume
 compiler syntax roulette. Other spawn helpers remain assembly.
 
-### Exact next action
+### Completed adjacent state
 
-GameState+0x34D8..+0x34DB is already structurally closed: C4E4/C5EC and the full 14-bit map-stamp mask API are exact source. Continue with repeated tiny-function families instead of remapping it.
-resets. Actor state starts at +0x34DC. Trace concrete readers/writers
-and recover the smallest natural exact helper cluster. Use Opus/Astra
-fast path and preserve all parked boundaries.
+GameState+0x34D8..+0x34DB is structurally closed: C4E4/C5EC and the full 14-bit map-stamp mask API are exact source. The actor state at +0x34DC is also source-owned. Continue from the current repeated-family task at the top; do not remap these completed blocks.

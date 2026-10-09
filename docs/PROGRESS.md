@@ -16,8 +16,8 @@ Current reconstruction:
 
 ```text
 Code reconstruction
-  76132 / 940036 bytes (8.0988%)
-  864576 bytes remain in asm
+  76180 / 940036 bytes (8.1039%)
+  863856 bytes remain in asm
 
 Data/assets reconstruction
   75334 / 6777404 bytes (1.1115%)
@@ -28,7 +28,7 @@ Data/assets reconstruction
   396 additional source-owned ROM-header bytes count only toward overall
 
 Overall meaningful-ROM reconstruction
-  151862 / 7717440 bytes (1.9678%)
+  151910 / 7717440 bytes (1.9684%)
   final ROM padding is excluded from this denominator
 
 ROM space
@@ -36,7 +36,7 @@ ROM space
   671168 bytes free (655.44 KiB, 8.0009%) contiguous tail space
 ```
 
-The code inventory currently reports **2,247 linked assembly functions**, **862,360 bytes** covered by inferred function ranges, **1,544 unattributed assembly bytes**, and **17 explicitly parked functions**. The unattributed increase is structural: exact E0AC/E174..E1A4 boundaries exposed previously hidden code at E118..E174 and E1B4..E2D4.
+The code inventory currently reports **2,243 linked assembly functions**, **862,312 bytes** covered by inferred function ranges, **1,544 unattributed assembly bytes**, and **17 explicitly parked functions**. The unattributed increase is structural: exact E0AC/E174..E1A4 boundaries exposed previously hidden code at E118..E174 and E1B4..E2D4.
 
 ## What the metrics mean
 

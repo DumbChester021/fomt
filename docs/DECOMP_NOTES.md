@@ -25,8 +25,12 @@ live state. This file keeps subsystem/function evidence and matching lessons.
 
 Current retail state:
 - Active public retail branch: `main`; the former `Live-temp` line is retired. Historical `ches-dev` commits remain provenance only.
-- Current exact progress: **76,132 / 940,036 = 8.0988% source** and **863,904 assembly bytes**. Data/assets reconstruction is **75,334 / 6,777,404 = 1.1115%** and overall meaningful-ROM reconstruction is **151,862 / 7,717,440 = 1.9678%**. Forced detached and production ROM comparisons report `fomt.gba: OK`; retail SHA1 remains `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
-- Remaining linked assembly functions: **2,247**; inferred function ranges cover **862,360 / 863,904 = 99.8213%**, with **1,544 unattributed bytes** and **17 explicitly parked functions**. The extra 380 unattributed bytes are the newly exposed E118..E174 and E1B4..E2D4 unlabeled code islands.
+- Current exact progress: **76,180 / 940,036 = 8.1039% source** and **863,856 assembly bytes**. Data/assets reconstruction is **75,334 / 6,777,404 = 1.1115%** and overall meaningful-ROM reconstruction is **151,910 / 7,717,440 = 1.9684%**. Forced detached and production ROM comparisons report `fomt.gba: OK`; retail SHA1 remains `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
+- Remaining linked assembly functions: **2,243**; inferred function ranges cover **862,312 / 863,856 = 99.8213%**, with **1,544 unattributed bytes** and **17 explicitly parked functions**. The extra 380 unattributed bytes are the newly exposed E118..E174 and E1B4..E2D4 unlabeled code islands.
+
+### 2026-10-08 four GameState flag setters
+
+The contiguous `0x08010F24..0x08010F54` quartet is exact source in `src/game_state_flag_setters.cc`. Each helper ORs one low-nibble mask (1, 2, 4, 8) into byte 0 of a shared state pointer. Natural `*state |= mask` source compiles to the exact 10-byte retail body plus 2-byte alignment. Production and detached forced ROM comparisons pass. Keep the owning-state semantics unnamed until surrounding structure proves the field identity.
 
 ### 2026-10-08 remaining shape0001 raw ABI thunks
 

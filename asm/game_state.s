@@ -1481,41 +1481,7 @@ func_08010F1C: @ 0x08010F1C
     lsrs r0, r0, #0x1a
     bx lr
 
-    thumb_func_start func_08010F24
-func_08010F24: @ 0x08010F24
-    ldrb r1, [r0]
-    movs r2, #1
-    orrs r1, r2
-    strb r1, [r0]
-    bx lr
-    .align 2, 0
-
-    thumb_func_start func_08010F30
-func_08010F30: @ 0x08010F30
-    ldrb r1, [r0]
-    movs r2, #2
-    orrs r1, r2
-    strb r1, [r0]
-    bx lr
-    .align 2, 0
-
-    thumb_func_start func_08010F3C
-func_08010F3C: @ 0x08010F3C
-    ldrb r1, [r0]
-    movs r2, #4
-    orrs r1, r2
-    strb r1, [r0]
-    bx lr
-    .align 2, 0
-
-    thumb_func_start func_08010F48
-func_08010F48: @ 0x08010F48
-    ldrb r1, [r0]
-    movs r2, #8
-    orrs r1, r2
-    strb r1, [r0]
-    bx lr
-    .align 2, 0
+    .section .text.after_game_state_flag_setters, "ax", %progbits
 
     thumb_func_start func_08010F54
 func_08010F54: @ 0x08010F54
