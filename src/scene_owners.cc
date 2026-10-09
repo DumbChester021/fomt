@@ -58,6 +58,72 @@ struct ControllerRunTransfer925
     }
 };
 
+// Local reconstruction of the old move-copy pointer semantics used by 83B2C.
+// Keep this scoped to the recovered Run until SmartPtr itself is reconstructed.
+template <typename T>
+struct SceneMovePtr83
+{
+    T * inner;
+
+    SceneMovePtr83(SceneMovePtr83 & source)
+        : inner(source.Move())
+    {
+    }
+
+    ~SceneMovePtr83()
+    {
+        delete inner;
+    }
+
+    T * Move()
+    {
+        T * value = inner;
+        inner = 0;
+        return value;
+    }
+};
+
+extern u32 vtable_unk_080E7CF4[];
+
+struct SceneRequest83
+{
+    u32 * vtable;
+    SceneMovePtr83<AUnk_0800080C> continuation;
+    void * context;
+    u8 flag;
+
+    SceneRequest83(SceneMovePtr83<AUnk_0800080C> continuation_, void * context_, u8 flag_)
+        : vtable(vtable_unk_080E7CF4)
+        , continuation(continuation_)
+        , context(context_)
+        , flag(flag_)
+    {
+    }
+};
+
+struct OwnedSceneRequest83
+{
+    AUnk_0800080C * request;
+
+    ~OwnedSceneRequest83()
+    {
+        delete request;
+    }
+};
+
+struct SceneRequestTransfer83
+{
+    OwnedSceneRequest83 * source;
+    AUnk_0800080C * request;
+
+    SceneRequestTransfer83(OwnedSceneRequest83 * source_, AUnk_0800080C * request_)
+        : source(source_)
+        , request(request_)
+    {
+        source->request = 0;
+    }
+};
+
 extern SmartPtr<AUnk_0800080C> RunController51504(SceneController *) asm("func_08051504");
 extern SmartPtr<AUnk_0800080C> RunController52984(SceneController *) asm("func_08052984");
 extern SmartPtr<AUnk_0800080C> RunController588AC(SceneController *) asm("func_080588AC");
@@ -71,6 +137,7 @@ extern void RunController7F8C8(SceneController *) asm("func_0807F8C8");
 extern void RunController80540(SceneController *) asm("func_08080540");
 extern void RunController8114C(SceneController *) asm("func_0808114C");
 extern void RunController81BBC(SceneController *) asm("func_08081BBC");
+extern int RunController82CEC(SceneController *) asm("func_08082CEC");
 extern void RunController84228(SceneController *) asm("func_08084228");
 extern void RunController8A55C(SceneController *) asm("func_0808A55C");
 extern void RunController8C0BC(SceneController *) asm("func_0808C0BC");
@@ -190,6 +257,35 @@ SceneRequestResult * func_08082184(SceneRequestResult * result, SceneOwner82144 
 {
     RunController81BBC(self->controller.Get());
     result->request = self->continuation.Move();
+    return result;
+}
+
+EC SceneRequestResult * func_08083B2C(SceneRequestResult *, SceneOwner83AEC *) SECTION(".text.scene_run_83b2c");
+SceneRequestResult * func_08083B2C(SceneRequestResult * result, SceneOwner83AEC * self)
+{
+    SceneMovePtr83<AUnk_0800080C> * continuation =
+        reinterpret_cast<SceneMovePtr83<AUnk_0800080C> *>(&self->continuation);
+
+    int status = RunController82CEC(self->controller.Get());
+
+    if (status == 0) {
+        result->request = continuation->Move();
+    } else if (status == 1) {
+        OwnedSceneRequest83 owned;
+        SceneRequest83 * request = new SceneRequest83(*continuation, self->unk_1C, 0);
+        owned.request = reinterpret_cast<AUnk_0800080C *>(request);
+        AUnk_0800080C * moved = owned.request;
+        SceneRequestTransfer83 transfer(&owned, moved);
+        result->request = moved;
+    } else {
+        OwnedSceneRequest83 owned;
+        SceneRequest83 * request = new SceneRequest83(*continuation, self->unk_1C, 1);
+        owned.request = reinterpret_cast<AUnk_0800080C *>(request);
+        AUnk_0800080C * moved = owned.request;
+        SceneRequestTransfer83 transfer(&owned, moved);
+        result->request = moved;
+    }
+
     return result;
 }
 

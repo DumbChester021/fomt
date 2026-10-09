@@ -1,6 +1,6 @@
 # Scenes: construction, cleanup and continuation transfer
 
-The shared scene lifetime layer is exact in `include/scene_owners.hh` and `src/scene_owners.cc`: 24 constructors, 25 destructors and 23 `Run()` entries, totaling **72 source functions / 3,748 linked retail bytes**. These are scene lifetime and transition mechanics. Concrete screen identities and controller implementations remain incomplete.
+The shared scene lifetime layer is exact in `include/scene_owners.hh` and `src/scene_owners.cc`: 24 constructors, 25 destructors and 24 `Run()` entries, totaling **73 source functions / 3,916 linked retail bytes**. These are scene lifetime and transition mechanics. Concrete screen identities and controller implementations remain incomplete.
 
 ## Ownership layout
 
@@ -21,6 +21,8 @@ Each natural derived destructor installs the original derived vtable, deletes th
 For 16 recovered `Run()` entries, the scene calls its controller, moves the continuation into the caller's result slot, clears the owned pointer and returns the result address. Six entries first discard and destroy a temporary request returned by the controller.
 
 The old aggregate-return ABI passes the one-pointer result slot in r0 and the scene in r1. Explicit ABI helpers use a one-pointer result-storage view while retaining typed scene ownership and normal `SmartPtr::Move()`. Typed virtual member names are bound to those entries through linker aliases. Existing retail vtables remain authoritative.
+
+`func_08083B2C` proves a second old auto_ptr-style pattern. The continuation uses a one-word moving-copy slot, while each allocating branch owns a request temporary plus a two-word transfer proxy. The exact source assigns the outer result inside the branch, lets the branch-local owner destruct, and only then joins at one common return. Direct returns from both allocating branches cause GCC to tail-merge those cleanups and do not match retail.
 
 ## Constructor contract
 
@@ -75,7 +77,7 @@ All destructors below are 64 bytes. Parenthesized constructor sizes mark recover
 | `SceneOwner80DC4` | `func_08080D94` (48) | `vtable_unk_080E7CA0` | `func_08080E04` | 28 | `func_08080540` |
 | `SceneOwner81A70` | `func_08081A40` (48) | `vtable_unk_080E7CBC` | `func_08081AB0` | 28 | `func_0808114C` |
 | `SceneOwner82144` | `func_08082114` (48) | `vtable_unk_080E7CD8` | `func_08082184` | 28 | `func_08081BBC` |
-| `SceneOwner83AEC` | `func_08083A7C` (112) | `vtable_unk_080E7D04` | `func_08083B2C` | assembly | `unresolved` |
+| `SceneOwner83AEC` | `func_08083A7C` (112) | `vtable_unk_080E7D04` | `func_08083B2C` | 168 | `func_08082CEC` |
 | `SceneOwner85528` | `func_080854F4` (52) | `vtable_unk_080E7D20` | `func_08085568` | 28 | `func_08084228` |
 | `SceneOwner881AC` | `func_08088168` (68) | `vtable_unk_080E7D3C` | `func_080881EC` | assembly | `unresolved` |
 | `SceneOwner8AB68` | `func_0808AB38` (48) | `vtable_unk_080E7D58` | `func_0808ABA8` | 28 | `func_0808A55C` |
@@ -89,11 +91,11 @@ All destructors below are 64 bytes. Parenthesized constructor sizes mark recover
 
 ## Remaining scene methods
 
-- `func_08083B2C`: a controller status selects direct continuation transfer or a new 16-byte request wrapper with scene context at +1C.
+- `func_08083B2C`: now exact source. Controller status 0 moves the continuation directly; status 1/fallback allocate the same 16-byte request wrapper with scene context at +1C and flags 0/1, then transfer ownership through branch-local proxies.
 - `func_080881EC`: controller status selects direct transfer or nested 16-/20-byte requests with context at +10 and additional state.
-- `func_08092604`: now exact source. It obtains a controller request through caller-supplied aggregate-return storage and transfers that temporary to the outer result through the recovered two-word `auto_ptr_ref`-style proxy.
+- `func_08092604`: exact source. It obtains a controller request through caller-supplied aggregate-return storage and transfers that temporary to the outer result through the recovered two-word `auto_ptr_ref`-style proxy.
 
-Two complex Runs remain assembly: `func_08083B2C` and `func_080881EC`. Constructor `92570`, controller constructors and controller logic also remain assembly. Nearby shop/catalog or rucksack data is useful evidence but does not establish a specific screen name.
+Only one complex Run remains assembly: `func_080881EC`. Constructor `92570`, controller constructors and controller logic also remain assembly. Nearby shop/catalog or rucksack data is useful evidence but does not establish a specific screen name.
 
 ## True boundaries and verification
 
@@ -110,7 +112,7 @@ Six formerly inferred Run ranges also contained unnamed neighboring code. Only t
 
 The **596 bytes** remain unchanged assembly and now count as unattributed. Run 93AD4 follows the separate 12-byte helper at 93AC8; destructor adjacency alone does not establish its address.
 
-All 68 source-owned scene spans match retail. The newest three 68-byte constructors each matched scratch at 0x44 / 0 differences, and the forced production full-ROM comparison passes with the unchanged tracked compiler. Original entry aliases, symbol addresses and all 25 destructor/Run vtable slot pairs are preserved. The extra-input checkpoint adds 3 entries / 204 bytes; regenerated inventory removes exactly those three linked assembly functions and preserves the 2,696 unattributed bytes.
+All 73 source-owned scene functions match retail, and the forced production full-ROM comparison passes with the unchanged tracked compiler. The newest Run, `func_08083B2C`, matches scratch and production-shaped candidates at 0xA8 / 0 differences. Original entry aliases, symbol addresses and all 25 destructor/Run vtable slot pairs are preserved. Regenerated inventory reports 2,131 linked assembly functions, 858,380 assembly bytes and the unchanged 2,696 unattributed bytes.
 
 ROM: **8,388,608 bytes**, SHA1 `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
 

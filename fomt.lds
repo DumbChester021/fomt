@@ -655,6 +655,8 @@ SECTIONS
         asm/code_0803EE94.o(.text.after_scene_ctor_83a7c);
         src/scene_owners.o(.text.scene_owner_83aec);
         asm/code_0803EE94.o(.text.after_scene_owner_83aec);
+        src/scene_owners.o(.text.scene_run_83b2c);
+        asm/code_0803EE94.o(.text.after_scene_run_83b2c);
         src/scene_owners.o(.text.scene_ctor_854f4);
         asm/code_0803EE94.o(.text.after_scene_ctor_854f4);
         src/scene_owners.o(.text.scene_owner_85528);

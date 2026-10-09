@@ -53,7 +53,7 @@ but its score is no longer an execution order.
 
 ## Current priority: work the live queue and preserve family-level leverage
 
-Latest coherent promotion: Scenes, extended constructors. func_0809A4D4 (68 bytes), func_08083A7C (112 bytes), and func_08088168 (68 bytes) add 248 exact linked source bytes. func_08092570 is behavior-complete and exact-size at 0x54 but parked on a four-linked-byte r0/r1 codegen frontier after bounded variants. Next work func_08092604 (60-byte complex Run), then 83B2C/881EC. Shape cluster IDs renumber after inventory regeneration; use symbols. Stable evidence: docs/SCENES.md.
+Latest coherent promotion: Scenes, complex Run 83B2C. func_08083B2C adds 168 exact linked source bytes with the retail 24-byte frame and branch-local ownership-transfer cleanup preserved. func_08092604 is also exact at 60 bytes. func_08092570 remains behavior-complete and exact-size at 0x54 but parked on a four-linked-byte r0/r1 codegen frontier. Next work is func_080881EC, the sole remaining complex scene Run. Shape cluster IDs renumber after inventory regeneration; use symbols. Stable evidence: docs/SCENES.md.
 
 The larger 20-member scene-change constructor family remains bounded but nonmatching. Do not repeat its closed aggregate-lifetime candidates merely because the queue ranks it highly. NEXT_AGENT_HANDOFF.md owns the active continuation.
 

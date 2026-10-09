@@ -1,107 +1,73 @@
 # Current FoMT continuation - October 9, 2026
 
-## Latest verified checkpoint: Scenes: complex Run 92604
+## Latest verified checkpoint: Scenes: complex Run 83B2C
 
 Workspace: /mnt/data/Github/gba/fomt
 Public retail branch: main, tracking ches/main.
 Run `git log -1` and `git status` before new work. Preserve unrelated changes.
 
-New exact source this checkpoint: `func_08092604`, 60 linked retail bytes.
-Scratch `scene-complex-runs-2026-10-09/92604-v5` is 0x3C / 0 differences.
-Production forced full-ROM comparison passes with `fomt.gba: OK`.
+New exact source this checkpoint:
+- `func_08083B2C`: 168 linked retail bytes (0xA8), 0 differing bytes.
+- Scratch proof: `tools/ches/checkpoints/scene-complex-runs-2026-10-09/83b2c-v12/`.
+- Production-shaped proof: `tools/ches/checkpoints/scene-complex-runs-2026-10-09/83b2c-production-shape-v1/`.
+- Forced `make -B -j4 compare` passes with `fomt.gba: OK`.
 
 Current metrics:
-- Code: 81,488 / 940,036 = 8.6686%.
-- Assembly: 858,548 bytes; 2,132 linked functions.
-- Inferred ranges: 855,852 / 858,548 = 99.6860%.
+- Code: 81,656 / 940,036 = 8.6865%.
+- Assembly: 858,380 bytes; 2,131 linked functions.
+- Inferred ranges: 855,684 / 858,380 = 99.6859%.
 - Unattributed assembly: 2,696 bytes; 17 parked functions.
 - Data/assets: 75,334 / 6,777,404 = 1.1115%.
-- Overall meaningful ROM: 157,218 / 7,717,440 = 2.0372%.
+- Overall meaningful ROM: 157,386 / 7,717,440 = 2.0394%.
+- Free tail: 671,168 bytes.
 
-The shared scene lifetime layer now owns 72 source functions / 3,748 bytes:
-24 constructors, 25 destructors and 23 Run entries.
+The shared scene lifetime layer now owns 73 source functions / 3,916 linked bytes:
+24 constructors, 25 destructors and 24 Run entries.
 
-## New proven technique: old transfer proxy
+## 83B2C exact source contract
 
-Retail `92604` is not represented correctly by a plain local SmartPtr because the
-project SmartPtr intentionally lacks the original rvalue transfer proxy.
+Controller: `func_08082CEC`.
+Owner: `SceneOwner83AEC`.
+Behavior:
+- status 0 moves the existing continuation directly to the result;
+- status 1 allocates a 16-byte request with context +0x1C and flag 0;
+- all other statuses allocate the same request with flag 1;
+- wrapper paths transfer ownership to the result and destroy the cleared branch-local owner.
 
-Exact model:
-1. controller helper writes a one-pointer owned result into caller-provided stack storage;
-2. a two-word transfer proxy stores the source temporary address and moved request;
-3. proxy construction clears the source;
-4. the moved pointer is kept in a local and written to the outer result;
-5. the now-cleared source temporary runs its normal virtual-delete destructor.
-
-This naturally emits retail's 12-byte frame and `sp+4` / `sp+8` proxy stores.
-Do not modify SmartPtr globally just to model this ABI.
-
-## Exact next action: continue 83B2C from v2
-
-Target `func_08083B2C` is 0xA8 bytes.
-Behavior is established:
-- controller status 0 moves the scene continuation directly to the result;
-- status 1 allocates a 16-byte wrapper, moves the continuation, stores context +0x1C and flag 0;
-- other status allocates the same wrapper with flag 1;
-- both wrapper paths transfer ownership to the result and destroy the cleared owner temporary.
-
-Scratch directory:
-`tools/ches/checkpoints/scene-complex-runs-2026-10-09/`
-
-Important candidates:
-- `83b2c-v1b`: behavior-right but branches merged, 0x7C, 20-byte frame.
-- `83b2c-v2`: best structural candidate, 0xAC. It restores the retail 24-byte frame and separate branch-local transfer proxies. Its wrong extra continuation object creates an additional destructor; keep the layout, replace that lifetime model.
-- `83b2c-v3`: 0x90 scratch-only shortcut; rejected.
-- `92604-v5`: exact transfer-proxy reference implementation.
-
-Retail 83B2C stack shape to preserve:
-- +0: shared owned wrapper temporary;
-- +4: one-word compiler/transfer slot, but not a destructed continuation owner;
-- status-1 proxy: +8 source, +0xC request;
+Exact stack/lifetime shape:
+- frame: 24 bytes, saved r4-r7;
+- +0: shared owned request temporary;
+- +4: one-word move-copy continuation slot;
+- status-1 proxy: +8 source, +0x0C request;
 - fallback proxy: +0x10 source, +0x14 request.
 
-Do not force registers or change the compiler.
+Critical source-shape lesson:
+Do not return directly from the status-1/fallback branches. Each branch must assign the caller result, leave the branch so the local owner destructor runs there, then join at one final return. Direct branch returns cause GCC to tail-merge the cleanup blocks and miss retail.
+
+Production uses a local one-word `SceneMovePtr83` view over the existing continuation field. This reconstructs the missing old move-copy semantics without changing project-wide `SmartPtr`. Keep that scope local until SmartPtr itself is reconstructed.
+
+The bundled `tools/libagbc++/memory` is the 1997 SGI STL auto_ptr implementation and remains useful ABI evidence. Do not modify it to force matches.
 
 ## Remaining scene frontier
 
-- constructor `92570`: behavior-complete exact-size 0x54, parked at four r0/r1 bytes;
-- Run `83B2C`: active next target;
-- Run `881EC`: still assembly, audit after 83B2C if needed.
+- `func_08092570`: behavior-complete, exact-size 0x54, parked at four r0/r1 linked bytes.
+- `func_080881EC`: only remaining complex scene Run in assembly and the active next target.
+- Controller constructors/controller internals remain assembly-bound as documented.
 
-Stable evidence: docs/SCENES.md
-ROM SHA1: a2fc3574f0a65a4fcf7682fb274b9d7eebdef963
+## Exact next action: audit 881EC
+
+Audit `func_080881EC` from retail before writing source:
+1. confirm true body boundary and controller return/status behavior;
+2. map all request allocations, context +0x10 use, and extra owner state;
+3. identify ownership temporaries/proxy stack slots;
+4. try one natural typed candidate using the proven branch-local ownership transfer pattern from 83B2C;
+5. compare with `tools/ches/compare-function.py`;
+6. if exact, integrate, full-ROM gate, inventory/docs, commit/push.
+
+Known semantic clue from prior scene mapping: 881EC selects direct continuation transfer or nested 16-/20-byte requests using context at +0x10 and additional state.
+
+Do not force registers, add volatile barriers, or change the compiler.
+
+Stable evidence: `docs/SCENES.md`
+ROM SHA1: `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`
 No background executions remain.
-
-
-## Research continuation after 5ff335f: 83B2C auto_ptr ABI
-
-Scratch-only work advanced the 83B2C model without modifying production source.
-
-Best structural candidate remains `83b2c-v7`:
-- exact 24-byte frame and saved `r4-r7` set;
-- exact status-0 direct continuation move;
-- exact 16-byte request allocation shape;
-- exact `sp+4 = 0` move-argument slot;
-- exact owned request at `sp+0`;
-- exact status-1 proxy positions `sp+8/+0xC`;
-- exact fallback proxy positions `sp+0x10/+0x14`.
-Its remaining large difference is that GCC tail-merges the two identical ownership-result cleanup blocks, while retail keeps one cleanup copy inside each branch.
-
-New authoritative evidence: `tools/libagbc++/memory` is the bundled 1997 SGI STL implementation and explicitly defines `auto_ptr`. `tools/libagbc++/stl_config.h` enables `__SGI_STL_USE_AUTO_PTR_CONVERSIONS`. Therefore this ABI should be reconstructed from the real library rather than by inventing a project-wide SmartPtr change.
-
-A minimal retail oracle was identified: `func_080DB320` (0x080DB320..0x080DB36C) in `asm/code_linkonce.s`. It is effectively one 83B2C wrapper branch:
-- 16-byte stack frame;
-- incoming continuation moved through `sp+4`;
-- 12-byte concrete allocation;
-- owned return temporary at `sp+0`;
-- two-word return proxy at `sp+8/+0xC`;
-- source cleared before virtual-delete destructor;
-- caller result written from the moved pointer.
-
-Scratch DB320 results:
-- `db320-v1`: direct base-typed auto_ptr-style return collapses by RVO to 0x34 vs retail 0x4C.
-- `db320-v2`: concrete local -> base return reached the expected cross-type conversion point but old GCC rejected the final rvalue copy.
-- `db320-v3`: custom conversion model became ambiguous.
-- `db320-v4`: using the actual bundled `<memory>` confirms the same ambiguity: both the templated cross-type constructor and conversion operator are viable for `auto_ptr<ConcreteSceneDB320> -> auto_ptr<AScene>`.
-
-Exact next action: solve the DB320 oracle first using the real SGI `auto_ptr` API and an original-source expression that disambiguates the concrete-to-base transfer naturally. Do not alter `tools/libagbc++/memory` or production `SmartPtr`. Candidate directions should be source-level only, such as an explicit intermediate conversion form that selects one SGI auto_ptr path. Once DB320 reaches 0x4C / 0, port that exact expression/type relationship back to 83B2C. Avoid artificial volatile/register barriers.
