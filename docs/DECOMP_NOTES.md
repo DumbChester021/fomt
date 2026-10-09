@@ -25,8 +25,14 @@ live state. This file keeps subsystem/function evidence and matching lessons.
 
 Current retail state:
 - Active public retail branch: `main`; the former `Live-temp` line is retired. Historical `ches-dev` commits remain provenance only.
-- Current exact progress: **77,740 / 940,036 = 8.2699% source** and **862,296 assembly bytes**. Data/assets reconstruction is **75,334 / 6,777,404 = 1.1115%** and overall meaningful-ROM reconstruction is **153,470 / 7,717,440 = 1.9886%**. Forced detached and production ROM comparisons report `fomt.gba: OK`; retail SHA1 remains `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
-- Remaining linked assembly functions: **2,204**; inferred function ranges cover **860,196 / 862,296 = 99.7565%**, with **2,100 unattributed bytes** and **17 explicitly parked functions**. The total includes 380 exposed mine-floor bytes and the new 556-byte DB404..DB630 unnamed neighbor.
+- Current exact progress: **80,100 / 940,036 = 8.5210% source** and **859,936 assembly bytes**. Data/assets reconstruction is **75,334 / 6,777,404 = 1.1115%** and overall meaningful-ROM reconstruction is **155,830 / 7,717,440 = 2.0192%**. Forced detached and production ROM comparisons report `fomt.gba: OK`; retail SHA1 remains `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
+- Remaining linked assembly functions: **2,157**; inferred function ranges cover **857,240 / 859,936 = 99.6865%**, with **2,696 unattributed bytes** and **17 explicitly parked functions**. The total includes the prior exposed islands and 596 additional unnamed bytes preserved beside six scene Run entries.
+
+### 2026-10-09 Scenes: cleanup and continuation transfer
+
+The shared scene layout proves controller +4 and continuation +8; the controller's old-GCC virtual deletion prefix has its vtable at +4. Natural empty derived destructors exactly recover all 25 entries, including the derived-vtable store. Another 22 Run entries match as typed explicit aggregate-return ABI helpers, transferring the continuation into the caller's one-pointer result storage. Six controller-return temporaries are destroyed before transfer.
+
+This unit recovers 47 functions / 2,360 bytes. Individual matches, both forced full-ROM builds, all retail symbol addresses/sizes, vtable slots, inverse assembly and inventory audits pass. Six true Run boundaries expose 596 unnamed bytes that remain unchanged assembly. Three complex Runs and all controller/scene constructors remain assembly. Stable evidence is in SCENES.md; candidate failures and the exact constructor continuation are in NEXT_AGENT_HANDOFF.md.
 
 ### 2026-10-09 owned-polymorphic destructor family
 
@@ -1237,4 +1243,4 @@ Stable contracts and source ranges are in `docs/RESOURCE_HANDLES.md`. Private so
 Latest recovered GroundPickupState: +0x34C8..+0x34D7, 56 availability
 bits and fifteen packed three-bit durability fields. Four exact functions
 add 1,032 linked bytes. A1EA8 is parked. See docs/GROUND_PICKUP_STATE.md.
-The +0x34D8 mask and +0x34DC actor state are already source-owned. Active throughput target: coherent repeated-small-function families; keep C6BC parked.
+The +0x34D8 mask and +0x34DC actor state are already source-owned. Active subsystem target: scene constructors and controller creation; keep C6BC parked.

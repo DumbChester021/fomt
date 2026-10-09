@@ -16,8 +16,8 @@ Current reconstruction:
 
 ```text
 Code reconstruction
-  77740 / 940036 bytes (8.2699%)
-  862296 bytes remain in asm
+  80100 / 940036 bytes (8.5210%)
+  859936 bytes remain in asm
 
 Data/assets reconstruction
   75334 / 6777404 bytes (1.1115%)
@@ -28,7 +28,7 @@ Data/assets reconstruction
   396 additional source-owned ROM-header bytes count only toward overall
 
 Overall meaningful-ROM reconstruction
-  153470 / 7717440 bytes (1.9886%)
+  155830 / 7717440 bytes (2.0192%)
   final ROM padding is excluded from this denominator
 
 ROM space
@@ -36,7 +36,7 @@ ROM space
   671168 bytes free (655.44 KiB, 8.0009%) contiguous tail space
 ```
 
-The code inventory currently reports **2,204 linked assembly functions**, **860,196 bytes** covered by inferred function ranges, **2,100 unattributed assembly bytes**, and **17 explicitly parked functions**. The unattributed total includes the previously exposed mine-floor islands plus 556 bytes of unnamed neighboring code at DB404..DB630. The latter were formerly swallowed by the inferred DB3DC range; only its true 40-byte aligned body is source-owned.
+The code inventory currently reports **2,157 linked assembly functions**, **857,240 bytes** covered by inferred function ranges, **2,696 unattributed assembly bytes**, and **17 explicitly parked functions**. The total includes prior exposed islands plus 596 bytes of unnamed neighbors revealed by six scene Run seams. Only their true 28-byte Run bodies are source-owned; the neighboring code remains unchanged assembly.
 
 ## What the metrics mean
 
@@ -50,7 +50,9 @@ Understanding or documenting an opaque `.incbin` does not count as asset/data re
 
 ## Recent exact milestones
 
-The newest unit is **39 owned-polymorphic destructor entries / 1,560 linked source bytes**. Typed prefix views recover nullable deletion and explicit destructor-mode forwarding without inventing complete class identities. All 39 retail bodies and original symbol addresses match; isolated and production forced full-ROM comparisons pass. See [POLYMORPHIC_OWNERS.md](POLYMORPHIC_OWNERS.md).
+The newest unit is **Scenes: cleanup and continuation transfer, 47 functions / 2,360 linked source bytes**. It recovers 25 natural derived destructors and 22 Run entries, preserving original vtable slots and exact retail addresses. Both forced full-ROM builds pass. See [SCENES.md](SCENES.md).
+
+The preceding unit is **39 owned-polymorphic destructor entries / 1,560 linked source bytes**. Typed prefix views recover nullable deletion and explicit destructor-mode forwarding without inventing complete class identities. All 39 retail bodies and original symbol addresses match; isolated and production forced full-ROM comparisons pass. See [POLYMORPHIC_OWNERS.md](POLYMORPHIC_OWNERS.md).
 
 
 The latest exact mine-floor unit now totals **872 linked source bytes**: CE8C (168), the **72-byte D8A0..D8E8 accessor block**, D9B4 (76), the exact **0x180-byte DF2C..E0AC helper block**, E0AC (0x6A body plus 2 linked alignment bytes), and the **0x40-byte E174..E1B4 progress-flag block**. The shared 0x628-byte persistent type lives in `include/mine_floor.hh`. Detached and production full-ROM comparisons pass. See [MINE_FLOOR.md](MINE_FLOOR.md).
@@ -112,4 +114,4 @@ The reported **671,168 bytes** are the contiguous final tail after linked conten
 Latest recovered GroundPickupState: +0x34C8..+0x34D7, 56 availability
 bits and fifteen packed three-bit durability fields. Four exact functions
 add 1,032 linked bytes. A1EA8 is parked. See docs/GROUND_PICKUP_STATE.md.
-The +0x34D8 mask and +0x34DC actor state are already source-owned. Active throughput target: coherent repeated-small-function families; keep C6BC parked.
+The +0x34D8 mask and +0x34DC actor state are already source-owned. Active subsystem target: scene constructors and controller creation; keep C6BC parked.

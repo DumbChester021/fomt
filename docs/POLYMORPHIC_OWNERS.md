@@ -40,4 +40,4 @@ Local ignored proofs, manifest, candidate, full build logs and verification summ
 
 The larger scene-change constructor/transfer family remains bounded but nonmatching. Its related DC1A0 cleanup entry is now source-owned.
 
-The next 25-member two-owned-member cleanup family begins with `func_080521BC`. It writes a derived vtable, deletes the object at +8 through a +0-vtable interface, then deletes the object at +4 through that object's +4 vtable, and forwards mode to scene base 007EC. Audit its concrete prefixes and factories before batching. NEXT_AGENT_HANDOFF.md owns the exact continuation.
+The adjacent two-owned-member scene family is now exact: 25 natural destructors and 22 Run entries / 2,360 linked bytes. It owns a controller at +4 and continuation at +8, using their different vtable offsets. See [SCENES.md](SCENES.md). Scene constructors and controller creation are the next frontier; NEXT_AGENT_HANDOFF.md owns the exact continuation.

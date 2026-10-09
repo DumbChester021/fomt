@@ -12,11 +12,11 @@ exploit them across the remaining assembly instead of making an individual
 resource family the main queue.
 
 Current verified working state on `main`:
-- code: **77,740 / 940,036 = 8.2699%**;
-- assembly remaining: **862,296 bytes**;
-- remaining linked assembly functions: **2,204**;
+- code: **80,100 / 940,036 = 8.5210%**;
+- assembly remaining: **859,936 bytes**;
+- remaining linked assembly functions: **2,157**;
 - data/assets: **75,334 / 6,777,404 = 1.1115%**;
-- overall meaningful ROM: **153,470 / 7,717,440 = 1.9886%**;
+- overall meaningful ROM: **155,830 / 7,717,440 = 2.0192%**;
 - packed bank: **416 / 493 semantically owned animations**;
 - retail ROM remains exact at SHA1 `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
 
@@ -53,7 +53,7 @@ but its score is no longer an execution order.
 
 ## Current priority: work the live queue and preserve family-level leverage
 
-Latest coherent promotion: 39 one-owned-member destructor entries / 1,560 linked source bytes, with exact isolated and production ROMs. Next audit the 25-member two-owned-member cleanup family beginning with func_080521BC; verify its +4-vtable child layout and true bounds before selecting a credible candidate. Shape cluster IDs renumber when the inventory regenerates, so identify families by representative symbols.
+Latest coherent promotion: Scenes, cleanup and continuation transfer, 47 functions / 2,360 linked source bytes, with exact isolated and production ROMs. Next audit scene constructor func_0807DD38 (48 bytes), its controller allocation/constructor and factory callers using the now-exact SceneOwner7DD68 layout. Other constructors may form a coherent next batch after individual ABI/layout audits. Shape cluster IDs renumber after inventory regeneration; use representative symbols. Stable evidence: docs/SCENES.md.
 
 The larger 20-member scene-change constructor family remains bounded but nonmatching. Do not repeat its closed aggregate-lifetime candidates merely because the queue ranks it highly. NEXT_AGENT_HANDOFF.md owns the active continuation.
 
@@ -503,4 +503,4 @@ At this historical checkpoint SpriteAnimator was the immediate priority and was 
 Latest recovered GroundPickupState: +0x34C8..+0x34D7, 56 availability
 bits and fifteen packed three-bit durability fields. Four exact functions
 add 1,032 linked bytes. A1EA8 is parked. See docs/GROUND_PICKUP_STATE.md.
-The +0x34D8 mask and +0x34DC actor state are already source-owned. Active throughput target: coherent repeated-small-function families; keep C6BC parked.
+The +0x34D8 mask and +0x34DC actor state are already source-owned. Active subsystem target: scene constructors and controller creation; keep C6BC parked.

@@ -1,77 +1,116 @@
 # Current FoMT continuation - October 9, 2026
 
-## Latest verified checkpoint: owned-polymorphic destructor family
+## Latest verified checkpoint: Scenes: cleanup and continuation transfer
 
 Workspace: /mnt/data/Github/gba/fomt
 Public retail branch: main, tracking ches/main.
 Run `git log -1` and `git status` before new work. Preserve unrelated changes.
 
-New exact source: src/owned_polymorphic_dtors.cc, 39 original entries / 1,560 linked bytes.
-Every 38-byte body plus two alignment bytes matches retail; isolated and production
-forced ROM comparisons pass, original symbols remain at their retail addresses.
+New exact source: include/scene_owners.hh and src/scene_owners.cc.
+25 natural destructors / 1,600 bytes plus 22 Run entries / 760 bytes:
+47 functions / 2,360 linked bytes. All individual comparisons, retail entry
+addresses/sizes and all 25 destructor/Run vtable slot pairs pass. Reversing
+only the bounded assembly seams reproduces the previous assembly exactly.
+Isolated and production forced full-ROM comparisons pass.
 ROM: 8,388,608 bytes, SHA1 a2fc3574f0a65a4fcf7682fb274b9d7eebdef963.
 No background executions remain. The tracked compiler/wrapper is unchanged.
 
 Current metrics:
-- Code: 77,740 / 940,036 = 8.2699%.
-- Assembly: 862,296 bytes; 2,204 linked functions.
-- Inferred function ranges: 860,196 / 862,296 = 99.7565%.
-- Unattributed assembly: 2,100 bytes; 17 parked functions.
-- Overall meaningful ROM: 153,470 / 7,717,440 = 1.9886%.
+- Code: 80,100 / 940,036 = 8.5210%.
+- Assembly: 859,936 bytes; 2,157 linked functions.
+- Inferred function ranges: 857,240 / 859,936 = 99.6865%.
+- Unattributed assembly: 2,696 bytes; 17 parked functions.
+- Data/assets: 75,334 / 6,777,404 = 1.1115%.
+- Overall meaningful ROM: 155,830 / 7,717,440 = 2.0192%.
 
-## Proven cleanup ABI
+## Proven scene ownership and ABI
 
-33 entries delete a pointer at +4 then forward mode to base func_0800080C.
-DB2EC/DC21C/DC474 use +8 with the same base.
-DC404/E41E8/E4210 use +4 and scene base func_080007EC.
-The member virtual destructor receives mode 3; the base receives the original
-incoming owner mode. Prefix views deliberately leave complete class identities
-and concrete owned types unresolved. No extra derived-vtable store is present.
+AScene owner: +0 vtable, +4 owned controller, +8 owned continuation request.
+The shared SceneController deletion prefix has data at +0 and its vtable at
++4 under old GCC; its complete concrete size/state is not reconstructed.
+The continuation uses AUnk_0800080C with a +0 vtable.
+Natural empty derived destructors match all 25 entries: install derived
+vtable, delete continuation, delete controller, forward original owner mode
+to the AScene base destructor. Member deletion mode is 3; base mode is not
+replaced with 3. Existing vtables and aliases remain authoritative.
 
-DB3DC's true range is DB3DC..DB404, 40 aligned bytes. Preserve the unnamed
-DB404..DB630 neighbor (556 bytes) in assembly. Inventory originally swallowed
-it into DB3DC; exposing it explains the larger unattributed total.
+Six 52-byte Runs discard/destroy a controller-produced temporary request:
+521FC, 57E5C, 5CF3C, 5E698, 5FD44, 9A558.
+Sixteen 28-byte Runs call the controller for side effects.
+All move-clear the owned continuation into the caller's one-pointer result
+slot and return the result address. Explicit ABI helpers preserve hidden
+result r0 / self r1, typed owner fields and normal SmartPtr::Move().
 
-Local durable ignored proofs:
-tools/ches/checkpoints/scene-change-2026-10-09/owned-dtors/
-Contains candidate, audited manifest, per-symbol comparisons, complete aligned
-span checks, integration inputs, both build logs and verification summaries.
-The matcher `--symbol` excludes trailing alignment by ELF symbol size; use
-the full correctly linked 40-byte span when checking a complete retail range.
-Stable evidence: docs/POLYMORPHIC_OWNERS.md.
+SceneOwner83AEC additionally has four words +0C..+18 and context +1C;
+SceneOwner881AC has word +0C and context +10. Other declarations claim only
+the proven common prefix. Stable layout/contract/table: docs/SCENES.md.
+Use subsystem titles in updates. Concrete screen names remain unresolved.
 
-## Exact next action
+Six true Run boundaries expose 596 untouched unnamed bytes:
+69EB4..69F14 (96), 75678..756B0 (56), 7F60C..7F63C (48),
+804E8..804F8 (16), 821A0..821D0 (48), 93AF0..93C3C (332).
+Only true bodies were promoted. 93AD4 is the vtable Run, separated from its
+destructor by the 12-byte 93AC8 helper; do not assume adjacency.
 
-Audit the repeated two-owned-member cleanup family beginning at func_080521BC
-in asm/code_0803EE94.s. Current regenerated family: 25 functions / 1,600 bytes,
-27 instructions each. Cluster IDs renumber after regeneration, so locate it
-by representative symbol rather than assuming the previous shape number.
+## Exact next action: Scenes, constructors and controller creation
 
-Representative 521BC..521FC is 64 bytes:
-1. Save the original owner and incoming destructor mode.
-2. Write vtable_unk_080E7934 into the owner.
-3. Delete the nullable member at owner+8 using its vtable at object+0.
-4. Delete the nullable member at owner+4 using its vtable at object+4.
-5. Forward owner and original mode to func_080007EC.
+Representative func_0807DD38..0807DD68 is 48 bytes. Its SceneOwner7DD68
+destructor and Run now have exact typed source.
+Audit the original constructor, factory DC158 and callers before writing:
+- r0 is the scene; r1 is the one-pointer continuation input; r2 is context.
+- It installs vtable E7C30, allocates a 0x710-byte controller and calls 7D194.
+- It stores controller at +4 and transfer-clears continuation into +8.
+- It returns the scene.
 
-The second owned object has a different polymorphic prefix. Do not call it
-GameObject or AUnk_0800080C solely from similar delete code. Audit neighboring
-constructors/factories, existing class interfaces and each member's vtable/
-offset/base before writing one credible source candidate. Keep candidates in
-an ignored checkpoint until exact; classify the first divergence instead of
-looping spellings. A true old-ABI data-bearing virtual interface may explain
-the +4 vtable, but verify it rather than assuming modern object layout.
+Try one credible natural scene constructor using the shared owner type,
+SmartPtr transfer and an audited opaque-controller construction boundary.
+The 8-byte controller deletion prefix is not the allocation size. Do not
+invent a complete controller layout to express allocation.
+Similar 48-byte constructors include 7EE14, 7F580, 8045C, 80D94, 81A40,
+82114, 8AB38, 8C56C, 8ECD8, 90E54, 931B0 and 93A58. Audit each allocation,
+callee ABI and extra fields before batching. No constructor candidate has
+been attempted in this checkpoint.
 
-Use existing compare-function.py and then the normal ladder:
-isolated full-ROM -> production forced compare/progress -> symbol/inventory
-audit -> canonical docs -> narrow reviewed commit/push to ches/main.
+Three complex Runs remain mapped assembly, not newly matched:
+- 83B2C: status from 82CEC chooses direct continuation or 16-byte wrapper
+  E7CF4 with context +1C and a status-derived boolean.
+- 881EC: 86A08/85EEC status -1 chooses direct continuation; other statuses
+  construct nested requests E5D94/E5C64 with context +10 and mode/state.
+- 92604: controller 9152C produces a request, transferred with additional
+  temporary lifetime machinery. Constructor 92570 already moves the incoming
+  continuation into the controller before storing the moved-from input +8.
+
+## Proofs and closed source shapes
+
+Local ignored checkpoint:
+tools/ches/checkpoints/scene-owners-2026-10-09/
+manifest.json owns all 25 mappings, true Run bodies/sizes and source seams.
+destructor-results.json: all 25 exact.
+run-results.json: all 22 exact.
+integration-inputs/ owns the four reviewed production inputs.
+isolated-final-build.log and production-final-build.log: both exact retail ROMs.
+verification.json and inventory-before/after.json own the final audit.
+
+Closed attempts:
+- Ordinary member Run return did not compile: SmartPtr's private unfinished
+  copy constructor and nonconst-reference/rvalue diagnostics.
+- Placement-new ABI result view added a null check on result: 521FC was
+  56/22 versus 52, 7DDA8 was 32/20 versus 28.
+- Direct one-pointer result storage removes that extra language operation;
+  both representatives and all 22 batch entries match. Do not redo variants
+  of the failed ordinary-return or placement-new spellings.
+
+Use compare-function.py with the explicit tracked compiler, then isolated
+full-ROM -> production forced compare/progress -> symbol/inventory audit ->
+canonical docs -> narrow reviewed commit/push to ches/main.
+Do not force registers, add empty asm barriers or modify the compiler.
 
 Reusable isolated worktree:
  /mnt/waydroid-hdd/home-chester-waydroid/fomt-integrations/flag-setters-20261009
-Detached b11a48e baseline plus verified flag-setter and owned-destructor source,
-assembly and linker inputs; compiler was freshly installed in the previous
-checkpoint. Compare reviewed baseline inputs before reusing it. Do not reset
-or overwrite unrelated changes. Old /tmp proof paths are absent.
+Detached b11a48e baseline plus verified flag setters, prior 39 single-owned
+destructors and this scene unit. Compiler was freshly installed before these
+integrations. Compare reviewed baseline inputs before reuse; do not reset or
+overwrite unrelated changes.
 
 ## Larger scene-change family: preserved frontier
 

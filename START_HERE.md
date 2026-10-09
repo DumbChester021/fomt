@@ -22,34 +22,34 @@ This is the live dashboard for the US Harvest Moon: Friends of Mineral Town matc
 
 ## Handoff readiness
 
-The latest verified checkpoint recovers 39 owned-polymorphic destructor entries, adding 1,560 linked source bytes. Production and isolated forced ROM comparisons passed on October 9, 2026, using the unchanged tracked compiler. Run `git log -1` and `git status` before work; never reset a dirty tree merely to match an expected hash. The full loader and complete GameState type remain unfinished. No build or compiler command is pending.
+The latest verified checkpoint is Scenes: cleanup and continuation transfer, recovering 47 functions and 2,360 linked source bytes. Production and isolated forced ROM comparisons passed on October 9, 2026, using the unchanged tracked compiler. Run `git log -1` and `git status` before work; never reset a dirty tree merely to match an expected hash. The full loader and complete GameState type remain unfinished. No build or compiler command is pending.
 
 For the proven techniques and recommended next approach, read the "Fast-path operating method" in docs/DECOMP_PLAYBOOK.md. NEXT_AGENT_HANDOFF.md includes first commands, exact next deliverable, closed paths and fresh-clone artifact limitations.
 
 ## Current exact reconstruction
 
-- Code: **77,740 / 940,036 = 8.2699%**
-- Assembly remaining: **862,296 bytes**
-- Linked assembly functions: **2,204**
-- Inferred ranges: **860,196 / 862,296 = 99.7565%**
-- Unattributed assembly: **2,100 bytes**
+- Code: **80,100 / 940,036 = 8.5210%**
+- Assembly remaining: **859,936 bytes**
+- Linked assembly functions: **2,157**
+- Inferred ranges: **857,240 / 859,936 = 99.6865%**
+- Unattributed assembly: **2,696 bytes**
 - Generated parked functions: **17**
 - Data/assets: **75,334 / 6,777,404 = 1.1115%**
-- Overall meaningful ROM: **153,470 / 7,717,440 = 1.9886%**
+- Overall meaningful ROM: **155,830 / 7,717,440 = 2.0192%**
 - Contiguous free tail: **671,168 bytes = 655.44 KiB**
 
 ## Latest completed unit
 
-The 39-function cleanup family is exact source in `src/owned_polymorphic_dtors.cc`, adding **1,560 linked bytes**. Each entry deletes one nullable owned polymorphic member at +4 or +8 and forwards the original object and incoming destructor mode to the scene or scene-request base. Every 38-byte body plus 2-byte alignment matches retail; both full-ROM builds pass. See [POLYMORPHIC_OWNERS.md](docs/POLYMORPHIC_OWNERS.md).
+Scenes: cleanup and continuation transfer is exact source in `include/scene_owners.hh` and `src/scene_owners.cc`, adding **47 functions / 2,360 linked bytes**. It recovers 25 natural destructors and 22 controller/continuation Run entries. Both forced full-ROM builds pass; original symbols and vtable slots are preserved. See [SCENES.md](docs/SCENES.md).
 
-The DB3DC seam exposes 556 bytes of previously swallowed neighboring code at DB404..DB630. Those bytes remain assembly and now count as unattributed, so the inventory does not inflate source progress.
+Six Run seams expose 596 bytes of unchanged unnamed neighboring code. Those bytes remain assembly and count as unattributed; only the true bodies count as source. The prior 39 single-owned-member destructors remain exact.
 
 ## Next direction
 
-The +0x34D8 four-byte map-stamp mask and +0x34DC 24-byte actor state are already source-owned. The 20-member scene-change family remains bounded but nonmatching. Its simpler owned-member destructor ABI is now exact. Next audit the 25-member two-owned-member cleanup family beginning with func_080521BC, following NEXT_AGENT_HANDOFF.md. Keep C6BC and A1EA8 parked.
+Next: Scenes, constructors and controller creation. Audit the 48-byte func_0807DD38 and its factory callers using the now-exact SceneOwner7DD68 ownership layout, following NEXT_AGENT_HANDOFF.md. Three complex Runs and the larger 20-member scene-change family remain assembly. Keep C6BC and A1EA8 parked.
 
 The loader remains parked. Resource-owner constructors and B128 remain parked.
-Local ignored proofs are under tools/ches/checkpoints/mine-floor-2026-10-07/.
+Current ignored proofs are under tools/ches/checkpoints/scene-owners-2026-10-09/.
 The canonical handoff supplies the exact continuation and prior failure limits.
 
 ## Parked work and documentation
