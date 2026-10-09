@@ -35124,30 +35124,7 @@ func_08051D70: @ 0x08051D70
 	bx r0
 	.align 2, 0
 
-	thumb_func_start func_0805218C
-func_0805218C: @ 0x0805218C
-	push {r4, r5, r6, lr}
-	adds r4, r0, #0
-	adds r6, r1, #0
-	adds r5, r2, #0
-	ldr r0, .L080521B8 @ =vtable_unk_080E7934
-	str r0, [r4]
-	movs r0, #0x8c
-	lsls r0, r0, #4
-	bl __builtin_new
-	adds r1, r5, #0
-	bl func_0805143C
-	str r0, [r4, #4]
-	ldr r1, [r6]
-	movs r0, #0
-	str r0, [r6]
-	str r1, [r4, #8]
-	adds r0, r4, #0
-	pop {r4, r5, r6}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.L080521B8: .4byte vtable_unk_080E7934
+.section .text.after_scene_ctor_5218c, "ax", %progbits
 
 .section .text.after_scene_owner_521bc, "ax", %progbits
 
@@ -59172,30 +59149,7 @@ func_0805DFC4: @ 0x0805DFC4
 .L0805E61C: .4byte 0xFFFFFF00
 .L0805E620: .4byte 0xFFFFFC00
 
-	thumb_func_start func_0805E624
-func_0805E624: @ 0x0805E624
-	push {r4, r5, r6, lr}
-	adds r4, r0, #0
-	adds r6, r1, #0
-	adds r5, r2, #0
-	ldr r0, .L0805E650 @ =vtable_unk_080E79B8
-	str r0, [r4]
-	ldr r0, .L0805E654 @ =0x00000AF4
-	bl __builtin_new
-	adds r1, r5, #0
-	bl func_0805CF70
-	str r0, [r4, #4]
-	ldr r1, [r6]
-	movs r0, #0
-	str r0, [r6]
-	str r1, [r4, #8]
-	adds r0, r4, #0
-	pop {r4, r5, r6}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.L0805E650: .4byte vtable_unk_080E79B8
-.L0805E654: .4byte 0x00000AF4
+.section .text.after_scene_ctor_5e624, "ax", %progbits
 
 .section .text.after_scene_owner_5e658, "ax", %progbits
 
@@ -61550,30 +61504,7 @@ func_0805FBB8: @ 0x0805FBB8
 .L0805FCC8: .4byte 0x00001C41
 .L0805FCCC: .4byte gUnk_080FB1E4
 
-	thumb_func_start func_0805FCD0
-func_0805FCD0: @ 0x0805FCD0
-	push {r4, r5, r6, lr}
-	adds r4, r0, #0
-	adds r6, r1, #0
-	adds r5, r2, #0
-	ldr r0, .L0805FCFC @ =vtable_unk_080E79F8
-	str r0, [r4]
-	ldr r0, .L0805FD00 @ =0x00006430
-	bl __builtin_new
-	adds r1, r5, #0
-	bl func_0805ED4C
-	str r0, [r4, #4]
-	ldr r1, [r6]
-	movs r0, #0
-	str r0, [r6]
-	str r1, [r4, #8]
-	adds r0, r4, #0
-	pop {r4, r5, r6}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.L0805FCFC: .4byte vtable_unk_080E79F8
-.L0805FD00: .4byte 0x00006430
+.section .text.after_scene_ctor_5fcd0, "ax", %progbits
 
 .section .text.after_scene_owner_5fd04, "ax", %progbits
 
@@ -106907,30 +106838,7 @@ func_0807555C: @ 0x0807555C
 	pop {r0}
 	bx r0
 
-	thumb_func_start func_080755EC
-func_080755EC: @ 0x080755EC
-	push {r4, r5, r6, lr}
-	adds r4, r0, #0
-	adds r6, r1, #0
-	adds r5, r2, #0
-	ldr r0, .L08075618 @ =vtable_unk_080E7B4C
-	str r0, [r4]
-	movs r0, #0xbe
-	lsls r0, r0, #1
-	bl __builtin_new
-	adds r1, r5, #0
-	bl func_08070B70
-	str r0, [r4, #4]
-	ldr r1, [r6]
-	movs r0, #0
-	str r0, [r6]
-	str r1, [r4, #8]
-	adds r0, r4, #0
-	pop {r4, r5, r6}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.L08075618: .4byte vtable_unk_080E7B4C
+.section .text.after_scene_ctor_755ec, "ax", %progbits
 
 .section .text.after_scene_owner_7561c, "ax", %progbits
 
@@ -123183,30 +123091,7 @@ func_0807D218: @ 0x0807D218
 	.align 2, 0
 .L0807DD34: .4byte vtable_unk_080E5A28
 
-	thumb_func_start func_0807DD38
-func_0807DD38: @ 0x0807DD38
-	push {r4, r5, r6, lr}
-	adds r4, r0, #0
-	adds r6, r1, #0
-	adds r5, r2, #0
-	ldr r0, .L0807DD64 @ =vtable_unk_080E7C30
-	str r0, [r4]
-	movs r0, #0xe2
-	lsls r0, r0, #3
-	bl __builtin_new
-	adds r1, r5, #0
-	bl func_0807D194
-	str r0, [r4, #4]
-	ldr r1, [r6]
-	movs r0, #0
-	str r0, [r6]
-	str r1, [r4, #8]
-	adds r0, r4, #0
-	pop {r4, r5, r6}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.L0807DD64: .4byte vtable_unk_080E7C30
+.section .text.after_scene_ctor_7dd38, "ax", %progbits
 
 .section .text.after_scene_owner_7dd68, "ax", %progbits
 
@@ -125097,30 +124982,7 @@ func_0807E558: @ 0x0807E558
 	.align 2, 0
 .L0807EE10: .4byte vtable_unk_080E5A28
 
-	thumb_func_start func_0807EE14
-func_0807EE14: @ 0x0807EE14
-	push {r4, r5, r6, lr}
-	adds r4, r0, #0
-	adds r6, r1, #0
-	adds r5, r2, #0
-	ldr r0, .L0807EE40 @ =vtable_unk_080E7C4C
-	str r0, [r4]
-	movs r0, #0xe2
-	lsls r0, r0, #3
-	bl __builtin_new
-	adds r1, r5, #0
-	bl func_0807E4D4
-	str r0, [r4, #4]
-	ldr r1, [r6]
-	movs r0, #0
-	str r0, [r6]
-	str r1, [r4, #8]
-	adds r0, r4, #0
-	pop {r4, r5, r6}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.L0807EE40: .4byte vtable_unk_080E7C4C
+.section .text.after_scene_ctor_7ee14, "ax", %progbits
 
 .section .text.after_scene_owner_7ee44, "ax", %progbits
 
@@ -125995,30 +125857,7 @@ func_0807EF90: @ 0x0807EF90
 	.align 2, 0
 .L0807F57C: .4byte vtable_unk_080E5A28
 
-	thumb_func_start func_0807F580
-func_0807F580: @ 0x0807F580
-	push {r4, r5, r6, lr}
-	adds r4, r0, #0
-	adds r6, r1, #0
-	adds r5, r2, #0
-	ldr r0, .L0807F5AC @ =vtable_unk_080E7C68
-	str r0, [r4]
-	movs r0, #0xd6
-	lsls r0, r0, #3
-	bl __builtin_new
-	adds r1, r5, #0
-	bl func_0807EEA0
-	str r0, [r4, #4]
-	ldr r1, [r6]
-	movs r0, #0
-	str r0, [r6]
-	str r1, [r4, #8]
-	adds r0, r4, #0
-	pop {r4, r5, r6}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.L0807F5AC: .4byte vtable_unk_080E7C68
+.section .text.after_scene_ctor_7f580, "ax", %progbits
 
 .section .text.after_scene_owner_7f5b0, "ax", %progbits
 
@@ -127720,30 +127559,7 @@ sub_08080440: @ 0x08080440
 	pop {r0}
 	bx r0
 
-	thumb_func_start func_0808045C
-func_0808045C: @ 0x0808045C
-	push {r4, r5, r6, lr}
-	adds r4, r0, #0
-	adds r6, r1, #0
-	adds r5, r2, #0
-	ldr r0, .L08080488 @ =vtable_unk_080E7C84
-	str r0, [r4]
-	movs r0, #0xe2
-	lsls r0, r0, #3
-	bl __builtin_new
-	adds r1, r5, #0
-	bl func_0807F63C
-	str r0, [r4, #4]
-	ldr r1, [r6]
-	movs r0, #0
-	str r0, [r6]
-	str r1, [r4, #8]
-	adds r0, r4, #0
-	pop {r4, r5, r6}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.L08080488: .4byte vtable_unk_080E7C84
+.section .text.after_scene_ctor_8045c, "ax", %progbits
 
 .section .text.after_scene_owner_8048c, "ax", %progbits
 
@@ -128782,30 +128598,7 @@ func_08080540: @ 0x08080540
 	.align 2, 0
 .L08080D90: .4byte vtable_unk_080E5A28
 
-	thumb_func_start func_08080D94
-func_08080D94: @ 0x08080D94
-	push {r4, r5, r6, lr}
-	adds r4, r0, #0
-	adds r6, r1, #0
-	adds r5, r2, #0
-	ldr r0, .L08080DC0 @ =vtable_unk_080E7CA0
-	str r0, [r4]
-	movs r0, #0xe2
-	lsls r0, r0, #3
-	bl __builtin_new
-	adds r1, r5, #0
-	bl func_080804F8
-	str r0, [r4, #4]
-	ldr r1, [r6]
-	movs r0, #0
-	str r0, [r6]
-	str r1, [r4, #8]
-	adds r0, r4, #0
-	pop {r4, r5, r6}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.L08080DC0: .4byte vtable_unk_080E7CA0
+.section .text.after_scene_ctor_80d94, "ax", %progbits
 
 .section .text.after_scene_owner_80dc4, "ax", %progbits
 
@@ -130249,30 +130042,7 @@ func_0808114C: @ 0x0808114C
 	pop {r0}
 	bx r0
 
-	thumb_func_start func_08081A40
-func_08081A40: @ 0x08081A40
-	push {r4, r5, r6, lr}
-	adds r4, r0, #0
-	adds r6, r1, #0
-	adds r5, r2, #0
-	ldr r0, .L08081A6C @ =vtable_unk_080E7CBC
-	str r0, [r4]
-	movs r0, #0xe2
-	lsls r0, r0, #3
-	bl __builtin_new
-	adds r1, r5, #0
-	bl func_08080E20
-	str r0, [r4, #4]
-	ldr r1, [r6]
-	movs r0, #0
-	str r0, [r6]
-	str r1, [r4, #8]
-	adds r0, r4, #0
-	pop {r4, r5, r6}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.L08081A6C: .4byte vtable_unk_080E7CBC
+.section .text.after_scene_ctor_81a40, "ax", %progbits
 
 .section .text.after_scene_owner_81a70, "ax", %progbits
 
@@ -131062,30 +130832,7 @@ func_08081BBC: @ 0x08081BBC
 	.align 2, 0
 .L08082110: .4byte vtable_unk_080E5A28
 
-	thumb_func_start func_08082114
-func_08082114: @ 0x08082114
-	push {r4, r5, r6, lr}
-	adds r4, r0, #0
-	adds r6, r1, #0
-	adds r5, r2, #0
-	ldr r0, .L08082140 @ =vtable_unk_080E7CD8
-	str r0, [r4]
-	movs r0, #0xd6
-	lsls r0, r0, #3
-	bl __builtin_new
-	adds r1, r5, #0
-	bl func_08081ACC
-	str r0, [r4, #4]
-	ldr r1, [r6]
-	movs r0, #0
-	str r0, [r6]
-	str r1, [r4, #8]
-	adds r0, r4, #0
-	pop {r4, r5, r6}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.L08082140: .4byte vtable_unk_080E7CD8
+.section .text.after_scene_ctor_82114, "ax", %progbits
 
 .section .text.after_scene_owner_82144, "ax", %progbits
 
@@ -136471,30 +136218,7 @@ sub_080854D8: @ 0x080854D8
 	pop {r0}
 	bx r0
 
-	thumb_func_start func_080854F4
-func_080854F4: @ 0x080854F4
-	push {r4, r5, r6, lr}
-	adds r4, r0, #0
-	adds r6, r1, #0
-	adds r5, r2, #0
-	ldr r0, .L08085520 @ =vtable_unk_080E7D20
-	str r0, [r4]
-	ldr r0, .L08085524 @ =0x000061F4
-	bl __builtin_new
-	adds r1, r5, #0
-	bl func_08083BD4
-	str r0, [r4, #4]
-	ldr r1, [r6]
-	movs r0, #0
-	str r0, [r6]
-	str r1, [r4, #8]
-	adds r0, r4, #0
-	pop {r4, r5, r6}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.L08085520: .4byte vtable_unk_080E7D20
-.L08085524: .4byte 0x000061F4
+.section .text.after_scene_ctor_854f4, "ax", %progbits
 
 .section .text.after_scene_owner_85528, "ax", %progbits
 
@@ -146785,30 +146509,7 @@ func_0808A55C: @ 0x0808A55C
 	pop {r0}
 	bx r0
 
-	thumb_func_start func_0808AB38
-func_0808AB38: @ 0x0808AB38
-	push {r4, r5, r6, lr}
-	adds r4, r0, #0
-	adds r6, r1, #0
-	adds r5, r2, #0
-	ldr r0, .L0808AB64 @ =vtable_unk_080E7D58
-	str r0, [r4]
-	movs r0, #0x86
-	lsls r0, r0, #1
-	bl __builtin_new
-	adds r1, r5, #0
-	bl func_080882AC
-	str r0, [r4, #4]
-	ldr r1, [r6]
-	movs r0, #0
-	str r0, [r6]
-	str r1, [r4, #8]
-	adds r0, r4, #0
-	pop {r4, r5, r6}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.L0808AB64: .4byte vtable_unk_080E7D58
+.section .text.after_scene_ctor_8ab38, "ax", %progbits
 
 .section .text.after_scene_owner_8ab68, "ax", %progbits
 
@@ -149795,30 +149496,7 @@ func_0808C0BC: @ 0x0808C0BC
 	pop {r0}
 	bx r0
 
-	thumb_func_start func_0808C56C
-func_0808C56C: @ 0x0808C56C
-	push {r4, r5, r6, lr}
-	adds r4, r0, #0
-	adds r6, r1, #0
-	adds r5, r2, #0
-	ldr r0, .L0808C598 @ =vtable_unk_080E7D74
-	str r0, [r4]
-	movs r0, #0x86
-	lsls r0, r0, #1
-	bl __builtin_new
-	adds r1, r5, #0
-	bl func_0808ABC4
-	str r0, [r4, #4]
-	ldr r1, [r6]
-	movs r0, #0
-	str r0, [r6]
-	str r1, [r4, #8]
-	adds r0, r4, #0
-	pop {r4, r5, r6}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.L0808C598: .4byte vtable_unk_080E7D74
+.section .text.after_scene_ctor_8c56c, "ax", %progbits
 
 .section .text.after_scene_owner_8c59c, "ax", %progbits
 
@@ -154278,30 +153956,7 @@ func_0808E6FC: @ 0x0808E6FC
 	pop {r0}
 	bx r0
 
-	thumb_func_start func_0808ECD8
-func_0808ECD8: @ 0x0808ECD8
-	push {r4, r5, r6, lr}
-	adds r4, r0, #0
-	adds r6, r1, #0
-	adds r5, r2, #0
-	ldr r0, .L0808ED04 @ =vtable_unk_080E7D90
-	str r0, [r4]
-	movs r0, #0x86
-	lsls r0, r0, #1
-	bl __builtin_new
-	adds r1, r5, #0
-	bl func_0808C5F8
-	str r0, [r4, #4]
-	ldr r1, [r6]
-	movs r0, #0
-	str r0, [r6]
-	str r1, [r4, #8]
-	adds r0, r4, #0
-	pop {r4, r5, r6}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.L0808ED04: .4byte vtable_unk_080E7D90
+.section .text.after_scene_ctor_8ecd8, "ax", %progbits
 
 .section .text.after_scene_owner_8ed08, "ax", %progbits
 
@@ -158029,30 +157684,7 @@ func_08090960: @ 0x08090960
 	pop {r0}
 	bx r0
 
-	thumb_func_start func_08090E54
-func_08090E54: @ 0x08090E54
-	push {r4, r5, r6, lr}
-	adds r4, r0, #0
-	adds r6, r1, #0
-	adds r5, r2, #0
-	ldr r0, .L08090E80 @ =vtable_unk_080E7DAC
-	str r0, [r4]
-	movs r0, #0x86
-	lsls r0, r0, #1
-	bl __builtin_new
-	adds r1, r5, #0
-	bl func_0808ED64
-	str r0, [r4, #4]
-	ldr r1, [r6]
-	movs r0, #0
-	str r0, [r6]
-	str r1, [r4, #8]
-	adds r0, r4, #0
-	pop {r4, r5, r6}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.L08090E80: .4byte vtable_unk_080E7DAC
+.section .text.after_scene_ctor_90e54, "ax", %progbits
 
 .section .text.after_scene_owner_90e84, "ax", %progbits
 
@@ -161874,30 +161506,7 @@ func_08092D64: @ 0x08092D64
 	pop {r0}
 	bx r0
 
-	thumb_func_start func_080931B0
-func_080931B0: @ 0x080931B0
-	push {r4, r5, r6, lr}
-	adds r4, r0, #0
-	adds r6, r1, #0
-	adds r5, r2, #0
-	ldr r0, .L080931DC @ =vtable_unk_080E7DE4
-	str r0, [r4]
-	movs r0, #0x86
-	lsls r0, r0, #1
-	bl __builtin_new
-	adds r1, r5, #0
-	bl func_08092640
-	str r0, [r4, #4]
-	ldr r1, [r6]
-	movs r0, #0
-	str r0, [r6]
-	str r1, [r4, #8]
-	adds r0, r4, #0
-	pop {r4, r5, r6}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.L080931DC: .4byte vtable_unk_080E7DE4
+.section .text.after_scene_ctor_931b0, "ax", %progbits
 
 .section .text.after_scene_owner_931e0, "ax", %progbits
 
@@ -162832,30 +162441,7 @@ func_08093364: @ 0x08093364
 	.align 2, 0
 .L08093A54: .4byte 0x00000889
 
-	thumb_func_start func_08093A58
-func_08093A58: @ 0x08093A58
-	push {r4, r5, r6, lr}
-	adds r4, r0, #0
-	adds r6, r1, #0
-	adds r5, r2, #0
-	ldr r0, .L08093A84 @ =vtable_unk_080E8018
-	str r0, [r4]
-	movs r0, #0xfc
-	lsls r0, r0, #2
-	bl __builtin_new
-	adds r1, r5, #0
-	bl func_0809323C
-	str r0, [r4, #4]
-	ldr r1, [r6]
-	movs r0, #0
-	str r0, [r6]
-	str r1, [r4, #8]
-	adds r0, r4, #0
-	pop {r4, r5, r6}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.L08093A84: .4byte vtable_unk_080E8018
+.section .text.after_scene_ctor_93a58, "ax", %progbits
 
 .section .text.after_scene_owner_93a88, "ax", %progbits
 

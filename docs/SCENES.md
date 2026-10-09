@@ -1,6 +1,6 @@
-# Scenes: cleanup and continuation transfer
+# Scenes: construction, cleanup and continuation transfer
 
-The shared scene ownership layer is exact in `include/scene_owners.hh` and `src/scene_owners.cc`: 25 destructors and 22 `Run()` entries, totaling **2,360 linked retail bytes**. These are scene lifetime and transition mechanics. Concrete screen identities and controller implementations remain incomplete.
+The shared scene lifetime layer is exact in `include/scene_owners.hh` and `src/scene_owners.cc`: 18 constructors, 25 destructors and 22 `Run()` entries, totaling **65 source functions / 3,236 linked retail bytes**. These are scene lifetime and transition mechanics. Concrete screen identities and controller implementations remain incomplete.
 
 ## Ownership layout
 
@@ -22,36 +22,69 @@ For 16 recovered `Run()` entries, the scene calls its controller, moves the cont
 
 The old aggregate-return ABI passes the one-pointer result slot in r0 and the scene in r1. Explicit ABI helpers use a one-pointer result-storage view while retaining typed scene ownership and normal `SmartPtr::Move()`. Typed virtual member names are bound to those entries through linker aliases. Existing retail vtables remain authoritative.
 
+## Constructor contract
+
+The 18 recovered natural constructors take a mutable continuation reference and an opaque context pointer. Each installs the original scene vtable, allocates its controller, calls the original controller constructor, stores the returned controller at +4 and moves/clears the continuation into +8. The controller implementations remain assembly-bound.
+
+The 18 scenes have a 12-byte ownership layout. Seventeen audited factories allocate that scene on the heap. Factory DC3A0 constructs SceneOwner93A88 on the stack with a null continuation, runs its controller/accessor path and then destroys the temporary with mode 2.
+
+Controller allocation sizes are independent of the shared deletion-prefix size:
+
+| Scene class | Controller constructor | Allocated bytes |
+| --- | --- | ---: |
+| `SceneOwner521BC` | `func_0805143C` | `0x8c0` |
+| `SceneOwner5E658` | `func_0805CF70` | `0xaf4` |
+| `SceneOwner5FD04` | `func_0805ED4C` | `0x6430` |
+| `SceneOwner7561C` | `func_08070B70` | `0x17c` |
+| `SceneOwner7DD68` | `func_0807D194` | `0x710` |
+| `SceneOwner7EE44` | `func_0807E4D4` | `0x710` |
+| `SceneOwner7F5B0` | `func_0807EEA0` | `0x6b0` |
+| `SceneOwner8048C` | `func_0807F63C` | `0x710` |
+| `SceneOwner80DC4` | `func_080804F8` | `0x710` |
+| `SceneOwner81A70` | `func_08080E20` | `0x710` |
+| `SceneOwner82144` | `func_08081ACC` | `0x6b0` |
+| `SceneOwner85528` | `func_08083BD4` | `0x61f4` |
+| `SceneOwner8AB68` | `func_080882AC` | `0x10c` |
+| `SceneOwner8C59C` | `func_0808ABC4` | `0x10c` |
+| `SceneOwner8ED08` | `func_0808C5F8` | `0x10c` |
+| `SceneOwner90E84` | `func_0808ED64` | `0x10c` |
+| `SceneOwner931E0` | `func_08092640` | `0x10c` |
+| `SceneOwner93A88` | `func_0809323C` | `0x3f0` |
+
+Fifteen scene constructor bodies are 48 bytes. The 5E624, 5FCD0 and 854F4 entries are 52 bytes because their allocation constants use literal pools. The same natural source expresses both forms.
+
+Seven scene constructors remain assembly. The 57DD8, 5CEB8 and 69E14 entries additionally forward an unsigned byte to the controller; the byte's meaning remains unresolved. Complete controller layouts and concrete screen names remain unresolved.
+
 ## Recovered entries
 
-All destructors below are 64 bytes. Run sizes identify the promoted body only; “assembly” means the entry is mapped but unrecovered.
+All destructors below are 64 bytes. Parenthesized constructor sizes mark recovered source. Run sizes identify promoted bodies; other constructors and “assembly” Runs remain unrecovered.
 
-| Scene class / destructor | Scene constructor | Vtable | Run entry | Run bytes | Controller hook |
+| Scene class / destructor | Scene constructor (bytes) | Vtable | Run entry | Run bytes | Controller hook |
 | --- | --- | --- | --- | ---: | --- |
-| `SceneOwner521BC` | `func_0805218C` | `vtable_unk_080E7934` | `func_080521FC` | 52 | `func_08051504` |
+| `SceneOwner521BC` | `func_0805218C` (48) | `vtable_unk_080E7934` | `func_080521FC` | 52 | `func_08051504` |
 | `SceneOwner57E1C` | `func_08057DD8` | `vtable_unk_080E7960` | `func_08057E5C` | 52 | `func_08052984` |
 | `SceneOwner5CEFC` | `func_0805CEB8` | `vtable_unk_080E798C` | `func_0805CF3C` | 52 | `func_080588AC` |
-| `SceneOwner5E658` | `func_0805E624` | `vtable_unk_080E79B8` | `func_0805E698` | 52 | `func_0805D170` |
-| `SceneOwner5FD04` | `func_0805FCD0` | `vtable_unk_080E79F8` | `func_0805FD44` | 52 | `func_0805EE44` |
+| `SceneOwner5E658` | `func_0805E624` (52) | `vtable_unk_080E79B8` | `func_0805E698` | 52 | `func_0805D170` |
+| `SceneOwner5FD04` | `func_0805FCD0` (52) | `vtable_unk_080E79F8` | `func_0805FD44` | 52 | `func_0805EE44` |
 | `SceneOwner69E58` | `func_08069E14` | `vtable_unk_080E7A98` | `func_08069E98` | 28 | `func_080769A0` |
-| `SceneOwner7561C` | `func_080755EC` | `vtable_unk_080E7B4C` | `func_0807565C` | 28 | `func_080769A0` |
-| `SceneOwner7DD68` | `func_0807DD38` | `vtable_unk_080E7C30` | `func_0807DDA8` | 28 | `func_0807D218` |
-| `SceneOwner7EE44` | `func_0807EE14` | `vtable_unk_080E7C4C` | `func_0807EE84` | 28 | `func_0807E558` |
-| `SceneOwner7F5B0` | `func_0807F580` | `vtable_unk_080E7C68` | `func_0807F5F0` | 28 | `func_0807EF90` |
-| `SceneOwner8048C` | `func_0808045C` | `vtable_unk_080E7C84` | `func_080804CC` | 28 | `func_0807F8C8` |
-| `SceneOwner80DC4` | `func_08080D94` | `vtable_unk_080E7CA0` | `func_08080E04` | 28 | `func_08080540` |
-| `SceneOwner81A70` | `func_08081A40` | `vtable_unk_080E7CBC` | `func_08081AB0` | 28 | `func_0808114C` |
-| `SceneOwner82144` | `func_08082114` | `vtable_unk_080E7CD8` | `func_08082184` | 28 | `func_08081BBC` |
+| `SceneOwner7561C` | `func_080755EC` (48) | `vtable_unk_080E7B4C` | `func_0807565C` | 28 | `func_080769A0` |
+| `SceneOwner7DD68` | `func_0807DD38` (48) | `vtable_unk_080E7C30` | `func_0807DDA8` | 28 | `func_0807D218` |
+| `SceneOwner7EE44` | `func_0807EE14` (48) | `vtable_unk_080E7C4C` | `func_0807EE84` | 28 | `func_0807E558` |
+| `SceneOwner7F5B0` | `func_0807F580` (48) | `vtable_unk_080E7C68` | `func_0807F5F0` | 28 | `func_0807EF90` |
+| `SceneOwner8048C` | `func_0808045C` (48) | `vtable_unk_080E7C84` | `func_080804CC` | 28 | `func_0807F8C8` |
+| `SceneOwner80DC4` | `func_08080D94` (48) | `vtable_unk_080E7CA0` | `func_08080E04` | 28 | `func_08080540` |
+| `SceneOwner81A70` | `func_08081A40` (48) | `vtable_unk_080E7CBC` | `func_08081AB0` | 28 | `func_0808114C` |
+| `SceneOwner82144` | `func_08082114` (48) | `vtable_unk_080E7CD8` | `func_08082184` | 28 | `func_08081BBC` |
 | `SceneOwner83AEC` | `func_08083A7C` | `vtable_unk_080E7D04` | `func_08083B2C` | assembly | `unresolved` |
-| `SceneOwner85528` | `func_080854F4` | `vtable_unk_080E7D20` | `func_08085568` | 28 | `func_08084228` |
+| `SceneOwner85528` | `func_080854F4` (52) | `vtable_unk_080E7D20` | `func_08085568` | 28 | `func_08084228` |
 | `SceneOwner881AC` | `func_08088168` | `vtable_unk_080E7D3C` | `func_080881EC` | assembly | `unresolved` |
-| `SceneOwner8AB68` | `func_0808AB38` | `vtable_unk_080E7D58` | `func_0808ABA8` | 28 | `func_0808A55C` |
-| `SceneOwner8C59C` | `func_0808C56C` | `vtable_unk_080E7D74` | `func_0808C5DC` | 28 | `func_0808C0BC` |
-| `SceneOwner8ED08` | `func_0808ECD8` | `vtable_unk_080E7D90` | `func_0808ED48` | 28 | `func_0808E6FC` |
-| `SceneOwner90E84` | `func_08090E54` | `vtable_unk_080E7DAC` | `func_08090EC4` | 28 | `func_08090960` |
+| `SceneOwner8AB68` | `func_0808AB38` (48) | `vtable_unk_080E7D58` | `func_0808ABA8` | 28 | `func_0808A55C` |
+| `SceneOwner8C59C` | `func_0808C56C` (48) | `vtable_unk_080E7D74` | `func_0808C5DC` | 28 | `func_0808C0BC` |
+| `SceneOwner8ED08` | `func_0808ECD8` (48) | `vtable_unk_080E7D90` | `func_0808ED48` | 28 | `func_0808E6FC` |
+| `SceneOwner90E84` | `func_08090E54` (48) | `vtable_unk_080E7DAC` | `func_08090EC4` | 28 | `func_08090960` |
 | `SceneOwner925C4` | `func_08092570` | `vtable_unk_080E7DC8` | `func_08092604` | assembly | `unresolved` |
-| `SceneOwner931E0` | `func_080931B0` | `vtable_unk_080E7DE4` | `func_08093220` | 28 | `func_08092D64` |
-| `SceneOwner93A88` | `func_08093A58` | `vtable_unk_080E8018` | `func_08093AD4` | 28 | `func_08093364` |
+| `SceneOwner931E0` | `func_080931B0` (48) | `vtable_unk_080E7DE4` | `func_08093220` | 28 | `func_08092D64` |
+| `SceneOwner93A88` | `func_08093A58` (48) | `vtable_unk_080E8018` | `func_08093AD4` | 28 | `func_08093364` |
 | `SceneOwner9A518` | `func_0809A4D4` | `vtable_unk_080E824C` | `func_0809A558` | 52 | `func_08094F6C` |
 
 ## Remaining scene methods
@@ -60,7 +93,7 @@ All destructors below are 64 bytes. Run sizes identify the promoted body only; �
 - `func_080881EC`: controller status selects direct transfer or nested 16-/20-byte requests with context at +10 and additional state.
 - `func_08092604`: obtains a new request from its controller and transfers it through additional temporary-lifetime machinery.
 
-All three remain assembly. Scene constructors, controller constructors and controller logic also remain assembly. Nearby shop/catalog or rucksack data is useful evidence but does not establish a specific screen name.
+All three remain assembly. Seven scene constructors, controller constructors and controller logic also remain assembly. Nearby shop/catalog or rucksack data is useful evidence but does not establish a specific screen name.
 
 ## True boundaries and verification
 
@@ -77,8 +110,10 @@ Six formerly inferred Run ranges also contained unnamed neighboring code. Only t
 
 The **596 bytes** remain unchanged assembly and now count as unattributed. Run 93AD4 follows the separate 12-byte helper at 93AC8; destructor adjacency alone does not establish its address.
 
-All 47 audited body comparisons have zero differences. Isolated and production forced full-ROM comparisons pass with the unchanged tracked compiler. Original entry addresses, symbol sizes and all 25 destructor/Run vtable slots are preserved. Reversing only the bounded assembly seams reproduces the prior assembly file exactly; the inventory removes exactly these 47 functions and preserves all other addresses/statuses.
+All 65 source-owned scene spans match retail. Expanded isolated and production forced full-ROM comparisons pass with the unchanged tracked compiler. Original entry addresses, symbol sizes and all 25 destructor/Run vtable slot pairs are preserved. The constructor checkpoint adds 18 entries / 876 bytes; reversing its bounded assembly seams reproduces the prior assembly file exactly. Inventory removes exactly those 18 entries and preserves all other addresses/statuses.
 
 ROM: **8,388,608 bytes**, SHA1 `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
 
 The ignored proof checkpoint is `tools/ches/checkpoints/scene-owners-2026-10-09/`. It contains the audited manifest, matcher results, reviewed integration inputs, both full build logs and verification/inventory snapshots. `tools/ches/NEXT_AGENT_HANDOFF.md` owns the constructor continuation.
+
+Constructor proofs are under `tools/ches/checkpoints/scene-constructors-2026-10-09/`: audited manifest, caller evidence, individual matches, reviewed final integration inputs, expanded full build logs and verification/inventory snapshots.

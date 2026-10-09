@@ -1,104 +1,108 @@
 # Current FoMT continuation - October 9, 2026
 
-## Latest verified checkpoint: Scenes: cleanup and continuation transfer
+## Latest verified checkpoint: Scenes: constructors and controller creation
 
 Workspace: /mnt/data/Github/gba/fomt
 Public retail branch: main, tracking ches/main.
 Run `git log -1` and `git status` before new work. Preserve unrelated changes.
 
-New exact source: include/scene_owners.hh and src/scene_owners.cc.
-25 natural destructors / 1,600 bytes plus 22 Run entries / 760 bytes:
-47 functions / 2,360 linked bytes. All individual comparisons, retail entry
-addresses/sizes and all 25 destructor/Run vtable slot pairs pass. Reversing
-only the bounded assembly seams reproduces the previous assembly exactly.
-Isolated and production forced full-ROM comparisons pass.
+New exact source: 18 natural constructors in src/scene_owners.cc, with typed
+declarations in include/scene_owners.hh. They add 876 linked retail bytes:
+15 entries of 48 bytes and three of 52 bytes.
+All individual matches, original symbol addresses/sizes, all 25 existing
+destructor/Run vtable slot pairs and bounded assembly inverse checks pass.
+All 65 source-owned scene spans / 3,236 bytes match retail.
+Expanded isolated and production forced full-ROM comparisons pass.
 ROM: 8,388,608 bytes, SHA1 a2fc3574f0a65a4fcf7682fb274b9d7eebdef963.
 No background executions remain. The tracked compiler/wrapper is unchanged.
 
 Current metrics:
-- Code: 80,100 / 940,036 = 8.5210%.
-- Assembly: 859,936 bytes; 2,157 linked functions.
-- Inferred function ranges: 857,240 / 859,936 = 99.6865%.
+- Code: 80,976 / 940,036 = 8.6141%.
+- Assembly: 859,060 bytes; 2,139 linked functions.
+- Inferred function ranges: 856,364 / 859,060 = 99.6862%.
 - Unattributed assembly: 2,696 bytes; 17 parked functions.
 - Data/assets: 75,334 / 6,777,404 = 1.1115%.
-- Overall meaningful ROM: 155,830 / 7,717,440 = 2.0192%.
+- Overall meaningful ROM: 156,706 / 7,717,440 = 2.0305%.
 
-## Proven scene ownership and ABI
+## Proven constructor contract
 
-AScene owner: +0 vtable, +4 owned controller, +8 owned continuation request.
-The shared SceneController deletion prefix has data at +0 and its vtable at
-+4 under old GCC; its complete concrete size/state is not reconstructed.
-The continuation uses AUnk_0800080C with a +0 vtable.
-Natural empty derived destructors match all 25 entries: install derived
-vtable, delete continuation, delete controller, forward original owner mode
-to the AScene base destructor. Member deletion mode is 3; base mode is not
-replaced with 3. Existing vtables and aliases remain authoritative.
+All 18 constructors take a mutable one-pointer continuation reference and
+an opaque context pointer. The natural derived constructor installs its
+existing scene vtable, allocates the exact controller size, calls the bound
+original controller constructor, stores that returned controller at +4 and
+moves/clears the continuation into +8. It returns the scene through the old
+constructor ABI. Complete controller types are not invented.
 
-Six 52-byte Runs discard/destroy a controller-produced temporary request:
-521FC, 57E5C, 5CF3C, 5E698, 5FD44, 9A558.
-Sixteen 28-byte Runs call the controller for side effects.
-All move-clear the owned continuation into the caller's one-pointer result
-slot and return the result address. Explicit ABI helpers preserve hidden
-result r0 / self r1, typed owner fields and normal SmartPtr::Move().
+The SceneController declaration is an 8-byte deletion prefix only: data +0,
+vtable +4 under this compiler. Its concrete allocations range from 0x10C to
+0x6430. Original controller constructor calls remain assembly-bound.
+Do not replace those allocation sizes with sizeof(SceneController).
 
-SceneOwner83AEC additionally has four words +0C..+18 and context +1C;
-SceneOwner881AC has word +0C and context +10. Other declarations claim only
-the proven common prefix. Stable layout/contract/table: docs/SCENES.md.
-Use subsystem titles in updates. Concrete screen names remain unresolved.
+17 audited factories allocate a 12-byte scene. DC3A0 instead constructs
+SceneOwner93A88 on the stack with a null continuation, calls its Run/accessor
+and destroys it with mode 2. Both paths establish the same constructor ABI.
+Do not assume every scene constructor is reached through a heap allocation.
 
-Six true Run boundaries expose 596 untouched unnamed bytes:
-69EB4..69F14 (96), 75678..756B0 (56), 7F60C..7F63C (48),
-804E8..804F8 (16), 821A0..821D0 (48), 93AF0..93C3C (332).
-Only true bodies were promoted. 93AD4 is the vtable Run, separated from its
-destructor by the 12-byte 93AC8 helper; do not assume adjacency.
+The three 52-byte entries (5E624, 5FCD0, 854F4) use literal-pool allocation
+constants. They match the same natural source as the fifteen immediate/shift
+entries even though the normalized inventory groups differ.
 
-## Exact next action: Scenes, constructors and controller creation
+The prior 25 natural destructors and 22 Run entries remain exact. Stable
+ownership layout, all entry mappings and controller allocation table:
+docs/SCENES.md. Concrete screen identities and controller behavior remain
+unresolved; use subsystem titles rather than inventing screen names.
 
-Representative func_0807DD38..0807DD68 is 48 bytes. Its SceneOwner7DD68
-destructor and Run now have exact typed source.
-Audit the original constructor, factory DC158 and callers before writing:
-- r0 is the scene; r1 is the one-pointer continuation input; r2 is context.
-- It installs vtable E7C30, allocates a 0x710-byte controller and calls 7D194.
-- It stores controller at +4 and transfer-clears continuation into +8.
-- It returns the scene.
+## Exact next action: Scenes, constructors with additional inputs
 
-Try one credible natural scene constructor using the shared owner type,
-SmartPtr transfer and an audited opaque-controller construction boundary.
-The 8-byte controller deletion prefix is not the allocation size. Do not
-invent a complete controller layout to express allocation.
-Similar 48-byte constructors include 7EE14, 7F580, 8045C, 80D94, 81A40,
-82114, 8AB38, 8C56C, 8ECD8, 90E54, 931B0 and 93A58. Audit each allocation,
-callee ABI and extra fields before batching. No constructor candidate has
-been attempted in this checkpoint.
+Representative func_08057DD8..08057E1C is 68 bytes. Audit its DB96C factory
+caller and controller constructor 522F8 before the first natural candidate.
+Observed registers:
+- r0 scene, r1 continuation reference, r2 context.
+- r3 is masked to eight unsigned bits before controller construction.
+- Controller allocation is 0x23A8; the controller receives context and that byte.
+- It stores controller +4, moves/clears continuation +8 and returns the scene.
 
-Three complex Runs remain mapped assembly, not newly matched:
-- 83B2C: status from 82CEC chooses direct continuation or 16-byte wrapper
-  E7CF4 with context +1C and a status-derived boolean.
-- 881EC: 86A08/85EEC status -1 chooses direct continuation; other statuses
-  construct nested requests E5D94/E5C64 with context +10 and mode/state.
-- 92604: controller 9152C produces a request, transferred with additional
-  temporary lifetime machinery. Constructor 92570 already moves the incoming
-  continuation into the controller before storing the moved-from input +8.
+Add only the proven extra byte parameter to SceneOwner57E1C's declaration.
+Try the same natural controller/continuation initializer shape, using an
+audited three-argument controller-constructor bridge. Establish the byte's
+meaning from controller/callers before naming it. A boolean meaning is not
+proven by the zero-extension alone.
+Compare 5CEB8 (allocation 0x14FC, controller 5806C) and 69E14 (allocation
+0x164, controller 5FD78) after the representative is exact. Both are 68 bytes
+and have the same observed byte-forwarding shape. Check 9A4D4 separately
+before claiming it belongs to this group. No extra-input candidate was tried.
 
-## Proofs and closed source shapes
+Seven constructors remain assembly: 57DD8, 5CEB8, 69E14, 83A7C, 88168,
+92570 and 9A4D4. The three complex Runs 83B2C, 881EC and 92604 also remain
+assembly, mapped in docs/SCENES.md. The larger scene-change family stays
+bounded at its existing nonmatching frontier.
 
-Local ignored checkpoint:
+## Proofs and closed assumptions
+
+Current ignored checkpoint:
+tools/ches/checkpoints/scene-constructors-2026-10-09/
+- manifest.json: 18 constructors, exact spans, allocation sizes and seams.
+- constructor-batch.cc / scene-constructors-batch.hh: flat matcher candidate.
+- constructor-results.json and constructors/: all 18 exact comparisons.
+- caller-evidence.json: all 18 factories, including the stack temporary.
+- integration-inputs/: the four reviewed final production files.
+- isolated-complete-build.log / production-complete-build.log: expanded ROM gates.
+- verification.json / inventory-before.json / inventory-after.json: final audits.
+- verified-15-inputs/ and the shorter build logs are the superseded intermediate
+  subset. Do not substitute them for the final 18-entry inputs.
+
+The first representative source compiled correctly. Its initial matcher call
+guessed the wrong template mangling. The emitted constructor symbol is:
+__15SceneOwner7DD68Rt8SmartPtr1Z13AUnk_0800080CPv
+Read nm output rather than guessing old-GCC template symbols.
+The initial caller audit assumed heap factories; DC3A0 disproves that
+assumption. No source mismatch or compiler workaround was needed.
+
+Previous Run proofs and closed ordinary-return/placement-new attempts:
 tools/ches/checkpoints/scene-owners-2026-10-09/
-manifest.json owns all 25 mappings, true Run bodies/sizes and source seams.
-destructor-results.json: all 25 exact.
-run-results.json: all 22 exact.
-integration-inputs/ owns the four reviewed production inputs.
-isolated-final-build.log and production-final-build.log: both exact retail ROMs.
-verification.json and inventory-before/after.json own the final audit.
-
-Closed attempts:
-- Ordinary member Run return did not compile: SmartPtr's private unfinished
-  copy constructor and nonconst-reference/rvalue diagnostics.
-- Placement-new ABI result view added a null check on result: 521FC was
-  56/22 versus 52, 7DDA8 was 32/20 versus 28.
-- Direct one-pointer result storage removes that extra language operation;
-  both representatives and all 22 batch entries match. Do not redo variants
-  of the failed ordinary-return or placement-new spellings.
+The explicit result-storage helpers are already exact; do not redo those
+failed spellings. The 596 bytes of unnamed Run neighbors remain unchanged
+assembly and must not be claimed as source.
 
 Use compare-function.py with the explicit tracked compiler, then isolated
 full-ROM -> production forced compare/progress -> symbol/inventory audit ->
@@ -108,9 +112,9 @@ Do not force registers, add empty asm barriers or modify the compiler.
 Reusable isolated worktree:
  /mnt/waydroid-hdd/home-chester-waydroid/fomt-integrations/flag-setters-20261009
 Detached b11a48e baseline plus verified flag setters, prior 39 single-owned
-destructors and this scene unit. Compiler was freshly installed before these
-integrations. Compare reviewed baseline inputs before reuse; do not reset or
-overwrite unrelated changes.
+destructors, scene destructors/Runs and all 18 new constructors. The compiler
+was freshly installed before those integrations. Compare reviewed build
+inputs before reuse; do not reset or overwrite unrelated changes.
 
 ## Larger scene-change family: preserved frontier
 

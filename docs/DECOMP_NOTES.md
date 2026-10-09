@@ -25,8 +25,14 @@ live state. This file keeps subsystem/function evidence and matching lessons.
 
 Current retail state:
 - Active public retail branch: `main`; the former `Live-temp` line is retired. Historical `ches-dev` commits remain provenance only.
-- Current exact progress: **80,100 / 940,036 = 8.5210% source** and **859,936 assembly bytes**. Data/assets reconstruction is **75,334 / 6,777,404 = 1.1115%** and overall meaningful-ROM reconstruction is **155,830 / 7,717,440 = 2.0192%**. Forced detached and production ROM comparisons report `fomt.gba: OK`; retail SHA1 remains `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
-- Remaining linked assembly functions: **2,157**; inferred function ranges cover **857,240 / 859,936 = 99.6865%**, with **2,696 unattributed bytes** and **17 explicitly parked functions**. The total includes the prior exposed islands and 596 additional unnamed bytes preserved beside six scene Run entries.
+- Current exact progress: **80,976 / 940,036 = 8.6141% source** and **859,060 assembly bytes**. Data/assets reconstruction is **75,334 / 6,777,404 = 1.1115%** and overall meaningful-ROM reconstruction is **156,706 / 7,717,440 = 2.0305%**. Forced detached and production ROM comparisons report `fomt.gba: OK`; retail SHA1 remains `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
+- Remaining linked assembly functions: **2,139**; inferred function ranges cover **856,364 / 859,060 = 99.6862%**, with **2,696 unattributed bytes** and **17 explicitly parked functions**. The total includes the prior exposed islands and 596 additional unnamed bytes preserved beside six scene Run entries.
+
+### 2026-10-09 Scenes: constructors and controller creation
+
+18 natural scene constructors add 876 exact linked bytes using the existing controller/continuation ownership types. Each calls operator new with its audited controller size, invokes the original bound controller constructor and moves/clears the incoming continuation into the scene. Seventeen factories allocate a 12-byte scene; DC3A0 uses the same constructor for a stack temporary.
+
+The fifteen 48-byte entries use immediate/shift allocation constants; three 52-byte entries use literal pools. Both forms match the same source. All individual matches, expanded isolated/production ROMs, original symbols/vtables, all 65 scene spans and bounded inverse/inventory checks pass. Controller implementations and seven scene constructors remain assembly. Stable evidence is in SCENES.md; the extra-byte constructor continuation is in NEXT_AGENT_HANDOFF.md.
 
 ### 2026-10-09 Scenes: cleanup and continuation transfer
 
@@ -1243,4 +1249,4 @@ Stable contracts and source ranges are in `docs/RESOURCE_HANDLES.md`. Private so
 Latest recovered GroundPickupState: +0x34C8..+0x34D7, 56 availability
 bits and fifteen packed three-bit durability fields. Four exact functions
 add 1,032 linked bytes. A1EA8 is parked. See docs/GROUND_PICKUP_STATE.md.
-The +0x34D8 mask and +0x34DC actor state are already source-owned. Active subsystem target: scene constructors and controller creation; keep C6BC parked.
+The +0x34D8 mask and +0x34DC actor state are already source-owned. Active subsystem target: scene constructors with additional inputs; keep C6BC parked.

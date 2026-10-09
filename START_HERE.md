@@ -22,34 +22,34 @@ This is the live dashboard for the US Harvest Moon: Friends of Mineral Town matc
 
 ## Handoff readiness
 
-The latest verified checkpoint is Scenes: cleanup and continuation transfer, recovering 47 functions and 2,360 linked source bytes. Production and isolated forced ROM comparisons passed on October 9, 2026, using the unchanged tracked compiler. Run `git log -1` and `git status` before work; never reset a dirty tree merely to match an expected hash. The full loader and complete GameState type remain unfinished. No build or compiler command is pending.
+The latest verified checkpoint is Scenes: constructors and controller creation, recovering 18 functions and 876 linked source bytes. Production and isolated forced ROM comparisons passed on October 9, 2026, using the unchanged tracked compiler. Run `git log -1` and `git status` before work; never reset a dirty tree merely to match an expected hash. The full loader and complete GameState type remain unfinished. No build or compiler command is pending.
 
 For the proven techniques and recommended next approach, read the "Fast-path operating method" in docs/DECOMP_PLAYBOOK.md. NEXT_AGENT_HANDOFF.md includes first commands, exact next deliverable, closed paths and fresh-clone artifact limitations.
 
 ## Current exact reconstruction
 
-- Code: **80,100 / 940,036 = 8.5210%**
-- Assembly remaining: **859,936 bytes**
-- Linked assembly functions: **2,157**
-- Inferred ranges: **857,240 / 859,936 = 99.6865%**
+- Code: **80,976 / 940,036 = 8.6141%**
+- Assembly remaining: **859,060 bytes**
+- Linked assembly functions: **2,139**
+- Inferred ranges: **856,364 / 859,060 = 99.6862%**
 - Unattributed assembly: **2,696 bytes**
 - Generated parked functions: **17**
 - Data/assets: **75,334 / 6,777,404 = 1.1115%**
-- Overall meaningful ROM: **155,830 / 7,717,440 = 2.0192%**
+- Overall meaningful ROM: **156,706 / 7,717,440 = 2.0305%**
 - Contiguous free tail: **671,168 bytes = 655.44 KiB**
 
 ## Latest completed unit
 
-Scenes: cleanup and continuation transfer is exact source in `include/scene_owners.hh` and `src/scene_owners.cc`, adding **47 functions / 2,360 linked bytes**. It recovers 25 natural destructors and 22 controller/continuation Run entries. Both forced full-ROM builds pass; original symbols and vtable slots are preserved. See [SCENES.md](docs/SCENES.md).
+Scenes: constructors and controller creation adds **18 natural constructors / 876 linked bytes** in `include/scene_owners.hh` and `src/scene_owners.cc`. They allocate their controllers and move the incoming continuation into the scene. Both expanded forced full-ROM builds pass; symbols and existing vtable slots are preserved. See [SCENES.md](docs/SCENES.md).
 
-Six Run seams expose 596 bytes of unchanged unnamed neighboring code. Those bytes remain assembly and count as unattributed; only the true bodies count as source. The prior 39 single-owned-member destructors remain exact.
+The shared scene lifetime layer now contains **65 source functions / 3,236 bytes**, including the prior 25 destructors and 22 Run entries. Controller logic, seven constructors and three complex Runs remain assembly.
 
 ## Next direction
 
-Next: Scenes, constructors and controller creation. Audit the 48-byte func_0807DD38 and its factory callers using the now-exact SceneOwner7DD68 ownership layout, following NEXT_AGENT_HANDOFF.md. Three complex Runs and the larger 20-member scene-change family remain assembly. Keep C6BC and A1EA8 parked.
+Next: Scenes, constructors with additional inputs. Audit the 68-byte func_08057DD8, its DB96C factory and controller 522F8, then try the proven natural initializer shape with its extra unsigned byte parameter. NEXT_AGENT_HANDOFF.md owns the exact continuation. Keep C6BC and A1EA8 parked.
 
 The loader remains parked. Resource-owner constructors and B128 remain parked.
-Current ignored proofs are under tools/ches/checkpoints/scene-owners-2026-10-09/.
+Current ignored proofs are under tools/ches/checkpoints/scene-constructors-2026-10-09/.
 The canonical handoff supplies the exact continuation and prior failure limits.
 
 ## Parked work and documentation
