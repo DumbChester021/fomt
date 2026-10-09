@@ -561,6 +561,7 @@ SECTIONS
         asm/code_0803EE94.o(.text.after_heart_event_days);
         src/menu_text.o(.text.menu_text_streams);
         asm/code_0803EE94.o(.text.after_menu_text_streams);
+        src/menu_text_canvas.o(.text.menu_text_canvas);
         src/menu_tilemap.o(.text.menu_tilemap_rectangle);
         asm/code_0803EE94.o(.text.after_menu_tilemap_rectangle);
         src/menu_draw_nodes.o(.text.menu_tilemap_rect_node);
@@ -809,6 +810,8 @@ SECTIONS
         asm/code_809E804.o(.text.after_func_080A6640);
         src/terrain.o(.text);
         asm/code_809E804.o(.text.after_is_footprint_on_water_surface);
+        src/menu_font.o(.text.menu_font_decode);
+        asm/code_809E804.o(.text.after_menu_font_decode);
 
         src/m4a_1.o(.text);
         src/m4a.o(.text);

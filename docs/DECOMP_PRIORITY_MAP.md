@@ -12,11 +12,11 @@ exploit them across the remaining assembly instead of making an individual
 resource family the main queue.
 
 Current verified working state on `main`:
-- code: **83,080 / 940,036 = 8.8380%**;
-- assembly remaining: **856,956 bytes**;
-- remaining linked assembly functions: **2,111**;
+- code: **83,612 / 940,036 = 8.8946%**;
+- assembly remaining: **856,424 bytes**;
+- remaining linked assembly functions: **2,107**;
 - data/assets: **75,554 / 6,777,404 = 1.1148%**;
-- overall meaningful ROM: **159,030 / 7,717,440 = 2.0607%**;
+- overall meaningful ROM: **159,562 / 7,717,440 = 2.0676%**;
 - packed bank: **416 / 493 semantically owned animations**;
 - retail ROM remains exact at SHA1 `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
 
@@ -53,24 +53,23 @@ but its score is no longer an execution order.
 
 ## Current priority: work the live queue and preserve family-level leverage
 
-Latest promotion: **14 menu drawing functions / 576 exact bytes**, twelve
-shared-layout callbacks and two encoded streams. Both forced ROM gates pass.
-Twelve named entries leave the inventory; two anonymous constructors shrink
-ED28/EDB4 ranges to84/68. Vtables, original addresses and other ranges stay intact.
-Earlier provider counts, rectangle, livestock and all 25 scene Runs remain exact.
+Latest promotion: **five font/canvas functions / 532 exact bytes**.
+Shared glyph lookup/decoding owns a complete 488-byte block; canvas copy and
+unaligned stubs own 44. Both forced ROM gates pass. Four named entries leave
+the inventory; no surviving ranges or unattributed bytes change.
 
-The user requested larger batches. Select whole shared-layout/API families,
-compare natural candidates promptly and park hard neighbors. Use one isolated/
-production gate pair, one inventory/docs pass and one publication per family.
-A fixed small function count is not the work unit.
+Renderer E4AC/E5AC and fill E7A0/E7DC are now parked after bounded source
+families. Inline tile/address, byte-count and temporary lifetimes remain
+unresolved. Reopen them only with real structural evidence. The explicit
+parked count is 27; this metadata is separate from recovered bytes.
 
-Next shared glyph backends E4AC..E5AC (256)/E5AC..E7A0 (500) form a756-byte
-family around MenuTextSize, the four-tile buffer and shared decoder.
-Preserve unaligned stubs and the separate anonymous clear helper.
-OAM EA94 is parked: 208 true bytes plus a separate 288-byte successor.
-Frame getter 5E790, formatter 4EC84, tall decimal EDB4 and builder 85640 retain
-their documented scheduling/lifetime frontiers. Queue parked count is23.
-Read MENU_TILEMAP.md, MENU_TEXT.md and NEXT_AGENT_HANDOFF.md.
+Next assess the menu glyph cache/row family EFAC/F060/F0E0 with the recovered
+four-tile output, font-width protocol and canvas copy API.
+Their true bodies total 424 bytes; preserve F058..F060's separate eight-byte
+neighbor. Recover the owning layout from constructors/callers, then include
+confirmed sibling lifetime methods as one batch.
+Keep one isolated/production gate pair, inventory/docs pass and publication
+per coherent family. Read MENU_TEXT.md and NEXT_AGENT_HANDOFF.md.
 
 The larger 20-member scene-change constructor family remains bounded but nonmatching. Do not repeat its closed aggregate-lifetime candidates merely because the queue ranks it highly. NEXT_AGENT_HANDOFF.md owns the active continuation.
 

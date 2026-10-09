@@ -55,6 +55,10 @@ PARKED = {
     "func_0805E790",
     "func_0804EC84",
     "func_0804EA94",
+    "func_0804E4AC",
+    "func_0804E5AC",
+    "func_0804E7A0",
+    "func_0804E7DC",
 }
 
 

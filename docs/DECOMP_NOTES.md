@@ -73,7 +73,25 @@ Stable contracts: MENU_TILEMAP.md and MENU_TEXT.md.
 Both forced ROM gates pass with the same compiler.
 OAM bitfield v1 is204/198; word-helper v2 is100/201 after zero propagation.
 Park those shapes and preserve the separate 288-byte successor.
-Next shared glyph backend pair E4AC/E5AC totals 756 bytes.
+The later renderer assessment is parked on inline tile/address lifetimes.
+
+## Shared font lookup/decoder and canvas copy
+
+The exact font block adds 488 bytes: 82-byte double-byte index plus two
+alignment bytes, followed by the 404-byte decoder and its dispatch table.
+Correct source types preserve signed high-byte extraction followed by unsigned
+range tests. Fifteen special cases directly return the one-tile expansion result.
+Fixed IWRAM function-pointer calls follow existing project ABI views; casting
+external code-array symbols instead caused direct BL veneers in v1.
+The complete natural v2 block and both forced full-ROM gates match.
+
+Canvas copy and two unaligned stubs add 44 exact bytes. E9D0 takes its source
+pointer in the third argument and copies the canvas; the old clear label was
+incorrect. MenuGlyphTiles proves four 32-byte output tiles.
+Four named entries leave the inventory; no surviving range or unattributed
+byte changes. Renderer E4AC/E5AC and fill E7A0/E7DC source shapes are parked.
+Stable behavior: MENU_TEXT.md. Next recover the menu glyph cache/row helpers
+around EFAC/F060/F0E0 using the exact font-width and canvas interfaces.
 
 ## CURRENT DECOMP NOTE POLICY
 
@@ -82,8 +100,8 @@ live state. This file keeps subsystem/function evidence and matching lessons.
 
 Current retail state:
 - Active public retail branch: `main`; the former `Live-temp` line is retired. Historical `ches-dev` commits remain provenance only.
-- Current exact progress: **83,080 / 940,036 = 8.8380% source** and **856,956 assembly bytes**. Data/assets reconstruction is **75,554 / 6,777,404 = 1.1148%** and overall meaningful-ROM reconstruction is **159,030 / 7,717,440 = 2.0607%**. Forced production ROM comparison reports `fomt.gba: OK`; retail SHA1 remains `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
-- Remaining linked assembly functions: **2,111**; inferred function ranges cover **854,260 / 856,956 = 99.6854%**, with **2,696 unattributed bytes** and **23 explicitly parked functions**. The total includes the prior exposed islands and 596 additional unnamed bytes preserved beside six scene Run entries.
+- Current exact progress: **83,612 / 940,036 = 8.8946% source** and **856,424 assembly bytes**. Data/assets reconstruction is **75,554 / 6,777,404 = 1.1148%** and overall meaningful-ROM reconstruction is **159,562 / 7,717,440 = 2.0676%**. Forced production ROM comparison reports `fomt.gba: OK`; retail SHA1 remains `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
+- Remaining linked assembly functions: **2,107**; inferred function ranges cover **853,728 / 856,424 = 99.6852%**, with **2,696 unattributed bytes** and **27 explicitly parked functions**. The total includes the prior exposed islands and 596 additional unnamed bytes preserved beside six scene Run entries.
 
 ### 2026-10-09 Scenes: complex Runs complete
 

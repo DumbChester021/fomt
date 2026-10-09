@@ -143,4 +143,5 @@ cross-checks before a typed source interface is promoted.
 The inferred 496-byte range also contains the separate 288-byte routine at
 0804EB64..0804EC84; those bytes are executable code and must be preserved.
 The factory is parked after natural bitfield and word-helper candidates fail.
-Next recover the shared glyph backend family using [MENU_TEXT.md](MENU_TEXT.md).
+Shared font lookup/decoding and canvas copy are now exact; renderer/fill
+methods are parked. Next assess the related cache/row family in [MENU_TEXT.md](MENU_TEXT.md).

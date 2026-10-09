@@ -27,10 +27,10 @@ subsystem is fully understood.
 Authoritative live state is in `START_HERE.md`.
 
 - Active public retail branch: **`main`**. The former `Live-temp` series is retired; `ches-dev` remains historical.
-- Code reconstruction: **83,080 / 940,036 = 8.8380%**; **856,956 assembly bytes** remain.
-- Remaining linked asm functions: **2,111**; inferred ranges cover **854,260 / 856,956 = 99.6854%**, with **2,696 unattributed bytes** and **23 explicitly parked functions**.
+- Code reconstruction: **83,612 / 940,036 = 8.8946%**; **856,424 assembly bytes** remain.
+- Remaining linked asm functions: **2,107**; inferred ranges cover **853,728 / 856,424 = 99.6852%**, with **2,696 unattributed bytes** and **27 explicitly parked functions**.
 - Data/assets: **75,554 / 6,777,404 = 1.1148%**.
-- Overall meaningful-ROM reconstruction: **159,030 / 7,717,440 = 2.0607%**.
+- Overall meaningful-ROM reconstruction: **159,562 / 7,717,440 = 2.0676%**.
 - Contiguous tail free space: **671,168 bytes = 655.44 KiB**.
 - Retail SHA1: `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`; full compare remains **`fomt.gba: OK`**.
 - Authoritative compiler path is the tracked `tools/install_agbcp.sh` plus `tools/agbcp_fomt_compat.patch`, SHA-256 `aa7cc6df0efbd066e9c33deb887731e1d0210babfaeba4c9b64f3e8bc35c4256`.
@@ -43,14 +43,15 @@ Authoritative live state is in `START_HERE.md`.
 - The packed bank remains **416 / 493 semantically owned animations**, with the remaining 77 IDs as a parked by-product lane.
 
 The scene lifetime layer owns 74 functions/4,108 bytes, including all 25 Runs;
-constructor 92570 and most controller bodies remain assembly. Livestock owns 548
-code bytes and 220 catalog bytes; its builder is parked on shared copy/list lifetimes.
-Menu rectangle owns 100 bytes. Twelve callback methods in include/menu_draw_nodes.hh
-/ src/menu_draw_nodes.cc add 360, and two stream walkers in include/menu_text.hh
-/ src/menu_text.cc add 216 around MenuTextSize and the glyph protocol.
-This latest coherent batch totals 14 functions/ 576 bytes; provider counts remain 8.
-Frame getter, integer/price primitives and OAM EA94 are parked.
-Next shared glyph backends E4AC/E5AC total 756 bytes.
+constructor 92570 and most controller bodies remain assembly. Livestock owns
+548 code bytes and 220 catalog bytes; its builder stays parked.
+Menu graphics now owns 1,208 exact bytes across rectangle drawing, twelve
+callback methods, two streams, two font helpers and three canvas helpers.
+New source: include/menu_font.hh, src/menu_font.cc and src/menu_text_canvas.cc.
+The latest batch adds five functions/532 bytes; data/assets stay unchanged.
+Font lookup/decoding and full-canvas copy are recovered. Renderer/fill methods,
+frame getter, integer/price primitives and OAM EA94 remain parked.
+Next assess the glyph cache/row family EFAC/F060/F0E0.
 Stable evidence: [Scenes](SCENES.md), [Livestock shop](LIVESTOCK_SHOP.md),
 [Menu tilemaps](MENU_TILEMAP.md) and [Menu text](MENU_TEXT.md).
 
@@ -102,7 +103,7 @@ under `assets/item_icons/`. `tools/packed_sprite_bank.py` rebuilds the
 0x30080-byte bank exactly. The cooking UI owns `gCookingUtensilIconIds`, mapping
 Knife=265, Frying Pan=204, Pot=346, Mixer=64, Whisk=472, Rolling Pin=313,
 Oven=327, and Seasoning Set=400. `func_08092A70` remains parked at `0x260 / 3`.
-That item/tool lane remains behind the whole-game throughput queue. The resource-owner exact set is complete. Fishing records are recovered in `include/fishing_records.hh` / `src/fishing_records.cc`, and the mine-floor cluster owns 872 exact linked bytes through exact E0AC plus the E174..E1B4 progress getters around the recovered 0x628-byte persistent type in `include/mine_floor.hh`. The exposed E118..E174 and E1B4..E2D4 islands are behavior-recovered but parked after bounded source-shape attempts. The adjacent GameState+0x3480 block is now a typed 0x14-byte `CursedToolState`; the +0x3494..+0x34C3 block is conservatively opaque; GroundPickupState at +0x34C8 is now exact source; the +0x34D8 mask and +0x34DC actor state are already source-owned; frame getter 5E790 and offer builder 85640 are parked; the next coherent unit is the 756-byte shared glyph backend pair E4AC/E5AC; OAM EA94 is parked. D8E8 and DA00 remain parked source-shape/compiler frontiers; the compiler-sensitive loader remains parked. Product-count growth remains deferred because `ShippingBin:: product_stats[NUM_PRODUCTS]` is embedded in persistent state.
+That item/tool lane remains behind the whole-game throughput queue. The resource-owner exact set is complete. Fishing records are recovered in `include/fishing_records.hh` / `src/fishing_records.cc`, and the mine-floor cluster owns 872 exact linked bytes through exact E0AC plus the E174..E1B4 progress getters around the recovered 0x628-byte persistent type in `include/mine_floor.hh`. The exposed E118..E174 and E1B4..E2D4 islands are behavior-recovered but parked after bounded source-shape attempts. The adjacent GameState+0x3480 block is now a typed 0x14-byte `CursedToolState`; the +0x3494..+0x34C3 block is conservatively opaque; GroundPickupState at +0x34C8 is now exact source; the +0x34D8 mask and +0x34DC actor state are already source-owned; frame getter 5E790 and offer builder 85640 are parked; the next coherent unit is the menu glyph cache/row family EFAC/F060/F0E0; renderer/fill methods and OAM EA94 are parked. D8E8 and DA00 remain parked source-shape/compiler frontiers; the compiler-sensitive loader remains parked. Product-count growth remains deferred because `ShippingBin::product_stats[NUM_PRODUCTS]` is embedded in persistent state.
 
 Legacy loader `func_08011650` remains paused. Crop/field semantics,
 dialogue/event registration, and character portrait/display assets remain later
@@ -399,4 +400,4 @@ Historical shared-type continuation at the October 2 checkpoint:
 Latest recovered GroundPickupState: +0x34C8..+0x34D7, 56 availability
 bits and fifteen packed three-bit durability fields. Four exact functions
 add 1,032 linked bytes. A1EA8 is parked. See docs/GROUND_PICKUP_STATE.md.
-The +0x34D8 mask and +0x34DC actor state are already source-owned. Next coherent work is shared menu glyph rendering E4AC/E5AC,756 bytes; OAM EA94, frame getter 5E790, offer builder 85640 and C6BC remain parked.
+The +0x34D8 mask and +0x34DC actor state are already source-owned. Next coherent work is the menu glyph cache/row family EFAC/F060/F0E0; renderer/fill methods, OAM EA94, frame getter 5E790, offer builder 85640 and C6BC remain parked.

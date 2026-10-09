@@ -125,6 +125,15 @@ loop and after pointer advancement, retain that cache across the glyph call.
 Re-reading the pointer can change alias/evaluation scheduling.
 Use the observed data lifetime before trying register-oriented spellings.
 
+The font helper batch adds two further lessons. A signed masked-byte
+expression can feed an unsigned range comparison; making both stages the
+same type changes ASR/LSR or signed/unsigned branches. Preserve each stage's
+observed type contract. Likewise, use the project's established fixed-IWRAM
+function-pointer interface when the retail call dispatches there. A cast from
+an external code-array symbol can generate a direct BL veneer instead.
+Check complete linked blocks including normal alignment before judging a
+short symbol-size report as a real mismatch.
+
 ## Standard decompilation workflow
 
 ### 1. Orient before editing

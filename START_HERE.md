@@ -14,7 +14,7 @@ This is the live dashboard for the US Harvest Moon: Friends of Mineral Town matc
 ## Active branch and build authority
 
 - Retail branch: **main**, tracking **ches/main**. Run git log -1 for this checkpoint's commit.
-- Starting checkpoint for the menu drawing batch: **a714171**.
+- Starting checkpoint for the font/canvas batch: **87bd428**.
 - Custom gameplay stays in the separate custom-game worktree.
 - ROM: **8,388,608 bytes**, SHA1 **a2fc3574f0a65a4fcf7682fb274b9d7eebdef963**.
 - Full gate: make -B -j4 compare, ending in **fomt.gba: OK**.
@@ -22,28 +22,44 @@ This is the live dashboard for the US Harvest Moon: Friends of Mineral Town matc
 
 ## Handoff readiness
 
-Latest verified batch: **14 menu drawing functions / 576 exact linked bytes**.
-Twelve callback methods recover rectangle and three decimal layouts; two
-encoded text streams share MenuTextSize and the glyph-return interface.
-Both forced isolated and production full-ROM comparisons pass on October 9, 2026.
+Latest verified batch: **five font/canvas helpers / 532 exact linked bytes**.
+The shared encoded-glyph decoder and double-byte lookup own 488 bytes;
+full-canvas copy and the two unaligned stubs own 44 bytes.
+Both forced isolated and production ROM comparisons pass on October 9, 2026.
+Font tables and IWRAM expanders remain assembly data/code.
 Run git log -1 and git status before work; preserve intentional dirty files.
-The full loader and complete GameState type remain unfinished.
-No build or compiler command is pending.
+The whole save loader and complete GameState remain unfinished.
+No build or compiler execution is pending.
 
 Read the Fast-path operating method in docs/DECOMP_PLAYBOOK.md.
 NEXT_AGENT_HANDOFF.md owns exact bounds, first commands and closed paths.
 
 ## Current exact reconstruction
 
-- Code: **83,080 / 940,036 = 8.8380%**.
-- Assembly: **856,956 bytes; 2,111 linked functions**.
-- Inferred ranges: **854,260 / 856,956 = 99.6854%**.
-- Unattributed assembly: **2,696 bytes; 23 parked functions**.
+- Code: **83,612 / 940,036 = 8.8946%**.
+- Assembly: **856,424 bytes; 2,107 linked functions**.
+- Inferred ranges: **853,728 / 856,424 = 99.6852%**.
+- Unattributed assembly: **2,696 bytes; 27 parked functions**.
 - Data/assets: **75,554 / 6,777,404 = 1.1148%**.
-- Overall meaningful ROM: **159,030 / 7,717,440 = 2.0607%**.
+- Overall meaningful ROM: **159,562 / 7,717,440 = 2.0676%**.
 - Free tail: **671,168 bytes**.
 
-## Latest completed batch
+## Recent exact batches
+
+include/menu_font.hh / src/menu_font.cc recover MenuGlyphTiles, the 128-byte
+four-tile output record, GetMenuDoubleByteGlyphIndex and DecodeMenuGlyph.
+The decoder resolves signed font-table indices, fifteen special glyphs and
+one-/two-tile character widths. Normal invalid input clears the output.
+It retains the fixed IWRAM expansion ABI already used elsewhere in the project.
+
+src/menu_text_canvas.cc adds exact CopyMenuText and the two unaligned stubs.
+The former anonymous E9D0 helper **copies** a whole canvas; it is not a clear
+operation. Four named entries leave the inventory; the fifth source function
+was previously included in E9CC's inferred range. Other surviving ranges and
+all 2,696 unattributed bytes stay unchanged. See [MENU_TEXT.md](docs/MENU_TEXT.md).
+The renderer pair and fill helpers are parked after bounded natural probes.
+
+The preceding 14-function menu drawing batch remains exact:
 
 include/menu_draw_nodes.hh / src/menu_draw_nodes.cc own twelve methods / 360
 bytes: four initializers, four cleanup methods and four draw callbacks.
@@ -92,12 +108,17 @@ controller logic remain assembly. See [SCENES.md](docs/SCENES.md).
 
 ## Next direction
 
-Next: recover the **shared menu glyph renderer family / 756 bytes**:
-DrawMenuGlyph E4AC..E5AC (256) and DrawStyledMenuGlyph E5AC..E7A0 (500),
-around MenuTextSize, their four-tile buffer and shared decoder.
-Preserve unaligned-copy stubs E9C8/E9CC and anonymous clear helper E9D0..E9F4.
-Use whole related families with one integration, inventory/docs and publication
-pass; a fixed small function count is not the batch unit.
+Next: recover the **menu glyph cache/row helper family** near EFAC..F15C,
+using the decoded-width contract, four-by-two canvases and 16-byte records.
+EFAC's true body is 172 bytes; preserve the separate eight-byte F058..F060
+neighbor. F060/F0E0 are 128/124 bytes. Include related construction/cleanup
+only when caller/layout evidence proves the owning type.
+The handoff owns exact commands and reopening criteria.
+
+Renderer E4AC/E5AC and fill E7A0/E7DC are now parked on inline tile/address,
+byte-count and register/evaluation lifetimes. Do not repeat their saved
+spelling variants without new structure. Keep related functions in one
+verification, inventory/docs and publication cycle.
 
 OAM factory EA94 is parked: true body 208 bytes followed by a separate
 288-byte anonymous routine at EB64..EC84. Preserve that successor.
@@ -112,7 +133,8 @@ Offer builder 85640 remains parked on shared frame-copy/list lifetimes.
 The whole loader, resource-owner constructors and B128 remain parked.
 Whole save recovery is unfinished despite exact persistent subobjects.
 
-Current proofs: tools/ches/checkpoints/menu-graphics-batch-2026-10-09/.
+Current proofs: tools/ches/checkpoints/menu-glyphs-2026-10-09/.
+Earlier menu proofs: tools/ches/checkpoints/menu-graphics-batch-2026-10-09/.
 Earlier frame/count proofs: tools/ches/checkpoints/packed-sprite-frame-2026-10-09/.
 Menu probes: tools/ches/checkpoints/menu-numbers-2026-10-09/.
 Builder probes: tools/ches/checkpoints/livestock-offer-builder-2026-10-09/.

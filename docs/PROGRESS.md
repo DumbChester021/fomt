@@ -16,8 +16,8 @@ Current reconstruction:
 
 ```text
 Code reconstruction
-  83080 / 940036 bytes (8.8380%)
-  856956 bytes remain in asm
+  83612 / 940036 bytes (8.8946%)
+  856424 bytes remain in asm
 
 Data/assets reconstruction
   75554 / 6777404 bytes (1.1148%)
@@ -28,7 +28,7 @@ Data/assets reconstruction
   396 additional source-owned ROM-header bytes count only toward overall
 
 Overall meaningful-ROM reconstruction
-  159030 / 7717440 bytes (2.0607%)
+  159562 / 7717440 bytes (2.0676%)
   final ROM padding is excluded from this denominator
 
 ROM space
@@ -36,7 +36,7 @@ ROM space
   671168 bytes free (655.44 KiB, 8.0009%) contiguous tail space
 ```
 
-The code inventory currently reports **2,111 linked assembly functions**, **854,260 bytes** covered by inferred function ranges, **2,696 unattributed assembly bytes**, and **23 explicitly parked functions**. The total includes prior exposed islands plus 596 bytes of unnamed neighbors revealed by six scene Run seams. Only their true 28-byte Run bodies are source-owned; the neighboring code remains unchanged assembly.
+The code inventory currently reports **2,107 linked assembly functions**, **853,728 bytes** covered by inferred function ranges, **2,696 unattributed assembly bytes**, and **27 explicitly parked functions**. The total includes prior exposed islands plus 596 bytes of unnamed neighbors revealed by six scene Run seams. Only their true 28-byte Run bodies are source-owned; the neighboring code remains unchanged assembly.
 
 ## What the metrics mean
 
@@ -50,7 +50,14 @@ Understanding or documenting an opaque `.incbin` does not count as asset/data re
 
 ## Recent exact milestones
 
-The newest batch is **Menu drawing callbacks and text streams: 14 functions /
+The newest batch is **Shared font lookup/decoder and canvas helpers: five
+functions / 532 exact linked bytes**. The complete font block owns 488 bytes;
+canvas copy and unaligned stubs own 44. Both forced ROM gates pass.
+Four named entries leave the inventory; the copy was an anonymous successor.
+All surviving ranges and unattributed bytes stay unchanged. Data/assets are
+unchanged. See [MENU_TEXT.md](MENU_TEXT.md).
+
+The preceding batch is **Menu drawing callbacks and text streams: 14 functions /
 576 exact linked bytes**. Twelve callback methods own 360 bytes; two encoded
 streams own 216. Allocation layouts, four existing vtables and glyph protocol
 are recovered. Both forced full-ROM gates pass. Twelve named entries leave
