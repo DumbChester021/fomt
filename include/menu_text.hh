@@ -7,6 +7,8 @@ struct MenuTextSize
 {
     u16 width;
     u16 height;
+
+    MenuTextSize(u16 w, u16 h) : width(w), height(h) {}
 };
 
 u32 DrawMenuGlyph(MenuTextSize, u8 *, u32, u32, u32) asm("func_0804E4AC");
@@ -23,6 +25,8 @@ u32 DrawUnalignedMenuGlyph(MenuTextSize, u8 *, u32, u32, MenuGlyphTiles const *)
 u32 DrawUnalignedStyledMenuGlyph(MenuTextSize, u8 *, u32, u32,
                                MenuGlyphTiles const *, u32, u32)
     asm("func_0804E9CC") SECTION(".text.menu_text_canvas");
+void FillMenuText(MenuTextSize, u8 *, u32) asm("func_0804E7A0");
+
 void CopyMenuText(MenuTextSize, u8 *, u32 const *)
     asm("func_0804E9D0") SECTION(".text.menu_text_canvas");
 

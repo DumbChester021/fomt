@@ -216,7 +216,7 @@ EC void func_0809C3BC(u8 * self, unsigned int tool_id)
 extern u8 const gUnk_081036C0[];
 EC unsigned int func_0809C3E0(u8 * self, unsigned int index)
 {
-    register unsigned int result asm("r5") = 0;
+    unsigned int result = 0;
     u8 * active = self + index;
     if (*active != 0)
     {
@@ -397,22 +397,22 @@ EC u16 * func_080E3E28(u16 * first, u16 * last, u16 const * value);
 
 EC void func_0809C600(u32 * self, u16 value)
 {
-    register u16 * first asm("r0") = (u16 *)(self + 1);
-    register u16 * last asm("r4") = (u16 *)((u8 *)self + ((*self << 1) + 4));
+    u16 * first = (u16 *)(self + 1);
+    u16 * last = (u16 *)((u8 *)self + ((*self << 1) + 4));
 
     if (func_080E3DB4(first, last, &value) == last)
     {
-        register u16 * value_p asm("r2") = &value;
-        register unsigned int raw asm("r0") = *self;
-        register unsigned int count asm("r3") = raw;
+        u16 * value_p = &value;
+        unsigned int raw = *self;
+        unsigned int count = raw;
 
         if (raw <= 2)
         {
-            register u16 * dst asm("r1") = (u16 *)((u8 *)self + ((raw << 1) + 4));
+            u16 * dst = (u16 *)((u8 *)self + ((raw << 1) + 4));
             if (dst != 0)
                 *dst = *value_p;
 
-            register unsigned int result asm("r0") = count + 1;
+            unsigned int result = count + 1;
             *self = result;
         }
     }
