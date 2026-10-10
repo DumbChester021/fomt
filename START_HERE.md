@@ -13,8 +13,8 @@ This is the live dashboard for the US Harvest Moon: Friends of Mineral Town matc
 
 ## Active branch and build authority
 
-- Retail branch: **main**, tracking **ches/main**. Run git log -1 for this checkpoint's commit.
-- Verified code checkpoint: **1e522c9** (menu/glyph-cache/provider/tree/ownership source); documentation is recorded in a follow-up commit. See `git log -1` for the latest published checkpoint; protect any later uncommitted work.
+- Retail branch: **main**, tracking **ches/main**. The last published checkpoint at this documentation audit was **`38718be`** (`sync FoMT decomp inventory and concise zero-context handoff`). Verify the live HEAD with `git log -1` before new work.
+- Verified source-code checkpoint: **`1e522c9`** (menu/glyph-cache/provider/tree/ownership source); `38718be` published the subsequent inventory and handoff docs. Documentation-only corrections after this checkpoint do not represent new exact code. Preserve later uncommitted work.
 - Custom gameplay stays in the separate custom-game worktree.
 - ROM: **8,388,608 bytes**, SHA1 **a2fc3574f0a65a4fcf7682fb274b9d7eebdef963**.
 - Full gate: make -B -j4 compare, ending in **fomt.gba: OK**.

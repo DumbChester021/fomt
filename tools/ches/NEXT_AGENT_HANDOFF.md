@@ -6,8 +6,8 @@
 byte-for-byte in [handoff history](checkpoints/menu-throughput-docs-2026-10-10/HANDOFF_HISTORY.md).
 Superseded next-target claims in that history are not instructions.
 
-- Retail workspace: `/mnt/data/Github/gba/fomt`; branch `main` tracking `ches/main`; verified source-code checkpoint **`1e522c9`**. Check `git log -1` for the subsequent documentation checkpoint.
-- **The previously dirty verified retail source is now committed as 1e522c9.** Keep the separate custom-game worktree isolated. Preserve any new local changes and never reset, clean, or stash them without review.
+- Retail workspace: `/mnt/data/Github/gba/fomt`; branch `main` tracking `ches/main`; verified source-code checkpoint **`1e522c9`**, followed by published inventory/docs checkpoint **`38718be`**. Check `git log -1` and `git status -sb` for any newer work.
+- **The previously dirty verified retail source is committed as 1e522c9.** The retail branch was clean and even with its tracked remote at the start of the October 10 documentation audit; documentation-only edits may now be pending review. The separate custom-game worktree has independent uncommitted docs. Preserve both worktrees; never reset, clean or stash without review.
 - Retail SHA1: **`a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`**, ROM size **8,388,608**.
 - Latest full forced comparison: `make -B -j4 compare` -> **`fomt.gba: OK`**; execution `sh_mv1zgcf1_407a2abd`, exit 0. No background build pending.
 - **Code 87,236 / 940,036 = 9.2801%**. Assembly: **852,800 bytes / 2,037 linked unresolved functions**; mapped inferred ranges **849,828** bytes, unattributed **2,972**, explicitly parked **27**.
@@ -86,6 +86,8 @@ a heuristic, **not** automatically an execution order.
   `python3 tools/ches/build_decomp_inventory.py`, run `git diff --check`,
   update the live dashboard/status/handoff and relevant stable subsystem page
   **once per coherent batch**.
-- Keep custom-game edits isolated. The exact retail source was committed as
-  **1e522c9** and the documentation was prepared as a separate checkpoint;
-  verify the current upstream state with `git status -sb` and `git log -1`.
+- Keep custom-game edits isolated. Exact retail source is committed in
+  **`1e522c9`**; inventory/handoff docs followed in **`38718be`**.
+  October 10 documentation alignment corrects stale README/TODO/asset/priority
+  references without changing code or the inventory. Verify live state with
+  `git status -sb` and `git log -1` before resuming.

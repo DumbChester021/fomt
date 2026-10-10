@@ -1,6 +1,6 @@
 # FoMT Matching Decomp Notes
 
-## Active scope - October 6, 2026
+## Active scope (adopted October 6; current snapshot October 10, 2026)
 
 The active goal is **throughput-first whole-game retail decompilation**.
 Preserve the byte-identical US retail ROM on `main`, keep custom behavior in
@@ -51,7 +51,7 @@ tools/ches/checkpoints/menu-glyph-cache-2026-10-10/.
 
 ### Exact provider and counted-range continuation
 
-The October 10 continuation adds 11 functions / 756 exact linked bytes. E14B8 is exact `BuildAnimalNameText`; E1824/E1964/E1984/E1A28 are exact provider lifetime wrappers; E1844 and E19A4 are exact 31-character name providers; E1A48/E1A54 are exact wrappers; and E1C18/E1D54 are exact counted 16-byte range cleanups. The exact range-walk source evaluates the header/count pointer first, computes `header + 4 + count*16`, then forms the record iterator and advances by 16 to end before forwarding `(self, flags)` to `func_08076E0C`. Abstracting this walk into a helper changes register allocation, so the production dual cleanup keeps two explicit scopes. Current next target is E1C70..E1D54.
+The October 10 continuation adds 11 functions / 756 exact linked bytes. E14B8 is exact `BuildAnimalNameText`; E1824/E1964/E1984/E1A28 are exact provider lifetime wrappers; E1844 and E19A4 are exact 31-character name providers; E1A48/E1A54 are exact wrappers; and E1C18/E1D54 are exact counted 16-byte range cleanups. The exact range-walk source evaluates the header/count pointer first, computes `header + 4 + count*16`, then forms the record iterator and advances by 16 to end before forwarding `(self, flags)` to `func_08076E0C`. Abstracting this walk into a helper changes register allocation, so the production dual cleanup keeps two explicit scopes. At that historical checkpoint, E1C70..E1D54 was the next candidate; E1D54 and later neighboring methods have since been promoted, while E1C70 is still parked. See the current handoff for live work.
 
 ## Livestock controller, helpers and catalog
 

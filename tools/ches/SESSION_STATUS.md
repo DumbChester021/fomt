@@ -10,7 +10,7 @@ Live next actions belong to `tools/ches/NEXT_AGENT_HANDOFF.md`.
 | Item | Verified value |
 | --- | --- |
 | Workspace / branch | `/mnt/data/Github/gba/fomt`; `main` tracking `ches/main` |
-| Code checkpoint | **`1e522c9`**; follow-up docs checkpoint is recorded separately |
+| Published checkpoints | Source **`1e522c9`**; inventory/handoff documentation **`38718be`** |
 | Code in C++ source | **87,236 / 940,036 (9.2801%)** |
 | Remaining linked ASM | **852,800 bytes; 2,037 functions** |
 | Inferred assembly ranges | **849,828 bytes** (99.6515%) |
@@ -35,7 +35,7 @@ now counted as unattributed ASM instead of as part of its preceding function.
 
 The complete save loader and GameState are not finished; the separate
 custom-game worktree remains independent. The current tracked compiler is
-unchanged. The verified retail source is committed in **1e522c9**; see `git log -1` for the latest documentation/publication checkpoint.
+unchanged. The verified retail source is committed in **`1e522c9`**, followed by published inventory/handoff documentation **`38718be`**. The later documentation-sync edits do not change executable source.
 
 ## Highest-leverage next action
 
@@ -50,4 +50,4 @@ The isolated function comparison tool can mis-target multi-section scratch
 objects; the attempted fix was reverted to the tracked version. Use one
 candidate function per scratch source for matching. Regenerate
 `tools/ches/decomp_inventory.json` after actual production changes, not
-merely for documentation. Preserve the intentional dirty worktree.
+merely for documentation. At the October 10 audit start, retail `main` was clean and even with its tracked remote; the separate `custom-game` worktree had four uncommitted documentation changes. Preserve any subsequent modifications in either worktree.

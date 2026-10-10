@@ -137,10 +137,9 @@ Immediately preceding exact promotions include `func_0803A798`, `func_0803A350`,
 
 ## Current frontier
 
-The scene cleanup and all 25 Run entries are exact. Livestock construction/cleanup, helpers, catalog and the shared menu rectangle helper are exact. Frame getter 5E790 and integer formatter 4EC84 are parked after bounded probes;
-count accessors 5E81C/5E820 are exact. Next assess menu OAM factory 4EA94..4EB64. Constructor 92570 remains parked at four codegen bytes.
+The scene cleanup and all 25 `Run()` entries are exact. Livestock construction/cleanup, helpers, catalog, menu text/canvas, glyph-cache/provider lifetime, resource-owner helpers and menu tree rotations/balancing are exact at their documented boundaries. The current priority is **high-yield ownership/type clusters**, not another isolated menu helper.
 
-The 20 scene-change helpers remain bounded but nonmatching at their aggregate/ownership lifetime seam. Resource-owner constructors/B128, mine-floor D8E8/DA00 and the exposed E118/E1B4 islands, the legacy loader, and the other documented parked functions remain closed until new structural evidence changes their leverage. NEXT_AGENT_HANDOFF.md owns the exact next action.
+The 18-member 72-byte ownership-transfer family is promising but its DB394 scratch candidates do not match and v1 releases a moved result incorrectly. Recover the 16-byte smart-owner transfer and destructor/allocator contract before using that exemplar across siblings. Three 192-byte menu tree-insertion siblings (E2294/E27FC/E54F0) are an alternative after fresh allocation/lifetime evidence. E1C70, F060, D6EAC/D6EEC, scene constructor 92570, frame getter 5E790, resource-owner constructors/B128, mine-floor D8E8/DA00, and the whole save loader are parked at their recorded frontiers. The canonical live queue and proof links are in [NEXT_AGENT_HANDOFF.md](../tools/ches/NEXT_AGENT_HANDOFF.md).
 
 ## Asset status
 
@@ -166,7 +165,7 @@ Retail `main` remains byte-exact. Product-count growth and custom persistence re
 The reported **671,168 bytes** are the contiguous final tail after linked content in the 8 MiB retail image. Internal holes are not counted unless independently proven safe.
 
 
-Latest recovered GroundPickupState: +0x34C8..+0x34D7, 56 availability
+Earlier recovered GroundPickupState: +0x34C8..+0x34D7, 56 availability
 bits and fifteen packed three-bit durability fields. Four exact functions
 add 1,032 linked bytes. A1EA8 is parked. See docs/GROUND_PICKUP_STATE.md.
-The +0x34D8 mask and +0x34DC actor state are already source-owned. Next bounded target: menu OAM factory 4EA94..4EB64; frame getter 5E790, offer builder 85640 and C6BC remain parked.
+The +0x34D8 mask and +0x34DC actor state are already source-owned. Menu OAM factory 4EA94..4EB64, frame getter 5E790, offer builder 85640 and C6BC remain parked or unpromoted; none supersedes the current high-yield family queue in the live handoff.

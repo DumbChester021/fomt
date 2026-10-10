@@ -1,6 +1,6 @@
 # FoMT Decompilation Priority Map
 
-## Active scope - October 6, 2026
+## Active scope (adopted October 6; snapshot October 10, 2026)
 
 The active goal is **throughput-first whole-game retail decompilation**.
 Preserve the byte-identical US retail ROM on public branch `main`, keep custom

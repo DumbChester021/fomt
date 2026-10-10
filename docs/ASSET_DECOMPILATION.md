@@ -1,6 +1,6 @@
 # Asset and data decompilation progress
 
-Date: 2026-10-06
+Policy adopted: 2026-10-06. Progress snapshot verified: 2026-10-10.
 
 ## Asset/data role in the throughput pipeline
 
@@ -65,19 +65,19 @@ dimensions separate and also report a conservative overall linked-ROM metric.
 
 ```text
 Code reconstruction
-  73556 / 940036 bytes (7.8248%)
-  866480 bytes remain in asm
+  87236 / 940036 bytes (9.2801%)
+  852800 bytes remain in asm (2037 linked assembly functions)
 
 Data/assets reconstruction
-  75334 / 6777404 bytes (1.1115%)
-  31110 bytes from typed/source non-code data
+  75554 / 6777404 bytes (1.1148%)
+  31330 bytes from typed/source non-code data
   44224 bytes from editable generated assets
     Semantically owned packed-sprite graphics and palettes:
     44224 bytes (33664 graphics + 10560 palette)
   396 additional source-owned .rom_header bytes count only toward overall
 
 Overall meaningful-ROM reconstruction
-  149286 / 7717440 bytes (1.9344%)
+  163186 / 7717440 bytes (2.1145%)
   final ROM padding is excluded from this reconstruction denominator
 
 ROM space

@@ -21,10 +21,10 @@ Current exact reconstruction metrics:
 
 | Metric | Current |
 | --- | ---: |
-| Code | **81,656 / 940,036 bytes (8.6865%)** |
-| Assembly remaining | **858,380 bytes** |
-| Data/assets | **75,334 / 6,777,404 bytes (1.1115%)** |
-| Overall meaningful ROM | **157,386 / 7,717,440 bytes (2.0394%)** |
+| Code | **87,236 / 940,036 bytes (9.2801%)** |
+| Assembly remaining | **852,800 bytes across 2,037 linked functions** |
+| Data/assets | **75,554 / 6,777,404 bytes (1.1148%)** |
+| Overall meaningful ROM | **163,186 / 7,717,440 bytes (2.1145%)** |
 | Contiguous ROM tail free space | **671,168 bytes (655.44 KiB)** |
 
 Run `make progress` for the live report.
@@ -55,9 +55,11 @@ The packed item/UI animation bank also has an exact editable pipeline. All 347 r
 
 Work is throughput-first and organized by coherent translation unit, type, vtable, or repeated machine-code family rather than by a fixed function count.
 
-The active frontier is the scene lifetime layer. It now owns 24 exact constructors, 25 destructors and 24 `Run()` entries, totaling 73 source functions / 3,916 linked retail bytes. `func_08083B2C` is now exact at 168 bytes using the recovered branch-local move-copy/ownership-transfer pattern while preserving the original 24-byte stack frame. Remaining scene assembly is constructor `func_08092570` plus the sole complex Run `func_080881EC`; `92570` remains parked at its exact-size four-byte register-allocation frontier. Next is `func_080881EC`. Stable evidence is in [docs/SCENES.md](docs/SCENES.md).
+As of **October 10, 2026**, the scene lifetime layer owns all 25 `Run()` entries, 24 constructors and 25 destructors: **74 exact functions / 4,108 linked retail bytes**. The remaining scene constructor `func_08092570` is parked on a compiler/register-allocation mismatch. See [docs/SCENES.md](docs/SCENES.md).
 
-Compiler-sensitive functions that are behavior-complete are parked rather than blocking whole-game progress. The canonical continuation is always in [tools/ches/NEXT_AGENT_HANDOFF.md](tools/ches/NEXT_AGENT_HANDOFF.md).
+The latest menu, glyph-cache/provider, tree and resource-owner work includes an **18-function / 632-byte exact batch** of ownership destructors and resource helpers. The next promising throughput targets are an 18-member ownership-transfer wrapper family (potentially 1,296 linked bytes, still nonmatching) and three typed tree-insertion siblings (potentially 576 bytes). Both require new ownership/allocator/ABI evidence; do not promote a nonmatching candidate. The full save loader and `GameState` reconstruction remain unfinished and parked. See [docs/MENU_GLYPH_CACHE.md](docs/MENU_GLYPH_CACHE.md), [docs/REPO_MAP.md](docs/REPO_MAP.md), and the authoritative [tools/ches/NEXT_AGENT_HANDOFF.md](tools/ches/NEXT_AGENT_HANDOFF.md).
+
+The current compiler is a pinned agbcc-family build with **13 documented FoMT compatibility behaviors**, not proof of the original compiler's identity. See [docs/FOMT_COMPILER_FINGERPRINT.md](docs/FOMT_COMPILER_FINGERPRINT.md).
 
 ## Build requirements
 
@@ -115,6 +117,8 @@ Start here:
 - [docs/DECOMP_PLAYBOOK.md](docs/DECOMP_PLAYBOOK.md) - matching workflow and validation rules
 - [docs/DECOMP_PRIORITY_MAP.md](docs/DECOMP_PRIORITY_MAP.md) - throughput-first target strategy
 - [docs/ASSET_DECOMPILATION.md](docs/ASSET_DECOMPILATION.md) - asset/data counting and authoring policy
+- [docs/FOMT_COMPILER_FINGERPRINT.md](docs/FOMT_COMPILER_FINGERPRINT.md) - pinned compatibility compiler and the 13 reconstructed behaviors
+- [tools/ches/NEXT_AGENT_HANDOFF.md](tools/ches/NEXT_AGENT_HANDOFF.md) - live verified state, closed experiments, and next exact matching targets
 
 Stable subsystem documentation includes [MAP_DATA.md](docs/MAP_DATA.md), [CHARACTERS.md](docs/CHARACTERS.md), [ENTITY_BALL.md](docs/ENTITY_BALL.md), [ENTITY_EFFECTS.md](docs/ENTITY_EFFECTS.md), [HARDWARE.md](docs/HARDWARE.md), [HARDWARE_TRANSFER.md](docs/HARDWARE_TRANSFER.md), [INTRUSIVE_CALLBACK_LIST.md](docs/INTRUSIVE_CALLBACK_LIST.md), [KEY_INPUT.md](docs/KEY_INPUT.md), [RESOURCE_HANDLES.md](docs/RESOURCE_HANDLES.md), [SAVE_FORMAT.md](docs/SAVE_FORMAT.md), and [SPRITE_ANIMATOR.md](docs/SPRITE_ANIMATOR.md).
 
