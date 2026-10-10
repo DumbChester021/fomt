@@ -10,21 +10,25 @@ Live next actions belong to `tools/ches/NEXT_AGENT_HANDOFF.md`.
 | Item | Verified value |
 | --- | --- |
 | Workspace / branch | `/mnt/data/Github/gba/fomt`; `main` tracking `ches/main` |
-| Latest published source | **`0c22862`** (audio callbacks + readability), synchronized with `ches/main` before this save-format research |
-| Code in C++ source | **88,972 / 940,036 (9.4647%)** |
-| Remaining linked ASM | **851,064 bytes; 1,981 functions** |
-| Inferred assembly ranges | **848,092 bytes** (99.6508%) |
+| Latest published source | **`9267e9a`** (save-readiness docs) before new save-header integration; check `git log -1` for current publication |
+| Code in C++ source | **89,444 / 940,036 (9.5150%)** |
+| Remaining linked ASM | **850,592 bytes; 1,975 functions** |
+| Inferred assembly ranges | **847,620 bytes** (99.6506%) |
 | Unattributed ASM / parked | **2,972 bytes / 27 functions** |
 | Recovered data/assets | **75,554 / 6,777,404 (1.1148%)** |
-| Meaningful ROM | **164,922 / 7,717,440 (2.1370%)** |
+| Meaningful ROM | **165,394 / 7,717,440 (2.1431%)** |
 | Free ROM tail | **671,168 bytes** |
 | Retail ROM | **8,388,608 bytes**; SHA1 `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963` |
-| Latest forced build | `make -B -j4 compare` **passed** (`sh_mv2471un_7d10991c`; `fomt.gba: OK`) |
+| Latest forced build | `make -B -j4 compare` **passed** (`sh_mv25lwpc_e4c43b4c`; `fomt.gba: OK`) |
 | Pending builds | None at this checkpoint |
 
-## Latest integrated work
+## Current highest priority — complete save system first
 
-**Newest exact audio/readability checkpoint:** 2 GameState audio/child callbacks / **48 linked bytes** in `src/game_state_audio_callbacks.cc`; original audio fade-out at 16784 remains assembly. Forced `make -B -j4 compare` gate `sh_mv2471un_7d10991c` passed; current exact code **88,972 / 940,036 (9.4647%)**, linked ASM **851,064 bytes / 1,981 functions**. The separate human-readability audit covers **136 C++ files / 19,919 lines**: these counts are heuristic debt indicators, not semantic completion percentages. Source: `docs/SOURCE_READABILITY_AUDIT.md`, `tools/ches/audit_source_readability.py`, `docs/GAME_STATE_AUDIO_CALLBACKS.md`.
+Seven semantic SRAM-header methods / **472 byte-exact source bytes** were recovered, including the previously raw/unlabeled `0800042C` clear-valid bit routine. The entire contiguous header area `080002E0..080004C4` is source-owned using `src/save_slot_header.cc` and existing `src/save_format.cc`. Every method individually matched retail and the forced clean ROM gate `sh_mv25lwpc_e4c43b4c` exited 0; retail SHA1 unchanged. The active next work is **the complete 740-byte `func_08011650` save loader, its default-state type graph, the SRAM read/write proxies and all high-level save/load/erase/copy paths**. See `docs/SAVE_LIFECYCLE.md` and current `tools/ches/NEXT_AGENT_HANDOFF.md`. Earlier general throughput is deferred. No custom-game files were changed.
+
+## Earlier integrations (verified historical milestones)
+
+**Earlier exact audio/readability checkpoint:** 2 GameState audio/child callbacks / **48 linked bytes** in `src/game_state_audio_callbacks.cc`; original audio fade-out at 16784 remains assembly. Forced `make -B -j4 compare` gate `sh_mv2471un_7d10991c` passed; current exact code **88,972 / 940,036 (9.4647%)**, linked ASM **851,064 bytes / 1,981 functions**. The separate human-readability audit covers **136 C++ files / 19,919 lines**: these counts are heuristic debt indicators, not semantic completion percentages. Source: `docs/SOURCE_READABILITY_AUDIT.md`, `tools/ches/audit_source_readability.py`, `docs/GAME_STATE_AUDIO_CALLBACKS.md`.
 
 **Prior October 10 integration:** 13 GameState/menu callback and incubation methods / **444 byte-exact linked bytes** in `src/game_state_menu_callbacks.cc`, across five original-address islands. The forced ROM comparison `sh_mv22yrzy_255645e2` passed, exit 0, retail SHA1 unchanged. Inventory is **88,972 / 940,036 (9.4647%)**, with **851,064 bytes / 1,981** linked assembly functions. Proofs, scratch variants and backups are at `/mnt/waydroid-hdd/home-chester-waydroid/fomt-menu-dispatch-batch3/`. See `docs/GAME_STATE_MENU_CALLBACKS.md`.
 

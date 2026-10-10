@@ -12,11 +12,11 @@ exploit them across the remaining assembly instead of making an individual
 resource family the main queue.
 
 Current verified working state on `main`:
-- code: **88,972 / 940,036 = 9.4647%**;
-- assembly remaining: **851,064 bytes**;
-- remaining linked assembly functions: **1,981**;
+- code: **89,444 / 940,036 = 9.5150%**;
+- assembly remaining: **850,592 bytes**;
+- remaining linked assembly functions: **1,975**;
 - data/assets: **75,554 / 6,777,404 = 1.1148%**;
-- overall meaningful ROM: **164,922 / 7,717,440 = 2.1370%**;
+- overall meaningful ROM: **165,394 / 7,717,440 = 2.1431%**;
 - packed bank: **416 / 493 semantically owned animations**;
 - retail ROM remains exact at SHA1 `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
 
@@ -27,6 +27,10 @@ leverage.
 
 This is the project roadmap for zero-context continuation on the public fork.
 It is not intended as upstream pull-request content.
+
+## Save-first target override — October 10, 2026
+
+**The user now prioritizes human-readable, exact retail save-system reconstruction, not the general throughput queue below.** The older parked-loader strategy and suggested owner/tree-function families are deferred until save reconstruction is complete or the user changes scope. The header verifier/init/valid-slot mask/set/clear/selected-slot read/write were just promoted as **7 exact source functions / 472 linked bytes**, including an anonymous 68-byte clear-valid operation. New source `src/save_slot_header.cc`; subsystem map `docs/SAVE_LIFECYCLE.md`. The loader `func_08011650` (740 bytes), `func_08003F9C`, `func_080040A0`, `func_080041DC`, the low-level SRAM read/write wrappers and missing persistent-state semantics remain. Existing loader research under `tools/ches/checkpoints/save-loader-08011650-2026-10-04/` contains 100+ compiler candidates: do not repeat syntax roulette. Track behavioral human readability and exact source separately; only exact source enters production.
 
 ## Why this exists
 

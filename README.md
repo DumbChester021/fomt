@@ -21,10 +21,10 @@ Current exact reconstruction metrics:
 
 | Metric | Current |
 | --- | ---: |
-| Code | **88,972 / 940,036 bytes (9.4647%)** |
-| Assembly remaining | **851,064 bytes across 1,981 linked functions** |
+| Code | **89,444 / 940,036 bytes (9.5150%)** |
+| Assembly remaining | **850,592 bytes across 1,975 linked functions** |
 | Data/assets | **75,554 / 6,777,404 bytes (1.1148%)** |
-| Overall meaningful ROM | **164,922 / 7,717,440 bytes (2.1370%)** |
+| Overall meaningful ROM | **165,394 / 7,717,440 bytes (2.1431%)** |
 | Contiguous ROM tail free space | **671,168 bytes (655.44 KiB)** |
 
 Run `make progress` for the live report. This percentage measures **byte-exact code recovery**, not the percentage of semantically complete or mod-ready human-readable source. See [docs/SOURCE_READABILITY_AUDIT.md](docs/SOURCE_READABILITY_AUDIT.md) for the separate source-quality audit and evidence-based naming policy.
@@ -53,13 +53,16 @@ The packed item/UI animation bank also has an exact editable pipeline. All 347 r
 
 ## Current decompilation focus
 
+**Save-system decompilation has explicit top priority** until the entire retail save/loading lifecycle is understood and available in natural, editable source. This supersedes the previous general throughput queue; no custom-game feature work is being performed. The full SRAM header-helper span `080002E0..080004C4` is source-owned, including **seven newly exact human-readable functions (472 bytes)** in `src/save_slot_header.cc`. The main 740-byte loader and higher-level menu lifecycle are still unresolved. See [docs/SAVE_LIFECYCLE.md](docs/SAVE_LIFECYCLE.md) and [docs/SAVE_FORMAT.md](docs/SAVE_FORMAT.md).
+
+
 **Newest exact batch (October 10): two GameState audio and child-callback methods / 48 exact linked bytes**, including a verified sound-player busy query. Alongside the earlier 54-function GameState/menu recovery, this continuation totals **56 exact functions / 1,736 linked bytes**. See [docs/GAME_STATE_AUDIO_CALLBACKS.md](docs/GAME_STATE_AUDIO_CALLBACKS.md) and the separate [source-readability audit](docs/SOURCE_READABILITY_AUDIT.md). See [docs/GAME_STATE_MENU_CALLBACKS.md](docs/GAME_STATE_MENU_CALLBACKS.md), [docs/GAME_STATE_MENU_ACTIONS.md](docs/GAME_STATE_MENU_ACTIONS.md), and [docs/GAME_STATE_MENU_DISPATCH.md](docs/GAME_STATE_MENU_DISPATCH.md).
 
-Work is throughput-first and organized by coherent translation unit, type, vtable, or repeated machine-code family rather than by a fixed function count.
+The earlier general-throughput target queue is temporarily deferred by the save-only priority. Within the save subsystem, work continues by coherent typed function family, constructor chain, or lifecycle boundary.
 
 As of **October 10, 2026**, the scene lifetime layer owns all 25 `Run()` entries, 24 constructors and 25 destructors: **74 exact functions / 4,108 linked retail bytes**. The remaining scene constructor `func_08092570` is parked on a compiler/register-allocation mismatch. See [docs/SCENES.md](docs/SCENES.md).
 
-The preceding menu, glyph-cache/provider, tree and resource-owner work included an **18-function / 632-byte exact batch** of ownership destructors and resource helpers. The next promising throughput targets are an 18-member ownership-transfer wrapper family (potentially 1,296 linked bytes, still nonmatching) and three typed tree-insertion siblings (potentially 576 bytes). Both require new ownership/allocator/ABI evidence; do not promote a nonmatching candidate. The full save loader and `GameState` reconstruction remain unfinished and parked. **Save expansion is not ready for persistent custom gameplay:** retail SRAM layout and 2,800 unused bytes per slot are proven, but the separate custom-game branch currently has only an off-ROM reference codec with 16 synthetic tests, not installed save/load hooks. See [docs/SAVE_FORMAT.md](docs/SAVE_FORMAT.md) and the custom-game `docs/SAVE_EXTENSION_READINESS.md` for the compatibility gates. See [docs/MENU_GLYPH_CACHE.md](docs/MENU_GLYPH_CACHE.md), [docs/REPO_MAP.md](docs/REPO_MAP.md), and the authoritative [tools/ches/NEXT_AGENT_HANDOFF.md](tools/ches/NEXT_AGENT_HANDOFF.md).
+The preceding menu, glyph-cache/provider, tree and resource-owner work included an **18-function / 632-byte exact batch** of ownership destructors and resource helpers. The previously ranked owner-transfer and tree-insertion families are **deferred** until save-system reconstruction is completed. Do not promote nonmatching source into the retail build. The full save loader and `GameState` reconstruction remain unfinished and parked. **Save expansion is not ready for persistent custom gameplay:** retail SRAM layout and 2,800 unused bytes per slot are proven, but the separate custom-game branch currently has only an off-ROM reference codec with 16 synthetic tests, not installed save/load hooks. See [docs/SAVE_FORMAT.md](docs/SAVE_FORMAT.md) and the custom-game `docs/SAVE_EXTENSION_READINESS.md` for the compatibility gates. See [docs/MENU_GLYPH_CACHE.md](docs/MENU_GLYPH_CACHE.md), [docs/REPO_MAP.md](docs/REPO_MAP.md), and the authoritative [tools/ches/NEXT_AGENT_HANDOFF.md](tools/ches/NEXT_AGENT_HANDOFF.md).
 
 The current compiler is a pinned agbcc-family build with **13 documented FoMT compatibility behaviors**, not proof of the original compiler's identity. See [docs/FOMT_COMPILER_FINGERPRINT.md](docs/FOMT_COMPILER_FINGERPRINT.md).
 

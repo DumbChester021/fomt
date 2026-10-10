@@ -1,6 +1,6 @@
 # FoMT Repository Map
 
-## Active scope (adopted October 6; snapshot October 10, 2026)
+## Earlier general-throughput scope (superseded by October 10 save-first directive)
 
 The active retail goal is **throughput-first whole-game decompilation**. Preserve
 the byte-identical US ROM on public branch `main`, keep custom behavior
@@ -13,8 +13,10 @@ function/TU inventory, similarity and class/data ownership maps, and a ranked
 queue that balances bytes, downstream leverage, type readiness, coherence, and
 known compiler difficulty.
 
-Save-loader exact matching and the documented compiler-sensitive islands remain
-parked unless new evidence raises their leverage. Runtime savestate/watchpoint
+**Save decompilation is now the user-directed highest priority.** The older
+parked-loader status and general throughput queue are historical, not active;
+use `docs/SAVE_LIFECYCLE.md` and the live handoff. The full loader and GUI
+save/load flows remain unresolved even though the SRAM header is source-exact. Runtime savestate/watchpoint
 work is preserved as seed infrastructure for scripted coverage/indirect-call
 collection, not as the primary target queue. Custom behavior belongs only in
 the separate custom-game worktree.
@@ -22,7 +24,11 @@ the separate custom-game worktree.
 This is a practical map of the current reconstruction, not a claim that every
 subsystem is fully understood.
 
-## Current reconstruction snapshot - October 10, 2026
+## Save-first milestone — October 10, 2026
+
+**Seven exact natural C++ SRAM header functions / 472 linked bytes** now live in `src/save_slot_header.cc` and `include/save_format.hh`. Alongside the existing slot-offset helper, the original `080002E0..080004C4` header span is source-owned. The once-anonymous 0042C raw-byte routine is verified as clear-valid-slot. The forced retail ROM rebuilt byte-for-byte, leaving **89,444 / 940,036 game-code bytes (9.5150%)**, **850,592 assembly bytes / 1,975 linked functions** unresolved. The save loader `func_08011650` and menu save/load handlers are the active priority; see `docs/SAVE_LIFECYCLE.md`. The previous GameState/menu families below are verified historical milestones, not the execution queue.
+
+## Earlier reconstruction snapshot - October 10, 2026
 
 **Newest exact source:** `src/game_state_audio_callbacks.cc` adds **2 functions / 48 exact linked bytes**, including a verified sound-player busy query. The earlier 54-function GameState/menu reconstruction contributed 1,688 bytes; cumulative continuation: **56 functions / 1,736 exact bytes**. The child operation's semantics remain unknown. See [GAME_STATE_AUDIO_CALLBACKS.md](GAME_STATE_AUDIO_CALLBACKS.md) and [SOURCE_READABILITY_AUDIT.md](SOURCE_READABILITY_AUDIT.md). Previous work: `src/game_state_menu_callbacks.cc` adds **13 functions / 444 linked bytes**. It follows 18 functions / 560 bytes in `src/game_state_menu_actions.cc` and 23 functions / 684 bytes in `src/game_state_menu_dispatch.cc`, totaling **54 exact functions / 1,688 bytes**. See [GAME_STATE_MENU_CALLBACKS.md](GAME_STATE_MENU_CALLBACKS.md), [GAME_STATE_MENU_ACTIONS.md](GAME_STATE_MENU_ACTIONS.md), and [GAME_STATE_MENU_DISPATCH.md](GAME_STATE_MENU_DISPATCH.md).
 

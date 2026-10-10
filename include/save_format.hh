@@ -20,4 +20,13 @@ EC unsigned int CalculateSaveChecksum(void const * data, unsigned int size);
 EC unsigned int GetSaveSlotRecordSize();
 EC unsigned int WriteSaveSlotRecord(void const * game_state, void * save_context, unsigned int slot_offset);
 
+// SRAM header helpers; slot index is 0 or 1 at game-level callsites.
+EC bool VerifySaveHeader(void * save_context);
+EC void InitializeSaveHeader(void * save_context);
+EC unsigned int ReadValidSaveSlotMask(void * save_context);
+EC void MarkSaveSlotValid(void * save_context, unsigned int slot);
+EC void ClearSaveSlotValid(void * save_context, unsigned int slot);
+EC void WriteSelectedSaveSlot(void * save_context, unsigned int slot);
+EC unsigned int ReadSelectedSaveSlot(void * save_context);
+
 #endif

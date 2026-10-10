@@ -16,8 +16,8 @@ Current reconstruction:
 
 ```text
 Code reconstruction
-  88972 / 940036 bytes (9.4647%)
-  851064 bytes remain in asm
+  89444 / 940036 bytes (9.5150%)
+  850592 bytes remain in asm
 
 Data/assets reconstruction
   75554 / 6777404 bytes (1.1148%)
@@ -28,7 +28,7 @@ Data/assets reconstruction
   396 additional source-owned ROM-header bytes count only toward overall
 
 Overall meaningful-ROM reconstruction
-  164922 / 7717440 bytes (2.1370%)
+  165394 / 7717440 bytes (2.1431%)
   final ROM padding is excluded from this denominator
 
 ROM space
@@ -36,7 +36,7 @@ ROM space
   671168 bytes free (655.44 KiB, 8.0009%) contiguous tail space
 ```
 
-The code inventory currently reports **1,981 linked assembly functions**, **848,092 bytes** covered by inferred function ranges, **2,972 unattributed assembly bytes**, and **27 explicitly parked functions**. The total includes prior exposed islands plus 596 bytes of unnamed neighbors revealed by six scene Run seams. Only their true 28-byte Run bodies are source-owned; the neighboring code remains unchanged assembly.
+The code inventory currently reports **1,975 linked assembly functions**, **847,620 bytes** covered by inferred function ranges, **2,972 unattributed assembly bytes**, and **27 explicitly parked functions**. The total includes prior exposed islands plus 596 bytes of unnamed neighbors revealed by six scene Run seams. Only their true 28-byte Run bodies are source-owned; the neighboring code remains unchanged assembly.
 
 ## What the metrics mean
 
@@ -48,7 +48,11 @@ The project keeps separate dimensions rather than combining unlike work into one
 
 Understanding or documenting an opaque `.incbin` does not count as asset/data reconstruction. Editable project-side source must regenerate the retail bytes exactly.
 
-## Latest October 10 exact milestone
+## Latest save-first October 10 exact milestone
+
+New `src/save_slot_header.cc` and `include/save_format.hh` reconstruct **7 semantically named, independently exact C++ functions / 472 linked retail bytes**: verifying and initializing the 32-KiB SRAM header, reading/setting/clearing the valid-slot mask, and reading/writing the selected slot. This includes the former unnamed 68-byte Thumb clear-valid routine. The complete source-owned header span is `080002E0..080004C4` with the previously exact `GetSaveSlotOffset` retained. The forced `make -B -j4 compare` passed (`sh_mv25lwpc_e4c43b4c`), original ROM SHA1 unchanged. Full save loader and GUI lifecycle are **not yet matching C++**. See `docs/SAVE_LIFECYCLE.md` for readable pseudocode and exact proof locations.
+
+## Earlier October 10 exact milestone
 
 Two byte-exact GameState audio/child helpers / **48 linked bytes** at 080167AC..080167DC now have natural C++ in `src/game_state_audio_callbacks.cc`; a sound-player busy query has a grounded semantic meaning while the other child operation remains unidentified. The neighboring 16784 fade-out is behavior-understood but nonmatching and still assembly. The forced ROM gate `sh_mv2471un_7d10991c` passed after preserving correct linker section order. See [GAME_STATE_AUDIO_CALLBACKS.md](GAME_STATE_AUDIO_CALLBACKS.md) and [SOURCE_READABILITY_AUDIT.md](SOURCE_READABILITY_AUDIT.md).
 

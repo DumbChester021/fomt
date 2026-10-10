@@ -26,7 +26,11 @@ This work has two connected but strictly separated tracks.
 
 These tracks support each other: retail reconstruction explains the game well enough to make safe QoL changes, and QoL investigations identify systems worth understanding and decompiling. They must still use separate worktrees, commits, and verification standards.
 
-## Active scope — October 6, 2026
+## Active priority override — October 10, 2026
+
+The user explicitly requested that **full retail save decompilation and human-readable understanding take priority over all other function families**, and that no custom-game feature development proceed until the save structure and lifecycle are understood. This supersedes the earlier throughput-first/park-the-save-loader guidance **for target selection**; exact-ROM builds, no compiler hacks, evidence-based naming and separate clean retail/custom branches remain mandatory. Prioritize all SRAM header/proxy functions, the 740-byte `func_08011650` default initializer/loader, caller scenes `func_08003F9C`, `func_080040A0`, `func_080041DC`, remaining saved `GameState` subobjects and save/copy/erase/retry paths. See `docs/SAVE_LIFECYCLE.md` and current `tools/ches/NEXT_AGENT_HANDOFF.md`. Recover matching source wherever possible; keep naturally readable nonmatching candidates in research, not in production `src/`, and mark unresolved semantics explicitly.
+
+## Earlier active scope — October 6, 2026 (superseded by save-first override)
 
 The active goal is now **throughput-first whole-game retail decompilation**, while
 continuing to improve the runtime/data boundaries needed by the separate

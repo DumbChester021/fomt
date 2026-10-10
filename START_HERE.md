@@ -13,12 +13,16 @@ This is the live dashboard for the US Harvest Moon: Friends of Mineral Town matc
 
 ## Active branch and build authority
 
-- Retail branch: **`main`**, tracking **`ches/main`**. Latest published retail source checkpoint: **`0c22862`** (exact audio callbacks + readability audit). Run `git log -1` and `git status -sb` for the current authority.
+- Retail branch: **`main`**, tracking **`ches/main`**. Latest published retail source checkpoint before this new save-header batch: **`9267e9a`** (save-readiness documentation); verify `git log -1` for the new save-code checkpoint. Run `git log -1` and `git status -sb` for the current authority.
 - Prior source checkpoints: **`0bef5b7`** (23 dispatch functions) and **`399882d`** (18 action functions). New callback integration is forced-ROM exact; its publication SHA comes from Git.
 - Custom gameplay stays in the separate custom-game worktree.
 - ROM: **8,388,608 bytes**, SHA1 **a2fc3574f0a65a4fcf7682fb274b9d7eebdef963**.
 - Full gate: make -B -j4 compare, ending in **fomt.gba: OK**.
 - Compiler: tracked tools/install_agbcp.sh plus tools/agbcp_fomt_compat.patch; unchanged thirteen-rule wrapper at tools/agbcc/bin/agbcp. Read docs/FOMT_COMPILER_FINGERPRINT.md for the compact compiler signature, external-comparison checklist and current source-coercion debt.
+
+## Current priority — save system only
+
+**User-directed (October 10, 2026):** Stop unrelated general-throughput targets. Decompile the **entire retail save system to human-readable C++**, retaining a byte-exact ROM and separately documenting any still-unmatched behavior. Seven exact source functions / 472 linked bytes now own the full SRAM header helper span `080002E0..080004C4` (including the once-anonymous clear-valid bit routine); see `src/save_slot_header.cc`, `docs/SAVE_LIFECYCLE.md` and `docs/SAVE_FORMAT.md`. Next investigate `func_08011650` and its default-state subobjects, GUI save/load wrappers `03F9C/040A0/041DC`, SRAM proxy I/O, header/slot mutation paths and end-to-end tests. Old compiler probes for the 740-byte loader are recorded under `tools/ches/checkpoints/save-loader-08011650-2026-10-04/`; do not repeat old approaches. No custom-game modification is authorized or needed. Latest full forced `make -B -j4 compare` execution `sh_mv25lwpc_e4c43b4c` passed. Current code **89,444 / 940,036 = 9.5150%**, ASM **850,592 bytes / 1,975 linked functions**, overall **165,394 / 7,717,440 = 2.1431%**.
 
 ## Handoff readiness
 
@@ -36,12 +40,12 @@ Source readability is independently tracked in `docs/SOURCE_READABILITY_AUDIT.md
 
 ## Current exact reconstruction
 
-- Code: **88,972 / 940,036 = 9.4647%**.
-- Assembly: **851,064 bytes; 1,981 unresolved linked functions**.
-- Inferred ranges: **848,092 / 851,064 = 99.6508%**.
+- Code: **89,444 / 940,036 = 9.5150%**.
+- Assembly: **850,592 bytes; 1,975 unresolved linked functions**.
+- Inferred ranges: **847,620 / 850,592 = 99.6506%**.
 - Unattributed assembly: **2,972 bytes; 27 parked functions**.
 - Data/assets: **75,554 / 6,777,404 = 1.1148%**.
-- Overall meaningful ROM: **164,922 / 7,717,440 = 2.1370%**.
+- Overall meaningful ROM: **165,394 / 7,717,440 = 2.1431%**.
 - Free tail: **671,168 bytes**.
 
 ## Earlier exact batches (historical evidence, not the current queue)

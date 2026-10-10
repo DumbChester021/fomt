@@ -413,9 +413,14 @@ SECTIONS
     {
         src/crt0.o(.rom_header);
         asm/main.o(.text);
-        asm/sram_proxy_1.o(.text);
+        src/save_slot_header.o(.text.save_slot_verify_header);
+        src/save_slot_header.o(.text.save_slot_initialize_header);
+        src/save_slot_header.o(.text.save_slot_read_valid_mask);
         src/save_format.o(.text);
-        asm/sram_proxy_1.o(.text.after_save_format);
+        src/save_slot_header.o(.text.save_slot_mark_valid);
+        src/save_slot_header.o(.text.save_slot_clear_valid);
+        src/save_slot_header.o(.text.save_slot_write_selected);
+        src/save_slot_header.o(.text.save_slot_read_selected);
         asm/interrupt.o(.text);
         src/new.o(.text);
         src/pure_virtual.o(.text);
