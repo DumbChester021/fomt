@@ -3,9 +3,9 @@
   "note": "TU/region and priority fields are heuristic; addresses/calls are repository-derived evidence.",
   "summary": {
     "asm_files": 22,
-    "unresolved_functions": 1983,
-    "canonical_asm_code_bytes": 851112,
-    "function_range_bytes": 848140,
+    "unresolved_functions": 1981,
+    "canonical_asm_code_bytes": 851064,
+    "function_range_bytes": 848092,
     "unattributed_asm_code_bytes": 2972,
     "function_range_coverage_pct": 99.6508,
     "unlinked_asm_definitions_skipped": 2,
@@ -15,9 +15,9 @@
     ],
     "parked_functions": 27,
     "runtime_library_functions": 33,
-    "regions": 262,
+    "regions": 263,
     "repeated_shape_clusters": 154,
-    "functions_in_repeated_shape_clusters": 571,
+    "functions_in_repeated_shape_clusters": 570,
     "exact_normalized_clusters": 145
   },
   "functions": [
@@ -4641,7 +4641,7 @@
       ],
       "caller_file_count": 3,
       "source_anchor_callees": [],
-      "shape_cluster": "shape0033",
+      "shape_cluster": "shape0032",
       "shape_cluster_size": 3,
       "region_id": "asm/hardware.s:0800835C-080088DC",
       "priority_score": 111.5
@@ -4719,7 +4719,7 @@
       ],
       "caller_file_count": 4,
       "source_anchor_callees": [],
-      "shape_cluster": "shape0033",
+      "shape_cluster": "shape0032",
       "shape_cluster_size": 3,
       "norm_cluster": "norm0055",
       "norm_cluster_size": 2,
@@ -4783,7 +4783,7 @@
       ],
       "caller_file_count": 3,
       "source_anchor_callees": [],
-      "shape_cluster": "shape0033",
+      "shape_cluster": "shape0032",
       "shape_cluster_size": 3,
       "norm_cluster": "norm0055",
       "norm_cluster_size": 2,
@@ -5035,9 +5035,9 @@
       ],
       "caller_file_count": 3,
       "source_anchor_callees": [],
-      "shape_cluster": "shape0034",
+      "shape_cluster": "shape0033",
       "shape_cluster_size": 3,
-      "norm_cluster": "norm0034",
+      "norm_cluster": "norm0033",
       "norm_cluster_size": 3,
       "region_id": "asm/hardware.s:0800894C-08008E64",
       "priority_score": 55.75
@@ -5544,7 +5544,7 @@
       "source_anchor_callees": [
         "m4aMPlayFadeOut"
       ],
-      "shape_cluster": "shape0035",
+      "shape_cluster": "shape0034",
       "shape_cluster_size": 3,
       "region_id": "asm/hardware.s:0800894C-08008E64",
       "priority_score": 39.0
@@ -5584,7 +5584,7 @@
       "source_anchor_callees": [
         "m4aMPlayTempoControl"
       ],
-      "shape_cluster": "shape0035",
+      "shape_cluster": "shape0034",
       "shape_cluster_size": 3,
       "region_id": "asm/hardware.s:0800894C-08008E64",
       "priority_score": 61.0
@@ -5623,7 +5623,7 @@
       "source_anchor_callees": [
         "m4aMPlayVolumeControl"
       ],
-      "shape_cluster": "shape0036",
+      "shape_cluster": "shape0035",
       "shape_cluster_size": 3,
       "region_id": "asm/hardware.s:0800894C-08008E64",
       "priority_score": 53.75
@@ -5728,7 +5728,7 @@
       "source_anchor_callees": [
         "m4aMPlayModDepthSet"
       ],
-      "shape_cluster": "shape0036",
+      "shape_cluster": "shape0035",
       "shape_cluster_size": 3,
       "region_id": "asm/hardware.s:0800894C-08008E64",
       "priority_score": 24.75
@@ -5763,7 +5763,7 @@
       "source_anchor_callees": [
         "m4aMPlayLFOSpeedSet"
       ],
-      "shape_cluster": "shape0036",
+      "shape_cluster": "shape0035",
       "shape_cluster_size": 3,
       "region_id": "asm/hardware.s:0800894C-08008E64",
       "priority_score": 24.75
@@ -5819,11 +5819,10 @@
       "normalized_signature": "1718acfe441c3e4b35293dd4f2a30807e3fb1957",
       "direct_callees": [],
       "data_refs": [],
-      "direct_calls_in": 70,
+      "direct_calls_in": 69,
       "unique_callers": [
         "func_08012464",
         "func_08016784",
-        "func_080167CC",
         "func_080179CC",
         "func_08017C30",
         "func_080200C4",
@@ -5861,7 +5860,7 @@
         "sub_08031D74",
         "sub_080DA76C"
       ],
-      "unique_caller_count": 39,
+      "unique_caller_count": 38,
       "caller_files": [
         "asm/code_0803EE94.s",
         "asm/code_entities.s",
@@ -5871,7 +5870,7 @@
       "caller_file_count": 4,
       "source_anchor_callees": [],
       "region_id": "asm/hardware.s:0800894C-08008E64",
-      "priority_score": 338.75
+      "priority_score": 330.75
     },
     {
       "symbol": "func_08008D3C",
@@ -6725,9 +6724,9 @@
       ],
       "caller_file_count": 1,
       "source_anchor_callees": [],
-      "shape_cluster": "shape0037",
+      "shape_cluster": "shape0036",
       "shape_cluster_size": 3,
-      "norm_cluster": "norm0035",
+      "norm_cluster": "norm0034",
       "norm_cluster_size": 3,
       "region_id": "asm/hardware.s:080091A4-080098AC",
       "priority_score": 37.5
@@ -7418,7 +7417,7 @@
       "source_anchor_callees": [],
       "shape_cluster": "shape0009",
       "shape_cluster_size": 10,
-      "norm_cluster": "norm0036",
+      "norm_cluster": "norm0035",
       "norm_cluster_size": 3,
       "region_id": "asm/more_items.s:0800FF8C-0801004C",
       "priority_score": 70.25
@@ -8059,7 +8058,7 @@
       "source_anchor_callees": [],
       "shape_cluster": "shape0011",
       "shape_cluster_size": 8,
-      "norm_cluster": "norm0037",
+      "norm_cluster": "norm0036",
       "norm_cluster_size": 3,
       "region_id": "asm/game_state.s:08010348-08010F24",
       "priority_score": 41.5
@@ -8397,7 +8396,7 @@
       "source_anchor_callees": [],
       "shape_cluster": "shape0009",
       "shape_cluster_size": 10,
-      "norm_cluster": "norm0036",
+      "norm_cluster": "norm0035",
       "norm_cluster_size": 3,
       "region_id": "asm/game_state.s:08010F54-08011588",
       "priority_score": 49.25
@@ -9627,12 +9626,12 @@
       ],
       "caller_file_count": 1,
       "source_anchor_callees": [],
-      "shape_cluster": "shape0022",
-      "shape_cluster_size": 4,
-      "norm_cluster": "norm0022",
-      "norm_cluster_size": 4,
+      "shape_cluster": "shape0037",
+      "shape_cluster_size": 3,
+      "norm_cluster": "norm0037",
+      "norm_cluster_size": 3,
       "region_id": "asm/game_state.s:08011650-08014034",
-      "priority_score": 26.0
+      "priority_score": 22.0
     },
     {
       "symbol": "func_08012464",
@@ -12557,7 +12556,7 @@
         "_call_via_r2",
         "func_0809CF34"
       ],
-      "region_id": "asm/game_state.s:080159B0-08016BA4",
+      "region_id": "asm/game_state.s:080159B0-080167AC",
       "priority_score": 89.0
     },
     {
@@ -12600,7 +12599,7 @@
         "func_0809CF34",
         "func_0809D8A0"
       ],
-      "region_id": "asm/game_state.s:080159B0-08016BA4",
+      "region_id": "asm/game_state.s:080159B0-080167AC",
       "priority_score": 122.33
     },
     {
@@ -12632,81 +12631,8 @@
       ],
       "caller_file_count": 1,
       "source_anchor_callees": [],
-      "region_id": "asm/game_state.s:080159B0-08016BA4",
+      "region_id": "asm/game_state.s:080159B0-080167AC",
       "priority_score": 15.5
-    },
-    {
-      "symbol": "func_080167AC",
-      "address": 134309804,
-      "address_hex": "0x080167AC",
-      "size": 32,
-      "size_hex": "0x20",
-      "asm_file": "asm/game_state.s",
-      "line": 12181,
-      "linked_section": ".text.after_gmcb_15950",
-      "status": "assembly",
-      "runtime_library": false,
-      "instruction_count": 14,
-      "opcode_signature": "c4be0e4368c8bf2d4e54bf0834ed4c6a0ac9c0ae",
-      "normalized_signature": "b793dcaf2a0f27a611b8b76befaf8e99fe8017e6",
-      "direct_callees": [
-        "_call_via_r1",
-        "_call_via_r2"
-      ],
-      "data_refs": [],
-      "direct_calls_in": 4,
-      "unique_callers": [
-        "func_0803F8DC"
-      ],
-      "unique_caller_count": 1,
-      "caller_files": [
-        "asm/code_0803EE94.s"
-      ],
-      "caller_file_count": 1,
-      "source_anchor_callees": [
-        "_call_via_r1",
-        "_call_via_r2"
-      ],
-      "region_id": "asm/game_state.s:080159B0-08016BA4",
-      "priority_score": 19.0
-    },
-    {
-      "symbol": "func_080167CC",
-      "address": 134309836,
-      "address_hex": "0x080167CC",
-      "size": 16,
-      "size_hex": "0x10",
-      "asm_file": "asm/game_state.s",
-      "line": 12198,
-      "linked_section": ".text.after_gmcb_15950",
-      "status": "assembly",
-      "runtime_library": false,
-      "instruction_count": 6,
-      "opcode_signature": "6aadb621dcd03f37c298df1a1668f35fcc485f53",
-      "normalized_signature": "47161651def22aded24ffb087c13a9f7b2246dba",
-      "direct_callees": [
-        "func_08008CD0"
-      ],
-      "data_refs": [],
-      "direct_calls_in": 4,
-      "unique_callers": [
-        "func_080175B4",
-        "func_08017C30",
-        "func_08019BEC",
-        "func_0801EAA0"
-      ],
-      "unique_caller_count": 4,
-      "caller_files": [
-        "asm/game_state.s"
-      ],
-      "caller_file_count": 1,
-      "source_anchor_callees": [],
-      "shape_cluster": "shape0022",
-      "shape_cluster_size": 4,
-      "norm_cluster": "norm0022",
-      "norm_cluster_size": 4,
-      "region_id": "asm/game_state.s:080159B0-08016BA4",
-      "priority_score": 50.0
     },
     {
       "symbol": "func_080167DC",
@@ -12715,8 +12641,8 @@
       "size": 88,
       "size_hex": "0x58",
       "asm_file": "asm/game_state.s",
-      "line": 12208,
-      "linked_section": ".text.after_gmcb_15950",
+      "line": 12183,
+      "linked_section": ".text.after_game_state_audio_167ac",
       "status": "assembly",
       "runtime_library": false,
       "instruction_count": 37,
@@ -12741,7 +12667,7 @@
         "_call_via_r1",
         "_call_via_r2"
       ],
-      "region_id": "asm/game_state.s:080159B0-08016BA4",
+      "region_id": "asm/game_state.s:080167DC-08016BA4",
       "priority_score": 22.5
     },
     {
@@ -12751,8 +12677,8 @@
       "size": 160,
       "size_hex": "0xA0",
       "asm_file": "asm/game_state.s",
-      "line": 12251,
-      "linked_section": ".text.after_gmcb_15950",
+      "line": 12226,
+      "linked_section": ".text.after_game_state_audio_167ac",
       "status": "assembly",
       "runtime_library": false,
       "instruction_count": 62,
@@ -12779,7 +12705,7 @@
         "method_0800CB7C__4CoopUi",
         "method_0800D80C__4BarnUi"
       ],
-      "region_id": "asm/game_state.s:080159B0-08016BA4",
+      "region_id": "asm/game_state.s:080167DC-08016BA4",
       "priority_score": 37.0
     },
     {
@@ -12789,8 +12715,8 @@
       "size": 552,
       "size_hex": "0x228",
       "asm_file": "asm/game_state.s",
-      "line": 12329,
-      "linked_section": ".text.after_gmcb_15950",
+      "line": 12304,
+      "linked_section": ".text.after_game_state_audio_167ac",
       "status": "assembly",
       "runtime_library": false,
       "instruction_count": 235,
@@ -12829,7 +12755,7 @@
         "method_0800D074__C4BarnUi",
         "method_0800D858__4Barn"
       ],
-      "region_id": "asm/game_state.s:080159B0-08016BA4",
+      "region_id": "asm/game_state.s:080167DC-08016BA4",
       "priority_score": 73.5
     },
     {
@@ -12839,8 +12765,8 @@
       "size": 168,
       "size_hex": "0xA8",
       "asm_file": "asm/game_state.s",
-      "line": 12589,
-      "linked_section": ".text.after_gmcb_15950",
+      "line": 12564,
+      "linked_section": ".text.after_game_state_audio_167ac",
       "status": "assembly",
       "runtime_library": false,
       "instruction_count": 62,
@@ -12865,7 +12791,7 @@
         "GetUnkEnt__C4Coop",
         "method_0800D058__C4Barn"
       ],
-      "region_id": "asm/game_state.s:080159B0-08016BA4",
+      "region_id": "asm/game_state.s:080167DC-08016BA4",
       "priority_score": 35.5
     },
     {
@@ -12875,7 +12801,7 @@
       "size": 92,
       "size_hex": "0x5C",
       "asm_file": "asm/game_state.s",
-      "line": 12678,
+      "line": 12653,
       "linked_section": ".text.after_game_state_actions_16ba4",
       "status": "assembly",
       "runtime_library": false,
@@ -12910,7 +12836,7 @@
       "size": 56,
       "size_hex": "0x38",
       "asm_file": "asm/game_state.s",
-      "line": 12717,
+      "line": 12692,
       "linked_section": ".text.after_game_state_actions_16ba4",
       "status": "assembly",
       "runtime_library": false,
@@ -12945,7 +12871,7 @@
       "size": 204,
       "size_hex": "0xCC",
       "asm_file": "asm/game_state.s",
-      "line": 12749,
+      "line": 12724,
       "linked_section": ".text.after_game_state_actions_16d80",
       "status": "assembly",
       "runtime_library": false,
@@ -12987,7 +12913,7 @@
       "size": 44,
       "size_hex": "0x2C",
       "asm_file": "asm/game_state.s",
-      "line": 12847,
+      "line": 12822,
       "linked_section": ".text.after_game_state_actions_16e7c",
       "status": "assembly",
       "runtime_library": false,
@@ -13020,7 +12946,7 @@
       "size": 68,
       "size_hex": "0x44",
       "asm_file": "asm/game_state.s",
-      "line": 12873,
+      "line": 12848,
       "linked_section": ".text.after_game_state_actions_16ef0",
       "status": "assembly",
       "runtime_library": false,
@@ -13055,7 +12981,7 @@
       "size": 476,
       "size_hex": "0x1DC",
       "asm_file": "asm/game_state.s",
-      "line": 12909,
+      "line": 12884,
       "linked_section": ".text.after_game_state_actions_16ef0",
       "status": "assembly",
       "runtime_library": false,
@@ -13098,7 +13024,7 @@
       "size": 120,
       "size_hex": "0x78",
       "asm_file": "asm/game_state.s",
-      "line": 13142,
+      "line": 13117,
       "linked_section": ".text.after_game_state_actions_16ef0",
       "status": "assembly",
       "runtime_library": false,
@@ -13127,7 +13053,7 @@
       "size": 532,
       "size_hex": "0x214",
       "asm_file": "asm/game_state.s",
-      "line": 13209,
+      "line": 13184,
       "linked_section": ".text.after_game_state_actions_16ef0",
       "status": "assembly",
       "runtime_library": false,
@@ -13185,7 +13111,7 @@
       "size": 188,
       "size_hex": "0xBC",
       "asm_file": "asm/game_state.s",
-      "line": 13473,
+      "line": 13448,
       "linked_section": ".text.after_game_state_actions_16ef0",
       "status": "assembly",
       "runtime_library": false,
@@ -13215,7 +13141,7 @@
       "size": 236,
       "size_hex": "0xEC",
       "asm_file": "asm/game_state.s",
-      "line": 13526,
+      "line": 13501,
       "linked_section": ".text.after_game_state_actions_16ef0",
       "status": "assembly",
       "runtime_library": false,
@@ -13254,7 +13180,7 @@
       "size": 1048,
       "size_hex": "0x418",
       "asm_file": "asm/game_state.s",
-      "line": 13654,
+      "line": 13629,
       "linked_section": ".text.after_game_state_actions_16ef0",
       "status": "assembly",
       "runtime_library": false,
@@ -13316,6 +13242,7 @@
         "_call_via_r3",
         "func_0800E324",
         "func_0800E924",
+        "func_080167CC",
         "func_0801A8C0",
         "func_0809C5F4",
         "func_080A4650",
@@ -13323,7 +13250,7 @@
         "func_080A56DC"
       ],
       "region_id": "asm/game_state.s:08016F60-08017C00",
-      "priority_score": 102.5
+      "priority_score": 104.5
     },
     {
       "symbol": "func_080179CC",
@@ -13332,7 +13259,7 @@
       "size": 564,
       "size_hex": "0x234",
       "asm_file": "asm/game_state.s",
-      "line": 14145,
+      "line": 14120,
       "linked_section": ".text.after_game_state_actions_16ef0",
       "status": "assembly",
       "runtime_library": false,
@@ -13379,7 +13306,7 @@
       "size": 1688,
       "size_hex": "0x698",
       "asm_file": "asm/game_state.s",
-      "line": 14417,
+      "line": 14392,
       "linked_section": ".text.after_func_08017C00",
       "status": "assembly",
       "runtime_library": false,
@@ -13424,6 +13351,7 @@
         "_call_via_r3",
         "func_0800E4FC",
         "func_0800ED2C",
+        "func_080167CC",
         "func_0805E860",
         "func_0805E8F0",
         "func_0809C5F4",
@@ -13431,7 +13359,7 @@
         "func_080A4A00"
       ],
       "region_id": "asm/game_state.s:08017C30-0801A8C0",
-      "priority_score": 120.59
+      "priority_score": 122.59
     },
     {
       "symbol": "func_080182C8",
@@ -13440,7 +13368,7 @@
       "size": 6344,
       "size_hex": "0x18C8",
       "asm_file": "asm/game_state.s",
-      "line": 15255,
+      "line": 15230,
       "linked_section": ".text.after_func_08017C00",
       "status": "assembly",
       "runtime_library": false,
@@ -13501,7 +13429,7 @@
       "size": 92,
       "size_hex": "0x5C",
       "asm_file": "asm/game_state.s",
-      "line": 18331,
+      "line": 18306,
       "linked_section": ".text.after_func_08017C00",
       "status": "assembly",
       "runtime_library": false,
@@ -13533,7 +13461,7 @@
       "size": 844,
       "size_hex": "0x34C",
       "asm_file": "asm/game_state.s",
-      "line": 18376,
+      "line": 18351,
       "linked_section": ".text.after_func_08017C00",
       "status": "assembly",
       "runtime_library": false,
@@ -13582,12 +13510,13 @@
         "_call_via_r2",
         "_call_via_r3",
         "func_08008E64",
+        "func_080167CC",
         "func_0809C5F4",
         "func_080A4740",
         "func_080A56DC"
       ],
       "region_id": "asm/game_state.s:08017C30-0801A8C0",
-      "priority_score": 70.75
+      "priority_score": 72.75
     },
     {
       "symbol": "func_08019F38",
@@ -13596,7 +13525,7 @@
       "size": 68,
       "size_hex": "0x44",
       "asm_file": "asm/game_state.s",
-      "line": 18779,
+      "line": 18754,
       "linked_section": ".text.after_func_08017C00",
       "status": "assembly",
       "runtime_library": false,
@@ -13628,7 +13557,7 @@
       "size": 108,
       "size_hex": "0x6C",
       "asm_file": "asm/game_state.s",
-      "line": 18816,
+      "line": 18791,
       "linked_section": ".text.after_func_08017C00",
       "status": "assembly",
       "runtime_library": false,
@@ -13671,7 +13600,7 @@
       "size": 108,
       "size_hex": "0x6C",
       "asm_file": "asm/game_state.s",
-      "line": 18867,
+      "line": 18842,
       "linked_section": ".text.after_func_08017C00",
       "status": "assembly",
       "runtime_library": false,
@@ -13714,7 +13643,7 @@
       "size": 232,
       "size_hex": "0xE8",
       "asm_file": "asm/game_state.s",
-      "line": 18918,
+      "line": 18893,
       "linked_section": ".text.after_func_08017C00",
       "status": "assembly",
       "runtime_library": false,
@@ -13753,7 +13682,7 @@
       "size": 1924,
       "size_hex": "0x784",
       "asm_file": "asm/game_state.s",
-      "line": 19036,
+      "line": 19011,
       "linked_section": ".text.after_func_08017C00",
       "status": "assembly",
       "runtime_library": false,
@@ -13800,7 +13729,7 @@
       "size": 2948,
       "size_hex": "0xB84",
       "asm_file": "asm/game_state.s",
-      "line": 20007,
+      "line": 19982,
       "linked_section": ".text.after_time_period",
       "status": "assembly",
       "runtime_library": false,
@@ -13834,7 +13763,7 @@
       "size": 3220,
       "size_hex": "0xC94",
       "asm_file": "asm/game_state.s",
-      "line": 20226,
+      "line": 20201,
       "linked_section": ".text.after_time_period",
       "status": "assembly",
       "runtime_library": false,
@@ -13867,7 +13796,7 @@
       "size": 160,
       "size_hex": "0xA0",
       "asm_file": "asm/game_state.s",
-      "line": 20451,
+      "line": 20426,
       "linked_section": ".text.after_time_period",
       "status": "assembly",
       "runtime_library": false,
@@ -13896,7 +13825,7 @@
       "size": 260,
       "size_hex": "0x104",
       "asm_file": "asm/game_state.s",
-      "line": 20534,
+      "line": 20509,
       "linked_section": ".text.after_time_period",
       "status": "assembly",
       "runtime_library": false,
@@ -13929,7 +13858,7 @@
       "size": 1104,
       "size_hex": "0x450",
       "asm_file": "asm/game_state.s",
-      "line": 20662,
+      "line": 20637,
       "linked_section": ".text.after_time_period",
       "status": "assembly",
       "runtime_library": false,
@@ -13964,7 +13893,7 @@
       "size": 392,
       "size_hex": "0x188",
       "asm_file": "asm/game_state.s",
-      "line": 20879,
+      "line": 20854,
       "linked_section": ".text.after_time_period",
       "status": "assembly",
       "runtime_library": false,
@@ -14007,7 +13936,7 @@
       "size": 1136,
       "size_hex": "0x470",
       "asm_file": "asm/game_state.s",
-      "line": 21075,
+      "line": 21050,
       "linked_section": ".text.after_time_period",
       "status": "assembly",
       "runtime_library": false,
@@ -14041,7 +13970,7 @@
       "size": 216,
       "size_hex": "0xD8",
       "asm_file": "asm/game_state.s",
-      "line": 21324,
+      "line": 21299,
       "linked_section": ".text.after_time_period",
       "status": "assembly",
       "runtime_library": false,
@@ -14079,7 +14008,7 @@
       "size": 840,
       "size_hex": "0x348",
       "asm_file": "asm/game_state.s",
-      "line": 21437,
+      "line": 21412,
       "linked_section": ".text.after_time_period",
       "status": "assembly",
       "runtime_library": false,
@@ -14115,7 +14044,7 @@
       "size": 1448,
       "size_hex": "0x5A8",
       "asm_file": "asm/game_state.s",
-      "line": 21628,
+      "line": 21603,
       "linked_section": ".text.after_time_period",
       "status": "assembly",
       "runtime_library": false,
@@ -14148,7 +14077,7 @@
       "size": 260,
       "size_hex": "0x104",
       "asm_file": "asm/game_state.s",
-      "line": 21864,
+      "line": 21839,
       "linked_section": ".text.after_time_period",
       "status": "assembly",
       "runtime_library": false,
@@ -14185,7 +14114,7 @@
       "size": 124,
       "size_hex": "0x7C",
       "asm_file": "asm/game_state.s",
-      "line": 21992,
+      "line": 21967,
       "linked_section": ".text.after_article_interaction",
       "status": "assembly",
       "runtime_library": false,
@@ -14218,7 +14147,7 @@
       "size": 96,
       "size_hex": "0x60",
       "asm_file": "asm/game_state.s",
-      "line": 22058,
+      "line": 22033,
       "linked_section": ".text.after_article_interaction",
       "status": "assembly",
       "runtime_library": false,
@@ -14251,7 +14180,7 @@
       "size": 412,
       "size_hex": "0x19C",
       "asm_file": "asm/game_state.s",
-      "line": 22109,
+      "line": 22084,
       "linked_section": ".text.after_article_interaction",
       "status": "assembly",
       "runtime_library": false,
@@ -14286,7 +14215,7 @@
       "size": 20,
       "size_hex": "0x14",
       "asm_file": "asm/game_state.s",
-      "line": 22148,
+      "line": 22123,
       "linked_section": ".text.after_article_interaction",
       "status": "assembly",
       "runtime_library": false,
@@ -14323,7 +14252,7 @@
       "size": 204,
       "size_hex": "0xCC",
       "asm_file": "asm/game_state.s",
-      "line": 22160,
+      "line": 22135,
       "linked_section": ".text.after_article_interaction",
       "status": "assembly",
       "runtime_library": false,
@@ -14362,7 +14291,7 @@
       "size": 132,
       "size_hex": "0x84",
       "asm_file": "asm/game_state.s",
-      "line": 22262,
+      "line": 22237,
       "linked_section": ".text.after_article_interaction",
       "status": "assembly",
       "runtime_library": false,
@@ -14399,7 +14328,7 @@
       "size": 44,
       "size_hex": "0x2C",
       "asm_file": "asm/game_state.s",
-      "line": 22328,
+      "line": 22303,
       "linked_section": ".text.after_article_interaction",
       "status": "assembly",
       "runtime_library": false,
@@ -14428,7 +14357,7 @@
       "size": 68,
       "size_hex": "0x44",
       "asm_file": "asm/game_state.s",
-      "line": 22352,
+      "line": 22327,
       "linked_section": ".text.after_article_interaction",
       "status": "assembly",
       "runtime_library": false,
@@ -14460,7 +14389,7 @@
       "size": 12,
       "size_hex": "0xC",
       "asm_file": "asm/game_state.s",
-      "line": 22385,
+      "line": 22360,
       "linked_section": ".text.after_article_interaction",
       "status": "assembly",
       "runtime_library": false,
@@ -14491,7 +14420,7 @@
       "size": 12,
       "size_hex": "0xC",
       "asm_file": "asm/game_state.s",
-      "line": 22393,
+      "line": 22368,
       "linked_section": ".text.after_article_interaction",
       "status": "assembly",
       "runtime_library": false,
@@ -14522,7 +14451,7 @@
       "size": 72,
       "size_hex": "0x48",
       "asm_file": "asm/game_state.s",
-      "line": 22401,
+      "line": 22376,
       "linked_section": ".text.after_article_interaction",
       "status": "assembly",
       "runtime_library": false,
@@ -14553,7 +14482,7 @@
       "size": 84,
       "size_hex": "0x54",
       "asm_file": "asm/game_state.s",
-      "line": 22415,
+      "line": 22390,
       "linked_section": ".text.after_article_interaction",
       "status": "assembly",
       "runtime_library": false,
@@ -14586,7 +14515,7 @@
       "size": 44,
       "size_hex": "0x2C",
       "asm_file": "asm/game_state.s",
-      "line": 22429,
+      "line": 22404,
       "linked_section": ".text.after_article_interaction",
       "status": "assembly",
       "runtime_library": false,
@@ -14620,7 +14549,7 @@
       "size": 44,
       "size_hex": "0x2C",
       "asm_file": "asm/game_state.s",
-      "line": 22451,
+      "line": 22426,
       "linked_section": ".text.after_article_interaction",
       "status": "assembly",
       "runtime_library": false,
@@ -14654,7 +14583,7 @@
       "size": 24,
       "size_hex": "0x18",
       "asm_file": "asm/game_state.s",
-      "line": 22473,
+      "line": 22448,
       "linked_section": ".text.after_article_interaction",
       "status": "assembly",
       "runtime_library": false,
@@ -14685,7 +14614,7 @@
       "size": 12,
       "size_hex": "0xC",
       "asm_file": "asm/game_state.s",
-      "line": 22483,
+      "line": 22458,
       "linked_section": ".text.after_article_interaction",
       "status": "assembly",
       "runtime_library": false,
@@ -14716,7 +14645,7 @@
       "size": 108,
       "size_hex": "0x6C",
       "asm_file": "asm/game_state.s",
-      "line": 22491,
+      "line": 22466,
       "linked_section": ".text.after_article_interaction",
       "status": "assembly",
       "runtime_library": false,
@@ -14747,7 +14676,7 @@
       "size": 1992,
       "size_hex": "0x7C8",
       "asm_file": "asm/game_state.s",
-      "line": 22507,
+      "line": 22482,
       "linked_section": ".text.after_article_interaction",
       "status": "assembly",
       "runtime_library": false,
@@ -14781,7 +14710,7 @@
       "size": 656,
       "size_hex": "0x290",
       "asm_file": "asm/game_state.s",
-      "line": 22851,
+      "line": 22826,
       "linked_section": ".text.after_article_interaction",
       "status": "assembly",
       "runtime_library": false,
@@ -14827,7 +14756,7 @@
       "size": 404,
       "size_hex": "0x194",
       "asm_file": "asm/game_state.s",
-      "line": 23104,
+      "line": 23079,
       "linked_section": ".text.after_article_interaction",
       "status": "assembly",
       "runtime_library": false,
@@ -14863,7 +14792,7 @@
       "size": 864,
       "size_hex": "0x360",
       "asm_file": "asm/game_state.s",
-      "line": 23312,
+      "line": 23287,
       "linked_section": ".text.after_article_interaction",
       "status": "assembly",
       "runtime_library": false,
@@ -14892,10 +14821,11 @@
         "GetMapData",
         "_call_via_r1",
         "_call_via_r2",
+        "func_080167CC",
         "func_0809C5F4"
       ],
       "region_id": "asm/game_state.s:0801D8CC-0801EE00",
-      "priority_score": 62.0
+      "priority_score": 64.0
     },
     {
       "symbol": "func_0801F14C",
@@ -14904,7 +14834,7 @@
       "size": 400,
       "size_hex": "0x190",
       "asm_file": "asm/game_state.s",
-      "line": 23759,
+      "line": 23734,
       "linked_section": ".text.after_discarded_item",
       "status": "assembly",
       "runtime_library": false,
@@ -14950,7 +14880,7 @@
       "size": 264,
       "size_hex": "0x108",
       "asm_file": "asm/game_state.s",
-      "line": 23928,
+      "line": 23903,
       "linked_section": ".text.after_discarded_item",
       "status": "assembly",
       "runtime_library": false,
@@ -14990,7 +14920,7 @@
       "size": 524,
       "size_hex": "0x20C",
       "asm_file": "asm/game_state.s",
-      "line": 24060,
+      "line": 24035,
       "linked_section": ".text.after_discarded_item",
       "status": "assembly",
       "runtime_library": false,
@@ -15044,7 +14974,7 @@
       "size": 36,
       "size_hex": "0x24",
       "asm_file": "asm/game_state.s",
-      "line": 24221,
+      "line": 24196,
       "linked_section": ".text.after_discarded_item",
       "status": "assembly",
       "runtime_library": false,
@@ -15074,7 +15004,7 @@
       "size": 360,
       "size_hex": "0x168",
       "asm_file": "asm/game_state.s",
-      "line": 24240,
+      "line": 24215,
       "linked_section": ".text.after_discarded_item",
       "status": "assembly",
       "runtime_library": false,
@@ -15116,7 +15046,7 @@
       "size": 424,
       "size_hex": "0x1A8",
       "asm_file": "asm/game_state.s",
-      "line": 24410,
+      "line": 24385,
       "linked_section": ".text.after_discarded_item",
       "status": "assembly",
       "runtime_library": false,
@@ -15160,7 +15090,7 @@
       "size": 388,
       "size_hex": "0x184",
       "asm_file": "asm/game_state.s",
-      "line": 24613,
+      "line": 24588,
       "linked_section": ".text.after_discarded_item",
       "status": "assembly",
       "runtime_library": false,
@@ -15199,7 +15129,7 @@
       "size": 16,
       "size_hex": "0x10",
       "asm_file": "asm/game_state.s",
-      "line": 24807,
+      "line": 24782,
       "linked_section": ".text.after_discarded_item",
       "status": "assembly",
       "runtime_library": false,
@@ -15232,7 +15162,7 @@
       "size": 16,
       "size_hex": "0x10",
       "asm_file": "asm/game_state.s",
-      "line": 24817,
+      "line": 24792,
       "linked_section": ".text.after_discarded_item",
       "status": "assembly",
       "runtime_library": false,
@@ -15265,7 +15195,7 @@
       "size": 180,
       "size_hex": "0xB4",
       "asm_file": "asm/game_state.s",
-      "line": 24827,
+      "line": 24802,
       "linked_section": ".text.after_discarded_item",
       "status": "assembly",
       "runtime_library": false,
@@ -15301,7 +15231,7 @@
       "size": 376,
       "size_hex": "0x178",
       "asm_file": "asm/game_state.s",
-      "line": 24925,
+      "line": 24900,
       "linked_section": ".text.after_discarded_item",
       "status": "assembly",
       "runtime_library": false,
@@ -15340,7 +15270,7 @@
       "size": 36,
       "size_hex": "0x24",
       "asm_file": "asm/game_state.s",
-      "line": 24997,
+      "line": 24972,
       "linked_section": ".text.after_entity_lookups",
       "status": "assembly",
       "runtime_library": false,
@@ -15373,7 +15303,7 @@
       "size": 12,
       "size_hex": "0xC",
       "asm_file": "asm/game_state.s",
-      "line": 25008,
+      "line": 24983,
       "linked_section": ".text.after_entity_lookups",
       "status": "assembly",
       "runtime_library": false,
@@ -15404,7 +15334,7 @@
       "size": 12,
       "size_hex": "0xC",
       "asm_file": "asm/game_state.s",
-      "line": 25016,
+      "line": 24991,
       "linked_section": ".text.after_entity_lookups",
       "status": "assembly",
       "runtime_library": false,
@@ -17826,9 +17756,9 @@
       "caller_files": [],
       "caller_file_count": 0,
       "source_anchor_callees": [],
-      "shape_cluster": "shape0023",
+      "shape_cluster": "shape0022",
       "shape_cluster_size": 4,
-      "norm_cluster": "norm0023",
+      "norm_cluster": "norm0022",
       "norm_cluster_size": 4,
       "region_id": "asm/code_entities.s:08023308-0802634C",
       "priority_score": 12.5
@@ -19563,9 +19493,9 @@
       ],
       "caller_file_count": 1,
       "source_anchor_callees": [],
-      "shape_cluster": "shape0023",
+      "shape_cluster": "shape0022",
       "shape_cluster_size": 4,
-      "norm_cluster": "norm0023",
+      "norm_cluster": "norm0022",
       "norm_cluster_size": 4,
       "region_id": "asm/code_entities.s:08029558-0802A7E0",
       "priority_score": 97.5
@@ -22026,9 +21956,9 @@
       "caller_files": [],
       "caller_file_count": 0,
       "source_anchor_callees": [],
-      "shape_cluster": "shape0023",
+      "shape_cluster": "shape0022",
       "shape_cluster_size": 4,
-      "norm_cluster": "norm0023",
+      "norm_cluster": "norm0022",
       "norm_cluster_size": 4,
       "region_id": "asm/code_entities_080320DC.s:08032900-08034CEC",
       "priority_score": 12.5
@@ -22708,9 +22638,9 @@
         "_call_via_r1",
         "func_080A0384"
       ],
-      "shape_cluster": "shape0024",
+      "shape_cluster": "shape0023",
       "shape_cluster_size": 4,
-      "norm_cluster": "norm0024",
+      "norm_cluster": "norm0023",
       "norm_cluster_size": 4,
       "region_id": "asm/code_entities_08034CEC.s:08035C04-08035CD4",
       "priority_score": 40.25
@@ -22787,9 +22717,9 @@
         "_call_via_r1",
         "func_080A0384"
       ],
-      "shape_cluster": "shape0024",
+      "shape_cluster": "shape0023",
       "shape_cluster_size": 4,
-      "norm_cluster": "norm0024",
+      "norm_cluster": "norm0023",
       "norm_cluster_size": 4,
       "region_id": "asm/code_entities_08034CEC.s:08036084-08036154",
       "priority_score": 40.25
@@ -22866,9 +22796,9 @@
         "_call_via_r1",
         "func_080A0384"
       ],
-      "shape_cluster": "shape0024",
+      "shape_cluster": "shape0023",
       "shape_cluster_size": 4,
-      "norm_cluster": "norm0024",
+      "norm_cluster": "norm0023",
       "norm_cluster_size": 4,
       "region_id": "asm/code_entities_08034CEC.s:08036430-08036500",
       "priority_score": 40.25
@@ -22945,9 +22875,9 @@
         "_call_via_r1",
         "func_080A0384"
       ],
-      "shape_cluster": "shape0024",
+      "shape_cluster": "shape0023",
       "shape_cluster_size": 4,
-      "norm_cluster": "norm0024",
+      "norm_cluster": "norm0023",
       "norm_cluster_size": 4,
       "region_id": "asm/code_entities_08034CEC.s:080365CC-0803669C",
       "priority_score": 40.25
@@ -23311,9 +23241,9 @@
       "caller_files": [],
       "caller_file_count": 0,
       "source_anchor_callees": [],
-      "shape_cluster": "shape0025",
+      "shape_cluster": "shape0024",
       "shape_cluster_size": 4,
-      "norm_cluster": "norm0025",
+      "norm_cluster": "norm0024",
       "norm_cluster_size": 4,
       "region_id": "asm/code_entities_08034CEC.s:08036F0C-08037008",
       "priority_score": 17.75
@@ -23340,9 +23270,9 @@
       "caller_files": [],
       "caller_file_count": 0,
       "source_anchor_callees": [],
-      "shape_cluster": "shape0025",
+      "shape_cluster": "shape0024",
       "shape_cluster_size": 4,
-      "norm_cluster": "norm0025",
+      "norm_cluster": "norm0024",
       "norm_cluster_size": 4,
       "region_id": "asm/code_entities_08034CEC.s:08036F0C-08037008",
       "priority_score": 22.0
@@ -23858,9 +23788,9 @@
       "caller_files": [],
       "caller_file_count": 0,
       "source_anchor_callees": [],
-      "shape_cluster": "shape0025",
+      "shape_cluster": "shape0024",
       "shape_cluster_size": 4,
-      "norm_cluster": "norm0025",
+      "norm_cluster": "norm0024",
       "norm_cluster_size": 4,
       "region_id": "asm/code_entities_08034CEC.s:08037C08-08038028",
       "priority_score": 18.0
@@ -23887,9 +23817,9 @@
       "caller_files": [],
       "caller_file_count": 0,
       "source_anchor_callees": [],
-      "shape_cluster": "shape0025",
+      "shape_cluster": "shape0024",
       "shape_cluster_size": 4,
-      "norm_cluster": "norm0025",
+      "norm_cluster": "norm0024",
       "norm_cluster_size": 4,
       "region_id": "asm/code_entities_08034CEC.s:08037C08-08038028",
       "priority_score": 17.75
@@ -24287,9 +24217,9 @@
       ],
       "caller_file_count": 1,
       "source_anchor_callees": [],
-      "shape_cluster": "shape0023",
+      "shape_cluster": "shape0022",
       "shape_cluster_size": 4,
-      "norm_cluster": "norm0023",
+      "norm_cluster": "norm0022",
       "norm_cluster_size": 4,
       "region_id": "asm/code_entities_08034CEC.s:08037C08-08038028",
       "priority_score": 25.5
@@ -26027,9 +25957,9 @@
       "caller_files": [],
       "caller_file_count": 0,
       "source_anchor_callees": [],
-      "shape_cluster": "shape0037",
+      "shape_cluster": "shape0036",
       "shape_cluster_size": 3,
-      "norm_cluster": "norm0035",
+      "norm_cluster": "norm0034",
       "norm_cluster_size": 3,
       "region_id": "asm/code_0803A8A4.s:0803B128-0803D688",
       "priority_score": 8.5
@@ -26056,9 +25986,9 @@
       "caller_files": [],
       "caller_file_count": 0,
       "source_anchor_callees": [],
-      "shape_cluster": "shape0037",
+      "shape_cluster": "shape0036",
       "shape_cluster_size": 3,
-      "norm_cluster": "norm0035",
+      "norm_cluster": "norm0034",
       "norm_cluster_size": 3,
       "region_id": "asm/code_0803A8A4.s:0803B128-0803D688",
       "priority_score": 8.5
@@ -28573,6 +28503,7 @@
         "func_08015950",
         "func_08015970",
         "func_08015990",
+        "func_080167AC",
         "func_08016BA4",
         "func_08016BC0",
         "func_08016BDC",
@@ -28607,7 +28538,7 @@
         "method_0809E6EC__13HarvestSprite"
       ],
       "region_id": "asm/code_0803EE94.s:0803F8DC-08045584",
-      "priority_score": 542.66
+      "priority_score": 544.66
     },
     {
       "symbol": "func_080455D8",
@@ -31209,7 +31140,7 @@
       ],
       "caller_file_count": 5,
       "source_anchor_callees": [],
-      "shape_cluster": "shape0035",
+      "shape_cluster": "shape0034",
       "shape_cluster_size": 3,
       "region_id": "asm/code_0803EE94.s:0804F160-0805218C",
       "priority_score": 314.0
@@ -34860,7 +34791,7 @@
       "source_anchor_callees": [],
       "shape_cluster": "shape0014",
       "shape_cluster_size": 6,
-      "norm_cluster": "norm0026",
+      "norm_cluster": "norm0025",
       "norm_cluster_size": 4,
       "region_id": "asm/code_0803EE94.s:08062E9C-0806644C",
       "priority_score": 20.75
@@ -36360,9 +36291,9 @@
       "source_anchor_callees": [
         "__builtin_new"
       ],
-      "shape_cluster": "shape0026",
+      "shape_cluster": "shape0025",
       "shape_cluster_size": 4,
-      "norm_cluster": "norm0027",
+      "norm_cluster": "norm0026",
       "norm_cluster_size": 4,
       "region_id": "asm/code_0803EE94.s:0806D8C8-080709D8",
       "priority_score": 29.5
@@ -36516,9 +36447,9 @@
         "func_08008918",
         "func_08008940"
       ],
-      "shape_cluster": "shape0027",
+      "shape_cluster": "shape0026",
       "shape_cluster_size": 4,
-      "norm_cluster": "norm0028",
+      "norm_cluster": "norm0027",
       "norm_cluster_size": 4,
       "region_id": "asm/code_0803EE94.s:0806D8C8-080709D8",
       "priority_score": 38.75
@@ -36564,9 +36495,9 @@
         "func_08008918",
         "func_08008940"
       ],
-      "shape_cluster": "shape0027",
+      "shape_cluster": "shape0026",
       "shape_cluster_size": 4,
-      "norm_cluster": "norm0028",
+      "norm_cluster": "norm0027",
       "norm_cluster_size": 4,
       "region_id": "asm/code_0803EE94.s:0806D8C8-080709D8",
       "priority_score": 38.75
@@ -37300,7 +37231,7 @@
       "source_anchor_callees": [],
       "shape_cluster": "shape0014",
       "shape_cluster_size": 6,
-      "norm_cluster": "norm0026",
+      "norm_cluster": "norm0025",
       "norm_cluster_size": 4,
       "region_id": "asm/code_0803EE94.s:080709D8-08075220",
       "priority_score": 20.75
@@ -37406,7 +37337,7 @@
       "source_anchor_callees": [],
       "shape_cluster": "shape0014",
       "shape_cluster_size": 6,
-      "norm_cluster": "norm0026",
+      "norm_cluster": "norm0025",
       "norm_cluster_size": 4,
       "region_id": "asm/code_0803EE94.s:080709D8-08075220",
       "priority_score": 20.75
@@ -37591,7 +37522,7 @@
       "source_anchor_callees": [],
       "shape_cluster": "shape0014",
       "shape_cluster_size": 6,
-      "norm_cluster": "norm0026",
+      "norm_cluster": "norm0025",
       "norm_cluster_size": 4,
       "region_id": "asm/code_0803EE94.s:08075220-080755EC",
       "priority_score": 20.75
@@ -38895,9 +38826,9 @@
         "func_08008918",
         "func_08008940"
       ],
-      "shape_cluster": "shape0027",
+      "shape_cluster": "shape0026",
       "shape_cluster_size": 4,
-      "norm_cluster": "norm0028",
+      "norm_cluster": "norm0027",
       "norm_cluster_size": 4,
       "region_id": "asm/code_0803EE94.s:080756B0-08078E40",
       "priority_score": 25.75
@@ -38939,9 +38870,9 @@
         "func_08008918",
         "func_08008940"
       ],
-      "shape_cluster": "shape0027",
+      "shape_cluster": "shape0026",
       "shape_cluster_size": 4,
-      "norm_cluster": "norm0028",
+      "norm_cluster": "norm0027",
       "norm_cluster_size": 4,
       "region_id": "asm/code_0803EE94.s:080756B0-08078E40",
       "priority_score": 25.75
@@ -49098,12 +49029,12 @@
       ],
       "caller_file_count": 1,
       "source_anchor_callees": [],
-      "shape_cluster": "shape0022",
-      "shape_cluster_size": 4,
-      "norm_cluster": "norm0022",
-      "norm_cluster_size": 4,
+      "shape_cluster": "shape0037",
+      "shape_cluster_size": 3,
+      "norm_cluster": "norm0037",
+      "norm_cluster_size": 3,
       "region_id": "asm/code_0803EE94.s:08093C3C-08096EE8",
-      "priority_score": 26.0
+      "priority_score": 22.0
     },
     {
       "symbol": "func_0809495C",
@@ -49133,12 +49064,12 @@
       ],
       "caller_file_count": 1,
       "source_anchor_callees": [],
-      "shape_cluster": "shape0022",
-      "shape_cluster_size": 4,
-      "norm_cluster": "norm0022",
-      "norm_cluster_size": 4,
+      "shape_cluster": "shape0037",
+      "shape_cluster_size": 3,
+      "norm_cluster": "norm0037",
+      "norm_cluster_size": 3,
       "region_id": "asm/code_0803EE94.s:08093C3C-08096EE8",
-      "priority_score": 26.0
+      "priority_score": 22.0
     },
     {
       "symbol": "func_0809496C",
@@ -52071,7 +52002,7 @@
       "source_anchor_callees": [],
       "shape_cluster": "shape0011",
       "shape_cluster_size": 8,
-      "norm_cluster": "norm0037",
+      "norm_cluster": "norm0036",
       "norm_cluster_size": 3,
       "region_id": "asm/code_809E804.s:0809E804-0809FE3C",
       "priority_score": 54.5
@@ -52327,7 +52258,7 @@
       "source_anchor_callees": [],
       "shape_cluster": "shape0011",
       "shape_cluster_size": 8,
-      "norm_cluster": "norm0037",
+      "norm_cluster": "norm0036",
       "norm_cluster_size": 3,
       "region_id": "asm/code_809E804.s:0809E804-0809FE3C",
       "priority_score": 67.5
@@ -55071,9 +55002,9 @@
       ],
       "caller_file_count": 2,
       "source_anchor_callees": [],
-      "shape_cluster": "shape0028",
+      "shape_cluster": "shape0027",
       "shape_cluster_size": 4,
-      "norm_cluster": "norm0029",
+      "norm_cluster": "norm0028",
       "norm_cluster_size": 4,
       "region_id": "asm/code_809E804.s:080A6024-080A6420",
       "priority_score": 43.75
@@ -55110,9 +55041,9 @@
       ],
       "caller_file_count": 2,
       "source_anchor_callees": [],
-      "shape_cluster": "shape0028",
+      "shape_cluster": "shape0027",
       "shape_cluster_size": 4,
-      "norm_cluster": "norm0029",
+      "norm_cluster": "norm0028",
       "norm_cluster_size": 4,
       "region_id": "asm/code_809E804.s:080A6024-080A6420",
       "priority_score": 43.75
@@ -55149,9 +55080,9 @@
       ],
       "caller_file_count": 2,
       "source_anchor_callees": [],
-      "shape_cluster": "shape0029",
+      "shape_cluster": "shape0028",
       "shape_cluster_size": 4,
-      "norm_cluster": "norm0030",
+      "norm_cluster": "norm0029",
       "norm_cluster_size": 4,
       "region_id": "asm/code_809E804.s:080A6024-080A6420",
       "priority_score": 42.25
@@ -55186,9 +55117,9 @@
       ],
       "caller_file_count": 1,
       "source_anchor_callees": [],
-      "shape_cluster": "shape0029",
+      "shape_cluster": "shape0028",
       "shape_cluster_size": 4,
-      "norm_cluster": "norm0030",
+      "norm_cluster": "norm0029",
       "norm_cluster_size": 4,
       "region_id": "asm/code_809E804.s:080A6024-080A6420",
       "priority_score": 29.25
@@ -55223,9 +55154,9 @@
       ],
       "caller_file_count": 1,
       "source_anchor_callees": [],
-      "shape_cluster": "shape0029",
+      "shape_cluster": "shape0028",
       "shape_cluster_size": 4,
-      "norm_cluster": "norm0030",
+      "norm_cluster": "norm0029",
       "norm_cluster_size": 4,
       "region_id": "asm/code_809E804.s:080A6024-080A6420",
       "priority_score": 29.25
@@ -55260,9 +55191,9 @@
       ],
       "caller_file_count": 1,
       "source_anchor_callees": [],
-      "shape_cluster": "shape0029",
+      "shape_cluster": "shape0028",
       "shape_cluster_size": 4,
-      "norm_cluster": "norm0030",
+      "norm_cluster": "norm0029",
       "norm_cluster_size": 4,
       "region_id": "asm/code_809E804.s:080A6024-080A6420",
       "priority_score": 29.25
@@ -55297,9 +55228,9 @@
       ],
       "caller_file_count": 1,
       "source_anchor_callees": [],
-      "shape_cluster": "shape0028",
+      "shape_cluster": "shape0027",
       "shape_cluster_size": 4,
-      "norm_cluster": "norm0029",
+      "norm_cluster": "norm0028",
       "norm_cluster_size": 4,
       "region_id": "asm/code_809E804.s:080A6024-080A6420",
       "priority_score": 30.75
@@ -55334,9 +55265,9 @@
       ],
       "caller_file_count": 1,
       "source_anchor_callees": [],
-      "shape_cluster": "shape0028",
+      "shape_cluster": "shape0027",
       "shape_cluster_size": 4,
-      "norm_cluster": "norm0029",
+      "norm_cluster": "norm0028",
       "norm_cluster_size": 4,
       "region_id": "asm/code_809E804.s:080A6024-080A6420",
       "priority_score": 30.75
@@ -57864,9 +57795,9 @@
       "caller_files": [],
       "caller_file_count": 0,
       "source_anchor_callees": [],
-      "shape_cluster": "shape0030",
+      "shape_cluster": "shape0029",
       "shape_cluster_size": 4,
-      "norm_cluster": "norm0031",
+      "norm_cluster": "norm0030",
       "norm_cluster_size": 4,
       "region_id": "asm/code_809E804.s:080AC674-080AF814",
       "priority_score": 13.0
@@ -57895,9 +57826,9 @@
       "caller_files": [],
       "caller_file_count": 0,
       "source_anchor_callees": [],
-      "shape_cluster": "shape0030",
+      "shape_cluster": "shape0029",
       "shape_cluster_size": 4,
-      "norm_cluster": "norm0031",
+      "norm_cluster": "norm0030",
       "norm_cluster_size": 4,
       "region_id": "asm/code_809E804.s:080AC674-080AF814",
       "priority_score": 13.0
@@ -60118,9 +60049,9 @@
       "source_anchor_callees": [
         "__builtin_new"
       ],
-      "shape_cluster": "shape0026",
+      "shape_cluster": "shape0025",
       "shape_cluster_size": 4,
-      "norm_cluster": "norm0027",
+      "norm_cluster": "norm0026",
       "norm_cluster_size": 4,
       "region_id": "asm/code_809E804.s:080B34DC-080B7164",
       "priority_score": 29.5
@@ -62555,9 +62486,9 @@
       "source_anchor_callees": [
         "__builtin_new"
       ],
-      "shape_cluster": "shape0026",
+      "shape_cluster": "shape0025",
       "shape_cluster_size": 4,
-      "norm_cluster": "norm0027",
+      "norm_cluster": "norm0026",
       "norm_cluster_size": 4,
       "region_id": "asm/code_809E804.s:080BA1A4-080BDF40",
       "priority_score": 29.5
@@ -65162,9 +65093,9 @@
       "source_anchor_callees": [
         "__builtin_new"
       ],
-      "shape_cluster": "shape0026",
+      "shape_cluster": "shape0025",
       "shape_cluster_size": 4,
-      "norm_cluster": "norm0027",
+      "norm_cluster": "norm0026",
       "norm_cluster_size": 4,
       "region_id": "asm/code_809E804.s:080C7B38-080CABA0",
       "priority_score": 29.5
@@ -66124,7 +66055,7 @@
       "source_anchor_callees": [],
       "shape_cluster": "shape0009",
       "shape_cluster_size": 10,
-      "norm_cluster": "norm0036",
+      "norm_cluster": "norm0035",
       "norm_cluster_size": 3,
       "region_id": "asm/code_809E804.s:080CABA0-080CDC00",
       "priority_score": 94.25
@@ -70139,9 +70070,9 @@
       ],
       "caller_file_count": 1,
       "source_anchor_callees": [],
-      "shape_cluster": "shape0034",
+      "shape_cluster": "shape0033",
       "shape_cluster_size": 3,
-      "norm_cluster": "norm0034",
+      "norm_cluster": "norm0033",
       "norm_cluster_size": 3,
       "region_id": "asm/code_809E804.s:080CDC00-080D0C10",
       "priority_score": 21.75
@@ -71378,9 +71309,9 @@
       ],
       "caller_file_count": 1,
       "source_anchor_callees": [],
-      "shape_cluster": "shape0031",
+      "shape_cluster": "shape0030",
       "shape_cluster_size": 4,
-      "norm_cluster": "norm0032",
+      "norm_cluster": "norm0031",
       "norm_cluster_size": 4,
       "region_id": "asm/code_lib_syscall.s:080D3748-080D3778",
       "priority_score": -224.75
@@ -71422,9 +71353,9 @@
       ],
       "caller_file_count": 4,
       "source_anchor_callees": [],
-      "shape_cluster": "shape0031",
+      "shape_cluster": "shape0030",
       "shape_cluster_size": 4,
-      "norm_cluster": "norm0032",
+      "norm_cluster": "norm0031",
       "norm_cluster_size": 4,
       "region_id": "asm/code_lib_syscall.s:080D3748-080D3778",
       "priority_score": -145.75
@@ -71456,9 +71387,9 @@
       ],
       "caller_file_count": 1,
       "source_anchor_callees": [],
-      "shape_cluster": "shape0031",
+      "shape_cluster": "shape0030",
       "shape_cluster_size": 4,
-      "norm_cluster": "norm0032",
+      "norm_cluster": "norm0031",
       "norm_cluster_size": 4,
       "region_id": "asm/code_lib_syscall.s:080D3748-080D3778",
       "priority_score": -216.75
@@ -71549,9 +71480,9 @@
       ],
       "caller_file_count": 2,
       "source_anchor_callees": [],
-      "shape_cluster": "shape0031",
+      "shape_cluster": "shape0030",
       "shape_cluster_size": 4,
-      "norm_cluster": "norm0032",
+      "norm_cluster": "norm0031",
       "norm_cluster_size": 4,
       "region_id": "asm/code_lib_syscall.s:080D3748-080D3778",
       "priority_score": -211.75
@@ -73902,9 +73833,9 @@
       "caller_files": [],
       "caller_file_count": 0,
       "source_anchor_callees": [],
-      "shape_cluster": "shape0030",
+      "shape_cluster": "shape0029",
       "shape_cluster_size": 4,
-      "norm_cluster": "norm0031",
+      "norm_cluster": "norm0030",
       "norm_cluster_size": 4,
       "region_id": "asm/code_linkonce.s:080D772C-080D7868",
       "priority_score": 13.0
@@ -73933,9 +73864,9 @@
       "caller_files": [],
       "caller_file_count": 0,
       "source_anchor_callees": [],
-      "shape_cluster": "shape0030",
+      "shape_cluster": "shape0029",
       "shape_cluster_size": 4,
-      "norm_cluster": "norm0031",
+      "norm_cluster": "norm0030",
       "norm_cluster_size": 4,
       "region_id": "asm/code_linkonce.s:080D772C-080D7868",
       "priority_score": 13.0
@@ -75188,9 +75119,9 @@
         "__builtin_new",
         "_call_via_r2"
       ],
-      "shape_cluster": "shape0032",
+      "shape_cluster": "shape0031",
       "shape_cluster_size": 4,
-      "norm_cluster": "norm0033",
+      "norm_cluster": "norm0032",
       "norm_cluster_size": 4,
       "region_id": "asm/code_linkonce.s:080DBB2C-080DBB74",
       "priority_score": 20.5
@@ -75328,9 +75259,9 @@
         "__builtin_new",
         "_call_via_r2"
       ],
-      "shape_cluster": "shape0032",
+      "shape_cluster": "shape0031",
       "shape_cluster_size": 4,
-      "norm_cluster": "norm0033",
+      "norm_cluster": "norm0032",
       "norm_cluster_size": 4,
       "region_id": "asm/code_linkonce.s:080DBCE8-080DBD30",
       "priority_score": 20.5
@@ -75364,9 +75295,9 @@
         "__builtin_new",
         "_call_via_r2"
       ],
-      "shape_cluster": "shape0032",
+      "shape_cluster": "shape0031",
       "shape_cluster_size": 4,
-      "norm_cluster": "norm0033",
+      "norm_cluster": "norm0032",
       "norm_cluster_size": 4,
       "region_id": "asm/code_linkonce.s:080DBD58-080DBDA0",
       "priority_score": 20.5
@@ -75648,9 +75579,9 @@
         "__builtin_new",
         "_call_via_r2"
       ],
-      "shape_cluster": "shape0032",
+      "shape_cluster": "shape0031",
       "shape_cluster_size": 4,
-      "norm_cluster": "norm0033",
+      "norm_cluster": "norm0032",
       "norm_cluster_size": 4,
       "region_id": "asm/code_linkonce.s:080DC0E8-080DC130",
       "priority_score": 20.5
@@ -80240,9 +80171,9 @@
       "caller_files": [],
       "caller_file_count": 0,
       "source_anchor_callees": [],
-      "shape_cluster": "shape0034",
+      "shape_cluster": "shape0033",
       "shape_cluster_size": 3,
-      "norm_cluster": "norm0034",
+      "norm_cluster": "norm0033",
       "norm_cluster_size": 3,
       "region_id": "asm/code_linkonce.s:080E375C-080E3D94",
       "priority_score": 8.75
@@ -82962,6 +82893,7 @@
         "func_08015950",
         "func_08015970",
         "func_08015990",
+        "func_080167AC",
         "func_08016BA4",
         "func_08016BC0",
         "func_08016BDC",
@@ -82997,7 +82929,7 @@
       ],
       "incoming_cross_region_count": 0,
       "median_function_size": 23720,
-      "priority_score": 11210.0
+      "priority_score": 11234.0
     },
     {
       "region_id": "asm/code_0803A8A4.s:0803B128-0803D688",
@@ -85181,6 +85113,70 @@
       "priority_score": 5286.0
     },
     {
+      "region_id": "asm/game_state.s:0801D8CC-0801EE00",
+      "asm_file": "asm/game_state.s",
+      "start": 134338764,
+      "end": 134344192,
+      "functions": [
+        "func_0801D8CC",
+        "func_0801D948",
+        "func_0801D9A8",
+        "func_0801DB44",
+        "func_0801DB58",
+        "func_0801DC24",
+        "func_0801DCA8",
+        "func_0801DCD4",
+        "func_0801DD18",
+        "func_0801DD24",
+        "func_0801DD30",
+        "func_0801DD78",
+        "func_0801DDCC",
+        "func_0801DDF8",
+        "func_0801DE24",
+        "func_0801DE3C",
+        "func_0801DE48",
+        "func_0801DEB4",
+        "func_0801E67C",
+        "func_0801E90C",
+        "func_0801EAA0"
+      ],
+      "function_count": 21,
+      "total_function_bytes": 5428,
+      "tractable_bytes": 3436,
+      "large_function_bytes": 1992,
+      "large_function_count": 1,
+      "parked_bytes": 0,
+      "runtime_library_bytes": 0,
+      "repeated_family_functions": 11,
+      "source_anchor_callees": [
+        "GetMapData",
+        "GetValueShipped__C11ShippingBin",
+        "SetLocation__7AEntityUiii",
+        "__builtin_new",
+        "_call_via_r1",
+        "_call_via_r2",
+        "_call_via_r3",
+        "_call_via_r4",
+        "func_0800E324",
+        "func_0800E4FC",
+        "func_0801468C",
+        "func_080167CC",
+        "func_0805E860",
+        "func_0809C5B4",
+        "func_0809C5D0",
+        "func_0809C5F4",
+        "func_080A4A00",
+        "func_080A601C",
+        "method_0800A3C8__9FieldPlot",
+        "method_0800A4A4__9FieldPlot",
+        "method_0800AF5C__C9FieldPlotPC9FieldPlotT1",
+        "method_0800C9B8__4CoopUi"
+      ],
+      "incoming_cross_region_count": 2,
+      "median_function_size": 84,
+      "priority_score": 5230.0
+    },
+    {
       "region_id": "asm/code_0803EE94.s:0805CF70-0805E624",
       "asm_file": "asm/code_0803EE94.s",
       "start": 134598512,
@@ -85233,69 +85229,6 @@
       "incoming_cross_region_count": 0,
       "median_function_size": 512,
       "priority_score": 5228.0
-    },
-    {
-      "region_id": "asm/game_state.s:0801D8CC-0801EE00",
-      "asm_file": "asm/game_state.s",
-      "start": 134338764,
-      "end": 134344192,
-      "functions": [
-        "func_0801D8CC",
-        "func_0801D948",
-        "func_0801D9A8",
-        "func_0801DB44",
-        "func_0801DB58",
-        "func_0801DC24",
-        "func_0801DCA8",
-        "func_0801DCD4",
-        "func_0801DD18",
-        "func_0801DD24",
-        "func_0801DD30",
-        "func_0801DD78",
-        "func_0801DDCC",
-        "func_0801DDF8",
-        "func_0801DE24",
-        "func_0801DE3C",
-        "func_0801DE48",
-        "func_0801DEB4",
-        "func_0801E67C",
-        "func_0801E90C",
-        "func_0801EAA0"
-      ],
-      "function_count": 21,
-      "total_function_bytes": 5428,
-      "tractable_bytes": 3436,
-      "large_function_bytes": 1992,
-      "large_function_count": 1,
-      "parked_bytes": 0,
-      "runtime_library_bytes": 0,
-      "repeated_family_functions": 11,
-      "source_anchor_callees": [
-        "GetMapData",
-        "GetValueShipped__C11ShippingBin",
-        "SetLocation__7AEntityUiii",
-        "__builtin_new",
-        "_call_via_r1",
-        "_call_via_r2",
-        "_call_via_r3",
-        "_call_via_r4",
-        "func_0800E324",
-        "func_0800E4FC",
-        "func_0801468C",
-        "func_0805E860",
-        "func_0809C5B4",
-        "func_0809C5D0",
-        "func_0809C5F4",
-        "func_080A4A00",
-        "func_080A601C",
-        "method_0800A3C8__9FieldPlot",
-        "method_0800A4A4__9FieldPlot",
-        "method_0800AF5C__C9FieldPlotPC9FieldPlotT1",
-        "method_0800C9B8__4CoopUi"
-      ],
-      "incoming_cross_region_count": 2,
-      "median_function_size": 84,
-      "priority_score": 5206.0
     },
     {
       "region_id": "asm/code_0803EE94.s:08069F14-0806D8C8",
@@ -85472,6 +85405,7 @@
         "func_0800E324",
         "func_0800E4FC",
         "func_0800ED2C",
+        "func_080167CC",
         "func_0801A8C0",
         "func_0803A8A4",
         "func_0803ACD8",
@@ -85488,7 +85422,7 @@
       ],
       "incoming_cross_region_count": 1,
       "median_function_size": 232,
-      "priority_score": 4773.0
+      "priority_score": 4797.0
     },
     {
       "region_id": "asm/hardware.s:0800894C-08008E64",
@@ -85800,47 +85734,6 @@
       "priority_score": 4038.0
     },
     {
-      "region_id": "asm/code_linkonce.s:080D7F9C-080DB0EC",
-      "asm_file": "asm/code_linkonce.s",
-      "start": 135102364,
-      "end": 135114988,
-      "functions": [
-        "func_080D7F9C",
-        "sub_080D8178",
-        "sub_080DA76C"
-      ],
-      "function_count": 3,
-      "total_function_bytes": 12624,
-      "tractable_bytes": 476,
-      "large_function_bytes": 12148,
-      "large_function_count": 2,
-      "parked_bytes": 0,
-      "runtime_library_bytes": 0,
-      "repeated_family_functions": 0,
-      "source_anchor_callees": [
-        "GetIconId__C4Tool",
-        "GetTool__C9ToolStack",
-        "IsEmpty__C9ToolStack",
-        "LoadById__12ScriptEngineii",
-        "Push__12ScriptEnginei",
-        "SetLocation__12AActorEntityRC13ActorLocation",
-        "SetLocation__7AEntityUiii",
-        "__builtin_delete",
-        "__builtin_new",
-        "_call_via_r1",
-        "_call_via_r2",
-        "_call_via_r4",
-        "func_08008F60",
-        "func_080098AC",
-        "func_0800E550",
-        "func_0800EECC",
-        "func_08032370"
-      ],
-      "incoming_cross_region_count": 3,
-      "median_function_size": 2432,
-      "priority_score": 4017.0
-    },
-    {
       "region_id": "asm/game_state.s:08016F60-08017C00",
       "asm_file": "asm/game_state.s",
       "start": 134311776,
@@ -85882,6 +85775,7 @@
         "func_0800E924",
         "func_0800ED2C",
         "func_0800EECC",
+        "func_080167CC",
         "func_0801A8C0",
         "func_0809C5F4",
         "func_080A1EF4",
@@ -85894,7 +85788,48 @@
       ],
       "incoming_cross_region_count": 4,
       "median_function_size": 356,
-      "priority_score": 4008.0
+      "priority_score": 4032.0
+    },
+    {
+      "region_id": "asm/code_linkonce.s:080D7F9C-080DB0EC",
+      "asm_file": "asm/code_linkonce.s",
+      "start": 135102364,
+      "end": 135114988,
+      "functions": [
+        "func_080D7F9C",
+        "sub_080D8178",
+        "sub_080DA76C"
+      ],
+      "function_count": 3,
+      "total_function_bytes": 12624,
+      "tractable_bytes": 476,
+      "large_function_bytes": 12148,
+      "large_function_count": 2,
+      "parked_bytes": 0,
+      "runtime_library_bytes": 0,
+      "repeated_family_functions": 0,
+      "source_anchor_callees": [
+        "GetIconId__C4Tool",
+        "GetTool__C9ToolStack",
+        "IsEmpty__C9ToolStack",
+        "LoadById__12ScriptEngineii",
+        "Push__12ScriptEnginei",
+        "SetLocation__12AActorEntityRC13ActorLocation",
+        "SetLocation__7AEntityUiii",
+        "__builtin_delete",
+        "__builtin_new",
+        "_call_via_r1",
+        "_call_via_r2",
+        "_call_via_r4",
+        "func_08008F60",
+        "func_080098AC",
+        "func_0800E550",
+        "func_0800EECC",
+        "func_08032370"
+      ],
+      "incoming_cross_region_count": 3,
+      "median_function_size": 2432,
+      "priority_score": 4017.0
     },
     {
       "region_id": "asm/code_linkonce.s:080DE280-080E09BC",
@@ -86498,50 +86433,6 @@
       "incoming_cross_region_count": 31,
       "median_function_size": 148,
       "priority_score": 3382.0
-    },
-    {
-      "region_id": "asm/game_state.s:080159B0-08016BA4",
-      "asm_file": "asm/game_state.s",
-      "start": 134306224,
-      "end": 134310820,
-      "functions": [
-        "func_080159B0",
-        "func_08015E30",
-        "func_08016784",
-        "func_080167AC",
-        "func_080167CC",
-        "func_080167DC",
-        "func_08016834",
-        "func_080168D4",
-        "func_08016AFC"
-      ],
-      "function_count": 9,
-      "total_function_bytes": 4596,
-      "tractable_bytes": 2208,
-      "large_function_bytes": 2388,
-      "large_function_count": 1,
-      "parked_bytes": 0,
-      "runtime_library_bytes": 0,
-      "repeated_family_functions": 1,
-      "source_anchor_callees": [
-        "GetUnkEnt__C4Coop",
-        "SetLocation__7AEntityUiii",
-        "_call_via_r1",
-        "_call_via_r2",
-        "_call_via_r3",
-        "func_0809CF34",
-        "func_0809D8A0",
-        "method_0800C6F0__C4CoopUi",
-        "method_0800CB7C__4CoopUi",
-        "method_0800CBC0__4Coop",
-        "method_0800D058__C4Barn",
-        "method_0800D074__C4BarnUi",
-        "method_0800D80C__4BarnUi",
-        "method_0800D858__4Barn"
-      ],
-      "incoming_cross_region_count": 5,
-      "median_function_size": 160,
-      "priority_score": 3365.0
     },
     {
       "region_id": "asm/code_0803EE94.s:0807BE74-0807D1DC",
@@ -87313,6 +87204,35 @@
       "priority_score": 2052.0
     },
     {
+      "region_id": "asm/game_state.s:080159B0-080167AC",
+      "asm_file": "asm/game_state.s",
+      "start": 134306224,
+      "end": 134309804,
+      "functions": [
+        "func_080159B0",
+        "func_08015E30",
+        "func_08016784"
+      ],
+      "function_count": 3,
+      "total_function_bytes": 3580,
+      "tractable_bytes": 1192,
+      "large_function_bytes": 2388,
+      "large_function_count": 1,
+      "parked_bytes": 0,
+      "runtime_library_bytes": 0,
+      "repeated_family_functions": 0,
+      "source_anchor_callees": [
+        "_call_via_r1",
+        "_call_via_r2",
+        "_call_via_r3",
+        "func_0809CF34",
+        "func_0809D8A0"
+      ],
+      "incoming_cross_region_count": 1,
+      "median_function_size": 1152,
+      "priority_score": 1941.0
+    },
+    {
       "region_id": "asm/code_actor_0809BFE8.s:0809D168-0809D8A0",
       "asm_file": "asm/code_actor_0809BFE8.s",
       "start": 134861160,
@@ -87776,6 +87696,42 @@
       "incoming_cross_region_count": 0,
       "median_function_size": 52,
       "priority_score": 1357.0
+    },
+    {
+      "region_id": "asm/game_state.s:080167DC-08016BA4",
+      "asm_file": "asm/game_state.s",
+      "start": 134309852,
+      "end": 134310820,
+      "functions": [
+        "func_080167DC",
+        "func_08016834",
+        "func_080168D4",
+        "func_08016AFC"
+      ],
+      "function_count": 4,
+      "total_function_bytes": 968,
+      "tractable_bytes": 968,
+      "large_function_bytes": 0,
+      "large_function_count": 0,
+      "parked_bytes": 0,
+      "runtime_library_bytes": 0,
+      "repeated_family_functions": 0,
+      "source_anchor_callees": [
+        "GetUnkEnt__C4Coop",
+        "SetLocation__7AEntityUiii",
+        "_call_via_r1",
+        "_call_via_r2",
+        "method_0800C6F0__C4CoopUi",
+        "method_0800CB7C__4CoopUi",
+        "method_0800CBC0__4Coop",
+        "method_0800D058__C4Barn",
+        "method_0800D074__C4BarnUi",
+        "method_0800D80C__4BarnUi",
+        "method_0800D858__4Barn"
+      ],
+      "incoming_cross_region_count": 2,
+      "median_function_size": 164,
+      "priority_score": 1296.0
     },
     {
       "region_id": "asm/code_linkonce.s:080DCF4C-080DD3A8",
@@ -92285,7 +92241,7 @@
       ]
     },
     {
-      "cluster_id": "shape0024",
+      "cluster_id": "shape0023",
       "member_count": 4,
       "total_bytes": 720,
       "instruction_count": 66,
@@ -92464,7 +92420,7 @@
       ]
     },
     {
-      "cluster_id": "shape0027",
+      "cluster_id": "shape0026",
       "member_count": 4,
       "total_bytes": 496,
       "instruction_count": 48,
@@ -92506,7 +92462,7 @@
       ]
     },
     {
-      "cluster_id": "shape0025",
+      "cluster_id": "shape0024",
       "member_count": 4,
       "total_bytes": 440,
       "instruction_count": 0,
@@ -92547,7 +92503,7 @@
       ]
     },
     {
-      "cluster_id": "shape0028",
+      "cluster_id": "shape0027",
       "member_count": 4,
       "total_bytes": 368,
       "instruction_count": 35,
@@ -92676,7 +92632,7 @@
       ]
     },
     {
-      "cluster_id": "shape0032",
+      "cluster_id": "shape0031",
       "member_count": 4,
       "total_bytes": 288,
       "instruction_count": 33,
@@ -92704,7 +92660,7 @@
       ]
     },
     {
-      "cluster_id": "shape0029",
+      "cluster_id": "shape0028",
       "member_count": 4,
       "total_bytes": 272,
       "instruction_count": 26,
@@ -93034,7 +92990,7 @@
       ]
     },
     {
-      "cluster_id": "shape0026",
+      "cluster_id": "shape0025",
       "member_count": 4,
       "total_bytes": 160,
       "instruction_count": 14,
@@ -93427,7 +93383,7 @@
       ]
     },
     {
-      "cluster_id": "shape0036",
+      "cluster_id": "shape0035",
       "member_count": 3,
       "total_bytes": 84,
       "instruction_count": 12,
@@ -93441,7 +93397,7 @@
       ]
     },
     {
-      "cluster_id": "shape0035",
+      "cluster_id": "shape0034",
       "member_count": 3,
       "total_bytes": 80,
       "instruction_count": 7,
@@ -93560,23 +93516,7 @@
       ]
     },
     {
-      "cluster_id": "shape0022",
-      "member_count": 4,
-      "total_bytes": 64,
-      "instruction_count": 6,
-      "members": [
-        "func_08012454",
-        "func_080167CC",
-        "func_0809494C",
-        "func_0809495C"
-      ],
-      "files": [
-        "asm/code_0803EE94.s",
-        "asm/game_state.s"
-      ]
-    },
-    {
-      "cluster_id": "shape0030",
+      "cluster_id": "shape0029",
       "member_count": 4,
       "total_bytes": 64,
       "instruction_count": 6,
@@ -93805,6 +93745,21 @@
       ]
     },
     {
+      "cluster_id": "shape0037",
+      "member_count": 3,
+      "total_bytes": 48,
+      "instruction_count": 6,
+      "members": [
+        "func_08012454",
+        "func_0809494C",
+        "func_0809495C"
+      ],
+      "files": [
+        "asm/code_0803EE94.s",
+        "asm/game_state.s"
+      ]
+    },
+    {
       "cluster_id": "shape0135",
       "member_count": 2,
       "total_bytes": 48,
@@ -93896,7 +93851,7 @@
       ]
     },
     {
-      "cluster_id": "shape0034",
+      "cluster_id": "shape0033",
       "member_count": 3,
       "total_bytes": 36,
       "instruction_count": 5,
@@ -93926,7 +93881,7 @@
       ]
     },
     {
-      "cluster_id": "shape0023",
+      "cluster_id": "shape0022",
       "member_count": 4,
       "total_bytes": 32,
       "instruction_count": 4,
@@ -94035,7 +93990,7 @@
       ]
     },
     {
-      "cluster_id": "shape0033",
+      "cluster_id": "shape0032",
       "member_count": 3,
       "total_bytes": 24,
       "instruction_count": 3,
@@ -94049,7 +94004,7 @@
       ]
     },
     {
-      "cluster_id": "shape0037",
+      "cluster_id": "shape0036",
       "member_count": 3,
       "total_bytes": 24,
       "instruction_count": 4,
@@ -94172,7 +94127,7 @@
       ]
     },
     {
-      "cluster_id": "shape0031",
+      "cluster_id": "shape0030",
       "member_count": 4,
       "total_bytes": 16,
       "instruction_count": 2,
@@ -94488,7 +94443,7 @@
       ]
     },
     {
-      "cluster_id": "norm0024",
+      "cluster_id": "norm0023",
       "member_count": 4,
       "total_bytes": 720,
       "members": [
@@ -94636,7 +94591,7 @@
       ]
     },
     {
-      "cluster_id": "norm0028",
+      "cluster_id": "norm0027",
       "member_count": 4,
       "total_bytes": 496,
       "members": [
@@ -94656,7 +94611,7 @@
       ]
     },
     {
-      "cluster_id": "norm0025",
+      "cluster_id": "norm0024",
       "member_count": 4,
       "total_bytes": 440,
       "members": [
@@ -94694,7 +94649,7 @@
       ]
     },
     {
-      "cluster_id": "norm0029",
+      "cluster_id": "norm0028",
       "member_count": 4,
       "total_bytes": 368,
       "members": [
@@ -94795,7 +94750,7 @@
       ]
     },
     {
-      "cluster_id": "norm0033",
+      "cluster_id": "norm0032",
       "member_count": 4,
       "total_bytes": 288,
       "members": [
@@ -94834,7 +94789,7 @@
       ]
     },
     {
-      "cluster_id": "norm0030",
+      "cluster_id": "norm0029",
       "member_count": 4,
       "total_bytes": 272,
       "members": [
@@ -95059,7 +95014,7 @@
       ]
     },
     {
-      "cluster_id": "norm0027",
+      "cluster_id": "norm0026",
       "member_count": 4,
       "total_bytes": 160,
       "members": [
@@ -95336,18 +95291,7 @@
       ]
     },
     {
-      "cluster_id": "norm0022",
-      "member_count": 4,
-      "total_bytes": 64,
-      "members": [
-        "func_08012454",
-        "func_080167CC",
-        "func_0809494C",
-        "func_0809495C"
-      ]
-    },
-    {
-      "cluster_id": "norm0031",
+      "cluster_id": "norm0030",
       "member_count": 4,
       "total_bytes": 64,
       "members": [
@@ -95488,7 +95432,7 @@
       ]
     },
     {
-      "cluster_id": "norm0026",
+      "cluster_id": "norm0025",
       "member_count": 4,
       "total_bytes": 48,
       "members": [
@@ -95496,6 +95440,16 @@
         "func_080713AC",
         "func_080722D0",
         "func_08075328"
+      ]
+    },
+    {
+      "cluster_id": "norm0037",
+      "member_count": 3,
+      "total_bytes": 48,
+      "members": [
+        "func_08012454",
+        "func_0809494C",
+        "func_0809495C"
       ]
     },
     {
@@ -95574,7 +95528,7 @@
       ]
     },
     {
-      "cluster_id": "norm0034",
+      "cluster_id": "norm0033",
       "member_count": 3,
       "total_bytes": 36,
       "members": [
@@ -95584,7 +95538,7 @@
       ]
     },
     {
-      "cluster_id": "norm0023",
+      "cluster_id": "norm0022",
       "member_count": 4,
       "total_bytes": 32,
       "members": [
@@ -95667,7 +95621,7 @@
       ]
     },
     {
-      "cluster_id": "norm0035",
+      "cluster_id": "norm0034",
       "member_count": 3,
       "total_bytes": 24,
       "members": [
@@ -95677,7 +95631,7 @@
       ]
     },
     {
-      "cluster_id": "norm0037",
+      "cluster_id": "norm0036",
       "member_count": 3,
       "total_bytes": 24,
       "members": [
@@ -95732,7 +95686,7 @@
       ]
     },
     {
-      "cluster_id": "norm0032",
+      "cluster_id": "norm0031",
       "member_count": 4,
       "total_bytes": 16,
       "members": [
@@ -95779,7 +95733,7 @@
       ]
     },
     {
-      "cluster_id": "norm0036",
+      "cluster_id": "norm0035",
       "member_count": 3,
       "total_bytes": 12,
       "members": [

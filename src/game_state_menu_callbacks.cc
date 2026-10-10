@@ -1,3 +1,9 @@
+// Menu callbacks, child forwarding, and the proved coop-incubation call.
+// Exact slot offsets and narrow argument/return types are ABI facts. Apart
+// from BeginIncubation, gameplay meanings of actionXX slots are unresolved;
+// neutral names are intentional until their callees can be characterized.
+// See docs/GAME_STATE_MENU_CALLBACKS.md for the typed evidence.
+
 #include "prelude.h"
 
 struct GameMenuTarget;

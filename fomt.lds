@@ -502,6 +502,8 @@ SECTIONS
         asm/game_state.o(.text.after_gmcb_1589c);
         src/game_state_menu_callbacks.o(.text.game_menu_cb_15950);
         asm/game_state.o(.text.after_gmcb_15950);
+        src/game_state_audio_callbacks.o(.text.game_state_audio_167ac);
+        asm/game_state.o(.text.after_game_state_audio_167ac);
         src/game_state_menu_actions.o(.text.game_state_actions_16ba4);
         asm/game_state.o(.text.after_game_state_actions_16ba4);
         src/game_state_menu_actions.o(.text.game_state_actions_16d80);

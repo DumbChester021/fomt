@@ -6,16 +6,32 @@
 byte-for-byte in [handoff history](checkpoints/menu-throughput-docs-2026-10-10/HANDOFF_HISTORY.md).
 Superseded next-target claims in that history are not instructions.
 
-- Retail workspace: `/mnt/data/Github/gba/fomt`; branch `main` tracking `ches/main`; previously published source checkpoint **`399882d`**; the new 13-function callback/in­cubation integration is forced-ROM exact and may be awaiting its publication SHA. Check `git log -1` and `git status -sb` for any newer work.
+- Retail workspace: `/mnt/data/Github/gba/fomt`; branch `main` tracking `ches/main`; latest confirmed published source checkpoint **`65d61b8`**, with the 13-function callback/incubation integration exact and pushed. Keep new readability-only edits separate from production code progress. Check `git log -1` and `git status -sb` for any newer work.
 - **The previously dirty verified retail source is committed as 1e522c9.** The retail branch was clean and even with its tracked remote at the start of the October 10 documentation audit; documentation-only edits may now be pending review. The separate custom-game worktree has independent uncommitted docs. Preserve both worktrees; never reset, clean or stash without review.
 - Retail SHA1: **`a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`**, ROM size **8,388,608**.
-- Latest full forced comparison: `make -B -j4 compare` -> **`fomt.gba: OK`**; execution `sh_mv22yrzy_255645e2`, exit 0. No background build pending.
-- **Code 88,924 / 940,036 = 9.4596%**. Assembly: **851,112 bytes / 1,983 linked unresolved functions**; mapped inferred ranges **848,140** bytes, unattributed **2,972**, explicitly parked **27**.
-- **Data/assets 75,554 / 6,777,404 = 1.1148%**; meaningful ROM **164,874 / 7,717,440 = 2.1364%**; free tail **671,168 bytes**.
+- Latest full forced comparison: `make -B -j4 compare` -> **`fomt.gba: OK`**; execution `sh_mv2471un_7d10991c`, exit 0. No background build pending.
+- **Code 88,972 / 940,036 = 9.4647%**. Assembly: **851,064 bytes / 1,981 linked unresolved functions**; mapped inferred ranges **848,092** bytes, unattributed **2,972**, explicitly parked **27**.
+- **Data/assets 75,554 / 6,777,404 = 1.1148%**; meaningful ROM **164,922 / 7,717,440 = 2.1370%**; free tail **671,168 bytes**.
 - The thirteen-rule compiler compatibility layer is unchanged; see `docs/FOMT_COMPILER_FINGERPRINT.md`. The full save loader/GameState remains unfinished and parked.
+- Readability audit: `docs/SOURCE_READABILITY_AUDIT.md`; repeatable heuristic scan: `python3 tools/ches/audit_source_readability.py`. The code-percentage metric counts exact bytes, not semantically complete functions. The three recent GameState/menu units are structurally readable but have unresolved slot meanings and address-derived external names.
 - The live machine-generated truth is `tools/ches/decomp_inventory.json` and `tools/ches/DECOMP_QUEUE.md`.
 
-## Latest verified exact integration: 13 functions / 444 bytes
+## Latest verified exact integration: 2 functions / 48 bytes
+
+`src/game_state_audio_callbacks.cc` replaces exactly `080167AC..080167DC` with two independently zero-difference C++ functions: a 32-byte child callback getter at `167AC` (child operation +0x90 still semantically unknown) and a 16-byte sound-player busy check at `167CC`. The latter uses the existing named `IsSoundPlayerBusy` ABI at `func_08008CD0`, cross-confirmed by `src/game_object_discard.cc` and `src/entity_unk_08038740.cc`.
+
+Neighbor `func_08016784` is behavior-understood (checks sound player and fades out over 5) but **remains assembly**: a natural 40-byte source differs by 15 linked bytes (branch orientation), a local-result variant by 27. Saved scratch and diff proofs: `/mnt/waydroid-hdd/home-chester-waydroid/fomt-audio-menu-20261010/`.
+
+**Important integration seam:** `asm/game_state.s` source order puts `167AC..167DC` between `.text.after_gmcb_15950` and `.text.game_state_actions_16ba4`. The first integration erroneously inserted the new object after the later `16EF0` section and failed the ROM gate; correcting `fomt.lds` to the actual retail order restored exactness. Forced `make -B -j4 compare` execution `sh_mv2471un_7d10991c` exited 0 with `fomt.gba: OK` and exact SHA1.
+
+**Live inventory:** exact code **88,972 / 940,036 = 9.4647%**; remaining ASM **851,064 bytes / 1,981 linked functions**, inferred ranges **848,092**, unattributed **2,972**, parked **27**; meaningful ROM **164,922 / 7,717,440 = 2.1370%**; assets/data unchanged at **75,554**. Since the three earlier GameState/menu batches, cumulative continuation is **56 exact functions / 1,736 linked bytes**.
+
+**Separate readability finding:** matching does not guarantee maintainable semantic C++. The reproducible `tools/ches/audit_source_readability.py` scans 136 C++ units / 19,919 lines and flags 135 address-named function definitions in 16 files, numeric child callback slots, layout padding and register-constrained code. These indicators are not a semantic completion percentage. Manual audit rubric and urgent debt: `docs/SOURCE_READABILITY_AUDIT.md`. The three recent GameState/menu source units have now been formatted/commented to describe proven offsets and unknown names. Do not speculate about missing gameplay names.
+
+See `docs/GAME_STATE_AUDIO_CALLBACKS.md` for the stable audio/child ABI and proof location. Next pursue a coherent higher-byte and more semantically understandable family. If continuing nearby, recover callers of `16F60`, `16784`, and `167DC` using saved types; do not repeat source-shape puzzles. The existing 18-member ownership-transfer and 3-member tree insertion families remain in the prioritized queue but are codegen-sensitive.
+
+## Previous verified exact integration: 13 functions / 444 bytes
+
 
 Thirteen GameState/menu callback and incubation methods now have byte-exact natural C++ in `src/game_state_menu_callbacks.cc`, linked in five source/ASM islands. Each method independently matched its retail size and linked bytes; the forced clean `make -B -j4 compare` passed (`sh_mv22yrzy_255645e2`, exit 0, `fomt.gba: OK`).
 
@@ -34,9 +50,9 @@ The state holds a save pointer at +0x8C, status +0x9C and target +0xA8. Incubati
 
 Scratch sources and individual diff/mismatch proofs are under `/mnt/waydroid-hdd/home-chester-waydroid/fomt-menu-dispatch-batch3/`, together with `probe.py`, the loop alternatives, `incubation_v1.cc`, `integrate.py`, and the exact original ASM/linker backups. Stable subsystem doc: `docs/GAME_STATE_MENU_CALLBACKS.md`. No REA or custom compiler work was required for this matching batch.
 
-**Current inventory:** **88,924 / 940,036 code bytes = 9.4596%**, **851,112 ASM bytes / 1,983 unresolved linked functions**, inferred ASM **848,140 bytes**, unattributed **2,972**, explicitly parked **27**, data/assets **75,554**, meaningful ROM **164,874 / 7,717,440 = 2.1364%**. The three sequential GameState/menu batches collectively recovered **54 source functions / 1,688 linked bytes** and preserved retail SHA1 `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
+At this previous checkpoint, the three GameState/menu batches had recovered **54 functions / 1,688 bytes**, all retail-exact. The newer 2-function audio integration and current inventory are authoritative at the top of this handoff.
 
-## Previous verified exact integration: 18 functions / 560 bytes
+## Earlier verified exact integration: 18 functions / 560 bytes
 
 
 `src/game_state_menu_actions.cc` provides 18 natural, independently zero-difference C++ routines replacing four carefully bounded source/assembly regions. The full forced `make -B -j4 compare` passed (`sh_mv22h75z_27840b97`, exit 0, `fomt.gba: OK`), retail SHA1 unchanged.

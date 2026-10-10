@@ -12,11 +12,11 @@ exploit them across the remaining assembly instead of making an individual
 resource family the main queue.
 
 Current verified working state on `main`:
-- code: **88,924 / 940,036 = 9.4596%**;
-- assembly remaining: **851,112 bytes**;
-- remaining linked assembly functions: **1,983**;
+- code: **88,972 / 940,036 = 9.4647%**;
+- assembly remaining: **851,064 bytes**;
+- remaining linked assembly functions: **1,981**;
 - data/assets: **75,554 / 6,777,404 = 1.1148%**;
-- overall meaningful ROM: **164,874 / 7,717,440 = 2.1364%**;
+- overall meaningful ROM: **164,922 / 7,717,440 = 2.1370%**;
 - packed bank: **416 / 493 semantically owned animations**;
 - retail ROM remains exact at SHA1 `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
 
@@ -53,7 +53,7 @@ but its score is no longer an execution order.
 
 ## Current priority: work the live queue and preserve family-level leverage
 
-**Latest matching unit (October 10):** 13 GameState/menu callback and incubation routines / **444 byte-exact linked bytes** in `src/game_state_menu_callbacks.cc`; five source islands, forced full-ROM verification passed. Together with the previous 23-function dispatch and 18-function action clusters, that is **54 exact functions / 1,688 bytes**. The adjacent `func_08014BD8` loop is parked at exact size but five differing linked bytes. See [GAME_STATE_MENU_CALLBACKS.md](GAME_STATE_MENU_CALLBACKS.md) and the canonical handoff.
+**Latest matching unit (October 10):** two GameState sound-player and child callback functions / **48 byte-exact linked bytes** in `src/game_state_audio_callbacks.cc`. The neighboring 16784 fade-out routine remains parked on codegen. `docs/SOURCE_READABILITY_AUDIT.md` separately audits maintainability; matching does not guarantee semantic completeness. The preceding matching unit added 13 menu callback and incubation routines / **444 exact linked bytes** in `src/game_state_menu_callbacks.cc`; five source islands, forced full-ROM verification passed. Together with the previous 23-function dispatch and 18-function action clusters, that is **54 exact functions / 1,688 bytes**. The adjacent `func_08014BD8` loop is parked at exact size but five differing linked bytes. See [GAME_STATE_MENU_CALLBACKS.md](GAME_STATE_MENU_CALLBACKS.md) and the canonical handoff.
 
 **Preceding checkpoint:** October 10: 18 exact methods / 632 linked bytes were promoted, covering three owner destructors, four global-owner dtors, five resource helpers, and six plain dtors; forced full-ROM gate passed throughout. That earlier status inventory was 87,236 / 940,036 exact code bytes (9.2801%) and 2,037 unresolved linked assembly functions; use the live snapshot at the top for current values. Next prioritize typed high-yield coherent clusters; resource pair initialization at D6EAC/D6EEC and virtual owner-transfer 72-byte family remain codegen sensitive. See the current top of NEXT_AGENT_HANDOFF.md.
 

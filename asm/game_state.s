@@ -12178,32 +12178,7 @@ func_08016784: @ 0x08016784
     pop {r1}
     bx r1
 
-    thumb_func_start func_080167AC
-func_080167AC: @ 0x080167AC
-    push {lr}
-    ldr r0, [r0, #4]
-    adds r0, #0xa8
-    ldr r0, [r0]
-    ldr r1, [r0]
-    ldr r2, [r1, #0x40]
-    movs r1, #0
-    bl _call_via_r2
-    ldr r1, [r0, #0x14]
-    adds r1, #0x90
-    ldr r1, [r1]
-    bl _call_via_r1
-    pop {r1}
-    bx r1
-
-    thumb_func_start func_080167CC
-func_080167CC: @ 0x080167CC
-    push {lr}
-    ldr r0, [r0, #4]
-    adds r0, #0xbc
-    bl func_08008CD0
-    pop {r1}
-    bx r1
-    .align 2, 0
+    .section .text.after_game_state_audio_167ac, "ax", %progbits
 
     thumb_func_start func_080167DC
 func_080167DC: @ 0x080167DC

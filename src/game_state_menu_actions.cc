@@ -1,3 +1,9 @@
+// GameState/menu action adapters and a packed persistent-state record.
+// The state, target, and child layouts are independently confirmed by exact
+// compiler matches, but the actionXX virtual slots have unknown semantics.
+// Do not rename slots after assumed gameplay effects. See
+// docs/GAME_STATE_MENU_ACTIONS.md for evidence and remaining assembly.
+
 #include "prelude.h"
 
 struct MenuActionTarget;
@@ -66,144 +72,144 @@ EC void func_08016BA4(MenuActionProxy *, u32 argument) SECTION(".text.game_state
 void func_08016BA4(MenuActionProxy *self, u32 argument)
 {
     MenuActionTarget *target = self->state->target;
-        target->vtable->action10C(target, argument);
+    target->vtable->action10C(target, argument);
 }
 
 EC void func_08016BC0(MenuActionProxy *, u32 argument) SECTION(".text.game_state_actions_16ba4");
 void func_08016BC0(MenuActionProxy *self, u32 argument)
 {
     MenuActionTarget *target = self->state->target;
-        target->vtable->action110(target, argument);
+    target->vtable->action110(target, argument);
 }
 
 EC void func_08016BDC(MenuActionProxy *) SECTION(".text.game_state_actions_16ba4");
 void func_08016BDC(MenuActionProxy *self)
 {
     MenuActionTarget *target = self->state->target;
-        target->vtable->actionFC(target);
+    target->vtable->actionFC(target);
 }
 
 EC void func_08016BF4(MenuActionProxy *) SECTION(".text.game_state_actions_16ba4");
 void func_08016BF4(MenuActionProxy *self)
 {
     MenuActionTarget *target = self->state->target;
-        target->vtable->action100(target);
+    target->vtable->action100(target);
 }
 
 EC void func_08016C10(MenuActionProxy *) SECTION(".text.game_state_actions_16ba4");
 void func_08016C10(MenuActionProxy *self)
 {
     MenuActionTarget *target = self->state->target;
-        target->vtable->action104(target);
+    target->vtable->action104(target);
 }
 
 EC void func_08016C2C(MenuActionProxy *) SECTION(".text.game_state_actions_16ba4");
 void func_08016C2C(MenuActionProxy *self)
 {
     MenuActionTarget *target = self->state->target;
-        MenuActionChild *child = target->vtable->getChild(target, 0x5D);
-        func_080387B8(child);
+    MenuActionChild *child = target->vtable->getChild(target, 0x5D);
+    func_080387B8(child);
 }
 
 EC void func_08016C48(MenuActionProxy *) SECTION(".text.game_state_actions_16ba4");
 void func_08016C48(MenuActionProxy *self)
 {
     MenuActionState *state = self->state;
-        MenuActionTarget *target = state->target;
-        MenuActionChild *child = target->vtable->getChild(target, 0x5D);
-        func_080387C8(child);
-        state->status = 0x1C;
+    MenuActionTarget *target = state->target;
+    MenuActionChild *child = target->vtable->getChild(target, 0x5D);
+    func_080387C8(child);
+    state->status = 0x1C;
 }
 
 EC void func_08016C6C(MenuActionProxy *) SECTION(".text.game_state_actions_16ba4");
 void func_08016C6C(MenuActionProxy *self)
 {
     MenuActionTarget *target = self->state->target;
-        MenuActionChild *child = target->vtable->getChild(target, 0x5D);
-        func_080387EC(child);
+    MenuActionChild *child = target->vtable->getChild(target, 0x5D);
+    func_080387EC(child);
 }
 
 EC void func_08016C88(MenuActionProxy *) SECTION(".text.game_state_actions_16ba4");
 void func_08016C88(MenuActionProxy *self)
 {
     MenuActionState *state = self->state;
-        MenuActionTarget *target = state->target;
-        MenuActionChild *child = target->vtable->getChild(target, 0x5D);
-        func_080387FC(child);
-        state->status = 0x1B;
+    MenuActionTarget *target = state->target;
+    MenuActionChild *child = target->vtable->getChild(target, 0x5D);
+    func_080387FC(child);
+    state->status = 0x1B;
 }
 
 EC void func_08016CAC(MenuActionProxy *) SECTION(".text.game_state_actions_16ba4");
 void func_08016CAC(MenuActionProxy *self)
 {
     MenuActionTarget *target = self->state->target;
-        MenuActionChild *child = target->vtable->getChild(target, 0);
-        child->ops->actionA8(child);
+    MenuActionChild *child = target->vtable->getChild(target, 0);
+    child->ops->actionA8(child);
 }
 
 EC void func_08016CCC(MenuActionProxy *) SECTION(".text.game_state_actions_16ba4");
 void func_08016CCC(MenuActionProxy *self)
 {
     MenuActionTarget *target = self->state->target;
-        MenuActionChild *child = target->vtable->getChild(target, 0);
-        child->ops->actionAC(child);
+    MenuActionChild *child = target->vtable->getChild(target, 0);
+    child->ops->actionAC(child);
 }
 
 EC void func_08016D80() SECTION(".text.game_state_actions_16d80");
 void func_08016D80()
 {
     MenuRecord *record = (MenuRecord *)((u8 *)gUnk_0300040C + 0x36C);
-        record->enabled = 0;
-        record->index = 0x234;
+    record->enabled = 0;
+    record->index = 0x234;
 }
 
 EC u32 func_08016D9C() SECTION(".text.game_state_actions_16d80");
 u32 func_08016D9C()
 {
     MenuRecord *record = (MenuRecord *)((u8 *)gUnk_0300040C + 0x36C);
-        return record->index;
+    return record->index;
 }
 
 EC void func_08016E7C(MenuActionProxy *) SECTION(".text.game_state_actions_16e7c");
 void func_08016E7C(MenuActionProxy *self)
 {
     MenuActionTarget *target = self->state->target;
-        MenuActionChild *child = target->vtable->getChild(target, 0);
-        child->ops->action6C(child);
+    MenuActionChild *child = target->vtable->getChild(target, 0);
+    child->ops->action6C(child);
 }
 
 EC void func_08016E9C(MenuActionProxy *) SECTION(".text.game_state_actions_16e7c");
 void func_08016E9C(MenuActionProxy *self)
 {
     MenuActionState *state = self->state;
-        MenuActionTarget *target = state->target;
-        MenuActionChild *child = target->vtable->getChild(target, 0);
-        child->ops->action70(child);
-        state->status = 0x19;
+    MenuActionTarget *target = state->target;
+    MenuActionChild *child = target->vtable->getChild(target, 0);
+    child->ops->action70(child);
+    state->status = 0x19;
 }
 
 EC void func_08016EF0(MenuActionProxy *, u32 argument) SECTION(".text.game_state_actions_16ef0");
 void func_08016EF0(MenuActionProxy *self, u32 argument)
 {
     MenuActionTarget *target = self->state->target;
-        target->vtable->action164(target, argument);
+    target->vtable->action164(target, argument);
 }
 
 EC void func_08016F0C(MenuActionProxy *, u8 argument) SECTION(".text.game_state_actions_16ef0");
 void func_08016F0C(MenuActionProxy *self, u8 argument)
 {
     MenuActionState *state = self->state;
-        MenuActionTarget *target = state->target;
-        MenuActionChild *child = target->vtable->getChild(target, 0);
-        child->ops->action9C(child, argument);
+    MenuActionTarget *target = state->target;
+    MenuActionChild *child = target->vtable->getChild(target, 0);
+    child->ops->action9C(child, argument);
 }
 
 EC void func_08016F34(MenuActionProxy *, u32 argument) SECTION(".text.game_state_actions_16ef0");
 void func_08016F34(MenuActionProxy *self, u32 argument)
 {
     MenuActionState *state = self->state;
-        MenuActionTarget *target = state->target;
-        MenuActionChild *child = target->vtable->getChild(target, 0);
-        child->ops->action74(child, argument);
-        state->status = 0x19;
+    MenuActionTarget *target = state->target;
+    MenuActionChild *child = target->vtable->getChild(target, 0);
+    child->ops->action74(child, argument);
+    state->status = 0x19;
 }

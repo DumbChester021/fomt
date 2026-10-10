@@ -16,8 +16,8 @@ Current reconstruction:
 
 ```text
 Code reconstruction
-  88924 / 940036 bytes (9.4596%)
-  851112 bytes remain in asm
+  88972 / 940036 bytes (9.4647%)
+  851064 bytes remain in asm
 
 Data/assets reconstruction
   75554 / 6777404 bytes (1.1148%)
@@ -28,7 +28,7 @@ Data/assets reconstruction
   396 additional source-owned ROM-header bytes count only toward overall
 
 Overall meaningful-ROM reconstruction
-  164874 / 7717440 bytes (2.1364%)
+  164922 / 7717440 bytes (2.1370%)
   final ROM padding is excluded from this denominator
 
 ROM space
@@ -36,7 +36,7 @@ ROM space
   671168 bytes free (655.44 KiB, 8.0009%) contiguous tail space
 ```
 
-The code inventory currently reports **1,983 linked assembly functions**, **848,140 bytes** covered by inferred function ranges, **2,972 unattributed assembly bytes**, and **27 explicitly parked functions**. The total includes prior exposed islands plus 596 bytes of unnamed neighbors revealed by six scene Run seams. Only their true 28-byte Run bodies are source-owned; the neighboring code remains unchanged assembly.
+The code inventory currently reports **1,981 linked assembly functions**, **848,092 bytes** covered by inferred function ranges, **2,972 unattributed assembly bytes**, and **27 explicitly parked functions**. The total includes prior exposed islands plus 596 bytes of unnamed neighbors revealed by six scene Run seams. Only their true 28-byte Run bodies are source-owned; the neighboring code remains unchanged assembly.
 
 ## What the metrics mean
 
@@ -49,6 +49,10 @@ The project keeps separate dimensions rather than combining unlike work into one
 Understanding or documenting an opaque `.incbin` does not count as asset/data reconstruction. Editable project-side source must regenerate the retail bytes exactly.
 
 ## Latest October 10 exact milestone
+
+Two byte-exact GameState audio/child helpers / **48 linked bytes** at 080167AC..080167DC now have natural C++ in `src/game_state_audio_callbacks.cc`; a sound-player busy query has a grounded semantic meaning while the other child operation remains unidentified. The neighboring 16784 fade-out is behavior-understood but nonmatching and still assembly. The forced ROM gate `sh_mv2471un_7d10991c` passed after preserving correct linker section order. See [GAME_STATE_AUDIO_CALLBACKS.md](GAME_STATE_AUDIO_CALLBACKS.md) and [SOURCE_READABILITY_AUDIT.md](SOURCE_READABILITY_AUDIT.md).
+
+## Previous callback milestone
 
 The new GameState menu callback/ incubation batch reconstructs **13 exact functions / 444 linked bytes**, across `0801468C..080146FC` (112), `08014C0C..08014C34` (40), `08014D5C..08014D9C` (64), `0801589C..08015920` (132), and `08015950..080159B0` (96). Every method individually matched its linked retail address; the grouped and forced full ROM comparisons passed (`sh_mv22yrzy_255645e2`). See [GAME_STATE_MENU_CALLBACKS.md](GAME_STATE_MENU_CALLBACKS.md).
 

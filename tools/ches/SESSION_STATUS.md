@@ -10,25 +10,27 @@ Live next actions belong to `tools/ches/NEXT_AGENT_HANDOFF.md`.
 | Item | Verified value |
 | --- | --- |
 | Workspace / branch | `/mnt/data/Github/gba/fomt`; `main` tracking `ches/main` |
-| Prior published source | **`399882d`** (18-function actions); latest 13-function callback batch is exact, check `git log -1` for publication |
-| Code in C++ source | **88,924 / 940,036 (9.4596%)** |
-| Remaining linked ASM | **851,112 bytes; 1,983 functions** |
-| Inferred assembly ranges | **848,140 bytes** (99.6508%) |
+| Latest published source | **`65d61b8`** (13-function GameState callbacks), pushed to `ches/main` |
+| Code in C++ source | **88,972 / 940,036 (9.4647%)** |
+| Remaining linked ASM | **851,064 bytes; 1,981 functions** |
+| Inferred assembly ranges | **848,092 bytes** (99.6508%) |
 | Unattributed ASM / parked | **2,972 bytes / 27 functions** |
 | Recovered data/assets | **75,554 / 6,777,404 (1.1148%)** |
-| Meaningful ROM | **164,874 / 7,717,440 (2.1364%)** |
+| Meaningful ROM | **164,922 / 7,717,440 (2.1370%)** |
 | Free ROM tail | **671,168 bytes** |
 | Retail ROM | **8,388,608 bytes**; SHA1 `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963` |
-| Latest forced build | `make -B -j4 compare` **passed** (`sh_mv22yrzy_255645e2`; `fomt.gba: OK`) |
+| Latest forced build | `make -B -j4 compare` **passed** (`sh_mv2471un_7d10991c`; `fomt.gba: OK`) |
 | Pending builds | None at this checkpoint |
 
 ## Latest integrated work
 
-**Newest October 10 integration:** 13 GameState/menu callback and incubation methods / **444 byte-exact linked bytes** in `src/game_state_menu_callbacks.cc`, across five original-address islands. The forced ROM comparison `sh_mv22yrzy_255645e2` passed, exit 0, retail SHA1 unchanged. Inventory is **88,924 / 940,036 (9.4596%)**, with **851,112 bytes / 1,983** linked assembly functions. Proofs, scratch variants and backups are at `/mnt/waydroid-hdd/home-chester-waydroid/fomt-menu-dispatch-batch3/`. See `docs/GAME_STATE_MENU_CALLBACKS.md`.
+**Newest exact audio/readability checkpoint:** 2 GameState audio/child callbacks / **48 linked bytes** in `src/game_state_audio_callbacks.cc`; original audio fade-out at 16784 remains assembly. Forced `make -B -j4 compare` gate `sh_mv2471un_7d10991c` passed; current exact code **88,972 / 940,036 (9.4647%)**, linked ASM **851,064 bytes / 1,981 functions**. The separate human-readability audit covers **136 C++ files / 19,919 lines**: these counts are heuristic debt indicators, not semantic completion percentages. Source: `docs/SOURCE_READABILITY_AUDIT.md`, `tools/ches/audit_source_readability.py`, `docs/GAME_STATE_AUDIO_CALLBACKS.md`.
 
-**Previous October 10 integration:** 18 GameState/menu action and record functions / **560 linked bytes**, in `src/game_state_menu_actions.cc` across four original-address islands. The forced ROM comparison `sh_mv22h75z_27840b97` passed, exit 0, and the retail SHA1 is unchanged. Exact code **88,924 / 940,036 = 9.4596%**, assembly **851,112 bytes / 1,983 functions**. Standalone proofs, matching differences, integration script and backups: `/mnt/waydroid-hdd/home-chester-waydroid/fomt-menu-dispatch-batch2/`. See `docs/GAME_STATE_MENU_ACTIONS.md`.
+**Prior October 10 integration:** 13 GameState/menu callback and incubation methods / **444 byte-exact linked bytes** in `src/game_state_menu_callbacks.cc`, across five original-address islands. The forced ROM comparison `sh_mv22yrzy_255645e2` passed, exit 0, retail SHA1 unchanged. Inventory is **88,972 / 940,036 (9.4647%)**, with **851,064 bytes / 1,981** linked assembly functions. Proofs, scratch variants and backups are at `/mnt/waydroid-hdd/home-chester-waydroid/fomt-menu-dispatch-batch3/`. See `docs/GAME_STATE_MENU_CALLBACKS.md`.
 
-**Earlier (October 10):** 23 GameState/menu dispatch and flag-setting methods / 684 exact bytes in `src/game_state_menu_dispatch.cc`, five original-address source islands across 08014034..08014318. Only `func_0801412C` remains assembly. The latest forced full-ROM build passed (`sh_mv21rcv0_8fb063b4`, exit 0); the rebuilt ROM still has the original SHA1. Inventory is 88,924 / 940,036 code bytes (9.4596%), 1,983 linked assembly functions, 851,112 assembly bytes, 2,972 unattributed. Proof and backups: `/mnt/waydroid-hdd/home-chester-waydroid/fomt-virtual-dispatch-20261010/`. See `docs/GAME_STATE_MENU_DISPATCH.md`.
+**Previous October 10 integration:** 18 GameState/menu action and record functions / **560 linked bytes**, in `src/game_state_menu_actions.cc` across four original-address islands. The forced ROM comparison `sh_mv22h75z_27840b97` passed, exit 0, and the retail SHA1 is unchanged. Those counts were superseded by the newest 2-function audio checkpoint at the top of this file. Standalone proofs, matching differences, integration script and backups: `/mnt/waydroid-hdd/home-chester-waydroid/fomt-menu-dispatch-batch2/`. See `docs/GAME_STATE_MENU_ACTIONS.md`.
+
+**Earlier (October 10):** 23 GameState/menu dispatch and flag-setting methods / 684 exact bytes in `src/game_state_menu_dispatch.cc`, five original-address source islands across 08014034..08014318. Only `func_0801412C` remains assembly. The latest forced full-ROM build passed (`sh_mv21rcv0_8fb063b4`, exit 0); the rebuilt ROM still has the original SHA1. For current totals, use the header above; this paragraph describes an earlier exact source batch. Proof and backups: `/mnt/waydroid-hdd/home-chester-waydroid/fomt-virtual-dispatch-20261010/`. See `docs/GAME_STATE_MENU_DISPATCH.md`.
 
 **Preceding (October 10):**
 
@@ -44,6 +46,10 @@ now counted as unattributed ASM instead of as part of its preceding function.
 The complete save loader and GameState are not finished; the separate
 custom-game worktree remains independent. The current tracked compiler is
 unchanged. The previously verified 20-function source is committed in **`9bac767`**, following documentation commits **`38718be`** and **`98e093a`**. The subsequent 23-function source integration is retail-exact; verify its published commit with `git log -1`.
+
+## Readability review
+
+Exact-ROM code coverage is **not** a measure of full human readability. The current heuristic audit covers 135 C++ units/19,851 lines and flags 133 address-named function definitions in 15 files, 44 offset-named callback uses in three GameState/menu source files, and compiler-sensitive constructs in seven files. These are review indicators, not a semantic completeness percentage. See `docs/SOURCE_READABILITY_AUDIT.md` and `tools/ches/audit_source_readability.py`; the newest three GameState/menu units now have documented ABI uncertainty and cleaned formatting, without adding code coverage.
 
 ## Highest-leverage next action
 

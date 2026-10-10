@@ -21,13 +21,13 @@ Current exact reconstruction metrics:
 
 | Metric | Current |
 | --- | ---: |
-| Code | **88,924 / 940,036 bytes (9.4596%)** |
-| Assembly remaining | **851,112 bytes across 1,983 linked functions** |
+| Code | **88,972 / 940,036 bytes (9.4647%)** |
+| Assembly remaining | **851,064 bytes across 1,981 linked functions** |
 | Data/assets | **75,554 / 6,777,404 bytes (1.1148%)** |
-| Overall meaningful ROM | **164,874 / 7,717,440 bytes (2.1364%)** |
+| Overall meaningful ROM | **164,922 / 7,717,440 bytes (2.1370%)** |
 | Contiguous ROM tail free space | **671,168 bytes (655.44 KiB)** |
 
-Run `make progress` for the live report.
+Run `make progress` for the live report. This percentage measures **byte-exact code recovery**, not the percentage of semantically complete or mod-ready human-readable source. See [docs/SOURCE_READABILITY_AUDIT.md](docs/SOURCE_READABILITY_AUDIT.md) for the separate source-quality audit and evidence-based naming policy.
 
 Asset/data progress is intentionally conservative. A byte counts only when editable project-side source regenerates the retail byte exactly; moving opaque ROM data into another binary blob does not count.
 
@@ -53,7 +53,7 @@ The packed item/UI animation bank also has an exact editable pipeline. All 347 r
 
 ## Current decompilation focus
 
-**Newest exact batch (October 10): 13 GameState/menu callback and incubation functions, 444 exact linked bytes** in `src/game_state_menu_callbacks.cc`, verified by a forced byte-identical ROM rebuild. Together with the prior 23-function dispatch and 18-function action batches, this work has recovered **54 exact functions / 1,688 linked bytes**. See [docs/GAME_STATE_MENU_CALLBACKS.md](docs/GAME_STATE_MENU_CALLBACKS.md), [docs/GAME_STATE_MENU_ACTIONS.md](docs/GAME_STATE_MENU_ACTIONS.md), and [docs/GAME_STATE_MENU_DISPATCH.md](docs/GAME_STATE_MENU_DISPATCH.md).
+**Newest exact batch (October 10): two GameState audio and child-callback methods / 48 exact linked bytes**, including a verified sound-player busy query. Alongside the earlier 54-function GameState/menu recovery, this continuation totals **56 exact functions / 1,736 linked bytes**. See [docs/GAME_STATE_AUDIO_CALLBACKS.md](docs/GAME_STATE_AUDIO_CALLBACKS.md) and the separate [source-readability audit](docs/SOURCE_READABILITY_AUDIT.md). See [docs/GAME_STATE_MENU_CALLBACKS.md](docs/GAME_STATE_MENU_CALLBACKS.md), [docs/GAME_STATE_MENU_ACTIONS.md](docs/GAME_STATE_MENU_ACTIONS.md), and [docs/GAME_STATE_MENU_DISPATCH.md](docs/GAME_STATE_MENU_DISPATCH.md).
 
 Work is throughput-first and organized by coherent translation unit, type, vtable, or repeated machine-code family rather than by a fixed function count.
 
@@ -120,6 +120,8 @@ Start here:
 - [docs/DECOMP_PRIORITY_MAP.md](docs/DECOMP_PRIORITY_MAP.md) - throughput-first target strategy
 - [docs/ASSET_DECOMPILATION.md](docs/ASSET_DECOMPILATION.md) - asset/data counting and authoring policy
 - [docs/FOMT_COMPILER_FINGERPRINT.md](docs/FOMT_COMPILER_FINGERPRINT.md) - pinned compatibility compiler and the 13 reconstructed behaviors
+- [docs/SOURCE_READABILITY_AUDIT.md](docs/SOURCE_READABILITY_AUDIT.md) - separately audited source readability and semantic debt
+- [docs/GAME_STATE_AUDIO_CALLBACKS.md](docs/GAME_STATE_AUDIO_CALLBACKS.md) - exact audio state and child callback recovery
 - [tools/ches/NEXT_AGENT_HANDOFF.md](tools/ches/NEXT_AGENT_HANDOFF.md) - live verified state, closed experiments, and next exact matching targets
 - [docs/GAME_STATE_MENU_ACTIONS.md](docs/GAME_STATE_MENU_ACTIONS.md) - GameState menu action and record ABI
 - [docs/GAME_STATE_MENU_CALLBACKS.md](docs/GAME_STATE_MENU_CALLBACKS.md) - incubation and child callbacks

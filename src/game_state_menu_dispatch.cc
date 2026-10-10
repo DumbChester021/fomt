@@ -1,3 +1,9 @@
+// GameState menu forwarding, exact retail C++ at the original linked addresses.
+// These local structures model proven ABI offsets, not the original class names.
+// actionXX names identify verified vtable slots; their gameplay roles are not
+// yet established. Keep address-derived external symbols until callers and
+// behavior justify stable names. See docs/GAME_STATE_MENU_DISPATCH.md.
+
 #include "prelude.h"
 
 struct MenuDispatchTarget;

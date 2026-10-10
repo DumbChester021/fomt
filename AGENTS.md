@@ -4,6 +4,10 @@ Read this file before changing the repository. It records the standing goals and
 
 This is a project coordination file carried on the public fork. Do not include agent/research coordination material in an upstream pull request unless the user explicitly requests that.
 
+## Readability and exactness are separate gates
+
+The `make progress` source-code percentage measures byte-exact retail reconstruction, **not** the percentage of semantically understood or mod-ready C++. Before promoting a new family, review whether its names and local types explain the proven behavior; document unknown vtable slots, ownership or state explicitly rather than inventing names. Treat register-pinned code as maintainability debt to be tracked separately from ROM correctness. The repeatable heuristic checker is `tools/ches/audit_source_readability.py` and the manual rubric is `docs/SOURCE_READABILITY_AUDIT.md`. Never advertise its warning counts as a semantic completion percentage.
+
 ## The two-track mission
 
 This work has two connected but strictly separated tracks.
