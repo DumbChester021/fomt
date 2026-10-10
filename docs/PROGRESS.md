@@ -4,8 +4,8 @@ Run make progress for authoritative totals. The current priority is **full US re
 
 ## Current verified snapshot — October 11, 2026
 
-- **Published source checkpoint:** `497395f` on `main`, matching `ches/main` at October 11 inspection. Confirm future HEAD with `git log -1` and `git status -sb`; historical labels below are not current.
-- **Forced full-ROM gate:** make -B -j4 compare PASSED after Barn and Farmer integration (sh_mv2ubxc2_e766423e, fomt.gba: OK); original retail SHA1 a2fc3574f0a65a4fcf7682fb274b9d7eebdef963; ROM size 8,388,608 bytes.
+- **Publication verified October 11:** `ec6d61b` pushed to `ches/main`, after `ac239ba` integrated exact Barn/Farmer copies and typed Rucksack cleanup. These are dated checkpoints, not live HEAD bindings; run `git log -1` and `git status -sb` to check subsequent commits.
+- **Forced full-ROM gate:** make -B -j4 compare PASSED after typed Rucksack cleanup and Barn/Farmer integration (sh_mv2utzp3_be621085, fomt.gba: OK); original retail SHA1 a2fc3574f0a65a4fcf7682fb274b9d7eebdef963; ROM size 8,388,608 bytes.
 - **Matching code:** **91,388 / 940,036 (9.7218%)**, remaining ASM **848,648 bytes / 1,946 functions**, inferred function coverage 845,612 bytes, unattributed 3,036 bytes, 27 parked.
 - **Data/assets:** **75,554 / 6,777,404 (1.1148%)** = 31,330 source-owned noncode + 44,224 editable generated graphics/palettes.
 - **Meaningful ROM:** **167,338 / 7,717,440 (2.1683%)**; free ROM tail 671,168 bytes.

@@ -17,23 +17,17 @@ Never mix custom behavior into a retail-matching contribution.
 
 ## Authority and read order
 
-For a fresh agent with no conversation context, read in this order:
+For a fresh agent with no conversation context, read **only these three project documents by default**:
 
-1. `AGENTS.md`: standing project contract and safety rules.
-2. `/mnt/data/Ches/codex-bridge-home/skills/decompilation/SKILL.md`: reusable reverse-engineering workflow.
-3. `START_HERE.md`: authoritative live dashboard.
-4. `docs/DECOMP_PLAYBOOK.md`: this durable process manual.
-5. `tools/ches/NEXT_AGENT_HANDOFF.md`: exact next task and preserved candidate state.
-6. `tools/ches/SESSION_STATUS.md`: concise current snapshot; chronology stays in dated checkpoints and Git.
-7. For the active save priority: `docs/SAVE_LIFECYCLE.md`, `docs/SAVE_FORMAT.md`, then `tools/ches/checkpoints/save-loader-08011650-2026-10-04/README.md` and its closed experiments.
-8. Other relevant subsystem docs, experiment index, and failure ledger.
+1. `AGENTS.md`: standing contract. Apply the local decompilation skill for reverse-engineering work.
+2. `START_HERE.md`: compact live priority, metrics, verification and document precedence.
+3. `tools/ches/NEXT_AGENT_HANDOFF.md`: the bounded next task, blocked approaches and required references.
 
-For compiler-sensitive work, especially when a current target depends on previously reconstructed compatibility behavior, also read:
-- `docs/FOMT_COMPILER_RESEARCH.md`
-- `tools/ches/checkpoints/call238/EXPERIMENT_INDEX.md`
-- `tools/ches/checkpoints/call238/FAILURES_AND_CLOSED_PATHS.md`
+Consult a **single relevant subsystem reference** when needed. On save work, use `docs/SAVE_EVIDENCE_MATRIX.md` for ownership and bounds, then that one function's proof/ASM. Do **not** preload this playbook, the prior general-purpose priority map, session history, old checkpoints, the whole compiler research book, or human onboarding guides. This playbook itself is only needed when checking or changing workflow, gates or operating policy.
 
-The top/current snapshot of a canonical file is authoritative. Older chronological entries are evidence/history, not the current next action.
+For a compiler-sensitive target, search the Call238 `EXPERIMENT_INDEX.md` and `FAILURES_AND_CLOSED_PATHS.md` before a new experiment. Read `docs/FOMT_COMPILER_RESEARCH.md` only when the current compiler hypothesis needs it. The `func_08011650` loader has extensive closed October 4 experiments; read that archive **when actually targeting the loader**, not at every session start.
+
+Git/ROM evidence overrides live documents; live dashboards override dated history. Older chronological entries must be preserved, not silently rewritten. The append-only correction log is `tools/ches/HISTORY.md`.
 
 ## Definition of done for one retail function or coherent unit
 

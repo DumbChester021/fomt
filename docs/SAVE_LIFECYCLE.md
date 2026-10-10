@@ -7,7 +7,7 @@ reached that standard yet; do not confuse a recovered behavior with an exact
 C++ production replacement. Keep retail changes on `main` and do not alter
 the `custom-game` worktree during this priority.
 
-**Last published production-code checkpoint verified October 11:** `497395f` (matching saved-state helpers and consolidated save documentation), following `f069823` (seven SRAM-header functions, 472 bytes). Newer exact save code includes Farm/Dog assignments, GameState cleanup, byte-buffer and transition methods; see [current handoff](../tools/ches/NEXT_AGENT_HANDOFF.md). The GameState-loader behavioral pseudocode below is research, not an exact compiled replacement. The save system remains incomplete.
+**Publication verified October 11:** `ec6d61b` pushed to `ches/main`, following `ac239ba` (exact Barn/Farmer assignments and typed Rucksack cleanup). `497395f` and `f069823` are historical checkpoints; check Git for newer HEAD. Source-exact save code also includes Farm/Dog assignments, GameState cleanup, byte-buffer and transition methods; consult the [evidence matrix](SAVE_EVIDENCE_MATRIX.md) and [current handoff](../tools/ches/NEXT_AGENT_HANDOFF.md). The GameState-loader behavioral pseudocode below is research, not an exact compiled replacement. The save system remains incomplete.
 
 ## Verified SRAM organization
 

@@ -1,6 +1,6 @@
 # FoMT Project Charter for Coding Agents
 
-Read this file before changing the repository. It records the standing goals and working rules for this local project. For decompilation or matching work, also read `/mnt/data/Ches/codex-bridge-home/skills/decompilation/SKILL.md`; that reusable skill owns the generic reverse-engineering workflow. Then read `START_HERE.md` for authoritative live state, `docs/DECOMP_PLAYBOOK.md` for the FoMT-specific process and proven lessons, `docs/DECOMP_PRIORITY_MAP.md` for leverage-first target selection, and `tools/ches/NEXT_AGENT_HANDOFF.md` for the exact next work. `tools/ches/SESSION_STATUS.md` keeps a concise current snapshot. Detailed chronology belongs in Git history and dated checkpoint/experiment files. For Call238/compiler-sensitive work, `tools/ches/checkpoints/call238/EXPERIMENT_INDEX.md` and `FAILURES_AND_CLOSED_PATHS.md` are mandatory anti-rediscovery reading before any new experiment.
+Read this standing project contract before changing the repository. For decompilation, also follow `/mnt/data/Ches/codex-bridge-home/skills/decompilation/SKILL.md`. The **default zero-context documentation read path is only three project files:** this `AGENTS.md`, `START_HERE.md` (live state), and `tools/ches/NEXT_AGENT_HANDOFF.md` (one next task). Do not preload `docs/DECOMP_PLAYBOOK.md`, `docs/DECOMP_PRIORITY_MAP.md`, `tools/ches/SESSION_STATUS.md`, broad maps, tutorials, or historical checkpoint archives. Open only the current subsystem evidence needed for the specific work. When a target hits known compiler-sensitive/Call238 research, search the relevant `EXPERIMENT_INDEX.md` and `FAILURES_AND_CLOSED_PATHS.md` before a new probe; read `docs/FOMT_COMPILER_RESEARCH.md` only for actual compiler research. Historic proofs and supersessions belong in dated checkpoints, Git and `tools/ches/HISTORY.md`, never a live next-action instruction.
 
 This is a project coordination file carried on the public fork. Do not include agent/research coordination material in an upstream pull request unless the user explicitly requests that.
 
@@ -239,17 +239,12 @@ A no-context agent must be able to answer from files alone: project goals, curre
 
 ## Start every continuation here
 
-1. Inspect `git status`, recent log, and the active retail/custom worktree.
-2. Read `START_HERE.md`.
-3. Read `/mnt/data/Ches/codex-bridge-home/skills/decompilation/SKILL.md`.
-4. Read `docs/DECOMP_PLAYBOOK.md`.
-5. Read `docs/DECOMP_PRIORITY_MAP.md`.
-6. Read `tools/ches/NEXT_AGENT_HANDOFF.md`.
-7. Read the authoritative snapshot at the top of `tools/ches/SESSION_STATUS.md`.
-8. If the task touches compiler-sensitive Call238 work, read/search `docs/FOMT_COMPILER_RESEARCH.md`, `EXPERIMENT_INDEX.md`, and `FAILURES_AND_CLOSED_PATHS.md` before creating or rerunning any experiment.
-9. Read older checkpoints only for details not already indexed.
-10. Inspect the relevant source, assembly, headers, callers, callees, vtables, and saved candidate artifacts before editing.
+1. Inspect Git status/log and identify the protected retail vs. custom-game worktrees.
+2. Read the standing contract (this file), `START_HERE.md`, and `tools/ches/NEXT_AGENT_HANDOFF.md`; use the local decompilation skill for matching work.
+3. Load **only the current target's** source, assembly, type layout, callsites and one proof/closed-path record if relevant. For save work begin with `docs/SAVE_EVIDENCE_MATRIX.md` and the specific function.
+4. Read `docs/DECOMP_PLAYBOOK.md` only when changing verification/workflow methodology; read compiler fingerprint/history only when ABI/codegen matters; read old checkpoints only for locating earlier experiments or resolving conflicting evidence.
+5. Run `make docs-check` for docs changes, `make save-check` for save-state research metadata, and full `make save-verify` after changing executable/build inputs. Preserve history and update impact targets, not every doc.
 
 The live dashboard/current snapshot and newest evidence supersede older chronological handoff history.
 
-Standing work-unit rule: use the ranked TU/type/similarity-cluster queue rather than a fixed function count. At every mandatory Ches safety checkpoint or other durable checkpoint, update canonical state, verify the checkpoint diff, commit it on `main`, and push to `ches/main` before ending the turn.
+Standing work-unit rule: the **user's save-first directive overrides** earlier general-throughput TU queues. Choose a bounded, evidence-backed save-family target rather than an arbitrary function count, while avoiding compiler spelling roulette. At each durable checkpoint, update impacted canonical state, verify diffs, commit on retail `main` and push only to `ches/main`; keep the custom-game tree untouched.

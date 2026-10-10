@@ -98,7 +98,20 @@ progress: $(ROM)
 	@printf "head: "
 	@git log -1 --format='%h %s'
 
-.PHONY: compare progress
+.PHONY: compare progress docs-check save-check save-verify
+
+# Fast documentation and save-track preflight. No ROM build required.
+docs-check:
+	@python3 tools/ches/check_docs.py
+
+save-check: docs-check
+	@python3 tools/ches/check_save_evidence.py
+	@python3 tools/ches/inspect_sram.py --self-test
+
+# Stronger gate for actual save-code changes, retaining the original hash check.
+save-verify: save-check
+	@$(MAKE) -B -j4 compare
+
 
 # ROM from ELF
 %.gba: %.elf

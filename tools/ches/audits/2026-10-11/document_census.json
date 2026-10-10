@@ -1,0 +1,201 @@
+{
+  "total_files": 274,
+  "total_bytes": 6514161,
+  "categories": {
+    "Contract": {
+      "files": 1,
+      "bytes": 26420
+    },
+    "Setup guide": {
+      "files": 1,
+      "bytes": 2313
+    },
+    "Public overview": {
+      "files": 1,
+      "bytes": 12314
+    },
+    "Live status": {
+      "files": 1,
+      "bytes": 6320
+    },
+    "Planning": {
+      "files": 1,
+      "bytes": 10357
+    },
+    "Asset guide": {
+      "files": 1,
+      "bytes": 5398
+    },
+    "Subsystem reference": {
+      "files": 29,
+      "bytes": 194143
+    },
+    "Research history": {
+      "files": 1,
+      "bytes": 137149
+    },
+    "Operating instructions": {
+      "files": 1,
+      "bytes": 51393
+    },
+    "Planning/history mix": {
+      "files": 2,
+      "bytes": 47382
+    },
+    "Compiler reference": {
+      "files": 1,
+      "bytes": 8496
+    },
+    "Compiler history": {
+      "files": 1,
+      "bytes": 75197
+    },
+    "Save evidence": {
+      "files": 9,
+      "bytes": 38552
+    },
+    "Status/history mix": {
+      "files": 2,
+      "bytes": 25881
+    },
+    "Navigation": {
+      "files": 1,
+      "bytes": 23701
+    },
+    "Learning guide": {
+      "files": 1,
+      "bytes": 6452
+    },
+    "Save reference": {
+      "files": 5,
+      "bytes": 42524
+    },
+    "Save reference/history mix": {
+      "files": 1,
+      "bytes": 25785
+    },
+    "Quality report": {
+      "files": 1,
+      "bytes": 6410
+    },
+    "Historical evidence": {
+      "files": 212,
+      "bytes": 5763973
+    },
+    "Live task": {
+      "files": 1,
+      "bytes": 4001
+    }
+  },
+  "exact_duplicate_groups": [
+    [
+      "docs/RESOURCE_HANDLES.md",
+      "tools/ches/checkpoints/resource-subtrees-080D7094-2026-10-03/RESOURCE_HANDLES-candidate-v3.md"
+    ],
+    [
+      "tools/ches/checkpoints/character-enablement-2026-10-04/before/README.md",
+      "tools/ches/checkpoints/npc-support-2026-10-04/before/README.md"
+    ],
+    [
+      "tools/ches/checkpoints/character-enablement-2026-10-04/before/docs/CUSTOM_CHARACTERS.md",
+      "tools/ches/checkpoints/character-enablement-2026-10-04/before-custom/docs/CUSTOM_CHARACTERS.md"
+    ],
+    [
+      "tools/ches/checkpoints/character-enablement-2026-10-04/before/docs/SAVE_FORMAT.md",
+      "tools/ches/checkpoints/character-enablement-2026-10-04/before-custom/docs/SAVE_FORMAT.md",
+      "tools/ches/checkpoints/npc-support-2026-10-04/before/docs/SAVE_FORMAT.md"
+    ],
+    [
+      "tools/ches/checkpoints/character-expansion-2026-10-03/docs-before/custom/docs/CHARACTERS.md",
+      "tools/ches/checkpoints/character-expansion-2026-10-03/docs-before/retail/docs/CHARACTERS.md"
+    ],
+    [
+      "tools/ches/checkpoints/character-expansion-2026-10-03/docs-before/custom/docs/PROGRESS.md",
+      "tools/ches/checkpoints/character-expansion-2026-10-03/docs-before/retail/docs/PROGRESS.md"
+    ],
+    [
+      "tools/ches/checkpoints/character-expansion-2026-10-03/docs-before/custom/docs/SAVE_FORMAT.md",
+      "tools/ches/checkpoints/character-expansion-2026-10-03/docs-before/retail/docs/SAVE_FORMAT.md"
+    ],
+    [
+      "tools/ches/checkpoints/livestock-offer-builder-2026-10-09/docs-before/docs/LIVESTOCK_SHOP.md",
+      "tools/ches/checkpoints/menu-tilemap-2026-10-09/docs-before/docs/LIVESTOCK_SHOP.md"
+    ],
+    [
+      "tools/ches/checkpoints/livestock-offer-builder-2026-10-09/docs-before/tools/ches/SESSION_STATUS.md",
+      "tools/ches/checkpoints/menu-tilemap-2026-10-09/docs-before/tools/ches/SESSION_STATUS.md"
+    ],
+    [
+      "tools/ches/checkpoints/npc-support-2026-10-04/before/docs/CHARACTERS.md",
+      "tools/ches/checkpoints/npc-support-2026-10-04/before-custom/docs/CHARACTERS.md"
+    ],
+    [
+      "tools/ches/checkpoints/npc-support-2026-10-04/before/docs/CUSTOM_CHARACTERS.md",
+      "tools/ches/checkpoints/npc-support-2026-10-04/before-custom/docs/CUSTOM_CHARACTERS.md"
+    ]
+  ],
+  "active_doc_paths": [
+    "AGENTS.md",
+    "INSTALL.md",
+    "README.md",
+    "START_HERE.md",
+    "TODO.md",
+    "assets/item_icons/README.md",
+    "docs/ASSET_DECOMPILATION.md",
+    "docs/CHARACTERS.md",
+    "docs/CUSTOM_CHARACTERS.md",
+    "docs/CUSTOM_GAME_EXPANSION.md",
+    "docs/DECOMP_NOTES.md",
+    "docs/DECOMP_PLAYBOOK.md",
+    "docs/DECOMP_PRIORITY_MAP.md",
+    "docs/ENTITY_08037008.md",
+    "docs/ENTITY_BALL.md",
+    "docs/ENTITY_EFFECTS.md",
+    "docs/FISHING_RECORDS.md",
+    "docs/FOMT_COMPILER_FINGERPRINT.md",
+    "docs/FOMT_COMPILER_RESEARCH.md",
+    "docs/GAME_STATE_AUDIO_CALLBACKS.md",
+    "docs/GAME_STATE_MENU_ACTIONS.md",
+    "docs/GAME_STATE_MENU_CALLBACKS.md",
+    "docs/GAME_STATE_MENU_DISPATCH.md",
+    "docs/GAME_STATE_SAVE_CLEANUP.md",
+    "docs/GROUND_PICKUP_STATE.md",
+    "docs/HARDWARE.md",
+    "docs/HARDWARE_TRANSFER.md",
+    "docs/INTRUSIVE_CALLBACK_LIST.md",
+    "docs/KEY_INPUT.md",
+    "docs/LIVESTOCK_SHOP.md",
+    "docs/MAP_DATA.md",
+    "docs/MENU_GLYPH_CACHE.md",
+    "docs/MENU_TEXT.md",
+    "docs/MENU_TILEMAP.md",
+    "docs/MINE_FLOOR.md",
+    "docs/POLYMORPHIC_OWNERS.md",
+    "docs/PROGRESS.md",
+    "docs/REPO_MAP.md",
+    "docs/RESOURCE_HANDLES.md",
+    "docs/RESOURCE_OWNERS.md",
+    "docs/SAVED_BYTE_BUFFER.md",
+    "docs/SAVE_BARN_STATE_COPY.md",
+    "docs/SAVE_DECOMP_BEGINNERS_GUIDE.md",
+    "docs/SAVE_DOG_STATE_COPY.md",
+    "docs/SAVE_EVIDENCE_MATRIX.md",
+    "docs/SAVE_FARMER_STATE_COPY.md",
+    "docs/SAVE_FARM_STATE_COPY.md",
+    "docs/SAVE_FORMAT.md",
+    "docs/SAVE_GAMESTATE_ASSIGNMENT_MAP.md",
+    "docs/SAVE_LIFECYCLE.md",
+    "docs/SAVE_MENU_RETRY_TRACE.md",
+    "docs/SAVE_PACKED_PROGRESS.md",
+    "docs/SAVE_RUCKSACK_COPY_RESEARCH.md",
+    "docs/SAVE_SERIALIZED_LAYOUT.md",
+    "docs/SAVE_TRANSITION_STATE.md",
+    "docs/SCENES.md",
+    "docs/SOURCE_READABILITY_AUDIT.md",
+    "docs/SPRITE_ANIMATOR.md",
+    "tools/ches/DECOMP_QUEUE.md",
+    "tools/ches/NEXT_AGENT_HANDOFF.md",
+    "tools/ches/NPC_ENTITY_CLASS_MAP.md",
+    "tools/ches/SESSION_STATUS.md"
+  ]
+}
