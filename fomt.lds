@@ -967,9 +967,12 @@ SECTIONS
         asm/code_linkonce.o(.text.after_game_state_cleanup);
         src/farm_state_copy.o(.text.save_farm_copy);
         asm/code_linkonce.o(.text.after_save_farm_copy);
+        src/barn_state_copy.o(.text.save_barn_copy);
+        asm/code_linkonce.o(.text.after_save_barn_copy);
         src/dog_state_copy.o(.text.save_dog_copy);
         *(.gnu.linkonce.t.__as__6AnimalRC6Animal);
-        asm/code_linkonce.o(.text.code_080D68C0);
+        src/farmer_state_copy.o(.text.save_farmer_copy);
+        asm/code_linkonce.o(.text.after_save_farmer_copy);
         src/game_state_cleanup.o(.text.game_state_block_1c38_cleanup);
         asm/code_linkonce.o(.text.after_game_state_block_1c38_cleanup);
         src/game_state_cleanup.o(.text.game_state_block_1aa8_cleanup);

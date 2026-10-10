@@ -1,13 +1,13 @@
 # Retail save lifecycle — readable source and open matching frontiers
 
-**Active highest-priority subsystem, October 10, 2026.** The objective is a
+**Active highest-priority subsystem, reaffirmed October 11, 2026.** The objective is a
 fully **human-readable and retail-byte-exact** reconstruction of the save
 system before adding custom persistent content. Not all save functions have
 reached that standard yet; do not confuse a recovered behavior with an exact
 C++ production replacement. Keep retail changes on `main` and do not alter
 the `custom-game` worktree during this priority.
 
-**Last exact production-code checkpoint:** `f069823` (seven SRAM-header functions, 472 bytes). The GameState-loader behavioral pseudocode below is research, not an exact compiled replacement. The save system remains incomplete.
+**Last published production-code checkpoint verified October 11:** `497395f` (matching saved-state helpers and consolidated save documentation), following `f069823` (seven SRAM-header functions, 472 bytes). Newer exact save code includes Farm/Dog assignments, GameState cleanup, byte-buffer and transition methods; see [current handoff](../tools/ches/NEXT_AGENT_HANDOFF.md). The GameState-loader behavioral pseudocode below is research, not an exact compiled replacement. The save system remains incomplete.
 
 ## Verified SRAM organization
 
@@ -156,7 +156,7 @@ The source-only persisted GameState view now contains original project-native `F
 
 ## 2j. Farm save-state copy now natural exact C++
 
-`CopySavedFarmState` / `func_080D64C8` now replaces the original 180-byte Farm saved-state assignment with byte-identical C++ in `src/farm_state_copy.cc`, retaining Farm's real name/packed flags, 11-word Horse placeholder, shipping records, farmhouse, specialized Coop/Barn copies and field. The declared counter/source pointer order naturally reproduces original compiler register ownership, without register forcing. Standalone `compare-function.py` and forced full-ROM `make -B -j4 compare` passed (`sh_mv2sly7y_cf9bd46e`, `fomt.gba: OK`, unchanged SHA1). Remaining saved GameState copying still includes 776-byte parent `func_080D4178`, Farmer, MoneyState, Coop, Barn, and loader. Full detail [SAVE_FARM_STATE_COPY.md](SAVE_FARM_STATE_COPY.md).
+`CopySavedFarmState` / `func_080D64C8` now replaces the original 180-byte Farm saved-state assignment with byte-identical C++ in `src/farm_state_copy.cc`, retaining Farm's real name/packed flags, 11-word Horse placeholder, shipping records, farmhouse, specialized Coop/Barn copies and field. The declared counter/source pointer order naturally reproduces original compiler register ownership, without register forcing. Standalone `compare-function.py` and forced full-ROM `make -B -j4 compare` passed (`sh_mv2sly7y_cf9bd46e`, `fomt.gba: OK`, unchanged SHA1). The Barn copy at `080D657C` is now byte-exact natural C++ (**296 bytes**), with independent zero-byte difference and isolated/production full-ROM proofs (`sh_mv2tshhj_2b10282d`, `sh_mv2ttfmz_7d3abce8`). See [SAVE_BARN_STATE_COPY.md](SAVE_BARN_STATE_COPY.md). Farmer `func_080D68C0` is also now exact typed C++ (**448 bytes**), including a binding to the original `memcpy` library call for a two-byte ToolStack and the original address alias. Isolated and production full-ROM gates passed (`sh_mv2ub3me_43db97be`, `sh_mv2ubxc2_e766423e`); see [SAVE_FARMER_STATE_COPY.md](SAVE_FARMER_STATE_COPY.md). The adjacent 64-byte cleanup at `080D6B00` was already exact but has now been rewritten with real Rucksack types and independently full-ROM verified (`sh_mv2utzp3_be621085`); this does not increase recovered code bytes. The **128-byte** saved Rucksack copy at `080D6A80..080D6B00` remains original ASM; see [SAVE_RUCKSACK_COPY_RESEARCH.md](SAVE_RUCKSACK_COPY_RESEARCH.md). Remaining saved GameState copying still includes 776-byte parent `func_080D4178`, nested Rucksack, MoneyState, Coop, and loader. Full detail [SAVE_FARM_STATE_COPY.md](SAVE_FARM_STATE_COPY.md).
 
 ## 3. Main unresolved loader — readable behavioral model
 

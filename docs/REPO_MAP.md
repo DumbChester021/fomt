@@ -2,9 +2,9 @@
 
 ## Current authoritative scope — save-first (October 11, 2026)
 
-User-directed highest priority: fully understand and byte-exact decompile the **retail save system** before custom-game development. Recent exact work includes 180-byte Farm saved-state copy, 132-byte Dog copy, 228 bytes of GameState cleanup and SRAM/header/buffer/transition functions. The 776-byte GameState assignment, 740-byte loader, nested Farmer/MoneyState/Coop/Barn assignments and save/load/erase UI remain original ASM.
+User-directed highest priority: fully understand and byte-exact decompile the **retail save system** before custom-game development. Recent exact work includes 448-byte Farmer saved-state copy, 296-byte Barn copy, 180-byte Farm copy, 132-byte Dog copy, 228 bytes of GameState cleanup and SRAM/header/buffer/transition functions. The 776-byte GameState assignment, 740-byte loader, nested Rucksack/MoneyState/Coop assignments and save/load/erase UI remain original ASM.
 
-**Current metrics:** **90,644 / 940,036 (9.6426%)** source C++ bytes; **849,392 ASM bytes / 1,948 functions**; meaningful ROM **166,594 / 7,717,440 (2.1587%)**. Forced ROM gate sh_mv2t0b0a_4bb83627 passed. See docs/SAVE_LIFECYCLE.md, docs/SAVE_SERIALIZED_LAYOUT.md and the canonical handoff. Older milestone metrics below are explicitly historical.
+**Current metrics:** **91,388 / 940,036 (9.7218%)** source C++ bytes; **848,648 ASM bytes / 1,946 functions**; meaningful ROM **167,338 / 7,717,440 (2.1683%)**. Forced ROM gate sh_mv2ubxc2_e766423e passed with exact Barn and Farmer saved-state source. See docs/SAVE_LIFECYCLE.md, docs/SAVE_RUCKSACK_COPY_RESEARCH.md, docs/SAVE_SERIALIZED_LAYOUT.md and the canonical handoff. Older milestone metrics below are explicitly historical.
 
 ## Earlier general-throughput scope (superseded by October 10 save-first directive)
 

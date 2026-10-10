@@ -14,7 +14,7 @@ This is the live dashboard for the US Harvest Moon: Friends of Mineral Town matc
 ## Active branch and build authority
 
 - Retail branch: **`main`**, tracking **`ches/main`**. Verify the current commit with Git; earlier published checkpoints and documentation SHAs are historical. Run `git log -1` and `git status -sb` for the current authority.
-- Prior source checkpoints: **`0bef5b7`** (23 dispatch functions) and **`399882d`** (18 action functions). New callback integration is forced-ROM exact; its publication SHA comes from Git.
+- Earlier verified published checkpoint: **`497395f`** (`Recover exact save-state helpers and consolidate save-system docs`). Subsequent exact Barn/Farmer code and Rucksack cleanup readability work may have been published; check `git log -1` and `git status -sb` for the current authority. Older menu milestones are historical.
 - Custom gameplay stays in the separate custom-game worktree.
 - ROM: **8,388,608 bytes**, SHA1 **a2fc3574f0a65a4fcf7682fb274b9d7eebdef963**.
 - Full gate: make -B -j4 compare, ending in **fomt.gba: OK**.
@@ -24,26 +24,26 @@ This is the live dashboard for the US Harvest Moon: Friends of Mineral Town matc
 
 The user requires complete, readable, byte-exact **retail save-system** decompilation before custom-game development. The parent GameState copy, loader, many nested assignments and menu/SRAM error paths **remain original ASM**. Current source proof does not mean save mod-readiness. Do not run historical general-decompilation queues.
 
-**Latest verified forced ROM:** make -B -j4 compare passed (Ches sh_mv2t0b0a_4bb83627, fomt.gba: OK); original SHA1 a2fc3574f0a65a4fcf7682fb274b9d7eebdef963. Check Git for the latest published SHA; historical SHA labels below are not current.
+**Latest verified forced ROM:** make -B -j4 compare passed with both Barn and Farmer integrated (Ches sh_mv2ubxc2_e766423e, fomt.gba: OK); original SHA1 a2fc3574f0a65a4fcf7682fb274b9d7eebdef963. Check Git for the latest published SHA; historical SHA labels below are not current.
 
-**Current source:** 90,644 / 940,036 = **9.6426% matching game C++**; 849,392 ASM bytes / **1,948 linked functions**, of which 846,356 are inferred function bytes, with 3,036 unattributed bytes and 27 parked functions. Data/assets **75,554 / 6,777,404 (1.1148%)**; overall meaningful ROM **166,594 / 7,717,440 (2.1587%)**; tail free 671,168.
+**Current verified source (check Git for publication status):** 91,388 / 940,036 = **9.7218% matching game C++**; 848,648 ASM bytes / **1,946 linked functions**, of which 845,612 are inferred function bytes, with 3,036 unattributed bytes and 27 parked functions. Data/assets **75,554 / 6,777,404 (1.1148%)**; overall meaningful ROM **167,338 / 7,717,440 (2.1683%)**; tail free 671,168.
 
-**Exact recent save code:** CopySavedFarmState 180B, CopySavedDogState 132B, three GameState nested/parent cleanup functions 228B, eight transition-state methods 120B, six byte-buffer methods 84B, eight SRAM proxy/library methods 444B, packed flag setter 12B and seven SRAM header helpers 472B. Original ABI/link positions preserved.
+**Exact recent save code:** CopySavedFarmerState 448B and CopySavedBarnState 296B (both verified isolated + production), CopySavedFarmState 180B, CopySavedDogState 132B, three GameState nested/parent cleanup functions 228B, eight transition-state methods 120B, six byte-buffer methods 84B, eight SRAM proxy/library methods 444B, packed flag setter 12B and seven SRAM header helpers 472B. Original ABI/link positions preserved.
 
 **Save layout and diagnosis:** include/save_persisted_layout.hh has 41 original-compiler binary checks covering seven typed GameState subobjects. tools/ches/inspect_sram.py is read-only and checks SRAM header, slots, checksum, money, buffer, transition and fishing fields; synthetic tests pass, **no actual player save/emulator tested**. It reproduces u32 fishing overflow and cap behavior.
 
-**Next:** source-matched Farmer/MoneyState/Coop/Barn assignments, then 776-byte func_080D4178 GameState copy, 740-byte func_08011650 loader, save/load/erase menu and real backed-up SRAM tests. See [current handoff](tools/ches/NEXT_AGENT_HANDOFF.md) and [save lifecycle](docs/SAVE_LIFECYCLE.md).
+**Next:** source-matched 128-byte nested Rucksack copy (typed cleanup already exact), MoneyState and Coop assignments (Farmer and Barn now exact; see [Farmer proof](docs/SAVE_FARMER_STATE_COPY.md)), then 776-byte func_080D4178 GameState copy, 740-byte func_08011650 loader, save/load/erase menu and real backed-up SRAM tests. See [current handoff](tools/ches/NEXT_AGENT_HANDOFF.md) and [save lifecycle](docs/SAVE_LIFECYCLE.md).
 
 ## Current exact reconstruction
 
 | Metric | Current verified state |
 | --- | --- |
-| Byte-exact C++ game code | **90,644 / 940,036 (9.6426%)** |
-| Linked ASM remaining | **849,392 bytes / 1,948 functions** |
-| ASM inferred ranges | **846,356 bytes** |
+| Byte-exact C++ game code | **91,388 / 940,036 (9.7218%)** |
+| Linked ASM remaining | **848,648 bytes / 1,946 functions** |
+| ASM inferred ranges | **845,612 bytes** |
 | ASM unattributed / parked | **3,036 bytes / 27 functions** |
 | Reconstructed data/assets | **75,554 / 6,777,404 (1.1148%)** |
-| Meaningful ROM | **166,594 / 7,717,440 (2.1587%)** |
+| Meaningful ROM | **167,338 / 7,717,440 (2.1683%)** |
 | Unused ROM tail | **671,168 bytes** |
 
 Sections below are **historical**, not the current queue or percentage.
@@ -126,9 +126,10 @@ the `E21E0` balancing helper are already exact. E2294 remains assembly after
 two nonmatching probes. Rerank with the live function inventory.
 
 F060 glyph-cache row rotation (best 12 differing linked bytes), E1C70,
-E3610/E375C, 36-byte field-copy wrappers, D6EAC/D6EEC flag-store
-initializers, and the whole save loader remain compiler-sensitive parked
-work. Avoid reopening them without new type/ABI evidence.
+E3610/E375C, 36-byte field-copy wrappers and D6EAC/D6EEC flag-store
+initializers remain deferred compiler-sensitive work. The loader's previous
+compiler variants are closed, but save-loader recovery is now active under
+the October 11 priority. Avoid repeating failed candidate families.
 
 Use [the live handoff](tools/ches/NEXT_AGENT_HANDOFF.md) for exact
 candidate/proof locations and next steps; it now starts with live state,

@@ -7,10 +7,12 @@ The three routines below participate in destruction/cleanup of the persistent Ga
 | Readable C++ API | Retail symbol and address | Exact code bytes | Proven contract |
 | --- | --- | ---: | --- |
 | `CleanupGameState` | `func_080D4480`, 0x080D4480 | 84 | Walk saved-byte-buffer count/range at +0x1CA0/+0x1CA4, clean the nested blocks at +0x1C38 and +0x1AA8 using cleanup mode 2, and release GameState allocation only when mode bit 0 is set |
-| `CleanupGameStateBlock1C38` | `func_080D6B00`, 0x080D6B00 | 64 | Walk a two-byte-entry collection using count +0x24 and a four-byte-entry collection using count +0x00; release the enclosing allocation only when mode bit 0 is set |
+| `CleanupGameStateBlock1C38` | `func_080D6B00`, 0x080D6B00 | 64 | Walk actual `Rucksack::tools` and `Rucksack::items` active entries using typed, trivial destructors; release the enclosing allocation only when mode bit 0 is set |
 | `CleanupGameStateBlock1AA8` | `func_080D6C08`, 0x080D6C08 | 80 | Walk an eight-byte-entry collection using count +0xFC and another using count +0x08; release allocation only when mode bit 0 is set |
 
 **Total: 228 newly exact linked bytes, three fewer unresolved linked assembly functions.** Nested block suffixes identify the GameState-relative offsets and are not assertions about a specific gameplay object. The zero-effect element walks are preserved because original retail code advances over those ranges without invoking element cleanup functions. Do not replace these routines with a raw `memset`, unconditional `delete`, or an unrelated allocator protocol.
+
+**Subsequent October 11 readability proof:** The original block at GameState+0x1C38 is now confirmed by the existing Farmer layout to be `Rucksack` (at Farmer+0x60). The same 64-byte function was independently matched using `Rucksack`/`ToolStack`/`RucksackItem` types, then the already-owned `src/game_state_cleanup.cc` function was rewritten with typed element-destructor loops and tested via isolated and production forced full-ROM builds (`sh_mv2ut764_fd2499fc`, `sh_mv2utzp3_be621085`, both `fomt.gba: OK`). No new bytes or functions were added: this is **readability only**. The adjacent 128-byte Rucksack copy `080D6A80..080D6B00` remains assembly; earlier 192-byte estimates mistakenly combined both functions. See [SAVE_RUCKSACK_COPY_RESEARCH.md](SAVE_RUCKSACK_COPY_RESEARCH.md).
 
 ### Why it matters for loading
 

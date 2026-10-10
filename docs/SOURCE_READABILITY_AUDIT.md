@@ -22,12 +22,12 @@ Run: `python3 tools/ches/audit_source_readability.py` (or `--json`). Latest post
 
 | Indicator | Occurrences | C++ files containing it |
 | --- | ---: | ---: |
-| Files and lines scanned | 147 files | 20,500 lines |
+| Files and lines scanned | 149 files | 20,588 lines |
 | Address-derived function definitions (conservative regex) | 143 | 20 |
-| Address-derived symbol references | 1,503 | 104 |
+| Address-derived symbol references | 1,507 | 106 |
 | Unknown/padding array fields | 78 | 21 |
 | Offset-named callback calls | 44 | 3 |
-| Compiler-sensitive syntax indicators | 20 | 7 |
+| Compiler-sensitive syntax indicators | 21 | 8 |
 
 These **are not quality percentages**, and their counts overlap. A mere mention of an address-derived external symbol does not make the entire function unreadable. The definition regex intentionally does not attempt to parse C++, so it may miss some functions. Padded fields can be correct, honest ABI documentation rather than a bug. Manual semantic review is essential.
 

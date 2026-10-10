@@ -1,7 +1,9 @@
 #include "prelude.h"
+#include "rucksack.hh"
+#include <new>
 
 EXTERN_C
-void func_080D6B00(u8 * state, unsigned int flags);
+void func_080D6B00(Rucksack * state, unsigned int flags);
 void func_080D6C08(u8 * state, unsigned int flags);
 void __builtin_delete(void * address);
 EXTERN_C_END
@@ -20,7 +22,7 @@ EC void CleanupGameState(u8 * state, unsigned int mode)
     while (begin != end)
         ++begin;
 
-    func_080D6B00(state + 0x1C38, 2);
+    func_080D6B00(reinterpret_cast<Rucksack *>(state + 0x1C38), 2);
     func_080D6C08(state + 0x1AA8, 2);
     if (mode & 1)
         __builtin_delete(state);
@@ -28,29 +30,27 @@ EC void CleanupGameState(u8 * state, unsigned int mode)
 EC void func_080D4480(u8 * state, unsigned int mode)
     ALIAS(CleanupGameState);
 
- // Nested GameState block at +0x1C38: the original releases no individual
- // elements while walking its 2-byte and 4-byte collection ranges.
- // The block allocation is freed only if mode bit zero is set.
-EC void CleanupGameStateBlock1C38(u8 * state, unsigned int mode)
+// Cleanup of the saved Rucksack's active tools and item collection.
+ // Elements have trivial destructors, so the loops only advance; the original
+ // optional allocation deletion is retained. This replaces raw-offset walks.
+EC void CleanupGameStateBlock1C38(Rucksack * state, unsigned int mode)
     SECTION(".text.game_state_block_1c38_cleanup");
-EC void CleanupGameStateBlock1C38(u8 * state, unsigned int mode)
+EC void CleanupGameStateBlock1C38(Rucksack * state, unsigned int mode)
 {
-    unsigned int itemBytes = *reinterpret_cast<u32 *>(state + 0x24) * 2;
-    u8 * itemEnd = reinterpret_cast<u8 *>(itemBytes + reinterpret_cast<unsigned int>(state) + 0x28);
-    u8 * items = state + 0x28;
-    while (items != itemEnd)
-        items += 2;
+    ToolStack *toolEnd = state->tools.end();
+    ToolStack *tool = state->tools.begin();
+    for (; tool != toolEnd; ++tool)
+        tool->~ToolStack();
 
-    unsigned int cellBytes = *reinterpret_cast<u32 *>(state) * 4 + 4;
-    u8 * cellEnd = state + cellBytes;
-    u8 * cells = state + 4;
-    while (cells != cellEnd)
-        cells += 4;
+    RucksackItem *itemEnd = state->items.end();
+    RucksackItem *item = state->items.begin();
+    for (; item != itemEnd; ++item)
+        item->~RucksackItem();
 
     if (mode & 1)
-        __builtin_delete(state);
+        ::operator delete(state);
 }
-EC void func_080D6B00(u8 * state, unsigned int mode)
+EC void func_080D6B00(Rucksack * state, unsigned int mode)
     ALIAS(CleanupGameStateBlock1C38);
 
  // Two eight-byte-entry ranges in the GameState nested block at +0x1AA8.

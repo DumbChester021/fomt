@@ -10,21 +10,23 @@ Live next actions belong to `tools/ches/NEXT_AGENT_HANDOFF.md`.
 | Item | Verified value |
 | --- | --- |
 | Workspace / branch | `/mnt/data/Github/gba/fomt`; `main` tracking `ches/main` |
-| Latest published source | **`f069823`** (exact save-header functions + save-first handoff), pushed to `ches/main` |
-| Code in C++ source | **90,644 / 940,036 (9.6426%)** |
-| Remaining linked ASM | **849,392 bytes; 1,948 functions** |
-| Inferred assembly ranges | **846,356 bytes** (99.6425%) |
+| Earlier pre-batch published source | **`497395f`** (save helpers); check `git log -1` and `git status -sb` for later checkpoints |
+| Code in C++ source | **91,388 / 940,036 (9.7218%)** |
+| Remaining linked ASM | **848,648 bytes; 1,946 functions** |
+| Inferred assembly ranges | **845,612 bytes** (99.6423%) |
 | Unattributed ASM / parked | **3,036 bytes / 27 functions** |
 | Recovered data/assets | **75,554 / 6,777,404 (1.1148%)** |
-| Meaningful ROM | **166,594 / 7,717,440 (2.1587%)** |
+| Meaningful ROM | **167,338 / 7,717,440 (2.1683%)** |
 | Free ROM tail | **671,168 bytes** |
 | Retail ROM | **8,388,608 bytes**; SHA1 `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963` |
-| Latest forced build | `make -B -j4 compare` **passed** (`sh_mv2t0b0a_4bb83627`; `fomt.gba: OK`) |
+| Latest forced build | `make -B -j4 compare` **passed** with typed Rucksack cleanup (`sh_mv2utzp3_be621085`; `fomt.gba: OK`) |
 | Pending builds | None at this checkpoint |
 
 ## Current save-system checkpoint (October 11, 2026)
 
-**Exact source integration:** CopySavedFarmState 180B at 080D64C8, CopySavedDogState 132B at 080D67C8, three parent/nested GameState cleanup routines 228B; plus save header/SRAM proxy, byte-buffer, transition and packed flag helpers. Cumulative **90,644 byte-exact game-code bytes / 1,948 remaining ASM functions**. Full forced retail gate sh_mv2t0b0a_4bb83627 passed with original SHA1.
+**Exact source integration:** CopySavedFarmerState 448B at 080D68C0, CopySavedBarnState 296B at 080D657C, CopySavedFarmState 180B at 080D64C8, CopySavedDogState 132B at 080D67C8, three parent/nested GameState cleanup routines 228B; plus save header/SRAM proxy, byte-buffer, transition and packed flag helpers. Cumulative **91,388 byte-exact game-code bytes / 1,946 remaining ASM functions**. Full forced retail gate sh_mv2ubxc2_e766423e passed with original SHA1.
+
+**Coop and Rucksack next:** Nested Rucksack `080D6A80..080D6B00` is **128 bytes** of ASM although the enclosing Farmer assignment is exact. Adjacent `080D6B00..080D6B40` was already an exact source-owned 64-byte cleanup, now made fully typed as Rucksack in `src/game_state_cleanup.cc` without coverage gain (isolated and production full ROM pass). Four nonmatching copy variants are preserved in `docs/SAVE_RUCKSACK_COPY_RESEARCH.md`. Exact-sized Coop C++ v3/v4 of 080D66A4 still have 35 differing linked bytes, largely register allocation; declaration-order v5/v6 increased size to 0x128 and differences to 104/109. See `docs/SAVE_BARN_STATE_COPY.md`; avoid replaying closed variations. Barn/Farmer code and typed cleanup are retail exact; check Git for their current publication status.
 
 **Structures/tests:** 41 original-compiler layout assertions verify seven embedded GameState types; read-only SRAM inspector synthetic tests pass including u32 fish-count overflow, no real SRAM tested. Full GameState assignment 080D4178, loader 08011650 and multiple save/copy/erase paths remain ASM. Next steps in tools/ches/NEXT_AGENT_HANDOFF.md.
 
@@ -57,7 +59,7 @@ unchanged. The previously verified 20-function source is committed in **`9bac767
 
 ## Readability review
 
-Exact-ROM code coverage is **not** a measure of full human readability. The current heuristic audit covers 137 C++ units/20,047 lines and flags 138 address-named function definitions in 17 files, 44 offset-named callback uses in three GameState/menu source files, and compiler-sensitive constructs in seven files. These are review indicators, not a semantic completeness percentage. See `docs/SOURCE_READABILITY_AUDIT.md` and `tools/ches/audit_source_readability.py`; the newest three GameState/menu units now have documented ABI uncertainty and cleaned formatting, without adding code coverage.
+Exact-ROM code coverage is **not** a measure of full human readability. The current October 11 heuristic audit covers **149 C++ files / 20,588 lines**, with 143 address-named function definitions in 20 files, 44 offset-named callback uses in three GameState/menu source files, and 21 compiler-sensitive syntax indicators across eight files. The newly added Farmer source uses one explicit `memcpy` ABI symbol binding, documented in `docs/SAVE_FARMER_STATE_COPY.md`. These are review indicators, not a semantic completeness percentage. See `docs/SOURCE_READABILITY_AUDIT.md` and `tools/ches/audit_source_readability.py`; the newest three GameState/menu units now have documented ABI uncertainty and cleaned formatting, without adding code coverage.
 
 ## Save and custom-game readiness (October 10)
 

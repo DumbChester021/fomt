@@ -5,9 +5,9 @@ Region/TU hints and scores are heuristics, not claims about original source-file
 
 ## Inventory summary
 
-- remaining linked assembly functions: **1,948**
-- canonical linked assembly code: **849,392 bytes**
-- bytes covered by inferred function ranges: **846,356** (**99.6426%** of linked asm code)
+- remaining linked assembly functions: **1,946**
+- canonical linked assembly code: **848,648 bytes**
+- bytes covered by inferred function ranges: **845,612** (**99.6423%** of linked asm code)
 - assembly code not assigned to a function range: **3,036 bytes**
 - asm definitions present in source but not linked as asm code: **2**
 - coarse TU/region hints: **269**

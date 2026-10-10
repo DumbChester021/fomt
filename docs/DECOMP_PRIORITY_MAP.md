@@ -11,7 +11,7 @@ The project already has strong foundational types and APIs. The next phase is to
 exploit them across the remaining assembly instead of making an individual
 resource family the main queue.
 
-Current verified working state on `main`:
+Historical metrics from the former general-throughput checkpoint (superseded by the October 11 save-first snapshot below):
 - code: **89,444 / 940,036 = 9.5150%**;
 - assembly remaining: **850,592 bytes**;
 - remaining linked assembly functions: **1,975**;
@@ -25,12 +25,12 @@ Under the earlier priority, `func_08011650` was parked alongside
 `func_08092940`. **The save loader is now active** under the explicit October 10
 save-only override below; the unrelated functions remain deferred.
 
-This is the project roadmap for zero-context continuation on the public fork.
+This is the project roadmap for zero-context continuation on the public fork. The October 11 save-first priorities are authoritative; the general-throughput strategy and numeric snapshot above are historical.
 It is not intended as upstream pull-request content.
 
 ## Current save-first priorities — October 11, 2026
 
-Newest exact: 180-byte Farm, 132-byte Dog, and 228-byte GameState cleanup cluster; 41 typed save-layout checks. **Current code 90,644 / 940,036 (9.6426%)**, 1,948 remaining ASM functions. Target specialized Farmer/Coop/Barn/MoneyState assignments, then 776-byte parent GameState copy and 740-byte loader, then save/load/erase and real backed-up SRAM tests. Historical general-throughput queue below remains deferred. See docs/SAVE_GAMESTATE_ASSIGNMENT_MAP.md and tools/ches/NEXT_AGENT_HANDOFF.md.
+Newest exact: 448-byte Farmer, 296-byte Barn, 180-byte Farm, 132-byte Dog and 228-byte GameState cleanup cluster; 41 typed save-layout checks. **Current code 91,388 / 940,036 (9.7218%)**, 1,946 remaining ASM functions. Target nested Rucksack/Coop/MoneyState assignments, then 776-byte parent GameState copy and 740-byte loader, then save/load/erase and real backed-up SRAM tests. Historical general-throughput queue below remains deferred. See docs/SAVE_GAMESTATE_ASSIGNMENT_MAP.md and tools/ches/NEXT_AGENT_HANDOFF.md.
 
 ## Historical save-first target override — October 10, 2026
 
@@ -76,7 +76,7 @@ The larger 20-member scene-change constructor family remains bounded but nonmatc
 
 The throughput pipeline is operational. The Ball family remains parked at its documented mover seam. The adjacent `vtable_unk_080E7380` family now owns **316 exact retail bytes** in source: 224 bytes of entity surface plus 92 bytes of controller helpers. Controller constructor `0x08038820` is behavior-complete and exact-size but bounded by register-lifetime codegen.
 
-The raw queue can still rank parked work highly, so score is not execution order. The Entity38740/Entity398A4 region now owns exact source through the seven-helper tail `3A804..3A8A0`, including preceding exact `3A798`, `3A350`, `3A320/334`, `39A60`, `3A144`, `398A4/399C0`, and related strategy helpers. `39E98`, `39F90`, `3A180`, and `3A394` are explicitly parked after bounded natural-source work. The 652-byte logical map resolver at `0x0803A8A4` is exact source. Four resource-owner methods AC78/ACD8/AE58/B0A8 are integrated, adding 680 linked bytes. The eight fishing-record methods add 276 linked bytes and recover the 472-byte persistent block. The mine-floor cluster owns 872 exact linked bytes through E0AC plus E174..E1B4 and proves the adjacent 0x628-byte persistent object. The exposed E118..E174 and E1B4..E2D4 code islands are behavior-recovered but parked after bounded source-shape attempts. The next adjacent persistent block at GameState+0x3480 is now a typed 0x14-byte CursedToolState; continue with the bounded +0x3494..+0x34C4 persistent block. D8E8 and DA00 remain parked source-shape/compiler frontiers. The whole-loader compiler puzzle remains parked.
+The raw queue can still rank parked work highly, so score is not execution order. The Entity38740/Entity398A4 region now owns exact source through the seven-helper tail `3A804..3A8A0`, including preceding exact `3A798`, `3A350`, `3A320/334`, `39A60`, `3A144`, `398A4/399C0`, and related strategy helpers. `39E98`, `39F90`, `3A180`, and `3A394` are explicitly parked after bounded natural-source work. The 652-byte logical map resolver at `0x0803A8A4` is exact source. Four resource-owner methods AC78/ACD8/AE58/B0A8 are integrated, adding 680 linked bytes. The eight fishing-record methods add 276 linked bytes and recover the 472-byte persistent block. The mine-floor cluster owns 872 exact linked bytes through E0AC plus E174..E1B4 and proves the adjacent 0x628-byte persistent object. The exposed E118..E174 and E1B4..E2D4 code islands are behavior-recovered but parked after bounded source-shape attempts. The next adjacent persistent block at GameState+0x3480 is now a typed 0x14-byte CursedToolState; continue with the bounded +0x3494..+0x34C4 persistent block. D8E8 and DA00 remain parked source-shape/compiler frontiers. The loader's historical compiler/source-shape attempts remain closed, but the loader itself is an active save-first target (see the current snapshot above).
 
 ### Save recovery selection rule
 

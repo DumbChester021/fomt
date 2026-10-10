@@ -4,15 +4,15 @@ Run make progress for authoritative totals. The current priority is **full US re
 
 ## Current verified snapshot — October 11, 2026
 
-- **Branch:** main tracking ches/main; find the current publication SHA with git log -1 rather than using the historical labels below.
-- **Forced full-ROM gate:** make -B -j4 compare PASSED (sh_mv2t0b0a_4bb83627, fomt.gba: OK); original retail SHA1 a2fc3574f0a65a4fcf7682fb274b9d7eebdef963; ROM size 8,388,608 bytes.
-- **Matching code:** **90,644 / 940,036 (9.6426%)**, remaining ASM **849,392 bytes / 1,948 functions**, inferred function coverage 846,356 bytes, unattributed 3,036 bytes, 27 parked.
+- **Published source checkpoint:** `497395f` on `main`, matching `ches/main` at October 11 inspection. Confirm future HEAD with `git log -1` and `git status -sb`; historical labels below are not current.
+- **Forced full-ROM gate:** make -B -j4 compare PASSED after Barn and Farmer integration (sh_mv2ubxc2_e766423e, fomt.gba: OK); original retail SHA1 a2fc3574f0a65a4fcf7682fb274b9d7eebdef963; ROM size 8,388,608 bytes.
+- **Matching code:** **91,388 / 940,036 (9.7218%)**, remaining ASM **848,648 bytes / 1,946 functions**, inferred function coverage 845,612 bytes, unattributed 3,036 bytes, 27 parked.
 - **Data/assets:** **75,554 / 6,777,404 (1.1148%)** = 31,330 source-owned noncode + 44,224 editable generated graphics/palettes.
-- **Meaningful ROM:** **166,594 / 7,717,440 (2.1587%)**; free ROM tail 671,168 bytes.
-- **Newest exact code:** specialized Farm saved-state copy 180 bytes, Dog copy 132, three GameState cleanups 228, plus save header/proxies/typed byte-buffer and transition methods.
+- **Meaningful ROM:** **167,338 / 7,717,440 (2.1683%)**; free ROM tail 671,168 bytes.
+- **Newest exact code:** specialized Farmer saved-state copy 448 bytes and Barn saved-state copy 296 bytes (both isolated/production forced full-ROM matches), Farm copy 180, Dog copy 132, three GameState cleanups 228, plus save header/proxies/typed byte-buffer and transition methods.
 - **Readability/layout:** Seven typed GameState children, 41 compile-time binary checks; full 776-byte assignment and 740-byte loader remain original assembly, as do multiple nested/UI/erase functions. Read-only SRAM inspector self-tests pass; **no backed-up real save or emulator tested**.
 
-See docs/SAVE_FARM_STATE_COPY.md, docs/SAVE_LIFECYCLE.md, docs/SAVE_GAMESTATE_ASSIGNMENT_MAP.md and tools/ches/NEXT_AGENT_HANDOFF.md. Dated milestones below are historical, not current counts.
+See docs/SAVE_FARMER_STATE_COPY.md, docs/SAVE_BARN_STATE_COPY.md, docs/SAVE_LIFECYCLE.md, docs/SAVE_GAMESTATE_ASSIGNMENT_MAP.md and tools/ches/NEXT_AGENT_HANDOFF.md. Dated milestones below are historical, not current counts.
 
 ## What the metrics mean
 
@@ -131,11 +131,11 @@ The preceding exact batch is the seven-function helper tail `0x0803A804..0x0803A
 
 Immediately preceding exact promotions include `func_0803A798`, `func_0803A350`, and the signed-Q8 trig pair `func_0803A320/334`.
 
-## Current frontier
+## Former general-throughput frontier (deferred by save-first priority)
 
-The scene cleanup and all 25 `Run()` entries are exact. Livestock construction/cleanup, helpers, catalog, menu text/canvas, glyph-cache/provider lifetime, resource-owner helpers and menu tree rotations/balancing are exact at their documented boundaries. The current priority is **high-yield ownership/type clusters**, not another isolated menu helper.
+The scene cleanup and all 25 `Run()` entries are exact. Livestock construction/cleanup, helpers, catalog, menu text/canvas, glyph-cache/provider lifetime, resource-owner helpers and menu tree rotations/balancing are exact at their documented boundaries. Under the former priority, the next work was high-yield ownership/type clusters; the **current** priority is retail save-system reconstruction as described at the top of this page.
 
-The 18-member 72-byte ownership-transfer family is promising but its DB394 scratch candidates do not match and v1 releases a moved result incorrectly. Recover the 16-byte smart-owner transfer and destructor/allocator contract before using that exemplar across siblings. Three 192-byte menu tree-insertion siblings (E2294/E27FC/E54F0) are an alternative after fresh allocation/lifetime evidence. E1C70, F060, D6EAC/D6EEC, scene constructor 92570, frame getter 5E790, resource-owner constructors/B128, mine-floor D8E8/DA00, and the whole save loader are parked at their recorded frontiers. The canonical live queue and proof links are in [NEXT_AGENT_HANDOFF.md](../tools/ches/NEXT_AGENT_HANDOFF.md).
+The 18-member 72-byte ownership-transfer family is promising but its DB394 scratch candidates do not match and v1 releases a moved result incorrectly. Recover the 16-byte smart-owner transfer and destructor/allocator contract before using that exemplar across siblings. Three 192-byte menu tree-insertion siblings (E2294/E27FC/E54F0) are an alternative after fresh allocation/lifetime evidence. E1C70, F060, D6EAC/D6EEC, scene constructor 92570, frame getter 5E790, resource-owner constructors/B128, mine-floor D8E8/DA00 were previously parked at their recorded compiler frontiers. The save loader is now an active save-first target; its failed compiler variants remain closed. The canonical live queue and proof links are in [NEXT_AGENT_HANDOFF.md](../tools/ches/NEXT_AGENT_HANDOFF.md).
 
 ## Asset status
 
