@@ -4,7 +4,7 @@ This is the **live, human-readable entry point for save-system matching research
 
 ## Bounded save-system functions
 
-The `Owner` column is checkable: `EXACT` means source-owned and whole-ROM-verified, `ASM` means the original assembly is still linked. Addresses and lengths below are original retail code regions. A match in isolation alone is insufficient for `EXACT`.
+The source-derived `make save-progress` summary reports **only the bounded functions in this matrix**; it is not a percentage of total save-system completion. The `Owner` column is checkable: `EXACT` means source-owned and whole-ROM-verified, `ASM` means the original assembly is still linked. Addresses and lengths below are original retail code regions. A match in isolation alone is insufficient for `EXACT`.
 
 | Start | Retail function | Bytes | Owner | Implementation | Evidence / next useful clue |
 | --- | --- | ---: | --- | --- | --- |

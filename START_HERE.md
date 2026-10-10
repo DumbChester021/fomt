@@ -8,7 +8,7 @@ Human-readable, **byte-identical matching decompilation** of the US Game Boy Adv
 
 ## Where are we now?
 
-- Retail workspace: `/mnt/data/Github/gba/fomt`, branch `main` tracking `ches/main`. **Run `git status -sb` and `git log -1` for the real current commit**; old document SHAs are historical.
+- Retail workspace: the **root of this Git checkout**, branch `main` tracking `ches/main` on this fork. **Run `git status -sb` and `git log -1` for the real current commit**; old document SHAs are historical.
 - Byte-exact C++ reconstructed: **91,388 / 940,036 bytes (9.7218%)**, **848,648 ASM bytes / 1,946 linked functions** remain across the whole game. This is **not** a save-system completion or human-readability percentage.
 - Original ROM: **8,388,608 bytes**, SHA1 **`a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`**. Last forced production compare passed after the typed Rucksack cleanup (`sh_mv2utzp3_be621085`). 41 binary save-layout checks and synthetic SRAM inspector tests passed. **No real backed-up player SRAM/emulator load has been verified.**
 - Saved-state copies already exact: Farmer **448 B**, Barn **296 B**, Farm **180 B**, Dog **132 B**, plus several save/cleanup/header helpers. Parent GameState assignment, active-entry Rucksack copy, Coop, MoneyState, loader and save/erase/error menu paths are **unfinished**.
@@ -35,8 +35,9 @@ Then address Coop (292 B; best candidate has 35 differing bytes), MoneyState (20
 ## Verify
 
 - Documents: `make docs-check`.
-- Save metadata, function ownership/bounds and synthetic SRAM tests: `make save-check` (no ROM rebuild).
+- Save metadata, function ownership/bounds and synthetic SRAM tests: `make save-check` (no ROM rebuild). The scoped save subset is printed by `make save-progress`.
 - Save production source: `make save-verify` (includes full forced ROM comparison).
-- Other original ROM changes: `make -B -j4 compare` and `make progress`.
+- All available local automated tests including a forced ROM rebuild: `make test`; whole-game and scoped save numbers: `make progress`.
+- Portable source-only CI without a licensed ROM or private integrations: `make ci`. GitHub-hosted jobs currently cannot start because of a GitHub account billing lock; this is not a test-code failure.
 
 **Truth order:** verified Git/source/ASM/build > this current page > target evidence matrix > historical experiments. Preserve old evidence with dated corrections, but do not let it issue current instructions.

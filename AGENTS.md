@@ -1,6 +1,6 @@
 # FoMT retail decompilation: standing rules
 
-**Read [START_HERE.md](START_HERE.md) for the entire current onboarding.** This charter holds durable rules only, not progress reports, task lists, one-off function warnings, or research chronology. For actual decompilation, use the installed `/mnt/data/Ches/codex-bridge-home/skills/decompilation/SKILL.md` when available.
+**Read [START_HERE.md](START_HERE.md) for the entire current onboarding.** This charter holds durable rules only, not progress reports, task lists, one-off function warnings, or research chronology. For decompilation, follow the repository's matching procedures and any **optional** agent-specific tools available in your environment. Machine-specific instructions belong in ignored `AGENTS.local.md`, not this public charter.
 
 ## Scope and separation
 
@@ -18,7 +18,7 @@
 ## Repository and verification safety
 
 - Inspect Git HEAD, status, target paths, and retail/custom worktrees before mutation. Preserve preexisting edits; no blind reset, clean, stash, delete or destructive overwrites.
-- Use `make docs-check` for documentation changes, `make save-check` for save research metadata, and full `make save-verify` for save executable/build-input changes. For other retail code use `make -B -j4 compare`. Inspect real exit codes and staged diffs.
+- Use `make docs-check` for documentation changes and `make save-check` for save research metadata. Use `make ci` for all portable checks and `make test` for the full local test suite including a forced exact-ROM rebuild. `make save-verify` covers a focused save-source integration. Any emulator gameplay tests need separate recorded proof; do not claim those passed because the ROM matched. Inspect exit codes and staged diffs.
 - After exact code integration, regenerate inventory and check source readability. Do not inflate coverage for a previously owned function or a readability-only refactor.
 - Publish verified coherent checkpoints to **`ches/main` only**, after diff review, with updated impacted evidence. Do not claim success or a push if it did not happen.
 

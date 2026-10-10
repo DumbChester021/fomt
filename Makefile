@@ -89,16 +89,18 @@ $(shell mkdir -p $(SUBDIRS))
 
 compare: $(ROM)
 	sha1sum -c $(BUILD_NAME).sha1
+	@python3 tools/ches/save_progress.py
 
 progress: $(ROM)
 	@python3 tools/scripts/calcprogress.py $(MAP)
+	@python3 tools/ches/save_progress.py
 	@sha1sum -c $(BUILD_NAME).sha1
 	@printf "branch: "
 	@git branch --show-current
 	@printf "head: "
 	@git log -1 --format='%h %s'
 
-.PHONY: compare progress docs-check save-check save-verify
+.PHONY: compare progress docs-check save-check save-verify save-progress ci test
 
 # Fast documentation and save-track preflight. No ROM build required.
 docs-check:
@@ -107,6 +109,23 @@ docs-check:
 save-check: docs-check
 	@python3 tools/ches/check_save_evidence.py
 	@python3 tools/ches/inspect_sram.py --self-test
+
+# In CI we cannot assume a legally obtained original ROM or matching toolchain.
+# These are all independently runnable source-only automated tests.
+ci: save-check
+	@bash tools/scripts/tests/calcrom_test.sh
+	@python3 -m py_compile tools/ches/check_docs.py tools/ches/check_save_evidence.py tools/ches/save_progress.py tools/ches/audit_docs.py tools/ches/inspect_sram.py tools/ches/audit_source_readability.py
+	@python3 tools/ches/audit_source_readability.py
+	@python3 tools/ches/save_progress.py
+
+# Full local automated suite, requiring the original ROM and matching compiler.
+# This proves the complete built ROM, not a real interactive emulator load.
+test: ci
+	@$(MAKE) -B -j4 compare
+	@$(MAKE) progress
+
+save-progress:
+	@python3 tools/ches/save_progress.py
 
 # Stronger gate for actual save-code changes, retaining the original hash check.
 save-verify: save-check

@@ -9,6 +9,10 @@
 
 build/
 
+# Private per-machine agent and research integration; never commit credentials.
+AGENTS.local.md
+.local/
+
 # Live-temp/public research snapshot hygiene
 tools/__pycache__/
 tools/ches/__pycache__/

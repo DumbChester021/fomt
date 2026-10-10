@@ -15,5 +15,6 @@ jobs:
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
-      - name: Verify live documentation and save evidence
-        run: make save-check
+      # Public portable checks: no private ROM, local Ches tools or compiler installation.
+      - name: Run portable source, documentation, and save checks
+        run: make ci

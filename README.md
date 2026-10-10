@@ -10,11 +10,11 @@ You must provide your own legally obtained US FoMT ROM as `baserom.gba`; no reta
 
 ```sh
 tools/install_agbcp.sh
-make -B -j4 compare
-make progress
+make test           # all available local automated tests + forced exact ROM build
+make progress       # whole-game code/assets and scoped save progress
 ```
 
-See [INSTALL.md](INSTALL.md) for full requirements. `make docs-check` and `make save-check` run lightweight documentation/save evidence validations.
+See [INSTALL.md](INSTALL.md) for full requirements. `make ci` runs the portable checks without a ROM or private tools; `make test` requires the original ROM/compiler and performs the full automated gate. Emulator-based save/load gameplay remains a separate, not-yet-verified requirement.
 
 ## Contributing
 

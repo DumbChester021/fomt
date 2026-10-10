@@ -51,6 +51,12 @@ throughput code/type recovery.
 FoMT now tracks executable-code reconstruction and non-code asset/data
 reconstruction separately.
 
+## Source-tree layout and upstream compatibility
+
+The original StanHash FoMT tree uses `src/`, `include/`, `asm/`, `data/` and `tools/` without this fork's separate editable-graphics pipeline. Other mature GBA matching decompilations use separate source `data/` for structured tables and `graphics/`/`sound/` for editable media. Those differences do **not** establish an original author's preferred directory for a new asset format.
+
+Our rule is semantic rather than cosmetic: keep `data/` for code-addressable tables and binary/assembly data declarations; keep editable PNG/palette/spritesheet source media under `assets/` (including `assets/item_icons/`), generated packed binaries under `build/`, and conversion/extraction scripts under `tools/`. Do not move a currently exact asset pipeline merely to match another project's folder name. A later separate `graphics/` or `sound/` directory requires a build-rule and downstream-reference migration with full retail-ROM verification.
+
 ## Why this exists
 
 The historical `make progress` percentage counted only linked executable code.
@@ -61,9 +67,9 @@ non-code resources.
 Do not replace the code percentage with an inflated catch-all number. Keep the
 dimensions separate and also report a conservative overall linked-ROM metric.
 
-## Current metrics
+## Historical October 10 metric snapshot (not live)
 
-`make progress` currently reports:
+Run `make progress` for actual current metrics; the following values record an earlier checkpoint and must not be copied into current onboarding:
 
 ```text
 Code reconstruction

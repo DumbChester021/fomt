@@ -56,6 +56,29 @@ def check():
     for p in KEY_DOCS:
         if not (ROOT / p).is_file():
             errors.append(f"missing canonical entrypoint: {p}")
+    # Public onboarding must work on any checkout and never expose a private
+    # workstation's integration paths, credentials or key material.
+    private_patterns = (
+        re.compile(r"/(?:home|Users)/[^\\s/`]+/"),
+        re.compile(r"/mnt/data/Ches/"),
+        re.compile(r"/mnt/waydroid-hdd/"),
+        re.compile(r"(?i)\\b(?:github_pat_|gh[pousr]_|BEGIN (?:OPENSSH|RSA) PRIVATE KEY)"),
+    )
+    for rel in ("AGENTS.md", "START_HERE.md", "README.md", "INSTALL.md"):
+        text_content = (ROOT / rel).read_text(errors="replace")
+        for expression in private_patterns:
+            if expression.search(text_content):
+                errors.append(f"{rel} contains a machine-specific or credential-like reference")
+                break
+    # The local environment file is permitted only when untracked and ignored.
+    local = ROOT / "AGENTS.local.md"
+    if local.exists():
+        ignored = subprocess.run(
+            ["git", "check-ignore", "-q", "--", "AGENTS.local.md"],
+            cwd=ROOT, check=False,
+        )
+        if ignored.returncode != 0:
+            errors.append("AGENTS.local.md must be Git-ignored and kept private")
     # Dated corrections must be appended, never replace or truncate prior facts.
     history = ROOT / "tools/ches/HISTORY.md"
     if history.is_file():
