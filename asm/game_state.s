@@ -1,16 +1,7 @@
     .INCLUDE "asm/macro.inc"
     .SYNTAX UNIFIED
 
-    thumb_func_start func_08010348
-func_08010348: @ 0x08010348
-    push {lr}
-.L0801034A:
-    bl rand
-    cmp r0, #0
-    beq .L0801034A
-    pop {r1}
-    bx r1
-    .align 2, 0
+    .section .text.after_game_state_nonzero_random, "ax", %progbits
 
     thumb_func_start func_08010358
 func_08010358: @ 0x08010358
@@ -1350,137 +1341,6 @@ func_08010358: @ 0x08010358
     bx r1
     .align 2, 0
 
-    thumb_func_start func_08010E48
-func_08010E48: @ 0x08010E48
-    ldrb r0, [r0]
-    lsls r0, r0, #0x1f
-    lsrs r0, r0, #0x1f
-    bx lr
-
-    thumb_func_start func_08010E50
-func_08010E50: @ 0x08010E50
-    ldrb r0, [r0]
-    lsls r0, r0, #0x1e
-    lsrs r0, r0, #0x1f
-    bx lr
-
-    thumb_func_start func_08010E58
-func_08010E58: @ 0x08010E58
-    ldrb r0, [r0]
-    lsls r0, r0, #0x1d
-    lsrs r0, r0, #0x1f
-    bx lr
-
-    thumb_func_start func_08010E60
-func_08010E60: @ 0x08010E60
-    ldrb r0, [r0]
-    lsls r0, r0, #0x1c
-    lsrs r0, r0, #0x1f
-    bx lr
-
-    thumb_func_start func_08010E68
-func_08010E68: @ 0x08010E68
-    push {r4, r5, r6, r7, lr}
-    adds r6, r0, #0
-    movs r7, #1
-    ldr r1, .L08010E9C @ =0x00001C70
-    adds r0, r6, r1
-    bl GetAffection__C6Animal
-    cmp r0, #0xc7
-    bhi .L08010E7C
-    movs r7, #0
-.L08010E7C:
-    adds r0, r6, #0
-    adds r0, #0x14
-    bl GetHorse__C4Farm
-    cmp r0, #0
-    beq .L08010E92
-    bl GetAffection__C6Animal
-    cmp r0, #0xc7
-    bhi .L08010E92
-    movs r7, #0
-.L08010E92:
-    movs r4, #0
-    movs r0, #0x82
-    lsls r0, r0, #3
-    adds r5, r6, r0
-    b .L08010EB8
-    .align 2, 0
-.L08010E9C: .4byte 0x00001C70
-.L08010EA0:
-    adds r0, r5, #0
-    adds r1, r4, #0
-    bl GetChicken__C4CoopUi
-    cmp r0, #0
-    beq .L08010EB6
-    bl GetAffection__C6Animal
-    cmp r0, #0xc7
-    bhi .L08010EB6
-    movs r7, #0
-.L08010EB6:
-    adds r4, #1
-.L08010EB8:
-    adds r0, r5, #0
-    bl GetCapacity__C4Coop
-    cmp r4, r0
-    blo .L08010EA0
-    movs r4, #0
-    movs r1, #0xbe
-    lsls r1, r1, #3
-    adds r5, r6, r1
-    b .L08010EF0
-.L08010ECC:
-    adds r0, r5, #0
-    adds r1, r4, #0
-    bl GetCow__C4BarnUi
-    cmp r0, #0
-    bne .L08010EE4
-    adds r0, r5, #0
-    adds r1, r4, #0
-    bl GetSheep__C4BarnUi
-    cmp r0, #0
-    beq .L08010EEE
-.L08010EE4:
-    bl GetAffection__C6Animal
-    cmp r0, #0xc7
-    bhi .L08010EEE
-    movs r7, #0
-.L08010EEE:
-    adds r4, #1
-.L08010EF0:
-    adds r0, r5, #0
-    bl GetCapacity__C4Barn
-    cmp r4, r0
-    blo .L08010ECC
-    adds r0, r7, #0
-    pop {r4, r5, r6, r7}
-    pop {r1}
-    bx r1
-    .align 2, 0
-
-    thumb_func_start func_08010F04
-func_08010F04: @ 0x08010F04
-    ldrb r0, [r0]
-    lsls r0, r0, #0x1b
-    lsrs r0, r0, #0x1f
-    bx lr
-
-    thumb_func_start func_08010F0C
-func_08010F0C: @ 0x08010F0C
-    ldr r0, [r0]
-    lsls r0, r0, #0xe
-    lsrs r0, r0, #0x1b
-    bx lr
-.L08010F14:
-    .byte 0x40, 0x88, 0xC0, 0x05, 0x40, 0x0E, 0x70, 0x47
-
-    thumb_func_start func_08010F1C
-func_08010F1C: @ 0x08010F1C
-    ldrb r0, [r0, #3]
-    lsls r0, r0, #0x19
-    lsrs r0, r0, #0x1a
-    bx lr
-
     .section .text.after_game_state_flag_setters, "ax", %progbits
 
     thumb_func_start func_08010F54
@@ -2057,75 +1917,8 @@ func_08010F54: @ 0x08010F54
 .L08011404: .4byte 0x000034C8
 .L08011408: .4byte 0x000034DC
 
-    thumb_func_start func_0801140C
-func_0801140C: @ 0x0801140C
-    push {r4, r5, r6, r7, lr}
-    adds r4, r0, #0
-    adds r7, r4, #0
-    adds r7, #0x54
-    adds r0, r7, #0
-    bl GetValueShipped__C11ShippingBin
-    adds r5, r0, #0
-    ldr r0, .L08011450 @ =0x00001AA8
-    adds r6, r4, r0
-    adds r0, r6, #0
-    adds r1, r5, #0
-    bl func_0809ABD8
-    ldr r0, .L08011454 @ =0x000034C5
-    adds r4, r4, r0
-    ldrb r0, [r4]
-    cmp r0, #0
-    beq .L0801143E
-    adds r0, r6, #0
-    adds r1, r5, #0
-    bl func_0809ABD8
-    movs r0, #0
-    strb r0, [r4]
-.L0801143E:
-    adds r0, r7, #0
-    bl ResetValueShipped__11ShippingBin
-    rsbs r0, r5, #0
-    orrs r0, r5
-    lsrs r0, r0, #0x1f
-    pop {r4, r5, r6, r7}
-    pop {r1}
-    bx r1
-    .align 2, 0
-.L08011450: .4byte 0x00001AA8
-.L08011454: .4byte 0x000034C5
-
     .section .text.after_save_packed_flag, "ax", %progbits
-    thumb_func_start func_08011464
-func_08011464: @ 0x08011464
-    push {r4, lr}
-    adds r4, r0, #0
-    adds r2, r1, #0
-    cmp r2, #0x63
-    bls .L08011470
-    movs r2, #0x63
-.L08011470:
-    ldr r3, [r4]
-    lsls r0, r3, #0xe
-    lsrs r0, r0, #0x1b
-    cmp r0, r2
-    blo .L0801147E
-    movs r0, #0
-    b .L0801148E
-.L0801147E:
-    movs r1, #0x1f
-    ands r1, r2
-    lsls r1, r1, #0xd
-    ldr r0, .L08011494 @ =0xFFFC1FFF
-    ands r0, r3
-    orrs r0, r1
-    str r0, [r4]
-    movs r0, #1
-.L0801148E:
-    pop {r4}
-    pop {r1}
-    bx r1
-    .align 2, 0
-.L08011494: .4byte 0xFFFC1FFF
+    .section .text.after_packed_header_progress, "ax", %progbits
 
     thumb_func_start func_08011498
 func_08011498: @ 0x08011498
@@ -2186,21 +1979,6 @@ func_080114C8: @ 0x080114C8
     pop {r1}
     bx r1
     .align 2, 0
-
-    thumb_func_start func_080114F8
-func_080114F8: @ 0x080114F8
-    ldrb r2, [r0]
-    movs r1, #2
-    rsbs r1, r1, #0
-    ands r1, r2
-    movs r2, #2
-    orrs r1, r2
-    movs r2, #4
-    orrs r1, r2
-    movs r2, #8
-    orrs r1, r2
-    strb r1, [r0]
-    bx lr
 
     .section .text.after_save_transition_state, "ax", %progbits
     .section .text.after_save_record, "ax", %progbits

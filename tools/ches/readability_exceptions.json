@@ -1,0 +1,94 @@
+{
+  "version": 1,
+  "description": "Readability audit high-risk ceilings, not approvals or readability grades. Only justified legacy inline ASM/hard-register bindings; reductions are welcome. Increases require manual verification and a deliberate baseline update.",
+  "high_risk_by_file": {
+    "src/character_info.cc": {
+      "hard_register_bindings": 9,
+      "inline_assembly": 2
+    },
+    "src/character_social.cc": {
+      "hard_register_bindings": 1,
+      "inline_assembly": 0
+    },
+    "src/code_080A46AC.cc": {
+      "hard_register_bindings": 0,
+      "inline_assembly": 2
+    },
+    "src/code_080A480C.cc": {
+      "hard_register_bindings": 0,
+      "inline_assembly": 2
+    },
+    "src/code_080A4A4C.cc": {
+      "hard_register_bindings": 0,
+      "inline_assembly": 1
+    },
+    "src/code_080A4A94.cc": {
+      "hard_register_bindings": 0,
+      "inline_assembly": 3
+    },
+    "src/code_080A5670.cc": {
+      "hard_register_bindings": 0,
+      "inline_assembly": 1
+    },
+    "src/code_080A56DC.cc": {
+      "hard_register_bindings": 0,
+      "inline_assembly": 1
+    },
+    "src/code_actor_0809BFE8.cc": {
+      "hard_register_bindings": 5,
+      "inline_assembly": 1
+    },
+    "src/dog_state_copy.cc": {
+      "hard_register_bindings": 0,
+      "inline_assembly": 1
+    },
+    "src/entity37008_dtor_thunks.cc": {
+      "hard_register_bindings": 0,
+      "inline_assembly": 1
+    },
+    "src/entity_unk_08038740.cc": {
+      "hard_register_bindings": 0,
+      "inline_assembly": 4
+    },
+    "src/farmer_entity_item_action.cc": {
+      "hard_register_bindings": 8,
+      "inline_assembly": 2
+    },
+    "src/farmer_state_copy.cc": {
+      "hard_register_bindings": 0,
+      "inline_assembly": 1
+    },
+    "src/game_object_discard.cc": {
+      "hard_register_bindings": 0,
+      "inline_assembly": 3
+    },
+    "src/m4a.c": {
+      "hard_register_bindings": 0,
+      "inline_assembly": 1
+    },
+    "src/map_data.cc": {
+      "hard_register_bindings": 0,
+      "inline_assembly": 1
+    },
+    "src/menu_glyph_cache_interfaces.cc": {
+      "hard_register_bindings": 0,
+      "inline_assembly": 1
+    },
+    "src/mine_floor.cc": {
+      "hard_register_bindings": 25,
+      "inline_assembly": 9
+    },
+    "src/mine_floor_tile_resource.cc": {
+      "hard_register_bindings": 1,
+      "inline_assembly": 1
+    },
+    "src/npc_entity_dtor_thunks.cc": {
+      "hard_register_bindings": 0,
+      "inline_assembly": 1
+    },
+    "src/save_format.cc": {
+      "hard_register_bindings": 4,
+      "inline_assembly": 1
+    }
+  }
+}

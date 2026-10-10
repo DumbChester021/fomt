@@ -4,16 +4,16 @@ The original US FoMT layout contains two primary slots after a 0x28-byte SRAM
 header. Each slot begins at `0x28 + slot * 0x3FEC`. Preserve the serialized
 retail `GameState` size and offsets when adding compatible custom state.
 
-**Current verified checkpoint, October 11:** 90,644 matching C++ code bytes (9.6426%), 1,948 linked ASM functions left. Forced ROM sh_mv2t0b0a_4bb83627 passed with original SHA1. This is NOT complete save-system decompilation, runtime-load proof, or custom-game save readiness.
+**Current verified checkpoint, October 11:** 91,776 matching C++ code bytes (9.7630%), 1,934 linked ASM functions left. Forced ROM `sh_mv2zjs7o_1c4bad58` passed with the original SHA1. This is NOT complete save-system decompilation, runtime-load proof, or custom-game save readiness.
 
 ## Current source-owned save components
 
 - SRAM header helpers: seven newly exact methods /472B; SRAM proxy/error/verify methods eight /444B.
-- GameState cleanup: three functions /228B. Specialized exact state assignments: **Farm 180B**, **Dog 132B**; original address aliases remain.
-- SavedByteBuffer six exact methods /84B, SavedTransitionState eight /120B; packed progress flag setter 12B.
+- GameState cleanup: three functions /228B. Specialized exact state assignments: **Farm 180B**, **Dog 132B**, **Barn 296B**, **Farmer 448B**; original address aliases remain.
+- SavedByteBuffer six exact methods /84B, SavedTransitionState eight /120B; packed progress flag setter 12B. GameState initialization's 16-byte nonzero random helper and **76-byte shipping payout handler** are exact C++ (`src/game_state_random.cc`, `src/game_state_shipping_revenue.cc`). The latter copies ShippingBin value into MoneyState, optionally credits it twice, clears the bonus flag and resets the shipping value. The newly exact **52-byte** capped progress updater and **24-byte** packed flag initializer live in `src/game_state_packed_progress.cc` and `src/game_state_header_flag_init.cc`; the adjacent 48-byte B/C setters remain ASM. Eight packed-state field readers (64 B) and an all-owned-animals affection predicate (156 B) are also exact at `0x08010E48..0x08010F24`, with their own linked source and preserved original entrypoints; see [SAVE_LIFECYCLE.md](SAVE_LIFECYCLE.md).
 - Source-only serialized layout: **41 binary checks** for 32KiB SRAM, 0x28-byte header, two 0x3FEC slots, 0x34F4 GameState, and seven typed persistent subobjects (Farm, MoneyState, Farmer, Dog, buffer, transition, fishing). Unproven bytes remain opaque.
-- Read-only tools/ches/inspect_sram.py verifies signature, valid-mask, selected-slot, record length and sum, and only for consistent slots displays known money, buffer, transition and fishing values. Tests pass including u32 fishing sum wrap; **no real player SRAM/emulator load tested**.
-- Missing exact code: 740-byte loader, 776-byte GameState assignment, MoneyState/Farmer/Coop/Barn copies, save/load UI, SRAM write/erase and error paths. Do not customize until compatible behavior is verified.
+- Read-only tools/ches/inspect_sram.py verifies signature, valid-mask, selected-slot, record length and sum, and only for consistent slots displays known money, buffer, transition and fishing values. Tests pass including u32 fishing sum wrap. The included `baserom.sav` has zero valid-slot bits and both records are invalid; **no real player SRAM/emulator load tested**.
+- Missing exact code: 740-byte loader, 776-byte GameState assignment, MoneyState/Rucksack/Coop copies, save/load UI and some low-level SRAM write/erase paths. Do not customize until compatible behavior is verified.
 
 Proof and status: [SAVE_LIFECYCLE.md](SAVE_LIFECYCLE.md), [SAVE_SERIALIZED_LAYOUT.md](SAVE_SERIALIZED_LAYOUT.md), [GAME_STATE_SAVE_CLEANUP.md](GAME_STATE_SAVE_CLEANUP.md), [SAVE_DOG_STATE_COPY.md](SAVE_DOG_STATE_COPY.md), [SAVE_FARM_STATE_COPY.md](SAVE_FARM_STATE_COPY.md), [SAVE_GAMESTATE_ASSIGNMENT_MAP.md](SAVE_GAMESTATE_ASSIGNMENT_MAP.md), [SAVE_MENU_RETRY_TRACE.md](SAVE_MENU_RETRY_TRACE.md). Older source proof per-subobject: [SAVED_BYTE_BUFFER.md](SAVED_BYTE_BUFFER.md), [SAVE_TRANSITION_STATE.md](SAVE_TRANSITION_STATE.md), [SAVE_PACKED_PROGRESS.md](SAVE_PACKED_PROGRESS.md).
 

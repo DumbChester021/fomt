@@ -21,7 +21,7 @@ The source-derived `make save-progress` summary reports **only the bounded funct
 | 0x080D6B40 | MoneyState copy | 200 | ASM | asm/code_linkonce.s | `docs/SAVE_GAMESTATE_ASSIGNMENT_MAP.md`; best prior typed 196 bytes / 157 differing, placement experiments closed |
 | 0x080D6C08 | MoneyState nested cleanup | 80 | EXACT | src/game_state_cleanup.cc | `docs/GAME_STATE_SAVE_CLEANUP.md`; preserve original counted loops and allocation-mode behavior |
 
-**Boundary warning:** `0x080D6A80..0x080D6B40` is **two functions (128+64 bytes)**. Earlier combined descriptions of a "192-byte Rucksack copy" were wrong. The cleanup is source-owned and the 128-byte copy is **not**. This was confirmed by source symbols and isolated linked-byte comparisons. The function inventory reports 1,946 unresolved linked ASM functions in the October 11 checkpoint, not "1,946 remaining save routines."
+**Boundary warning:** `0x080D6A80..0x080D6B40` is **two functions (128+64 bytes)**. Earlier combined descriptions of a "192-byte Rucksack copy" were wrong. The cleanup is source-owned and the 128-byte copy is **not**. This was confirmed by source symbols and isolated linked-byte comparisons. The updated October 11 function inventory reports **1,934** unresolved linked ASM functions across the game, not 1,934 remaining save routines. The tracked 12-function save-copy subset remains 7 exact and 5 ASM.
 
 ## Decompilation evidence classes
 

@@ -40,7 +40,7 @@ EC void * func_0800FFE0(void * output, SavedByteBuffer const * state)
     ALIAS(GetSavedBufferLocation);
 
 // Retail accepts a full-width argument and stores only its low byte.
- // Narrowing the formal parameter changes Thumb codegen and the original ABI.
+// Narrowing the formal parameter changes Thumb codegen and the original ABI.
 EC void AppendSavedBufferByte(SavedByteBuffer * state, unsigned int value)
     SECTION(".text.saved_buffer_append");
 EC void AppendSavedBufferByte(SavedByteBuffer * state, unsigned int value)

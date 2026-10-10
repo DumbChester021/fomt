@@ -216,6 +216,9 @@ struct SceneRequestTransfer881
     }
 };
 
+// These asm("func_...") clauses bind old linker symbols for typed calls;
+// they do not inject inline ARM instructions or force a register. Preserve
+// them until the original ABI/return ownership can be declared directly.
 extern SmartPtr<AUnk_0800080C> RunController51504(SceneController *) asm("func_08051504");
 extern SmartPtr<AUnk_0800080C> RunController52984(SceneController *) asm("func_08052984");
 extern SmartPtr<AUnk_0800080C> RunController588AC(SceneController *) asm("func_080588AC");

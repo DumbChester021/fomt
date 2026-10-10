@@ -34,3 +34,15 @@ The isolated forced full ROM build passed (Ches `sh_mv2ut764_fd2499fc`, `fomt.gb
 Avoid repeating the four failed source-shape variations without new compiler evidence. Read their assembly and allocator traces if returning to the 128-byte copy; prioritize natural, maintainable typed code and exact output. Parallel save-system blockers remain `func_080D66A4` (Coop, 292 bytes, earlier exact-sized candidate with 35 register differences), `func_080D6B40` (MoneyState, 200 bytes), `func_080D4178` (parent GameState assignment, 776 bytes), `func_08011650` (loader, 740 bytes), and SRAM/UI menu paths. The existing SRAM inspector's synthetic tests do **not** prove that a genuine backed-up player save loads in an emulator.
 
 The typed cleanup was first verified in an uncommitted retail `main` working tree. A zero-context continuation must check Git and the canonical handoff for its subsequent publication status.
+
+## October 11 follow-up: copy-constructor hypothesis (CLOSED, scratch only)
+
+The original `func_080D6A80` preserves `source` across both inline active-entry loops, so a new source-level hypothesis tested an actual `Rucksack` copy constructor containing two `FixedVec` copy constructors, rather than just the prior free-function `CopyActiveFrom` helper. It is structurally credible but **none of the following variants match retail**:
+
+| Experiment | Form | Generated / retail bytes | Linked byte differences |
+| --- | --- | --- | ---: |
+| `rucksack-ctor-v1` | Placement-new `Rucksack` copy construction with inline member constructors | 152 / 128 | 145 |
+| `rucksack-ctor-v2` | Out-of-line `Rucksack` copy constructor, `source.end()` and post-loop size reload | 132 / 128 | 108 |
+| `rucksack-ctor-v3` | Out-of-line copy constructor, hoisted source count for end and final size | 120 / 128 | 111 |
+
+Artifacts (`.i`, `.s`, linked `.bin`, `.diff`, `.mismatch.txt`) are retained under `/mnt/waydroid-hdd/home-chester-waydroid/fomt-save-rucksack-20261011/`. The `v3` temporary header definitions are preserved there as `rucksack-ctor-v3-fixed_vec.hh` and `rucksack-ctor-v3-rucksack.hh`; candidate sources are `scratch_rucksack_copy_ctor_v1.cc` and `scratch_rucksack_copy_ctor_v2.cc` in the detached integration worktree. The temporary header edits were **restored** after the experiment; they were never installed in retail `main`. The discrepancy is source shape/register lifetime, not newly discovered save fields. Do not repeat this constructor family without additional ABI/compiler evidence. The 128-byte copy remains **ASM** and exact C++ coverage is unchanged by these trials.

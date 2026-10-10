@@ -3,6 +3,12 @@
 
 #include <stdlib.h>
 
+// READABILITY WARNING: func_0809CF34 is byte-exact but not ordinary portable
+// C++. Its fixed ARM registers, stack-addressed operands and inline assembly
+// are unresolved historical matching debt. The typed MineFloor layout and
+// simpler initializer are recoverable C++; do not model new work on the forced
+// register technique. See docs/MINE_FLOOR.md and the compiler fingerprint.
+
 struct ALIGN(4) MinePoint
 {
     u8 x;

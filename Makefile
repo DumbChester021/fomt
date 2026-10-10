@@ -100,7 +100,7 @@ progress: $(ROM)
 	@printf "head: "
 	@git log -1 --format='%h %s'
 
-.PHONY: compare progress docs-check save-check save-verify save-progress ci test
+.PHONY: compare progress docs-check save-check save-verify save-progress ci test readability-check readability-report
 
 # Fast documentation and save-track preflight. No ROM build required.
 docs-check:
@@ -110,12 +110,21 @@ save-check: docs-check
 	@python3 tools/ches/check_save_evidence.py
 	@python3 tools/ches/inspect_sram.py --self-test
 
+# Fast source-only triage: show the current evidence locations on demand, and
+# reject *new* hard-register / executable inline-ASM debt without review.
+readability-check:
+	@python3 tools/ches/audit_source_readability.py --self-test
+	@python3 tools/ches/audit_source_readability.py --check
+
+readability-report:
+	@python3 tools/ches/audit_source_readability.py --details
+
 # In CI we cannot assume a legally obtained original ROM or matching toolchain.
 # These are all independently runnable source-only automated tests.
 ci: save-check
 	@bash tools/scripts/tests/calcrom_test.sh
 	@python3 -m py_compile tools/ches/check_docs.py tools/ches/check_save_evidence.py tools/ches/save_progress.py tools/ches/audit_docs.py tools/ches/inspect_sram.py tools/ches/audit_source_readability.py
-	@python3 tools/ches/audit_source_readability.py
+	@$(MAKE) readability-check
 	@python3 tools/ches/save_progress.py
 
 # Full local automated suite, requiring the original ROM and matching compiler.

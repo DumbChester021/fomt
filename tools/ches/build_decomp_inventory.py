@@ -635,22 +635,24 @@ def main():
     p = argparse.ArgumentParser()
     p.add_argument("--repo", type=Path, default=Path.cwd())
     p.add_argument("--json", type=Path, default=Path("tools/ches/decomp_inventory.json"))
-    p.add_argument("--markdown", type=Path, default=Path("tools/ches/DECOMP_QUEUE.md"))
+    p.add_argument("--markdown", type=Path, default=None,
+                   help="Optional ranked-analysis output; never overwrite the onboarding queue redirect")
     args = p.parse_args()
 
     repo = args.repo.resolve()
     data = build(repo)
 
     json_path = args.json if args.json.is_absolute() else repo / args.json
-    md_path = args.markdown if args.markdown.is_absolute() else repo / args.markdown
     json_path.parent.mkdir(parents=True, exist_ok=True)
-    md_path.parent.mkdir(parents=True, exist_ok=True)
     json_path.write_text(json.dumps(data, indent=2) + "\n")
-    write_markdown(data, md_path)
 
     print(json.dumps(data["summary"], indent=2))
     print(json_path)
-    print(md_path)
+    if args.markdown is not None:
+        md_path = args.markdown if args.markdown.is_absolute() else repo / args.markdown
+        md_path.parent.mkdir(parents=True, exist_ok=True)
+        write_markdown(data, md_path)
+        print(md_path)
 
 
 if __name__ == "__main__":
