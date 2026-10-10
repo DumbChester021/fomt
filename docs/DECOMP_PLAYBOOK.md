@@ -17,11 +17,12 @@ Never mix custom behavior into a retail-matching contribution.
 
 ## Authority and read order
 
-For a fresh agent with no conversation context, read **only these three project documents by default**:
+For a fresh agent with no conversation context, read **only one onboarding page** and the permanent rules when editing:
 
-1. `AGENTS.md`: standing contract. Apply the local decompilation skill for reverse-engineering work.
-2. `START_HERE.md`: compact live priority, metrics, verification and document precedence.
-3. `tools/ches/NEXT_AGENT_HANDOFF.md`: the bounded next task, blocked approaches and required references.
+1. `START_HERE.md`: **what this is, verified state, exact next task and where to find things**.
+2. `AGENTS.md`: permanent safety/exactness/branch rules for agents; apply the local decompilation skill for reverse-engineering work.
+
+`tools/ches/NEXT_AGENT_HANDOFF.md` is a backward-compatible redirect, **not another required document**.
 
 Consult a **single relevant subsystem reference** when needed. On save work, use `docs/SAVE_EVIDENCE_MATRIX.md` for ownership and bounds, then that one function's proof/ASM. Do **not** preload this playbook, the prior general-purpose priority map, session history, old checkpoints, the whole compiler research book, or human onboarding guides. This playbook itself is only needed when checking or changing workflow, gates or operating policy.
 
@@ -274,14 +275,12 @@ The normal tracked installer/build path is the authority. Do not use a private c
 Update every document whose current truth changed.
 
 At minimum, for a meaningful completed batch:
-- `START_HERE.md`
-- `tools/ches/NEXT_AGENT_HANDOFF.md`
-- `tools/ches/SESSION_STATUS.md`
-- `docs/DECOMP_NOTES.md`
-- `docs/REPO_MAP.md`
-- `EXPERIMENT_INDEX.md`
-- `FAILURES_AND_CLOSED_PATHS.md` when a failed path taught something reusable
-- `docs/FOMT_COMPILER_RESEARCH.md` when compiler/toolchain facts changed
+- Update `START_HERE.md` **only if** metrics, verified build authority, priority or next task changed.
+- Update the relevant target's subsystem evidence matrix or proof note **only if** an address, matching status, ownership or behavior changed.
+- Append a dated entry to `tools/ches/HISTORY.md` for discoveries that supersede historical claims; preserve older experiments.
+- Update `EXPERIMENT_INDEX.md`, `FAILURES_AND_CLOSED_PATHS.md` or compiler research **only when that specific family of results changed**.
+
+Never update historical notes, progress redirects, session-status redirects, broad repo maps or old priority maps merely to duplicate a current status line.
 
 Record both successes and failures that would affect a future decision.
 

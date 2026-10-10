@@ -73,13 +73,8 @@ def main() -> int:
     recovered = TOTAL_CODE - remaining
     marker = f"{recovered:,} / {TOTAL_CODE:,}"
     pct = f"{100 * recovered / TOTAL_CODE:.4f}%"
-    for rel in (
-        "START_HERE.md",
-        "README.md",
-        "docs/PROGRESS.md",
-        "tools/ches/SESSION_STATUS.md",
-        "tools/ches/NEXT_AGENT_HANDOFF.md",
-    ):
+    # Only the live dashboard owns current numbers; no competing status copies.
+    for rel in ("START_HERE.md",):
         page = (ROOT / rel).read_text()
         if marker not in page:
             errors.append(f"{rel} lacks current metric {marker}")

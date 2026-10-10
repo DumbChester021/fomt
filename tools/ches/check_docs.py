@@ -6,6 +6,8 @@ archived experiments. Error output explains broken paths and status drift.
 """
 from __future__ import annotations
 import argparse
+import hashlib
+import json
 import re
 import subprocess
 import sys
@@ -63,6 +65,40 @@ def check():
         )
         if old.returncode == 0 and not history.read_text().startswith(old.stdout):
             errors.append("tools/ches/HISTORY.md was rewritten or truncated; append a dated correction instead")
+    # Onboarding is a single live page; all pre-merge originals are SHA-verified.
+    if (ROOT / "TODO.md").exists():
+        errors.append("root TODO.md duplicates the sole current task in START_HERE.md")
+    start = ROOT / "START_HERE.md"
+    for title in ("## What is this?", "## Where are we now?",
+                  "## What do we do next?", "## Where are things?"):
+        if title not in start.read_text():
+            errors.append(f"START_HERE.md missing required onboarding answer: {title}")
+    for rel, limit in (
+        ("AGENTS.md", 6500),
+        ("README.md", 4500),
+        ("START_HERE.md", 7500),
+        ("tools/ches/NEXT_AGENT_HANDOFF.md", 1000),
+        ("tools/ches/SESSION_STATUS.md", 1000),
+        ("docs/PROGRESS.md", 1000),
+        ("docs/REPO_MAP.md", 1500),
+        ("docs/DECOMP_PRIORITY_MAP.md", 1500),
+    ):
+        if (ROOT / rel).stat().st_size > limit:
+            errors.append(f"{rel} has become a duplicate/oversized live document")
+    archive = ROOT / "tools/ches/checkpoints/onboarding-consolidation-2026-10-11"
+    manifest = archive / "MANIFEST.json"
+    if manifest.is_file():
+        entries = json.loads(manifest.read_text())["files"]
+        for entry in entries:
+            p = archive / entry["path"]
+            if not p.is_file():
+                errors.append(f"missing archived original: {entry['path']}")
+                continue
+            contents = p.read_bytes()
+            if len(contents) != entry["bytes"] or hashlib.sha256(contents).hexdigest() != entry["sha256"]:
+                errors.append(f"archived original modified: {entry['path']}")
+    else:
+        errors.append("missing pre-consolidation original-file manifest")
     if errors:
         for x in errors: print("ERROR:",x,file=sys.stderr)
     if warnings:

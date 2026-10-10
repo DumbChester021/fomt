@@ -40,7 +40,7 @@ The `Owner` column is checkable: `EXACT` means source-owned and whole-ROM-verifi
 | New failure or closed method | Scratch evidence, per-function proof/closed-path record, this matrix, handoff anti-repeat instructions; **do not** change the exact reconstruction metric |
 | Compiler/ABI finding | `docs/FOMT_COMPILER_FINGERPRINT.md`, `docs/FOMT_COMPILER_RESEARCH.md`, relevant Call238 experiment index and closed-paths; verify other functions using the same ABI |
 | Ownership or load-flow change | `docs/GAME_STATE_SAVE_CLEANUP.md`, `docs/SAVE_MENU_RETRY_TRACE.md`, save lifecycle, assignment map and the end-to-end player-save test plan |
-| Publication/version changes | `git log -1` and `git status -sb`, `START_HERE.md`, `tools/ches/SESSION_STATUS.md`, `docs/PROGRESS.md`; historical dated records should keep their historical SHAs |
+| Publication/version changes | Verify `git log -1` and `git status -sb`, update only `START_HERE.md` for current state; append dated corrections to `tools/ches/HISTORY.md`. Status/progress redirects are not live metric stores. |
 
 Never infer success from a historical screenshot or prose status alone. Compare current assembly inventory, source, symbols, original SHA1, and provenance. A machine check is provided by `python3 tools/ches/check_save_evidence.py`, which tests the table against the current linked-assembly inventory and source paths (it is not a replacement for `make -B -j4 compare`).
 

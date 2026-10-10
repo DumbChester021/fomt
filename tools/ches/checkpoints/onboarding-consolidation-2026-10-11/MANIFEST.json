@@ -1,0 +1,56 @@
+{
+  "date": "2026-10-11",
+  "purpose": "verbatim pre-consolidation evidence",
+  "files": [
+    {
+      "path": "AGENTS.md",
+      "bytes": 26420,
+      "sha256": "2011fef26cf4784a19af461bc27f022fc3f5046b34a3ff2c031683192cf1b4b6"
+    },
+    {
+      "path": "README.md",
+      "bytes": 12314,
+      "sha256": "a0544c9da0ab007afb56025029eeda1034683326e3108137c3343543a9fbd0a9"
+    },
+    {
+      "path": "START_HERE.md",
+      "bytes": 6320,
+      "sha256": "83727b46e5935841b7c5876632c79e95124d07749a14d538625d8b4fd015601a"
+    },
+    {
+      "path": "TODO.md",
+      "bytes": 10357,
+      "sha256": "adb4855ee30c8a717f35d725eee91932b8a7138fdcf9df57af3548a0c65fbea5"
+    },
+    {
+      "path": "tools/ches/NEXT_AGENT_HANDOFF.md",
+      "bytes": 4001,
+      "sha256": "4b64be01be5e3e92a0f88ad1558fab3e6f1f04a7221572c11df007c26ab7d461"
+    },
+    {
+      "path": "tools/ches/SESSION_STATUS.md",
+      "bytes": 9907,
+      "sha256": "6aab4e72bd9b077af747a6c0259563b5f6365fd520868ab03559560ce66d04bc"
+    },
+    {
+      "path": "docs/PROGRESS.md",
+      "bytes": 15974,
+      "sha256": "cdcc7eca0fd561d74c5976425f87979243b75218f043a5081417fbe8a5a9abab"
+    },
+    {
+      "path": "docs/DECOMP_PRIORITY_MAP.md",
+      "bytes": 30421,
+      "sha256": "b348b1392f7218d2fbbdc24e8a08b21b37aedd538d4ba172d0d02a771ecf67cb"
+    },
+    {
+      "path": "docs/REPO_MAP.md",
+      "bytes": 23701,
+      "sha256": "b779d9d111e2eaa806136f5425d009032ddf9c23008fba264342111753bdd676"
+    },
+    {
+      "path": "tools/ches/DECOMP_QUEUE.md",
+      "bytes": 16961,
+      "sha256": "4665294bca0f114a85e88d102f79e74776703a7fa58b433d4583ddd18d23605f"
+    }
+  ]
+}
