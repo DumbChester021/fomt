@@ -15,6 +15,7 @@ We preserve original ABI entrypoints and honest unknown field names rather than 
 | `make readability-report` | Current source inventory with file/line evidence of register and inline-assembly debt | No |
 | `python3 tools/ches/audit_source_readability.py --json --details` | Machine-readable locations for **all** detected indicators | No |
 | `make readability-check` | Fast lexer self-test and regression gate against new pinned-register/inline-ASM constructs | No |
+| `make`, `make compare`, `make fomt.gba`, `make fomt.elf` | Automatically execute the fast readability guard, with order-only dependencies so a check does **not** force a relink; ROM builds still require original inputs | Yes (for fresh ROM builds) |
 | `make ci` | Includes readability gate, save evidence, documentation and source-only tests | No |
 | `make test` | All above plus **forced complete ROM rebuild** and original SHA1 compare | Yes |
 

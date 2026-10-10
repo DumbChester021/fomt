@@ -128,6 +128,8 @@ ci: save-check
 	@python3 tools/ches/save_progress.py
 
 # Full local automated suite, requiring the original ROM and matching compiler.
+# The nested compare rechecks readability deliberately because it is also a
+# standalone build entrypoint; this is a small source scan, not another rebuild.
 # This proves the complete built ROM, not a real interactive emulator load.
 test: ci
 	@$(MAKE) -B -j4 compare
@@ -140,6 +142,12 @@ save-progress:
 save-verify: save-check
 	@$(MAKE) -B -j4 compare
 
+
+# Both ROM and ELF build targets run the fast readability regression guard,
+# even when invoked directly (make fomt.gba / make fomt.elf). Order-only
+# prerequisites prevent a phony source check from forcing relinks. GNU make
+# runs the shared guard once per invocation, not once per compiled source.
+$(ROM) $(ELF): | readability-check
 
 # ROM from ELF
 %.gba: %.elf

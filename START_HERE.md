@@ -35,7 +35,7 @@ The **128-byte Rucksack active-entry copy** (`func_080D6A80`), Coop (292 B), Mon
 
 ## Verify
 
-- Documents: `make docs-check`; fast source/readability regression review: `make readability-check` (detailed inventory: `make readability-report`).
+- **Every normal retail ROM/ELF build** (`make`, `make compare`, `make fomt.gba`, `make fomt.elf`) automatically runs the source-readability regression guard without forcing a rebuild; portable `make ci` and full `make test` also run it. Documents: `make docs-check`; manual recheck: `make readability-check`; detailed source inventory: `make readability-report`. The guard catches new coercive constructs, **not** all semantic readability issues.
 - Save metadata, function ownership/bounds and synthetic SRAM tests: `make save-check` (no ROM rebuild). The scoped save subset is printed by `make save-progress`.
 - Save production source: `make save-verify` (includes full forced ROM comparison).
 - All available local automated tests including a forced ROM rebuild: `make test`; whole-game and scoped save numbers: `make progress`.

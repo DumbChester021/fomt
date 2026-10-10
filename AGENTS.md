@@ -18,7 +18,7 @@
 ## Repository and verification safety
 
 - Inspect Git HEAD, status, target paths, and retail/custom worktrees before mutation. Preserve preexisting edits; no blind reset, clean, stash, delete or destructive overwrites.
-- Use `make docs-check` for documentation changes, `make readability-check` for new compiler-forcing debt, and `make save-check` for save research metadata. Use `make ci` for all portable checks and `make test` for the full local test suite including a forced exact-ROM rebuild. `make save-verify` covers a focused save-source integration. Any emulator gameplay tests need separate recorded proof; do not claim those passed because the ROM matched. Inspect exit codes and staged diffs.
+- Use `make docs-check` for documentation changes, `make readability-check` for new compiler-forcing debt (also automatically gated by ROM/ELF builds), and `make save-check` for save research metadata. Use `make ci` for all portable checks and `make test` for the full local test suite including a forced exact-ROM rebuild. `make save-verify` covers a focused save-source integration. Any emulator gameplay tests need separate recorded proof; do not claim those passed because the ROM matched. Inspect exit codes and staged diffs.
 - After exact code integration, regenerate inventory and check source readability. Do not inflate coverage for a previously owned function or a readability-only refactor.
 - Publish verified coherent checkpoints to **`ches/main` only**, after diff review, with updated impacted evidence. Do not claim success or a push if it did not happen.
 
