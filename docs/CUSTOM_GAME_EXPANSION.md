@@ -1,8 +1,12 @@
 # Custom-game expansion enablement roadmap
 
-## Active pivot — October 6, 2026
+## Current override — October 10, 2026
 
-The retail project has pivoted to **throughput-first whole-game decompilation**.
+The user has paused **all custom-game expansion** until the retail save structure, GameState initialization and entire save/load lifecycle are understood and decompiled in exact, human-readable C++. The full SRAM header is now source-owned (seven new functions/472 bytes), but this does **not** make custom persistence ready. This document retains future expansion research; the current work is in [SAVE_LIFECYCLE.md](SAVE_LIFECYCLE.md) and [START_HERE.md](../START_HERE.md).
+
+## Earlier pivot — October 6, 2026 (superseded)
+
+At that time, the retail project had pivoted to **throughput-first whole-game decompilation**.
 The custom-game goal is unchanged: make future added content safe and source-
 level, but do not let one expansion lane dictate the retail work queue when a
 higher-leverage TU/type cluster can unlock more of the game.
@@ -23,9 +27,9 @@ in the separate custom-game worktree. Save/persistence stays a later lane and
 | Dialogue/events | Script engine source exists; Mary covers most vanilla bytecode | Native trigger/call registration, fixed event tables/consumers and reliable insertion path |
 | Graphics/assets | SpriteAnimator/effect/resource infrastructure is known; item icons now have a byte-exact PNG export/import/build path with shared-resource validation | Trace each unowned asset family to its runtime owner/consumer, decompile/type that boundary, then add only the authoring support required by the proven family; animation 352 + the UI sprite path is first |
 | Maps | Terrain/map groundwork exists | Editable resource structures and safe insertion/registration workflow |
-| Save/persistence | Writer/checksum/slot geometry and 0xAF0 unused tail are proven; loader semantics bounded | **Paused** until runtime expansion needs persistent custom state |
+| Save/persistence | Writer/checksum/slot geometry, exact source-owned SRAM header, and 0xAF0 unused tail per slot | **Active retail work:** full GameState loader, typed persistent objects, SRAM I/O, save/load menu and erase/copy/retry; custom persistence deferred |
 
-## Active priority order
+## Historical expansion priority order (deferred)
 
 ### 1. Exploit the whole-game decompilation queue
 

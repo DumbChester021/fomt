@@ -13,7 +13,7 @@ This is the live dashboard for the US Harvest Moon: Friends of Mineral Town matc
 
 ## Active branch and build authority
 
-- Retail branch: **`main`**, tracking **`ches/main`**. Latest published retail source checkpoint before this new save-header batch: **`9267e9a`** (save-readiness documentation); verify `git log -1` for the new save-code checkpoint. Run `git log -1` and `git status -sb` for the current authority.
+- Retail branch: **`main`**, tracking **`ches/main`**. Latest published exact source checkpoint: **`f069823`** (seven SRAM-header functions and the save-first handoff). Documentation-only changes do not alter the compiled-code baseline; verify `git log -1` for subsequent commits. Run `git log -1` and `git status -sb` for the current authority.
 - Prior source checkpoints: **`0bef5b7`** (23 dispatch functions) and **`399882d`** (18 action functions). New callback integration is forced-ROM exact; its publication SHA comes from Git.
 - Custom gameplay stays in the separate custom-game worktree.
 - ROM: **8,388,608 bytes**, SHA1 **a2fc3574f0a65a4fcf7682fb274b9d7eebdef963**.
@@ -26,7 +26,7 @@ This is the live dashboard for the US Harvest Moon: Friends of Mineral Town matc
 
 ## Handoff readiness
 
-**Newest exact batch:** **2 GameState audio and child callback functions / 48 linked bytes**. Forced retail ROM comparison `sh_mv2471un_7d10991c` passed. The preceding 54 functions / 1,688 bytes remain exact; **1,981 linked assembly functions** remain. Read `docs/GAME_STATE_AUDIO_CALLBACKS.md` and the source-quality audit.
+**Earlier exact batch:** **2 GameState audio and child callback functions / 48 linked bytes**. Forced retail ROM comparison `sh_mv2471un_7d10991c` passed. The preceding 54 functions / 1,688 bytes remain exact; **1,981 linked assembly functions** remain. Read `docs/GAME_STATE_AUDIO_CALLBACKS.md` and the source-quality audit.
 
 Previous October 10 continuation added **18 exact functions / 632 linked bytes**, split across three 52-byte owner destructors, four 40-byte global-owner destructors, five small resource helpers (124 bytes), and six 32-byte simple destructors. Four forced retail ROM comparisons passed and restored exact original SHA1. The current inventory is **88,972 / 940,036 game-code bytes (9.4647%)**, 1,981 unresolved ASM functions. The earlier 18-function code was committed as **`1e522c9`**; the later 20-function GameState dispatch batch was published in **`9bac767`**, with the three-function extension verified afterward. See the current top of `tools/ches/NEXT_AGENT_HANDOFF.md` for proof and next ranking.
 

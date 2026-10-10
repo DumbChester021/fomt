@@ -32,7 +32,7 @@ The user explicitly requested that **full retail save decompilation and human-re
 
 ## Earlier active scope — October 6, 2026 (superseded by save-first override)
 
-The active goal is now **throughput-first whole-game retail decompilation**, while
+The former goal was **throughput-first whole-game retail decompilation**, while
 continuing to improve the runtime/data boundaries needed by the separate
 custom-game branch. Preserve the byte-identical US retail ROM on `main`.
 Custom behavior still belongs only in the separate custom-game worktree.

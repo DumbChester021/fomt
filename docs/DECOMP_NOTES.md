@@ -1,16 +1,20 @@
 # FoMT Matching Decomp Notes
 
-## Active scope (adopted October 6; current snapshot October 10, 2026)
+## Current save-only directive — October 10, 2026
 
-The active goal is **throughput-first whole-game retail decompilation**.
+The entire retail save lifecycle must be decompiled into human-readable and byte-exact C++ before the user resumes customization. Seven exact SRAM-header methods / 472 bytes are now source-owned. Focus on low-level SRAM I/O, the 740-byte GameState loader and its typed default initializer, saved subobjects, and all save/load/copy/erase/retry UI paths. Preserve the old 100+ loader experiments; do not repeat failed compiler work. See [SAVE_LIFECYCLE.md](SAVE_LIFECYCLE.md).
+
+## Earlier scope (October 6, superseded)
+
+The earlier goal was **throughput-first whole-game retail decompilation**.
 Preserve the byte-identical US retail ROM on `main`, keep custom behavior in
 the separate custom-game worktree, and prioritize inferred translation units,
 structural/type clusters, repeated function families, shared class/data
 ownership, and recoverable bytes per effort.
 
-The legacy save loader `func_08011650` remains paused, with its experiments and
-exact continuation preserved. Other documented compiler-sensitive islands stay
-parked unless new structural evidence materially changes their leverage.
+Under that previous priority, the legacy loader `func_08011650` was paused.
+As of October 10 it is the active high-priority reconstruction target. Other
+unrelated compiler-sensitive islands remain parked until priorities change.
 
 The unified remaining-function inventory/ranked queue is operational. Runtime
 analysis should evolve into deterministic savestate/scripted coverage and

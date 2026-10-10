@@ -13,12 +13,7 @@ The project has two goals that support each other but must remain separate:
 
 Never mix custom behavior into a retail-matching contribution.
 
-Current priority is **throughput-first whole-game retail decompilation**.
-Custom-game readiness remains an important payoff, but target selection is now
-driven by total useful reconstruction: coherent translation units/type clusters,
-repeated-function families, shared class/data ownership, and recoverable bytes
-per unit effort. Save-loader exact matching remains paused. Custom behavior still
-stays on the separate custom-game worktree.
+**Current user-directed priority (October 10, 2026): finish the entire retail save system in human-readable, byte-identical C++ before customization.** Within that subsystem, recover the SRAM I/O proxies, default GameState initialization, full 740-byte loader, persistent types, and all UI save/load/overwrite/copy/erase/error/retry paths. The former decision to park save-loader matching is superseded. Read `docs/SAVE_LIFECYCLE.md` and reuse the extensive closed experiments in `tools/ches/checkpoints/save-loader-08011650-2026-10-04/`. Behavioral pseudocode is research, not integrated exact source. No custom-game implementation during this phase.
 
 ## Authority and read order
 
@@ -30,7 +25,8 @@ For a fresh agent with no conversation context, read in this order:
 4. `docs/DECOMP_PLAYBOOK.md`: this durable process manual.
 5. `tools/ches/NEXT_AGENT_HANDOFF.md`: exact next task and preserved candidate state.
 6. `tools/ches/SESSION_STATUS.md`: concise current snapshot; chronology stays in dated checkpoints and Git.
-7. Relevant subsystem docs, experiment index, and failure ledger.
+7. For the active save priority: `docs/SAVE_LIFECYCLE.md`, `docs/SAVE_FORMAT.md`, then `tools/ches/checkpoints/save-loader-08011650-2026-10-04/README.md` and its closed experiments.
+8. Other relevant subsystem docs, experiment index, and failure ledger.
 
 For compiler-sensitive work, especially when a current target depends on previously reconstructed compatibility behavior, also read:
 - `docs/FOMT_COMPILER_RESEARCH.md`

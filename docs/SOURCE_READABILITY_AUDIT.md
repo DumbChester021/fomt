@@ -8,21 +8,23 @@ Snapshot: October 10, 2026. Audit scope: reconstructed `src/*.cc` only, not the 
 
 Human-readable reconstruction means a maintainer can tell *what a function does, what its arguments and state mean, and how to change it safely* without constantly returning to the disassembly. The repository has examples that do this well, notably `src/fishing_records.cc`: `RecordFishingCatch`, `GetTotalFishCaught`, and typed fishing records explain gameplay effects. Other code is clearly structured but not yet understood at the same level.
 
-The newest GameState/menu units, `src/game_state_menu_dispatch.cc`, `src/game_state_menu_actions.cc`, and `src/game_state_menu_callbacks.cc`, are **structurally readable but only partially semantically named**. Their C++ exposes true state/target/child pointers, argument widths, callback tables, status changes and the known coop-incubation call. However, symbols like `func_08015970`, `action88`, generic target/child types and vtable padding still require further callsite/runtime evidence. Renaming an unknown callback to a pleasant-sounding gameplay name would risk misinformation.
+The preceding GameState/menu units, `src/game_state_menu_dispatch.cc`, `src/game_state_menu_actions.cc`, and `src/game_state_menu_callbacks.cc`, are **structurally readable but only partially semantically named**. Their C++ exposes true state/target/child pointers, argument widths, callback tables, status changes and the known coop-incubation call. However, symbols like `func_08015970`, `action88`, generic target/child types and vtable padding still require further callsite/runtime evidence. Renaming an unknown callback to a pleasant-sounding gameplay name would risk misinformation.
 
-The newly integrated `src/game_state_audio_callbacks.cc` adds a sound-player busy query grounded by other named callers, plus a still-unidentified child callback. The latter remains neutral despite being byte-exact. See `docs/GAME_STATE_AUDIO_CALLBACKS.md`.
+The previously integrated `src/game_state_audio_callbacks.cc` adds a sound-player busy query grounded by other named callers, plus a still-unidentified child callback. The latter remains neutral despite being byte-exact. See `docs/GAME_STATE_AUDIO_CALLBACKS.md`.
 
 There is also lower-level matching debt. For example, `src/mine_floor.cc` uses explicit ARM register bindings and inline assembly to reproduce compiler-specific behavior. Those functions need careful independent review before anyone treats them as straightforward portable or mod-friendly C++.
 
+**Save-header readability milestone:** `src/save_slot_header.cc` adds seven named, naturally readable and byte-exact methods. In particular, `ClearSaveSlotValid` replaces 68 bytes of anonymous Thumb instructions with a proven valid-slot mask operation. The full 740-byte save loader and UI save/load paths are still assembly; see [SAVE_LIFECYCLE.md](SAVE_LIFECYCLE.md). Their readable research descriptions must not be counted as reconstructed executable source.
+
 ## Repeatable heuristic snapshot
 
-Run: `python3 tools/ches/audit_source_readability.py` (or `--json`). Current post-integration heuristic snapshot:
+Run: `python3 tools/ches/audit_source_readability.py` (or `--json`). Current post-save-header integration snapshot:
 
 | Indicator | Occurrences | C++ files containing it |
 | --- | ---: | ---: |
-| Files and lines scanned | 136 files | 19,919 lines |
-| Address-derived function definitions (conservative regex) | 135 | 16 |
-| Address-derived symbol references | 1,405 | 93 |
+| Files and lines scanned | 137 files | 20,047 lines |
+| Address-derived function definitions (conservative regex) | 138 | 17 |
+| Address-derived symbol references | 1,443 | 94 |
 | Unknown/padding array fields | 78 | 21 |
 | Offset-named callback calls | 44 | 3 |
 | Compiler-sensitive syntax indicators | 20 | 7 |

@@ -1,8 +1,12 @@
 # Custom-character enablement roadmap and deferred design
 
-## Active scope — October 6, 2026
+## Current override — October 10, 2026
 
-The retail project now uses **throughput-first whole-game decompilation** rather
+Custom NPC and character implementation is **on hold** at the user's request until the complete retail save structure and lifecycle are reconstructed as natural, human-readable and byte-exact C++. The SRAM header is now completely source-owned, but the main loader, GameState subobjects and save/load menu handlers remain incomplete. See [SAVE_LIFECYCLE.md](SAVE_LIFECYCLE.md) for the active work and [START_HERE.md](../START_HERE.md) for current status.
+
+## Earlier scope — October 6, 2026 (superseded)
+
+At that time, the retail project used **throughput-first whole-game decompilation** rather
 than making character expansion the primary queue. Preserve the byte-identical
 US retail ROM on `main`; custom behavior remains only in the separate
 custom-game worktree.
@@ -13,9 +17,9 @@ families when they rank highly, then reuse that understanding for future added
 NPCs and romance candidates. Do not force the retail queue to stay inside the
 character lane when another coherent unit has better total leverage.
 
-The legacy save loader `func_08011650` remains paused with its research
-preserved. Persistence returns when a concrete runtime feature needs stored
-custom state.
+At that earlier point the legacy save loader `func_08011650` was paused.
+It is now the active retail save-decompilation priority, while custom character
+implementation remains deferred.
 
 This page owns the **character lane** of the broader custom-game roadmap. The
 cross-system retail queue is in [DECOMP_PRIORITY_MAP.md](DECOMP_PRIORITY_MAP.md)
@@ -25,7 +29,7 @@ requirements; they remain valid design evidence, not the immediate retail next
 action.
 
 [CHARACTERS.md](CHARACTERS.md) owns proven retail character architecture.
-[SAVE_FORMAT.md](SAVE_FORMAT.md) owns the paused retail persistence boundary.
+[SAVE_FORMAT.md](SAVE_FORMAT.md) documents the retail format; [SAVE_LIFECYCLE.md](SAVE_LIFECYCLE.md) owns the active save reconstruction.
 
 ## What is ready, and what still needs work
 
@@ -37,7 +41,7 @@ action.
 | Entity lifecycle | Shared NPC class interface, matching Lillia pair, native GameObject lookup/teardown, and complete 94-selector factory mapping | Recover only the remaining factory family types/source needed by an extension design, then define safe registration/allocation rules |
 | Rendering | Shared retail animator/effect infrastructure and actor-facing refresh are recovered | A verified new asset/provider entry and resource-budget measurements |
 | Dialogue | Mary can compile event bytecode; original scripts are available for inspection | Trigger registration, native callable routing, portrait selection, gift/event behavior |
-| Persistence | Matching retail checksum/writer; 2,800 unused bytes per slot; loader semantics bounded and research preserved | **Paused** until the runtime/content expansion path needs persistent custom state |
+| Persistence | Matching retail checksum/writer, complete SRAM header helpers (7 new exact functions/472 bytes), and 2,800 unused bytes per slot | Complete main loader, GameState type graph, save-menu operations and copied-emulator-save tests before any custom persistence |
 
 Updating documentation or recovering a format improves expansion readiness but
 does not increase matching source percentage or demonstrate gameplay support.
@@ -122,7 +126,7 @@ The complete `func_0801A8E0` factory has also been mapped without pretending
 its unresolved families are semantically named: 94 selectors lead to 58 unique
 construction targets; selectors 1..34 are the original resident character IDs,
 35 is the child, 36..42 are Harvest Sprites, and 43 is occupied. The factory
-body itself remains assembly. Legacy loader exact matching is paused. Native
+body itself remains assembly. Legacy loader exact matching is now the retail priority. Native
 interaction selection is now substantially mapped: social native calls 124..133
 use the broad NPC resolver for friendship/talk/gift state, while 134..136 use
 the fixed six-bachelorette resolver for love. `func_08045584` is exact source;

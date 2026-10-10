@@ -120,7 +120,7 @@ Start here:
 - [docs/PROGRESS.md](docs/PROGRESS.md) - current reconstruction metrics and milestones
 - [docs/REPO_MAP.md](docs/REPO_MAP.md) - repository and subsystem orientation
 - [docs/DECOMP_PLAYBOOK.md](docs/DECOMP_PLAYBOOK.md) - matching workflow and validation rules
-- [docs/DECOMP_PRIORITY_MAP.md](docs/DECOMP_PRIORITY_MAP.md) - throughput-first target strategy
+- [docs/DECOMP_PRIORITY_MAP.md](docs/DECOMP_PRIORITY_MAP.md) - save-first priorities and deferred general decompilation strategy
 - [docs/ASSET_DECOMPILATION.md](docs/ASSET_DECOMPILATION.md) - asset/data counting and authoring policy
 - [docs/FOMT_COMPILER_FINGERPRINT.md](docs/FOMT_COMPILER_FINGERPRINT.md) - pinned compatibility compiler and the 13 reconstructed behaviors
 - [docs/SOURCE_READABILITY_AUDIT.md](docs/SOURCE_READABILITY_AUDIT.md) - separately audited source readability and semantic debt

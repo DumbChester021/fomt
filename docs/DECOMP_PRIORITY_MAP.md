@@ -1,8 +1,8 @@
 # FoMT Decompilation Priority Map
 
-## Active scope (adopted October 6; snapshot October 10, 2026)
+## Former active scope (October 6; superseded by save-first priority)
 
-The active goal is **throughput-first whole-game retail decompilation**.
+The previous goal was **throughput-first whole-game retail decompilation**.
 Preserve the byte-identical US retail ROM on public branch `main`, keep custom
 behavior in the separate custom-game worktree, and prioritize coherent
 reconstruction that maximizes useful source and downstream understanding.
@@ -20,10 +20,10 @@ Current verified working state on `main`:
 - packed bank: **416 / 493 semantically owned animations**;
 - retail ROM remains exact at SHA1 `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
 
-The legacy save loader `func_08011650`, `func_080455D8`,
-`func_08092A70`, `func_080CAC7C` / `func_080CAD18`, and
-`func_08092940` remain parked unless new structural evidence raises their
-leverage.
+Under the earlier priority, `func_08011650` was parked alongside
+`func_080455D8`, `func_08092A70`, `func_080CAC7C` / `func_080CAD18`, and
+`func_08092940`. **The save loader is now active** under the explicit October 10
+save-only override below; the unrelated functions remain deferred.
 
 This is the project roadmap for zero-context continuation on the public fork.
 It is not intended as upstream pull-request content.
@@ -55,7 +55,7 @@ The old direct-call leverage analyzer remains useful input:
 
 but its score is no longer an execution order.
 
-## Current priority: work the live queue and preserve family-level leverage
+## Historical general-throughput queue (currently deferred)
 
 **Latest matching unit (October 10):** two GameState sound-player and child callback functions / **48 byte-exact linked bytes** in `src/game_state_audio_callbacks.cc`. The neighboring 16784 fade-out routine remains parked on codegen. `docs/SOURCE_READABILITY_AUDIT.md` separately audits maintainability; matching does not guarantee semantic completeness. The preceding matching unit added 13 menu callback and incubation routines / **444 exact linked bytes** in `src/game_state_menu_callbacks.cc`; five source islands, forced full-ROM verification passed. Together with the previous 23-function dispatch and 18-function action clusters, that is **54 exact functions / 1,688 bytes**. The adjacent `func_08014BD8` loop is parked at exact size but five differing linked bytes. See [GAME_STATE_MENU_CALLBACKS.md](GAME_STATE_MENU_CALLBACKS.md) and the canonical handoff.
 

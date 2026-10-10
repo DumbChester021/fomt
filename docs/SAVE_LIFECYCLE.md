@@ -7,6 +7,8 @@ reached that standard yet; do not confuse a recovered behavior with an exact
 C++ production replacement. Keep retail changes on `main` and do not alter
 the `custom-game` worktree during this priority.
 
+**Last exact production-code checkpoint:** `f069823` (seven SRAM-header functions, 472 bytes). The GameState-loader behavioral pseudocode below is research, not an exact compiled replacement. The save system remains incomplete.
+
 ## Verified SRAM organization
 
 ```text

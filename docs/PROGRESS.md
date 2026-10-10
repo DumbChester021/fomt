@@ -2,6 +2,8 @@
 
 Run `make progress` for the live reconstruction totals, retail-ROM comparison, branch/commit information, and PRET-style free-space report.
 
+**Latest exact production-code checkpoint:** `f069823` (seven SRAM-header functions/472 bytes). This documentation maintenance adds no recovered game bytes. Current priority: full retail save decompilation; see [SAVE_LIFECYCLE.md](SAVE_LIFECYCLE.md).
+
 ## Current verified snapshot
 
 Active public retail branch: **`main`**

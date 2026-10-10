@@ -10,7 +10,7 @@ Live next actions belong to `tools/ches/NEXT_AGENT_HANDOFF.md`.
 | Item | Verified value |
 | --- | --- |
 | Workspace / branch | `/mnt/data/Github/gba/fomt`; `main` tracking `ches/main` |
-| Latest published source | **`9267e9a`** (save-readiness docs) before new save-header integration; check `git log -1` for current publication |
+| Latest published source | **`f069823`** (exact save-header functions + save-first handoff), pushed to `ches/main` |
 | Code in C++ source | **89,444 / 940,036 (9.5150%)** |
 | Remaining linked ASM | **850,592 bytes; 1,975 functions** |
 | Inferred assembly ranges | **847,620 bytes** (99.6506%) |
@@ -53,7 +53,7 @@ unchanged. The previously verified 20-function source is committed in **`9bac767
 
 ## Readability review
 
-Exact-ROM code coverage is **not** a measure of full human readability. The current heuristic audit covers 135 C++ units/19,851 lines and flags 133 address-named function definitions in 15 files, 44 offset-named callback uses in three GameState/menu source files, and compiler-sensitive constructs in seven files. These are review indicators, not a semantic completeness percentage. See `docs/SOURCE_READABILITY_AUDIT.md` and `tools/ches/audit_source_readability.py`; the newest three GameState/menu units now have documented ABI uncertainty and cleaned formatting, without adding code coverage.
+Exact-ROM code coverage is **not** a measure of full human readability. The current heuristic audit covers 137 C++ units/20,047 lines and flags 138 address-named function definitions in 17 files, 44 offset-named callback uses in three GameState/menu source files, and compiler-sensitive constructs in seven files. These are review indicators, not a semantic completeness percentage. See `docs/SOURCE_READABILITY_AUDIT.md` and `tools/ches/audit_source_readability.py`; the newest three GameState/menu units now have documented ABI uncertainty and cleaned formatting, without adding code coverage.
 
 ## Save and custom-game readiness (October 10)
 
@@ -61,11 +61,11 @@ Exact-ROM code coverage is **not** a measure of full human readability. The curr
 
 The separate `custom-game` worktree now has a **host-only** proposed dual-bank extension codec (`tools/save_extension_reference.py`) and **16 passing synthetic-image regression tests** (`tools/test_save_extension_reference.py`). No actual GBA hook, live save modification, emulator round-trip, schema migrator or comprehensive slot-copy/erase/overwrite integration has been implemented. Slot overwrite with byte-identical retail data and non-atomic retail/extension write ordering are release blockers. For the tested architecture and exact implementation gates see retail `docs/SAVE_FORMAT.md` and custom-game `docs/SAVE_EXTENSION_READINESS.md`. Preserve that custom worktree's existing dirty documentation; these research/tools changes must not be mistaken for retail coverage gain.
 
-Next save-specific priority: audit all menu save/load/overwrite/copy/erase transitions and header valid-slot mask, then implement and test bounded runtime extension hooks on the **custom-game** branch. REA is optional for genuinely unresolved control-flow questions; static assembly already settles the retail record and loader error stages. No retail executable files were changed during this investigation.
+**Current save priority:** recover the low-level SRAM I/O, complete 740-byte loader and persistent type graph, and all retail save/load/copy/erase/overwrite/retry and slot-selection handlers in human-readable, byte-exact source. All custom-game extension work remains deferred. REA is optional for genuinely unresolved control-flow questions; static assembly already settles the retail record and loader error stages. No retail executable files were changed during this investigation.
 
-## Highest-leverage next action
+## Historical general-throughput next action (deferred)
 
-Choose a coherent high-payoff function/type family. The 18-member 72-byte
+The former queue recommended choosing a coherent high-payoff function/type family. The 18-member 72-byte
 ownership-transfer cluster is promising, but DB394 v1/v2 candidates are
 nonmatching and v1 is semantically wrong on temporary ownership. Alternatively
 work the three typed tree-node insertion siblings (E2294/E27FC/E54F0);

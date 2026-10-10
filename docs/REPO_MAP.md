@@ -1,8 +1,14 @@
 # FoMT Repository Map
 
+## Current authoritative scope — save-first
+
+The user requires the **full retail save system** to be reconstructed in natural, human-readable, byte-exact C++ before custom-game changes. The contiguous save-header region `080002E0..080004C4` is source-owned, with seven new verified functions / 472 bytes in `src/save_slot_header.cc` plus the existing `GetSaveSlotOffset` in `src/save_format.cc`. Remaining priorities include the 740-byte `func_08011650` loader, the SRAM read/write proxies, the typed persistent GameState graph and the save-menu lifecycle. See [SAVE_LIFECYCLE.md](SAVE_LIFECYCLE.md).
+
+**Current exact coverage**: 89,444 / 940,036 code bytes (9.5150%), 850,592 linked ASM bytes / 1,975 functions, 165,394 meaningful ROM bytes (2.1431%). Latest production source commit: `f069823`.
+
 ## Earlier general-throughput scope (superseded by October 10 save-first directive)
 
-The active retail goal is **throughput-first whole-game decompilation**. Preserve
+The earlier retail goal was **throughput-first whole-game decompilation**. Preserve
 the byte-identical US ROM on public branch `main`, keep custom behavior
 separate, and use the already-recovered shared infrastructure to unlock large
 coherent portions of the remaining assembly.
@@ -28,7 +34,9 @@ subsystem is fully understood.
 
 **Seven exact natural C++ SRAM header functions / 472 linked bytes** now live in `src/save_slot_header.cc` and `include/save_format.hh`. Alongside the existing slot-offset helper, the original `080002E0..080004C4` header span is source-owned. The once-anonymous 0042C raw-byte routine is verified as clear-valid-slot. The forced retail ROM rebuilt byte-for-byte, leaving **89,444 / 940,036 game-code bytes (9.5150%)**, **850,592 assembly bytes / 1,975 linked functions** unresolved. The save loader `func_08011650` and menu save/load handlers are the active priority; see `docs/SAVE_LIFECYCLE.md`. The previous GameState/menu families below are verified historical milestones, not the execution queue.
 
-## Earlier reconstruction snapshot - October 10, 2026
+## Historical pre-save-header reconstruction snapshot — October 10, 2026
+
+**Historical values only:** the figures in this section predate exact SRAM-header source integration. See the live save-first milestone above or `make progress` for the latest values.
 
 **Newest exact source:** `src/game_state_audio_callbacks.cc` adds **2 functions / 48 exact linked bytes**, including a verified sound-player busy query. The earlier 54-function GameState/menu reconstruction contributed 1,688 bytes; cumulative continuation: **56 functions / 1,736 exact bytes**. The child operation's semantics remain unknown. See [GAME_STATE_AUDIO_CALLBACKS.md](GAME_STATE_AUDIO_CALLBACKS.md) and [SOURCE_READABILITY_AUDIT.md](SOURCE_READABILITY_AUDIT.md). Previous work: `src/game_state_menu_callbacks.cc` adds **13 functions / 444 linked bytes**. It follows 18 functions / 560 bytes in `src/game_state_menu_actions.cc` and 23 functions / 684 bytes in `src/game_state_menu_dispatch.cc`, totaling **54 exact functions / 1,688 bytes**. See [GAME_STATE_MENU_CALLBACKS.md](GAME_STATE_MENU_CALLBACKS.md), [GAME_STATE_MENU_ACTIONS.md](GAME_STATE_MENU_ACTIONS.md), and [GAME_STATE_MENU_DISPATCH.md](GAME_STATE_MENU_DISPATCH.md).
 
@@ -125,7 +133,7 @@ under `assets/item_icons/`. `tools/packed_sprite_bank.py` rebuilds the
 0x30080-byte bank exactly. The cooking UI owns `gCookingUtensilIconIds`, mapping
 Knife=265, Frying Pan=204, Pot=346, Mixer=64, Whisk=472, Rolling Pin=313,
 Oven=327, and Seasoning Set=400. `func_08092A70` remains parked at `0x260 / 3`.
-That item/tool lane remains behind the whole-game throughput queue. The resource-owner exact set is complete. Fishing records are recovered in `include/fishing_records.hh` / `src/fishing_records.cc`, and the mine-floor cluster owns 872 exact linked bytes through exact E0AC plus the E174..E1B4 progress getters around the recovered 0x628-byte persistent type in `include/mine_floor.hh`. The exposed E118..E174 and E1B4..E2D4 islands are behavior-recovered but parked after bounded source-shape attempts. The adjacent GameState+0x3480 block is now a typed 0x14-byte `CursedToolState`; the +0x3494..+0x34C3 block is conservatively opaque; GroundPickupState at +0x34C8 is now exact source; the +0x34D8 mask and +0x34DC actor state are already source-owned; frame getter 5E790 and offer builder 85640 are parked; EFAC/F058/F0E0/F15C glyph-cache operations and the E105C lifetime/interface family are exact, while F060 row rotation remains parked; renderer/fill methods and OAM EA94 are parked. The live next high-yield clusters are the 18-member ownership-transfer wrappers and, alternatively, three tree-insertion siblings. D8E8 and DA00 remain parked source-shape/compiler frontiers; the compiler-sensitive loader remains parked. Product-count growth remains deferred because `ShippingBin::product_stats[NUM_PRODUCTS]` is embedded in persistent state.
+That item/tool lane is deferred behind the current save-system priority. The resource-owner exact set is complete. Fishing records are recovered in `include/fishing_records.hh` / `src/fishing_records.cc`, and the mine-floor cluster owns 872 exact linked bytes through exact E0AC plus the E174..E1B4 progress getters around the recovered 0x628-byte persistent type in `include/mine_floor.hh`. The exposed E118..E174 and E1B4..E2D4 islands are behavior-recovered but parked after bounded source-shape attempts. The adjacent GameState+0x3480 block is now a typed 0x14-byte `CursedToolState`; the +0x3494..+0x34C3 block is conservatively opaque; GroundPickupState at +0x34C8 is now exact source; the +0x34D8 mask and +0x34DC actor state are already source-owned; frame getter 5E790 and offer builder 85640 are parked; EFAC/F058/F0E0/F15C glyph-cache operations and the E105C lifetime/interface family are exact, while F060 row rotation remains parked; renderer/fill methods and OAM EA94 are parked. The live next high-yield clusters are the 18-member ownership-transfer wrappers and, alternatively, three tree-insertion siblings. D8E8 and DA00 remain parked source-shape/compiler frontiers; the compiler-sensitive loader remains parked. Product-count growth remains deferred because `ShippingBin::product_stats[NUM_PRODUCTS]` is embedded in persistent state.
 
 Legacy loader `func_08011650` remains paused. Crop/field semantics,
 dialogue/event registration, and character portrait/display assets remain later
