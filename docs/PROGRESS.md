@@ -16,8 +16,8 @@ Current reconstruction:
 
 ```text
 Code reconstruction
-  83612 / 940036 bytes (8.8946%)
-  856424 bytes remain in asm
+  87236 / 940036 bytes (9.2801%)
+  852800 bytes remain in asm
 
 Data/assets reconstruction
   75554 / 6777404 bytes (1.1148%)
@@ -28,7 +28,7 @@ Data/assets reconstruction
   396 additional source-owned ROM-header bytes count only toward overall
 
 Overall meaningful-ROM reconstruction
-  159562 / 7717440 bytes (2.0676%)
+  163186 / 7717440 bytes (2.1145%)
   final ROM padding is excluded from this denominator
 
 ROM space
@@ -36,7 +36,7 @@ ROM space
   671168 bytes free (655.44 KiB, 8.0009%) contiguous tail space
 ```
 
-The code inventory currently reports **2,107 linked assembly functions**, **853,728 bytes** covered by inferred function ranges, **2,696 unattributed assembly bytes**, and **27 explicitly parked functions**. The total includes prior exposed islands plus 596 bytes of unnamed neighbors revealed by six scene Run seams. Only their true 28-byte Run bodies are source-owned; the neighboring code remains unchanged assembly.
+The code inventory currently reports **2,037 linked assembly functions**, **849,828 bytes** covered by inferred function ranges, **2,972 unattributed assembly bytes**, and **27 explicitly parked functions**. The total includes prior exposed islands plus 596 bytes of unnamed neighbors revealed by six scene Run seams. Only their true 28-byte Run bodies are source-owned; the neighboring code remains unchanged assembly.
 
 ## What the metrics mean
 
@@ -48,9 +48,32 @@ The project keeps separate dimensions rather than combining unlike work into one
 
 Understanding or documenting an opaque `.incbin` does not count as asset/data reconstruction. Editable project-side source must regenerate the retail bytes exactly.
 
-## Recent exact milestones
+## Latest October 10 exact milestone
 
-The newest batch is **Shared font lookup/decoder and canvas helpers: five
+The newest four-batch menu/ownership throughput continuation integrated
+**18 natural C++ methods / 632 linked bytes**, all proving zero linked-byte
+differences and each followed by a forced full-ROM compare. The groups are
+three owner destructors (156), four global-owner destructors (160), five
+resource helpers (124), and six simple vtable destructors (192). New sources
+include `src/menu_owner_dtors.cc`, `src/menu_global_owner_dtors.cc`,
+`src/menu_resource_helpers.cc` and `src/menu_simple_dtors.cc`. The 64
+original raw bytes following DE220 remain untouched and are now accounted
+for in the 2,972-byte unattributed ASM subtotal. Latest full ROM SHA1 is
+retail-exact. See `tools/ches/NEXT_AGENT_HANDOFF.md` for source/proof details.
+
+## Earlier exact milestones (historical checkpoints)
+
+The earlier continuation is **Menu provider/lifetime and range-cleanup family: 11 functions / 756 exact linked bytes**. `BuildAnimalNameText` at E14B8 is now exact source; four provider destructors, two compact name providers, the E1A48 check wrapper and E1A54 cleanup are exact; and the E1C18/E1D54 counted 16-byte range cleanups are exact. The final forced ROM gate preserves the retail SHA1. Source lives in `src/menu_glyph_cache_interfaces.cc`, `src/menu_name_providers.cc`, and `src/menu_range_cleanups.cc`. The next follow-up recovers E1DBC and E1DC8 as two additional exact menu provider wrappers (24 bytes), verified by a forced full ROM comparison and identical retail SHA1. E1C70 was analyzed successfully by focused REA/Ghidra but remains compiler/source-shape nonmatching (best v2 0xE8/164 differing linked bytes). That earlier E1DD4 target has since become exact C++.
+
+An earlier batch is **Menu glyph cache: four functions / 308 exact linked
+bytes**. DrawCacheGlyph, ResetCacheColumn, ClearGlyphCache and
+GetCacheRowsDirty are exact source; the complete isolated and production ROM
+gates pass. The inventory falls from 2,107 to 2,104 named linked assembly
+functions because F058 was previously anonymous. At that checkpoint, unattributed bytes were
+2,696 and data/assets were unchanged; the live subtotal is 2,972. F060 stays assembly at an exact-size
+12-difference frontier. See [MENU_GLYPH_CACHE.md](MENU_GLYPH_CACHE.md).
+
+The preceding batch is **Shared font lookup/decoder and canvas helpers: five
 functions / 532 exact linked bytes**. The complete font block owns 488 bytes;
 canvas copy and unaligned stubs own 44. Both forced ROM gates pass.
 Four named entries leave the inventory; the copy was an anonymous successor.

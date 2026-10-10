@@ -14,21 +14,18 @@ This is the live dashboard for the US Harvest Moon: Friends of Mineral Town matc
 ## Active branch and build authority
 
 - Retail branch: **main**, tracking **ches/main**. Run git log -1 for this checkpoint's commit.
-- Starting checkpoint for the font/canvas batch: **87bd428**.
+- Verified code checkpoint: **1e522c9** (menu/glyph-cache/provider/tree/ownership source); documentation is recorded in a follow-up commit. See `git log -1` for the latest published checkpoint; protect any later uncommitted work.
 - Custom gameplay stays in the separate custom-game worktree.
 - ROM: **8,388,608 bytes**, SHA1 **a2fc3574f0a65a4fcf7682fb274b9d7eebdef963**.
 - Full gate: make -B -j4 compare, ending in **fomt.gba: OK**.
-- Compiler: tracked tools/install_agbcp.sh plus tools/agbcp_fomt_compat.patch; unchanged thirteen-rule wrapper at tools/agbcc/bin/agbcp.
+- Compiler: tracked tools/install_agbcp.sh plus tools/agbcp_fomt_compat.patch; unchanged thirteen-rule wrapper at tools/agbcc/bin/agbcp. Read docs/FOMT_COMPILER_FINGERPRINT.md for the compact compiler signature, external-comparison checklist and current source-coercion debt.
 
 ## Handoff readiness
 
-Latest verified batch: **five font/canvas helpers / 532 exact linked bytes**.
-The shared encoded-glyph decoder and double-byte lookup own 488 bytes;
-full-canvas copy and the two unaligned stubs own 44 bytes.
-Both forced isolated and production ROM comparisons pass on October 9, 2026.
-Font tables and IWRAM expanders remain assembly data/code.
+Latest verified October 10 continuation adds **18 exact functions / 632 linked bytes**, split across three 52-byte owner destructors, four 40-byte global-owner destructors, five small resource helpers (124 bytes), and six 32-byte simple destructors. Four forced retail ROM comparisons passed and restored exact original SHA1. The latest inventory is **87,236 / 940,036 game-code bytes (9.2801%)**, 2,037 unresolved ASM functions. The verified code is committed as **1e522c9**; its documentation follows in the current checkpoint. See the current top of `tools/ches/NEXT_AGENT_HANDOFF.md` for proof and next ranking.
+
 Run git log -1 and git status before work; preserve intentional dirty files.
-The whole save loader and complete GameState remain unfinished.
+The whole save loader and complete GameState remain unfinished; their compiler-sensitive frontiers are parked separately from the currently exact menu batch.
 No build or compiler execution is pending.
 
 Read the Fast-path operating method in docs/DECOMP_PLAYBOOK.md.
@@ -36,15 +33,15 @@ NEXT_AGENT_HANDOFF.md owns exact bounds, first commands and closed paths.
 
 ## Current exact reconstruction
 
-- Code: **83,612 / 940,036 = 8.8946%**.
-- Assembly: **856,424 bytes; 2,107 linked functions**.
-- Inferred ranges: **853,728 / 856,424 = 99.6852%**.
-- Unattributed assembly: **2,696 bytes; 27 parked functions**.
+- Code: **87,236 / 940,036 = 9.2801%**.
+- Assembly: **852,800 bytes; 2,037 unresolved linked functions**.
+- Inferred ranges: **849,828 / 852,800 = 99.6515%**.
+- Unattributed assembly: **2,972 bytes; 27 parked functions**.
 - Data/assets: **75,554 / 6,777,404 = 1.1148%**.
-- Overall meaningful ROM: **159,562 / 7,717,440 = 2.0676%**.
+- Overall meaningful ROM: **163,186 / 7,717,440 = 2.1145%**.
 - Free tail: **671,168 bytes**.
 
-## Recent exact batches
+## Earlier exact batches (historical evidence, not the current queue)
 
 include/menu_font.hh / src/menu_font.cc recover MenuGlyphTiles, the 128-byte
 four-tile output record, GetMenuDoubleByteGlyphIndex and DecodeMenuGlyph.
@@ -56,7 +53,7 @@ src/menu_text_canvas.cc adds exact CopyMenuText and the two unaligned stubs.
 The former anonymous E9D0 helper **copies** a whole canvas; it is not a clear
 operation. Four named entries leave the inventory; the fifth source function
 was previously included in E9CC's inferred range. Other surviving ranges and
-all 2,696 unattributed bytes stay unchanged. See [MENU_TEXT.md](docs/MENU_TEXT.md).
+the then-current 2,696 unattributed bytes were unchanged. See [MENU_TEXT.md](docs/MENU_TEXT.md).
 The renderer pair and fill helpers are parked after bounded natural probes.
 
 The preceding 14-function menu drawing batch remains exact:
@@ -76,7 +73,7 @@ See [MENU_TEXT.md](docs/MENU_TEXT.md).
 
 Twelve named assembly entries leave the inventory. The anonymous constructors
 instead shrink the surviving ED28/EDB4 ranges to 84/68 bytes.
-Other ranges and all 2,696 unattributed bytes remain unchanged.
+Other ranges and the then-current 2,696 unattributed bytes were unchanged.
 EA94 gains parked metadata after two nonmatching natural source probes.
 
 Earlier provider unit:
@@ -106,39 +103,37 @@ Scene lifetime remains **74 source functions / 4,108 bytes**:
 24 constructors, 25 destructors and all 25 Runs. Constructor 92570 and most
 controller logic remain assembly. See [SCENES.md](docs/SCENES.md).
 
-## Next direction
+## Active next direction
 
-Next: recover the **menu glyph cache/row helper family** near EFAC..F15C,
-using the decoded-width contract, four-by-two canvases and 16-byte records.
-EFAC's true body is 172 bytes; preserve the separate eight-byte F058..F060
-neighbor. F060/F0E0 are 128/124 bytes. Include related construction/cleanup
-only when caller/layout evidence proves the owning type.
-The handoff owns exact commands and reopening criteria.
+**Choose a coherent, high-value original TU or repeated source/type family.**
+The leading candidate is the **18-member ownership-transfer/allocator wrapper
+cluster (72 bytes per function, 1,296 potential bytes)**. Its `DB394` scratch
+v1/v2 candidates are *nonmatching*; v1 is wrong on moved-pointer ownership.
+Recover the 16-byte smart-owner transaction and the actual virtual cleanup
+ABI before promoting this family. If this stalls on compiler source-shape,
+pivot to another high-yield family rather than repeating spellings.
 
-Renderer E4AC/E5AC and fill E7A0/E7DC are now parked on inline tile/address,
-byte-count and register/evaluation lifetimes. Do not repeat their saved
-spelling variants without new structure. Keep related functions in one
-verification, inventory/docs and publication cycle.
+A promising alternative is the three **192-byte tree insertion** siblings
+`E2294`, `E27FC` and `E54F0`. The tree node layout, both rotations and
+the `E21E0` balancing helper are already exact. E2294 remains assembly after
+two nonmatching probes. Rerank with the live function inventory.
 
-OAM factory EA94 is parked: true body 208 bytes followed by a separate
-288-byte anonymous routine at EB64..EC84. Preserve that successor.
-Native bitfield/helper spellings failed; reopen only with real source/lifetime evidence.
+F060 glyph-cache row rotation (best 12 differing linked bytes), E1C70,
+E3610/E375C, 36-byte field-copy wrappers, D6EAC/D6EEC flag-store
+initializers, and the whole save loader remain compiler-sensitive parked
+work. Avoid reopening them without new type/ABI evidence.
 
-Frame getter 5E790 is parked at 140 bytes / 34 differences. The old October 5
-probes were found and the current natural candidate reproduces that schedule.
-Integer formatter 4EC84 is parked on the counter-copy/loop placement frontier;
-v4/v5/v6 canonicalize at 160 bytes / 97 differences. No nonmatching source is promoted.
-Number drawer 4EDB4 stays 68/eight and constructor 92570 stays 0x54/four.
-Offer builder 85640 remains parked on shared frame-copy/list lifetimes.
-The whole loader, resource-owner constructors and B128 remain parked.
-Whole save recovery is unfinished despite exact persistent subobjects.
+Use [the live handoff](tools/ches/NEXT_AGENT_HANDOFF.md) for exact
+candidate/proof locations and next steps; it now starts with live state,
+with complete prior chronology retained in a dated archive. The existing
+multi-section isolated comparator is unreliable for selecting separately
+named C++ text sections; use one scratch function per proof.
 
-Current proofs: tools/ches/checkpoints/menu-glyphs-2026-10-09/.
-Earlier menu proofs: tools/ches/checkpoints/menu-graphics-batch-2026-10-09/.
-Earlier frame/count proofs: tools/ches/checkpoints/packed-sprite-frame-2026-10-09/.
-Menu probes: tools/ches/checkpoints/menu-numbers-2026-10-09/.
-Builder probes: tools/ches/checkpoints/livestock-offer-builder-2026-10-09/.
-The canonical handoff supplies exact commands and fresh-clone limitations.
+Earlier menu/glyph proof assets:
+- `tools/ches/checkpoints/menu-glyph-cache-2026-10-10/`
+- `tools/ches/checkpoints/menu-glyphs-2026-10-09/`
+- `tools/ches/checkpoints/menu-graphics-batch-2026-10-09/`
+- `tools/ches/checkpoints/menu-numbers-2026-10-09/`
 
 ## Parked work and documentation
 

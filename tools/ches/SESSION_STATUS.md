@@ -1,58 +1,53 @@
 # FoMT Session Status
 
-Latest verified batch: October 9, 2026, shared font lookup/decoder and canvas copy.
-Workspace: /mnt/data/Github/gba/fomt
-Branch: main, tracking ches/main. Starting pushed checkpoint: 87bd428.
-Run git log -1 and git status for the completed checkpoint identity.
+## Current verified snapshot — October 10, 2026
 
-## Exact progress
+This is a **concise live checkpoint**. The former chronological session
+notes are preserved byte-for-byte in
+[session history](checkpoints/menu-throughput-docs-2026-10-10/SESSION_HISTORY.md).
+Live next actions belong to `tools/ches/NEXT_AGENT_HANDOFF.md`.
 
-- Code: **83,612 / 940,036 = 8.8946%**.
-- Assembly: **856,424 bytes; 2,107 linked functions**.
-- Inferred ranges: **853,728 / 856,424 = 99.6852%**.
-- Unattributed: **2,696 bytes; 27 explicitly parked functions**.
-- Data/assets: **75,554 / 6,777,404 = 1.1148%**.
-- Overall meaningful ROM: **159,562 / 7,717,440 = 2.0676%**.
-- Free tail: **671,168 bytes**.
+| Item | Verified value |
+| --- | --- |
+| Workspace / branch | `/mnt/data/Github/gba/fomt`; `main` tracking `ches/main` |
+| Code checkpoint | **`1e522c9`**; follow-up docs checkpoint is recorded separately |
+| Code in C++ source | **87,236 / 940,036 (9.2801%)** |
+| Remaining linked ASM | **852,800 bytes; 2,037 functions** |
+| Inferred assembly ranges | **849,828 bytes** (99.6515%) |
+| Unattributed ASM / parked | **2,972 bytes / 27 functions** |
+| Recovered data/assets | **75,554 / 6,777,404 (1.1148%)** |
+| Meaningful ROM | **163,186 / 7,717,440 (2.1145%)** |
+| Free ROM tail | **671,168 bytes** |
+| Retail ROM | **8,388,608 bytes**; SHA1 `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963` |
+| Latest forced build | `make -B -j4 compare` **passed** (`sh_mv1zgcf1_407a2abd`; `fomt.gba: OK`) |
+| Pending builds | None at this checkpoint |
 
-## Verified batch
+## Latest integrated work
 
-GetMenuDoubleByteGlyphIndex / D0CD4 owns 84 linked bytes: 82 body plus two alignment.
-DecodeMenuGlyph / D0D28 owns 404 bytes, including its dispatch table/literals.
-Their complete 488-byte block matches in scratch and the realistic source section.
-MenuGlyphTiles is a 128-byte four-tile record. Signed table entries, fifteen
-special glyph mappings and the fixed IWRAM expansion ABI are recovered.
+The October 10 continuation recovered **18 byte-exact functions / 632
+linked bytes**: three owner destructors (156), four global-owner destructors
+(160), five resource helpers (124), and six vtable-only destructors (192).
+Their files are `src/menu_owner_dtors.cc`,
+`src/menu_global_owner_dtors.cc`, `src/menu_resource_helpers.cc` and
+`src/menu_simple_dtors.cc`. All four production full-ROM gates passed.
+A formerly adjacent **64-byte raw region** after DE220 is unchanged and
+now counted as unattributed ASM instead of as part of its preceding function.
 
-CopyMenuText / E9D0 owns 36 bytes; unaligned stubs E9C8/E9CC own four each.
-The former anonymous helper copies the entire canvas; earlier clear naming was wrong.
-The complete canvas section is 44 bytes. Total: **five functions / 532 bytes**.
+The complete save loader and GameState are not finished; the separate
+custom-game worktree remains independent. The current tracked compiler is
+unchanged. The verified retail source is committed in **1e522c9**; see `git log -1` for the latest documentation/publication checkpoint.
 
-Both forced isolated and production make -B -j4 compare pass: fomt.gba: OK.
-ROM equals baserom and isolated output: 8,388,608 bytes;
-SHA1 a2fc3574f0a65a4fcf7682fb274b9d7eebdef963.
-Seven integration-input hashes agree. All five aliases and neighboring
-E958/E9F4/D0EBC addresses are preserved. New objects contain only the intended
-488-/44-byte code sections; no extra code/data/linkonce output.
-Tracked compiler and all thirteen compatibility rules remain unchanged.
+## Highest-leverage next action
 
-Four named entries leave the inventory; the fifth was an anonymous successor.
-No surviving address/size pair changes. Unattributed bytes stay 2,696.
-Only E4AC/E5AC/E7A0/E7DC gain parked metadata: 23 to 27.
-Data/assets and earlier exact menu, livestock, scene and save subobjects stay unchanged.
-The whole save loader and complete GameState/controller implementations remain incomplete.
-Proof root: tools/ches/checkpoints/menu-glyphs-2026-10-09/.
-No build or compiler execution is pending.
+Choose a coherent high-payoff function/type family. The 18-member 72-byte
+ownership-transfer cluster is promising, but DB394 v1/v2 candidates are
+nonmatching and v1 is semantically wrong on temporary ownership. Alternatively
+work the three typed tree-node insertion siblings (E2294/E27FC/E54F0);
+the tree rotations and balancer are already exact. Park codegen-only
+compiler-sensitive targets until new evidence exists.
 
-## Closed probes and next family
-
-Renderer/fill behavior is recovered, but original inline tile/address and
-temporary lifetimes remain unresolved. Best plain v2 is 250/165;
-styled v1 is 478/436. Typed tile-method v3 regresses; do not repeat it.
-Fill v2/v3 is 60/30; rectangle v2/v3 is 292/266. Source shapes are parked.
-Font v2 is exact after correcting signed extraction/unsigned comparisons,
-direct case returns and the established fixed-IWRAM dispatch spelling.
-No nonmatching source is promoted.
-
-Next family: menu glyph cache/row helpers EFAC/F060/F0E0, using four-by-two
-canvases and 16-byte records. Preserve the eight-byte F058..F060 neighbor.
-NEXT_AGENT_HANDOFF.md owns bounds, saved candidates, commands and reopened-path criteria.
+The isolated function comparison tool can mis-target multi-section scratch
+objects; the attempted fix was reverted to the tracked version. Use one
+candidate function per scratch source for matching. Regenerate
+`tools/ches/decomp_inventory.json` after actual production changes, not
+merely for documentation. Preserve the intentional dirty worktree.

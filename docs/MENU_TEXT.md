@@ -107,8 +107,9 @@ the decoded glyph width. Preserve that retail behavior.
 Renderer paths decode into four tiles, clip against canvas dimensions and
 copy aligned tiles. Styled copying applies packed pixel/color arithmetic.
 Their original tile/address/helper lifetimes remain unresolved.
-The separate cache/row family around EFAC/F060/F0E0 uses the recovered
-width and canvas contracts; constructor/caller proof is the next task.
+The cache/row family now has exact draw/reset/clear/query source and a proven
+three-row layout. See [MENU_GLYPH_CACHE.md](MENU_GLYPH_CACHE.md). F060 row
+rotation remains assembly at a bounded exact-size 12-difference frontier.
 
 ## Verification
 

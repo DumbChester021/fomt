@@ -134,6 +134,19 @@ an external code-array symbol can generate a direct BL veneer instead.
 Check complete linked blocks including normal alignment before judging a
 short symbol-size report as a real mismatch.
 
+### Focused REA/Ghidra analysis for GBA Thumb (verified October 10, 2026)
+
+Use REA 3.2.1 / Ghidra 12.1.4 through `/mnt/data/Ches/bin/ches-rea` as a **semantic and control/data-flow aid**, not an exact-source oracle. See `/mnt/data/Ches/codex-bridge-home/skills/rea-reverse-engineering/SKILL.md`. An E1C70 trial successfully returned pseudocode in 36.3 seconds from a tiny focused ARM ELF. The known retail assembly remains authoritative.
+
+For a bounded function with start/end addresses:
+1. Verify `baserom.gba` SHA1 against the retail authority, then extract precisely `[start - 0x08000000, end - 0x08000000)` into a scratch binary on ext4.
+2. Assemble a focused ARMv4T ELF with `.thumb`, `.thumb_func`, a named function symbol and `.incbin` of those bytes. Link `.text` at the original function address (e.g. `arm-none-eabi-ld -Ttext=0x080E1C70`), preserving virtual addresses.
+3. **Crucial:** GNU assembler marks `.incbin` as data (`$d`). For this focused executable-code-only slice, use `arm-none-eabi-objcopy --redefine-sym '$d=$t' input.elf thumb.elf`, and verify `arm-none-eabi-objdump -d thumb.elf` actually shows Thumb instructions. This is a scratch-analysis transformation only, not a change to retail bytes. Do not apply a blanket mapping to mixed code/data regions.
+4. Run `ches-rea function thumb.elf 0x080E1C70 --provider ghidra --format json --snapshot <ext4-snapshot-path>`. Do not combine structured JSON with `--token-limit`: REA rejects that option combination before provider work. Save/reuse the output and extract only the pertinent pseudocode/refs instead of re-running the same 100KB+ function dossier.
+5. Compare Ghidra's inferred flow, fields, and calls against the real disassembly and existing project docs. Missing external helper bodies and odd return types (the trial showed `CONCAT44(unaff_lr,1)` although retail sets r0 to 1) are **decompiler artifacts**, not authority. Full compiler/linker matching remains a separate gate.
+
+The first natural typed E1C70 candidate compiled to 0xD4 vs 0xE4 retail bytes with 205 differing linked bytes. REA corroborated its **behavioral outline** but did not solve source-shape/register allocation. Do not repeat that initial candidate as if it were an exact proof. The isolated trial lives under `/mnt/waydroid-hdd/home-chester-waydroid/fomt-rea-trial/`; see current handoff for its execution and next step.
+
 ## Standard decompilation workflow
 
 ### 1. Orient before editing

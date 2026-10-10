@@ -1,150 +1,91 @@
 # FoMT Next Agent Handoff
 
-## Current production authority
+## Current production authority — 2026-10-10
 
-Workspace: /mnt/data/Github/gba/fomt
-Branch: main, tracking ches/main.
-Starting pushed checkpoint: 87bd428 decompile menu drawing callbacks and text streams.
-Run git log -1, git status and git rev-parse ches/main for completed identity.
-Standing authorization: review, commit and push exact checkpoints to public ches/main.
+**This is the live handoff.** The former chronological handoff is preserved
+byte-for-byte in [handoff history](checkpoints/menu-throughput-docs-2026-10-10/HANDOFF_HISTORY.md).
+Superseded next-target claims in that history are not instructions.
 
-Latest batch: five shared font/canvas functions / 532 exact linked bytes.
-Code: 83,612 / 940,036 = 8.8946%.
-Assembly: 856,424 bytes; 2,107 linked functions.
-Inferred ranges: 853,728 / 856,424 = 99.6852%.
-Unattributed: 2,696 bytes. Explicit parked entries: 27.
-Data/assets: 75,554 / 6,777,404 = 1.1148%.
-Overall: 159,562 / 7,717,440 = 2.0676%. Free tail: 671,168 bytes.
-ROM: 8,388,608 bytes; SHA1 a2fc3574f0a65a4fcf7682fb274b9d7eebdef963.
-Both forced isolated and production make -B -j4 compare pass: fomt.gba: OK.
-Tracked compiler and thirteen compatibility rules remain unchanged.
-Whole save loader, complete GameState and controller implementations remain unfinished.
+- Retail workspace: `/mnt/data/Github/gba/fomt`; branch `main` tracking `ches/main`; verified source-code checkpoint **`1e522c9`**. Check `git log -1` for the subsequent documentation checkpoint.
+- **The previously dirty verified retail source is now committed as 1e522c9.** Keep the separate custom-game worktree isolated. Preserve any new local changes and never reset, clean, or stash them without review.
+- Retail SHA1: **`a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`**, ROM size **8,388,608**.
+- Latest full forced comparison: `make -B -j4 compare` -> **`fomt.gba: OK`**; execution `sh_mv1zgcf1_407a2abd`, exit 0. No background build pending.
+- **Code 87,236 / 940,036 = 9.2801%**. Assembly: **852,800 bytes / 2,037 linked unresolved functions**; mapped inferred ranges **849,828** bytes, unattributed **2,972**, explicitly parked **27**.
+- **Data/assets 75,554 / 6,777,404 = 1.1148%**; meaningful ROM **163,186 / 7,717,440 = 2.1145%**; free tail **671,168 bytes**.
+- The thirteen-rule compiler compatibility layer is unchanged; see `docs/FOMT_COMPILER_FINGERPRINT.md`. The full save loader/GameState remains unfinished and parked.
+- The live machine-generated truth is `tools/ches/decomp_inventory.json` and `tools/ches/DECOMP_QUEUE.md`.
 
-## Latest exact source and ownership
+## Latest verified exact integration — 18 functions / 632 bytes
 
-include/menu_font.hh / src/menu_font.cc own the complete 488-byte block:
-GetMenuDoubleByteGlyphIndex D0CD4..D0D28, 82 body plus two alignment;
-DecodeMenuGlyph D0D28..D0EBC, 404 bytes with jump table/literals.
-MenuGlyphTiles is four 32-byte tiles, each eight u32 words, total 128 bytes.
-Index extraction starts from signed code, shifts the masked high byte
-arithmetically, then compares unsigned bytes. Low-byte subtraction precedes
-the 189-column row arithmetic. Font table entries are signed i16.
+All four independent source families were isolated, proven byte-exact, integrated
+with original linker/assembly seams, and followed by a successful forced retail
+ROM gate. Scratch proofs are under
+`/mnt/waydroid-hdd/home-chester-waydroid/fomt-rea-trial/`,
+including `matching/*.mismatch.txt`.
 
-Decoder handles fifteen special codes with 12-byte glyph records and returns one.
-Ordinary positive single-/double-byte codes use separate tables and expanders.
-Invalid ordinary input clears 128 output bytes when destination is nonnull.
-Null ordinary destination can query width; special dispatch has no such guard.
-Numeric IWRAM calls at 0300085C/03000714 preserve the observed ARM function-pointer
-ABI, following existing code_080A4A4C/resource_owner_cached/entity_effect style.
-Casting extern code-array symbols instead generated direct BL veneers, so that
-v1 source shape is closed. No compiler change or forced register is involved.
+| Family | Exact function addresses | Production source | Recovered |
+| --- | --- | --- | ---: |
+| Polymorphic owner destructors | DCE60, DCEEC, E4510 | `src/menu_owner_dtors.cc` | 3 / 156 bytes |
+| Global-owner destructors | D7AAC, D7B04, E581C, E5844 | `src/menu_global_owner_dtors.cc` | 4 / 160 bytes |
+| Resource checks and two initializers | D7F60, D7F74, D7F88, D6F1C, D6F5C | `src/menu_resource_helpers.cc` | 5 / 124 bytes |
+| Vtable-only destructors | D3ED4, DE220, E103C, E3D94, E4190, E4544 | `src/menu_simple_dtors.cc` | 6 / 192 bytes |
 
-src/menu_text_canvas.cc owns E9C8..E9F4, 44 bytes:
-two four-byte unaligned glyph stubs plus CopyMenuText E9D0, 36 bytes.
-The formerly anonymous E9D0 helper copies a canvas from its third-argument
-source pointer. It does not fill/clear. Width*height*32 bytes determine the
-masked CpuFastSet word count. The stubs return zero without writing pixels.
+Forced ROM execution IDs, in sequence: `sh_mv1z65ct_8e774db6`,
+`sh_mv1z8v52_19acc033`, `sh_mv1zdh6z_e0e0ec96`,
+`sh_mv1zgcf1_407a2abd`. All exited 0 and ended with `fomt.gba: OK`.
+The **64 bytes** of raw code/data following `DE220` remain in assembly; they
+were reclassified as unattributed, increasing this subtotal from 2,908 to
+2,972 bytes. They were neither reconstructed nor removed.
 
-Four named assembly entries leave the inventory; E9D0 was part of E9CC's
-inferred 40-byte span. No surviving address/size pair changes.
-Unattributed stays 2,696. Four parked metadata entries are added, 23->27.
-Font tables and IWRAM expanders remain assembly; no data/assets bytes are added.
-Link seams: text streams, source canvas section, existing rectangle;
-water/terrain assembly prefix, source font section, assembly from D0EBC.
+Earlier October 10 integrations included glyph-cache/provider/canvas methods,
+range cleanups, tree rotations/balancing/release methods, ten menu emitters,
+four subobject initializers and entity destructors. Their original experiments
+are preserved in the archived history, corresponding subsystem pages, and
+local matching workspace. Do not repeat already exact work.
 
-Earlier units remain exact: menu callbacks/streams 14 functions / 576 bytes;
-rectangle 100; provider counts 8; livestock 6/548 and catalog 220;
-scene 74/4,108 including all 25 Runs. Stable contracts are in MENU_TEXT.md,
-MENU_TILEMAP.md, LIVESTOCK_SHOP.md, SPRITE_ANIMATOR.md and SCENES.md.
+## Highest-leverage next work
 
-## Proofs and working state
+Re-rank coherent TUs/families by source-byte payoff, downstream type leverage,
+existing structural evidence and compiler difficulty. The inventory queue is
+a heuristic, **not** automatically an execution order.
 
-Ignored root: tools/ches/checkpoints/menu-glyphs-2026-10-09/.
-- font-family-v2.cc / font-v2-block/: exact complete 488-byte proof.
-- font-index-v2.cc / font-index-v2-block/: exact 84-byte linked index proof.
-- font-v2-decode/: exact 404-byte decoder body/table.
-- glyph-family-v2.cc / v2-copy/: exact 36-byte canvas copy.
-- v1-unaligned / v1-unaligned-styled: exact four-byte stubs.
-- before/, integration-inputs/, integration-manifest.json: seven build inputs.
-- isolated-build.log / isolated-proof.json and both object-section reports.
-- production-build.log / production-proof.json: retail/isolated equality,
-  input hashes, five aliases/ranges and neighbor preservation.
-- inventory-before.json / inventory-proof.json, progress.txt and status.json.
-- docs-before/ / docs-manifest.json preserve the consolidated documentation pass.
-No build or compiler execution is pending.
+1. **Ownership-transfer wrapper cluster:** 18 similar methods of **72 linked
+   bytes each** (potential 1,296 bytes), including `func_080DB394`. Retail
+   moves a temporary owned pointer into output and only conditionally releases.
+   Scratch `db394-owned-v1.cc` is **0x40 versus 0x48 / 50 differing bytes**
+   and semantically releases the result incorrectly. `db394-owned-v2.cc`
+   zeroes a temp, but compiles to **0x2C versus 0x48 / 49 differences**.
+   Recover the 16-byte stack smart-owner/move layout and destructor/allocator
+   ABI *before* using one exemplar across siblings. Park if codegen archaeology
+   dominates; never integrate nonmatching candidates.
+2. **Typed tree-insertion family:** three ~192-byte siblings at `E2294`,
+   `E27FC`, `E54F0`; layout and left/right rotations are source-exact,
+   plus the `E21E0` balancer. E2294 scratch v1/v2 is behavior-recovered but
+   nonmatching. Require new allocator/pointer-lifetime/type evidence.
+3. **Other compiler-sensitive parked work:** two D6EAC/D6EEC pair initializers
+   have correct 32-byte size but 7 mismatching linked bytes due to flag-store
+   register order; E3610/E375C bit predicates, ten 36-byte DD410 field-copy
+   helpers, F060 glyph-row rotation, E1C70, and the save loader remain parked
+   until new structure provides leverage.
 
-Integration worktree:
-/mnt/waydroid-hdd/home-chester-waydroid/fomt-integrations/scene-run-881ec-20261009.
-Detached at 8174a61 with intentional exact prior scene/livestock/menu/provider and
-current font/canvas inputs applied. Never reset, clean, stash or discard it.
-Before this integration 228 tracked build inputs agreed with production;
-seven changed inputs and complete ROMs agree afterward.
-Objects are under build/src/, not src/. The section proof was recovered after
-the first post-build object-path error without repeating the passing forced build.
-Audit current build-input hashes before reuse. Fresh clones need baserom.gba
-and the tracked compiler; ignored proofs/worktrees are not cloned automatically.
+## Verification and continuation rules
 
-## Parked renderer/fill source contracts
-
-Retail renderer spans: E4AC..E5AC (256), E5AC..E7A0 (500) bytes.
-glyph-family-v1: plain 234/211, styled 478/436.
-v2 introduces credible inline alignment and cached dimensions:
-plain 250/165, styled 478/441.
-v3 typed tile CopyTo/DrawTo methods: plain 252/182, styled 514/466.
-Plain v2 matches the broad CFG/alignment behavior but has frame 0x88 vs retail0x8C,
-different tile-x spill, register allocation and address evaluation around copies.
-Styled copies already implement the exact packed-word transform, but pointer/
-iterator/base-color lifetimes allocate differently. Do not repeat v3 methods.
-
-Fill E7A0 true 60 bytes: v1 60/31; v2/v3 60/30; v4 60/33.
-Natural size expressions combine width extraction with its 32-byte shift;
-retail extracts width separately and scales height before multiplication.
-Rect E7DC true 276 bytes: v1 232/253; v2/v3 292/266; v4 296/279.
-Alignment predicates and inline fill-temporary lifetimes remain different.
-Close scalar/parenthesization/helper roulette. Reopen only with actual
-original buffer/size/helper or lifetime evidence, not forced registers,
-volatile/barriers, padding, compiler changes or global SmartPtr changes.
-
-Font v1: index82/18, decoder398/114. Index signedness and low subtraction
-fixed in v2; symbol 82 versus linked 84 is only two alignment bytes.
-Decoder v2 direct special-case returns, numeric IWRAM dispatch and a
-zero-initialized result are exact. Complete 488-byte proof is authoritative.
-
-## Other preserved frontiers
-
-OAM EA94 true 208 bytes plus separate 288-byte EB64..EC84 successor:
-menu-graphics-batch-2026-10-09/oam-v1 204/198; v2 100/201. Closed.
-Frame 5E790 best 140/34, reproducing old October 5 probes; root packed-sprite-frame.
-Integer 4EC84 v3 164/34 wrong head test; v4/v5/v6 160/97 counter-copy frontier;
-root menu-numbers-2026-10-09. Tall EDB4 68/eight, now followed by exact EDF8.
-Offer 85640 best 528/482, frame 0xEC, shared list/frame-copy contract unresolved;
-root livestock-offer-builder-2026-10-09. Ctor 92570 remains 84/four.
-Whole loader, resource constructors/B128, twenty scene-change constructors
-and mine-floor islands remain parked. Earlier handoff/Git and Call238 ledgers
-preserve detailed rejected variants; do not rediscover them.
-
-## Exact next action: menu glyph cache/row family
-
-Assess the owning record and three helpers using the new font/canvas API:
-EFAC..F058: 172-byte body, separate F058..F060: 8-byte anonymous neighbor;
-F060..F0E0: 128 bytes; F0E0..F15C: 124 bytes.
-Three bodies total 424 bytes; their inferred contiguous span is 432.
-Preserve the anonymous neighbor unless independently reconstructed.
-
-Observed consumers use three buffer pointers at +8/+C/+10, seven records per
-buffer at stride 16, four-by-two tile canvases and a 28-position glyph cursor.
-EFAC invokes DrawMenuGlyph and stores returned width; F060 rotates/clears a
-row; F0E0 clears all three sets. Exact meanings of flags and owning class identity
-need constructor/caller proof. Related EF20 is a separate 140-byte tile-transfer
-callback; do not fold it into the cache type by adjacency alone.
-
-First commands:
-rg -n 'func_0804EFAC|func_0804F060|func_0804F0E0|L0804F058' asm/code_0803EE94.s
-rg -n '4EFAC|4F060|4F0E0' tools/ches/checkpoints/call238/EXPERIMENT_INDEX.md tools/ches/checkpoints/call238/FAILURES_AND_CLOSED_PATHS.md tools/ches/checkpoints/call238/FAILURE_LEDGER.md
-python3 tools/ches/compare-function.py <candidate.cc> <name> --start 0x0804EFAC --end 0x0804F058 --out-dir <checkpoint>
-
-Recover the shared layout from construction/consumers, test the first natural
-family candidate promptly, and include confirmed sibling lifetime methods.
-Use one forced isolated/production gate pair, one inventory/docs pass and one
-commit/push per coherent batch. A fixed small function count is not the unit.
-Compiler authority: tools/install_agbcp.sh and tools/agbcp_fomt_compat.patch.
+- Read `AGENTS.md`, `START_HERE.md`, the fast path in
+  `docs/DECOMP_PLAYBOOK.md` and the current ranked inventory. Reuse source
+  types and saved scratch proofs; do not re-run completed experiments.
+- Compare **single-function scratch sources** using
+  `python3 tools/ches/compare-function.py scratch.cc name --start 0x08... --end 0x08... --out-dir <dir>`.
+  The existing `--symbol` comparator is unreliable when one scratch object
+  contains multiple independently named `.text.*` sections. An experimental
+  fix failed and was reverted byte-for-byte to tracked HEAD; do not rely on
+  multi-section proofs without a proper regression-tested fix.
+- Check exact body, trailing alignment, literals, relocations and ABI before
+  production. Split only the proven ranges in `asm/code_linkonce.s` and
+  `fomt.lds`. Preserve all neighboring ASM and raw literal/data islands.
+- Force `make -B -j4 compare`, verify ROM SHA1, regenerate inventory with
+  `python3 tools/ches/build_decomp_inventory.py`, run `git diff --check`,
+  update the live dashboard/status/handoff and relevant stable subsystem page
+  **once per coherent batch**.
+- Keep custom-game edits isolated. The exact retail source was committed as
+  **1e522c9** and the documentation was prepared as a separate checkpoint;
+  verify the current upstream state with `git status -sb` and `git log -1`.

@@ -18,6 +18,41 @@ indirect-call collection rather than manual resource hunting.
 
 Custom behavior still belongs only in the separate custom-game worktree.
 
+## Menu glyph-cache exact batch
+
+October 10, 2026 adds four exact functions / 308 linked bytes in
+include/menu_glyph_cache.hh and src/menu_glyph_cache.cc: EFAC, the formerly
+anonymous F058 reset helper, F0E0 and F15C. The recovered type has three smart
+row pointers; each row is seven 0x10-byte entries holding a 4x2 canvas pointer,
+resource handle and dirty byte. The cache cursor/flags occupy +0x14..+0x1B.
+
+The saved Sol 6.1 proof root is
+tools/ches/checkpoints/menu-glyph-cache-2026-10-10/. Its isolated ROM gate
+passed before the interrupted session ended. The production working tree was
+then verified with make -B -j4 compare and the retail SHA1. Inventory now
+reports the recovered four-function batch exactly; those historical checkpoint totals were 2,085 linked assembly functions and 854,928 assembly bytes (see START_HERE.md for the current inventory).
+
+F060 row rotation remains assembly. Nine bounded natural candidates culminate
+in cache-family-v8.cc, exact-size with 12 differing linked bytes. Its behavior
+is understood, so syntax roulette is closed. E105C is no longer a frontier: the
+implicit old-GCC destructor is exact source and independently proves the 0x70
+row geometry, entry lifetime and vtable_unk_080E7908 ownership surface. Stable
+details: [MENU_GLYPH_CACHE.md](MENU_GLYPH_CACHE.md).
+
+### Exact glyph-cache implicit destructor
+
+E105C..E10E0 adds 132 exact linked bytes. Old GCC implicit destructor is the
+required source form. Explicit destructor probes added a derived-vtable store;
+manual ABI probes reached exact size with only an r8/r9 allocation swap; the
+compiler-generated implicit destructor is exact when its own linkonce section
+is selected. Production links only that section and preserves asm vtables.
+Full-ROM compare and retail SHA1 pass. Proof root:
+tools/ches/checkpoints/menu-glyph-cache-2026-10-10/.
+
+### Exact provider and counted-range continuation
+
+The October 10 continuation adds 11 functions / 756 exact linked bytes. E14B8 is exact `BuildAnimalNameText`; E1824/E1964/E1984/E1A28 are exact provider lifetime wrappers; E1844 and E19A4 are exact 31-character name providers; E1A48/E1A54 are exact wrappers; and E1C18/E1D54 are exact counted 16-byte range cleanups. The exact range-walk source evaluates the header/count pointer first, computes `header + 4 + count*16`, then forms the record iterator and advances by 16 to end before forwarding `(self, flags)` to `func_08076E0C`. Abstracting this walk into a helper changes register allocation, so the production dual cleanup keeps two explicit scopes. Current next target is E1C70..E1D54.
+
 ## Livestock controller, helpers and catalog
 
 Four helpers in src/livestock_controller.cc own 360 linked bytes: animal
@@ -90,8 +125,7 @@ pointer in the third argument and copies the canvas; the old clear label was
 incorrect. MenuGlyphTiles proves four 32-byte output tiles.
 Four named entries leave the inventory; no surviving range or unattributed
 byte changes. Renderer E4AC/E5AC and fill E7A0/E7DC source shapes are parked.
-Stable behavior: MENU_TEXT.md. Next recover the menu glyph cache/row helpers
-around EFAC/F060/F0E0 using the exact font-width and canvas interfaces.
+Stable behavior: MENU_TEXT.md and MENU_GLYPH_CACHE.md. The glyph-cache/lifetime/provider continuation is now exact through E1D54 except parked F060 and larger assembly-owned methods; E1C70 was the bounded target at that checkpoint; the current source/ASM frontier is in the live handoff.
 
 ## CURRENT DECOMP NOTE POLICY
 
@@ -100,8 +134,8 @@ live state. This file keeps subsystem/function evidence and matching lessons.
 
 Current retail state:
 - Active public retail branch: `main`; the former `Live-temp` line is retired. Historical `ches-dev` commits remain provenance only.
-- Current exact progress: **83,612 / 940,036 = 8.8946% source** and **856,424 assembly bytes**. Data/assets reconstruction is **75,554 / 6,777,404 = 1.1148%** and overall meaningful-ROM reconstruction is **159,562 / 7,717,440 = 2.0676%**. Forced production ROM comparison reports `fomt.gba: OK`; retail SHA1 remains `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
-- Remaining linked assembly functions: **2,107**; inferred function ranges cover **853,728 / 856,424 = 99.6852%**, with **2,696 unattributed bytes** and **27 explicitly parked functions**. The total includes the prior exposed islands and 596 additional unnamed bytes preserved beside six scene Run entries.
+- Current exact progress: **87,236 / 940,036 = 9.2801% source** and **852,800 assembly bytes**. Data/assets reconstruction is **75,554 / 6,777,404 = 1.1148%** and overall meaningful-ROM reconstruction is **163,186 / 7,717,440 = 2.1145%**. Forced production ROM comparison reports `fomt.gba: OK`; retail SHA1 remains `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
+- Remaining linked assembly functions: **2,037**; inferred function ranges cover **849,828 / 852,800 = 99.6515%**, with **2,972 unattributed bytes** and **27 explicitly parked functions**. The total includes the prior exposed islands and 596 additional unnamed bytes preserved beside six scene Run entries.
 
 ### 2026-10-09 Scenes: complex Runs complete
 
@@ -1344,4 +1378,4 @@ Stable contracts and source ranges are in `docs/RESOURCE_HANDLES.md`. Private so
 Latest recovered GroundPickupState: +0x34C8..+0x34D7, 56 availability
 bits and fifteen packed three-bit durability fields. Four exact functions
 add 1,032 linked bytes. A1EA8 is parked. See docs/GROUND_PICKUP_STATE.md.
-The +0x34D8 mask and +0x34DC actor state are already source-owned. Next bounded work is menu OAM factory 4EA94..4EB64; frame getter 5E790, offer builder 85640 and C6BC remain parked.
+The +0x34D8 mask and +0x34DC actor state are already source-owned. At that earlier checkpoint, the next proposed target was menu OAM factory 4EA94..4EB64; frame getter 5E790, offer builder 85640 and C6BC were parked. Current high-yield priorities live in START_HERE.md and NEXT_AGENT_HANDOFF.md.

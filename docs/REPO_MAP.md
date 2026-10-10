@@ -22,15 +22,15 @@ the separate custom-game worktree.
 This is a practical map of the current reconstruction, not a claim that every
 subsystem is fully understood.
 
-## Current reconstruction snapshot - October 9, 2026
+## Current reconstruction snapshot - October 10, 2026
 
 Authoritative live state is in `START_HERE.md`.
 
 - Active public retail branch: **`main`**. The former `Live-temp` series is retired; `ches-dev` remains historical.
-- Code reconstruction: **83,612 / 940,036 = 8.8946%**; **856,424 assembly bytes** remain.
-- Remaining linked asm functions: **2,107**; inferred ranges cover **853,728 / 856,424 = 99.6852%**, with **2,696 unattributed bytes** and **27 explicitly parked functions**.
+- Code reconstruction: **87,236 / 940,036 = 9.2801%**; **852,800 assembly bytes** remain.
+- Remaining linked asm functions: **2,037**; inferred ranges cover **849,828 / 852,800 = 99.6515%**, with **2,972 unattributed bytes** and **27 explicitly parked functions**.
 - Data/assets: **75,554 / 6,777,404 = 1.1148%**.
-- Overall meaningful-ROM reconstruction: **159,562 / 7,717,440 = 2.0676%**.
+- Overall meaningful-ROM reconstruction: **163,186 / 7,717,440 = 2.1145%**.
 - Contiguous tail free space: **671,168 bytes = 655.44 KiB**.
 - Retail SHA1: `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`; full compare remains **`fomt.gba: OK`**.
 - Authoritative compiler path is the tracked `tools/install_agbcp.sh` plus `tools/agbcp_fomt_compat.patch`, SHA-256 `aa7cc6df0efbd066e9c33deb887731e1d0210babfaeba4c9b64f3e8bc35c4256`.
@@ -45,13 +45,27 @@ Authoritative live state is in `START_HERE.md`.
 The scene lifetime layer owns 74 functions/4,108 bytes, including all 25 Runs;
 constructor 92570 and most controller bodies remain assembly. Livestock owns
 548 code bytes and 220 catalog bytes; its builder stays parked.
-Menu graphics now owns 1,208 exact bytes across rectangle drawing, twelve
-callback methods, two streams, two font helpers and three canvas helpers.
-New source: include/menu_font.hh, src/menu_font.cc and src/menu_text_canvas.cc.
-The latest batch adds five functions/532 bytes; data/assets stay unchanged.
-Font lookup/decoding and full-canvas copy are recovered. Renderer/fill methods,
-frame getter, integer/price primitives and OAM EA94 remain parked.
-Next assess the glyph cache/row family EFAC/F060/F0E0.
+An earlier 1,208-byte menu-graphics foundation covers rectangle
+drawing, twelve callback methods, two streams, two font helpers and three
+canvas helpers. The glyph-cache methods EFAC/F058/F0E0/F15C and E105C
+cache-lifetime family were subsequently integrated; only F060 rotation
+remains compiler-sensitive. Font decoding and canvas copy remain exact.
+Renderer/fill methods, frame getter, number formatters and OAM EA94 stay
+parked. Stable evidence is in `MENU_TEXT.md` and `MENU_GLYPH_CACHE.md`.
+
+**Latest source ownership (October 10):** `src/menu_tree_rotations.cc`,
+`src/menu_tree_balance.cc` and `src/menu_tree_lifetime.cc` cover menu tree
+rotations, balancing and recursive release. Ten exact callback emitters,
+four subobject initializers, polymorphic owner and global-owner destructors,
+small resource helpers, and six vtable-only destructors are in
+`src/menu_emit_wrappers.cc`, `src/menu_subobject_initializers.cc`,
+`src/menu_owner_dtors.cc`, `src/menu_global_owner_dtors.cc`,
+`src/menu_resource_helpers.cc` and `src/menu_simple_dtors.cc`.
+The latest verified batch adds **18 functions / 632 exact linked bytes**.
+The entire save loader is unfinished; data/assets remain at 75,554 source
+bytes. See the current top of `tools/ches/NEXT_AGENT_HANDOFF.md` for the
+next type-anchored throughput target rather than treating older menu
+checkpoint suggestions as active.
 Stable evidence: [Scenes](SCENES.md), [Livestock shop](LIVESTOCK_SHOP.md),
 [Menu tilemaps](MENU_TILEMAP.md) and [Menu text](MENU_TEXT.md).
 

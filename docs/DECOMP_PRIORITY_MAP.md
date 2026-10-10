@@ -12,11 +12,11 @@ exploit them across the remaining assembly instead of making an individual
 resource family the main queue.
 
 Current verified working state on `main`:
-- code: **83,612 / 940,036 = 8.8946%**;
-- assembly remaining: **856,424 bytes**;
-- remaining linked assembly functions: **2,107**;
+- code: **87,236 / 940,036 = 9.2801%**;
+- assembly remaining: **852,800 bytes**;
+- remaining linked assembly functions: **2,037**;
 - data/assets: **75,554 / 6,777,404 = 1.1148%**;
-- overall meaningful ROM: **159,562 / 7,717,440 = 2.0676%**;
+- overall meaningful ROM: **163,186 / 7,717,440 = 2.1145%**;
 - packed bank: **416 / 493 semantically owned animations**;
 - retail ROM remains exact at SHA1 `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
 
@@ -53,23 +53,13 @@ but its score is no longer an execution order.
 
 ## Current priority: work the live queue and preserve family-level leverage
 
-Latest promotion: **five font/canvas functions / 532 exact bytes**.
-Shared glyph lookup/decoding owns a complete 488-byte block; canvas copy and
-unaligned stubs own 44. Both forced ROM gates pass. Four named entries leave
-the inventory; no surviving ranges or unattributed bytes change.
+**Latest current checkpoint:** October 10: 18 exact methods / 632 linked bytes newly promoted, covering three owner destructors, four global-owner dtors, five resource helpers, and six plain dtors; forced full-ROM gate passed throughout. The status inventory is 87,236 / 940,036 exact code bytes (9.2801%) and 2,037 unresolved linked assembly functions. Next prioritize typed high-yield coherent clusters; resource pair initialization at D6EAC/D6EEC and virtual owner-transfer 72-byte family remain codegen sensitive. See the current top of NEXT_AGENT_HANDOFF.md.
 
-Renderer E4AC/E5AC and fill E7A0/E7DC are now parked after bounded source
-families. Inline tile/address, byte-count and temporary lifetimes remain
-unresolved. Reopen them only with real structural evidence. The explicit
-parked count is 27; this metadata is separate from recovered bytes.
+Earlier promotion: **11 menu provider/lifetime and range-cleanup functions / 756 exact bytes**. E14B8 is now exact `BuildAnimalNameText`; adjacent provider wrappers/name builders through E1A54 are source-owned; E1C18 and E1D54 recover counted 16-byte range teardown. The final forced ROM gate preserves the retail SHA1.
 
-Next assess the menu glyph cache/row family EFAC/F060/F0E0 with the recovered
-four-tile output, font-width protocol and canvas copy API.
-Their true bodies total 424 bytes; preserve F058..F060's separate eight-byte
-neighbor. Recover the owning layout from constructors/callers, then include
-confirmed sibling lifetime methods as one batch.
-Keep one isolated/production gate pair, inventory/docs pass and publication
-per coherent family. Read MENU_TEXT.md and NEXT_AGENT_HANDOFF.md.
+The cache foundation remains exact for EFAC/F058/F0E0/F15C plus the E105C lifetime/interface chain. F060 remains assembly at a saved exact-size 12-difference frontier. Renderer E4AC/E5AC and fill E7A0/E7DC stay parked after bounded source families. Reopen parked work only with new structural evidence.
+
+Earlier exact promotion: **E1DBC..E1DD4, two check/release provider wrappers, 24 linked bytes**. The compiler naturally reproduces both, and the forced production ROM comparison passes. E1C70 has confirmed behavior via focused REA and typed 16-byte records, but v1/v2 natural sources still differ substantially (best v2 0xE8 versus 0xE4 retail with 164 differing linked bytes). Preserve that research and park its compiler/source-shape frontier rather than repeating superficial variants. E1DD4 and its identical E211C destructor partner are now exact C++, 0x54 bytes each; the adjacent E2170 and E21A8 tree rotations are exact source with 0x36-byte bodies plus 2-byte linker alignment apiece. Both forced production gates passed. The E21E0..E2294 balancing routine is now exact natural source; the neighboring E2294/E27FC/E54F0 insertion routines remain unresolved. Reuse the proven node/rotation layout when selecting a future typed insertion batch. E1A70 remains assembly until independently proven. See MENU_GLYPH_CACHE.md and NEXT_AGENT_HANDOFF.md.
 
 The larger 20-member scene-change constructor family remains bounded but nonmatching. Do not repeat its closed aggregate-lifetime candidates merely because the queue ranks it highly. NEXT_AGENT_HANDOFF.md owns the active continuation.
 
@@ -86,8 +76,8 @@ one successful example: 472 bytes of typed save layout and 276 bytes of exact
 code recovered without solving the loader. Mine-floor CE8C now provides a
 second: a 0x628-byte persistent object and 168 exact initializer bytes.
 
-The next bounded assessment stays in that mine-floor translation unit because
-the proven layout now constrains DA00 strongly. D8E8 is parked; if DA00
+An earlier bounded assessment focused on the mine-floor translation unit because
+the proven layout constrained DA00 strongly. D8E8 is parked; if DA00
 reveal a repeated compiler obstacle or require broad legacy refactoring, save
 the result and rank other persistent subobjects by type readiness,
 caller/consumer evidence and downstream value.

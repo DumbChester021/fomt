@@ -152,12 +152,12 @@ Six formerly inferred Run ranges also contained unnamed neighboring code. Only t
 
 The **596 bytes** remain unchanged assembly and now count as unattributed. Run 93AD4 follows the separate 12-byte helper at 93AC8; destructor adjacency alone does not establish its address.
 
-All 74 source-owned scene functions match retail. The newest Run, `func_080881EC`, matches scratch, production-shaped and complete-TU proofs at 0xC0 / 0 differences. A fresh tracked compiler install, isolated full-ROM comparison and forced production full-ROM comparison pass. Original entry aliases, target/neighbor addresses and all 25 destructor/Run vtable slot pairs are preserved. The current inventory, after the later menu drawing batch, reports 2,107 linked assembly functions, 856,424 assembly bytes and the unchanged 2,696 unattributed bytes.
+All 74 source-owned scene functions match retail. The newest Run, `func_080881EC`, matches scratch, production-shaped and complete-TU proofs at 0xC0 / 0 differences. A fresh tracked compiler install, isolated full-ROM comparison and forced production full-ROM comparison pass. Original entry aliases, target/neighbor addresses and all 25 destructor/Run vtable slot pairs are preserved. At that October 9 scene checkpoint, the inventory reported 2,085 linked assembly functions, 854,928 assembly bytes and 2,696 unattributed bytes; current totals are in START_HERE.md.
 
 ROM: **8,388,608 bytes**, SHA1 `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
 
-The ignored proof checkpoint is `tools/ches/checkpoints/scene-owners-2026-10-09/`. It contains the audited manifest, matcher results, reviewed integration inputs, both full build logs and verification/inventory snapshots. `tools/ches/NEXT_AGENT_HANDOFF.md` owns the current livestock graphics-interface continuation.
+The ignored proof checkpoint is `tools/ches/checkpoints/scene-owners-2026-10-09/`. It contains the audited manifest, matcher results, reviewed integration inputs, both full build logs and verification/inventory snapshots. `tools/ches/NEXT_AGENT_HANDOFF.md` owns the current global continuation.
 
 Constructor proofs are under `tools/ches/checkpoints/scene-constructors-2026-10-09/`: audited manifest, caller evidence, individual matches, reviewed final integration inputs, expanded full build logs and verification/inventory snapshots.
 
-Nested Run proofs and reviewed integration inputs are under `tools/ches/checkpoints/scene-complex-runs-2026-10-09/`. The canonical handoff owns the bounded livestock graphics-interface continuation.
+Nested Run proofs and reviewed integration inputs are under `tools/ches/checkpoints/scene-complex-runs-2026-10-09/`. The canonical handoff owns the current bounded continuation.
