@@ -1,44 +1,18 @@
 # Decompilation and expansion progress
 
-Run `make progress` for the live reconstruction totals, retail-ROM comparison, branch/commit information, and PRET-style free-space report.
+Run make progress for authoritative totals. The current priority is **full US retail save-system decompilation**, not custom-game features.
 
-**Latest exact production-code checkpoint:** `f069823` (seven SRAM-header functions/472 bytes). This documentation maintenance adds no recovered game bytes. Current priority: full retail save decompilation; see [SAVE_LIFECYCLE.md](SAVE_LIFECYCLE.md).
+## Current verified snapshot — October 11, 2026
 
-## Current verified snapshot
+- **Branch:** main tracking ches/main; find the current publication SHA with git log -1 rather than using the historical labels below.
+- **Forced full-ROM gate:** make -B -j4 compare PASSED (sh_mv2t0b0a_4bb83627, fomt.gba: OK); original retail SHA1 a2fc3574f0a65a4fcf7682fb274b9d7eebdef963; ROM size 8,388,608 bytes.
+- **Matching code:** **90,644 / 940,036 (9.6426%)**, remaining ASM **849,392 bytes / 1,948 functions**, inferred function coverage 846,356 bytes, unattributed 3,036 bytes, 27 parked.
+- **Data/assets:** **75,554 / 6,777,404 (1.1148%)** = 31,330 source-owned noncode + 44,224 editable generated graphics/palettes.
+- **Meaningful ROM:** **166,594 / 7,717,440 (2.1587%)**; free ROM tail 671,168 bytes.
+- **Newest exact code:** specialized Farm saved-state copy 180 bytes, Dog copy 132, three GameState cleanups 228, plus save header/proxies/typed byte-buffer and transition methods.
+- **Readability/layout:** Seven typed GameState children, 41 compile-time binary checks; full 776-byte assignment and 740-byte loader remain original assembly, as do multiple nested/UI/erase functions. Read-only SRAM inspector self-tests pass; **no backed-up real save or emulator tested**.
 
-Active public retail branch: **`main`**
-
-Retail verification:
-
-- `make -B -j4 compare` -> **`fomt.gba: OK`**
-- ROM size: **8,388,608 bytes**
-- SHA1: **`a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`**
-
-Current reconstruction:
-
-```text
-Code reconstruction
-  89444 / 940036 bytes (9.5150%)
-  850592 bytes remain in asm
-
-Data/assets reconstruction
-  75554 / 6777404 bytes (1.1148%)
-  31330 bytes from typed/source non-code data
-  44224 bytes from editable generated assets
-    33664 graphics bytes
-    10560 palette bytes
-  396 additional source-owned ROM-header bytes count only toward overall
-
-Overall meaningful-ROM reconstruction
-  165394 / 7717440 bytes (2.1431%)
-  final ROM padding is excluded from this denominator
-
-ROM space
-  7717440 / 8388608 bytes used (91.9991%)
-  671168 bytes free (655.44 KiB, 8.0009%) contiguous tail space
-```
-
-The code inventory currently reports **1,975 linked assembly functions**, **847,620 bytes** covered by inferred function ranges, **2,972 unattributed assembly bytes**, and **27 explicitly parked functions**. The total includes prior exposed islands plus 596 bytes of unnamed neighbors revealed by six scene Run seams. Only their true 28-byte Run bodies are source-owned; the neighboring code remains unchanged assembly.
+See docs/SAVE_FARM_STATE_COPY.md, docs/SAVE_LIFECYCLE.md, docs/SAVE_GAMESTATE_ASSIGNMENT_MAP.md and tools/ches/NEXT_AGENT_HANDOFF.md. Dated milestones below are historical, not current counts.
 
 ## What the metrics mean
 
@@ -50,7 +24,7 @@ The project keeps separate dimensions rather than combining unlike work into one
 
 Understanding or documenting an opaque `.incbin` does not count as asset/data reconstruction. Editable project-side source must regenerate the retail bytes exactly.
 
-## Latest save-first October 10 exact milestone
+## Historical save-first October 10 exact milestone
 
 New `src/save_slot_header.cc` and `include/save_format.hh` reconstruct **7 semantically named, independently exact C++ functions / 472 linked retail bytes**: verifying and initializing the 32-KiB SRAM header, reading/setting/clearing the valid-slot mask, and reading/writing the selected slot. This includes the former unnamed 68-byte Thumb clear-valid routine. The complete source-owned header span is `080002E0..080004C4` with the previously exact `GetSaveSlotOffset` retained. The forced `make -B -j4 compare` passed (`sh_mv25lwpc_e4c43b4c`), original ROM SHA1 unchanged. Full save loader and GUI lifecycle are **not yet matching C++**. See `docs/SAVE_LIFECYCLE.md` for readable pseudocode and exact proof locations.
 

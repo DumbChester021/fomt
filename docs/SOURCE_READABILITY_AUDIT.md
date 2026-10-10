@@ -18,13 +18,13 @@ There is also lower-level matching debt. For example, `src/mine_floor.cc` uses e
 
 ## Repeatable heuristic snapshot
 
-Run: `python3 tools/ches/audit_source_readability.py` (or `--json`). Current post-save-header integration snapshot:
+Run: `python3 tools/ches/audit_source_readability.py` (or `--json`). Latest post-Farm-source-audit snapshot, October 11, 2026:
 
 | Indicator | Occurrences | C++ files containing it |
 | --- | ---: | ---: |
-| Files and lines scanned | 137 files | 20,047 lines |
-| Address-derived function definitions (conservative regex) | 138 | 17 |
-| Address-derived symbol references | 1,443 | 94 |
+| Files and lines scanned | 147 files | 20,500 lines |
+| Address-derived function definitions (conservative regex) | 143 | 20 |
+| Address-derived symbol references | 1,503 | 104 |
 | Unknown/padding array fields | 78 | 21 |
 | Offset-named callback calls | 44 | 3 |
 | Compiler-sensitive syntax indicators | 20 | 7 |

@@ -1,0 +1,50 @@
+# GameState assignment: fieldwise dependency and typed-layout map
+
+## Retail 0x080D4178 (776 bytes): current reconstruction evidence
+
+`func_080D4178` at ROM `0x080D4178..0x080D4480` is the retail GameState assignment/copy operation. It is **still assembly**, not a matching C++ function. It is used by successful save loading to preserve the existing live GameState allocation. This map is grounded in the original `asm/code_linkonce.s` callsites and the existing C++ types, not a claim that the original entire object-copy logic is reconstructed.
+
+| GameState-relative offset | Bytes | Verified action in assembly | Typed source / status |
+| --- | ---: | --- | --- |
+| 0x0000..0x0013 | 0x14 | Copy packed GameState header members with field masks and 12-byte word run | Header still partially opaque |
+| 0x0014..0x1AA7 | 0x1A94 | Call `func_080D64C8(dst+0x14,src+0x14)` | **`CopySavedFarmState` exact 180-byte C++** using real Farm fields, original address; specialized Coop/Barn callees remain ASM |
+| 0x1AA8..0x1BD7 | 0x130 | Call `func_080D6B40(dst+0x1AA8,src+0x1AA8)` | `MoneyState` exactly located; counted daily/seasonal copy **ASM** |
+| 0x1BD8..0x1C6F | 0x98 | Call `func_080D68C0(dst+0x1BD8,src+0x1BD8)` | `Farmer` at +0x1BD8; copying function **ASM** |
+| 0x1C70..0x1C9F | 0x30 | Call `func_080D67C8(dst+0x1C70,src+0x1C70)` | **`CopySavedDogState` exact 132-byte C++**, original address |
+| 0x1CA0..0x1CCB | 0x2C | Set destination count to zero; copy active bytes individually; restore count, copy six-byte location | `SavedByteBuffer` methods partially exact; parent assignment **ASM** |
+| 0x1CCC..0x1CD1 | 0x06 | Raw `memcpy` 6 bytes | Spatial/location-style data; specific semantics pending |
+| 0x1CD4 onward | variable | Call `func_080D60B0(dst+0x1CD4,src+0x1CD4)` | Social-related block; assignment **ASM** |
+| 0x214C onward | variable | Call `func_080D44D4(dst+0x214C,src+0x214C)` | Social-related block; assignment **ASM** |
+| 0x21CC onward | variable | Assign scalar/short packed fields, strings via `strcpy`, larger opaque data via `memcpy` | Full assignment **ASM** |
+| 0x2C1C onward | 0x30+ | Copy three groups of scalar/aggregate words before transition state | Unknown packed saved records |
+| 0x2C74..0x2C7F | 0x0C | Copy three words, no deep allocation | `SavedTransitionState` and 8 exact separate member methods |
+| 0x2C80..0x2E57 | 0x1D8 | `memcpy(dst+0x2C80,src+0x2C80,0x1D8)` | `FishingRecords`, 59 count/max-size records, source-owned accessors |
+| 0x2E58..0x34F3 | 0x69C | Copy remaining saved progress, packed records and other tail data | Still partially opaque |
+
+Boundaries where specialized calls copy overlapping or adjacent components are listed as their source-owner regions. The exact subranges handled inside the trailing opaque segments need further callsite/type reconstruction. Do not infer every field is a simple POD byte copy from these high-level descriptions.
+
+### Three save loader lifecycle operations
+
+The active-state load route first validates length, bytes and checksum through `func_08011650` and checks its out-error value. Upon success when there is an existing owner:
+
+```cpp
+CleanupGameState(existing, 2);        // Exact source; deallocate nested objects but not existing allocation
+func_080D4178(existing, loaded);     // Original ASM; subobject-specific copy
+CleanupGameState(loaded, 3);         // Exact source; nested cleanup plus free loaded allocation
+```
+
+The no-owner path instead attaches the loaded GameState to a fresh owner wrapper; on failed loads, the unsuccessful buffer is deleted before retry. **The user must not customize the save system until these owner transfer/copy methods are fully understood and runtime tested.**
+
+### Proved binary types and remaining matching frontier
+
+`include/save_persisted_layout.hh` now directly places real `Farm`, `MoneyState`, `Farmer`, `Dog`, `FishingRecords`, `SavedByteBuffer` and `SavedTransitionState`. It enforces **41 compile-time size/offset checks** covering the 32 KiB SRAM geometry, old compiler ABI and named child components. The verified complete build `make -B -j4 compare` passed with retail SHA1 unchanged (`sh_mv2saxgu_aed05dc4`, `fomt.gba: OK`). This structured model emits no extra ROM instructions, so byte-exact code metrics stay unchanged.
+
+The `Farm` copy **is now exact source** (`CopySavedFarmState` / `func_080D64C8`, 180 bytes) in `src/farm_state_copy.cc`. The failed implicit whole-object copy yielded 788 bytes, but member-aware C++ plus a counted **11-word horse-placeholder loop** reduced to 180 exact bytes with zero differences. Original specialized Coop/Barn calls remain in place and assembly. See [SAVE_FARM_STATE_COPY.md](SAVE_FARM_STATE_COPY.md) for scratch evidence, original-symbol alias, and forced full-ROM gate (`sh_mv2sly7y_cf9bd46e`).
+
+The nested `MoneyState` assignment has a saved, behaviorally readable natural C++ candidate in `/mnt/waydroid-hdd/home-chester-waydroid/fomt-money-copy-20261011/money-copy-v1.cc` (196 generated bytes against retail 200, 157 differing bytes). Four additional **placement-construction/typed field-copy** probes were tested in `money-placement-probes.py`: 3 equivalent variants still emitted the same 196/157 differences, a member-field variant 192/151. This is a *closed first-pass source-shape hypothesis*, not a production match; the original `func_080D6B40` remains untouched in ASM. Don't add artificial compiler register constraints or alter `MoneyState` types merely to force matching.
+
+The read-only `tools/ches/inspect_sram.py` can extract basic original MoneyState, saved-buffer, transition, and 59-entry fishing summary fields only when a slot has consistent header, length and checksum. Its synthetic tests exercise the original fish total saturation at 1 billion, indices 8–58, six fish kings at 53–58, and rejection of invalid slots. It never modifies SRAM or proves a save will load in an emulator. No genuine save was used.
+
+**Next work:** source-recover the separate `Farm`/ `Farmer`/`MoneyState` assignments and the full `func_080D4178`, then the 740-byte default constructor/loader `func_08011650` using the closed-experiment oracle ledger. Test backed-up actual saves and error paths. Keep retail `main` and custom-game isolated.
+
+Other related documentation: [SAVE_LIFECYCLE.md](SAVE_LIFECYCLE.md), [SAVE_SERIALIZED_LAYOUT.md](SAVE_SERIALIZED_LAYOUT.md), [GAME_STATE_SAVE_CLEANUP.md](GAME_STATE_SAVE_CLEANUP.md), [SAVE_DOG_STATE_COPY.md](SAVE_DOG_STATE_COPY.md), [SAVE_MENU_RETRY_TRACE.md](SAVE_MENU_RETRY_TRACE.md).

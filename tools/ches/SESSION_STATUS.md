@@ -1,6 +1,6 @@
 # FoMT Session Status
 
-## Current verified snapshot — October 10, 2026
+## Current verified snapshot — October 11, 2026
 
 This is a **concise live checkpoint**. The former chronological session
 notes are preserved byte-for-byte in
@@ -11,20 +11,24 @@ Live next actions belong to `tools/ches/NEXT_AGENT_HANDOFF.md`.
 | --- | --- |
 | Workspace / branch | `/mnt/data/Github/gba/fomt`; `main` tracking `ches/main` |
 | Latest published source | **`f069823`** (exact save-header functions + save-first handoff), pushed to `ches/main` |
-| Code in C++ source | **89,444 / 940,036 (9.5150%)** |
-| Remaining linked ASM | **850,592 bytes; 1,975 functions** |
-| Inferred assembly ranges | **847,620 bytes** (99.6506%) |
-| Unattributed ASM / parked | **2,972 bytes / 27 functions** |
+| Code in C++ source | **90,644 / 940,036 (9.6426%)** |
+| Remaining linked ASM | **849,392 bytes; 1,948 functions** |
+| Inferred assembly ranges | **846,356 bytes** (99.6425%) |
+| Unattributed ASM / parked | **3,036 bytes / 27 functions** |
 | Recovered data/assets | **75,554 / 6,777,404 (1.1148%)** |
-| Meaningful ROM | **165,394 / 7,717,440 (2.1431%)** |
+| Meaningful ROM | **166,594 / 7,717,440 (2.1587%)** |
 | Free ROM tail | **671,168 bytes** |
 | Retail ROM | **8,388,608 bytes**; SHA1 `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963` |
-| Latest forced build | `make -B -j4 compare` **passed** (`sh_mv25lwpc_e4c43b4c`; `fomt.gba: OK`) |
+| Latest forced build | `make -B -j4 compare` **passed** (`sh_mv2t0b0a_4bb83627`; `fomt.gba: OK`) |
 | Pending builds | None at this checkpoint |
 
-## Current highest priority — complete save system first
+## Current save-system checkpoint (October 11, 2026)
 
-Seven semantic SRAM-header methods / **472 byte-exact source bytes** were recovered, including the previously raw/unlabeled `0800042C` clear-valid bit routine. The entire contiguous header area `080002E0..080004C4` is source-owned using `src/save_slot_header.cc` and existing `src/save_format.cc`. Every method individually matched retail and the forced clean ROM gate `sh_mv25lwpc_e4c43b4c` exited 0; retail SHA1 unchanged. The active next work is **the complete 740-byte `func_08011650` save loader, its default-state type graph, the SRAM read/write proxies and all high-level save/load/erase/copy paths**. See `docs/SAVE_LIFECYCLE.md` and current `tools/ches/NEXT_AGENT_HANDOFF.md`. Earlier general throughput is deferred. No custom-game files were changed.
+**Exact source integration:** CopySavedFarmState 180B at 080D64C8, CopySavedDogState 132B at 080D67C8, three parent/nested GameState cleanup routines 228B; plus save header/SRAM proxy, byte-buffer, transition and packed flag helpers. Cumulative **90,644 byte-exact game-code bytes / 1,948 remaining ASM functions**. Full forced retail gate sh_mv2t0b0a_4bb83627 passed with original SHA1.
+
+**Structures/tests:** 41 original-compiler layout assertions verify seven embedded GameState types; read-only SRAM inspector synthetic tests pass including u32 fish-count overflow, no real SRAM tested. Full GameState assignment 080D4178, loader 08011650 and multiple save/copy/erase paths remain ASM. Next steps in tools/ches/NEXT_AGENT_HANDOFF.md.
+
+Earlier milestone material was moved to tools/ches/checkpoints/save-2026-10-11/HANDOFF_HISTORY.md. Historical records below are not live progress or current priority.
 
 ## Earlier integrations (verified historical milestones)
 

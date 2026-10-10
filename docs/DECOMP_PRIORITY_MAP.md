@@ -28,7 +28,11 @@ save-only override below; the unrelated functions remain deferred.
 This is the project roadmap for zero-context continuation on the public fork.
 It is not intended as upstream pull-request content.
 
-## Save-first target override — October 10, 2026
+## Current save-first priorities — October 11, 2026
+
+Newest exact: 180-byte Farm, 132-byte Dog, and 228-byte GameState cleanup cluster; 41 typed save-layout checks. **Current code 90,644 / 940,036 (9.6426%)**, 1,948 remaining ASM functions. Target specialized Farmer/Coop/Barn/MoneyState assignments, then 776-byte parent GameState copy and 740-byte loader, then save/load/erase and real backed-up SRAM tests. Historical general-throughput queue below remains deferred. See docs/SAVE_GAMESTATE_ASSIGNMENT_MAP.md and tools/ches/NEXT_AGENT_HANDOFF.md.
+
+## Historical save-first target override — October 10, 2026
 
 **The user now prioritizes human-readable, exact retail save-system reconstruction, not the general throughput queue below.** The older parked-loader strategy and suggested owner/tree-function families are deferred until save reconstruction is complete or the user changes scope. The header verifier/init/valid-slot mask/set/clear/selected-slot read/write were just promoted as **7 exact source functions / 472 linked bytes**, including an anonymous 68-byte clear-valid operation. New source `src/save_slot_header.cc`; subsystem map `docs/SAVE_LIFECYCLE.md`. The loader `func_08011650` (740 bytes), `func_08003F9C`, `func_080040A0`, `func_080041DC`, the low-level SRAM read/write wrappers and missing persistent-state semantics remain. Existing loader research under `tools/ches/checkpoints/save-loader-08011650-2026-10-04/` contains 100+ compiler candidates: do not repeat syntax roulette. Track behavioral human readability and exact source separately; only exact source enters production.
 

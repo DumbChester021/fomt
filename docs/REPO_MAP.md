@@ -1,10 +1,10 @@
 # FoMT Repository Map
 
-## Current authoritative scope — save-first
+## Current authoritative scope — save-first (October 11, 2026)
 
-The user requires the **full retail save system** to be reconstructed in natural, human-readable, byte-exact C++ before custom-game changes. The contiguous save-header region `080002E0..080004C4` is source-owned, with seven new verified functions / 472 bytes in `src/save_slot_header.cc` plus the existing `GetSaveSlotOffset` in `src/save_format.cc`. Remaining priorities include the 740-byte `func_08011650` loader, the SRAM read/write proxies, the typed persistent GameState graph and the save-menu lifecycle. See [SAVE_LIFECYCLE.md](SAVE_LIFECYCLE.md).
+User-directed highest priority: fully understand and byte-exact decompile the **retail save system** before custom-game development. Recent exact work includes 180-byte Farm saved-state copy, 132-byte Dog copy, 228 bytes of GameState cleanup and SRAM/header/buffer/transition functions. The 776-byte GameState assignment, 740-byte loader, nested Farmer/MoneyState/Coop/Barn assignments and save/load/erase UI remain original ASM.
 
-**Current exact coverage**: 89,444 / 940,036 code bytes (9.5150%), 850,592 linked ASM bytes / 1,975 functions, 165,394 meaningful ROM bytes (2.1431%). Latest production source commit: `f069823`.
+**Current metrics:** **90,644 / 940,036 (9.6426%)** source C++ bytes; **849,392 ASM bytes / 1,948 functions**; meaningful ROM **166,594 / 7,717,440 (2.1587%)**. Forced ROM gate sh_mv2t0b0a_4bb83627 passed. See docs/SAVE_LIFECYCLE.md, docs/SAVE_SERIALIZED_LAYOUT.md and the canonical handoff. Older milestone metrics below are explicitly historical.
 
 ## Earlier general-throughput scope (superseded by October 10 save-first directive)
 
@@ -30,7 +30,7 @@ the separate custom-game worktree.
 This is a practical map of the current reconstruction, not a claim that every
 subsystem is fully understood.
 
-## Save-first milestone — October 10, 2026
+## Historical save-first milestone — October 10, 2026
 
 **Seven exact natural C++ SRAM header functions / 472 linked bytes** now live in `src/save_slot_header.cc` and `include/save_format.hh`. Alongside the existing slot-offset helper, the original `080002E0..080004C4` header span is source-owned. The once-anonymous 0042C raw-byte routine is verified as clear-valid-slot. The forced retail ROM rebuilt byte-for-byte, leaving **89,444 / 940,036 game-code bytes (9.5150%)**, **850,592 assembly bytes / 1,975 linked functions** unresolved. The save loader `func_08011650` and menu save/load handlers are the active priority; see `docs/SAVE_LIFECYCLE.md`. The previous GameState/menu families below are verified historical milestones, not the execution queue.
 

@@ -1,4 +1,5 @@
 #include "save_format.hh"
+#include "save_persisted_layout.hh"
 
 EXTERN_C
 extern u16 gUnk_03000400;

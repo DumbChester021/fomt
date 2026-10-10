@@ -384,6 +384,10 @@ The five-helper batch had five exact target objects but initially failed the ROM
 
 Rule: diagnose the first divergence before rewriting exact source.
 
+### New retail save-copy matching lesson — October 11, 2026
+
+The 180-byte Farm copy (src/farm_state_copy.cc) matches only with member-aware C++ and an eleven-word Horse placeholder loop. Whole-class implicit assignment gave 788 bytes; member-aware unrolled copy 184/54; counted loop 180/6; declaring loop count between destination and source pointers gave **180/0**. Declaration lifetime/order can affect matching, but never force registers, compiler patches, or fabricated semantics. In Dog's derived copy, explicitly declaring Animal::operator= removed the original compiler-generated ABI symbol and broke the link; use the named ABI boundary instead. See docs/SAVE_FARM_STATE_COPY.md and docs/SAVE_DOG_STATE_COPY.md.
+
 ## Do
 
 - Read canonical docs before experimenting.

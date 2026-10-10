@@ -2094,15 +2094,7 @@ func_0801140C: @ 0x0801140C
 .L08011450: .4byte 0x00001AA8
 .L08011454: .4byte 0x000034C5
 
-    thumb_func_start func_08011458
-func_08011458: @ 0x08011458
-    ldrb r1, [r0]
-    movs r2, #0x10
-    orrs r1, r2
-    strb r1, [r0]
-    bx lr
-    .align 2, 0
-
+    .section .text.after_save_packed_flag, "ax", %progbits
     thumb_func_start func_08011464
 func_08011464: @ 0x08011464
     push {r4, lr}
@@ -2210,93 +2202,7 @@ func_080114F8: @ 0x080114F8
     strb r1, [r0]
     bx lr
 
-    thumb_func_start func_08011510
-func_08011510: @ 0x08011510
-    movs r1, #0x10
-    str r1, [r0]
-    str r1, [r0, #4]
-    movs r1, #0
-    strb r1, [r0, #8]
-    bx lr
-
-    thumb_func_start func_0801151C
-func_0801151C: @ 0x0801151C
-    ldr r0, [r0]
-    bx lr
-
-    thumb_func_start func_08011520
-func_08011520: @ 0x08011520
-    ldr r0, [r0, #4]
-    bx lr
-
-    thumb_func_start func_08011524
-func_08011524: @ 0x08011524
-    push {lr}
-    adds r1, r0, #0
-    movs r2, #0
-    ldr r0, [r1, #4]
-    cmp r0, #0x10
-    beq .L08011538
-    ldrb r0, [r1, #8]
-    cmp r0, #0
-    bne .L08011538
-    movs r2, #1
-.L08011538:
-    adds r0, r2, #0
-    pop {r1}
-    bx r1
-    .align 2, 0
-
-    thumb_func_start func_08011540
-func_08011540: @ 0x08011540
-    str r1, [r0]
-    bx lr
-
-    thumb_func_start func_08011544
-func_08011544: @ 0x08011544
-    ldr r1, [r0]
-    str r1, [r0, #4]
-    movs r1, #2
-    strb r1, [r0, #8]
-    bx lr
-    .align 2, 0
-
-    thumb_func_start func_08011550
-func_08011550: @ 0x08011550
-    push {lr}
-    adds r2, r0, #0
-    ldr r1, [r2, #4]
-    ldr r0, [r2]
-    cmp r1, r0
-    bne .L08011560
-    movs r0, #0x10
-    str r0, [r2]
-.L08011560:
-    movs r0, #0x10
-    str r0, [r2, #4]
-    pop {r0}
-    bx r0
-
-    thumb_func_start func_08011568
-func_08011568: @ 0x08011568
-    push {lr}
-    adds r1, r0, #0
-    ldr r0, [r1]
-    cmp r0, #0x10
-    beq .L08011582
-    ldr r0, [r1, #4]
-    cmp r0, #0x10
-    beq .L08011582
-    ldrb r0, [r1, #8]
-    cmp r0, #0
-    beq .L08011582
-    subs r0, #1
-    strb r0, [r1, #8]
-.L08011582:
-    pop {r0}
-    bx r0
-    .align 2, 0
-
+    .section .text.after_save_transition_state, "ax", %progbits
     .section .text.after_save_record, "ax", %progbits
 
     thumb_func_start func_08011650

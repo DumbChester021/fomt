@@ -13,40 +13,40 @@ This is the live dashboard for the US Harvest Moon: Friends of Mineral Town matc
 
 ## Active branch and build authority
 
-- Retail branch: **`main`**, tracking **`ches/main`**. Latest published exact source checkpoint: **`f069823`** (seven SRAM-header functions and the save-first handoff). Documentation-only changes do not alter the compiled-code baseline; verify `git log -1` for subsequent commits. Run `git log -1` and `git status -sb` for the current authority.
+- Retail branch: **`main`**, tracking **`ches/main`**. Verify the current commit with Git; earlier published checkpoints and documentation SHAs are historical. Run `git log -1` and `git status -sb` for the current authority.
 - Prior source checkpoints: **`0bef5b7`** (23 dispatch functions) and **`399882d`** (18 action functions). New callback integration is forced-ROM exact; its publication SHA comes from Git.
 - Custom gameplay stays in the separate custom-game worktree.
 - ROM: **8,388,608 bytes**, SHA1 **a2fc3574f0a65a4fcf7682fb274b9d7eebdef963**.
 - Full gate: make -B -j4 compare, ending in **fomt.gba: OK**.
 - Compiler: tracked tools/install_agbcp.sh plus tools/agbcp_fomt_compat.patch; unchanged thirteen-rule wrapper at tools/agbcc/bin/agbcp. Read docs/FOMT_COMPILER_FINGERPRINT.md for the compact compiler signature, external-comparison checklist and current source-coercion debt.
 
-## Current priority — save system only
+## Current save-only priority and authoritative state (October 11, 2026)
 
-**User-directed (October 10, 2026):** Stop unrelated general-throughput targets. Decompile the **entire retail save system to human-readable C++**, retaining a byte-exact ROM and separately documenting any still-unmatched behavior. Seven exact source functions / 472 linked bytes now own the full SRAM header helper span `080002E0..080004C4` (including the once-anonymous clear-valid bit routine); see `src/save_slot_header.cc`, `docs/SAVE_LIFECYCLE.md` and `docs/SAVE_FORMAT.md`. Next investigate `func_08011650` and its default-state subobjects, GUI save/load wrappers `03F9C/040A0/041DC`, SRAM proxy I/O, header/slot mutation paths and end-to-end tests. Old compiler probes for the 740-byte loader are recorded under `tools/ches/checkpoints/save-loader-08011650-2026-10-04/`; do not repeat old approaches. No custom-game modification is authorized or needed. Latest full forced `make -B -j4 compare` execution `sh_mv25lwpc_e4c43b4c` passed. Current code **89,444 / 940,036 = 9.5150%**, ASM **850,592 bytes / 1,975 linked functions**, overall **165,394 / 7,717,440 = 2.1431%**.
+The user requires complete, readable, byte-exact **retail save-system** decompilation before custom-game development. The parent GameState copy, loader, many nested assignments and menu/SRAM error paths **remain original ASM**. Current source proof does not mean save mod-readiness. Do not run historical general-decompilation queues.
 
-## Handoff readiness
+**Latest verified forced ROM:** make -B -j4 compare passed (Ches sh_mv2t0b0a_4bb83627, fomt.gba: OK); original SHA1 a2fc3574f0a65a4fcf7682fb274b9d7eebdef963. Check Git for the latest published SHA; historical SHA labels below are not current.
 
-**Earlier exact batch:** **2 GameState audio and child callback functions / 48 linked bytes**. Forced retail ROM comparison `sh_mv2471un_7d10991c` passed. The preceding 54 functions / 1,688 bytes remain exact; **1,981 linked assembly functions** remain. Read `docs/GAME_STATE_AUDIO_CALLBACKS.md` and the source-quality audit.
+**Current source:** 90,644 / 940,036 = **9.6426% matching game C++**; 849,392 ASM bytes / **1,948 linked functions**, of which 846,356 are inferred function bytes, with 3,036 unattributed bytes and 27 parked functions. Data/assets **75,554 / 6,777,404 (1.1148%)**; overall meaningful ROM **166,594 / 7,717,440 (2.1587%)**; tail free 671,168.
 
-Previous October 10 continuation added **18 exact functions / 632 linked bytes**, split across three 52-byte owner destructors, four 40-byte global-owner destructors, five small resource helpers (124 bytes), and six 32-byte simple destructors. Four forced retail ROM comparisons passed and restored exact original SHA1. The current inventory is **88,972 / 940,036 game-code bytes (9.4647%)**, 1,981 unresolved ASM functions. The earlier 18-function code was committed as **`1e522c9`**; the later 20-function GameState dispatch batch was published in **`9bac767`**, with the three-function extension verified afterward. See the current top of `tools/ches/NEXT_AGENT_HANDOFF.md` for proof and next ranking.
+**Exact recent save code:** CopySavedFarmState 180B, CopySavedDogState 132B, three GameState nested/parent cleanup functions 228B, eight transition-state methods 120B, six byte-buffer methods 84B, eight SRAM proxy/library methods 444B, packed flag setter 12B and seven SRAM header helpers 472B. Original ABI/link positions preserved.
 
-Run git log -1 and git status before work; preserve intentional dirty files.
-The whole save loader and complete GameState remain unfinished; their compiler-sensitive frontiers are parked separately from the currently exact menu batch. **Save-format geometry is ready for designing extensions, not for deploying persistent custom gameplay.** The custom-game worktree contains an off-ROM proposed extension codec with 16 synthetic tests, but no GBA hooks; see `docs/SAVE_FORMAT.md` and custom-game `docs/SAVE_EXTENSION_READINESS.md`.
-No build or compiler execution is pending.
+**Save layout and diagnosis:** include/save_persisted_layout.hh has 41 original-compiler binary checks covering seven typed GameState subobjects. tools/ches/inspect_sram.py is read-only and checks SRAM header, slots, checksum, money, buffer, transition and fishing fields; synthetic tests pass, **no actual player save/emulator tested**. It reproduces u32 fishing overflow and cap behavior.
 
-Read the Fast-path operating method in docs/DECOMP_PLAYBOOK.md.
-NEXT_AGENT_HANDOFF.md owns exact bounds, first commands and closed paths.
-Source readability is independently tracked in `docs/SOURCE_READABILITY_AUDIT.md`: byte-exact recovery is not a semantic completeness score. Run `python3 tools/ches/audit_source_readability.py` for a repeatable heuristic inventory.
+**Next:** source-matched Farmer/MoneyState/Coop/Barn assignments, then 776-byte func_080D4178 GameState copy, 740-byte func_08011650 loader, save/load/erase menu and real backed-up SRAM tests. See [current handoff](tools/ches/NEXT_AGENT_HANDOFF.md) and [save lifecycle](docs/SAVE_LIFECYCLE.md).
 
 ## Current exact reconstruction
 
-- Code: **89,444 / 940,036 = 9.5150%**.
-- Assembly: **850,592 bytes; 1,975 unresolved linked functions**.
-- Inferred ranges: **847,620 / 850,592 = 99.6506%**.
-- Unattributed assembly: **2,972 bytes; 27 parked functions**.
-- Data/assets: **75,554 / 6,777,404 = 1.1148%**.
-- Overall meaningful ROM: **165,394 / 7,717,440 = 2.1431%**.
-- Free tail: **671,168 bytes**.
+| Metric | Current verified state |
+| --- | --- |
+| Byte-exact C++ game code | **90,644 / 940,036 (9.6426%)** |
+| Linked ASM remaining | **849,392 bytes / 1,948 functions** |
+| ASM inferred ranges | **846,356 bytes** |
+| ASM unattributed / parked | **3,036 bytes / 27 functions** |
+| Reconstructed data/assets | **75,554 / 6,777,404 (1.1148%)** |
+| Meaningful ROM | **166,594 / 7,717,440 (2.1587%)** |
+| Unused ROM tail | **671,168 bytes** |
+
+Sections below are **historical**, not the current queue or percentage.
 
 ## Earlier exact batches (historical evidence, not the current queue)
 

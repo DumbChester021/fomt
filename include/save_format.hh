@@ -29,4 +29,9 @@ EC void ClearSaveSlotValid(void * save_context, unsigned int slot);
 EC void WriteSelectedSaveSlot(void * save_context, unsigned int slot);
 EC unsigned int ReadSelectedSaveSlot(void * save_context);
 
+// Nonempty SRAM reads return true. Consult the SRAM error word separately.
+EC bool ReadSram(void * save_context, void * destination, unsigned int offset, unsigned int size);
+EC unsigned int ReplaceSramContextWord(void * save_context, unsigned int value);
+EC void OrSramErrorFlag(void * save_context, unsigned int flag);
+
 #endif

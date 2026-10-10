@@ -21,13 +21,13 @@ Current exact reconstruction metrics:
 
 | Metric | Current |
 | --- | ---: |
-| Code | **89,444 / 940,036 bytes (9.5150%)** |
-| Assembly remaining | **850,592 bytes across 1,975 linked functions** |
+| Code | **90,644 / 940,036 bytes (9.6426%)** |
+| Assembly remaining | **849,392 bytes across 1,948 linked functions** |
 | Data/assets | **75,554 / 6,777,404 bytes (1.1148%)** |
-| Overall meaningful ROM | **165,394 / 7,717,440 bytes (2.1431%)** |
+| Overall meaningful ROM | **166,594 / 7,717,440 bytes (2.1587%)** |
 | Contiguous ROM tail free space | **671,168 bytes (655.44 KiB)** |
 
-Run `make progress` for the live report. This percentage measures **byte-exact code recovery**, not the percentage of semantically complete or mod-ready human-readable source. See [docs/SOURCE_READABILITY_AUDIT.md](docs/SOURCE_READABILITY_AUDIT.md) for the separate source-quality audit and evidence-based naming policy.
+A compile-time-checked 32 KiB SRAM image now embeds the real **Farm, MoneyState, Farmer, Dog, FishingRecords, SavedByteBuffer, and SavedTransitionState** C++ types, enforcing **41 binary layout invariants** and the retail header/slot geometry. The read-only inspector reports known money, fishing, buffer and transition values only for header-and-record-consistent save slots. The fieldwise GameState save assignment map is documented in [docs/SAVE_GAMESTATE_ASSIGNMENT_MAP.md](docs/SAVE_GAMESTATE_ASSIGNMENT_MAP.md). See [docs/SAVE_SERIALIZED_LAYOUT.md](docs/SAVE_SERIALIZED_LAYOUT.md), [docs/SAVE_MENU_RETRY_TRACE.md](docs/SAVE_MENU_RETRY_TRACE.md), and `tools/ches/inspect_sram.py`. The saved-state cleanup cluster recovers 228 byte-exact C++ bytes across three functions; the 132-byte Dog and new 180-byte Farm saved-state copies are also exact. See [docs/GAME_STATE_SAVE_CLEANUP.md](docs/GAME_STATE_SAVE_CLEANUP.md) and [docs/SAVE_DOG_STATE_COPY.md](docs/SAVE_DOG_STATE_COPY.md), and [docs/SAVE_FARM_STATE_COPY.md](docs/SAVE_FARM_STATE_COPY.md). Run `make progress` for the live report. This percentage measures **byte-exact code recovery**, not the percentage of semantically complete or mod-ready human-readable source. See [docs/SOURCE_READABILITY_AUDIT.md](docs/SOURCE_READABILITY_AUDIT.md) for the separate source-quality audit and evidence-based naming policy.
 
 Asset/data progress is intentionally conservative. A byte counts only when editable project-side source regenerates the retail byte exactly; moving opaque ROM data into another binary blob does not count.
 
@@ -119,6 +119,10 @@ Start here:
 - [INSTALL.md](INSTALL.md) - reproducible build setup
 - [docs/PROGRESS.md](docs/PROGRESS.md) - current reconstruction metrics and milestones
 - [docs/REPO_MAP.md](docs/REPO_MAP.md) - repository and subsystem orientation
+- [docs/SAVE_LIFECYCLE.md](docs/SAVE_LIFECYCLE.md) - save system and outstanding lifecycle
+- [docs/SAVE_SERIALIZED_LAYOUT.md](docs/SAVE_SERIALIZED_LAYOUT.md) - verified 32KiB SRAM binary layout and inspector
+- [docs/SAVE_GAMESTATE_ASSIGNMENT_MAP.md](docs/SAVE_GAMESTATE_ASSIGNMENT_MAP.md) - parent GameState subcopy map
+- [docs/SAVE_FARM_STATE_COPY.md](docs/SAVE_FARM_STATE_COPY.md) - exact 180-byte Farm assignment
 - [docs/DECOMP_PLAYBOOK.md](docs/DECOMP_PLAYBOOK.md) - matching workflow and validation rules
 - [docs/DECOMP_PRIORITY_MAP.md](docs/DECOMP_PRIORITY_MAP.md) - save-first priorities and deferred general decompilation strategy
 - [docs/ASSET_DECOMPILATION.md](docs/ASSET_DECOMPILATION.md) - asset/data counting and authoring policy

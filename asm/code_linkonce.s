@@ -1007,48 +1007,7 @@ func_080D4178: @ 0x080D4178
 .L080D4478: .4byte 0x000034D8
 .L080D447C: .4byte 0x000034DC
 
-	thumb_func_start func_080D4480
-func_080D4480: @ 0x080D4480
-	push {r4, r5, lr}
-	adds r4, r0, #0
-	adds r5, r1, #0
-	movs r0, #0xe5
-	lsls r0, r0, #5
-	adds r1, r4, r0
-	ldr r0, [r1]
-	adds r0, #4
-	adds r1, r1, r0
-	ldr r2, .L080D44C8 @ =0x00001CA4
-	adds r0, r4, r2
-	cmp r0, r1
-	beq .L080D44A0
-.L080D449A:
-	adds r0, #1
-	cmp r0, r1
-	bne .L080D449A
-.L080D44A0:
-	ldr r1, .L080D44CC @ =0x00001C38
-	adds r0, r4, r1
-	movs r1, #2
-	bl func_080D6B00
-	ldr r2, .L080D44D0 @ =0x00001AA8
-	adds r0, r4, r2
-	movs r1, #2
-	bl func_080D6C08
-	movs r0, #1
-	ands r0, r5
-	cmp r0, #0
-	beq .L080D44C2
-	adds r0, r4, #0
-	bl __builtin_delete
-.L080D44C2:
-	pop {r4, r5}
-	pop {r0}
-	bx r0
-	.align 2, 0
-.L080D44C8: .4byte 0x00001CA4
-.L080D44CC: .4byte 0x00001C38
-.L080D44D0: .4byte 0x00001AA8
+    .section .text.after_game_state_cleanup, "ax", %progbits
 
 	thumb_func_start func_080D44D4
 func_080D44D4: @ 0x080D44D4
@@ -5130,90 +5089,7 @@ func_080D60B0: @ 0x080D60B0
 	bx r1
 	.align 2, 0
 
-	thumb_func_start func_080D64C8
-func_080D64C8: @ 0x080D64C8
-	push {r4, r5, r6, lr}
-	adds r4, r0, #0
-	adds r5, r1, #0
-	bl strcpy
-	ldrh r1, [r5, #0x10]
-	lsls r1, r1, #0x16
-	lsrs r1, r1, #0x16
-	ldrh r2, [r4, #0x10]
-	ldr r0, .L080D656C @ =0xFFFFFC00
-	ands r0, r2
-	orrs r0, r1
-	strh r0, [r4, #0x10]
-	ldrb r3, [r5, #0x11]
-	movs r1, #4
-	ands r1, r3
-	ldrb r2, [r4, #0x11]
-	movs r0, #5
-	rsbs r0, r0, #0
-	ands r0, r2
-	orrs r0, r1
-	movs r1, #8
-	ands r1, r3
-	movs r2, #9
-	rsbs r2, r2, #0
-	ands r0, r2
-	orrs r0, r1
-	movs r1, #0x10
-	ands r1, r3
-	subs r2, #8
-	ands r0, r2
-	orrs r0, r1
-	strb r0, [r4, #0x11]
-	adds r3, r4, #0
-	adds r3, #0x14
-	movs r1, #0xa
-	adds r2, r5, #0
-	adds r2, #0x14
-	movs r6, #1
-	rsbs r6, r6, #0
-.L080D6518:
-	ldm r2!, {r0}
-	stm r3!, {r0}
-	subs r1, #1
-	cmp r1, r6
-	bne .L080D6518
-	adds r0, r4, #0
-	adds r0, #0x40
-	adds r1, r5, #0
-	adds r1, #0x40
-	movs r2, #0xd0
-	lsls r2, r2, #1
-	bl memcpy
-	movs r1, #0xf0
-	lsls r1, r1, #1
-	adds r0, r4, r1
-	adds r1, r5, r1
-	movs r2, #0x87
-	lsls r2, r2, #2
-	bl memcpy
-	movs r1, #0xff
-	lsls r1, r1, #2
-	adds r0, r4, r1
-	adds r1, r5, r1
-	bl func_080D66A4
-	ldr r1, .L080D6570 @ =0x000005DC
-	adds r0, r4, r1
-	adds r1, r5, r1
-	bl func_080D657C
-	ldr r1, .L080D6574 @ =0x000009C8
-	adds r0, r4, r1
-	adds r1, r5, r1
-	ldr r2, .L080D6578 @ =0x000010CC
-	bl memcpy
-	adds r0, r4, #0
-	pop {r4, r5, r6}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.L080D656C: .4byte 0xFFFFFC00
-.L080D6570: .4byte 0x000005DC
-.L080D6574: .4byte 0x000009C8
-.L080D6578: .4byte 0x000010CC
+    .section .text.after_save_farm_copy, "ax", %progbits
 
 	thumb_func_start func_080D657C
 func_080D657C: @ 0x080D657C
@@ -5505,73 +5381,6 @@ func_080D66A4: @ 0x080D66A4
 .L080D67BC: .4byte 0x000007FE
 .L080D67C0: .4byte 0xFFFFF801
 .L080D67C4: .4byte 0xFFF00FFF
-
-	thumb_func_start func_080D67C8
-func_080D67C8: @ 0x080D67C8
-	push {r4, r5, lr}
-	adds r4, r0, #0
-	adds r5, r1, #0
-	bl __as__6AnimalRC6Animal
-	ldrb r0, [r5, #0x1c]
-	strb r0, [r4, #0x1c]
-	ldrb r3, [r5, #0x1d]
-	lsls r1, r3, #0x1f
-	lsrs r1, r1, #0x1f
-	ldrb r2, [r4, #0x1d]
-	movs r0, #2
-	rsbs r0, r0, #0
-	ands r0, r2
-	orrs r0, r1
-	movs r1, #2
-	ands r1, r3
-	movs r2, #3
-	rsbs r2, r2, #0
-	ands r0, r2
-	orrs r0, r1
-	strb r0, [r4, #0x1d]
-	ldr r0, [r5, #0x20]
-	str r0, [r4, #0x20]
-	ldr r0, [r5, #0x24]
-	ldr r1, [r5, #0x28]
-	str r0, [r4, #0x24]
-	str r1, [r4, #0x28]
-	ldrh r1, [r5, #0x2c]
-	lsls r1, r1, #0x16
-	lsrs r1, r1, #0x16
-	ldrh r2, [r4, #0x2c]
-	ldr r0, .L080D6844 @ =0xFFFFFC00
-	ands r0, r2
-	orrs r0, r1
-	strh r0, [r4, #0x2c]
-	adds r0, r5, #0
-	adds r0, #0x2d
-	ldrb r0, [r0]
-	adds r3, r4, #0
-	adds r3, #0x2d
-	movs r1, #0x1c
-	ands r1, r0
-	ldrb r2, [r3]
-	movs r0, #0x1d
-	rsbs r0, r0, #0
-	ands r0, r2
-	orrs r0, r1
-	strb r0, [r3]
-	ldr r2, [r5, #0x2c]
-	movs r0, #0xff
-	lsls r0, r0, #0xd
-	ands r2, r0
-	ldr r0, [r4, #0x2c]
-	ldr r1, .L080D6848 @ =0xFFE01FFF
-	ands r0, r1
-	orrs r0, r2
-	str r0, [r4, #0x2c]
-	adds r0, r4, #0
-	pop {r4, r5}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.L080D6844: .4byte 0xFFFFFC00
-.L080D6848: .4byte 0xFFE01FFF
 
 	.section ".text.code_080D68C0"
 
@@ -5866,44 +5675,7 @@ func_080D6A80: @ 0x080D6A80
 	bx r1
 	.align 2, 0
 
-	thumb_func_start func_080D6B00
-func_080D6B00: @ 0x080D6B00
-	push {lr}
-	adds r3, r0, #0
-	ldr r0, [r3, #0x24]
-	lsls r0, r0, #1
-	adds r0, r0, r3
-	adds r0, #0x28
-	adds r2, r3, #0
-	adds r2, #0x28
-	cmp r2, r0
-	beq .L080D6B1A
-.L080D6B14:
-	adds r2, #2
-	cmp r2, r0
-	bne .L080D6B14
-.L080D6B1A:
-	ldr r0, [r3]
-	lsls r0, r0, #2
-	adds r0, #4
-	adds r2, r3, r0
-	adds r0, r3, #4
-	cmp r0, r2
-	beq .L080D6B2E
-.L080D6B28:
-	adds r0, #4
-	cmp r0, r2
-	bne .L080D6B28
-.L080D6B2E:
-	movs r0, #1
-	ands r0, r1
-	cmp r0, #0
-	beq .L080D6B3C
-	adds r0, r3, #0
-	bl __builtin_delete
-.L080D6B3C:
-	pop {r0}
-	bx r0
+    .section .text.after_game_state_block_1c38_cleanup, "ax", %progbits
 
 	thumb_func_start func_080D6B40
 func_080D6B40: @ 0x080D6B40
@@ -6014,54 +5786,8 @@ func_080D6B40: @ 0x080D6B40
 	bx r1
 	.align 2, 0
 
-	thumb_func_start func_080D6C08
-func_080D6C08: @ 0x080D6C08
-	push {r4, lr}
-	adds r2, r0, #0
-	adds r3, r1, #0
-	adds r1, r2, #0
-	adds r1, #0xfc
-	ldr r0, [r1]
-	lsls r0, r0, #3
-	adds r0, #4
-	adds r1, r1, r0
-	movs r4, #0x80
-	lsls r4, r4, #1
-	adds r0, r2, r4
-	cmp r0, r1
-	beq .L080D6C2A
-.L080D6C24:
-	adds r0, #8
-	cmp r0, r1
-	bne .L080D6C24
-.L080D6C2A:
-	adds r1, r2, #0
-	adds r1, #8
-	ldr r0, [r2, #8]
-	lsls r0, r0, #3
-	adds r0, #4
-	adds r1, r1, r0
-	adds r0, r2, #0
-	adds r0, #0xc
-	cmp r0, r1
-	beq .L080D6C44
-.L080D6C3E:
-	adds r0, #8
-	cmp r0, r1
-	bne .L080D6C3E
-.L080D6C44:
-	movs r0, #1
-	ands r0, r3
-	cmp r0, #0
-	beq .L080D6C52
-	adds r0, r2, #0
-	bl __builtin_delete
-.L080D6C52:
-	pop {r4}
-	pop {r0}
-	bx r0
-
-	thumb_func_start func_080D6C58
+    .section .text.after_game_state_block_1aa8_cleanup, "ax", %progbits
+    thumb_func_start func_080D6C58
 func_080D6C58: @ 0x080D6C58
 	push {r4, r5, r6, r7, lr}
 	mov r7, sl

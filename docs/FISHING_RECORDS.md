@@ -67,3 +67,7 @@ state and mine-floor constructors remain assembly.
 
 This recovers one persistent subobject. The complete GameState type and legacy
 save-loader source are still unfinished. See SAVE_FORMAT.md for slot geometry.
+
+## Read-only SRAM inspection
+
+The verified 32 KiB SRAM inspector (tools/ches/inspect_sram.py) checks the header and record length/checksum, then reports the 59-entry fishing summary only for structurally consistent slots. The retail total covers entries 8 through 58, applies 32-bit unsigned addition (including overflow) before the 1,000,000,000 saturation cap after each addition, and distinguishes the six Fish King indices 53 through 58. Synthetic fixtures include u32 overflow and valid/invalid slot cases. This is not an in-game loader or evidence a player save can be loaded. See [SAVE_SERIALIZED_LAYOUT.md](SAVE_SERIALIZED_LAYOUT.md).

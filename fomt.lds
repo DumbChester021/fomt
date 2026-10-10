@@ -424,7 +424,12 @@ SECTIONS
         asm/interrupt.o(.text);
         src/new.o(.text);
         src/pure_virtual.o(.text);
+        src/sram_proxy.o(.text.sram_bootstrap);
         asm/sram_proxy_2.o(.text);
+        src/sram_proxy.o(.text.sram_read);
+        src/sram_proxy.o(.text.sram_context_word);
+        src/sram_proxy.o(.text.sram_error_flags);
+        asm/sram_proxy_2.o(.text.after_sram_read);
         src/scene.o(.text);
         asm/scene.o(.text);
         asm/intro_scene.o(.text);
@@ -483,10 +488,19 @@ SECTIONS
         src/held_item.o(.text);
         src/rucksack.o(.text);
         asm/more_items.o(.text);
+        src/save_byte_buffer.o(.text.saved_buffer_accessors);
+        src/save_byte_buffer.o(.text.saved_buffer_append);
+        asm/more_items.o(.text.after_saved_buffer_accessors);
+        src/save_byte_buffer.o(.text.saved_buffer_set_location);
+        asm/more_items.o(.text.after_saved_buffer_set_location);
         asm/game_scene.o(.text);
         asm/game_state.o(.text);
         src/game_state_flag_setters.o(.text.game_state_flag_setters);
         asm/game_state.o(.text.after_game_state_flag_setters);
+        src/save_packed_flag.o(.text.saved_packed_flag);
+        asm/game_state.o(.text.after_save_packed_flag);
+        src/save_transition_state.o(.text.save_transition_state);
+        asm/game_state.o(.text.after_save_transition_state);
         src/save_format.o(.text.save_record);
         asm/game_state.o(.text.after_save_record);
         src/game_state_menu_dispatch.o(.text.game_state_dispatch_08014034);
@@ -928,7 +942,11 @@ SECTIONS
         src/m4a_1.o(.text);
         src/m4a.o(.text);
         asm/code_lib_syscall.o(.text);
+        src/sram_byte_copy.o(.text.sram_byte_copy);
         asm/code_lib_sram.o(.text);
+        src/sram_byte_compare.o(.text.sram_byte_compare);
+        asm/code_lib_sram.o(.text.after_sram_byte_compare);
+        src/sram_write_verify.o(.text.sram_write_verify);
         *libgcc.a:_call_via_rX.o(.text);
         /* these need to be recompiled using -mthumb-interwork */
         /* *libc.a:memcmp.o(.text); */
@@ -945,8 +963,17 @@ SECTIONS
         asm/code_linkonce.o(.text.after_raw_thunks_d3c60);
         src/menu_simple_dtors.o(.text.menu_simple_dtor_080d3ed4);
         asm/code_linkonce.o(.text.after_menu_simple_dtor_080d3ed4);
+        src/game_state_cleanup.o(.text.game_state_cleanup);
+        asm/code_linkonce.o(.text.after_game_state_cleanup);
+        src/farm_state_copy.o(.text.save_farm_copy);
+        asm/code_linkonce.o(.text.after_save_farm_copy);
+        src/dog_state_copy.o(.text.save_dog_copy);
         *(.gnu.linkonce.t.__as__6AnimalRC6Animal);
         asm/code_linkonce.o(.text.code_080D68C0);
+        src/game_state_cleanup.o(.text.game_state_block_1c38_cleanup);
+        asm/code_linkonce.o(.text.after_game_state_block_1c38_cleanup);
+        src/game_state_cleanup.o(.text.game_state_block_1aa8_cleanup);
+        asm/code_linkonce.o(.text.after_game_state_block_1aa8_cleanup);
         src/resource_handle.o(.text.resource_subtree_fill_all);
         asm/code_linkonce.o(.text.after_resource_subtree_fill_all);
         src/menu_resource_helpers.o(.text.menu_pair_080d6f1c);

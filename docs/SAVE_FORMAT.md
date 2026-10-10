@@ -4,11 +4,18 @@ The original US FoMT layout contains two primary slots after a 0x28-byte SRAM
 header. Each slot begins at `0x28 + slot * 0x3FEC`. Preserve the serialized
 retail `GameState` size and offsets when adding compatible custom state.
 
-**Latest exact production-code checkpoint:** `f069823`. See [SAVE_LIFECYCLE.md](SAVE_LIFECYCLE.md) for the authoritative save-system reconstruction, source ownership, and remaining completion gates.
+**Current verified checkpoint, October 11:** 90,644 matching C++ code bytes (9.6426%), 1,948 linked ASM functions left. Forced ROM sh_mv2t0b0a_4bb83627 passed with original SHA1. This is NOT complete save-system decompilation, runtime-load proof, or custom-game save readiness.
 
-## New source-exact SRAM header (October 10)
+## Current source-owned save components
 
-The entire original header-helper address span `080002E0..080004C4` now has independently proved **human-readable and byte-exact C++**, including the existing `GetSaveSlotOffset` and **seven newly integrated functions / 472 bytes** in `src/save_slot_header.cc`. The new APIs `VerifySaveHeader`, `InitializeSaveHeader`, `ReadValidSaveSlotMask`, `MarkSaveSlotValid`, `ClearSaveSlotValid`, `WriteSelectedSaveSlot`, and `ReadSelectedSaveSlot` retain the original-address aliases. The formerly raw `0800042C` code is now semantically proven as clear-bit. The forced full-ROM rebuild passes with the original SHA1; the remainder of the loader and save-menu lifecycle is **not complete**. Read [SAVE_LIFECYCLE.md](SAVE_LIFECYCLE.md) for the fully annotated address/byte table, independent proof artifacts, readable loader behavioral model and acceptance gates.
+- SRAM header helpers: seven newly exact methods /472B; SRAM proxy/error/verify methods eight /444B.
+- GameState cleanup: three functions /228B. Specialized exact state assignments: **Farm 180B**, **Dog 132B**; original address aliases remain.
+- SavedByteBuffer six exact methods /84B, SavedTransitionState eight /120B; packed progress flag setter 12B.
+- Source-only serialized layout: **41 binary checks** for 32KiB SRAM, 0x28-byte header, two 0x3FEC slots, 0x34F4 GameState, and seven typed persistent subobjects (Farm, MoneyState, Farmer, Dog, buffer, transition, fishing). Unproven bytes remain opaque.
+- Read-only tools/ches/inspect_sram.py verifies signature, valid-mask, selected-slot, record length and sum, and only for consistent slots displays known money, buffer, transition and fishing values. Tests pass including u32 fishing sum wrap; **no real player SRAM/emulator load tested**.
+- Missing exact code: 740-byte loader, 776-byte GameState assignment, MoneyState/Farmer/Coop/Barn copies, save/load UI, SRAM write/erase and error paths. Do not customize until compatible behavior is verified.
+
+Proof and status: [SAVE_LIFECYCLE.md](SAVE_LIFECYCLE.md), [SAVE_SERIALIZED_LAYOUT.md](SAVE_SERIALIZED_LAYOUT.md), [GAME_STATE_SAVE_CLEANUP.md](GAME_STATE_SAVE_CLEANUP.md), [SAVE_DOG_STATE_COPY.md](SAVE_DOG_STATE_COPY.md), [SAVE_FARM_STATE_COPY.md](SAVE_FARM_STATE_COPY.md), [SAVE_GAMESTATE_ASSIGNMENT_MAP.md](SAVE_GAMESTATE_ASSIGNMENT_MAP.md), [SAVE_MENU_RETRY_TRACE.md](SAVE_MENU_RETRY_TRACE.md). Older source proof per-subobject: [SAVED_BYTE_BUFFER.md](SAVED_BYTE_BUFFER.md), [SAVE_TRANSITION_STATE.md](SAVE_TRANSITION_STATE.md), [SAVE_PACKED_PROGRESS.md](SAVE_PACKED_PROGRESS.md).
 
 ## Recovered record interface
 
