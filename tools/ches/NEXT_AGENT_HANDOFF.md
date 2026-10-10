@@ -6,15 +6,24 @@
 byte-for-byte in [handoff history](checkpoints/menu-throughput-docs-2026-10-10/HANDOFF_HISTORY.md).
 Superseded next-target claims in that history are not instructions.
 
-- Retail workspace: `/mnt/data/Github/gba/fomt`; branch `main` tracking `ches/main`; latest confirmed published source checkpoint **`65d61b8`**, with the 13-function callback/incubation integration exact and pushed. Keep new readability-only edits separate from production code progress. Check `git log -1` and `git status -sb` for any newer work.
+- Retail workspace: `/mnt/data/Github/gba/fomt`; branch `main` tracking `ches/main`; latest published source checkpoint **`0c22862`**, with the 2-function audio/readability batch exact and pushed. Keep new readability-only edits separate from production code progress. Check `git log -1` and `git status -sb` for any newer work.
 - **The previously dirty verified retail source is committed as 1e522c9.** The retail branch was clean and even with its tracked remote at the start of the October 10 documentation audit; documentation-only edits may now be pending review. The separate custom-game worktree has independent uncommitted docs. Preserve both worktrees; never reset, clean or stash without review.
 - Retail SHA1: **`a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`**, ROM size **8,388,608**.
 - Latest full forced comparison: `make -B -j4 compare` -> **`fomt.gba: OK`**; execution `sh_mv2471un_7d10991c`, exit 0. No background build pending.
 - **Code 88,972 / 940,036 = 9.4647%**. Assembly: **851,064 bytes / 1,981 linked unresolved functions**; mapped inferred ranges **848,092** bytes, unattributed **2,972**, explicitly parked **27**.
 - **Data/assets 75,554 / 6,777,404 = 1.1148%**; meaningful ROM **164,922 / 7,717,440 = 2.1370%**; free tail **671,168 bytes**.
 - The thirteen-rule compiler compatibility layer is unchanged; see `docs/FOMT_COMPILER_FINGERPRINT.md`. The full save loader/GameState remains unfinished and parked.
+- **Save expansion readiness (October 10):** retail SRAM header/slots, record length/checksum/writer, loader validation stages and 2,800 unused tail bytes per slot are established. The loader `func_08011650` (740 linked bytes) and higher-level save/load handlers `func_08003F9C`, `func_080040A0`, `func_080041DC` remain assembly, and full `GameState` is incomplete. The separate `custom-game` worktree contains *host-only* reference tooling (`tools/save_extension_reference.py`) and **16 passing synthetic tests**, plus `docs/SAVE_EXTENSION_READINESS.md`. There is **no on-ROM serializer/loader, migration, overwrite/erase hook, or proven end-to-end persistence**. Do not treat this as release-ready or mix custom behavior into retail `main`.
 - Readability audit: `docs/SOURCE_READABILITY_AUDIT.md`; repeatable heuristic scan: `python3 tools/ches/audit_source_readability.py`. The code-percentage metric counts exact bytes, not semantically complete functions. The three recent GameState/menu units are structurally readable but have unresolved slot meanings and address-derived external names.
 - The live machine-generated truth is `tools/ches/decomp_inventory.json` and `tools/ches/DECOMP_QUEUE.md`.
+
+## Current save-system investigation (documentation/test-only)
+
+Static proof and the existing `tools/ches/save_load_map.json` confirm: SRAM is exactly 0x8000; header 0x28; two 0x3FEC-byte slots; per-slot record 0x34FC (size 4, GameState payload 0x34F4, checksum 4) and unused tail 0xAF0. The verified writer makes three independent low-level writes, and the loader defaults the state before validating the record but has no migration step. Loading is only valid when its **error output** indicates success, not when it returns a nonnull state pointer. The reference codec is separate and does not change the retail ROM.
+
+The offline extension design uses two 1,400-byte banks per slot, each a 32-byte header plus up to 1,368 bytes of TLV data, and it has 16 passing synthetic tests. It also **proves a compatibility blocker**: a new game replacing a slot with an identical retail payload can inherit the old extension unless an explicit invalidation hook is installed. Separately, a power failure between retail write and extension commit can discard extension state. Do not deploy persistent custom features until both are handled and emulator save/load/overwrite/copy/erase tests pass. Retail `docs/SAVE_FORMAT.md` and custom `docs/SAVE_EXTENSION_READINESS.md` are authoritative.
+
+Next save-specific work: (1) finish auditing menu save/load/erase/copy/overwrite hooks and selected-slot/valid-mask mutations, (2) design explicit slot identity/reset and partial-write recovery, (3) implement on-device bounded SRAM access in **custom-game only**, (4) test a backed-up real SRAM file and emulator saves. REA may clarify a particular unresolved branch but is unnecessary to re-prove the already understood retail record and loader stages. Return to the throughput queue after this bounded save-readiness track.
 
 ## Latest verified exact integration: 2 functions / 48 bytes
 

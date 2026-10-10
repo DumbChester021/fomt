@@ -13,7 +13,7 @@ This is the live dashboard for the US Harvest Moon: Friends of Mineral Town matc
 
 ## Active branch and build authority
 
-- Retail branch: **`main`**, tracking **`ches/main`**. Latest published source checkpoint: **`65d61b8`** (13 callback functions). Run `git log -1` and `git status -sb` for the current callback batch's publication status.
+- Retail branch: **`main`**, tracking **`ches/main`**. Latest published retail source checkpoint: **`0c22862`** (exact audio callbacks + readability audit). Run `git log -1` and `git status -sb` for the current authority.
 - Prior source checkpoints: **`0bef5b7`** (23 dispatch functions) and **`399882d`** (18 action functions). New callback integration is forced-ROM exact; its publication SHA comes from Git.
 - Custom gameplay stays in the separate custom-game worktree.
 - ROM: **8,388,608 bytes**, SHA1 **a2fc3574f0a65a4fcf7682fb274b9d7eebdef963**.
@@ -27,7 +27,7 @@ This is the live dashboard for the US Harvest Moon: Friends of Mineral Town matc
 Previous October 10 continuation added **18 exact functions / 632 linked bytes**, split across three 52-byte owner destructors, four 40-byte global-owner destructors, five small resource helpers (124 bytes), and six 32-byte simple destructors. Four forced retail ROM comparisons passed and restored exact original SHA1. The current inventory is **88,972 / 940,036 game-code bytes (9.4647%)**, 1,981 unresolved ASM functions. The earlier 18-function code was committed as **`1e522c9`**; the later 20-function GameState dispatch batch was published in **`9bac767`**, with the three-function extension verified afterward. See the current top of `tools/ches/NEXT_AGENT_HANDOFF.md` for proof and next ranking.
 
 Run git log -1 and git status before work; preserve intentional dirty files.
-The whole save loader and complete GameState remain unfinished; their compiler-sensitive frontiers are parked separately from the currently exact menu batch.
+The whole save loader and complete GameState remain unfinished; their compiler-sensitive frontiers are parked separately from the currently exact menu batch. **Save-format geometry is ready for designing extensions, not for deploying persistent custom gameplay.** The custom-game worktree contains an off-ROM proposed extension codec with 16 synthetic tests, but no GBA hooks; see `docs/SAVE_FORMAT.md` and custom-game `docs/SAVE_EXTENSION_READINESS.md`.
 No build or compiler execution is pending.
 
 Read the Fast-path operating method in docs/DECOMP_PLAYBOOK.md.

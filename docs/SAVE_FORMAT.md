@@ -116,6 +116,32 @@ This establishes **0xAF0 = 2,800 bytes per slot** of retail-unused space.
 It does not establish a character count or compatibility with other hacks
 that independently use this range.
 
+## Current expansion readiness (October 10, 2026)
+
+**The retail SRAM geometry is proven, but the complete save system is not fully
+decompiled and the custom-game extension is not installed.** The 740-byte
+legacy `func_08011650` loader remains assembly, as do the two menu-side loader
+callers (`func_080040A0`, `func_080041DC`) and writer-side menu handler
+(`func_08003F9C`). The format and error output are understood; a fully typed
+`GameState`, error-safe hook lifecycle, and custom save migration are not.
+
+The separate `custom-game` worktree now contains a **host-only proposed
+extension** at `tools/save_extension_reference.py` and 16 passing synthetic
+SRAM-image tests at `tools/test_save_extension_reference.py`. Its two 1,400-byte
+banks fit exactly inside the 2,800-byte retail-unused tail and preserve the
+original retail record. **None of that code is in the GBA ROM, and it does not
+make new custom NPC/item/quest state persistent.** It is a design/test aid, not
+a finalized save format. The custom branch's
+`docs/SAVE_EXTENSION_READINESS.md` tracks the staged integration gates.
+
+The two critical compatibility hazards are (1) retail and extension writes
+cannot be assumed atomic across separate SRAM operations, and (2) overwriting
+a save slot with **byte-identical** retail data does not change a CRC-based
+binding and could wrongly restore old extension records. Explicit overwrite,
+new-game, copy and erase hooks, tested with real copied `.sav` files, are
+required before persistent custom features are safe to ship. Keep the retail
+0x34F4-byte payload and 0x34FC-byte record unchanged.
+
 ## Proposed extension contract
 
 This custom extension remains deferred design reference. Retail persistent-type

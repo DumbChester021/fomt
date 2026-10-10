@@ -10,7 +10,7 @@ Live next actions belong to `tools/ches/NEXT_AGENT_HANDOFF.md`.
 | Item | Verified value |
 | --- | --- |
 | Workspace / branch | `/mnt/data/Github/gba/fomt`; `main` tracking `ches/main` |
-| Latest published source | **`65d61b8`** (13-function GameState callbacks), pushed to `ches/main` |
+| Latest published source | **`0c22862`** (audio callbacks + readability), synchronized with `ches/main` before this save-format research |
 | Code in C++ source | **88,972 / 940,036 (9.4647%)** |
 | Remaining linked ASM | **851,064 bytes; 1,981 functions** |
 | Inferred assembly ranges | **848,092 bytes** (99.6508%) |
@@ -50,6 +50,14 @@ unchanged. The previously verified 20-function source is committed in **`9bac767
 ## Readability review
 
 Exact-ROM code coverage is **not** a measure of full human readability. The current heuristic audit covers 135 C++ units/19,851 lines and flags 133 address-named function definitions in 15 files, 44 offset-named callback uses in three GameState/menu source files, and compiler-sensitive constructs in seven files. These are review indicators, not a semantic completeness percentage. See `docs/SOURCE_READABILITY_AUDIT.md` and `tools/ches/audit_source_readability.py`; the newest three GameState/menu units now have documented ABI uncertainty and cleaned formatting, without adding code coverage.
+
+## Save and custom-game readiness (October 10)
+
+**Not finished:** retail save writer/checksum and 32-KiB SRAM/two-slot geometry are proven; loader `func_08011650` remains 740 bytes of assembly and the complete `GameState` field layout and save-menu lifecycle are unfinished. Retail's per-slot 2,800-byte unused tail is a candidate extension area, not a deployed format.
+
+The separate `custom-game` worktree now has a **host-only** proposed dual-bank extension codec (`tools/save_extension_reference.py`) and **16 passing synthetic-image regression tests** (`tools/test_save_extension_reference.py`). No actual GBA hook, live save modification, emulator round-trip, schema migrator or comprehensive slot-copy/erase/overwrite integration has been implemented. Slot overwrite with byte-identical retail data and non-atomic retail/extension write ordering are release blockers. For the tested architecture and exact implementation gates see retail `docs/SAVE_FORMAT.md` and custom-game `docs/SAVE_EXTENSION_READINESS.md`. Preserve that custom worktree's existing dirty documentation; these research/tools changes must not be mistaken for retail coverage gain.
+
+Next save-specific priority: audit all menu save/load/overwrite/copy/erase transitions and header valid-slot mask, then implement and test bounded runtime extension hooks on the **custom-game** branch. REA is optional for genuinely unresolved control-flow questions; static assembly already settles the retail record and loader error stages. No retail executable files were changed during this investigation.
 
 ## Highest-leverage next action
 
