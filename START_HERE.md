@@ -13,8 +13,8 @@ This is the live dashboard for the US Harvest Moon: Friends of Mineral Town matc
 
 ## Active branch and build authority
 
-- Retail branch: **main**, tracking **ches/main**. The last published checkpoint at this documentation audit was **`38718be`** (`sync FoMT decomp inventory and concise zero-context handoff`). Verify the live HEAD with `git log -1` before new work.
-- Earlier verified source checkpoints: **`1e522c9`** and **`9bac767`**; the latest 23-function GameState/menu dispatch extension is full-ROM verified and awaiting its publication SHA. Run `git log -1` for the actual current HEAD.
+- Retail branch: **`main`**, tracking **`ches/main`**. Previously published source checkpoint: **`0bef5b7`**. Run `git log -1` and `git status -sb` to determine whether the newest source batch has been published.
+- Previous exact source: **`9bac767`** (20-function dispatch) and **`0bef5b7`** (23-function dispatch). The new 18-function action batch has a proven byte-identical ROM and its publication SHA is tracked by Git.
 - Custom gameplay stays in the separate custom-game worktree.
 - ROM: **8,388,608 bytes**, SHA1 **a2fc3574f0a65a4fcf7682fb274b9d7eebdef963**.
 - Full gate: make -B -j4 compare, ending in **fomt.gba: OK**.
@@ -22,9 +22,9 @@ This is the live dashboard for the US Harvest Moon: Friends of Mineral Town matc
 
 ## Handoff readiness
 
-**Newest exact batch:** 23 GameState/menu forwarding and state-flag functions / **684 linked bytes**, across five original-address source islands spanning 08014034..14318. Only `func_0801412C` remains assembly. Forced `make -B -j4 compare` passes and inventory now counts **2,014 unresolved linked assembly functions**. See `docs/GAME_STATE_MENU_DISPATCH.md` and the current handoff.
+**Newest exact batch:** **18 GameState/menu action and record helpers / 560 linked bytes** in four source/assembly islands, forced retail ROM gate `sh_mv22h75z_27840b97` passed. Preceding 23-function dispatch batch contributes 684 bytes. Inventory now counts **1,996 unresolved linked assembly functions**. See `docs/GAME_STATE_MENU_ACTIONS.md` and the current handoff.
 
-Previous October 10 continuation added **18 exact functions / 632 linked bytes**, split across three 52-byte owner destructors, four 40-byte global-owner destructors, five small resource helpers (124 bytes), and six 32-byte simple destructors. Four forced retail ROM comparisons passed and restored exact original SHA1. The current inventory is **87,920 / 940,036 game-code bytes (9.3528%)**, 2,014 unresolved ASM functions. The earlier 18-function code was committed as **`1e522c9`**; the later 20-function GameState dispatch batch was published in **`9bac767`**, with the three-function extension verified afterward. See the current top of `tools/ches/NEXT_AGENT_HANDOFF.md` for proof and next ranking.
+Previous October 10 continuation added **18 exact functions / 632 linked bytes**, split across three 52-byte owner destructors, four 40-byte global-owner destructors, five small resource helpers (124 bytes), and six 32-byte simple destructors. Four forced retail ROM comparisons passed and restored exact original SHA1. The current inventory is **88,480 / 940,036 game-code bytes (9.4124%)**, 1,996 unresolved ASM functions. The earlier 18-function code was committed as **`1e522c9`**; the later 20-function GameState dispatch batch was published in **`9bac767`**, with the three-function extension verified afterward. See the current top of `tools/ches/NEXT_AGENT_HANDOFF.md` for proof and next ranking.
 
 Run git log -1 and git status before work; preserve intentional dirty files.
 The whole save loader and complete GameState remain unfinished; their compiler-sensitive frontiers are parked separately from the currently exact menu batch.
@@ -35,12 +35,12 @@ NEXT_AGENT_HANDOFF.md owns exact bounds, first commands and closed paths.
 
 ## Current exact reconstruction
 
-- Code: **87,920 / 940,036 = 9.3528%**.
-- Assembly: **852,116 bytes; 2,014 unresolved linked functions**.
-- Inferred ranges: **849,144 / 852,116 = 99.6512%**.
+- Code: **88,480 / 940,036 = 9.4124%**.
+- Assembly: **851,556 bytes; 1,996 unresolved linked functions**.
+- Inferred ranges: **848,584 / 851,556 = 99.6510%**.
 - Unattributed assembly: **2,972 bytes; 27 parked functions**.
 - Data/assets: **75,554 / 6,777,404 = 1.1148%**.
-- Overall meaningful ROM: **163,870 / 7,717,440 = 2.1234%**.
+- Overall meaningful ROM: **164,430 / 7,717,440 = 2.1306%**.
 - Free tail: **671,168 bytes**.
 
 ## Earlier exact batches (historical evidence, not the current queue)

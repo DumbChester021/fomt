@@ -16,8 +16,8 @@ Current reconstruction:
 
 ```text
 Code reconstruction
-  87920 / 940036 bytes (9.3528%)
-  852116 bytes remain in asm
+  88480 / 940036 bytes (9.4124%)
+  851556 bytes remain in asm
 
 Data/assets reconstruction
   75554 / 6777404 bytes (1.1148%)
@@ -28,7 +28,7 @@ Data/assets reconstruction
   396 additional source-owned ROM-header bytes count only toward overall
 
 Overall meaningful-ROM reconstruction
-  163870 / 7717440 bytes (2.1234%)
+  164430 / 7717440 bytes (2.1306%)
   final ROM padding is excluded from this denominator
 
 ROM space
@@ -36,7 +36,7 @@ ROM space
   671168 bytes free (655.44 KiB, 8.0009%) contiguous tail space
 ```
 
-The code inventory currently reports **2,014 linked assembly functions**, **849,144 bytes** covered by inferred function ranges, **2,972 unattributed assembly bytes**, and **27 explicitly parked functions**. The total includes prior exposed islands plus 596 bytes of unnamed neighbors revealed by six scene Run seams. Only their true 28-byte Run bodies are source-owned; the neighboring code remains unchanged assembly.
+The code inventory currently reports **1,996 linked assembly functions**, **848,584 bytes** covered by inferred function ranges, **2,972 unattributed assembly bytes**, and **27 explicitly parked functions**. The total includes prior exposed islands plus 596 bytes of unnamed neighbors revealed by six scene Run seams. Only their true 28-byte Run bodies are source-owned; the neighboring code remains unchanged assembly.
 
 ## What the metrics mean
 
@@ -49,6 +49,10 @@ The project keeps separate dimensions rather than combining unlike work into one
 Understanding or documenting an opaque `.incbin` does not count as asset/data reconstruction. Editable project-side source must regenerate the retail bytes exactly.
 
 ## Latest October 10 exact milestone
+
+The new GameState/menu action and record batch adds **18 exact functions / 560 linked bytes** through four isolated source ranges: `08016BA4..08016CEC` (328), `08016D80..08016DB0` (48), `08016E7C..08016EC4` (72), and `08016EF0..08016F60` (112). Every routine independently matched the original retail range; the grouped and forced full ROM comparisons passed (`sh_mv22h75z_27840b97`). These routines reveal new direct virtual slots, child callback entries, status assignments and the `gUnk_0300040C + 0x36C` record layout. See [GAME_STATE_MENU_ACTIONS.md](GAME_STATE_MENU_ACTIONS.md).
+
+## Previous GameState menu milestone
 
 A coherent GameState/menu callback family adds **23 exact functions / 684 linked bytes**: five source islands 08014034..1412C (248), 14164..14198 (52), 14198..14264 (204), 14264..142B8 (84), and 142B8..14318 (96). Only 1412C remains unchanged assembly. All 23 separately matched and the forced full-ROM build passed `fomt.gba: OK`. Source is `src/game_state_menu_dispatch.cc`, with original positions preserved by linker/assembler seams. See [GAME_STATE_MENU_DISPATCH.md](GAME_STATE_MENU_DISPATCH.md).
 

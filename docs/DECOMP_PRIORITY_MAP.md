@@ -12,11 +12,11 @@ exploit them across the remaining assembly instead of making an individual
 resource family the main queue.
 
 Current verified working state on `main`:
-- code: **87,920 / 940,036 = 9.3528%**;
-- assembly remaining: **852,116 bytes**;
-- remaining linked assembly functions: **2,014**;
+- code: **88,480 / 940,036 = 9.4124%**;
+- assembly remaining: **851,556 bytes**;
+- remaining linked assembly functions: **1,996**;
 - data/assets: **75,554 / 6,777,404 = 1.1148%**;
-- overall meaningful ROM: **163,870 / 7,717,440 = 2.1234%**;
+- overall meaningful ROM: **164,430 / 7,717,440 = 2.1306%**;
 - packed bank: **416 / 493 semantically owned animations**;
 - retail ROM remains exact at SHA1 `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
 
@@ -53,7 +53,7 @@ but its score is no longer an execution order.
 
 ## Current priority: work the live queue and preserve family-level leverage
 
-**Latest matching unit (October 10):** 23 GameState/menu dispatch and flag-setting routines / 684 linked bytes in `src/game_state_menu_dispatch.cc`. Full-ROM validation passed. Four adjacent complex bodies remain assembly. See [GAME_STATE_MENU_DISPATCH.md](GAME_STATE_MENU_DISPATCH.md) and the current handoff.
+**Latest matching unit (October 10):** 18 GameState/menu action and record helpers / **560 byte-exact linked bytes** in `src/game_state_menu_actions.cc`. The four source islands passed the forced full-ROM gate. This extends the 23-function dispatch cluster, giving 41 exact functions / 1,244 linked bytes across the two latest batches. See [GAME_STATE_MENU_ACTIONS.md](GAME_STATE_MENU_ACTIONS.md) and the canonical handoff.
 
 **Preceding checkpoint:** October 10: 18 exact methods / 632 linked bytes were promoted, covering three owner destructors, four global-owner dtors, five resource helpers, and six plain dtors; forced full-ROM gate passed throughout. That earlier status inventory was 87,236 / 940,036 exact code bytes (9.2801%) and 2,037 unresolved linked assembly functions; use the live snapshot at the top for current values. Next prioritize typed high-yield coherent clusters; resource pair initialization at D6EAC/D6EEC and virtual owner-transfer 72-byte family remain codegen sensitive. See the current top of NEXT_AGENT_HANDOFF.md.
 

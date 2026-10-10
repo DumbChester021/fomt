@@ -10,21 +10,23 @@ Live next actions belong to `tools/ches/NEXT_AGENT_HANDOFF.md`.
 | Item | Verified value |
 | --- | --- |
 | Workspace / branch | `/mnt/data/Github/gba/fomt`; `main` tracking `ches/main` |
-| Earlier published checkpoints | Source **`1e522c9`**; docs **`38718be`**, **`98e093a`**. Newest verified source: see `git log -1` |
-| Code in C++ source | **87,920 / 940,036 (9.3528%)** |
-| Remaining linked ASM | **852,116 bytes; 2,014 functions** |
-| Inferred assembly ranges | **849,144 bytes** (99.6512%) |
+| Prior published source | **`0bef5b7`** (23-function dispatch); latest 18-function action batch is exact, check `git log -1` for publication |
+| Code in C++ source | **88,480 / 940,036 (9.4124%)** |
+| Remaining linked ASM | **851,556 bytes; 1,996 functions** |
+| Inferred assembly ranges | **848,584 bytes** (99.6510%) |
 | Unattributed ASM / parked | **2,972 bytes / 27 functions** |
 | Recovered data/assets | **75,554 / 6,777,404 (1.1148%)** |
-| Meaningful ROM | **163,870 / 7,717,440 (2.1234%)** |
+| Meaningful ROM | **164,430 / 7,717,440 (2.1306%)** |
 | Free ROM tail | **671,168 bytes** |
 | Retail ROM | **8,388,608 bytes**; SHA1 `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963` |
-| Latest forced build | `make -B -j4 compare` **passed** (`sh_mv21rcv0_8fb063b4`; `fomt.gba: OK`) |
+| Latest forced build | `make -B -j4 compare` **passed** (`sh_mv22h75z_27840b97`; `fomt.gba: OK`) |
 | Pending builds | None at this checkpoint |
 
 ## Latest integrated work
 
-**Newest (October 10):** 23 GameState/menu dispatch and flag-setting methods / 684 exact bytes in `src/game_state_menu_dispatch.cc`, five original-address source islands across 08014034..08014318. Only `func_0801412C` remains assembly. The latest forced full-ROM build passed (`sh_mv21rcv0_8fb063b4`, exit 0); the rebuilt ROM still has the original SHA1. Inventory is 87,920 / 940,036 code bytes (9.3528%), 2,014 linked assembly functions, 852,116 assembly bytes, 2,972 unattributed. Proof and backups: `/mnt/waydroid-hdd/home-chester-waydroid/fomt-virtual-dispatch-20261010/`. See `docs/GAME_STATE_MENU_DISPATCH.md`.
+**Newest October 10 exact integration:** 18 GameState/menu action and record functions / **560 linked bytes**, in `src/game_state_menu_actions.cc` across four original-address islands. The forced ROM comparison `sh_mv22h75z_27840b97` passed, exit 0, and the retail SHA1 is unchanged. Exact code **88,480 / 940,036 = 9.4124%**, assembly **851,556 bytes / 1,996 functions**. Standalone proofs, matching differences, integration script and backups: `/mnt/waydroid-hdd/home-chester-waydroid/fomt-menu-dispatch-batch2/`. See `docs/GAME_STATE_MENU_ACTIONS.md`.
+
+**Previous (October 10):** 23 GameState/menu dispatch and flag-setting methods / 684 exact bytes in `src/game_state_menu_dispatch.cc`, five original-address source islands across 08014034..08014318. Only `func_0801412C` remains assembly. The latest forced full-ROM build passed (`sh_mv21rcv0_8fb063b4`, exit 0); the rebuilt ROM still has the original SHA1. Inventory is 88,480 / 940,036 code bytes (9.4124%), 1,996 linked assembly functions, 851,556 assembly bytes, 2,972 unattributed. Proof and backups: `/mnt/waydroid-hdd/home-chester-waydroid/fomt-virtual-dispatch-20261010/`. See `docs/GAME_STATE_MENU_DISPATCH.md`.
 
 **Preceding (October 10):**
 

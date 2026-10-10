@@ -21,10 +21,10 @@ Current exact reconstruction metrics:
 
 | Metric | Current |
 | --- | ---: |
-| Code | **87,920 / 940,036 bytes (9.3528%)** |
-| Assembly remaining | **852,116 bytes across 2,014 linked functions** |
+| Code | **88,480 / 940,036 bytes (9.4124%)** |
+| Assembly remaining | **851,556 bytes across 1,996 linked functions** |
 | Data/assets | **75,554 / 6,777,404 bytes (1.1148%)** |
-| Overall meaningful ROM | **163,870 / 7,717,440 bytes (2.1234%)** |
+| Overall meaningful ROM | **164,430 / 7,717,440 bytes (2.1306%)** |
 | Contiguous ROM tail free space | **671,168 bytes (655.44 KiB)** |
 
 Run `make progress` for the live report.
@@ -53,7 +53,7 @@ The packed item/UI animation bank also has an exact editable pipeline. All 347 r
 
 ## Current decompilation focus
 
-**Newest exact batch (October 10): 23 GameState/menu dispatch and flag-setting functions, 684 linked bytes**, recovered in `src/game_state_menu_dispatch.cc` and verified by the forced byte-identical ROM build. One compiler-sensitive neighboring function stay assembly. See [docs/GAME_STATE_MENU_DISPATCH.md](docs/GAME_STATE_MENU_DISPATCH.md).
+**Newest exact batch (October 10): 18 GameState/menu action and record helpers, 560 linked bytes**, recovered in `src/game_state_menu_actions.cc` and verified by the forced byte-identical ROM rebuild. Alongside the preceding 23-function / 684-byte dispatch batch, this continuation has recovered **41 exact functions / 1,244 linked bytes**. See [docs/GAME_STATE_MENU_ACTIONS.md](docs/GAME_STATE_MENU_ACTIONS.md) and [docs/GAME_STATE_MENU_DISPATCH.md](docs/GAME_STATE_MENU_DISPATCH.md).
 
 Work is throughput-first and organized by coherent translation unit, type, vtable, or repeated machine-code family rather than by a fixed function count.
 
@@ -121,6 +121,7 @@ Start here:
 - [docs/ASSET_DECOMPILATION.md](docs/ASSET_DECOMPILATION.md) - asset/data counting and authoring policy
 - [docs/FOMT_COMPILER_FINGERPRINT.md](docs/FOMT_COMPILER_FINGERPRINT.md) - pinned compatibility compiler and the 13 reconstructed behaviors
 - [tools/ches/NEXT_AGENT_HANDOFF.md](tools/ches/NEXT_AGENT_HANDOFF.md) - live verified state, closed experiments, and next exact matching targets
+- [docs/GAME_STATE_MENU_ACTIONS.md](docs/GAME_STATE_MENU_ACTIONS.md) - GameState menu action and record ABI
 
 Stable subsystem documentation includes [MAP_DATA.md](docs/MAP_DATA.md), [CHARACTERS.md](docs/CHARACTERS.md), [ENTITY_BALL.md](docs/ENTITY_BALL.md), [ENTITY_EFFECTS.md](docs/ENTITY_EFFECTS.md), [HARDWARE.md](docs/HARDWARE.md), [HARDWARE_TRANSFER.md](docs/HARDWARE_TRANSFER.md), [INTRUSIVE_CALLBACK_LIST.md](docs/INTRUSIVE_CALLBACK_LIST.md), [KEY_INPUT.md](docs/KEY_INPUT.md), [RESOURCE_HANDLES.md](docs/RESOURCE_HANDLES.md), [SAVE_FORMAT.md](docs/SAVE_FORMAT.md), and [SPRITE_ANIMATOR.md](docs/SPRITE_ANIMATOR.md).
 

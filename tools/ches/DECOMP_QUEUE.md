@@ -5,15 +5,15 @@ Region/TU hints and scores are heuristics, not claims about original source-file
 
 ## Inventory summary
 
-- remaining linked assembly functions: **2,014**
-- canonical linked assembly code: **852,116 bytes**
-- bytes covered by inferred function ranges: **849,144** (**99.6512%** of linked asm code)
+- remaining linked assembly functions: **1,996**
+- canonical linked assembly code: **851,556 bytes**
+- bytes covered by inferred function ranges: **848,584** (**99.6510%** of linked asm code)
 - assembly code not assigned to a function range: **2,972 bytes**
 - asm definitions present in source but not linked as asm code: **2**
-- coarse TU/region hints: **254**
-- repeated opcode-shape clusters: **160**
-- functions in repeated opcode-shape clusters: **594**
-- exact normalized-body clusters: **152**
+- coarse TU/region hints: **257**
+- repeated opcode-shape clusters: **157**
+- functions in repeated opcode-shape clusters: **580**
+- exact normalized-body clusters: **149**
 - explicitly parked functions: **27**
 - runtime/library functions retained in inventory: **33**
 
@@ -27,19 +27,19 @@ Region/TU hints and scores are heuristics, not claims about original source-file
 | 4 | asm/code_entities.s:0802AA84-0802DBF0 | 14108.0 | 32 | 12652 | 12652 | 0 | 2 | 50 | 4 |
 | 5 | asm/game_state.s:08011650-08014034 | 14058.0 | 85 | 10724 | 10724 | 0 | 37 | 41 | 11 |
 | 6 | asm/new_game.s:08003788-08006858 | 13944.0 | 38 | 12496 | 12496 | 0 | 11 | 27 | 3 |
-| 7 | asm/game_state.s:08014318-0801740C | 13917.0 | 64 | 12532 | 10144 | 1 | 31 | 43 | 5 |
-| 8 | asm/code_entities.s:08023308-0802634C | 13894.0 | 47 | 12356 | 10556 | 1 | 16 | 71 | 5 |
-| 9 | asm/code_0803EE94.s:080756B0-08078E40 | 13278.0 | 38 | 14224 | 10392 | 2 | 3 | 39 | 25 |
-| 10 | asm/code_0803EE94.s:0804F160-0805218C | 12922.0 | 54 | 12332 | 7668 | 2 | 22 | 29 | 62 |
-| 11 | asm/code_0803EE94.s:08096EE8-0809A3E0 | 12689.0 | 17 | 13560 | 11236 | 1 | 0 | 35 | 1 |
-| 12 | asm/code_0803EE94.s:08078E40-0807BE74 | 11975.0 | 19 | 12340 | 10424 | 1 | 0 | 42 | 2 |
-| 13 | asm/code_entities.s:0802634C-08029558 | 11486.0 | 10 | 12812 | 10180 | 1 | 2 | 19 | 2 |
-| 14 | asm/code_0803A8A4.s:0803B128-0803D688 | 11096.0 | 55 | 9568 | 9568 | 0 | 14 | 17 | 7 |
-| 15 | asm/code_entities_080320DC.s:08032900-08034CEC | 10980.0 | 25 | 9196 | 9196 | 0 | 1 | 61 | 8 |
+| 7 | asm/code_entities.s:08023308-0802634C | 13894.0 | 47 | 12356 | 10556 | 1 | 16 | 71 | 5 |
+| 8 | asm/code_0803EE94.s:080756B0-08078E40 | 13278.0 | 38 | 14224 | 10392 | 2 | 3 | 39 | 25 |
+| 9 | asm/code_0803EE94.s:0804F160-0805218C | 12922.0 | 54 | 12332 | 7668 | 2 | 22 | 29 | 62 |
+| 10 | asm/code_0803EE94.s:08096EE8-0809A3E0 | 12689.0 | 17 | 13560 | 11236 | 1 | 0 | 35 | 1 |
+| 11 | asm/code_0803EE94.s:08078E40-0807BE74 | 11975.0 | 19 | 12340 | 10424 | 1 | 0 | 42 | 2 |
+| 12 | asm/code_entities.s:0802634C-08029558 | 11486.0 | 10 | 12812 | 10180 | 1 | 2 | 19 | 2 |
+| 13 | asm/code_0803A8A4.s:0803B128-0803D688 | 11096.0 | 55 | 9568 | 9568 | 0 | 14 | 17 | 7 |
+| 14 | asm/code_entities_080320DC.s:08032900-08034CEC | 10980.0 | 25 | 9196 | 9196 | 0 | 1 | 61 | 8 |
+| 15 | asm/code_0803EE94.s:0803F8DC-08045584 | 10922.0 | 1 | 23720 | 0 | 1 | 0 | 208 | 0 |
 | 16 | asm/code_809E804.s:080AA270-080AC5D0 | 10736.0 | 39 | 9056 | 9056 | 0 | 2 | 30 | 26 |
 | 17 | asm/code_809E804.s:080AC674-080AF814 | 10704.0 | 52 | 12704 | 6784 | 2 | 22 | 35 | 6 |
 | 18 | asm/code_0803EE94.s:0806D8C8-080709D8 | 10686.0 | 30 | 12560 | 7864 | 2 | 7 | 46 | 3 |
-| 19 | asm/code_0803EE94.s:0803F8DC-08045584 | 10514.0 | 1 | 23720 | 0 | 1 | 0 | 191 | 0 |
+| 19 | asm/game_state.s:08014318-08016BA4 | 10629.0 | 38 | 10380 | 7992 | 1 | 17 | 33 | 5 |
 | 20 | asm/code_809E804.s:080B7164-080BA1A4 | 10132.0 | 25 | 12352 | 8464 | 1 | 2 | 21 | 2 |
 | 21 | asm/code_entities.s:08020060-08023308 | 9625.0 | 41 | 12968 | 5972 | 3 | 13 | 38 | 5 |
 | 22 | asm/code_809E804.s:080A220C-080A45A8 | 9423.0 | 20 | 9116 | 7488 | 1 | 6 | 45 | 2 |
@@ -58,7 +58,7 @@ Region/TU hints and scores are heuristics, not claims about original source-file
 | 35 | asm/code_809E804.s:080AF814-080B34DC | 6555.0 | 12 | 15560 | 2956 | 3 | 0 | 16 | 2 |
 | 36 | asm/code_0803EE94.s:0808ABC4-0808C56C | 6225.0 | 10 | 6568 | 4276 | 1 | 5 | 44 | 0 |
 | 37 | asm/code_809E804.s:080C12B8-080C4AE0 | 5967.0 | 12 | 14376 | 2300 | 3 | 2 | 19 | 2 |
-| 38 | asm/code_0803EE94.s:08048FEC-0804E0F8 | 5743.0 | 2 | 20748 | 16 | 1 | 0 | 20 | 2 |
+| 38 | asm/code_0803EE94.s:08048FEC-0804E0F8 | 5767.0 | 2 | 20748 | 16 | 1 | 0 | 21 | 2 |
 | 39 | asm/code_0803A8A4.s:0803DA24-0803EE94 | 5736.0 | 31 | 5232 | 5232 | 0 | 6 | 5 | 0 |
 | 40 | asm/code_0803EE94.s:08062E9C-0806644C | 5701.0 | 11 | 13744 | 2028 | 3 | 1 | 27 | 1 |
 | 41 | asm/code_0803EE94.s:08052230-08055264 | 5608.0 | 10 | 12340 | 2340 | 3 | 2 | 24 | 2 |
@@ -76,56 +76,56 @@ Region/TU hints and scores are heuristics, not claims about original source-file
 
 | Rank | Cluster | Members | Total bytes | Instructions/member | Files | Sample members |
 | ---: | --- | ---: | ---: | ---: | ---: | --- |
-| 1 | shape0113 | 2 | 3000 | 622 | 1 | func_0808A55C, func_0808E6FC |
+| 1 | shape0110 | 2 | 3000 | 622 | 1 | func_0808A55C, func_0808E6FC |
 | 2 | shape0003 | 20 | 2960 | 66 | 1 | func_08012BBC, func_08012CF4, func_08012D88, func_08012EC0, func_08012F54, func_08013080 |
-| 3 | shape0087 | 2 | 2504 | 452 | 1 | func_0802634C, func_08026830 |
-| 4 | shape0044 | 3 | 2476 | 9 | 1 | func_080229A4, func_08023400, func_080240BC |
+| 3 | shape0084 | 2 | 2504 | 452 | 1 | func_0802634C, func_08026830 |
+| 4 | shape0042 | 3 | 2476 | 9 | 1 | func_080229A4, func_08023400, func_080240BC |
 | 5 | shape0072 | 2 | 2280 | 478 | 1 | func_08014D9C, func_0801531C |
-| 6 | shape0081 | 2 | 2092 | 30 | 1 | func_080223A8, func_08022C18 |
-| 7 | shape0055 | 3 | 1320 | 210 | 1 | func_080E2444, func_080E2970, func_080E5664 |
+| 6 | shape0078 | 2 | 2092 | 30 | 1 | func_080223A8, func_08022C18 |
+| 7 | shape0053 | 3 | 1320 | 210 | 1 | func_080E2444, func_080E2970, func_080E5664 |
 | 8 | shape0004 | 18 | 1296 | 32 | 1 | func_080DB394, func_080DB6CC, func_080DB73C, func_080DB7AC, func_080DB81C, func_080DB88C |
 | 9 | shape0001 | 49 | 1156 | 5 | 5 | func_080088B8, func_08008BE0, func_08008CC4, func_0801DD18, func_0801DD24, func_0801DD30 |
-| 10 | shape0017 | 6 | 984 | 73 | 1 | func_08012C50, func_08013364, func_080139F0, func_08013A94, func_08013B38, func_08013DC8 |
-| 11 | shape0116 | 2 | 984 | 179 | 1 | func_0808BDA0, func_08091094 |
-| 12 | shape0112 | 2 | 952 | 169 | 1 | func_08088318, func_0808C664 |
-| 13 | shape0102 | 2 | 928 | 210 | 1 | func_080579B4, func_0805C63C |
-| 14 | shape0049 | 3 | 912 | 132 | 1 | func_0808BF8C, func_08091280, func_08092940 |
+| 10 | shape0016 | 6 | 984 | 73 | 1 | func_08012C50, func_08013364, func_080139F0, func_08013A94, func_08013B38, func_08013DC8 |
+| 11 | shape0113 | 2 | 984 | 179 | 1 | func_0808BDA0, func_08091094 |
+| 12 | shape0109 | 2 | 952 | 169 | 1 | func_08088318, func_0808C664 |
+| 13 | shape0099 | 2 | 928 | 210 | 1 | func_080579B4, func_0805C63C |
+| 14 | shape0047 | 3 | 912 | 132 | 1 | func_0808BF8C, func_08091280, func_08092940 |
 | 15 | shape0006 | 14 | 784 | 19 | 4 | func_0800371C, func_08004BDC, func_080059D0, func_080070A4, func_0806D918, func_0806EA00 |
-| 16 | shape0019 | 6 | 764 | 10 | 1 | func_08021620, func_08022320, func_08022334, func_08022B5C, func_080244C4, func_080244D8 |
-| 17 | shape0050 | 3 | 756 | 98 | 1 | func_080A3900, func_080A39FC, func_080A3AF8 |
-| 18 | shape0026 | 4 | 720 | 66 | 1 | func_08035C04, func_08036084, func_08036430, func_080365CC |
+| 16 | shape0017 | 6 | 764 | 10 | 1 | func_08021620, func_08022320, func_08022334, func_08022B5C, func_080244C4, func_080244D8 |
+| 17 | shape0048 | 3 | 756 | 98 | 1 | func_080A3900, func_080A39FC, func_080A3AF8 |
+| 18 | shape0025 | 4 | 720 | 66 | 1 | func_08035C04, func_08036084, func_08036430, func_080365CC |
 | 19 | shape0008 | 11 | 672 | 27 | 5 | func_0800374C, func_08004C0C, func_08005A00, func_080070D4, func_08012028, func_0806D948 |
 | 20 | shape0002 | 38 | 652 | 4 | 5 | func_08005254, func_08008D84, func_08008D90, func_08008DE8, func_080124C4, func_080AE6C0 |
-| 21 | shape0086 | 2 | 592 | 88 | 1 | func_08025E38, func_08025FC4 |
-| 22 | shape0053 | 3 | 576 | 90 | 1 | func_080E2294, func_080E27FC, func_080E54F0 |
-| 23 | shape0054 | 3 | 540 | 86 | 1 | func_080E2390, func_080E28BC, func_080E55B0 |
+| 21 | shape0083 | 2 | 592 | 88 | 1 | func_08025E38, func_08025FC4 |
+| 22 | shape0051 | 3 | 576 | 90 | 1 | func_080E2294, func_080E27FC, func_080E54F0 |
+| 23 | shape0052 | 3 | 540 | 86 | 1 | func_080E2390, func_080E28BC, func_080E55B0 |
 | 24 | shape0073 | 2 | 536 | 117 | 1 | func_08015210, func_08015790 |
 | 25 | shape0005 | 15 | 524 | 1 | 6 | func_0800063C, func_08012218, func_080202C4, func_080202C8, func_0802C2DC, func_08093C3C |
-| 26 | shape0029 | 4 | 496 | 48 | 1 | func_0806EA78, func_0806EAF4, func_08077CE0, func_08077D5C |
-| 27 | shape0042 | 3 | 448 | 7 | 1 | func_08012ACC, func_0801D9A8, func_0801DB44 |
-| 28 | shape0150 | 2 | 448 | 102 | 1 | func_080D6DB8, func_080D772C |
-| 29 | shape0027 | 4 | 440 | 0 | 1 | func_08036F0C, func_08036F68, func_08037C08, func_08037C68 |
-| 30 | shape0115 | 2 | 416 | 85 | 1 | func_0808BCD0, func_0808EDCC |
-| 31 | shape0120 | 2 | 408 | 96 | 1 | func_08093E20, func_080942BC |
-| 32 | shape0030 | 4 | 368 | 35 | 1 | func_080A6138, func_080A6194, func_080A6300, func_080A635C |
+| 26 | shape0028 | 4 | 496 | 48 | 1 | func_0806EA78, func_0806EAF4, func_08077CE0, func_08077D5C |
+| 27 | shape0041 | 3 | 448 | 7 | 1 | func_08012ACC, func_0801D9A8, func_0801DB44 |
+| 28 | shape0147 | 2 | 448 | 102 | 1 | func_080D6DB8, func_080D772C |
+| 29 | shape0026 | 4 | 440 | 0 | 1 | func_08036F0C, func_08036F68, func_08037C08, func_08037C68 |
+| 30 | shape0112 | 2 | 416 | 85 | 1 | func_0808BCD0, func_0808EDCC |
+| 31 | shape0117 | 2 | 408 | 96 | 1 | func_08093E20, func_080942BC |
+| 32 | shape0029 | 4 | 368 | 35 | 1 | func_080A6138, func_080A6194, func_080A6300, func_080A635C |
 | 33 | shape0010 | 10 | 360 | 17 | 1 | func_080DD410, func_080DD4F0, func_080DD594, func_080DD794, func_080DD86C, func_080DDC24 |
-| 34 | shape0021 | 5 | 360 | 33 | 1 | func_080DB96C, func_080DBA4C, func_080DBABC, func_080DC50C, func_080E3494 |
-| 35 | shape0089 | 2 | 352 | 80 | 1 | func_08037568, func_08037714 |
-| 36 | shape0080 | 2 | 336 | 59 | 1 | func_08021130, func_08021FAC |
-| 37 | shape0103 | 2 | 336 | 80 | 1 | func_0805A63C, func_0805DEC0 |
-| 38 | shape0128 | 2 | 304 | 58 | 1 | func_08094110, func_080945B0 |
+| 34 | shape0019 | 5 | 360 | 33 | 1 | func_080DB96C, func_080DBA4C, func_080DBABC, func_080DC50C, func_080E3494 |
+| 35 | shape0086 | 2 | 352 | 80 | 1 | func_08037568, func_08037714 |
+| 36 | shape0077 | 2 | 336 | 59 | 1 | func_08021130, func_08021FAC |
+| 37 | shape0100 | 2 | 336 | 80 | 1 | func_0805A63C, func_0805DEC0 |
+| 38 | shape0125 | 2 | 304 | 58 | 1 | func_08094110, func_080945B0 |
 | 39 | shape0007 | 13 | 296 | 6 | 2 | func_08004C54, func_08075DEC, func_0807E508, func_0807F670, func_0808052C, func_08080E54 |
-| 40 | shape0034 | 4 | 288 | 33 | 1 | func_080DBB2C, func_080DBCE8, func_080DBD58, func_080DC0E8 |
-| 41 | shape0104 | 2 | 288 | 68 | 1 | func_08069D84, func_0807555C |
-| 42 | shape0031 | 4 | 272 | 26 | 1 | func_080A61F0, func_080A6234, func_080A6278, func_080A62BC |
-| 43 | shape0045 | 3 | 252 | 9 | 2 | func_0802C210, func_08037CF0, func_08037E9C |
-| 44 | shape0108 | 2 | 248 | 56 | 1 | func_0807EF14, func_08081B40 |
-| 45 | shape0158 | 2 | 248 | 55 | 1 | func_080DD8BC, func_080DE0AC |
-| 46 | shape0023 | 4 | 240 | 26 | 1 | func_080095C0, func_080095FC, func_08009638, func_08009674 |
-| 47 | shape0125 | 2 | 240 | 45 | 1 | func_08094048, func_080944E8 |
-| 48 | shape0152 | 2 | 240 | 57 | 1 | func_080D74F0, func_080D7568 |
-| 49 | shape0057 | 2 | 232 | 46 | 1 | func_08003B40, func_08003BB4 |
-| 50 | shape0134 | 2 | 232 | 52 | 1 | func_080A041C, func_080A0490 |
+| 40 | shape0033 | 4 | 288 | 33 | 1 | func_080DBB2C, func_080DBCE8, func_080DBD58, func_080DC0E8 |
+| 41 | shape0101 | 2 | 288 | 68 | 1 | func_08069D84, func_0807555C |
+| 42 | shape0030 | 4 | 272 | 26 | 1 | func_080A61F0, func_080A6234, func_080A6278, func_080A62BC |
+| 43 | shape0043 | 3 | 252 | 9 | 2 | func_0802C210, func_08037CF0, func_08037E9C |
+| 44 | shape0105 | 2 | 248 | 56 | 1 | func_0807EF14, func_08081B40 |
+| 45 | shape0155 | 2 | 248 | 55 | 1 | func_080DD8BC, func_080DE0AC |
+| 46 | shape0021 | 4 | 240 | 26 | 1 | func_080095C0, func_080095FC, func_08009638, func_08009674 |
+| 47 | shape0122 | 2 | 240 | 45 | 1 | func_08094048, func_080944E8 |
+| 48 | shape0149 | 2 | 240 | 57 | 1 | func_080D74F0, func_080D7568 |
+| 49 | shape0055 | 2 | 232 | 46 | 1 | func_08003B40, func_08003BB4 |
+| 50 | shape0131 | 2 | 232 | 52 | 1 | func_080A041C, func_080A0490 |
 
 ## Highest-ranked tractable representatives
 
