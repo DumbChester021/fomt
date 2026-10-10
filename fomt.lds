@@ -484,6 +484,12 @@ SECTIONS
         asm/game_state.o(.text.after_game_state_flag_setters);
         src/save_format.o(.text.save_record);
         asm/game_state.o(.text.after_save_record);
+        src/game_state_menu_dispatch.o(.text.game_state_dispatch_08014034);
+        asm/game_state.o(.text.after_game_state_menu_dispatch_14034);
+        src/game_state_menu_dispatch.o(.text.game_state_dispatch_08014198);
+        asm/game_state.o(.text.after_game_state_menu_dispatch_14198);
+        src/game_state_menu_dispatch.o(.text.game_state_dispatch_080142b8);
+        asm/game_state.o(.text.after_game_state_menu_dispatch_142b8);
         src/code_08017C00.o(.text);
         asm/game_state.o(.text.after_func_08017C00);
         src/code_0801A8C0.o(.text);

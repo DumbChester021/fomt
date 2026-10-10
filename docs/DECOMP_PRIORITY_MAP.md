@@ -12,11 +12,11 @@ exploit them across the remaining assembly instead of making an individual
 resource family the main queue.
 
 Current verified working state on `main`:
-- code: **87,236 / 940,036 = 9.2801%**;
-- assembly remaining: **852,800 bytes**;
-- remaining linked assembly functions: **2,037**;
+- code: **87,784 / 940,036 = 9.3384%**;
+- assembly remaining: **852,252 bytes**;
+- remaining linked assembly functions: **2,017**;
 - data/assets: **75,554 / 6,777,404 = 1.1148%**;
-- overall meaningful ROM: **163,186 / 7,717,440 = 2.1145%**;
+- overall meaningful ROM: **163,734 / 7,717,440 = 2.1216%**;
 - packed bank: **416 / 493 semantically owned animations**;
 - retail ROM remains exact at SHA1 `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
 
@@ -53,7 +53,9 @@ but its score is no longer an execution order.
 
 ## Current priority: work the live queue and preserve family-level leverage
 
-**Latest current checkpoint:** October 10: 18 exact methods / 632 linked bytes newly promoted, covering three owner destructors, four global-owner dtors, five resource helpers, and six plain dtors; forced full-ROM gate passed throughout. The status inventory is 87,236 / 940,036 exact code bytes (9.2801%) and 2,037 unresolved linked assembly functions. Next prioritize typed high-yield coherent clusters; resource pair initialization at D6EAC/D6EEC and virtual owner-transfer 72-byte family remain codegen sensitive. See the current top of NEXT_AGENT_HANDOFF.md.
+**Latest matching unit (October 10):** 20 GameState/menu dispatch and flag-setting routines / 548 linked bytes in `src/game_state_menu_dispatch.cc`. Full-ROM validation passed. Four adjacent complex bodies remain assembly. See [GAME_STATE_MENU_DISPATCH.md](GAME_STATE_MENU_DISPATCH.md) and the current handoff.
+
+**Preceding checkpoint:** October 10: 18 exact methods / 632 linked bytes were promoted, covering three owner destructors, four global-owner dtors, five resource helpers, and six plain dtors; forced full-ROM gate passed throughout. The status inventory is 87,784 / 940,036 exact code bytes (9.3384%) and 2,017 unresolved linked assembly functions. Next prioritize typed high-yield coherent clusters; resource pair initialization at D6EAC/D6EEC and virtual owner-transfer 72-byte family remain codegen sensitive. See the current top of NEXT_AGENT_HANDOFF.md.
 
 Earlier promotion: **11 menu provider/lifetime and range-cleanup functions / 756 exact bytes**. E14B8 is now exact `BuildAnimalNameText`; adjacent provider wrappers/name builders through E1A54 are source-owned; E1C18 and E1D54 recover counted 16-byte range teardown. The final forced ROM gate preserves the retail SHA1.
 

@@ -12,7 +12,7 @@ This is the compact current reference for the FoMT retail compatibility compiler
 - The normal agbcp wrapper enables all 13 reconstructed behaviors below.
 - These behaviors are a validated FoMT compatibility reconstruction. They are not proof that this is the original Nintendo compiler source.
 
-Current retail state: 87,236 / 940,036 source code bytes = 9.2801%; 852,800 assembly bytes and 2,037 linked assembly functions remain. Full make -B -j4 compare passes fomt.gba: OK at retail SHA1 a2fc3574f0a65a4fcf7682fb274b9d7eebdef963.
+Current retail state: 87,784 / 940,036 source code bytes = 9.3384%; 852,252 assembly bytes and 2,017 linked assembly functions remain. Full make -B -j4 compare passes fomt.gba: OK at retail SHA1 a2fc3574f0a65a4fcf7682fb274b9d7eebdef963.
 
 ## The 13 adopted behaviors
 

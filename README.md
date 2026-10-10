@@ -21,10 +21,10 @@ Current exact reconstruction metrics:
 
 | Metric | Current |
 | --- | ---: |
-| Code | **87,236 / 940,036 bytes (9.2801%)** |
-| Assembly remaining | **852,800 bytes across 2,037 linked functions** |
+| Code | **87,784 / 940,036 bytes (9.3384%)** |
+| Assembly remaining | **852,252 bytes across 2,017 linked functions** |
 | Data/assets | **75,554 / 6,777,404 bytes (1.1148%)** |
-| Overall meaningful ROM | **163,186 / 7,717,440 bytes (2.1145%)** |
+| Overall meaningful ROM | **163,734 / 7,717,440 bytes (2.1216%)** |
 | Contiguous ROM tail free space | **671,168 bytes (655.44 KiB)** |
 
 Run `make progress` for the live report.
@@ -53,11 +53,13 @@ The packed item/UI animation bank also has an exact editable pipeline. All 347 r
 
 ## Current decompilation focus
 
+**Newest exact batch (October 10): 20 GameState/menu dispatch and flag-setting functions, 548 linked bytes**, recovered in `src/game_state_menu_dispatch.cc` and verified by the forced byte-identical ROM build. Four complex neighboring functions stay assembly. See [docs/GAME_STATE_MENU_DISPATCH.md](docs/GAME_STATE_MENU_DISPATCH.md).
+
 Work is throughput-first and organized by coherent translation unit, type, vtable, or repeated machine-code family rather than by a fixed function count.
 
 As of **October 10, 2026**, the scene lifetime layer owns all 25 `Run()` entries, 24 constructors and 25 destructors: **74 exact functions / 4,108 linked retail bytes**. The remaining scene constructor `func_08092570` is parked on a compiler/register-allocation mismatch. See [docs/SCENES.md](docs/SCENES.md).
 
-The latest menu, glyph-cache/provider, tree and resource-owner work includes an **18-function / 632-byte exact batch** of ownership destructors and resource helpers. The next promising throughput targets are an 18-member ownership-transfer wrapper family (potentially 1,296 linked bytes, still nonmatching) and three typed tree-insertion siblings (potentially 576 bytes). Both require new ownership/allocator/ABI evidence; do not promote a nonmatching candidate. The full save loader and `GameState` reconstruction remain unfinished and parked. See [docs/MENU_GLYPH_CACHE.md](docs/MENU_GLYPH_CACHE.md), [docs/REPO_MAP.md](docs/REPO_MAP.md), and the authoritative [tools/ches/NEXT_AGENT_HANDOFF.md](tools/ches/NEXT_AGENT_HANDOFF.md).
+The preceding menu, glyph-cache/provider, tree and resource-owner work included an **18-function / 632-byte exact batch** of ownership destructors and resource helpers. The next promising throughput targets are an 18-member ownership-transfer wrapper family (potentially 1,296 linked bytes, still nonmatching) and three typed tree-insertion siblings (potentially 576 bytes). Both require new ownership/allocator/ABI evidence; do not promote a nonmatching candidate. The full save loader and `GameState` reconstruction remain unfinished and parked. See [docs/MENU_GLYPH_CACHE.md](docs/MENU_GLYPH_CACHE.md), [docs/REPO_MAP.md](docs/REPO_MAP.md), and the authoritative [tools/ches/NEXT_AGENT_HANDOFF.md](tools/ches/NEXT_AGENT_HANDOFF.md).
 
 The current compiler is a pinned agbcc-family build with **13 documented FoMT compatibility behaviors**, not proof of the original compiler's identity. See [docs/FOMT_COMPILER_FINGERPRINT.md](docs/FOMT_COMPILER_FINGERPRINT.md).
 

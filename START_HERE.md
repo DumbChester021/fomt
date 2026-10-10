@@ -14,7 +14,7 @@ This is the live dashboard for the US Harvest Moon: Friends of Mineral Town matc
 ## Active branch and build authority
 
 - Retail branch: **main**, tracking **ches/main**. The last published checkpoint at this documentation audit was **`38718be`** (`sync FoMT decomp inventory and concise zero-context handoff`). Verify the live HEAD with `git log -1` before new work.
-- Verified source-code checkpoint: **`1e522c9`** (menu/glyph-cache/provider/tree/ownership source); `38718be` published the subsequent inventory and handoff docs. Documentation-only corrections after this checkpoint do not represent new exact code. Preserve later uncommitted work.
+- Earlier verified source checkpoint: **`1e522c9`**; published documentation checkpoints **`38718be`** and **`98e093a`**. The new 20-function GameState/menu batch is full-ROM verified; run `git log -1` for its eventual publication SHA.
 - Custom gameplay stays in the separate custom-game worktree.
 - ROM: **8,388,608 bytes**, SHA1 **a2fc3574f0a65a4fcf7682fb274b9d7eebdef963**.
 - Full gate: make -B -j4 compare, ending in **fomt.gba: OK**.
@@ -22,7 +22,9 @@ This is the live dashboard for the US Harvest Moon: Friends of Mineral Town matc
 
 ## Handoff readiness
 
-Latest verified October 10 continuation adds **18 exact functions / 632 linked bytes**, split across three 52-byte owner destructors, four 40-byte global-owner destructors, five small resource helpers (124 bytes), and six 32-byte simple destructors. Four forced retail ROM comparisons passed and restored exact original SHA1. The latest inventory is **87,236 / 940,036 game-code bytes (9.2801%)**, 2,037 unresolved ASM functions. The verified code is committed as **1e522c9**; its documentation follows in the current checkpoint. See the current top of `tools/ches/NEXT_AGENT_HANDOFF.md` for proof and next ranking.
+**Newest exact batch:** 20 GameState/menu forwarding and state-flag functions / **548 linked bytes**, across three original-address islands 08014034..1412C, 14198..14264 and 142B8..14318. Four intervening bodies remain assembly. Forced `make -B -j4 compare` passes and inventory now counts **2,017 unresolved linked assembly functions**. See `docs/GAME_STATE_MENU_DISPATCH.md` and the current handoff.
+
+Previous October 10 continuation added **18 exact functions / 632 linked bytes**, split across three 52-byte owner destructors, four 40-byte global-owner destructors, five small resource helpers (124 bytes), and six 32-byte simple destructors. Four forced retail ROM comparisons passed and restored exact original SHA1. The latest inventory is **87,784 / 940,036 game-code bytes (9.3384%)**, 2,017 unresolved ASM functions. The verified code is committed as **1e522c9**; its documentation follows in the current checkpoint. See the current top of `tools/ches/NEXT_AGENT_HANDOFF.md` for proof and next ranking.
 
 Run git log -1 and git status before work; preserve intentional dirty files.
 The whole save loader and complete GameState remain unfinished; their compiler-sensitive frontiers are parked separately from the currently exact menu batch.
@@ -33,12 +35,12 @@ NEXT_AGENT_HANDOFF.md owns exact bounds, first commands and closed paths.
 
 ## Current exact reconstruction
 
-- Code: **87,236 / 940,036 = 9.2801%**.
-- Assembly: **852,800 bytes; 2,037 unresolved linked functions**.
-- Inferred ranges: **849,828 / 852,800 = 99.6515%**.
+- Code: **87,784 / 940,036 = 9.3384%**.
+- Assembly: **852,252 bytes; 2,017 unresolved linked functions**.
+- Inferred ranges: **849,280 / 852,252 = 99.6513%**.
 - Unattributed assembly: **2,972 bytes; 27 parked functions**.
 - Data/assets: **75,554 / 6,777,404 = 1.1148%**.
-- Overall meaningful ROM: **163,186 / 7,717,440 = 2.1145%**.
+- Overall meaningful ROM: **163,734 / 7,717,440 = 2.1216%**.
 - Free tail: **671,168 bytes**.
 
 ## Earlier exact batches (historical evidence, not the current queue)

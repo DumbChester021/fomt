@@ -16,8 +16,8 @@ Current reconstruction:
 
 ```text
 Code reconstruction
-  87236 / 940036 bytes (9.2801%)
-  852800 bytes remain in asm
+  87784 / 940036 bytes (9.3384%)
+  852252 bytes remain in asm
 
 Data/assets reconstruction
   75554 / 6777404 bytes (1.1148%)
@@ -28,7 +28,7 @@ Data/assets reconstruction
   396 additional source-owned ROM-header bytes count only toward overall
 
 Overall meaningful-ROM reconstruction
-  163186 / 7717440 bytes (2.1145%)
+  163734 / 7717440 bytes (2.1216%)
   final ROM padding is excluded from this denominator
 
 ROM space
@@ -36,7 +36,7 @@ ROM space
   671168 bytes free (655.44 KiB, 8.0009%) contiguous tail space
 ```
 
-The code inventory currently reports **2,037 linked assembly functions**, **849,828 bytes** covered by inferred function ranges, **2,972 unattributed assembly bytes**, and **27 explicitly parked functions**. The total includes prior exposed islands plus 596 bytes of unnamed neighbors revealed by six scene Run seams. Only their true 28-byte Run bodies are source-owned; the neighboring code remains unchanged assembly.
+The code inventory currently reports **2,017 linked assembly functions**, **849,280 bytes** covered by inferred function ranges, **2,972 unattributed assembly bytes**, and **27 explicitly parked functions**. The total includes prior exposed islands plus 596 bytes of unnamed neighbors revealed by six scene Run seams. Only their true 28-byte Run bodies are source-owned; the neighboring code remains unchanged assembly.
 
 ## What the metrics mean
 
@@ -49,6 +49,10 @@ The project keeps separate dimensions rather than combining unlike work into one
 Understanding or documenting an opaque `.incbin` does not count as asset/data reconstruction. Editable project-side source must regenerate the retail bytes exactly.
 
 ## Latest October 10 exact milestone
+
+A coherent GameState/menu callback family adds **20 exact functions / 548 linked bytes**: three source islands 08014034..1412C (248), 14198..14264 (204), and 142B8..14318 (96). Four intervening functions remain unchanged assembly. All 20 separately matched and the forced full-ROM build passed `fomt.gba: OK`. Source is `src/game_state_menu_dispatch.cc`, with original positions preserved by linker/assembler seams. See [GAME_STATE_MENU_DISPATCH.md](GAME_STATE_MENU_DISPATCH.md).
+
+## Preceding exact milestone
 
 The newest four-batch menu/ownership throughput continuation integrated
 **18 natural C++ methods / 632 linked bytes**, all proving zero linked-byte
