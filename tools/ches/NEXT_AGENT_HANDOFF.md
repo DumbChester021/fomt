@@ -6,16 +6,38 @@
 byte-for-byte in [handoff history](checkpoints/menu-throughput-docs-2026-10-10/HANDOFF_HISTORY.md).
 Superseded next-target claims in that history are not instructions.
 
-- Retail workspace: `/mnt/data/Github/gba/fomt`; branch `main` tracking `ches/main`; previous verified published source checkpoint **`0bef5b7`**; the newer 18-function menu-action integration has a verified exact ROM and may be awaiting its publication SHA. Check `git log -1` and `git status -sb` for any newer work.
+- Retail workspace: `/mnt/data/Github/gba/fomt`; branch `main` tracking `ches/main`; previously published source checkpoint **`399882d`**; the new 13-function callback/in­cubation integration is forced-ROM exact and may be awaiting its publication SHA. Check `git log -1` and `git status -sb` for any newer work.
 - **The previously dirty verified retail source is committed as 1e522c9.** The retail branch was clean and even with its tracked remote at the start of the October 10 documentation audit; documentation-only edits may now be pending review. The separate custom-game worktree has independent uncommitted docs. Preserve both worktrees; never reset, clean or stash without review.
 - Retail SHA1: **`a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`**, ROM size **8,388,608**.
-- Latest full forced comparison: `make -B -j4 compare` -> **`fomt.gba: OK`**; execution `sh_mv22h75z_27840b97`, exit 0. No background build pending.
-- **Code 88,480 / 940,036 = 9.4124%**. Assembly: **851,556 bytes / 1,996 linked unresolved functions**; mapped inferred ranges **848,584** bytes, unattributed **2,972**, explicitly parked **27**.
-- **Data/assets 75,554 / 6,777,404 = 1.1148%**; meaningful ROM **164,430 / 7,717,440 = 2.1306%**; free tail **671,168 bytes**.
+- Latest full forced comparison: `make -B -j4 compare` -> **`fomt.gba: OK`**; execution `sh_mv22yrzy_255645e2`, exit 0. No background build pending.
+- **Code 88,924 / 940,036 = 9.4596%**. Assembly: **851,112 bytes / 1,983 linked unresolved functions**; mapped inferred ranges **848,140** bytes, unattributed **2,972**, explicitly parked **27**.
+- **Data/assets 75,554 / 6,777,404 = 1.1148%**; meaningful ROM **164,874 / 7,717,440 = 2.1364%**; free tail **671,168 bytes**.
 - The thirteen-rule compiler compatibility layer is unchanged; see `docs/FOMT_COMPILER_FINGERPRINT.md`. The full save loader/GameState remains unfinished and parked.
 - The live machine-generated truth is `tools/ches/decomp_inventory.json` and `tools/ches/DECOMP_QUEUE.md`.
 
-## Latest verified exact integration: 18 functions / 560 bytes
+## Latest verified exact integration: 13 functions / 444 bytes
+
+Thirteen GameState/menu callback and incubation methods now have byte-exact natural C++ in `src/game_state_menu_callbacks.cc`, linked in five source/ASM islands. Each method independently matched its retail size and linked bytes; the forced clean `make -B -j4 compare` passed (`sh_mv22yrzy_255645e2`, exit 0, `fomt.gba: OK`).
+
+| Address range | Functions | Linked bytes |
+| --- | ---: | ---: |
+| `0801468C..080146FC` | 4 | 112 |
+| `08014C0C..08014C34` | 1 | 40 |
+| `08014D5C..08014D9C` | 2 | 64 |
+| `0801589C..08015920` | 3 | 132 |
+| `08015950..080159B0` | 3 | 96 |
+| **Total** | **13** | **444** |
+
+The state holds a save pointer at +0x8C, status +0x9C and target +0xA8. Incubation wrapper `func_080146CC` calls `BeginIncubation__4CoopUi(saveState+0x410, argument)` and forwards that argument through target virtual slot +0xAC; two related forwarders use target slots +0x150 and +0x154. Children obtained from target slot +0x40 expose operations slots +0x44, +0x64, +0x68, +0x78, +0x7C, +0x80, +0x84, +0x88 and +0x8C. Selected callbacks set status to 0x19, and +0x68 narrows to `u16`. `func_0801468C` returns state+0xD0.
+
+`func_08014BD8` remains untouched assembly: a readable loop candidate compiles to the right 52-byte size but has 5 differing linked bytes at best (loop v2; v1 has 9, v3 has 6). Preserve the closed register-lifetime frontier; do not repeat spelling-only compiler attempts. Other untouched complex neighbors include 14C34, 14D30 and 15920.
+
+Scratch sources and individual diff/mismatch proofs are under `/mnt/waydroid-hdd/home-chester-waydroid/fomt-menu-dispatch-batch3/`, together with `probe.py`, the loop alternatives, `incubation_v1.cc`, `integrate.py`, and the exact original ASM/linker backups. Stable subsystem doc: `docs/GAME_STATE_MENU_CALLBACKS.md`. No REA or custom compiler work was required for this matching batch.
+
+**Current inventory:** **88,924 / 940,036 code bytes = 9.4596%**, **851,112 ASM bytes / 1,983 unresolved linked functions**, inferred ASM **848,140 bytes**, unattributed **2,972**, explicitly parked **27**, data/assets **75,554**, meaningful ROM **164,874 / 7,717,440 = 2.1364%**. The three sequential GameState/menu batches collectively recovered **54 source functions / 1,688 linked bytes** and preserved retail SHA1 `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`.
+
+## Previous verified exact integration: 18 functions / 560 bytes
+
 
 `src/game_state_menu_actions.cc` provides 18 natural, independently zero-difference C++ routines replacing four carefully bounded source/assembly regions. The full forced `make -B -j4 compare` passed (`sh_mv22h75z_27840b97`, exit 0, `fomt.gba: OK`), retail SHA1 unchanged.
 
@@ -31,11 +53,11 @@ Evidence: menu proxy -> state pointer at +4, target at state +0xA8, status at +0
 
 All per-function sources, mismatch proofs, `probe_batch.py`, `probe_more.py`, `probe_fix.py`, integration script, and pre-mutation assembly/linker backups are preserved at `/mnt/waydroid-hdd/home-chester-waydroid/fomt-menu-dispatch-batch2/`. The still-ASM functions around this region include 16CEC, 16D48, 16DB0, 16EC4, and 16F60, alongside larger owner/allocation functions. Reopen only with new natural structural evidence.
 
-**New inventory:** code **88,480 / 940,036 (9.4124%)**; linked ASM **851,556 bytes / 1,996 functions**; inferred function ranges **848,584 bytes**; unattributed **2,972 bytes**; parked **27**; unchanged data/assets **75,554**; meaningful ROM **164,430 / 7,717,440 (2.1306%)**. The prior 23-function GameState dispatch unit in `0bef5b7` contributed 684 bytes: **41 functions / 1,244 bytes** across these two exact batches.
+At this earlier 18-function checkpoint, the prior 23-function dispatch unit in `0bef5b7` contributed another 684 bytes, totaling 41 exact functions / 1,244 bytes across those two batches. The authoritative newer inventory and next actions are at the top of this handoff.
 
 REA was unnecessary here: original assembly, ABI/struct offsets and per-function compiler matches were decisive. See `docs/GAME_STATE_MENU_ACTIONS.md` for the stable subsystem account.
 
-## Previous verified exact integration: 23 functions / 684 bytes
+## Earlier verified exact integration: 23 functions / 684 bytes
 
 
 New natural source in `src/game_state_menu_dispatch.cc` owns 23 GameState/menu forwarding and saved-state flag functions. Every function independently matched its exact retail linked bytes. The combined source and linker/assembly seams passed a forced full-ROM comparison for each integration stage (`make -B -j4 compare`, latest execution `sh_mv21rcv0_8fb063b4`, exit 0, `fomt.gba: OK`).
@@ -57,7 +79,7 @@ Scratch candidates, exact per-function comparison output, integration dry run, a
 
 At the prior 23-function checkpoint, the inventory was lower; the authoritative current inventory is in the latest 18-function section above. Data/assets and unattributed ASM remain unchanged.
 
-## Earlier verified exact integration — 18 functions / 632 bytes
+## Prior menu/owner integration — 18 functions / 632 bytes
 All four independent source families were isolated, proven byte-exact, integrated
 with original linker/assembly seams, and followed by a successful forced retail
 ROM gate. Scratch proofs are under
@@ -86,7 +108,7 @@ local matching workspace. Do not repeat already exact work.
 
 ## Highest-leverage next work
 
-The current GameState/menu dispatch plus actions continuation is exact across 41 functions / 1,244 bytes. `1412C` and nearby larger allocators/complex routines remain assembly. Rank coherent families after the regenerated inventory; do not return to compiler-only puzzles without structural evidence.
+The three newest GameState/menu clusters total 54 exact functions / 1,688 bytes. `1412C` and nearby larger allocators/complex routines remain assembly. Rank coherent families after the regenerated inventory; do not return to compiler-only puzzles without structural evidence.
 
 Re-rank coherent TUs/families by source-byte payoff, downstream type leverage,
 existing structural evidence and compiler difficulty. The inventory queue is

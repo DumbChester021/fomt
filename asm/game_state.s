@@ -8050,69 +8050,7 @@ func_080145F8: @ 0x080145F8
 .L08014684: .4byte vtable_unk_080E5E74
 .L08014688: .4byte vtable_unk_080E5D04
 
-    thumb_func_start func_0801468C
-func_0801468C: @ 0x0801468C
-    ldr r0, [r0, #4]
-    adds r0, #0xd0
-    bx lr
-    .align 2, 0
-
-    thumb_func_start func_08014694
-func_08014694: @ 0x08014694
-    push {lr}
-    ldr r0, [r0, #4]
-    adds r0, #0xa8
-    ldr r0, [r0]
-    ldr r2, [r0]
-    movs r3, #0xa8
-    lsls r3, r3, #1
-    adds r2, r2, r3
-    ldr r2, [r2]
-    bl _call_via_r2
-    pop {r0}
-    bx r0
-    .align 2, 0
-
-    thumb_func_start func_080146B0
-func_080146B0: @ 0x080146B0
-    push {lr}
-    ldr r0, [r0, #4]
-    adds r0, #0xa8
-    ldr r0, [r0]
-    ldr r2, [r0]
-    movs r3, #0xaa
-    lsls r3, r3, #1
-    adds r2, r2, r3
-    ldr r2, [r2]
-    bl _call_via_r2
-    pop {r0}
-    bx r0
-    .align 2, 0
-
-    thumb_func_start func_080146CC
-func_080146CC: @ 0x080146CC
-    push {r4, r5, lr}
-    adds r5, r1, #0
-    ldr r4, [r0, #4]
-    adds r0, r4, #0
-    adds r0, #0x8c
-    ldr r0, [r0]
-    movs r1, #0x82
-    lsls r1, r1, #3
-    adds r0, r0, r1
-    adds r1, r5, #0
-    bl BeginIncubation__4CoopUi
-    adds r4, #0xa8
-    ldr r0, [r4]
-    ldr r1, [r0]
-    adds r1, #0xac
-    ldr r2, [r1]
-    adds r1, r5, #0
-    bl _call_via_r2
-    pop {r4, r5}
-    pop {r0}
-    bx r0
-    .align 2, 0
+    .section .text.after_gmcb_1468c, "ax", %progbits
 
     thumb_func_start func_080146FC
 func_080146FC: @ 0x080146FC
@@ -8806,26 +8744,7 @@ func_08014BD8: @ 0x08014BD8
     pop {r0}
     bx r0
 
-    thumb_func_start func_08014C0C
-func_08014C0C: @ 0x08014C0C
-    push {r4, r5, lr}
-    adds r4, r1, #0
-    adds r5, r2, #0
-    ldr r0, [r0, #4]
-    adds r0, #0xa8
-    ldr r0, [r0]
-    ldr r1, [r0]
-    ldr r2, [r1, #0x40]
-    movs r1, #0
-    bl _call_via_r2
-    ldr r1, [r0, #0x14]
-    ldr r3, [r1, #0x64]
-    adds r1, r4, #0
-    adds r2, r5, #0
-    bl _call_via_r3
-    pop {r4, r5}
-    pop {r0}
-    bx r0
+    .section .text.after_gmcb_14c0c, "ax", %progbits
 
     thumb_func_start func_08014C34
 func_08014C34: @ 0x08014C34
@@ -8973,39 +8892,7 @@ func_08014D30: @ 0x08014D30
     bx r0
     .align 2, 0
 
-    thumb_func_start func_08014D5C
-func_08014D5C: @ 0x08014D5C
-    push {lr}
-    ldr r0, [r0, #4]
-    adds r0, #0xa8
-    ldr r0, [r0]
-    ldr r1, [r0]
-    ldr r2, [r1, #0x40]
-    movs r1, #0
-    bl _call_via_r2
-    ldr r1, [r0, #0x14]
-    ldr r1, [r1, #0x78]
-    bl _call_via_r1
-    pop {r1}
-    bx r1
-    .align 2, 0
-
-    thumb_func_start func_08014D7C
-func_08014D7C: @ 0x08014D7C
-    push {lr}
-    ldr r0, [r0, #4]
-    adds r0, #0xa8
-    ldr r0, [r0]
-    ldr r1, [r0]
-    ldr r2, [r1, #0x40]
-    movs r1, #0
-    bl _call_via_r2
-    ldr r1, [r0, #0x14]
-    ldr r1, [r1, #0x44]
-    bl _call_via_r1
-    pop {r1}
-    bx r1
-    .align 2, 0
+    .section .text.after_gmcb_14d5c, "ax", %progbits
 
     thumb_func_start func_08014D9C
 func_08014D9C: @ 0x08014D9C
@@ -10339,74 +10226,7 @@ func_08015790: @ 0x08015790
     .align 2, 0
 .L08015898: .4byte 0x00001C2C
 
-    thumb_func_start func_0801589C
-func_0801589C: @ 0x0801589C
-    push {r4, r5, lr}
-    lsls r5, r1, #0x10
-    lsrs r5, r5, #0x10
-    ldr r4, [r0, #4]
-    adds r0, r4, #0
-    adds r0, #0xa8
-    ldr r0, [r0]
-    ldr r1, [r0]
-    ldr r2, [r1, #0x40]
-    movs r1, #0
-    bl _call_via_r2
-    ldr r1, [r0, #0x14]
-    ldr r2, [r1, #0x68]
-    adds r1, r5, #0
-    bl _call_via_r2
-    adds r4, #0x9c
-    movs r0, #0x19
-    str r0, [r4]
-    pop {r4, r5}
-    pop {r0}
-    bx r0
-    .align 2, 0
-
-    thumb_func_start func_080158CC
-func_080158CC: @ 0x080158CC
-    push {r4, lr}
-    ldr r4, [r0, #4]
-    adds r0, r4, #0
-    adds r0, #0xa8
-    ldr r0, [r0]
-    ldr r1, [r0]
-    ldr r2, [r1, #0x40]
-    movs r1, #0
-    bl _call_via_r2
-    ldr r1, [r0, #0x14]
-    adds r1, #0x80
-    ldr r1, [r1]
-    bl _call_via_r1
-    adds r4, #0x9c
-    movs r0, #0x19
-    str r0, [r4]
-    pop {r4}
-    pop {r0}
-    bx r0
-    .align 2, 0
-
-    thumb_func_start func_080158F8
-func_080158F8: @ 0x080158F8
-    push {r4, lr}
-    ldr r4, [r0, #4]
-    adds r0, r4, #0
-    adds r0, #0xa8
-    ldr r0, [r0]
-    ldr r1, [r0]
-    ldr r2, [r1, #0x40]
-    movs r1, #0
-    bl _call_via_r2
-    ldr r1, [r0, #0x14]
-    ldr r1, [r1, #0x7c]
-    bl _call_via_r1
-    adds r4, #0x9c
-    movs r0, #0x19
-    str r0, [r4]
-    pop {r4}
-    pop {r0}
-    bx r0
+    .section .text.after_gmcb_1589c, "ax", %progbits
 
     thumb_func_start func_08015920
 func_08015920: @ 0x08015920
@@ -10435,56 +10255,7 @@ func_08015920: @ 0x08015920
     bx r1
     .align 2, 0
 
-    thumb_func_start func_08015950
-func_08015950: @ 0x08015950
-    push {lr}
-    ldr r0, [r0, #4]
-    adds r0, #0xa8
-    ldr r0, [r0]
-    ldr r1, [r0]
-    ldr r2, [r1, #0x40]
-    movs r1, #0
-    bl _call_via_r2
-    ldr r1, [r0, #0x14]
-    adds r1, #0x84
-    ldr r1, [r1]
-    bl _call_via_r1
-    pop {r1}
-    bx r1
-
-    thumb_func_start func_08015970
-func_08015970: @ 0x08015970
-    push {lr}
-    ldr r0, [r0, #4]
-    adds r0, #0xa8
-    ldr r0, [r0]
-    ldr r1, [r0]
-    ldr r2, [r1, #0x40]
-    movs r1, #0
-    bl _call_via_r2
-    ldr r1, [r0, #0x14]
-    adds r1, #0x88
-    ldr r1, [r1]
-    bl _call_via_r1
-    pop {r1}
-    bx r1
-
-    thumb_func_start func_08015990
-func_08015990: @ 0x08015990
-    push {lr}
-    ldr r0, [r0, #4]
-    adds r0, #0xa8
-    ldr r0, [r0]
-    ldr r1, [r0]
-    ldr r2, [r1, #0x40]
-    movs r1, #0
-    bl _call_via_r2
-    ldr r1, [r0, #0x14]
-    adds r1, #0x8c
-    ldr r1, [r1]
-    bl _call_via_r1
-    pop {r1}
-    bx r1
+    .section .text.after_gmcb_15950, "ax", %progbits
 
     thumb_func_start func_080159B0
 func_080159B0: @ 0x080159B0

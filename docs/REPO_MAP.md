@@ -24,15 +24,15 @@ subsystem is fully understood.
 
 ## Current reconstruction snapshot - October 10, 2026
 
-**Newest exact source:** `src/game_state_menu_actions.cc` adds **18 byte-exact GameState/menu action and record helpers / 560 bytes** in four linker islands. The preceding `src/game_state_menu_dispatch.cc` owns **23 functions / 684 bytes**. Only `func_0801412C` remains assembly inside that preceding dispatch region. See [GAME_STATE_MENU_ACTIONS.md](GAME_STATE_MENU_ACTIONS.md) and [GAME_STATE_MENU_DISPATCH.md](GAME_STATE_MENU_DISPATCH.md).
+**Newest exact source:** `src/game_state_menu_callbacks.cc` adds **13 functions / 444 exact linked bytes** of incubation, menu dispatch and child operations across five islands. It follows 18 functions / 560 bytes in `src/game_state_menu_actions.cc` and 23 functions / 684 bytes in `src/game_state_menu_dispatch.cc`, totaling **54 exact functions / 1,688 bytes**. See [GAME_STATE_MENU_CALLBACKS.md](GAME_STATE_MENU_CALLBACKS.md), [GAME_STATE_MENU_ACTIONS.md](GAME_STATE_MENU_ACTIONS.md), and [GAME_STATE_MENU_DISPATCH.md](GAME_STATE_MENU_DISPATCH.md).
 
 Authoritative live state is in `START_HERE.md`.
 
 - Active public retail branch: **`main`**. The former `Live-temp` series is retired; `ches-dev` remains historical.
-- Code reconstruction: **88,480 / 940,036 = 9.4124%**; **851,556 assembly bytes** remain.
-- Remaining linked asm functions: **1,996**; inferred ranges cover **848,584 / 851,556 = 99.6510%**, with **2,972 unattributed bytes** and **27 explicitly parked functions**.
+- Code reconstruction: **88,924 / 940,036 = 9.4596%**; **851,112 assembly bytes** remain.
+- Remaining linked asm functions: **1,983**; inferred ranges cover **848,140 / 851,112 = 99.6508%**, with **2,972 unattributed bytes** and **27 explicitly parked functions**.
 - Data/assets: **75,554 / 6,777,404 = 1.1148%**.
-- Overall meaningful-ROM reconstruction: **164,430 / 7,717,440 = 2.1306%**.
+- Overall meaningful-ROM reconstruction: **164,874 / 7,717,440 = 2.1364%**.
 - Contiguous tail free space: **671,168 bytes = 655.44 KiB**.
 - Retail SHA1: `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`; full compare remains **`fomt.gba: OK`**.
 - Authoritative compiler path is the tracked `tools/install_agbcp.sh` plus `tools/agbcp_fomt_compat.patch`, SHA-256 `aa7cc6df0efbd066e9c33deb887731e1d0210babfaeba4c9b64f3e8bc35c4256`.

@@ -492,6 +492,16 @@ SECTIONS
         src/game_state_menu_dispatch.o(.text.game_state_dispatch_08014264);
         src/game_state_menu_dispatch.o(.text.game_state_dispatch_080142b8);
         asm/game_state.o(.text.after_game_state_menu_dispatch_142b8);
+        src/game_state_menu_callbacks.o(.text.game_menu_cb_1468c);
+        asm/game_state.o(.text.after_gmcb_1468c);
+        src/game_state_menu_callbacks.o(.text.game_menu_cb_14c0c);
+        asm/game_state.o(.text.after_gmcb_14c0c);
+        src/game_state_menu_callbacks.o(.text.game_menu_cb_14d5c);
+        asm/game_state.o(.text.after_gmcb_14d5c);
+        src/game_state_menu_callbacks.o(.text.game_menu_cb_1589c);
+        asm/game_state.o(.text.after_gmcb_1589c);
+        src/game_state_menu_callbacks.o(.text.game_menu_cb_15950);
+        asm/game_state.o(.text.after_gmcb_15950);
         src/game_state_menu_actions.o(.text.game_state_actions_16ba4);
         asm/game_state.o(.text.after_game_state_actions_16ba4);
         src/game_state_menu_actions.o(.text.game_state_actions_16d80);
