@@ -4,13 +4,16 @@ struct MenuDispatchTarget;
 struct MenuDispatchChild;
 
 struct MenuDispatchChildOps {
-    u8 pad_00[0x40];
+    u8 pad_00[0x38];
+    void (*action38)(MenuDispatchChild *, u32);
+    u8 pad_3C[4];
     u32 (*read)(MenuDispatchChild *);
     u8 pad_44[0x08];
     void (*action4C)(MenuDispatchChild *);
     void (*action50)(MenuDispatchChild *);
     void (*action54)(MenuDispatchChild *);
-    u8 pad_58[0x08];
+    u8 pad_58[0x04];
+    void (*action5C)(MenuDispatchChild *, u32, u8);
     void (*action60)(MenuDispatchChild *);
 };
 struct MenuDispatchChild {
@@ -199,4 +202,36 @@ EC void func_08014304(MenuDispatchProxy *) SECTION(".text.game_state_dispatch_08
 void func_08014304(MenuDispatchProxy *self)
 {
     self->state->saveState[0x34C4] = 0;
+}
+
+EC u32 func_08014164(MenuDispatchProxy *, u32, u8)
+    SECTION(".text.game_state_dispatch_08014164");
+u32 func_08014164(MenuDispatchProxy *self, u32 argument, u8 option)
+{
+    MenuDispatchState *state = self->state;
+    MenuDispatchTarget *target = state->target;
+    MenuDispatchChild *child = target->vtable->getChild(target, 0);
+    child->ops->action5C(child, argument, option);
+    state->status = 0x19;
+    return 1;
+}
+
+EC void func_08014264(MenuDispatchProxy *, u32, u32)
+    SECTION(".text.game_state_dispatch_08014264");
+void func_08014264(MenuDispatchProxy *self, u32 argument, u32 value)
+{
+    MenuDispatchTarget *target = self->state->target;
+    MenuDispatchChild *child = target->vtable->getChild(target, argument);
+    if (child)
+        child->ops->action38(child, value);
+}
+
+EC void func_08014290(MenuDispatchProxy *, u32)
+    SECTION(".text.game_state_dispatch_08014264");
+void func_08014290(MenuDispatchProxy *self, u32 argument)
+{
+    MenuDispatchTarget *target = self->state->target;
+    MenuDispatchChild *child = target->vtable->getChild(target, argument);
+    if (child)
+        child->ops->action38(child, 0);
 }

@@ -65,8 +65,8 @@ dimensions separate and also report a conservative overall linked-ROM metric.
 
 ```text
 Code reconstruction
-  87784 / 940036 bytes (9.3384%)
-  852252 bytes remain in asm (2017 linked assembly functions)
+  87920 / 940036 bytes (9.3528%)
+  852116 bytes remain in asm (2014 linked assembly functions)
 
 Data/assets reconstruction
   75554 / 6777404 bytes (1.1148%)
@@ -77,7 +77,7 @@ Data/assets reconstruction
   396 additional source-owned .rom_header bytes count only toward overall
 
 Overall meaningful-ROM reconstruction
-  163734 / 7717440 bytes (2.1216%)
+  163870 / 7717440 bytes (2.1234%)
   final ROM padding is excluded from this reconstruction denominator
 
 ROM space

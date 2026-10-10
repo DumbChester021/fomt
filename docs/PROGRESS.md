@@ -16,8 +16,8 @@ Current reconstruction:
 
 ```text
 Code reconstruction
-  87784 / 940036 bytes (9.3384%)
-  852252 bytes remain in asm
+  87920 / 940036 bytes (9.3528%)
+  852116 bytes remain in asm
 
 Data/assets reconstruction
   75554 / 6777404 bytes (1.1148%)
@@ -28,7 +28,7 @@ Data/assets reconstruction
   396 additional source-owned ROM-header bytes count only toward overall
 
 Overall meaningful-ROM reconstruction
-  163734 / 7717440 bytes (2.1216%)
+  163870 / 7717440 bytes (2.1234%)
   final ROM padding is excluded from this denominator
 
 ROM space
@@ -36,7 +36,7 @@ ROM space
   671168 bytes free (655.44 KiB, 8.0009%) contiguous tail space
 ```
 
-The code inventory currently reports **2,017 linked assembly functions**, **849,280 bytes** covered by inferred function ranges, **2,972 unattributed assembly bytes**, and **27 explicitly parked functions**. The total includes prior exposed islands plus 596 bytes of unnamed neighbors revealed by six scene Run seams. Only their true 28-byte Run bodies are source-owned; the neighboring code remains unchanged assembly.
+The code inventory currently reports **2,014 linked assembly functions**, **849,144 bytes** covered by inferred function ranges, **2,972 unattributed assembly bytes**, and **27 explicitly parked functions**. The total includes prior exposed islands plus 596 bytes of unnamed neighbors revealed by six scene Run seams. Only their true 28-byte Run bodies are source-owned; the neighboring code remains unchanged assembly.
 
 ## What the metrics mean
 
@@ -50,7 +50,7 @@ Understanding or documenting an opaque `.incbin` does not count as asset/data re
 
 ## Latest October 10 exact milestone
 
-A coherent GameState/menu callback family adds **20 exact functions / 548 linked bytes**: three source islands 08014034..1412C (248), 14198..14264 (204), and 142B8..14318 (96). Four intervening functions remain unchanged assembly. All 20 separately matched and the forced full-ROM build passed `fomt.gba: OK`. Source is `src/game_state_menu_dispatch.cc`, with original positions preserved by linker/assembler seams. See [GAME_STATE_MENU_DISPATCH.md](GAME_STATE_MENU_DISPATCH.md).
+A coherent GameState/menu callback family adds **23 exact functions / 684 linked bytes**: five source islands 08014034..1412C (248), 14164..14198 (52), 14198..14264 (204), 14264..142B8 (84), and 142B8..14318 (96). Only 1412C remains unchanged assembly. All 23 separately matched and the forced full-ROM build passed `fomt.gba: OK`. Source is `src/game_state_menu_dispatch.cc`, with original positions preserved by linker/assembler seams. See [GAME_STATE_MENU_DISPATCH.md](GAME_STATE_MENU_DISPATCH.md).
 
 ## Preceding exact milestone
 

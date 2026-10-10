@@ -24,15 +24,15 @@ subsystem is fully understood.
 
 ## Current reconstruction snapshot - October 10, 2026
 
-**Newest exact source:** `src/game_state_menu_dispatch.cc` replaces 20 GameState/menu forwarding and flag-setting routines / 548 linked bytes. Three separate original-address islands retain four difficult neighboring routines in assembly; see [GAME_STATE_MENU_DISPATCH.md](GAME_STATE_MENU_DISPATCH.md).
+**Newest exact source:** `src/game_state_menu_dispatch.cc` replaces 23 GameState/menu forwarding and flag-setting routines / 684 linked bytes. Three separate original-address islands retain four difficult neighboring routines in assembly; see [GAME_STATE_MENU_DISPATCH.md](GAME_STATE_MENU_DISPATCH.md).
 
 Authoritative live state is in `START_HERE.md`.
 
 - Active public retail branch: **`main`**. The former `Live-temp` series is retired; `ches-dev` remains historical.
-- Code reconstruction: **87,784 / 940,036 = 9.3384%**; **852,252 assembly bytes** remain.
-- Remaining linked asm functions: **2,017**; inferred ranges cover **849,280 / 852,252 = 99.6513%**, with **2,972 unattributed bytes** and **27 explicitly parked functions**.
+- Code reconstruction: **87,920 / 940,036 = 9.3528%**; **852,116 assembly bytes** remain.
+- Remaining linked asm functions: **2,014**; inferred ranges cover **849,144 / 852,116 = 99.6512%**, with **2,972 unattributed bytes** and **27 explicitly parked functions**.
 - Data/assets: **75,554 / 6,777,404 = 1.1148%**.
-- Overall meaningful-ROM reconstruction: **163,734 / 7,717,440 = 2.1216%**.
+- Overall meaningful-ROM reconstruction: **163,870 / 7,717,440 = 2.1234%**.
 - Contiguous tail free space: **671,168 bytes = 655.44 KiB**.
 - Retail SHA1: `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`; full compare remains **`fomt.gba: OK`**.
 - Authoritative compiler path is the tracked `tools/install_agbcp.sh` plus `tools/agbcp_fomt_compat.patch`, SHA-256 `aa7cc6df0efbd066e9c33deb887731e1d0210babfaeba4c9b64f3e8bc35c4256`.

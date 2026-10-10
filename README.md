@@ -21,10 +21,10 @@ Current exact reconstruction metrics:
 
 | Metric | Current |
 | --- | ---: |
-| Code | **87,784 / 940,036 bytes (9.3384%)** |
-| Assembly remaining | **852,252 bytes across 2,017 linked functions** |
+| Code | **87,920 / 940,036 bytes (9.3528%)** |
+| Assembly remaining | **852,116 bytes across 2,014 linked functions** |
 | Data/assets | **75,554 / 6,777,404 bytes (1.1148%)** |
-| Overall meaningful ROM | **163,734 / 7,717,440 bytes (2.1216%)** |
+| Overall meaningful ROM | **163,870 / 7,717,440 bytes (2.1234%)** |
 | Contiguous ROM tail free space | **671,168 bytes (655.44 KiB)** |
 
 Run `make progress` for the live report.
@@ -53,7 +53,7 @@ The packed item/UI animation bank also has an exact editable pipeline. All 347 r
 
 ## Current decompilation focus
 
-**Newest exact batch (October 10): 20 GameState/menu dispatch and flag-setting functions, 548 linked bytes**, recovered in `src/game_state_menu_dispatch.cc` and verified by the forced byte-identical ROM build. Four complex neighboring functions stay assembly. See [docs/GAME_STATE_MENU_DISPATCH.md](docs/GAME_STATE_MENU_DISPATCH.md).
+**Newest exact batch (October 10): 23 GameState/menu dispatch and flag-setting functions, 684 linked bytes**, recovered in `src/game_state_menu_dispatch.cc` and verified by the forced byte-identical ROM build. One compiler-sensitive neighboring function stay assembly. See [docs/GAME_STATE_MENU_DISPATCH.md](docs/GAME_STATE_MENU_DISPATCH.md).
 
 Work is throughput-first and organized by coherent translation unit, type, vtable, or repeated machine-code family rather than by a fixed function count.
 

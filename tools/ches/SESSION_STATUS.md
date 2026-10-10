@@ -11,20 +11,20 @@ Live next actions belong to `tools/ches/NEXT_AGENT_HANDOFF.md`.
 | --- | --- |
 | Workspace / branch | `/mnt/data/Github/gba/fomt`; `main` tracking `ches/main` |
 | Earlier published checkpoints | Source **`1e522c9`**; docs **`38718be`**, **`98e093a`**. Newest verified source: see `git log -1` |
-| Code in C++ source | **87,784 / 940,036 (9.3384%)** |
-| Remaining linked ASM | **852,252 bytes; 2,017 functions** |
-| Inferred assembly ranges | **849,280 bytes** (99.6513%) |
+| Code in C++ source | **87,920 / 940,036 (9.3528%)** |
+| Remaining linked ASM | **852,116 bytes; 2,014 functions** |
+| Inferred assembly ranges | **849,144 bytes** (99.6512%) |
 | Unattributed ASM / parked | **2,972 bytes / 27 functions** |
 | Recovered data/assets | **75,554 / 6,777,404 (1.1148%)** |
-| Meaningful ROM | **163,734 / 7,717,440 (2.1216%)** |
+| Meaningful ROM | **163,870 / 7,717,440 (2.1234%)** |
 | Free ROM tail | **671,168 bytes** |
 | Retail ROM | **8,388,608 bytes**; SHA1 `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963` |
-| Latest forced build | `make -B -j4 compare` **passed** (`sh_mv21c4sr_a44f79e0`; `fomt.gba: OK`) |
+| Latest forced build | `make -B -j4 compare` **passed** (`sh_mv21rcv0_8fb063b4`; `fomt.gba: OK`) |
 | Pending builds | None at this checkpoint |
 
 ## Latest integrated work
 
-**Newest (October 10):** 20 GameState/menu dispatch and flag-setting methods / 548 exact bytes in `src/game_state_menu_dispatch.cc`, three original-address source islands across 08014034..08014318. Four intervening functions stay assembly. The forced full-ROM build passed (`sh_mv21c4sr_a44f79e0`, exit 0); the rebuilt ROM still has the original SHA1. Inventory is 87,784 / 940,036 code bytes (9.3384%), 2,017 linked assembly functions, 852,252 assembly bytes, 2,972 unattributed. Proof and backups: `/mnt/waydroid-hdd/home-chester-waydroid/fomt-virtual-dispatch-20261010/`. See `docs/GAME_STATE_MENU_DISPATCH.md`.
+**Newest (October 10):** 23 GameState/menu dispatch and flag-setting methods / 684 exact bytes in `src/game_state_menu_dispatch.cc`, five original-address source islands across 08014034..08014318. Only `func_0801412C` remains assembly. The latest forced full-ROM build passed (`sh_mv21rcv0_8fb063b4`, exit 0); the rebuilt ROM still has the original SHA1. Inventory is 87,920 / 940,036 code bytes (9.3528%), 2,014 linked assembly functions, 852,116 assembly bytes, 2,972 unattributed. Proof and backups: `/mnt/waydroid-hdd/home-chester-waydroid/fomt-virtual-dispatch-20261010/`. See `docs/GAME_STATE_MENU_DISPATCH.md`.
 
 **Preceding (October 10):**
 
@@ -39,7 +39,7 @@ now counted as unattributed ASM instead of as part of its preceding function.
 
 The complete save loader and GameState are not finished; the separate
 custom-game worktree remains independent. The current tracked compiler is
-unchanged. The verified retail source is committed in **`1e522c9`**, followed by published inventory/handoff documentation **`38718be`**. The subsequent 20-function source integration is retail-exact; verify its published commit with `git log -1`.
+unchanged. The previously verified 20-function source is committed in **`9bac767`**, following documentation commits **`38718be`** and **`98e093a`**. The subsequent 23-function source integration is retail-exact; verify its published commit with `git log -1`.
 
 ## Highest-leverage next action
 
