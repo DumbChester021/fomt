@@ -75,7 +75,7 @@ def main():
     ap = argparse.ArgumentParser(
         description="Compile and linked-byte compare FoMT C++ candidate code against retail."
     )
-    ap.add_argument("source", help="candidate .cc source")
+    ap.add_argument("source", help="candidate .cc source or archived preprocessed .i input")
     ap.add_argument("name", help="artifact prefix")
     ap.add_argument("--start", required=True, type=parse_addr, help="retail start address")
     ap.add_argument("--end", required=True, type=parse_addr, help="retail end address (exclusive)")
@@ -116,17 +116,22 @@ def main():
     out.mkdir(parents=True, exist_ok=True)
     prefix = out / args.name
 
-    cpp = run([
-        "arm-none-eabi-cpp",
-        "-I", "tools/agbcc/include",
-        "-I", "tools/libagbc++",
-        "-I", "tools/libsix/include",
-        "-iquote", ".",
-        "-iquote", "include",
-        "-Wno-trigraphs",
-        "-fno-exceptions",
-        str(source),
-    ])
+    # Reuse archived preprocessor output when its original headers or compiler
+    # context are unavailable; do not silently re-preprocess an .i snapshot.
+    if source.suffix == ".i":
+        cpp = source.read_bytes()
+    else:
+        cpp = run([
+            "arm-none-eabi-cpp",
+            "-I", "tools/agbcc/include",
+            "-I", "tools/libagbc++",
+            "-I", "tools/libsix/include",
+            "-iquote", ".",
+            "-iquote", "include",
+            "-Wno-trigraphs",
+            "-fno-exceptions",
+            str(source),
+        ])
     preprocessed = prefix.with_suffix(".i")
     preprocessed.write_bytes(cpp)
 

@@ -13,7 +13,7 @@ The source-derived `make save-progress` summary reports **only the bounded funct
 | 0x080D4480 | GameState cleanup | 84 | EXACT | src/game_state_cleanup.cc | `docs/GAME_STATE_SAVE_CLEANUP.md`; mode 2 retains allocation, mode 3 releases it |
 | 0x080D64C8 | Farm state copy | 180 | EXACT | src/farm_state_copy.cc | `docs/SAVE_FARM_STATE_COPY.md`; specialized Coop/Barn copies |
 | 0x080D657C | Barn state copy | 296 | EXACT | src/barn_state_copy.cc | `docs/SAVE_BARN_STATE_COPY.md`; zero differences and forced full-ROM proof |
-| 0x080D66A4 | Coop state copy | 292 | EXACT | src/coop_state_copy.cc | `docs/SAVE_BARN_STATE_COPY.md`; natural fieldwise C++ exact under two historical compilers and structurally refined compatibility compiler; adjacent `Coop::DayUpdate` remains exact, full detached ROM verified |
+| 0x080D66A4 | Coop state copy | 292 | EXACT | src/coop_state_copy.cc | `docs/SAVE_BARN_STATE_COPY.md`; natural fieldwise C++ exact under two historical compilers and structurally refined compatibility compiler; adjacent `Coop::DayUpdate` remains exact, full default production `make test` and retail ROM SHA1 verified |
 | 0x080D67C8 | Dog state copy | 132 | EXACT | src/dog_state_copy.cc | `docs/SAVE_DOG_STATE_COPY.md`; implicit Animal assignment ABI matters |
 | 0x080D68C0 | Farmer state copy | 448 | EXACT | src/farmer_state_copy.cc | `docs/SAVE_FARMER_STATE_COPY.md`; explicit symbol binding preserves retail `memcpy` call |
 | 0x080D6A80 | Rucksack active-entry copy | 128 | ASM | asm/code_linkonce.s | `docs/SAVE_RUCKSACK_COPY_RESEARCH.md`; copy only active entries, not unused capacity; v1-v4 not matching |

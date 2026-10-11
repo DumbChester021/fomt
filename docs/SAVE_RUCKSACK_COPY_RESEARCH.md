@@ -31,7 +31,7 @@ The isolated forced full ROM build passed (Ches `sh_mv2ut764_fd2499fc`, `fomt.gb
 
 ## Next steps
 
-Avoid repeating the four failed source-shape variations without new compiler evidence. Read their assembly and allocator traces if returning to the 128-byte copy; prioritize natural, maintainable typed code and exact output. Parallel save-system blockers remain `func_080D66A4` (Coop, 292 bytes, earlier exact-sized candidate with 35 register differences), `func_080D6B40` (MoneyState, 200 bytes), `func_080D4178` (parent GameState assignment, 776 bytes), `func_08011650` (loader, 740 bytes), and SRAM/UI menu paths. The existing SRAM inspector's synthetic tests do **not** prove that a genuine backed-up player save loads in an emulator.
+Avoid repeating the four failed source-shape variations without new compiler evidence. Read their assembly and allocator traces if returning to the 128-byte copy; prioritize natural, maintainable typed code and exact output. Parallel save-system blockers remain `func_080D6B40` (MoneyState, 200 bytes), `func_080D4178` (parent GameState assignment, 776 bytes), `func_08011650` (loader, 740 bytes), and SRAM/UI menu paths. The existing SRAM inspector's synthetic tests do **not** prove that a genuine backed-up player save loads in an emulator.
 
 The typed cleanup was first verified in an uncommitted retail `main` working tree. A zero-context continuation must check Git and the canonical handoff for its subsequent publication status.
 
@@ -46,3 +46,21 @@ The original `func_080D6A80` preserves `source` across both inline active-entry 
 | `rucksack-ctor-v3` | Out-of-line copy constructor, hoisted source count for end and final size | 120 / 128 | 111 |
 
 Artifacts (`.i`, `.s`, linked `.bin`, `.diff`, `.mismatch.txt`) are retained under `/mnt/waydroid-hdd/home-chester-waydroid/fomt-save-rucksack-20261011/`. The `v3` temporary header definitions are preserved there as `rucksack-ctor-v3-fixed_vec.hh` and `rucksack-ctor-v3-rucksack.hh`; candidate sources are `scratch_rucksack_copy_ctor_v1.cc` and `scratch_rucksack_copy_ctor_v2.cc` in the detached integration worktree. The temporary header edits were **restored** after the experiment; they were never installed in retail `main`. The discrepancy is source shape/register lifetime, not newly discovered save fields. Do not repeat this constructor family without additional ABI/compiler evidence. The 128-byte copy remains **ASM** and exact C++ coverage is unchanged by these trials.
+
+## October 11 follow-up — corrected compatibility compiler vs historical compilers (CLOSED until new source evidence)
+
+The October 11 general **call-crossing liveness** correction which unlocked the 292-byte Coop copy was tested against **archived preprocessed source** for all seven Rucksack-copy hypotheses. Keeping the old `.i` snapshots fixed avoids header drift and isolates compiler/codegen change. The portable `tools/ches/compare-function.py` now directly accepts both `.cc` and preprocessed `.i`; it does not re-preprocess the latter.
+
+| Existing source hypothesis | Previous bytes / differing linked bytes | New compiler bytes / differences |
+| --- | ---: | ---: |
+| `rucksack-v1` | 144 / 188 | 144 / 140 |
+| `rucksack-v2` | 124 / 165 | 124 / 101 |
+| `rucksack-v3` | 108 / 122 | 108 / 122 |
+| `rucksack-v4` | 120 / 111 | 120 / 111 |
+| `rucksack-ctor-v1` | 152 / 145 | 152 / 145 |
+| `rucksack-ctor-v2` | 132 / 108 | 132 / 108 |
+| `rucksack-ctor-v3` | 120 / 111 | 120 / 111 |
+
+An **independent May-2000 ARM compiler** and the **October-2003 Nintendo/Cygnus compiler** were each used to recompile the archived `.i` inputs for `rucksack-v1..v4`; both produced the **same nonmatching results** as the corrected compatibility compiler above. This is substantial *negative* evidence against searching for another generic compiler switch to solve those candidate source forms. The best measured improvement (`v2` 165→101 differences) still produces **124 bytes versus the retail 128**. Do not promote it, append padding, force registers, or claim an exact match. Next meaningful investigation requires a genuinely different, assembly-grounded **original active-entry copy/constructor ABI**, including the per-entry tool `memcpy`, not further equivalent loop syntax.
+
+Validation: `compare-function.py` with `rucksack-v2.i`, `--symbol CopySavedRucksackState --start 0x080D6A80 --end 0x080D6B00`, reported **124 / 101** and returned nonzero for the mismatch. Coop was independently checked from both readable `.cc` and its emitted `.i` and returned **292/0** for both; the new preprocessed input mode is not fabricating matches. Experiments did **not** modify production `src/`, original assembly, the linker or the ROM.

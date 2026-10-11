@@ -807,3 +807,15 @@ When optimizing **agent throughput**, measure avoided repeated work, re-used typ
 ### Resolving compiler liveness conflicts without magic thresholds (October 11)
 
 A newly matched function can regress neighboring, long-established exact sources if a compatibility rule is broadened. Treat the earlier exact code as an independent negative canary. For a stalled source match: (1) compile its natural typed implementation under any *genuine historical toolchain* available, (2) ablate existing compiler behaviors individually, (3) compare RTL at CSE/combine, flow/liveness and local/global allocation instead of changing source spelling, (4) prefer compiler-native structural metadata (such as whether a variable crosses calls) over arbitrary reference-count or liveness thresholds, (5) rebuild from a pinned pristine compiler source with only the validated general change, (6) test positive and negative canaries plus the whole ROM. Document both failed and passing full-ROM variants. A 4-byte code-size regression can shift thousands of later addresses and create millions of superficial ROM-byte differences. An exact build proves compatibility, not necessarily recovery of the original vendor optimizer implementation.
+
+### Frozen preprocessor snapshots as a compiler comparison oracle (October 11)
+
+`tools/ches/compare-function.py` accepts either a normal `.cc` candidate or a frozen preprocessed `.i`. When supplied `.i`, it copies its exact bytes into the output artifact and compiles them without running the preprocessor again. This matters when comparing historical compiler versions or ABI hypotheses: header edits must not accidentally change the C++ translation unit under test. Keep the candidate's provenance, compiler binary/revision and comparison interval in the evidence note. Example with existing archived C++ translation-unit snapshot:
+
+```sh
+python3 tools/ches/compare-function.py /path/to/candidate.i source-vs-compiler \
+  --start 0x080D6A80 --end 0x080D6B00 \
+  --symbol CopySavedRucksackState --out-dir /path/to/scratch
+```
+
+A nonzero linked-byte mismatch is an expected **failure signal**, not an infrastructure error. Compare both original instruction count/length and relocatable linked bytes; preserve raw `.i` snapshots outside committed retail `src/` unless a corresponding source dependency is reproducible. Do not confuse this comparison oracle with actual game save/load tests.
