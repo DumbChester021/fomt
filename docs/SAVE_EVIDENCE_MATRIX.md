@@ -23,6 +23,10 @@ The source-derived `make save-progress` summary reports **only the bounded funct
 
 **Boundary warning:** `0x080D6A80..0x080D6B40` is **two functions (128+64 bytes)**. Earlier combined descriptions of a "192-byte Rucksack copy" were wrong. The cleanup is source-owned and the 128-byte copy is **not**. This was confirmed by source symbols and isolated linked-byte comparisons. Regenerate the linked ASM inventory after every source promotion. The 12-function save-copy subset includes the now source-owned Coop copy; **8 exact, 4 ASM**, and still does not imply full save-system completion.
 
+## Verified save-adjacent helper outside this 12-function subset
+
+- **0x080D60B0..0x080D64C8, 1,048 linked bytes: EXACT C++** in `src/social_state_copy.cc` (`CopySavedSocialState`), copying the 0x478-byte social-state record at GameState+0x1CD4. A separate isolated forced ROM compare and production `make test` both pass original SHA1; see [social proof](SAVE_SOCIAL_STATE_COPY.md). This source promotion adds **1,048 whole-game code bytes** but does **not** change **8/12** in the bounded tracker. Parent GameState assignment and second large nested assignment still ASM.
+
 ## Decompilation evidence classes
 
 - **Proven exact source:** Original function bounds, readable implementation and ABI, zero linked-byte differences, exact isolated/production ROM, original SHA1, and source ownership in the linker/assembly inventory.

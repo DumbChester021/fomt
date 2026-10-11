@@ -45,7 +45,7 @@ tools/install_agbcp.sh
 
 The installer checks out the pinned `notyourav/agbcc` revision, applies the tracked FoMT compatibility patch, builds it, and installs the generated compiler under `tools/agbcc`.
 
-The tracked compatibility patch is part of this repository. Generated compiler binaries are not committed.
+The tracked compatibility patch is part of this repository. Generated compiler binaries are not committed. For source comparison with historical compiler experiments, use the shared `/mnt/data/Compilers/` archive and its `README.md`/relocation manifest; do not substitute an archived compiler for this pinned build automatically.
 
 ## 3. Build and verify
 

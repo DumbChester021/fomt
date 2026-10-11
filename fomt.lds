@@ -976,6 +976,8 @@ SECTIONS
         asm/code_linkonce.o(.text.after_menu_simple_dtor_080d3ed4);
         src/game_state_cleanup.o(.text.game_state_cleanup);
         asm/code_linkonce.o(.text.after_game_state_cleanup);
+        src/social_state_copy.o(.text.save_social_copy);
+        asm/code_linkonce.o(.text.after_save_social_copy);
         src/farm_state_copy.o(.text.save_farm_copy);
         asm/code_linkonce.o(.text.after_save_farm_copy);
         src/barn_state_copy.o(.text.save_barn_copy);

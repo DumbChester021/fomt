@@ -1,6 +1,6 @@
 # FoMT Compiler Fingerprint
 
-This is the compact current reference for the FoMT retail compatibility compiler. Use docs/FOMT_COMPILER_RESEARCH.md for the full experiment history and provenance.
+This is the compact current reference for the FoMT retail compatibility compiler. Use docs/FOMT_COMPILER_RESEARCH.md for the full experiment history and provenance. The 46 standalone historical compiler experiments formerly mixed into the `/mnt/data/Github` project root were relocated to `/mnt/data/Compilers/` on October 11, 2026 (see `/mnt/data/Compilers/README.md` and `RELOCATION_MANIFEST.json`). **Production `tools/agbcc` stays in the FoMT checkout and is not one of those archived clones.**
 
 ## Current authority
 

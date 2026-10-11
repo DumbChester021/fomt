@@ -13,8 +13,8 @@
 | 0x1C70..0x1C9F | 0x30 | Call `func_080D67C8(dst+0x1C70,src+0x1C70)` | **`CopySavedDogState` exact 132-byte C++**, original address |
 | 0x1CA0..0x1CCB | 0x2C | Set destination count to zero; copy active bytes individually; restore count, copy six-byte location | `SavedByteBuffer` methods partially exact; parent assignment **ASM** |
 | 0x1CCC..0x1CD1 | 0x06 | Raw `memcpy` 6 bytes | Spatial/location-style data; specific semantics pending |
-| 0x1CD4 onward | variable | Call `func_080D60B0(dst+0x1CD4,src+0x1CD4)` | Social-related block; assignment **ASM** |
-| 0x214C onward | variable | Call `func_080D44D4(dst+0x214C,src+0x214C)` | Social-related block; assignment **ASM** |
+| 0x1CD4..0x214B | 0x478 | Call `func_080D60B0(dst+0x1CD4,src+0x1CD4)` | **`CopySavedSocialState` exact natural C++**: 1,048 linked code bytes, 41 typed NPC/bachelorette/sprite records and packed/child fields; [evidence](SAVE_SOCIAL_STATE_COPY.md) |
+| 0x214C..0x21CB | 0x80 | Call `func_080D44D4(dst+0x214C,src+0x214C)` | **Packed native-call state, copy still ASM (7,132 linked bytes)**; research candidate behaviorally matches 64/64 bounded tests but not codegen. [Evidence](SAVE_PACKED_NATIVE_COPY_RESEARCH.md) |
 | 0x21CC onward | variable | Assign scalar/short packed fields, strings via `strcpy`, larger opaque data via `memcpy` | Full assignment **ASM** |
 | 0x2C1C onward | 0x30+ | Copy three groups of scalar/aggregate words before transition state | Unknown packed saved records |
 | 0x2C74..0x2C7F | 0x0C | Copy three words, no deep allocation | `SavedTransitionState` and 8 exact separate member methods |
@@ -47,7 +47,7 @@ The read-only `tools/ches/inspect_sram.py` can extract basic original MoneyState
 
 **Next work:** source-recover the remaining nested `Rucksack`/`MoneyState` assignments (Farm, Farmer, Barn, Coop and Dog now exact) and the full `func_080D4178`, then the 740-byte default constructor/loader `func_08011650` using the closed-experiment oracle ledger. Test backed-up actual saves and error paths. Keep retail `main` and custom-game isolated.
 
-Other related documentation: [SAVE_LIFECYCLE.md](SAVE_LIFECYCLE.md), [SAVE_SERIALIZED_LAYOUT.md](SAVE_SERIALIZED_LAYOUT.md), [GAME_STATE_SAVE_CLEANUP.md](GAME_STATE_SAVE_CLEANUP.md), [SAVE_DOG_STATE_COPY.md](SAVE_DOG_STATE_COPY.md), [SAVE_MENU_RETRY_TRACE.md](SAVE_MENU_RETRY_TRACE.md).
+Other related documentation: [SAVE_SOCIAL_STATE_COPY.md](SAVE_SOCIAL_STATE_COPY.md), [SAVE_LIFECYCLE.md](SAVE_LIFECYCLE.md), [SAVE_SERIALIZED_LAYOUT.md](SAVE_SERIALIZED_LAYOUT.md), [GAME_STATE_SAVE_CLEANUP.md](GAME_STATE_SAVE_CLEANUP.md), [SAVE_DOG_STATE_COPY.md](SAVE_DOG_STATE_COPY.md), [SAVE_MENU_RETRY_TRACE.md](SAVE_MENU_RETRY_TRACE.md).
 
 ### October 11: alternative MoneyState container-copy models (scratch-only; negative evidence)
 
@@ -70,7 +70,7 @@ An October 11 re-read of original `asm/code_linkonce.s` at `0x080D4178..0x080D44
 | `+0x1CA0` | dependent | Reset destination active count to zero, copy **source-count bytes** from `+0x1CA4` one by one, then restore count | Inactive buffer entries must not be overwritten as a full-buffer memcpy |
 | `+0x1CC4` | `+0x1CCA` | 6-byte `memcpy` of trailing saved-buffer member | Separate from next 6-byte copy; do not merge on intuition |
 | `+0x1CCC` | `+0x1CD2` | Another 6-byte `memcpy` | `+0x1CD2..+0x1CD3` are not assigned directly |
-| `+0x1CD4`, `+0x214C` | dependent | Calls to `func_080D60B0`, `func_080D44D4` | Unrecovered subobject assignment contracts |
+| `+0x1CD4`, `+0x214C` | dependent | Calls to `func_080D60B0`, `func_080D44D4` | **`+0x1CD4` exact typed social copy (1,048 linked bytes)**; **`+0x214C` still ASM** (0x1BDC linked bytes); [social proof](SAVE_SOCIAL_STATE_COPY.md) |
 | `+0x21CC` | `+0x21D4` | Two word assignments | Inline scalar block |
 | `+0x21D4` | `+0x21DC` | Eight one-byte assignments in a counted loop | Explicit byte loop, not assumed array assignment |
 | `+0x21DC` | `+0x21E0` | Four one-byte assignments in a counted loop | Explicit byte loop |
@@ -89,7 +89,7 @@ An October 11 re-read of original `asm/code_linkonce.s` at `0x080D4178..0x080D44
 | `+0x34D8` | `+0x34DC` | One word | 4 bytes |
 | `+0x34DC` | `+0x34F4` | Two 12-byte bursts | 24 bytes to exact end of saved GameState |
 
-**Critical non-POD constraints:** A complete `PersistedGameStateLayout` assignment or `memcpy(0x34F4)` is not retail behavior. It would overwrite at least skipped header/padding bytes, inactive saved-buffer entries, and string tail bytes which the original routine does not necessarily overwrite. All old source snapshots for the 776-byte function must be evaluated against **these** original behavior boundaries before a whole-function compilation trial. The byte counts here describe input regions, not matched executable bytes. Next high-value source evidence: recover the real types at `+0x1CD4` and `+0x214C` and the original GameState header bitfields before a whole-function matching attempt. Linked boundaries show `func_080D44D4` spans `0x080D44D4..0x080D60B0` (0x1BDC bytes) and `func_080D60B0` spans `0x080D60B0..0x080D64C8` (0x418 bytes); these large nested assignments remain original ASM. Claiming the parent's 776-byte function as "complete save copying" without these would be misleading. Do not brute-force compiler permutations.
+**Critical non-POD constraints:** A complete `PersistedGameStateLayout` assignment or `memcpy(0x34F4)` is not retail behavior. It would overwrite at least skipped header/padding bytes, inactive saved-buffer entries, and string tail bytes which the original routine does not necessarily overwrite. All old source snapshots for the 776-byte function must be evaluated against **these** original behavior boundaries before a whole-function compilation trial. The byte counts here describe input regions, not matched executable bytes. Next high-value source evidence: recover the remaining real types at `+0x214C` and the original GameState header bitfields before a whole-function matching attempt. Linked boundaries show `func_080D44D4` spans `0x080D44D4..0x080D60B0` (0x1BDC bytes) and remains ASM, while `func_080D60B0` at `0x080D60B0..0x080D64C8` (0x418 bytes) is **now exact C++** ([proof](SAVE_SOCIAL_STATE_COPY.md)). Claiming the parent's 776-byte function as "complete save copying" without these would be misleading. Do not brute-force compiler permutations.
 
 ### October 11 archived MoneyState hypotheses recompiled under three toolchains
 

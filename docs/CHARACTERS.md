@@ -105,7 +105,7 @@ label. Child values are dynamic despite its zero-filled table entry.
 | 41 | Hoggy | 0x3f0 | Fall 10 |
 | 42 | Timid | 0x414 | Summer 16 |
 
-The fixed social block spans **0x478 bytes**, ending at GameState+0x214B;
+The fixed social block spans **0x478 bytes**, ending at GameState+0x214B; its **complete 1,048-byte saved-state copy** is now reconstructed as exact readable C++ in [social_state_copy.cc](../src/social_state_copy.cc), with [full proof](SAVE_SOCIAL_STATE_COPY.md).
 the next subsystem starts at +0x214C. It contains heterogeneous records and
 other social state. It is not a flat `Npc[43]` array, and gaps are not proven
 free extension space. Preserve these offsets and the 0x34F4-byte retail
