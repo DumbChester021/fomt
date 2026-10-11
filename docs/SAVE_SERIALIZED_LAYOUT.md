@@ -4,7 +4,7 @@
 
 The original US Friends of Mineral Town SRAM uses exactly **0x8000 / 32,768 bytes**, with one 0x28-byte header followed by two 0x3FEC-byte slots. Every slot has a 4-byte payload-length prefix, 0x34F4 bytes of serialized GameState, a 4-byte checksum, and 0xAF0 bytes not assigned a definite retail meaning. The payload checksum is the modulo-2^32 sum of all 0x34F4 payload bytes, not a checksum of the prefix or entire slot.
 
-The source-only `include/save_persisted_layout.hh` now expresses this as `SaveSramStorageLayout`, `SaveSlotStorageLayout`, and `PersistedGameStateLayout`. The header is included by `src/save_format.cc`, so the project's original old-GCC toolchain checks the layouts whenever the retail source is built. Forty-one compile-time typedef checks enforce total structure sizes, header/slot geometry, and the real `Farm`, `MoneyState`, `Farmer`, `Dog`, `SavedByteBuffer`, `SavedTransitionState` and `FishingRecords` offsets. Farm child components, Farmer held-item/rucksack locations, MoneyHistory capacities and fishing record stride are also checked. No source data or runtime logic is emitted. **No new ROM logic or static global objects are emitted**, and the forced retail ROM rebuild remains byte-identical.
+The source-only `include/save_persisted_layout.hh` now expresses this as `SaveSramStorageLayout`, `SaveSlotStorageLayout`, and `PersistedGameStateLayout`. The header is included by `src/save_format.cc`, so the project's original old-GCC toolchain checks the layouts whenever the retail source is built. Forty-seven compile-time typedef checks enforce total structure sizes, header/slot geometry, and the real `Farm`, `MoneyState`, `Farmer`, `Dog`, `SavedByteBuffer`, `SavedNativeCallState`, `SavedTransitionState` and `FishingRecords` offsets. Farm child components, Farmer held-item/rucksack locations, MoneyHistory capacities and fishing record stride are also checked. The layout declarations themselves emit no instructions. The newly recovered, separate native-call initializer in `src/saved_native_call_ctor.cc` adds **1,724 exact-source ROM bytes** with the original ROM hash unchanged.
 
 | SRAM absolute offset | Bytes | Verified interpretation |
 | --- | ---: | --- |
@@ -18,7 +18,7 @@ The source-only `include/save_persisted_layout.hh` now expresses this as `SaveSr
 | Slot+0x34F8 | 4 | Little-endian 32-bit sum of payload bytes |
 | Slot+0x34FC | 0xAF0 | Unclaimed slot tail; do not assume its purpose or erase it casually |
 
-Seven independently grounded GameState objects now live in `PersistedGameStateLayout`: existing `Farm`, `MoneyState`, `Farmer`, `Dog`, and `FishingRecords` types, plus exact-source `SavedByteBuffer` and `SavedTransitionState`. The named types themselves still contain fields whose semantics are not fully recovered, and the remaining bytes stay opaque.
+Eight independently grounded GameState objects now live in `PersistedGameStateLayout`: `Farm`, `MoneyState`, `Farmer`, `Dog`, `FishingRecords`, exact-source `SavedByteBuffer` and `SavedTransitionState`, plus `SavedNativeCallState` (its **1,724-byte initializer is exact C++**, whereas its 7,132-byte assignment remains ASM). The named types themselves still contain fields whose semantics are not fully recovered, and the remaining bytes stay opaque.
 
 | GameState-relative offset | Span | Typed view / status |
 | --- | --- | --- |
@@ -28,7 +28,9 @@ Seven independently grounded GameState objects now live in `PersistedGameStateLa
 | 0x1BD8..0x1C6F | 0x98 | `Farmer`: location, tool/held-item, rucksack |
 | 0x1C70..0x1C9F | 0x30 | `Dog`, source-exact assignment |
 | 0x1CA0..0x1CCB | 0x2C | `SavedByteBuffer`, six exact methods |
-| 0x1CCC..0x2C73 | 0xFA8 | Remaining untyped saved systems and social state |
+| 0x1CCC..0x214B | 0x480 | Saved social state and other still-partially-opaque fields; social copy is exact C++ |
+| 0x214C..0x21CB | 0x80 | `SavedNativeCallState`: 3 callable IDs, sentinel, 461 copied-bitfield names; 1,724-byte initializer exact C++, 7,132-byte copy ASM |
+| 0x21CC..0x2C73 | 0xAA8 | Remaining untyped saved systems |
 | 0x2C74..0x2C7F | 0x0C | `SavedTransitionState`, eight exact methods |
 | 0x2C80..0x2E57 | 0x1D8 | `FishingRecords`, 59 eight-byte records |
 | 0x2E58..0x34F3 | 0x69C | Remaining untyped saved systems |
@@ -57,4 +59,4 @@ The JSON separates `retail_header_fields_valid`, `header_reports_valid` (slot's 
 
 The compile-time layout checks initially used the newer `__builtin_offsetof`, which the original project compiler does not accept. Those were replaced with the compiler-supported `offsetof` macro from the project's `prelude.h`. The latest forced `make -B -j4 compare` passed with the exact Barn and Farmer copies (Ches `sh_mv2ubxc2_e766423e`, `fomt.gba: OK` and original retail SHA1 `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`).
 
-**Current matching C++ total:** 91,388 / 940,036 (9.7218%), 1,946 remaining linked ASM functions. The 448-byte Farmer, 296-byte Barn and 180-byte Farm copies are now source-exact, alongside Dog and nested cleanups, but MoneyState and nested Rucksack/Coop copies, 776-byte parent assignment and 740-byte loader remain ASM. The read-only fishing summary reproduces the retail u32 wrapping addition before the 1-billion saturation cap. This is NOT evidence of successful emulator loading.
+**Current matching C++ checkpoint (October 11):** 94,908 / 940,036 (10.0962%), 1,929 linked ASM functions. Farm, Barn, Coop, Farmer, Dog and the 1,048-byte social assignment are now exact-source, and the new 1,724-byte native-call initializer are exact, whereas the 7,132-byte packed-state copy, MoneyState, Rucksack, 776-byte GameState parent copy and 740-byte loader remain ASM. The new typed layout adds no code bytes or real-save emulator evidence. See [SAVE_PACKED_NATIVE_COPY_RESEARCH.md](SAVE_PACKED_NATIVE_COPY_RESEARCH.md) for the bounded behavioral proof and remaining compiler mismatch; use [START_HERE.md](../START_HERE.md) for live progress.

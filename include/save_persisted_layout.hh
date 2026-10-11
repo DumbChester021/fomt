@@ -9,6 +9,7 @@
 #include "farm.hh"
 #include "farmer.hh"
 #include "fishing_records.hh"
+#include "saved_native_call_state.hh"
 
 // Verified offset-oriented view, NOT a claim that all GameState fields have
 // been decompiled. Unknown bytes are preserved exactly as opaque storage.
@@ -21,7 +22,9 @@ struct PersistedGameStateLayout
     Farmer farmer;                                         // +0x1BD8
     Dog dog;                                               // +0x1C70
     SavedByteBuffer saved_buffer;                          // +0x1CA0
-    u8 between_saved_buffer_and_transition[0x2C74-0x1CCC]; // +0x1CCC
+    u8 before_native_calls[0x214C-0x1CCC];                // +0x1CCC
+    SavedNativeCallState native_calls;                      // +0x214C
+    u8 after_native_calls[0x2C74-0x21CC];                  // +0x21CC
     SavedTransitionState transition;                       // +0x2C74
     FishingRecords fishing_records;                        // +0x2C80
     u8 after_fishing_records[SAVE_GAME_STATE_SIZE-0x2E58]; // +0x2E58
@@ -88,6 +91,8 @@ typedef char SaveStateMoneyOffsetCheck[offsetof(PersistedGameStateLayout,money) 
 typedef char SaveStateFarmerOffsetCheck[offsetof(PersistedGameStateLayout,farmer) == 0x1BD8 ? 1 : -1];
 typedef char SaveStateDogOffsetCheck[offsetof(PersistedGameStateLayout,dog) == 0x1C70 ? 1 : -1];
 typedef char SaveStateBufferOffsetCheck[offsetof(PersistedGameStateLayout,saved_buffer) == 0x1CA0 ? 1 : -1];
+typedef char SaveStateNativeCallOffsetCheck[offsetof(PersistedGameStateLayout,native_calls) == 0x214C ? 1 : -1];
+typedef char SaveStateAfterNativeOffsetCheck[offsetof(PersistedGameStateLayout,after_native_calls) == 0x21CC ? 1 : -1];
 typedef char SaveStateTransitionOffsetCheck[offsetof(PersistedGameStateLayout,transition) == 0x2C74 ? 1 : -1];
 typedef char SaveStateFishingOffsetCheck[offsetof(PersistedGameStateLayout,fishing_records) == 0x2C80 ? 1 : -1];
 typedef char SaveSlotSizeCheck[sizeof(SaveSlotStorageLayout) == SAVE_SLOT_SIZE ? 1 : -1];

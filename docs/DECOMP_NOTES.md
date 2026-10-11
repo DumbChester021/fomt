@@ -216,7 +216,7 @@ Immediately after the 33-function ANpcEntity thunk island, `0x080DCB4C..0x080DCB
 
 ### 2026-10-08 NPC base-destructor ABI thunk island
 
-The contiguous retail block 0x080DC9C0..0x080DCB4C is now exact source: 33 functions / 396 linked bytes. Each slot is a 10-byte body plus 2-byte alignment and forwards the incoming ABI registers unchanged to assembler symbol _._10ANpcEntity. The exact C++ shape uses a one-argument assembler-bound declaration; an ordinary self->ANpcEntity::~ANpcEntity() call is not equivalent because agbcc injects the destructor in-charge argument r1 = 2. The first 33-function batch stopped before func_080DCB4C because it calls func_08037048; the immediately following checkpoint subsequently recovered DCB4C..DCB70 as the UnkEntity37008 raw-destructor thunk family. Production and detached forced ROM comparisons both pass. Repeated tiny-wrapper families are therefore a proven throughput path and should be preferred over reopening the large packed-state constructor func_0809C6BC without stronger structural evidence.
+The contiguous retail block 0x080DC9C0..0x080DCB4C is now exact source: 33 functions / 396 linked bytes. Each slot is a 10-byte body plus 2-byte alignment and forwards the incoming ABI registers unchanged to assembler symbol _._10ANpcEntity. The exact C++ shape uses a one-argument assembler-bound declaration; an ordinary self->ANpcEntity::~ANpcEntity() call is not equivalent because agbcc injects the destructor in-charge argument r1 = 2. The first 33-function batch stopped before func_080DCB4C because it calls func_08037048; the immediately following checkpoint subsequently recovered DCB4C..DCB70 as the UnkEntity37008 raw-destructor thunk family. Production and detached forced ROM comparisons both pass. Repeated tiny-wrapper families are therefore a proven throughput path and remain useful; the packed-state constructor func_0809C6BC has since become 1,724-byte exact readable C++ (October 11).
 - Shared NPC identity/location/schedule support, all resident constructors, GameObject entity lookup/teardown, and the exact 43-entry metadata table remain complete.
 - Packed-bank ownership remains **416 / 493 animations: 405 / 450 simple and 11 / 43 multi-frame**. The remaining 77 are a parked by-product lane.
 - `func_08092A70`, `func_080455D8`, `func_080CAC7C` / `func_080CAD18`, `func_08092940`, and the documented Entity38740/Ball codegen islands remain parked at their recorded frontiers.
@@ -670,7 +670,9 @@ Exact contribution commit for the five head methods: 8c52b9f (`decompile interac
 - Replacement Call 9 wrote and returned `/tmp/fomt-batch4-call09.executed`, proving the replacement command really ran.
 - Repository remained at contribution commit `8c52b9f` and the ROM stayed SHA1-exact.
 
-### Hard source-placement barrier at `func_0809C6BC`
+### Historical source-placement barrier at `func_0809C6BC` (RESOLVED)
+
+**Superseded October 11, 2026:** `func_0809C6BC` is now 1,724-byte byte-exact source in `src/saved_native_call_ctor.cc` with its original ABI address and linker section seam. The next 7,132-byte fieldwise copy at `0x080D44D4` still remains ASM. The bullets immediately below describe the historical blocker, **not the current build**. See [packed copy research](SAVE_PACKED_NATIVE_COPY_RESEARCH.md).
 - `src/code_actor_0809BFE8.cc` currently ends at `func_0809C6B0`.
 - `asm/code_actor_0809BFE8.s` currently begins at `func_0809C6BC`.
 - Makefile links all C/C++ objects before asm objects (`ALL_OBJS := $(C_OBJS) $(CXX_OBJS) $(ASM_OBJS) ...`).

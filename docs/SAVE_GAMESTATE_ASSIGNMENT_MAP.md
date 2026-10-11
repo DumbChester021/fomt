@@ -14,7 +14,7 @@
 | 0x1CA0..0x1CCB | 0x2C | Set destination count to zero; copy active bytes individually; restore count, copy six-byte location | `SavedByteBuffer` methods partially exact; parent assignment **ASM** |
 | 0x1CCC..0x1CD1 | 0x06 | Raw `memcpy` 6 bytes | Spatial/location-style data; specific semantics pending |
 | 0x1CD4..0x214B | 0x478 | Call `func_080D60B0(dst+0x1CD4,src+0x1CD4)` | **`CopySavedSocialState` exact natural C++**: 1,048 linked code bytes, 41 typed NPC/bachelorette/sprite records and packed/child fields; [evidence](SAVE_SOCIAL_STATE_COPY.md) |
-| 0x214C..0x21CB | 0x80 | Call `func_080D44D4(dst+0x214C,src+0x214C)` | **Packed native-call state, copy still ASM (7,132 linked bytes)**; research candidate behaviorally matches 64/64 bounded tests but not codegen. [Evidence](SAVE_PACKED_NATIVE_COPY_RESEARCH.md) |
+| 0x214C..0x21CB | 0x80 | Call `func_080D44D4(dst+0x214C,src+0x214C)` | **`SavedNativeCallState` typed at +0x214C**, its original 1,724-byte initializer is now exact C++, but the 7,132-byte copy remains ASM; the copy passes 64/64 bounded behavioral tests but not codegen. [Evidence](SAVE_PACKED_NATIVE_COPY_RESEARCH.md) |
 | 0x21CC onward | variable | Assign scalar/short packed fields, strings via `strcpy`, larger opaque data via `memcpy` | Full assignment **ASM** |
 | 0x2C1C onward | 0x30+ | Copy three groups of scalar/aggregate words before transition state | Unknown packed saved records |
 | 0x2C74..0x2C7F | 0x0C | Copy three words, no deep allocation | `SavedTransitionState` and 8 exact separate member methods |
@@ -37,7 +37,7 @@ The no-owner path instead attaches the loaded GameState to a fresh owner wrapper
 
 ### Proved binary types and remaining matching frontier
 
-`include/save_persisted_layout.hh` now directly places real `Farm`, `MoneyState`, `Farmer`, `Dog`, `FishingRecords`, `SavedByteBuffer` and `SavedTransitionState`. It enforces **41 compile-time size/offset checks** covering the 32 KiB SRAM geometry, old compiler ABI and named child components. The verified complete build `make -B -j4 compare` passed with retail SHA1 unchanged (`sh_mv2saxgu_aed05dc4`, `fomt.gba: OK`). This structured model emits no extra ROM instructions, so byte-exact code metrics stay unchanged.
+`include/save_persisted_layout.hh` now directly places real `Farm`, `MoneyState`, `Farmer`, `Dog`, `FishingRecords`, `SavedByteBuffer`, **`SavedNativeCallState`** and `SavedTransitionState`. It enforces **47 compile-time size/offset checks** covering the 32 KiB SRAM geometry, old compiler ABI and named child components. The verified complete build `make -B -j4 compare` passed with retail SHA1 unchanged (`sh_mv2saxgu_aed05dc4`, `fomt.gba: OK`). This structured model emits no extra ROM instructions, so byte-exact code metrics stay unchanged.
 
 The `Farm`, `Barn` and `Farmer` copies **are now exact source** (see [SAVE_BARN_STATE_COPY.md](SAVE_BARN_STATE_COPY.md)). The `Farm` copy **is now exact source** (`CopySavedFarmState` / `func_080D64C8`, 180 bytes) in `src/farm_state_copy.cc`. The failed implicit whole-object copy yielded 788 bytes, but member-aware C++ plus a counted **11-word horse-placeholder loop** reduced to 180 exact bytes with zero differences. The specialized Coop copy now targets source-exact `CopySavedCoopState` (292 bytes); the Barn copy targets source-exact `CopySavedBarnState` at the original ABI address. See [SAVE_FARM_STATE_COPY.md](SAVE_FARM_STATE_COPY.md) for scratch evidence, original-symbol alias, and forced full-ROM gate (`sh_mv2sly7y_cf9bd46e`).
 

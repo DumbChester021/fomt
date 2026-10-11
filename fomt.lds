@@ -895,6 +895,7 @@ SECTIONS
         src/cow.o(.text);
         src/sheep.o(.text);
         src/code_actor_0809BFE8.o(.text);
+        src/saved_native_call_ctor.o(.text.saved_native_call_ctor);
         asm/code_actor_0809BFE8.o(.text);
         src/fishing_records.o(.text);
         src/mine_floor.o(.text);
