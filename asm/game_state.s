@@ -1950,36 +1950,6 @@ func_08011498: @ 0x08011498
     .align 2, 0
 .L080114C4: .4byte 0xFFFFFE03
 
-    thumb_func_start func_080114C8
-func_080114C8: @ 0x080114C8
-    push {lr}
-    adds r3, r0, #0
-    cmp r1, #0x63
-    bls .L080114D2
-    movs r1, #0x63
-.L080114D2:
-    ldrb r2, [r3, #3]
-    lsls r0, r2, #0x19
-    lsrs r0, r0, #0x1a
-    cmp r0, r1
-    blo .L080114E0
-    movs r0, #0
-    b .L080114F2
-.L080114E0:
-    movs r0, #0x3f
-    ands r1, r0
-    lsls r1, r1, #1
-    movs r0, #0x7f
-    rsbs r0, r0, #0
-    ands r0, r2
-    orrs r0, r1
-    strb r0, [r3, #3]
-    movs r0, #1
-.L080114F2:
-    pop {r1}
-    bx r1
-    .align 2, 0
-
     .section .text.after_save_transition_state, "ax", %progbits
     .section .text.after_save_record, "ax", %progbits
 
