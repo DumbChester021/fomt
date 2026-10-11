@@ -69,6 +69,56 @@ def build_map():
                     targets.append(addr - 0x214c)
         if targets:
             direct += 1
+        if len(targets) == 2 and targets[1] == targets[0] + 1:
+            # A single source field written across a byte boundary. The
+            # upper byte consumes precisely the bits shifted off the lower.
+            left = [int(m.group(1), 0) for _, line in block
+                    if (m := re.fullmatch(
+                        r"lsls r1, r1, #(0x[0-9a-fA-F]+|[0-9]+)", line))]
+            right = [int(m.group(1), 0) for _, line in block
+                     if (m := re.fullmatch(
+                         r"lsrs r1, r6, #(0x[0-9a-fA-F]+|[0-9]+)", line))]
+            if left and len(right) == 1:
+                bit = left[-1]
+                field = fields.get((targets[0], bit))
+                if field and 0 < bit < 8:
+                    name, width = field
+                    high_bits = width - (8 - bit)
+                    immediates = [
+                        int(m.group(1), 0) for _, line in block
+                        if (m := re.fullmatch(
+                            r"movs r[015], #(0x[0-9a-fA-F]+|[0-9]+)", line))]
+                    if (right[0] == 8 - bit and 0 < high_bits <= 8
+                            and (1 << bit) - 1 in immediates
+                            and (1 << high_bits) - 1 in immediates
+                            and any(line == "strb r0, [r4]" for _, line in block)):
+                        matched.append({
+                            "selector": selector, "offset": targets[0],
+                            "bit": bit, "width": width,
+                            "member": name, "handler": handler,
+                        })
+            continue
+        if len(targets) == 1 and any(
+                line == "b .L0804D106" for _, line in block):
+            # A byte-crossing writer whose second byte address is formed
+            # arithmetically (0x87 << 6 = 0x21C0), rather than a literal.
+            # Verify both byte halves, the source shifts and the masks.
+            operations = {line for _, line in block}
+            second = 0x87 << 6
+            member = fields.get((targets[0], 6))
+            if (second == 0x214c + targets[0] + 1 and member
+                    and member[1] == 8 and {
+                        "movs r1, #3", "ands r1, r6",
+                        "lsls r1, r1, #6", "lsrs r1, r6, #2",
+                        "movs r5, #0x3f", "ands r1, r5",
+                        "movs r0, #0x87", "lsls r0, r0, #6",
+                        "strb r0, [r4]"}.issubset(operations)):
+                matched.append({
+                    "selector": selector, "offset": targets[0],
+                    "bit": 6, "width": 8,
+                    "member": member[0], "handler": handler,
+                })
+                continue
         if len(targets) != 1:
             continue
 
@@ -97,14 +147,60 @@ def build_map():
         if shift is None and (branch in (f"b {SHARED_BIT6}", f"bl {SHARED_BIT6}")
                               or handler == ".L0804DA10"):
             shift, input_mask = 6, 1
-        if shift is None or shift >= 8:
+        # Additional direct cases use r1 as the source-value register. A
+        # shift is accepted only when preceded by the matching input mask.
+        wide = False
+        secondary = False
+        if shift is None:
+            for pos, (_, line) in enumerate(block):
+                if line not in ("ands r1, r6", "ands r1, r0"):
+                    continue
+                for _, next_line in block[pos + 1:pos + 4]:
+                    m = re.fullmatch(r"lsls r1, r1, #(0x[0-9a-fA-F]+|[0-9]+)", next_line)
+                    if m:
+                        shift = int(m.group(1), 0)
+                        secondary = True
+                        reg = "r1" if line == "ands r1, r6" else "r0"
+                        for _, previous in reversed(block[:pos]):
+                            mm = re.fullmatch(r"movs " + reg + r", #(0x[0-9a-fA-F]+|[0-9]+)", previous)
+                            if mm:
+                                input_mask = int(mm.group(1), 0)
+                                break
+                        wide = shift >= 8 or branch in ("b .L0804CE8E", "bl .L0804CE8E")
+                        break
+                if shift is not None:
+                    break
+        if shift is None and (branch == "b .L0804CE82" or handler == ".L0804CE78"):
+            # The shared word writer at .L0804CE82 masks one byte and
+            # inserts it in bits 14..21 of a 32-bit destination.
+            shift, input_mask, wide = 14, 255, True
+        if shift is None or shift >= 32:
             continue
-        member = fields.get((targets[0], shift))
+        member = fields.get((targets[0] + shift // 8, shift % 8))
         if not member:
             continue
         name, width = member
         if input_mask is not None and input_mask != (1 << width) - 1:
             continue
+        if wide:
+            # A literal clear-mask must independently prove the destination
+            # bits, including fields that cross a 16-bit boundary.
+            masks = [int(m.group(1), 16) for _, line in block
+                     if (m := re.search(r"@ =0x([0-9a-fA-F]{8})", line))
+                     and int(m.group(1), 16) >= 0xf0000000]
+            if branch == "b .L0804CE82" or handler == ".L0804CE78":
+                masks.append(0xffc03fff)
+            expected = (~(((1 << width) - 1) << shift)) & 0xffffffff
+            if expected not in masks:
+                continue
+        elif secondary:
+            # Single-byte conditional setters use -(bitmask+1) before strb.
+            masks = [int(m.group(1), 0) for _, line in block
+                     if (m := re.fullmatch(r"movs r0, #(0x[0-9a-fA-F]+|[0-9]+)", line))]
+            expected_mask = ((1 << width) - 1) << shift
+            if expected_mask + 1 not in masks or not any(
+                    line == "rsbs r0, r0, #0" for _, line in block):
+                continue
         matched.append({
             "selector": selector,
             "offset": targets[0],
@@ -125,7 +221,7 @@ def main():
     selector_ids = [x["selector"] for x in matches]
     names = [x["member"] for x in matches]
     if args.check:
-        assert (count, direct, len(matches)) == (562, 450, 413), (count, direct, len(matches))
+        assert (count, direct, len(matches)) == (562, 450, 450), (count, direct, len(matches))
         assert len(set(selector_ids)) == len(matches)
         assert len(set(names)) == len(matches)
         for m in matches:

@@ -765,7 +765,7 @@ This section is private reverse-engineering guidance. It maps native script call
 - `+0x22.b7 .. +0x23.b3` (game-state `+0x216E.b7 .. +0x216F.b3`) remain **reserved/padding candidates**, not proven padding.
 - `+0x7E/+0x7F` tail bits need field-by-field copy/accessor confirmation before assigning semantics.
 
-Use these offsets as patch/hook landmarks, not gameplay-semantic names, until handler behavior and game use agree. The complete retail dispatcher (`func_08048FFC`) now has a reproducible **413-selector/bitfield index** in `tools/ches/native_selector_map.py --check`; matching `native_selector_XXX` names in `SavedNativeCallState` represent dispatch action selectors, **not** direct VM `CALL` opcodes or event titles. The 7,132-byte fieldwise copy remains ASM.
+Use these offsets as patch/hook landmarks, not gameplay-semantic names, until handler behavior and game use agree. The complete retail dispatcher (`func_08048FFC`) now has a reproducible **450-selector/bitfield index** in `tools/ches/native_selector_map.py --check`; matching `native_selector_XXX` names in `SavedNativeCallState` represent dispatch action selectors, **not** direct VM `CALL` opcodes or event titles. The 7,132-byte fieldwise copy remains ASM.
 <!-- CHES_NATIVE_PACKED_MAP_END -->
 
 <!-- CHES_MODDING_PLAYER_SYSTEMS_BEGIN -->

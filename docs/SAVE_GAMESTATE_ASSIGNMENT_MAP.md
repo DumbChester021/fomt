@@ -14,7 +14,7 @@
 | 0x1CA0..0x1CCB | 0x2C | Set destination count to zero; copy active bytes individually; restore count, copy six-byte location | `SavedByteBuffer` methods partially exact; parent assignment **ASM** |
 | 0x1CCC..0x1CD1 | 0x06 | Raw `memcpy` 6 bytes | Spatial/location-style data; specific semantics pending |
 | 0x1CD4..0x214B | 0x478 | Call `func_080D60B0(dst+0x1CD4,src+0x1CD4)` | **`CopySavedSocialState` exact natural C++**: 1,048 linked code bytes, 41 typed NPC/bachelorette/sprite records and packed/child fields; [evidence](SAVE_SOCIAL_STATE_COPY.md) |
-| 0x214C..0x21CB | 0x80 | Call `func_080D44D4(dst+0x214C,src+0x214C)` | **`SavedNativeCallState` typed at +0x214C**, its 1,724-byte initializer exact C++; **413 fields now have retail-verified action-selector names**, checked by `tools/ches/native_selector_map.py`. Its 7,132-byte copy remains ASM; bounded behavior passes, codegen does not. [Evidence](SAVE_PACKED_NATIVE_COPY_RESEARCH.md) |
+| 0x214C..0x21CB | 0x80 | Call `func_080D44D4(dst+0x214C,src+0x214C)` | **`SavedNativeCallState` typed at +0x214C**, its 1,724-byte initializer exact C++; **450 fields now have retail-verified action-selector names**, checked by `tools/ches/native_selector_map.py`. Its 7,132-byte copy remains ASM; bounded behavior passes, codegen does not. [Evidence](SAVE_PACKED_NATIVE_COPY_RESEARCH.md) |
 | 0x21CC onward | variable | Assign scalar/short packed fields, strings via `strcpy`, larger opaque data via `memcpy` | Full assignment **ASM** |
 | 0x2C1C onward | 0x30+ | Copy three groups of scalar/aggregate words before transition state | Unknown packed saved records |
 | 0x2C74..0x2C7F | 0x0C | Copy three words, no deep allocation | `SavedTransitionState` and 8 exact separate member methods |

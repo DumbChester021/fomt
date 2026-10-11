@@ -38,7 +38,7 @@ struct SavedNativeCallState {
     u32 native_selector_098:1; // +0x11.bit3
     u32 native_selector_099:1; // +0x11.bit4
     u32 native_selector_09a:2; // +0x11.bit5
-    u32 flag_11_b7:2; // +0x11.bit7
+    u32 native_selector_09b:2; // +0x11.bit7
     u32 native_selector_09c:2; // +0x12.bit1
     u32 native_selector_09d:2; // +0x12.bit3
     u32 native_selector_09e:2; // +0x12.bit5
@@ -46,7 +46,7 @@ struct SavedNativeCallState {
     u32 native_selector_0a0:2; // +0x13.bit1
     u32 native_selector_0a1:2; // +0x13.bit3
     u32 native_selector_0a2:2; // +0x13.bit5
-    u32 flag_13_b7:2; // +0x13.bit7
+    u32 native_selector_0a3:2; // +0x13.bit7
     u32 native_selector_0a4:2; // +0x14.bit1
     u32 native_selector_0a5:2; // +0x14.bit3
     u32 native_selector_0a6:2; // +0x14.bit5
@@ -54,7 +54,7 @@ struct SavedNativeCallState {
     u32 native_selector_0a8:2; // +0x15.bit1
     u32 native_selector_0a9:2; // +0x15.bit3
     u32 native_selector_0aa:2; // +0x15.bit5
-    u32 flag_15_b7:2; // +0x15.bit7
+    u32 native_selector_0ab:2; // +0x15.bit7
     u32 native_selector_0ac:2; // +0x16.bit1
     u32 native_selector_0ad:2; // +0x16.bit3
     u32 native_selector_0ae:2; // +0x16.bit5
@@ -62,7 +62,7 @@ struct SavedNativeCallState {
     u32 native_selector_0b0:2; // +0x17.bit1
     u32 native_selector_0b1:2; // +0x17.bit3
     u32 native_selector_0b2:2; // +0x17.bit5
-    u32 flag_17_b7:2; // +0x17.bit7
+    u32 native_selector_0b3:2; // +0x17.bit7
     u32 native_selector_0b4:2; // +0x18.bit1
     u32 native_selector_0b5:2; // +0x18.bit3
     u32 native_selector_0b6:2; // +0x18.bit5
@@ -70,7 +70,7 @@ struct SavedNativeCallState {
     u32 native_selector_0b8:2; // +0x19.bit1
     u32 native_selector_0b9:2; // +0x19.bit3
     u32 native_selector_0ba:2; // +0x19.bit5
-    u32 flag_19_b7:2; // +0x19.bit7
+    u32 native_selector_0bb:2; // +0x19.bit7
     u32 native_selector_0bc:2; // +0x1A.bit1
     u32 native_selector_0bd:2; // +0x1A.bit3
     u32 native_selector_0be:2; // +0x1A.bit5
@@ -78,7 +78,7 @@ struct SavedNativeCallState {
     u32 native_selector_0c0:2; // +0x1B.bit1
     u32 native_selector_0c1:2; // +0x1B.bit3
     u32 native_selector_0c2:2; // +0x1B.bit5
-    u32 flag_1b_b7:2; // +0x1B.bit7
+    u32 native_selector_0c3:2; // +0x1B.bit7
     u32 native_selector_0c4:2; // +0x1C.bit1
     u32 native_selector_0c5:2; // +0x1C.bit3
     u32 native_selector_0c6:2; // +0x1C.bit5
@@ -86,7 +86,7 @@ struct SavedNativeCallState {
     u32 native_selector_0c8:2; // +0x1D.bit1
     u32 native_selector_0c9:2; // +0x1D.bit3
     u32 native_selector_0ca:2; // +0x1D.bit5
-    u32 flag_1d_b7:2; // +0x1D.bit7
+    u32 native_selector_0cb:2; // +0x1D.bit7
     u32 native_selector_0cc:2; // +0x1E.bit1
     u32 native_selector_0cd:2; // +0x1E.bit3
     u32 native_selector_0ce:2; // +0x1E.bit5
@@ -94,7 +94,7 @@ struct SavedNativeCallState {
     u32 native_selector_0d0:2; // +0x1F.bit1
     u32 native_selector_0d1:2; // +0x1F.bit3
     u32 native_selector_0d2:2; // +0x1F.bit5
-    u32 flag_1f_b7:2; // +0x1F.bit7
+    u32 native_selector_0d3:2; // +0x1F.bit7
     u32 native_selector_0d4:2; // +0x20.bit1
     u32 native_selector_0d5:2; // +0x20.bit3
     u32 native_selector_0d6:2; // +0x20.bit5
@@ -102,13 +102,13 @@ struct SavedNativeCallState {
     u32 native_selector_0d8:2; // +0x21.bit1
     u32 native_selector_0d9:2; // +0x21.bit3
     u32 native_selector_0da:2; // +0x21.bit5
-    u32 flag_21_b7:2; // +0x21.bit7
+    u32 native_selector_0db:2; // +0x21.bit7
     u32 native_selector_0dc:2; // +0x22.bit1
     u32 native_selector_0dd:2; // +0x22.bit3
     u32 native_selector_24b:1; // +0x22.bit5
     u32 native_selector_24c:1; // +0x22.bit6
     u32 reserved_flag_22_b7:5; // preserved by copy
-    u32 flag_23_b4:7; // +0x23.bit4
+    u32 native_selector_0de:7; // +0x23.bit4
     u32 native_selector_0df:2; // +0x24.bit3
     u32 native_selector_0e0:2; // +0x24.bit5
     u32 native_selector_0e1:2; // +0x24.bit7
@@ -150,14 +150,14 @@ struct SavedNativeCallState {
     u32 native_selector_105:2; // +0x2D.bit0
     u32 native_selector_106:2; // +0x2D.bit2
     u32 native_selector_107:2; // +0x2D.bit4
-    u32 flag_2d_b6:4; // +0x2D.bit6
+    u32 native_selector_108:4; // +0x2D.bit6
     u32 native_selector_109:1; // +0x2E.bit2
     u32 native_selector_10a:2; // +0x2E.bit3
     u32 native_selector_10b:2; // +0x2E.bit5
     u32 native_selector_10c:1; // +0x2E.bit7
     u32 native_selector_10d:5; // +0x2F.bit0
     u32 native_selector_10e:2; // +0x2F.bit5
-    u32 flag_2f_b7:2; // +0x2F.bit7
+    u32 native_selector_10f:2; // +0x2F.bit7
     u32 native_selector_110:2; // +0x30.bit1
     u32 native_selector_111:2; // +0x30.bit3
     u32 native_selector_112:2; // +0x30.bit5
@@ -190,7 +190,7 @@ struct SavedNativeCallState {
     u32 native_selector_12d:2; // +0x37.bit1
     u32 native_selector_12e:2; // +0x37.bit3
     u32 native_selector_12f:2; // +0x37.bit5
-    u32 flag_37_b7:2; // +0x37.bit7
+    u32 native_selector_130:2; // +0x37.bit7
     u32 native_selector_131:1; // +0x38.bit1
     u32 native_selector_132:2; // +0x38.bit2
     u32 native_selector_133:2; // +0x38.bit4
@@ -206,29 +206,28 @@ struct SavedNativeCallState {
     u32 native_selector_13d:2; // +0x3B.bit1
     u32 native_selector_13e:2; // +0x3B.bit3
     u32 native_selector_13f:2; // +0x3B.bit5
-    u32 flag_3b_b7:2; // +0x3B.bit7
+    u32 native_selector_140:2; // +0x3B.bit7
     u32 native_selector_141:2; // +0x3C.bit1
     u32 native_selector_142:2; // +0x3C.bit3
     u32 native_selector_143:2; // +0x3C.bit5
     u32 native_selector_144:3; // +0x3C.bit7
     u32 native_selector_145:2; // +0x3D.bit2
     u32 native_selector_146:2; // +0x3D.bit4
-    u32 flag_3d_b6:4; // +0x3D.bit6
+    u32 native_selector_147:4; // +0x3D.bit6
     u32 native_selector_148:2; // +0x3E.bit2
     u32 native_selector_149:2; // +0x3E.bit4
     u32 native_selector_14a:2; // +0x3E.bit6
     u32 native_selector_14b:2; // +0x3F.bit0
     u32 flag_3f_b2:1; // +0x3F.bit2
     u32 native_selector_14c:2; // +0x3F.bit3
-    u32 flag_3f_b5:3; // +0x3F.bit5
-    u32 flag_40_b0:1; // +0x40.bit0
+    u32 native_selector_14d:4; // +0x3F.bit5
     u32 native_selector_14e:2; // +0x40.bit1
     u32 native_selector_14f:2; // +0x40.bit3
     u32 native_selector_150:2; // +0x40.bit5
     u32 native_selector_151:2; // +0x40.bit7
     u32 native_selector_152:2; // +0x41.bit1
     u32 native_selector_153:2; // +0x41.bit3
-    u32 flag_41_b5:4; // +0x41.bit5
+    u32 native_selector_154:4; // +0x41.bit5
     u32 native_selector_155:2; // +0x42.bit1
     u32 native_selector_156:2; // +0x42.bit3
     u32 native_selector_157:1; // +0x42.bit5
@@ -279,28 +278,28 @@ struct SavedNativeCallState {
     u32 native_selector_184:1; // +0x4D.bit4
     u32 native_selector_185:1; // +0x4D.bit5
     u32 native_selector_186:1; // +0x4D.bit6
-    u32 flag_4d_b7:2; // +0x4D.bit7
-    u32 flag_4e_b1:1; // +0x4E.bit1
+    u32 native_selector_187:2; // +0x4D.bit7
+    u32 native_selector_188:1; // +0x4E.bit1
     u32 native_selector_189:2; // +0x4E.bit2
-    u32 flag_4e_b4:1; // +0x4E.bit4
+    u32 native_selector_18a:1; // +0x4E.bit4
     u32 native_selector_18b:2; // +0x4E.bit5
     u32 native_selector_18c:2; // +0x4E.bit7
     u32 native_selector_18d:3; // +0x4F.bit1
     u32 native_selector_18e:2; // +0x4F.bit4
     u32 native_selector_18f:1; // +0x4F.bit6
-    u32 flag_4f_b7:3; // +0x4F.bit7
+    u32 native_selector_190:3; // +0x4F.bit7
     u32 native_selector_192:2; // +0x50.bit2
-    u32 flag_50_b4:1; // +0x50.bit4
+    u32 native_selector_193:1; // +0x50.bit4
     u32 native_selector_194:2; // +0x50.bit5
     u32 native_selector_195:1; // +0x50.bit7
     u32 native_selector_196:2; // +0x51.bit0
     u32 native_selector_197:1; // +0x51.bit2
     u32 native_selector_198:2; // +0x51.bit3
-    u32 flag_51_b5:1; // +0x51.bit5
+    u32 native_selector_199:1; // +0x51.bit5
     u32 native_selector_19a:2; // +0x51.bit6
     u32 native_selector_19b:1; // +0x52.bit0
     u32 native_selector_19c:2; // +0x52.bit1
-    u32 flag_52_b3:1; // +0x52.bit3
+    u32 native_selector_19d:1; // +0x52.bit3
     u32 native_selector_19e:2; // +0x52.bit4
     u32 native_selector_19f:3; // +0x52.bit6
     u32 native_selector_1a0:2; // +0x53.bit1
@@ -314,20 +313,20 @@ struct SavedNativeCallState {
     u32 native_selector_1a8:2; // +0x54.bit5
     u32 flag_54_b7:1; // +0x54.bit7
     u32 native_selector_1aa:2; // +0x55.bit0
-    u32 flag_55_b2:1; // +0x55.bit2
+    u32 native_selector_1ab:1; // +0x55.bit2
     u32 native_selector_1ac:2; // +0x55.bit3
-    u32 flag_55_b5:1; // +0x55.bit5
+    u32 native_selector_1ad:1; // +0x55.bit5
     u32 native_selector_1ae:2; // +0x55.bit6
     u32 native_selector_1af:1; // +0x56.bit0
     u32 native_selector_1b0:2; // +0x56.bit1
-    u32 flag_56_b3:1; // +0x56.bit3
+    u32 native_selector_1b1:1; // +0x56.bit3
     u32 native_selector_1b2:2; // +0x56.bit4
     u32 native_selector_1b3:2; // +0x56.bit6
     u32 native_selector_1b4:2; // +0x57.bit0
     u32 native_selector_1b5:2; // +0x57.bit2
     u32 native_selector_1b6:2; // +0x57.bit4
     u32 native_selector_1b7:1; // +0x57.bit6
-    u32 flag_57_b7:2; // +0x57.bit7
+    u32 native_selector_1b8:2; // +0x57.bit7
     u32 native_selector_1b9:1; // +0x58.bit1
     u32 native_selector_1ba:2; // +0x58.bit2
     u32 native_selector_1bb:1; // +0x58.bit4
@@ -337,7 +336,7 @@ struct SavedNativeCallState {
     u32 native_selector_1bf:1; // +0x59.bit2
     u32 native_selector_1c0:2; // +0x59.bit3
     u32 native_selector_1c1:2; // +0x59.bit5
-    u32 flag_59_b7:3; // +0x59.bit7
+    u32 native_selector_1c2:3; // +0x59.bit7
     u32 native_selector_1c3:1; // +0x5A.bit2
     u32 native_selector_1c4:1; // +0x5A.bit3
     u32 native_selector_1c5:1; // +0x5A.bit4
@@ -347,7 +346,7 @@ struct SavedNativeCallState {
     u32 native_selector_1c9:2; // +0x5B.bit1
     u32 native_selector_1ca:2; // +0x5B.bit3
     u32 native_selector_1cb:2; // +0x5B.bit5
-    u32 flag_5b_b7:2; // +0x5B.bit7
+    u32 native_selector_1cc:2; // +0x5B.bit7
     u32 native_selector_1cd:2; // +0x5C.bit1
     u32 native_selector_1ce:2; // +0x5C.bit3
     u32 native_selector_1cf:3; // +0x5C.bit5
@@ -407,17 +406,17 @@ struct SavedNativeCallState {
     u32 native_selector_23a:2; // +0x68.bit2
     u32 native_selector_23b:2; // +0x68.bit4
     u32 native_selector_1e2:8; // +0x68.bit6
-    u32 flag_69_b6:8; // +0x69.bit6
+    u32 native_selector_1e3:8; // +0x69.bit6
     u32 native_selector_1e4:8; // +0x6A.bit6
-    u32 flag_6b_b6:8; // +0x6B.bit6
+    u32 native_selector_1e5:8; // +0x6B.bit6
     u32 native_selector_1e6:8; // +0x6C.bit6
-    u32 flag_6d_b6:8; // +0x6D.bit6
+    u32 native_selector_1e7:8; // +0x6D.bit6
     u32 native_selector_1e8:8; // +0x6E.bit6
-    u32 flag_6f_b6:8; // +0x6F.bit6
+    u32 native_selector_1e9:8; // +0x6F.bit6
     u32 native_selector_1ea:8; // +0x70.bit6
-    u32 flag_71_b6:8; // +0x71.bit6
+    u32 native_selector_1eb:8; // +0x71.bit6
     u32 native_selector_1ec:8; // +0x72.bit6
-    u32 flag_73_b6:8; // +0x73.bit6
+    u32 native_selector_1ed:8; // +0x73.bit6
     u32 flag_74_b6:3; // +0x74.bit6
     u32 native_selector_1ef:2; // +0x75.bit1
     u32 native_selector_1f0:1; // +0x75.bit3
@@ -434,8 +433,7 @@ struct SavedNativeCallState {
     u32 native_selector_1fb:1; // +0x76.bit6
     u32 native_selector_1fc:4; // +0x76.bit7
     u32 native_selector_1fd:4; // +0x77.bit3
-    u32 flag_77_b7:1; // +0x77.bit7
-    u32 flag_78_b0:3; // +0x78.bit0
+    u32 native_selector_1fe:4; // +0x77.bit7
     u32 native_selector_1ff:1; // +0x78.bit3
     u32 native_selector_200:1; // +0x78.bit4
     u32 native_selector_201:1; // +0x78.bit5
