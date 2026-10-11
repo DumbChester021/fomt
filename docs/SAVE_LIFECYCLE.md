@@ -9,6 +9,14 @@ the `custom-game` worktree during this priority.
 
 **Historical October 11 checkpoints:** `ec6d61b`, `ac239ba`, `497395f` and `f069823` preceded subsequent exact save-source integrations. The current source progress and no-context handoff are in [START_HERE.md](../START_HERE.md); see the [save evidence matrix](SAVE_EVIDENCE_MATRIX.md) for current function ownership. The GameState-loader behavioral pseudocode below is research, not exact source. The save system remains incomplete.
 
+**Latest parent-copy integration (October 11):** `CopySavedGameState`
+now owns all 776 bytes of `func_080D4178`. The complete typed storage
+layout and shared social type preserve the load path's existing allocation,
+inactive ranges and reserved bytes. This supersedes the earlier parent-ASM
+status in the dated checkpoints below. The 740-byte loader and 7,132-byte
+packed-state child remain ASM, and real-save runtime proof remains open.
+See [the exact parent proof](SAVE_GAMESTATE_ASSIGNMENT_MAP.md).
+
 ## Verified SRAM organization
 
 ```text

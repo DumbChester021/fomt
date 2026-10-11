@@ -25,3 +25,14 @@ Total **84 newly source-owned code bytes**. Linker section splits preserve origi
 **Still assembly:** `func_0800FF8C` initializes count and packed location fields, and `func_08010024` traverses/reduces the active byte range. The typed constructor scratch `ctor-v1.cc` matched the 0x44 length but differed by 59 bytes. The first append candidate `append-typed-v1.cc` failed because its argument was incorrectly typed `u8`, generating extra narrowing instructions; fixing the ABI to `unsigned int` gave exact 32-byte matches in `append-typed-v2.cc` and `append-named.cc`, now integrated. Preserve these as behavioral evidence, not source to integrate. The constructor's location bitmask sequence should not be simplified into invented field identities. No custom SRAM schema or migration code was added.
 
 This type is **partially understood, not a complete save-system decompilation**. It helps the `GameState` type graph, but the full save loader, other subobjects, and save-menu lifecycle still require separate exact-source work.
+
+
+### October 11: exact active-range reconstruction
+
+The exact 776-byte parent in `src/game_state_copy.cc` now reconstructs this
+buffer. Const/nonconst `begin()` return a one-byte `SavedBufferByte` record
+view over the existing `u8 payload[32]`; its size is compile-time checked.
+A captured count and standard uninitialized range copy preserve inactive
+storage, followed by the original six-byte location call. The six public
+accessors and raw storage layout are unchanged. The byte record's gameplay
+meaning remains unknown. See [parent proof](SAVE_GAMESTATE_ASSIGNMENT_MAP.md).

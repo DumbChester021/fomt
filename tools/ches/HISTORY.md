@@ -206,3 +206,21 @@ readability and forced original-ROM comparison. Final SHA1 remains
 `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`. Canonical renamed packed-copy
 scratch was recompiled and is byte-identical to its prior 7,120/3,621 candidate.
 No background builds remain; next research target remains the packed copy.
+
+
+## 2026-10-11: exact GameState parent copy and shared save layout
+
+Supersedes the previous 776-byte parent-ASM status. `CopySavedGameState`
+matches `080D4178..080D4480` exactly through active byte-range construction,
+typed child calls, masked header fields and distinct metadata/string/tail
+copies. The complete persisted layout now shares the existing social type.
+Unknown meanings retain neutral names; the packed-state child remains ASM.
+Isolated forced ROM compare `sh_mv3e0jys_50a3be25` and production compare
+`sh_mv3e1uvh_cbf62c2a` pass original SHA1. New coverage: **776 bytes**;
+exact source **96,108/940,036 (10.2239%)**, remaining ASM **843,928 bytes /
+1,924 functions**, bounded save-copy subset **11/12 (2,680/3,420 bytes)**.
+Closed hypotheses and reproducible proof are in
+`docs/SAVE_GAMESTATE_ASSIGNMENT_MAP.md`. No compiler or custom-game changes.
+The 740-byte loader is next; no real player-save round trip was tested.
+
+Full production `make test` passed (`sh_mv3e7mvb_c049a043`, exit 0), including forced whole-ROM SHA1, portable tests, selector/SRAM tests and readability. Original parent/cleanup/packed-child addresses are preserved.

@@ -162,3 +162,67 @@ retains 7,120 bytes / 3,621 differences and exactly the prior SHA256
 `48873d4420701a2cb45bb4a381fdb994239e4569f16a57ef973fa9c0bf779f82`.
 Thus the earlier bounded behavior proof applies to the identical executable;
 no improvement or new behavior trial is claimed from the rename.
+
+## October 11: generated member-copy family closed; first divergence localized
+
+The nontrivial counted-range hypothesis was tested separately from the earlier
+handwritten field assignments. An implicit `SavedNativeCallState` copy constructor
+with a counted `u16` range and an unnamed five-bit preserved gap emits 7,148
+linked bytes / 6,808 differences; the implicit assignment operator emits the
+**same 7,148 bytes / 6,808 differences**. Both retain 128/148 matching store-group
+mnemonic sequences, with 84 shape-edit units. Neither improves the best
+7,120/3,621 candidate. This **CLOSED generated-member-copy family** is not a source
+promotion or a new behavior proof.
+
+Local reproduction: `probe_implicit_direct_range.py` and
+`probe_generated_assignment.py` in the existing packed-state scratch directory.
+Their `*-ctor.result.json` / `*-body.result.json` record the actual large method,
+linked at 0x080D44D4 through a selective scratch linker script. The small
+placement/assignment wrapper is not the retail copy and must not be used as the
+method's mismatch score. Initial accessor-based generated constructors left
+out-of-line accessor calls; those failed inputs and diagnostics are preserved.
+
+A fresh unchanged-source pass dump (`width34-pass-trace`, compiler flags
+`-drscgl`) confirms the best candidate remains 7,120/3,621. More precise than the
+mnemonic score: **0x080D44D4..0x080D4E2C (2,392 bytes) differs in only three
+bytes**, all at the active-range endpoint sequence
+0x080D44EE/0x080D44F0/0x080D44F4. Every subsequent byte through the first packed
+shape divergence agrees.
+
+At +0x34, retail retains the destination pointer in r4 and reuses the live r5
+mask with `adds r5,#0x2D`. The candidate retains that pointer in r5, materializes
+-4 in r4, and adds one instruction. The compiler's CSE/combination dumps already
+represent that mask as **-4 in SImode**, not a positive truncated halfword mask.
+The candidate's local-allocation input records the +0x34 address temporary as
+3 uses / 33 live instructions (BASE_REGS, pointer), and the -4 mask as 8 uses /
+978 live instructions (LO_REGS). Reload output confirms their r5/r4 homes.
+These pseudo identities are diagnostics only, never a proposed compiler rule.
+
+**Next evidence:** explain this pointer/mask allocation relationship from
+authentic field types and source/ABI metadata, then the +0x4D and +0x62 regions.
+Do not patch the compiler or force register homes from these observations.
+Production source, initializer, coverage and original ROM remain unchanged.
+
+The bounded integer-type identity probe is also CLOSED:
+`unsigned long` for the provisional u32 fields reproduces the best binary
+exactly (7,120/3,621, SHA256 48873d4420701a2cb45bb4a381fdb994239e4569f16a57ef973fa9c0bf779f82).
+Width-bounded enum fields, either all fields or two-bit fields only, reproduce
+the older all-u32 binary exactly (7,120/4,634, SHA256 ff65ce16d076fcea5d5bb5f7afb56e55945acce793b7721dd62d7a16b579ada6).
+The local `probe_integer_type_identity.py` / `integer-identity-results.json`
+retain these results. No new historical type identity is established.
+
+**Strategy decision:** after these bounded source families and the precise
+allocation diagnosis, further guessing has diminishing returns. Inspect the
+776-byte immediate GameState caller with the now-exact nested-copy interfaces
+for new outer-copy/type evidence. The 7,132-byte packed copy remains a required
+unfinished save component; this pivot is within the save-system priority and
+does not relax its exactness gate.
+
+
+The parent pivot subsequently recovered `func_080D4178` exactly: 776/776
+linked bytes plus isolated forced and production ROM hashes. Its active
+byte range confirms the same begin-accessor/standard-library construction
+pattern as Rucksack and MoneyState. This does not solve or promote the
+7,132-byte packed child; the 7,120/3,621 best candidate above remains
+nonmatching. Continue with the loader before reopening closed packed-copy
+families without new evidence. See [parent proof](SAVE_GAMESTATE_ASSIGNMENT_MAP.md).

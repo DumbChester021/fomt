@@ -10,25 +10,82 @@
 #include "farmer.hh"
 #include "fishing_records.hh"
 #include "saved_native_call_state.hh"
+#include "saved_social_state.hh"
 
-// Verified offset-oriented view, NOT a claim that all GameState fields have
-// been decompiled. Unknown bytes are preserved exactly as opaque storage.
-// This describes the 0x34F4 serialized state that retail writes to SRAM.
+// Word aggregates retain the retail ldm/stm copies. Their gameplay meanings
+// are unresolved; their sizes and containing offsets are verified below.
+template<unsigned N>
+struct SavedWords
+{
+    u32 words[N];
+};
+
+// The copy assigns every first-word field and bit 0 of the second word.
+// The remaining 31 bits are preserved in the destination.
+struct SavedHeader
+{
+    u32 flag_0:1;
+    u32 flag_1:1;
+    u32 flag_2:1;
+    u32 flag_3:1;
+    u32 flag_4:1;
+    u32 value_5:8;
+    u32 value_13:5;
+    u32 value_18:7;
+    u32 value_25:6;
+    u32 flag_31:1;
+    u32 flag_32:1;
+    u32 reserved:31;
+    SavedWords<3> words_08;
+};
+
+// Three null-terminated strings, each backed by 16 bytes. Their owners and
+// the preceding metadata remain unnamed until their consumers are recovered.
+struct SavedNames
+{
+    u32 word_00;
+    u32 word_04;
+    u8 bytes_08[8];
+    u8 bytes_10[4];
+    char name_14[16];
+    char name_24[16];
+    char name_34[16];
+};
+
+// Complete 0x34F4 serialized layout used by the exact GameState copy.
+// Offset names and opaque blocks deliberately leave unknown semantics open.
 struct PersistedGameStateLayout
 {
-    u8 game_header[0x14];                                // +0x0000, packed GameState header
-    Farm farm;                                             // +0x0014
-    MoneyState money;                                      // +0x1AA8
-    Farmer farmer;                                         // +0x1BD8
-    Dog dog;                                               // +0x1C70
-    SavedByteBuffer saved_buffer;                          // +0x1CA0
-    u8 before_native_calls[0x214C-0x1CCC];                // +0x1CCC
-    SavedNativeCallState native_calls;                      // +0x214C
-    u8 after_native_calls[0x2C74-0x21CC];                  // +0x21CC
-    SavedTransitionState transition;                       // +0x2C74
-    FishingRecords fishing_records;                        // +0x2C80
-    u8 after_fishing_records[SAVE_GAME_STATE_SIZE-0x2E58]; // +0x2E58
+    SavedHeader header;                  // +0x0000
+    Farm farm;                           // +0x0014
+    MoneyState money;                     // +0x1AA8
+    Farmer farmer;                        // +0x1BD8
+    Dog dog;                              // +0x1C70
+    SavedByteBuffer saved_buffer;         // +0x1CA0
+    u8 location_1ccc[6];                  // +0x1CCC, semantics unresolved
+    u8 padding_1cd2[2];                   // preserved
+    SavedSocialState social;             // +0x1CD4
+    SavedNativeCallState native_calls;    // +0x214C
+    SavedNames names;                     // +0x21CC
+    u32 word_2210;
+    u8 block_2214[0xA08];
+    SavedWords<12> words_2c1c;
+    SavedWords<10> words_2c4c;
+    SavedTransitionState transition;     // +0x2C74
+    FishingRecords fishing_records;      // +0x2C80
+    u8 block_2e58[0x628];
+    SavedWords<5> words_3480;
+    SavedWords<12> words_3494;
+    u8 byte_34c4;
+    u8 byte_34c5;
+    u8 padding_34c6[2];                   // preserved
+    SavedWords<4> words_34c8;
+    u32 word_34d8;
+    SavedWords<6> words_34dc;
 };
+
+EC PersistedGameStateLayout * CopySavedGameState(
+    PersistedGameStateLayout *dest, PersistedGameStateLayout const *source);
 
 // Each SRAM slot stores its length prefix, raw GameState and checksum.
 // Remaining bytes in the slot have not been assigned retail semantics.
@@ -92,7 +149,7 @@ typedef char SaveStateFarmerOffsetCheck[offsetof(PersistedGameStateLayout,farmer
 typedef char SaveStateDogOffsetCheck[offsetof(PersistedGameStateLayout,dog) == 0x1C70 ? 1 : -1];
 typedef char SaveStateBufferOffsetCheck[offsetof(PersistedGameStateLayout,saved_buffer) == 0x1CA0 ? 1 : -1];
 typedef char SaveStateNativeCallOffsetCheck[offsetof(PersistedGameStateLayout,native_calls) == 0x214C ? 1 : -1];
-typedef char SaveStateAfterNativeOffsetCheck[offsetof(PersistedGameStateLayout,after_native_calls) == 0x21CC ? 1 : -1];
+typedef char SaveStateNamesOffsetCheck[offsetof(PersistedGameStateLayout,names) == 0x21CC ? 1 : -1];
 typedef char SaveStateTransitionOffsetCheck[offsetof(PersistedGameStateLayout,transition) == 0x2C74 ? 1 : -1];
 typedef char SaveStateFishingOffsetCheck[offsetof(PersistedGameStateLayout,fishing_records) == 0x2C80 ? 1 : -1];
 typedef char SaveSlotSizeCheck[sizeof(SaveSlotStorageLayout) == SAVE_SLOT_SIZE ? 1 : -1];
@@ -104,5 +161,23 @@ typedef char SaveHeaderSelectedOffsetCheck[offsetof(SaveSramHeaderLayout,selecte
 typedef char SaveImageHeaderOffsetCheck[offsetof(SaveSramStorageLayout,slots) == SAVE_HEADER_SIZE ? 1 : -1];
 typedef char SaveImageSecondSlotOffsetCheck[offsetof(SaveSramStorageLayout,slots[1]) == SAVE_HEADER_SIZE + SAVE_SLOT_SIZE ? 1 : -1];
 typedef char SaveImageSizeCheck[sizeof(SaveSramStorageLayout) == 0x8000 ? 1 : -1];
+
+typedef char SaveGameHeaderSizeCheck[sizeof(SavedHeader) == 0x14 ? 1 : -1];
+typedef char SaveNamesSizeCheck[sizeof(SavedNames) == 0x44 ? 1 : -1];
+typedef char SaveGameHeaderWordsOffsetCheck[offsetof(SavedHeader,words_08) == 0x08 ? 1 : -1];
+typedef char SaveState_location_1cccCheck[offsetof(PersistedGameStateLayout,location_1ccc) == 0x1CCC ? 1 : -1];
+typedef char SaveState_socialCheck[offsetof(PersistedGameStateLayout,social) == 0x1CD4 ? 1 : -1];
+typedef char SaveState_word_2210Check[offsetof(PersistedGameStateLayout,word_2210) == 0x2210 ? 1 : -1];
+typedef char SaveState_block_2214Check[offsetof(PersistedGameStateLayout,block_2214) == 0x2214 ? 1 : -1];
+typedef char SaveState_words_2c1cCheck[offsetof(PersistedGameStateLayout,words_2c1c) == 0x2C1C ? 1 : -1];
+typedef char SaveState_words_2c4cCheck[offsetof(PersistedGameStateLayout,words_2c4c) == 0x2C4C ? 1 : -1];
+typedef char SaveState_block_2e58Check[offsetof(PersistedGameStateLayout,block_2e58) == 0x2E58 ? 1 : -1];
+typedef char SaveState_words_3480Check[offsetof(PersistedGameStateLayout,words_3480) == 0x3480 ? 1 : -1];
+typedef char SaveState_words_3494Check[offsetof(PersistedGameStateLayout,words_3494) == 0x3494 ? 1 : -1];
+typedef char SaveState_byte_34c4Check[offsetof(PersistedGameStateLayout,byte_34c4) == 0x34C4 ? 1 : -1];
+typedef char SaveState_byte_34c5Check[offsetof(PersistedGameStateLayout,byte_34c5) == 0x34C5 ? 1 : -1];
+typedef char SaveState_words_34c8Check[offsetof(PersistedGameStateLayout,words_34c8) == 0x34C8 ? 1 : -1];
+typedef char SaveState_word_34d8Check[offsetof(PersistedGameStateLayout,word_34d8) == 0x34D8 ? 1 : -1];
+typedef char SaveState_words_34dcCheck[offsetof(PersistedGameStateLayout,words_34dc) == 0x34DC ? 1 : -1];
 
 #endif

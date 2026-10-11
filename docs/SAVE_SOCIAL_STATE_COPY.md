@@ -29,3 +29,10 @@ The key original-compiler source-shape observation is the child's two-byte copy:
 ## Next work
 
 The **0x1BDC-byte `func_080D44D4`** at GameState+0x214C is now the **only large nested GameState assignment still in ASM**. Recover its real typed subobject and its packed bitfields/record layout, then source-recover the 776-byte parent assignment; Rucksack, MoneyState, loader, SRAM/save-menu cases and player-save runtime proof remain separate outstanding tasks. This social recovery does not authorize customizing save formats or touching the custom-game worktree.
+
+
+The October 11 exact GameState parent integration moves this existing
+`SavedSocialState` definition and its offset assertions into
+`include/saved_social_state.hh`, shared by both copies. The social routine
+retains its original 1,048 linked bytes and address; this header move adds
+no separately counted code.
