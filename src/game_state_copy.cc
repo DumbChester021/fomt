@@ -20,7 +20,7 @@ inline void CopySavedBuffer(SavedByteBuffer *dest, SavedByteBuffer const *source
     u32 count = source->count;
     std::uninitialized_copy(source->begin(), source->begin() + count, dest->begin());
     dest->count = count;
-    CopySavedLocation(dest->location, source->location, 6);
+    CopySavedLocation(&dest->location, &source->location, 6);
 }
 
 // Fixed metadata arrays and null-terminated strings have distinct copy rules.

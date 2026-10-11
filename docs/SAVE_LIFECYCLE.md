@@ -15,7 +15,7 @@ layout and shared social type preserve the load path's existing allocation,
 inactive ranges and reserved bytes. This supersedes the earlier parent-ASM
 status in the dated checkpoints below. The 740-byte loader and 7,132-byte
 packed-state child remain ASM, and real-save runtime proof remains open.
-See [the exact parent proof](SAVE_GAMESTATE_ASSIGNMENT_MAP.md).
+See [the exact parent proof](SAVE_GAMESTATE_ASSIGNMENT_MAP.md). The later 68-byte saved-buffer constructor is also exact source, with typed Location initialization; see [buffer proof](SAVED_BYTE_BUFFER.md).
 
 ## Verified SRAM organization
 

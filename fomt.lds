@@ -488,6 +488,7 @@ SECTIONS
         src/held_item.o(.text);
         src/rucksack.o(.text);
         asm/more_items.o(.text);
+        src/save_byte_buffer.o(.text.saved_buffer_init);
         src/save_byte_buffer.o(.text.saved_buffer_accessors);
         src/save_byte_buffer.o(.text.saved_buffer_append);
         asm/more_items.o(.text.after_saved_buffer_accessors);

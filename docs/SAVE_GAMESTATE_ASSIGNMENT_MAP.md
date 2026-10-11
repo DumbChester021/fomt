@@ -13,7 +13,7 @@
 | 0x1AA8..0x1BD7 | 0x130 | Call `func_080D6B40(dst+0x1AA8,src+0x1AA8)` | `MoneyState` exactly located; counted daily/seasonal copy **exact C++ (200 B)** |
 | 0x1BD8..0x1C6F | 0x98 | Call `func_080D68C0(dst+0x1BD8,src+0x1BD8)` | **`CopySavedFarmerState` exact 448-byte C++**, original alias; nested Rucksack copy `080D6A80` is exact C++ (128 B) |
 | 0x1C70..0x1C9F | 0x30 | Call `func_080D67C8(dst+0x1C70,src+0x1C70)` | **`CopySavedDogState` exact 132-byte C++**, original address |
-| 0x1CA0..0x1CCB | 0x2C | Set destination count to zero; copy active bytes individually; restore count, copy six-byte location | `SavedByteBuffer`: exact active-range construction in the parent; inactive storage preserved |
+| 0x1CA0..0x1CCB | 0x2C | Set destination count to zero; copy active bytes individually; restore count, copy six-byte location | `SavedByteBuffer`: exact active-range construction; exact 68-byte default constructor and typed `Location`; inactive storage preserved |
 | 0x1CCC..0x1CD1 | 0x06 | Raw `memcpy` 6 bytes | Spatial/location-style data; specific semantics pending |
 | 0x1CD4..0x214B | 0x478 | Call `func_080D60B0(dst+0x1CD4,src+0x1CD4)` | **`CopySavedSocialState` exact natural C++**: 1,048 linked code bytes, 41 typed NPC/bachelorette/sprite records and packed/child fields; [evidence](SAVE_SOCIAL_STATE_COPY.md) |
 | 0x214C..0x21CB | 0x80 | Call `func_080D44D4(dst+0x214C,src+0x214C)` | **`SavedNativeCallState` typed at +0x214C**, its 1,724-byte initializer exact C++; **455 fields now have retail-verified action-selector names**, checked by `tools/ches/native_selector_map.py`. Its 7,132-byte copy remains ASM; bounded behavior passes, codegen does not. [Evidence](SAVE_PACKED_NATIVE_COPY_RESEARCH.md) |

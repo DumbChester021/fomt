@@ -1,5 +1,11 @@
 #include "save_byte_buffer.hh"
 
+SavedByteBuffer::SavedByteBuffer()
+    : count(0), location(MAP_NONE, 0, 0)
+{
+}
+
+
 EXTERN_C
 extern void * memcpy(void * destination, void const * source, unsigned long size);
 EXTERN_C_END
@@ -33,7 +39,7 @@ EC void * GetSavedBufferLocation(void * output, SavedByteBuffer const * state)
 EC void * GetSavedBufferLocation(void * output, SavedByteBuffer const * state)
 {
     void * result = output;
-    memcpy(output, state->location, 6);
+    memcpy(output, &state->location, 6);
     return result;
 }
 EC void * func_0800FFE0(void * output, SavedByteBuffer const * state)
@@ -61,7 +67,10 @@ EC void SetSavedBufferLocation(SavedByteBuffer * state, void const * location)
     SECTION(".text.saved_buffer_set_location");
 EC void SetSavedBufferLocation(SavedByteBuffer * state, void const * location)
 {
-    memcpy(state->location, location, 6);
+    memcpy(&state->location, location, 6);
 }
 EC void func_08010014(SavedByteBuffer * state, void const * location)
     ALIAS(SetSavedBufferLocation);
+
+EC SavedByteBuffer * func_0800FF8C(SavedByteBuffer *state)
+    ALIAS(__15SavedByteBuffer);

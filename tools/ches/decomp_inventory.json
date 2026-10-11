@@ -3,11 +3,11 @@
   "note": "TU/region and priority fields are heuristic; addresses/calls are repository-derived evidence.",
   "summary": {
     "asm_files": 21,
-    "unresolved_functions": 1924,
-    "canonical_asm_code_bytes": 843928,
-    "function_range_bytes": 840892,
+    "unresolved_functions": 1923,
+    "canonical_asm_code_bytes": 843860,
+    "function_range_bytes": 840824,
     "unattributed_asm_code_bytes": 3036,
-    "function_range_coverage_pct": 99.6403,
+    "function_range_coverage_pct": 99.6402,
     "unlinked_asm_definitions_skipped": 2,
     "unlinked_asm_definition_names": [
       "func_0802A7E0_asm",
@@ -15,7 +15,7 @@
     ],
     "parked_functions": 27,
     "runtime_library_functions": 20,
-    "regions": 265,
+    "regions": 264,
     "repeated_shape_clusters": 152,
     "functions_in_repeated_shape_clusters": 555,
     "exact_normalized_clusters": 141
@@ -7019,43 +7019,13 @@
       "priority_score": 20.25
     },
     {
-      "symbol": "func_0800FF8C",
-      "address": 134283148,
-      "address_hex": "0x0800FF8C",
-      "size": 68,
-      "size_hex": "0x44",
-      "asm_file": "asm/more_items.s",
-      "line": 7,
-      "linked_section": ".text",
-      "status": "assembly",
-      "runtime_library": false,
-      "instruction_count": 31,
-      "opcode_signature": "2fcc64393342812dc341fdefcfac3332935d988c",
-      "normalized_signature": "eceebc4186337ce566603cf62ffa961ef4dcde54",
-      "direct_callees": [],
-      "data_refs": [],
-      "direct_calls_in": 2,
-      "unique_callers": [
-        "func_08010358",
-        "func_08011650"
-      ],
-      "unique_caller_count": 2,
-      "caller_files": [
-        "asm/game_state.s"
-      ],
-      "caller_file_count": 1,
-      "source_anchor_callees": [],
-      "region_id": "asm/more_items.s:0800FF8C-0800FFD0",
-      "priority_score": 25.25
-    },
-    {
       "symbol": "func_08010024",
       "address": 134283300,
       "address_hex": "0x08010024",
       "size": 40,
       "size_hex": "0x28",
       "asm_file": "asm/more_items.s",
-      "line": 45,
+      "line": 9,
       "linked_section": ".text.after_saved_buffer_set_location",
       "status": "assembly",
       "runtime_library": false,
@@ -7202,6 +7172,7 @@
         "__3DogPCc",
         "__4FarmPCc",
         "__6FarmerPCcRC8GameDate",
+        "func_0800FF8C",
         "func_08010348",
         "func_080114F8",
         "func_08011510",
@@ -7217,7 +7188,7 @@
         "method_0800A78C__C9FieldPlot"
       ],
       "region_id": "asm/game_state.s:08010358-08010E48",
-      "priority_score": 147.94
+      "priority_score": 149.94
     },
     {
       "symbol": "func_08010F54",
@@ -7367,6 +7338,7 @@
         "__4FarmPCc",
         "__6FarmerPCcRC8GameDate",
         "func_080006E4",
+        "func_0800FF8C",
         "func_080114F8",
         "func_08011510",
         "func_08011588",
@@ -7380,7 +7352,7 @@
         "func_080A1A48"
       ],
       "region_id": "asm/game_state.s:08011650-08014034",
-      "priority_score": 37.25
+      "priority_score": 39.25
     },
     {
       "symbol": "func_08011934",
@@ -80011,6 +79983,7 @@
         "func_080098AC",
         "func_080098DC",
         "func_08009940",
+        "func_0800FF8C",
         "func_080114F8",
         "func_08011510",
         "func_08011588",
@@ -80033,7 +80006,7 @@
       ],
       "incoming_cross_region_count": 11,
       "median_function_size": 140,
-      "priority_score": 14154.0
+      "priority_score": 14178.0
     },
     {
       "region_id": "asm/code_809E804.s:080CABA0-080CDC00",
@@ -86173,6 +86146,7 @@
         "__3DogPCc",
         "__4FarmPCc",
         "__6FarmerPCcRC8GameDate",
+        "func_0800FF8C",
         "func_08010348",
         "func_080114F8",
         "func_08011510",
@@ -86189,7 +86163,7 @@
       ],
       "incoming_cross_region_count": 1,
       "median_function_size": 2800,
-      "priority_score": 1140.0
+      "priority_score": 1164.0
     },
     {
       "region_id": "asm/code_0803EE94.s:0808114C-08081A40",
@@ -89718,27 +89692,6 @@
       "incoming_cross_region_count": 1,
       "median_function_size": 56,
       "priority_score": 136.0
-    },
-    {
-      "region_id": "asm/more_items.s:0800FF8C-0800FFD0",
-      "asm_file": "asm/more_items.s",
-      "start": 134283148,
-      "end": 134283216,
-      "functions": [
-        "func_0800FF8C"
-      ],
-      "function_count": 1,
-      "total_function_bytes": 68,
-      "tractable_bytes": 68,
-      "large_function_bytes": 0,
-      "large_function_count": 0,
-      "parked_bytes": 0,
-      "runtime_library_bytes": 0,
-      "repeated_family_functions": 0,
-      "source_anchor_callees": [],
-      "incoming_cross_region_count": 2,
-      "median_function_size": 68,
-      "priority_score": 132.0
     },
     {
       "region_id": "asm/code_lib_sram.s:080D379C-080D3840",

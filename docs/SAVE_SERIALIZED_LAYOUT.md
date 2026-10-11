@@ -27,7 +27,7 @@ The complete storage layout now combines the recovered header, shared social sta
 | 0x1AA8..0x1BD7 | 0x130 | `MoneyState`: balance, two histories and two income/spending maxima records |
 | 0x1BD8..0x1C6F | 0x98 | `Farmer`: location, tool/held-item, rucksack |
 | 0x1C70..0x1C9F | 0x30 | `Dog`, source-exact assignment |
-| 0x1CA0..0x1CCB | 0x2C | `SavedByteBuffer`, six exact methods |
+| 0x1CA0..0x1CCB | 0x2C | `SavedByteBuffer`, exact constructor and six methods; typed packed `Location` at +0x24 |
 | 0x1CCC..0x1CD3 | 8 | Six-byte location-style record and two preserved padding bytes |
 | 0x1CD4..0x214B | 0x478 | Shared `SavedSocialState`; exact C++ copy |
 | 0x214C..0x21CB | 0x80 | `SavedNativeCallState`: 3 callable IDs, sentinel, 455 verified native-selector field names; 1,724-byte initializer exact C++, 7,132-byte copy ASM |

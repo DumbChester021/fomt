@@ -2,6 +2,37 @@
 
 **Current-priority correction, October 11:** The October 5 PAUSED label below is a **historical decision**, superseded by the user's October 10 save-first requirement. The loader is active again, but the 100+ already-tried compiler/source variants remain closed unless new ABI or type evidence justifies reopening them. Read `START_HERE.md`, `docs/SAVE_EVIDENCE_MATRIX.md` and `tools/ches/NEXT_AGENT_HANDOFF.md` for the live priority. This archive is retained as-is after this banner to prevent rediscovery.
 
+## October 11: paired clock control closes the small zero oracle
+
+This supersedes the small-oracle discriminator task below. Under current
+production agbcp SHA256
+`b2386033eccfad537c7efb04264b1c4d3e00fafaeb340004a0a5d916a4bc0117`,
+the archived v96 still emits **740/495** and the full constructor diagnostic
+**744/630** (bytes/differences). Both retain r10/r6 bindings and are
+diagnostics, not promotable natural source.
+
+The small constructor oracle's unsigned `time &= 0xF81F` creates a
+**HImode zero, reg47 at RTL insn74**. First CSE redirects all three string
+stores to its low byte; the first-fill scalar still uses SImode zero reg23.
+The source `string_zero` variable itself does not survive independently.
+Replacing that clock operation with the retail signed halfword form,
+`*reinterpret_cast<i16 *>(&time) &= -2017`, leaves only SImode zero reg23:
+strings and first fill merge again. Thus the old topology depended on the
+non-retail clock lowering, not a demonstrated transferable lifetime boundary.
+Do not reopen it with compiler zero-preservation hooks.
+
+Removing both forced register bindings from v96 gives **748/653**.
+Using real `FixedStr<15>` members for the three recovered name slots gives
+the identical 748/653 binary (SHA256
+`6a70e25783bc46b7dbfefa9848a261130b5648e8116884613645aee05e56de0c`).
+That member-accessor family is closed. The loader stays ASM.
+
+The productive adjacent result is the exact 68-byte saved-buffer constructor,
+using the real Location member constructor. Its source and proof are in
+`src/save_byte_buffer.cc` and `docs/SAVED_BYTE_BUFFER.md`. Future loader
+work needs real constructor/member initialization evidence without forced
+registers. Private frozen inputs/pass dumps are indexed in AGENTS.local.md.
+
 ## PAUSED by expansion-enablement pivot - October 5, 2026
 
 This exact-match frontier is intentionally paused. The user chose to prioritize higher-throughput non-save systems needed for custom NPCs/bachelorettes, items/tools, crops, dialogue/events and assets. All findings below remain valid research and must be reused if persistence work resumes. Do not treat any older 'exact next action' in this file as the live project priority.

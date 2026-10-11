@@ -8,7 +8,7 @@ The source-derived `make save-progress` summary reports **only the bounded funct
 
 | Start | Retail function | Bytes | Owner | Implementation | Evidence / next useful clue |
 | --- | --- | ---: | --- | --- | --- |
-| 0x08011650 | Save loader / default initializer | 740 | ASM | asm/game_state.s | `tools/ches/checkpoints/save-loader-08011650-2026-10-04/README.md`; many compiler variants failed; reactivated by save-first priority |
+| 0x08011650 | Save loader / default initializer | 740 | ASM | asm/game_state.s | `tools/ches/checkpoints/save-loader-08011650-2026-10-04/README.md`; paired retail-clock control closes the small zero oracle; no unforced exact candidate |
 | 0x080D4178 | Full GameState assignment | 776 | EXACT | src/game_state_copy.cc | `docs/SAVE_GAMESTATE_ASSIGNMENT_MAP.md`; zero linked differences and isolated/production ROM proof; reconstructs children in the existing allocation |
 | 0x080D4480 | GameState cleanup | 84 | EXACT | src/game_state_cleanup.cc | `docs/GAME_STATE_SAVE_CLEANUP.md`; mode 2 retains allocation, mode 3 releases it |
 | 0x080D64C8 | Farm state copy | 180 | EXACT | src/farm_state_copy.cc | `docs/SAVE_FARM_STATE_COPY.md`; specialized Coop/Barn copies |
@@ -24,6 +24,8 @@ The source-derived `make save-progress` summary reports **only the bounded funct
 **Boundary warning:** `0x080D6A80..0x080D6B40` is **two functions (128+64 bytes)**. Earlier combined descriptions of a "192-byte Rucksack copy" were wrong. The cleanup is source-owned and the 128-byte copy is **also source-owned**. This was confirmed by source symbols and isolated linked-byte comparisons. Regenerate the linked ASM inventory after every source promotion. The 12-function save-copy subset includes the now source-owned Coop copy; **11 exact, 1 ASM**, and still does not imply full save-system completion.
 
 ## Verified save-adjacent helper outside this 12-function subset
+
+- **0x0800FF8C..0x0800FFD0, 68 linked bytes: EXACT C++** in `src/save_byte_buffer.cc`: `SavedByteBuffer::SavedByteBuffer()` initializes count and a packed `Location(MAP_NONE,0,0)`. Isolated forced ROM comparison and full production `make test` passed. See [buffer proof](SAVED_BYTE_BUFFER.md). The bounded subset remains 11/12.
 
 - **0x080D60B0..0x080D64C8, 1,048 linked bytes: EXACT C++** in `src/social_state_copy.cc` (`CopySavedSocialState`), copying the 0x478-byte social-state record at GameState+0x1CD4. A separate isolated forced ROM compare and production `make test` both pass original SHA1; see [social proof](SAVE_SOCIAL_STATE_COPY.md). This source promotion adds **1,048 whole-game code bytes** but does **not** change **11/12** in the bounded tracker. The parent GameState assignment is now exact C++; the 7,132-byte native-state copy remains ASM.
 

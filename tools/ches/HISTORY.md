@@ -224,3 +224,15 @@ Closed hypotheses and reproducible proof are in
 The 740-byte loader is next; no real player-save round trip was tested.
 
 Full production `make test` passed (`sh_mv3e7mvb_c049a043`, exit 0), including forced whole-ROM SHA1, portable tests, selector/SRAM tests and readability. Original parent/cleanup/packed-child addresses are preserved.
+
+## 2026-10-11: exact saved-buffer constructor; loader oracle corrected
+
+Recovered 68 exact bytes at 0800FF8C with a natural C++ constructor and the
+existing packed Location type. Isolated forced comparison
+`sh_mv3f94au_7a2e6f31` and full production `make test`
+`sh_mv3fbl43_261a3c49` passed original ROM SHA1. Exact source is
+96,176/940,036 (10.2311%); 843,860 ASM bytes / 1,923 functions remain.
+The bounded save-copy subset remains 11/12. The loader's old small zero
+oracle is closed by the paired retail-clock control; unforced fixed-string
+probing reproduces the 748/653 failure. No compiler or custom-game changes.
+See the buffer proof and corrected loader archive for reproducible details.
