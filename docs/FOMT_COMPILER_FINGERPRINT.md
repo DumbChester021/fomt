@@ -103,3 +103,11 @@ Scratch proof is under tools/ches/checkpoints/source-hygiene-audit-2026-10-10/.
 - src/mine_floor.cc remains known legacy source-shape debt with extensive fixed registers and inline assembly. docs/MINE_FLOOR.md already warns not to copy that style into new work.
 
 Repeat this audit whenever the compiler reconstruction changes. The still-required table is the first cleanup queue after any compiler improvement.
+
+### October 11 library-input refinement
+
+The production compiler and flags are unchanged. The source library's non-POD
+`__uninitialized_copy_aux` now has an ordinary `inline` declaration, which,
+with recovered container call structure, yields the exact Rucksack/MoneyState
+copies. Record this header input when reproducing those matches; it is not a
+new compiler behavior or proof of the historical library's unique source.

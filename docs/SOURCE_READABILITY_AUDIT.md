@@ -70,3 +70,13 @@ This review inspected source bodies, not just file names. Status describes the i
 4. **Never conflate manual readability work with newly decompiled bytes.** Semantic quality and full-ROM matching are independent gates. A real backed-up save-game emulator round-trip is also still missing.
 
 The stable fast matching/research workflow and newly learned codegen lessons are kept in [DECOMP_PLAYBOOK.md](DECOMP_PLAYBOOK.md). Append genuine chronological corrections to `tools/ches/HISTORY.md`; keep [START_HERE.md](../START_HERE.md) the single live progress/onboarding page.
+
+## October 11: active-entry range-copy review
+
+The new Rucksack and MoneyState copies use typed `CopyConstructFrom` members
+and standard-library range construction. They preserve inactive elements and
+the original placement-construction checks. Money maxima are typed records,
+with compile-time checks for each component offset. One ordinary `inline`
+declaration on the existing STL helper recovers its caller-visible structure;
+no forced-inline attribute, compiler change, pinned register, assembly body or
+padding instruction was added. Full-ROM exactness is checked separately.

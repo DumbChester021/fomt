@@ -819,3 +819,16 @@ python3 tools/ches/compare-function.py /path/to/candidate.i source-vs-compiler \
 ```
 
 A nonzero linked-byte mismatch is an expected **failure signal**, not an infrastructure error. Compare both original instruction count/length and relocatable linked bytes; preserve raw `.i` snapshots outside committed retail `src/` unless a corresponding source dependency is reproducible. Do not confuse this comparison oracle with actual game save/load tests.
+
+### Counted save copies: preserve the library's inline call structure
+
+Rucksack and MoneyState copies matched after recovering the existing non-POD
+`std::uninitialized_copy` helper's ordinary `inline` declaration, retaining
+the source count before construction, and using the container's `begin()`
+accessors. Flattened hand-written loops had equivalent intentions but different
+pointer provenance and register lifetimes. MoneyState also required its two
+trailing `MoneyRecord` assignments, not four scalar assignments.
+This is a source/library finding, not justification to change the compiler or
+force inlining globally. A standalone replacement helper did not match.
+The same container-only hypothesis regressed the large packed-state copy;
+do not assume this lesson solves every counted-copy function.

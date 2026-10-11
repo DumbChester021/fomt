@@ -82,7 +82,7 @@ def main() -> int:
             errors.append(f"{rel} lacks current percentage {pct}")
 
     # The two-way Rucksack boundary is a known earlier interpretation error.
-    expected = {0x080D6A80: (128, "ASM"), 0x080D6B00: (64, "EXACT")}
+    expected = {0x080D6A80: (128, "EXACT"), 0x080D6B00: (64, "EXACT")}
     by_addr = {a: (n, owner) for a, n, owner in rows}
     for addr, state in expected.items():
         if by_addr.get(addr) != state:

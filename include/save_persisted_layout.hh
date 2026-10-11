@@ -64,10 +64,10 @@ typedef char SaveDailyHistorySizeCheck[sizeof(MoneyHistory<30>) == 0xF4 ? 1 : -1
 typedef char SaveSeasonalHistorySizeCheck[sizeof(MoneyHistory<4>) == 0x24 ? 1 : -1];
 typedef char SaveMoneyDailyOffsetCheck[offsetof(MoneyState,daily) == 0x08 ? 1 : -1];
 typedef char SaveMoneySeasonalOffsetCheck[offsetof(MoneyState,seasonal) == 0xFC ? 1 : -1];
-typedef char SaveMoneyMaxDailyIncomeOffsetCheck[offsetof(MoneyState,max_daily_income) == 0x120 ? 1 : -1];
-typedef char SaveMoneyMaxDailySpendOffsetCheck[offsetof(MoneyState,max_daily_spend) == 0x124 ? 1 : -1];
-typedef char SaveMoneyMaxSeasonalIncomeOffsetCheck[offsetof(MoneyState,max_seasonal_income) == 0x128 ? 1 : -1];
-typedef char SaveMoneyMaxSeasonalSpendOffsetCheck[offsetof(MoneyState,max_seasonal_spend) == 0x12C ? 1 : -1];
+typedef char SaveMoneyMaxDailyIncomeOffsetCheck[offsetof(MoneyState,max_daily) + offsetof(MoneyRecord,income) == 0x120 ? 1 : -1];
+typedef char SaveMoneyMaxDailySpendOffsetCheck[offsetof(MoneyState,max_daily) + offsetof(MoneyRecord,spend) == 0x124 ? 1 : -1];
+typedef char SaveMoneyMaxSeasonalIncomeOffsetCheck[offsetof(MoneyState,max_seasonal) + offsetof(MoneyRecord,income) == 0x128 ? 1 : -1];
+typedef char SaveMoneyMaxSeasonalSpendOffsetCheck[offsetof(MoneyState,max_seasonal) + offsetof(MoneyRecord,spend) == 0x12C ? 1 : -1];
 typedef char SaveMoneyStateSizeCheck[sizeof(MoneyState) == 0x130 ? 1 : -1];
 // Farm's real children were already reconstructed in their respective headers.
 // Their offsets match the struct-copy calls in func_080D64C8.

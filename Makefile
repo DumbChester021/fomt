@@ -108,7 +108,7 @@ docs-check:
 
 save-check: docs-check
 	@python3 tools/ches/check_save_evidence.py
-	@python3 tools/ches/native_selector_map.py --check
+	@python3 tools/ches/native_selector_map.py --check --self-test
 	@python3 tools/ches/inspect_sram.py --self-test
 
 # Fast source-only triage: show the current evidence locations on demand, and

@@ -24,18 +24,18 @@ Eight independently grounded GameState objects now live in `PersistedGameStateLa
 | --- | --- | --- |
 | 0x0000..0x0013 | 0x14 | GameState header, packed fields not yet fully typed |
 | 0x0014..0x1AA7 | 0x1A94 | `Farm`: horse, shipping bin, farmhouse, coop, barn, field |
-| 0x1AA8..0x1BD7 | 0x130 | `MoneyState`: balance, two histories and four maxima |
+| 0x1AA8..0x1BD7 | 0x130 | `MoneyState`: balance, two histories and two income/spending maxima records |
 | 0x1BD8..0x1C6F | 0x98 | `Farmer`: location, tool/held-item, rucksack |
 | 0x1C70..0x1C9F | 0x30 | `Dog`, source-exact assignment |
 | 0x1CA0..0x1CCB | 0x2C | `SavedByteBuffer`, six exact methods |
 | 0x1CCC..0x214B | 0x480 | Saved social state and other still-partially-opaque fields; social copy is exact C++ |
-| 0x214C..0x21CB | 0x80 | `SavedNativeCallState`: 3 callable IDs, sentinel, 450 verified native-selector field names; 1,724-byte initializer exact C++, 7,132-byte copy ASM |
+| 0x214C..0x21CB | 0x80 | `SavedNativeCallState`: 3 callable IDs, sentinel, 455 verified native-selector field names; 1,724-byte initializer exact C++, 7,132-byte copy ASM |
 | 0x21CC..0x2C73 | 0xAA8 | Remaining untyped saved systems |
 | 0x2C74..0x2C7F | 0x0C | `SavedTransitionState`, eight exact methods |
 | 0x2C80..0x2E57 | 0x1D8 | `FishingRecords`, 59 eight-byte records |
 | 0x2E58..0x34F3 | 0x69C | Remaining untyped saved systems |
 
-`Farm` uses 0x1A94 bytes beginning at +0x14; its horse/ship-bin/farmhouse/coop/barn/field offsets are enforced by the original compiler. `Farmer` is 0x98 bytes with real location, held-item and rucksack fields. `MoneyState` is 0x130 bytes and its two counted histories and four maxima are compile-time checked. `FishingRecords` contains exactly 59 consecutive eight-byte count/max-size entries. These are actual existing project types, not speculative local clones.
+`Farm` uses 0x1A94 bytes beginning at +0x14; its horse/ship-bin/farmhouse/coop/barn/field offsets are enforced by the original compiler. `Farmer` is 0x98 bytes with real location, held-item and rucksack fields. `MoneyState` is 0x130 bytes and its two counted histories and both `MoneyRecord` maxima (four scalar components at +0x120/+0x124/+0x128/+0x12C) are compile-time checked. `FishingRecords` contains exactly 59 consecutive eight-byte count/max-size entries. These are actual existing project types, not speculative local clones.
 
 Reference details: [SAVED_BYTE_BUFFER.md](SAVED_BYTE_BUFFER.md), [SAVE_DOG_STATE_COPY.md](SAVE_DOG_STATE_COPY.md), [SAVE_TRANSITION_STATE.md](SAVE_TRANSITION_STATE.md), [SAVE_FORMAT.md](SAVE_FORMAT.md), and [SAVE_LIFECYCLE.md](SAVE_LIFECYCLE.md). These opaque spans are **not** assertions that their contained gameplay structures are unknown; they indicate that the complete parent GameState type has not yet been integrated as an exact typed source object.
 
@@ -59,4 +59,4 @@ The JSON separates `retail_header_fields_valid`, `header_reports_valid` (slot's 
 
 The compile-time layout checks initially used the newer `__builtin_offsetof`, which the original project compiler does not accept. Those were replaced with the compiler-supported `offsetof` macro from the project's `prelude.h`. An earlier forced `make -B -j4 compare` passed with the exact Barn and Farmer copies (Ches `sh_mv2ubxc2_e766423e`, `fomt.gba: OK` and original retail SHA1 `a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`).
 
-**Current matching C++ checkpoint (October 11):** 95,004 / 940,036 (10.1064%), 1,927 linked ASM functions. Farm, Barn, Coop, Farmer, Dog, the 1,048-byte social assignment and the 1,724-byte native-call initializer are exact source; so are the 48-byte packed-header B and C setters. The 7,132-byte packed-state copy, MoneyState/Rucksack copies, 776-byte GameState parent copy and 740-byte loader remain ASM. The typed layout alone adds no code bytes or real-save emulator evidence. See [SAVE_PACKED_NATIVE_COPY_RESEARCH.md](SAVE_PACKED_NATIVE_COPY_RESEARCH.md) for nonmatching copy research; use [START_HERE.md](../START_HERE.md) for live progress.
+**Current matching C++ checkpoint (October 11):** 95,332 / 940,036 (10.1413%), 1,925 linked ASM functions. Farm, Barn, Coop, Farmer, Dog, the 1,048-byte social assignment and the 1,724-byte native-call initializer are exact source; so are the 48-byte packed-header B and C setters. Rucksack (128 B) and MoneyState (200 B) copies are also exact source. The 7,132-byte packed-state copy, 776-byte GameState parent copy and 740-byte loader remain ASM. The typed layout alone adds no code bytes or real-save emulator evidence. See [SAVE_PACKED_NATIVE_COPY_RESEARCH.md](SAVE_PACKED_NATIVE_COPY_RESEARCH.md) for nonmatching copy research; use [START_HERE.md](../START_HERE.md) for live progress.

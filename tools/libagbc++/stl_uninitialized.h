@@ -47,7 +47,7 @@ __uninitialized_copy_aux(_InputIter __first, _InputIter __last,
 }
 
 template <class _InputIter, class _ForwardIter>
-_ForwardIter 
+inline _ForwardIter
 __uninitialized_copy_aux(_InputIter __first, _InputIter __last,
                          _ForwardIter __result,
                          __false_type)

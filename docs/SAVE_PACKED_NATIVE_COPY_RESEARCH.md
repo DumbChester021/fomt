@@ -126,3 +126,39 @@ Reproducible **local-only scratch** at `/mnt/waydroid-hdd/home-chester-waydroid/
 The current canonical *nonmatching* copy experiment now has a source candidate `shared-native-copy.cc` that **includes the tracked `include/saved_native_call_state.hh` directly** and assigns its 459 offset-annotated fields using the 450 proven `native_selector_XXX` names (the preserved five-bit region is not assigned). Its linked binary SHA256 matches the previous 7,120-byte `packed-copy-v2-merged-both.bin` candidate **exactly**: `ff65ce16d076fcea5d5bb5f7afb56e55945acce793b7721dd62d7a16b579ada6`. A separate ignored, scratch-only copy of that header substitutes `u16` declarations for only three still-provisional `+0x34` fields; the resulting `shared-native-copy-width-probe.bin` matches `remaining-34-u16.bin` **exactly** (SHA256 `48873d4420701a2cb45bb4a381fdb994239e4569f16a57ef973fa9c0bf779f82`, 7,120 generated vs 7,132 retail bytes and **3,621 differing linked bytes**). The shared-type refactor adds no source-owned retail executable bytes and does not establish original bitfield base types.
 
 Generator and scratch source: `/mnt/waydroid-hdd/home-chester-waydroid/fomt-packed-state-20261011/make_shared_native_copy_model.py`, `shared-native-copy.cc`, `scratch_native_copy_state.hh`, `shared-native-copy-width-probe.cc`. This removes a duplicate temporary type model; production still uses the verified type and original 7,132-byte ASM. Tested bounded pointer-endpoint shapes (`probe_pointer_semantics_after_field_fix.py`) produced either identical existing code or worse linked matches; these are closed, not candidates to retry. Prior 24/24 randomized behavior proofs apply to their byte-identical compiled candidates, not to a whole-game emulator save/load check.
+
+## October 11: computed-address writers and bounded range-copy follow-up
+
+The previous 450-case index covered literal-address cases only. Five additional
+direct writers build addresses as shifted immediates after loading GameState:
+`0x86 << 6 = 0x2180` for selectors **0x120/121/122/123**, and
+`0x87 << 6 = 0x21C0` for **0x1EE**. The former write +0x34 bits 0/2/4/6
+(two bits each); the latter writes **+0x74.bit6:3** using a halfword load,
+mask `0xFFFFFE3F`, and shared halfword-store tail. Their source field names
+now reflect those selector identities. The already modeled boundaries were
+correct; this does **not** prove the bitfield base types.
+
+`native_selector_map.py --check --self-test` now checks **455** unique fields,
+the computed owner/address chain, mask, access width and shared store tail.
+It also rejects nine deliberately invalid versions of the retail cases.
+Of 460 declared fields, 455 have selector names; five remain neutral, including
+the preserved five-bit gap. There are 107 other dispatcher cases, not presumed unused.
+The initializer changes are names only; its original 1,724-byte code remains exact.
+
+New source/library evidence from the exact Rucksack/MoneyState copies was
+tested here with a real `FixedVec<u16,3>` and `CopyConstructFrom`.
+`native-range-typed.cc` gives **7,140/6,768** and
+`native-range-width.cc` **7,144/6,786** (bytes/differences). Both regress
+and remain **CLOSED container-only hypotheses**; no production type change.
+Best scratch remains **7,120/3,621**, 24/24 earlier bounded behavior trials.
+The first raw-byte difference is at 0x080D44EE; +0x34 is the first
+packed-store instruction-*shape* divergence, not the first raw mismatch.
+The +0x34 retail register/constant reuse differs from the candidate; authentic
+base-type and compiler-pass evidence are still needed before further changes.
+
+The canonical shared scratch generator and both copy sources now use the 455
+verified selector names. Recompiled width probe `shared-native-copy-width-455`
+retains 7,120 bytes / 3,621 differences and exactly the prior SHA256
+`48873d4420701a2cb45bb4a381fdb994239e4569f16a57ef973fa9c0bf779f82`.
+Thus the earlier bounded behavior proof applies to the identical executable;
+no improvement or new behavior trial is claimed from the rename.

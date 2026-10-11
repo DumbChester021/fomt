@@ -51,6 +51,16 @@ struct FixedVec
     reference operator[](size_type idx) { return reinterpret_cast<T *>(m_data)[idx]; }
     const_reference operator[](size_type idx) const { return reinterpret_cast<T const *>(m_data)[idx]; }
 
+    // Construct only the active range. The caller must have already ended
+    // the lifetime of any destination elements; unused capacity is untouched.
+    void CopyConstructFrom(FixedVec const & source)
+    {
+        m_size = 0;
+        size_type count = source.size();
+        std::uninitialized_copy(source.begin(), source.begin() + count, begin());
+        m_size = count;
+    }
+
     T push_back(T value);
     T push_front(T value);
 

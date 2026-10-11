@@ -323,3 +323,15 @@ Two additional functions adjoining the exact shipping payout and record flag (se
 ## October 11 production update — typed Coop state copy exact
 
 `func_080D66A4` Coop-state assignment (**292B**) is now owned by `src/coop_state_copy.cc`, not `asm/code_linkonce.s`. The natural packed-header/memberwise field copy matches both the local October-2003 Nintendo/Cygnus compiler and the unmodified May-2000 compiler byte for byte. A compiler-internal **call-crossing liveness** distinction in the existing tracked FoMT compatibility rule restores exact output across both Coop copy and `Coop::DayUpdate`; a previous blanket source-variable approach produced a 4-byte regression in DayUpdate, now resolved without magic numeric thresholds or register forcing. A newly rebuilt pinned official compiler and default production **`make test` passed with `fomt.gba: OK`**, `sh_mv32kflp_e537e2d3`. Code-source ownership **92,136/940,036 bytes (9.8013%)**; **847,900** ASM bytes / **1,931** unresolved linked ASM functions remain. The bounded saved-state copy/cleanup matrix is **8/12 exact, 1,576/3,420B (46.1%)**, *not* the complete save system. Loader 740B, parent GameState assignment 776B, active Rucksack copy 128B and MoneyState copy 200B are still ASM, alongside separate save/SRAM/UI logic. **No real player save/load emulator round-trip has been tested**. See [SAVE_BARN_STATE_COPY.md](SAVE_BARN_STATE_COPY.md) and [FOMT_COMPILER_RESEARCH.md](FOMT_COMPILER_RESEARCH.md).
+
+## October 11: Rucksack and MoneyState copies recovered
+
+The later exact range-construction integration supersedes the older 8/12
+checkpoint above: `func_080D6A80` and `func_080D6B40` are now owned by
+`src/rucksack_state_copy.cc` and `src/money_state_copy.cc`, preserving the
+original 128/200-byte linked intervals. Only active elements are constructed;
+unused capacity remains untouched. MoneyState's two trailing income/spending
+maxima records copy as aggregates. Existing cleanup-before-copy behavior and
+serialized sizes/offsets are unchanged. The bounded subset is **10/12 exact**,
+not full save completion. See the current evidence matrix and range-copy proofs.
+The large native-state copy, parent copy, loader and real-save runtime proof remain open.

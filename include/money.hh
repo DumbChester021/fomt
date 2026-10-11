@@ -3,7 +3,7 @@
 
 #include "types.h"
 
-#include <new>
+#include <memory>
 
 struct MoneyRecord
 {
@@ -19,6 +19,18 @@ struct MoneyRecord
 template <u32 Capacity>
 struct MoneyHistory
 {
+    MoneyRecord * begin() { return records; }
+    MoneyRecord const * begin() const { return records; }
+
+    // Construct the active history after destination cleanup; preserve unused entries.
+    void CopyConstructFrom(MoneyHistory const & source)
+    {
+        count = 0;
+        u32 active_count = source.count;
+        std::uninitialized_copy(source.begin(), source.begin() + active_count, begin());
+        count = active_count;
+    }
+
     bool empty() const
     {
         return count == 0;
@@ -60,10 +72,8 @@ struct MoneyState
     MoneyHistory<30> daily;
     MoneyHistory<4> seasonal;
 
-    u32 max_daily_income;
-    u32 max_daily_spend;
-    u32 max_seasonal_income;
-    u32 max_seasonal_spend;
+    MoneyRecord max_daily;
+    MoneyRecord max_seasonal;
 };
 
 extern "C" MoneyState * func_0809AB8C(MoneyState * money);

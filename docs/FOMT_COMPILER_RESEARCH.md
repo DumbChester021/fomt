@@ -1150,3 +1150,15 @@ The higher-quality explanation is compiler-known **call-crossing metadata**. `-d
 The preceding October 11 call-crossing hypothesis is now installed via the tracked pinned-source `tools/agbcp_fomt_compat.patch`, with only one general `flow.c` condition narrowed. The patch applies cleanly to the pinned base (`git apply --cached --check`) and the normal pinned-source installer `bash tools/install_agbcp.sh` was verified using a local clone of the pinned repository. The resulting default production compiler (all 13 compatibility switches enabled) reproduced the original complete ROM through **normal `make test`**, Ches `sh_mv32kflp_e537e2d3`, exit 0, `fomt.gba: OK`. Readability, documentation, synthetic save tests, save function ownership, calcrom, progress, and forced ROM hash all passed; no temporary scratch probe flag or function-specific behavior was installed. The accompanying natural `src/coop_state_copy.cc` is now source-owned **292/292**, and the already exact `Coop::DayUpdate` remains unchanged. The bounded save-copy subset advances **7/12 → 8/12**.
 
 This is an evidence-backed *compatibility compiler* correction, corroborated by **two historically real compilers that compile Coop copy and DayUpdate both exactly**. The precise `REG_N_CALLS_CROSSED` exception itself has **not** been located in authentic historical Nintendo optimizer source. Do not claim the vendor compiler has been reconstructed exactly or promote threshold/probe-only experiments; the remaining compiler debt and historical provenance classification continue to apply.
+
+## October 11: save range-copy mismatch was library/source structure
+
+The Rucksack and MoneyState copies now match with the **unchanged** production
+compiler. The existing non-POD SGI STL `__uninitialized_copy_aux` declaration
+needed ordinary `inline`, alongside captured counts and real container
+accessors; MoneyState's final values are two `MoneyRecord` aggregates.
+The 126/198-byte instruction bodies and 128/200-byte linked spans are exact.
+No compatibility rule, optimization flag or forced-inline attribute changed.
+Earlier historical-compiler negative results remain valid for their frozen
+inputs; their interpretation as a continuing source frontier is superseded.
+See the Rucksack proof and GameState/Money map for artifacts and full-ROM gates.

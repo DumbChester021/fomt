@@ -1,5 +1,7 @@
 # GameState assignment: fieldwise dependency and typed-layout map
 
+**Current nested-copy correction:** Rucksack (128 B) and MoneyState (200 B) are now exact source. Their older failed candidates below are historical, superseded by the range-construction proof at the end. MoneyState maxima at +0x120/+0x128 are paired `MoneyRecord` objects, with unchanged serialized offsets.
+
 ## Retail 0x080D4178 (776 bytes): current reconstruction evidence
 
 `func_080D4178` at ROM `0x080D4178..0x080D4480` is the retail GameState assignment/copy operation. It is **still assembly**, not a matching C++ function. It is used by successful save loading to preserve the existing live GameState allocation. This map is grounded in the original `asm/code_linkonce.s` callsites and the existing C++ types, not a claim that the original entire object-copy logic is reconstructed.
@@ -8,13 +10,13 @@
 | --- | ---: | --- | --- |
 | 0x0000..0x0013 | 0x14 | Copy packed GameState header members with field masks and 12-byte word run | Header still partially opaque |
 | 0x0014..0x1AA7 | 0x1A94 | Call `func_080D64C8(dst+0x14,src+0x14)` | **`CopySavedFarmState` exact 180-byte C++** using real Farm fields, original address; specialized Barn copy is exact 296-byte C++; the nested Coop copy is also exact typed C++ (292 bytes) |
-| 0x1AA8..0x1BD7 | 0x130 | Call `func_080D6B40(dst+0x1AA8,src+0x1AA8)` | `MoneyState` exactly located; counted daily/seasonal copy **ASM** |
-| 0x1BD8..0x1C6F | 0x98 | Call `func_080D68C0(dst+0x1BD8,src+0x1BD8)` | **`CopySavedFarmerState` exact 448-byte C++**, original alias; nested Rucksack copy `080D6A80` remains ASM |
+| 0x1AA8..0x1BD7 | 0x130 | Call `func_080D6B40(dst+0x1AA8,src+0x1AA8)` | `MoneyState` exactly located; counted daily/seasonal copy **exact C++ (200 B)** |
+| 0x1BD8..0x1C6F | 0x98 | Call `func_080D68C0(dst+0x1BD8,src+0x1BD8)` | **`CopySavedFarmerState` exact 448-byte C++**, original alias; nested Rucksack copy `080D6A80` is exact C++ (128 B) |
 | 0x1C70..0x1C9F | 0x30 | Call `func_080D67C8(dst+0x1C70,src+0x1C70)` | **`CopySavedDogState` exact 132-byte C++**, original address |
 | 0x1CA0..0x1CCB | 0x2C | Set destination count to zero; copy active bytes individually; restore count, copy six-byte location | `SavedByteBuffer` methods partially exact; parent assignment **ASM** |
 | 0x1CCC..0x1CD1 | 0x06 | Raw `memcpy` 6 bytes | Spatial/location-style data; specific semantics pending |
 | 0x1CD4..0x214B | 0x478 | Call `func_080D60B0(dst+0x1CD4,src+0x1CD4)` | **`CopySavedSocialState` exact natural C++**: 1,048 linked code bytes, 41 typed NPC/bachelorette/sprite records and packed/child fields; [evidence](SAVE_SOCIAL_STATE_COPY.md) |
-| 0x214C..0x21CB | 0x80 | Call `func_080D44D4(dst+0x214C,src+0x214C)` | **`SavedNativeCallState` typed at +0x214C**, its 1,724-byte initializer exact C++; **450 fields now have retail-verified action-selector names**, checked by `tools/ches/native_selector_map.py`. Its 7,132-byte copy remains ASM; bounded behavior passes, codegen does not. [Evidence](SAVE_PACKED_NATIVE_COPY_RESEARCH.md) |
+| 0x214C..0x21CB | 0x80 | Call `func_080D44D4(dst+0x214C,src+0x214C)` | **`SavedNativeCallState` typed at +0x214C**, its 1,724-byte initializer exact C++; **455 fields now have retail-verified action-selector names**, checked by `tools/ches/native_selector_map.py`. Its 7,132-byte copy remains ASM; bounded behavior passes, codegen does not. [Evidence](SAVE_PACKED_NATIVE_COPY_RESEARCH.md) |
 | 0x21CC onward | variable | Assign scalar/short packed fields, strings via `strcpy`, larger opaque data via `memcpy` | Full assignment **ASM** |
 | 0x2C1C onward | 0x30+ | Copy three groups of scalar/aggregate words before transition state | Unknown packed saved records |
 | 0x2C74..0x2C7F | 0x0C | Copy three words, no deep allocation | `SavedTransitionState` and 8 exact separate member methods |
@@ -45,7 +47,7 @@ The nested `MoneyState` assignment has a saved, behaviorally readable natural C+
 
 The read-only `tools/ches/inspect_sram.py` can extract basic original MoneyState, saved-buffer, transition, and 59-entry fishing summary fields only when a slot has consistent header, length and checksum. Its synthetic tests exercise the original fish total saturation at 1 billion, indices 8–58, six fish kings at 53–58, and rejection of invalid slots. It never modifies SRAM or proves a save will load in an emulator. No genuine save was used.
 
-**Next work:** source-recover the remaining nested `Rucksack`/`MoneyState` assignments (Farm, Farmer, Barn, Coop and Dog now exact) and the full `func_080D4178`, then the 740-byte default constructor/loader `func_08011650` using the closed-experiment oracle ledger. Test backed-up actual saves and error paths. Keep retail `main` and custom-game isolated.
+**Next work:** the 7,132-byte native-state copy, full `func_080D4178`, then the 740-byte default constructor/loader `func_08011650` using the closed-experiment oracle ledger. Rucksack and MoneyState copies are now exact, as are Farm, Farmer, Barn, Coop and Dog. Test backed-up actual saves and error paths. Keep retail `main` and custom-game isolated.
 
 Other related documentation: [SAVE_SOCIAL_STATE_COPY.md](SAVE_SOCIAL_STATE_COPY.md), [SAVE_LIFECYCLE.md](SAVE_LIFECYCLE.md), [SAVE_SERIALIZED_LAYOUT.md](SAVE_SERIALIZED_LAYOUT.md), [GAME_STATE_SAVE_CLEANUP.md](GAME_STATE_SAVE_CLEANUP.md), [SAVE_DOG_STATE_COPY.md](SAVE_DOG_STATE_COPY.md), [SAVE_MENU_RETRY_TRACE.md](SAVE_MENU_RETRY_TRACE.md).
 
@@ -64,7 +66,7 @@ An October 11 re-read of original `asm/code_linkonce.s` at `0x080D4178..0x080D44
 | `+0x0004` | `+0x0005` | Assign only bit 0 in byte at `+4` | Higher seven bits of this byte are **not assigned by this operation** |
 | `+0x0008` | `+0x0014` | Copy **three 32-bit words** using `ldm/stm` | Remaining `+0x0005..+0x0007` are not directly copied |
 | `+0x0014` | dependent | Call `func_080D64C8` (Farm) | Typed exact nested call |
-| `+0x1AA8` | dependent | Call `func_080D6B40` (MoneyState) | Nested copy still ASM; not a generic 0x130-byte memcpy |
+| `+0x1AA8` | dependent | Call `func_080D6B40` (MoneyState) | Exact nested copy; not a generic 0x130-byte memcpy |
 | `+0x1BD8` | dependent | Call `func_080D68C0` (Farmer) | Typed exact nested call |
 | `+0x1C70` | dependent | Call `func_080D67C8` (Dog) | Typed exact nested call |
 | `+0x1CA0` | dependent | Reset destination active count to zero, copy **source-count bytes** from `+0x1CA4` one by one, then restore count | Inactive buffer entries must not be overwritten as a full-buffer memcpy |
@@ -94,3 +96,28 @@ An October 11 re-read of original `asm/code_linkonce.s` at `0x080D4178..0x080D44
 ### October 11 archived MoneyState hypotheses recompiled under three toolchains
 
 After the typed Coop copy enabled a general, verified call-crossing liveness rule, seven **archived preprocessed MoneyState copy hypotheses** were recompiled with the new production compiler, retaining their frozen source input. None became exact: `money-copy-v1` **196/157**, `money-history-member-v2` **208/139**, `money-member-v1` **268/257** (slightly worse), `placement-entry`, `placement-range`, `placement-template` each **196/157**, and `typed-copy-array` **192/151** (size / differing linked bytes). The original May-2000 ARM and October-2003 Nintendo/Cygnus compilers both reproduced the same nonmatching **196/157** and **208/139** outcomes for the two representative hypotheses. This rules out the newly corrected compiler liveness behavior as a sufficient solution *for these source forms*; it does not prove the original `MoneyState` source layout. Original 200-byte `func_080D6B40` still ASM, **0 new matching code bytes**. Use genuinely new evidence about the nested counted-history constructor/copy ABI, not another compiler tweak or spelling variant.
+
+### October 11: exact MoneyState range-construction integration
+
+The Rucksack range-construction discovery supplied new ABI evidence for
+MoneyHistory. A member `CopyConstructFrom`, const/nonconst `begin()`, captured
+source count, and inline standard-library range construction reproduce both
+active-entry loops. The final copy pairs at +0x120 and +0x128 are two
+`MoneyRecord` aggregates, each containing income and spend, rather than four
+independent scalar assignments. The byte layout is unchanged.
+
+Scratch `money-stl-records.cc` / `money_range_records.hh` in the existing
+local MoneyState research directory produces **198 exact instruction bytes**
+at `0x080D6B40..0x080D6C06`; the final two bytes of the 200-byte linked
+interval are ordinary alignment. The full-interval diagnostic is 198/2
+(execution `sh_mv3bw4yy_62545b26`); the production source owns all 200 linked bytes. Isolated forced compare
+`sh_mv3byvcj_2a8c31b0` and production compare `sh_mv3by797_02b6e467` passed
+the original ROM SHA1. Direct inline ranges without the member boundary gave 200/160;
+the member boundary without begin accessors or paired tail records gave
+210/110. These supersede the old source-shape frontier, not the old recorded
+failures. No compiler changes were made.
+
+Final production `make test` passed (`sh_mv3c69xf_76631a07`, exit 0): portable
+checks, layout/source evidence, selector negative cases, readability and forced
+whole-ROM SHA1 comparison. The original 200-byte MoneyState linked interval,
+next cleanup address and serialized record offsets remain exact.

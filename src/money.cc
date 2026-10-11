@@ -14,10 +14,10 @@ MoneyState * func_0809AB8C(MoneyState * money)
     money->flag_1 = 0;
     money->daily.count = 0;
     money->seasonal.count = 0;
-    money->max_daily_income = 0;
-    money->max_daily_spend = 0;
-    money->max_seasonal_income = 0;
-    money->max_seasonal_spend = 0;
+    money->max_daily.income = 0;
+    money->max_daily.spend = 0;
+    money->max_seasonal.income = 0;
+    money->max_seasonal.spend = 0;
 
     func_0809AE6C(money);
 

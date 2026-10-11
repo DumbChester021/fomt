@@ -172,3 +172,37 @@ The 7,132-byte copy's all-`u32` candidate remains 7,028/6,523 mismatches; all-re
 - Audited live onboarding, readme, save evidence, lifecycle, serialized layout, format and playbook against **pushed source checkpoint `6212b65`**, the exact-link inventory (95,004/940,036 source C++ bytes, 1,927 linked ASM functions), and the successful complete-ROM test. This is **documentation-only**; no executable source, compiler or ROM files changed.
 - Fixed old 94,908-byte “current” references in `docs/SAVE_FORMAT.md` and `docs/SAVE_SERIALIZED_LAYOUT.md`, the omitted exact Coop copy and stale B/C setter status, and outdated “latest” checkpoint language in lifecycle docs. Moved the 48-byte exact `func_08011498` evidence from the bottom of the evidence matrix into its correct verified-helper section. Marked a pre-save-first queue in `docs/DECOMP_PLAYBOOK.md` as **historical**, not an instruction to resume old targets.
 - `START_HERE.md` now gives a compact no-context continuation: check Git, follow the primary 7,132-byte still-ASM native-state copy, use 450 verified selector names, distinguish the 7,120-byte nonmatching scratch candidate (3,621 differing bytes, 24/24 bounded behavioral samples) from exact source, and investigate real ABI evidence from the newly exact B/C packed-header setters. Machine-specific paths were kept in the existing Git-ignored `AGENTS.local.md` and specialized research notes, not the public onboarding. Do not modify the separate custom-game worktree.
+
+## 2026-10-11 - Exact Rucksack/MoneyState range copies and computed selectors
+
+- Supersedes the still-ASM Rucksack/MoneyState statements in the earlier
+  October 11 checkpoints: `func_080D6A80` and `func_080D6B40` now have
+  readable C++ bodies of 126/198 bytes, with ordinary alignment preserving
+  their 128/200-byte linked spans. Both original labels/neighbor addresses
+  remain. Isolated forced ROM compare `sh_mv3byvcj_2a8c31b0` and production
+  compare `sh_mv3by797_02b6e467` passed the original ROM SHA1.
+- Mechanism: inline existing STL non-POD range helper, captured source count,
+  container accessors and paired MoneyRecord maxima. No compiler change.
+  Closed standalone-range and scalar-tail probes are preserved locally.
+- Exact source grows by **328 linked bytes** to **95,332/940,036 (10.1413%)**;
+  **844,704 ASM bytes / 1,925 functions** remain. The bounded save subset
+  becomes **10/12**, while the 7,132-byte native copy remains outside it.
+- Corrects the 450-case native-selector index: five computed-address writers
+  establish selectors 0x120..0x123 and 0x1EE, totaling **455** identities.
+  No bitfield base type or gameplay meaning is invented. Five declared fields
+  remain neutral. Negative-evidence parser checks reject nine altered cases.
+- Applying the recovered container shape to the large native copy regressed
+  to 7,140/6,768 and 7,144/6,786; those candidates are closed. Best remains
+  7,120/3,621, not exact. +0x34 is a store-shape divergence; the first raw-byte
+  difference is earlier at 0x080D44EE.
+- No custom-game changes or actual player-save runtime claim. Final full-suite
+  and publication results follow in this chronology.
+
+### 2026-10-11 - Final range-copy gate
+
+Full production `make test` completed successfully (`sh_mv3c69xf_76631a07`,
+exit 0), including portable checks, computed-selector negative tests, source
+readability and forced original-ROM comparison. Final SHA1 remains
+`a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`. Canonical renamed packed-copy
+scratch was recompiled and is byte-identical to its prior 7,120/3,621 candidate.
+No background builds remain; next research target remains the packed copy.

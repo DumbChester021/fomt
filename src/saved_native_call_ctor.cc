@@ -167,10 +167,10 @@ EC SavedNativeCallState * InitializeSavedNativeCalls(SavedNativeCallState *dest)
     dest->native_selector_11d = 0;
     dest->native_selector_11e = 0;
     dest->native_selector_11f = 0;
-    dest->flag_34_b0 = 0;
-    dest->flag_34_b2 = 0;
-    dest->flag_34_b4 = 0;
-    dest->flag_34_b6 = 0;
+    dest->native_selector_120 = 0;
+    dest->native_selector_121 = 0;
+    dest->native_selector_122 = 0;
+    dest->native_selector_123 = 0;
     dest->native_selector_124 = 0;
     dest->native_selector_125 = 0;
     dest->native_selector_126 = 0;
@@ -405,7 +405,7 @@ EC SavedNativeCallState * InitializeSavedNativeCalls(SavedNativeCallState *dest)
     dest->native_selector_1eb = 0;
     dest->native_selector_1ec = 0;
     dest->native_selector_1ed = 0;
-    dest->flag_74_b6 = 0;
+    dest->native_selector_1ee = 0;
     dest->native_selector_1ef = 0;
     dest->native_selector_1f0 = 0;
     dest->native_selector_1f1 = 0;

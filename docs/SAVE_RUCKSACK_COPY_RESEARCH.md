@@ -1,5 +1,7 @@
 # Saved Rucksack copy: typed semantics and matching research
 
+**Current:** exact source in `src/rucksack_state_copy.cc`; both the isolated forced ROM rebuild and production ROM compare pass the original SHA1. The 128-byte linked interval includes 126 instruction bytes and two ordinary alignment bytes. Earlier failed candidates below are historical.
+
 ## Verified retail boundaries (October 11, 2026)
 
 The `Rucksack` data-copy routine is `func_080D6A80`, address interval **0x080D6A80..0x080D6B00 (128 machine-code bytes)**. Earlier notes mistakenly referred to **192 bytes** by including the immediately following **64-byte Rucksack cleanup** at `0x080D6B00..0x080D6B40`. That cleanup was already reconstructed as `CleanupGameStateBlock1C38` in `src/game_state_cleanup.cc` before this investigation, so it must **not** count as newly recovered code or as remaining assembly.
@@ -10,7 +12,7 @@ The source-owned `CopySavedFarmerState` at `0x080D68C0` calls `func_080D6A80(&de
 - `Rucksack::tools` at +0x24: `FixedVec<ToolStack,8>`, 0x14 bytes total, 4-byte active count then up to eight 2-byte `ToolStack` values.
 - Combined size 0x38. The original copy sets each destination count to zero, copies **only source-active entries**, restores each source count, and returns the destination pointer. It must not be replaced by a whole-struct memcpy or implicit `FixedVec` assignment, which would overwrite inactive capacity and lose the original lifecycle contract. The item records copy as 32-bit loads/stores. Each active two-byte tool uses the original external `memcpy` call, with an explicit destination nonnull check. Unsupported assumptions about invalid/corrupt active counts are not established.
 
-## Source candidates preserved, none production-ready
+## Historical source candidates, superseded by the exact range construction
 
 Experiments were compiled in the **detached** worktree `/mnt/waydroid-hdd/home-chester-waydroid/fomt-save-barn-integration-20261011`, with artifacts at `/mnt/waydroid-hdd/home-chester-waydroid/fomt-save-rucksack-20261011/`.
 
@@ -31,9 +33,7 @@ The isolated forced full ROM build passed (Ches `sh_mv2ut764_fd2499fc`, `fomt.gb
 
 ## Next steps
 
-Avoid repeating the four failed source-shape variations without new compiler evidence. Read their assembly and allocator traces if returning to the 128-byte copy; prioritize natural, maintainable typed code and exact output. Parallel save-system blockers remain `func_080D6B40` (MoneyState, 200 bytes), `func_080D4178` (parent GameState assignment, 776 bytes), `func_08011650` (loader, 740 bytes), and SRAM/UI menu paths. The existing SRAM inspector's synthetic tests do **not** prove that a genuine backed-up player save loads in an emulator.
-
-The typed cleanup was first verified in an uncommitted retail `main` working tree. A zero-context continuation must check Git and the canonical handoff for its subsequent publication status.
+The Rucksack copy is complete as matching source. Continue the separate 7,132-byte native-state copy, parent GameState copy and loader. Keep the original 128/64-byte copy/cleanup split. See START_HERE for live priority; the older compiler/constructor failures below remain evidence, not current blockers.
 
 ## October 11 follow-up: copy-constructor hypothesis (CLOSED, scratch only)
 
@@ -64,3 +64,26 @@ The October 11 general **call-crossing liveness** correction which unlocked the 
 An **independent May-2000 ARM compiler** and the **October-2003 Nintendo/Cygnus compiler** were each used to recompile the archived `.i` inputs for `rucksack-v1..v4`; both produced the **same nonmatching results** as the corrected compatibility compiler above. This is substantial *negative* evidence against searching for another generic compiler switch to solve those candidate source forms. The best measured improvement (`v2` 165→101 differences) still produces **124 bytes versus the retail 128**. Do not promote it, append padding, force registers, or claim an exact match. Next meaningful investigation requires a genuinely different, assembly-grounded **original active-entry copy/constructor ABI**, including the per-entry tool `memcpy`, not further equivalent loop syntax.
 
 Validation: `compare-function.py` with `rucksack-v2.i`, `--symbol CopySavedRucksackState --start 0x080D6A80 --end 0x080D6B00`, reported **124 / 101** and returned nonzero for the mismatch. Coop was independently checked from both readable `.cc` and its emitted `.i` and returned **292/0** for both; the new preprocessed input mode is not fabricating matches. Experiments did **not** modify production `src/`, original assembly, the linker or the ROM.
+
+## October 11: exact range-construction integration
+
+The previously missing source evidence is the inline SGI STL range-construction
+helper, not a new compiler behavior. Marking the existing non-POD
+`__uninitialized_copy_aux` overload `inline`, retaining a local source count,
+and calling `std::uninitialized_copy(source.begin(), source.begin() + count,
+begin())` from `FixedVec::CopyConstructFrom` reproduces **all 126 instruction
+bytes** at `0x080D6A80..0x080D6AFE`. The remaining two bytes in the 128-byte
+linked interval are alignment before the cleanup. No explicit padding or
+compiler patch is used. The helper's existing placement construction emits
+the retail null checks and per-tool external memcpy naturally.
+
+Scratch proof: `rucksack-final.cc` and `rucksack-final.mismatch.txt` in the
+existing local Rucksack research directory. Comparison execution
+`sh_mv3bu1wn_b9925de5`: 126 bytes / zero differences. Library-inline-only
+without a captured count was 132/96; a standalone replacement range helper
+was 120/77 and is rejected. The exact candidate uses the real standard
+library wrapper chain and existing Rucksack types. Production owns the 128-byte linked interval. Isolated forced compare
+`sh_mv3byvcj_2a8c31b0` and production compare `sh_mv3by797_02b6e467` both
+passed the original ROM SHA1. Full production `make test` then passed
+(`sh_mv3c69xf_76631a07`, exit 0), including all portable checks and the forced
+ROM rebuild. Real player-save runtime validation remains separate.

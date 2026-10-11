@@ -16,8 +16,8 @@ JUMP_TABLE = ".L08049034"
 SHARED_BIT6 = ".L0804DA1A"
 
 
-def build_map():
-    asm = ASM.read_text().splitlines()
+def build_map(asm_text=None):
+    asm = (ASM.read_text() if asm_text is None else asm_text).splitlines()
     header = HEADER.read_text().splitlines()
     fields = {}
     for line in header:
@@ -36,6 +36,12 @@ def build_map():
         if m:
             labels[m.group(1)] = i
     assert JUMP_TABLE in labels and SHARED_BIT6 in labels
+    for label, expected in {
+            ".L0804D2D6": ["ands r0, r2", "orrs r0, r3", "strh r0, [r1]"],
+            ".L0804DA28": ["ands r0, r2", "orrs r0, r3"],
+            ".L0804DA2C": ["strb r0, [r1]"]}.items():
+        start = labels[label] + 1
+        assert [x.strip() for x in asm[start:start + len(expected)]] == expected
     tail = asm[labels[SHARED_BIT6]:labels[SHARED_BIT6]+9]
     assert any("ands r6, r0" in x for x in tail)
     assert any("lsls r3, r6, #6" in x for x in tail)
@@ -67,6 +73,21 @@ def build_map():
                 addr = int(m.group(1), 16)
                 if 0x214c <= addr < 0x21cc:
                     targets.append(addr - 0x214c)
+        # Some GameState-relative addresses fit a shifted immediate instead
+        # of a literal-pool load. Require the complete address-building chain,
+        # including the known GameState owner pointer, before accepting it.
+        operations = [line for _, line in block]
+        owner = ["movs r1, #0xd4", "lsls r1, r1, #2",
+                 "adds r0, r7, r1", "ldr r1, [r0]"]
+        computed = False
+        if operations[:4] == owner and len(operations) >= 7:
+            imm = re.fullmatch(r"movs r2, #(0x[0-9a-fA-F]+|[0-9]+)", operations[4])
+            shift = re.fullmatch(r"lsls r2, r2, #(0x[0-9a-fA-F]+|[0-9]+)", operations[5])
+            if imm and shift and operations[6] == "adds r1, r1, r2":
+                addr = int(imm[1], 0) << int(shift[1], 0)
+                if 0x214c <= addr < 0x21cc:
+                    targets.append(addr - 0x214c)
+                    computed = True
         if targets:
             direct += 1
         if len(targets) == 2 and targets[1] == targets[0] + 1:
@@ -182,6 +203,32 @@ def build_map():
         name, width = member
         if input_mask is not None and input_mask != (1 << width) - 1:
             continue
+        if computed:
+            # Validate the output width/mask and shared store tail as well as
+            # the address. This rejects unrelated shifted-immediate cases.
+            ops = {line for _, line in block}
+            if branch in ("b .L0804D2D6", "bl .L0804D2D6"):
+                expected = (~(((1 << width) - 1) << shift)) & 0xffffffff
+                masks = [int(m.group(1), 16) for _, line in block
+                         if (m := re.search(r"@ =0x([0-9a-fA-F]{8})", line))]
+                if "ldrh r2, [r1]" not in ops or expected not in masks:
+                    continue
+            elif branch in ("b .L0804DA28", "bl .L0804DA28",
+                            "b .L0804DA2C", "bl .L0804DA2C"):
+                mask = ((1 << width) - 1) << shift
+                if "ldrb r2, [r1]" not in ops:
+                    continue
+                if shift + width == 8:
+                    if f"movs r0, #0x{255 ^ mask:x}" not in ops:
+                        continue
+                else:
+                    values = [int(m.group(1), 0) for _, line in block
+                              if (m := re.fullmatch(
+                                  r"movs r0, #(0x[0-9a-fA-F]+|[0-9]+)", line))]
+                    if mask + 1 not in values or "rsbs r0, r0, #0" not in ops:
+                        continue
+            else:
+                continue
         if wide:
             # A literal clear-mask must independently prove the destination
             # bits, including fields that cross a 16-bit boundary.
@@ -212,25 +259,62 @@ def build_map():
     return len(cases), direct, matched
 
 
+def self_test():
+    original = ASM.read_text()
+    _, _, matches = build_map(original)
+    indexed = {entry["selector"]: entry for entry in matches}
+    for selector, offset, bit, width in [
+            (0x120, 0x34, 0, 2), (0x121, 0x34, 2, 2),
+            (0x122, 0x34, 4, 2), (0x123, 0x34, 6, 2),
+            (0x1ee, 0x74, 6, 3)]:
+        entry = indexed[selector]
+        assert (entry["offset"], entry["bit"], entry["width"]) == (offset, bit, width)
+    # Mutate actual retail cases: an unrelated computed address or a writer
+    # with the wrong width/mask must never acquire a selector identity.
+    mutations = [
+        (0x120, "ldr r1, [r0]", "ldr r0, [r0]"),
+        (0x120, "lsls r2, r2, #6", "lsls r2, r2, #5"),
+        (0x120, "adds r1, r1, r2", "adds r0, r1, r2"),
+        (0x120, "movs r0, #4", "movs r0, #5"),
+        (0x123, "movs r0, #0x3f", "movs r0, #0x7f"),
+        (0x1ee, "0xFFFFFE3F", "0xFFFFFF3F"),
+        (0x1ee, "ldrh r2, [r1]", "ldrb r2, [r1]"),
+        (0x1ee, "movs r0, #7", "movs r0, #3"),
+        (0x1ee, "b .L0804D2D6", "b .L0804DA2E"),
+    ]
+    for selector, before, after in mutations:
+        start = original.index(indexed[selector]["handler"] + ":")
+        end = original.index("\n.L", start + 1)
+        block = original[start:end]
+        assert block.count(before) == 1
+        changed = original[:start] + block.replace(before, after) + original[end:]
+        _, _, result = build_map(changed)
+        assert selector not in {entry["selector"] for entry in result}, (selector, before)
+    print("Computed selector evidence tests: 5 mappings and 9 rejected mutations PASS")
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--check", action="store_true", help="Enforce known retail mapping and source names")
     ap.add_argument("--json", action="store_true", help="Print full mapping as JSON")
+    ap.add_argument("--self-test", action="store_true", help="Check computed-address evidence and rejection paths")
     args = ap.parse_args()
+    if args.self_test:
+        self_test()
     count, direct, matches = build_map()
     selector_ids = [x["selector"] for x in matches]
     names = [x["member"] for x in matches]
     if args.check:
-        assert (count, direct, len(matches)) == (562, 450, 450), (count, direct, len(matches))
+        assert (count, direct, len(matches)) == (562, 455, 455), (count, direct, len(matches))
         assert len(set(selector_ids)) == len(matches)
         assert len(set(names)) == len(matches)
         for m in matches:
             assert m["member"] == f"native_selector_{m['selector']:03x}", m
-        assert {x["selector"] for x in matches} >= {0xf8, 0x1c3, 0x1c7, 0x24b, 0x24c}
+        assert {x["selector"] for x in matches} >= {0xf8, 0x120, 0x121, 0x122, 0x123, 0x1c3, 0x1c7, 0x1ee, 0x24b, 0x24c}
     if args.json:
         print(json.dumps(matches, indent=2))
     else:
-        print(f"Retail action selector index: {count} cases, {direct} direct packed-address cases, "
+        print(f"Retail action selector index: {count} cases, {direct} literal/computed packed-address cases, "
               f"{len(matches)} unique selector-to-field matches")
         print("Only verified direct writes; unindexed cases and gameplay meanings remain unclaimed.")
         if args.check:
