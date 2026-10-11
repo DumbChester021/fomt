@@ -4,8 +4,10 @@
 #include "prelude.h"
 
 // Native call state persisted at GameState+0x214C.
-// Packed bitfield boundaries are verified by the byte-exact initializer;
-// neutral names remain until consuming code proves semantics.
+// Bit positions are supported by the exact initializer and retail copy masks.
+// The u32 base type is provisional: u8/u16 alternatives also reproduce the
+// initializer byte-for-byte. The unresolved copy must determine exact types.
+// Neutral names remain until consuming code proves gameplay semantics.
 struct SavedNativeCallState {
     u32 active_count; // +0x00, populated IDs
     u16 native_ids[3]; // +0x04..+0x09
