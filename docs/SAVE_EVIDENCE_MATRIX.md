@@ -13,7 +13,7 @@ The source-derived `make save-progress` summary reports **only the bounded funct
 | 0x080D4480 | GameState cleanup | 84 | EXACT | src/game_state_cleanup.cc | `docs/GAME_STATE_SAVE_CLEANUP.md`; mode 2 retains allocation, mode 3 releases it |
 | 0x080D64C8 | Farm state copy | 180 | EXACT | src/farm_state_copy.cc | `docs/SAVE_FARM_STATE_COPY.md`; specialized Coop/Barn copies |
 | 0x080D657C | Barn state copy | 296 | EXACT | src/barn_state_copy.cc | `docs/SAVE_BARN_STATE_COPY.md`; zero differences and forced full-ROM proof |
-| 0x080D66A4 | Coop state copy | 292 | ASM | asm/code_linkonce.s | `docs/SAVE_BARN_STATE_COPY.md`; v3/v4 and actual member-operator trial all size 292 with 35 differing bytes; wait for new compiler/type evidence |
+| 0x080D66A4 | Coop state copy | 292 | EXACT | src/coop_state_copy.cc | `docs/SAVE_BARN_STATE_COPY.md`; natural fieldwise C++ exact under two historical compilers and structurally refined compatibility compiler; adjacent `Coop::DayUpdate` remains exact, full detached ROM verified |
 | 0x080D67C8 | Dog state copy | 132 | EXACT | src/dog_state_copy.cc | `docs/SAVE_DOG_STATE_COPY.md`; implicit Animal assignment ABI matters |
 | 0x080D68C0 | Farmer state copy | 448 | EXACT | src/farmer_state_copy.cc | `docs/SAVE_FARMER_STATE_COPY.md`; explicit symbol binding preserves retail `memcpy` call |
 | 0x080D6A80 | Rucksack active-entry copy | 128 | ASM | asm/code_linkonce.s | `docs/SAVE_RUCKSACK_COPY_RESEARCH.md`; copy only active entries, not unused capacity; v1-v4 not matching |
@@ -21,7 +21,7 @@ The source-derived `make save-progress` summary reports **only the bounded funct
 | 0x080D6B40 | MoneyState copy | 200 | ASM | asm/code_linkonce.s | `docs/SAVE_GAMESTATE_ASSIGNMENT_MAP.md`; best prior typed 196 bytes / 157 differing, placement experiments closed |
 | 0x080D6C08 | MoneyState nested cleanup | 80 | EXACT | src/game_state_cleanup.cc | `docs/GAME_STATE_SAVE_CLEANUP.md`; preserve original counted loops and allocation-mode behavior |
 
-**Boundary warning:** `0x080D6A80..0x080D6B40` is **two functions (128+64 bytes)**. Earlier combined descriptions of a "192-byte Rucksack copy" were wrong. The cleanup is source-owned and the 128-byte copy is **not**. This was confirmed by source symbols and isolated linked-byte comparisons. The updated October 11 function inventory reports **1,934** unresolved linked ASM functions across the game, not 1,934 remaining save routines. The tracked 12-function save-copy subset remains 7 exact and 5 ASM.
+**Boundary warning:** `0x080D6A80..0x080D6B40` is **two functions (128+64 bytes)**. Earlier combined descriptions of a "192-byte Rucksack copy" were wrong. The cleanup is source-owned and the 128-byte copy is **not**. This was confirmed by source symbols and isolated linked-byte comparisons. Regenerate the linked ASM inventory after every source promotion. The 12-function save-copy subset includes the now source-owned Coop copy; **8 exact, 4 ASM**, and still does not imply full save-system completion.
 
 ## Decompilation evidence classes
 

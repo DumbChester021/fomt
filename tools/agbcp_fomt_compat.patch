@@ -528,15 +528,17 @@ index 95b56ead..4b317b53 100644
    qty_const = 0;
  
 diff --git a/g++/flow.c b/g++/flow.c
-index a9dc2720..1085bced 100644
+index a9dc2720..22504774 100644
 --- a/g++/flow.c
 +++ b/g++/flow.c
-@@ -2479,7 +2479,16 @@ mark_set_1 (needed, dead, x, insn, significant)
+@@ -2479,7 +2479,18 @@ mark_set_1 (needed, dead, x, insn, significant)
  		 elsewhere, but we want the count to include the insn
  		 where the reg is set, and the normal counting mechanism
  		 would not count it.  */
 -	      REG_LIVE_LENGTH (regno)++;
 +	      if (! (getenv ("AGBCC_NO_CONST_STEP_SELF_MOD_SET_LIVE")
++		     && ! (REG_USERVAR_P (reg)
++		           && REG_N_CALLS_CROSSED (regno) == 0)
 +		     && GET_CODE (SET_SRC (x)) == PLUS
 +		     && ((GET_CODE (XEXP (SET_SRC (x), 0)) == REG
 +			  && REGNO (XEXP (SET_SRC (x), 0)) == regno

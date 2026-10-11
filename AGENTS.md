@@ -7,6 +7,8 @@
 - Retail `main` reconstructs the **US Harvest Moon: Friends of Mineral Town (GBA)** into **readable, evidence-based C++** whose complete ROM remains byte-identical. No intentional gameplay changes on the retail branch.
 - The separate `custom-game` worktree is for future QoL and content. The user requires **full, human-readable save-system recovery first**, before unrelated retail queues or custom features.
 - Preserve original author attribution, licenses, existing code style and upstream boundaries. No unsolicited upstream PRs, pushes to `origin`, AI branding, or unrelated restructuring.
+- **Respectful, tool-neutral contribution standard:** judge patches by independently reproducible evidence, readability, maintainability and usefulness, not by whether a human or an assistant authored them. Credit original authors and prior research accurately; never imply automation replaces their expertise. Treat skeptical technical review as useful, answer it with specifics, and avoid dismissive claims about any group of contributors.
+- **Challenge requests constructively:** when a proposed step wastes effort, weakens exactness, adds unnecessary complexity or deviates from established decompilation practice, explain the concrete downside promptly and propose the simpler, testable alternative. Do not rubber-stamp requests, but do not reject unconventional approaches without evaluating their evidence and potential benefit.
 
 ## Source and proof integrity
 

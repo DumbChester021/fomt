@@ -881,6 +881,8 @@ SECTIONS
         asm/code_0803EE94.o(.text.after_scene_run_9a558);
         src/money.o(.text);
         asm/code_0803EE94.o(.text.after_money_debit);
+        src/money_history_lookups.o(.text.money_history_lookups);
+        asm/code_0803EE94.o(.text.after_money_history_lookups);
 
         src/actor.o(.text);
         src/animal.o(.text);
@@ -978,6 +980,8 @@ SECTIONS
         asm/code_linkonce.o(.text.after_save_farm_copy);
         src/barn_state_copy.o(.text.save_barn_copy);
         asm/code_linkonce.o(.text.after_save_barn_copy);
+        src/coop_state_copy.o(.text.save_coop_copy);
+        asm/code_linkonce.o(.text.after_save_coop_copy);
         src/dog_state_copy.o(.text.save_dog_copy);
         *(.gnu.linkonce.t.__as__6AnimalRC6Animal);
         src/farmer_state_copy.o(.text.save_farmer_copy);

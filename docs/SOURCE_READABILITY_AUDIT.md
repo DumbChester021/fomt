@@ -23,13 +23,13 @@ The audit masks comments and quoted strings before scanning and distinguishes C/
 
 ### October 11 measured inventory
 
-The revised scanner finds **157** compiled C/C++ files totaling **22,469** lines (155 `.cc`, 2 `.c`; line counts include source-only explanatory comments). This broadens the October 10 C++-only audit, whose old indicators and counts are **not directly comparable** because the lexical classifier also changed.
+The revised scanner finds **159** compiled C/C++ files totaling **22,554** lines (157 `.cc`, 2 `.c`; line counts include source-only explanatory comments). This broadens the October 10 C++-only audit, whose old indicators and counts are **not directly comparable** because the lexical classifier also changed.
 
 | Indicator | Occurrences | Files | Interpretation |
 | --- | ---: | ---: | --- |
 | Address-named function definitions | 254 | 39 | Conservative syntactic candidates, not all necessarily anonymous behavior |
-| Address/symbol references | 1,435 | 107 | Includes legitimate compatibility calls |
-| Legacy `ALIAS` spellings | 79 | 29 | Original entrypoint preservation; usually acceptable |
+| Address/symbol references | 1,438 | 109 | Includes legitimate compatibility calls |
+| Legacy `ALIAS` spellings | 82 | 31 | Original entrypoint preservation; usually acceptable |
 | External ASM symbol bindings | 60 | 6 | Usually typed linkage, **not** machine-code injection |
 | Unknown/padding array fields | 78 | 21 | ABI layout may be proven even if semantics are not |
 | Offset-named callback calls | 44 | 3 | Missing gameplay names, structural ABI evidence |

@@ -175434,49 +175434,7 @@ func_0809AE6C: @ 0x0809AE6C
 	pop {r0}
 	bx r0
 
-	thumb_func_start func_0809B018
-func_0809B018: @ 0x0809B018
-	push {lr}
-	adds r3, r0, #0
-	adds r3, #8
-	ldr r2, [r0, #8]
-	cmp r1, r2
-	blo .L0809B028
-	adds r0, #0xc
-	b .L0809B032
-.L0809B028:
-	adds r0, r1, #1
-	subs r0, r2, r0
-	lsls r0, r0, #3
-	adds r0, #4
-	adds r0, r3, r0
-.L0809B032:
-	pop {r1}
-	bx r1
-	.align 2, 0
-
-	thumb_func_start func_0809B038
-func_0809B038: @ 0x0809B038
-	push {lr}
-	adds r3, r0, #0
-	adds r3, #0xfc
-	ldr r2, [r3]
-	cmp r1, r2
-	blo .L0809B04C
-	movs r1, #0x80
-	lsls r1, r1, #1
-	adds r0, r0, r1
-	b .L0809B056
-.L0809B04C:
-	adds r0, r1, #1
-	subs r0, r2, r0
-	lsls r0, r0, #3
-	adds r0, #4
-	adds r0, r3, r0
-.L0809B056:
-	pop {r1}
-	bx r1
-	.align 2, 0
+	.section .text.after_money_history_lookups, "ax", %progbits
 
 	thumb_func_start func_0809B05C
 func_0809B05C: @ 0x0809B05C

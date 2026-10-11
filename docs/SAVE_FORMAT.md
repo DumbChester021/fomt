@@ -4,7 +4,7 @@ The original US FoMT layout contains two primary slots after a 0x28-byte SRAM
 header. Each slot begins at `0x28 + slot * 0x3FEC`. Preserve the serialized
 retail `GameState` size and offsets when adding compatible custom state.
 
-**Current verified checkpoint, October 11:** 91,776 matching C++ code bytes (9.7630%), 1,934 linked ASM functions left. Forced ROM `sh_mv2zjs7o_1c4bad58` passed with the original SHA1. This is NOT complete save-system decompilation, runtime-load proof, or custom-game save readiness.
+**Current verified checkpoint, October 11:** 92,136 matching C++ code bytes (9.8013%), 1,931 linked ASM functions remain. Normal production `make test` passed (Ches `sh_mv32kflp_e537e2d3`), including the forced complete ROM and original SHA1. This is NOT complete save-system decompilation, runtime-load proof, or custom-game save readiness.
 
 ## Current source-owned save components
 
