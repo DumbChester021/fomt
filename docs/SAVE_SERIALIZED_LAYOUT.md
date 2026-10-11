@@ -29,7 +29,7 @@ Eight independently grounded GameState objects now live in `PersistedGameStateLa
 | 0x1C70..0x1C9F | 0x30 | `Dog`, source-exact assignment |
 | 0x1CA0..0x1CCB | 0x2C | `SavedByteBuffer`, six exact methods |
 | 0x1CCC..0x214B | 0x480 | Saved social state and other still-partially-opaque fields; social copy is exact C++ |
-| 0x214C..0x21CB | 0x80 | `SavedNativeCallState`: 3 callable IDs, sentinel, 461 copied-bitfield names; 1,724-byte initializer exact C++, 7,132-byte copy ASM |
+| 0x214C..0x21CB | 0x80 | `SavedNativeCallState`: 3 callable IDs, sentinel, 413 verified native-selector field names; 1,724-byte initializer exact C++, 7,132-byte copy ASM |
 | 0x21CC..0x2C73 | 0xAA8 | Remaining untyped saved systems |
 | 0x2C74..0x2C7F | 0x0C | `SavedTransitionState`, eight exact methods |
 | 0x2C80..0x2E57 | 0x1D8 | `FishingRecords`, 59 eight-byte records |

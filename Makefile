@@ -108,6 +108,7 @@ docs-check:
 
 save-check: docs-check
 	@python3 tools/ches/check_save_evidence.py
+	@python3 tools/ches/native_selector_map.py --check
 	@python3 tools/ches/inspect_sram.py --self-test
 
 # Fast source-only triage: show the current evidence locations on demand, and
@@ -123,7 +124,7 @@ readability-report:
 # These are all independently runnable source-only automated tests.
 ci: save-check
 	@bash tools/scripts/tests/calcrom_test.sh
-	@python3 -m py_compile tools/ches/check_docs.py tools/ches/check_save_evidence.py tools/ches/save_progress.py tools/ches/audit_docs.py tools/ches/inspect_sram.py tools/ches/audit_source_readability.py
+	@python3 -m py_compile tools/ches/check_docs.py tools/ches/check_save_evidence.py tools/ches/save_progress.py tools/ches/audit_docs.py tools/ches/inspect_sram.py tools/ches/audit_source_readability.py tools/ches/native_selector_map.py
 	@$(MAKE) readability-check
 	@python3 tools/ches/save_progress.py
 
