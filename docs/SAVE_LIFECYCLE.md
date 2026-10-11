@@ -7,7 +7,7 @@ reached that standard yet; do not confuse a recovered behavior with an exact
 C++ production replacement. Keep retail changes on `main` and do not alter
 the `custom-game` worktree during this priority.
 
-**Publication verified October 11:** `ec6d61b` pushed to `ches/main`, following `ac239ba` (exact Barn/Farmer assignments and typed Rucksack cleanup). `497395f` and `f069823` are historical checkpoints; check Git for newer HEAD. Source-exact save code also includes Farm/Dog assignments, GameState cleanup, byte-buffer and transition methods; consult the [evidence matrix](SAVE_EVIDENCE_MATRIX.md) and [current handoff](../tools/ches/NEXT_AGENT_HANDOFF.md). The GameState-loader behavioral pseudocode below is research, not an exact compiled replacement. The save system remains incomplete.
+**Historical October 11 checkpoints:** `ec6d61b`, `ac239ba`, `497395f` and `f069823` preceded subsequent exact save-source integrations. The current source progress and no-context handoff are in [START_HERE.md](../START_HERE.md); see the [save evidence matrix](SAVE_EVIDENCE_MATRIX.md) for current function ownership. The GameState-loader behavioral pseudocode below is research, not exact source. The save system remains incomplete.
 
 ## Verified SRAM organization
 
