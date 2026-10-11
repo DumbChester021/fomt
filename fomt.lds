@@ -506,7 +506,7 @@ SECTIONS
         src/save_packed_flag.o(.text.saved_packed_flag);
         asm/game_state.o(.text.after_save_packed_flag);
         src/game_state_packed_progress.o(.text.packed_header_progress);
-        asm/game_state.o(.text.after_packed_header_progress);
+        src/game_state_packed_progress_b.o(.text.packed_header_progress_b);
         src/game_state_packed_progress_c.o(.text.packed_header_progress_c);
         src/game_state_header_flag_init.o(.text.packed_header_flag_init);
         src/save_transition_state.o(.text.save_transition_state);

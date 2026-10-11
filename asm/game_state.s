@@ -1918,38 +1918,6 @@ func_08010F54: @ 0x08010F54
 .L08011408: .4byte 0x000034DC
 
     .section .text.after_save_packed_flag, "ax", %progbits
-    .section .text.after_packed_header_progress, "ax", %progbits
-
-    thumb_func_start func_08011498
-func_08011498: @ 0x08011498
-    push {lr}
-    adds r3, r0, #0
-    cmp r1, #0x63
-    bls .L080114A2
-    movs r1, #0x63
-.L080114A2:
-    ldrh r2, [r3, #2]
-    lsls r0, r2, #0x17
-    lsrs r0, r0, #0x19
-    cmp r0, r1
-    blo .L080114B0
-    movs r0, #0
-    b .L080114C0
-.L080114B0:
-    movs r0, #0x7f
-    ands r1, r0
-    lsls r1, r1, #2
-    ldr r0, .L080114C4 @ =0xFFFFFE03
-    ands r0, r2
-    orrs r0, r1
-    strh r0, [r3, #2]
-    movs r0, #1
-.L080114C0:
-    pop {r1}
-    bx r1
-    .align 2, 0
-.L080114C4: .4byte 0xFFFFFE03
-
     .section .text.after_save_transition_state, "ax", %progbits
     .section .text.after_save_record, "ax", %progbits
 
